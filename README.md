@@ -7,8 +7,10 @@ yadm. Use it like git to add/push and pull.
 - feh - to set background
 - sxhkd - for custom keybindings
 - betterlockscreen - for lock screen
+    TODO figure out how to auto-lock screen
 - xmonad - window manager
 - kitty - terminal
 - compton / compton-settings - compositor
 - redshift - brightness manager
 - qt5ct - configuring qt5 theme
+- polybar - status bar

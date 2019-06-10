@@ -1,0 +1,7 @@
+# sxhkd shortcuts
+super + shift + l
+    betterlockscreen -l dim
+alt + Return
+    $TERMINAL
+alt + space
+    rofi -combi-modi window,drun,run -show combi -modi combi

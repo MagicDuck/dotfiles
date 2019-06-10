@@ -284,6 +284,11 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 
 "vimdiff current vs git head (fugitive extension)
 nnoremap <Leader>gd :Gdiff<cr>
+
+" commenting
+nmap <C-_>   <Plug>NERDCommenterToggle
+vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
+
 "switch back to current file and closes fugitive buffer
 nnoremap <Leader>gD <c-w>h<c-w>c
 
@@ -295,4 +300,7 @@ autocmd FileType json vnoremap <buffer> <leader>i :call RangeJsonBeautify()<cr>
 autocmd FileType jsx vnoremap <buffer> <leader>i :call RangeJsxBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <leader>i :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <leadedoner>i :call RangeCSSBeautify()<cr>
+
+autocmd BufWritePost *shortcutsrc !pkill -USR1 sxhkd
+autocmd BufWritePost *xmonad.hs !xmonad -restart
 

@@ -30,14 +30,8 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 /usr/bin/sxhkd -c $HOME/.shortcutsrc &
 
 # set wallpaper
-feh --bg-scale ~/Pictures/goats_in_space.jpg &
-
-# compositor
-#compton -b &
+#feh --bg-scale ~/Pictures/goats_in_space.jpg &
 
 # brightness manager
 redshift &
-
-# theming
-export QT_QPA_PLATFORMTHEME="qt5ct"
 

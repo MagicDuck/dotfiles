@@ -92,7 +92,7 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 ## connect to work
-[[ -e ~/.secret ]] && 'source ~/.secret.zsh'
+[[ -e ~/.secret.zsh ]] && source ~/.secret.zsh
 alias sapconnect="sudo f5fpc --start --host https://connectpal05.sap.com --user $SAP_USER"
 #alias sapconnect="sudo f5fpc --start --host https://connectphl11.sap.com --user $SAP_USER"
 alias sapinfo="sudo f5fpc --info"

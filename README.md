@@ -14,3 +14,9 @@ yadm. Use it like git to add/push and pull.
 - redshift - brightness manager
 - qt5ct - configuring qt5 theme
 - polybar - status bar
+- freetype2-cleartype - for better looking fonts
+
+TODO:
+- kitty - diff
+- xmonad - workspaces + keybindings fix
+- fix cursor style

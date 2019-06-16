@@ -7,7 +7,6 @@ yadm. Use it like git to add/push and pull.
 - feh - to set background
 - sxhkd - for custom keybindings
 - betterlockscreen - for lock screen
-    TODO figure out how to auto-lock screen
 - xmonad - window manager
 - kitty - terminal
 - compton / compton-settings - compositor
@@ -16,8 +15,17 @@ yadm. Use it like git to add/push and pull.
 - polybar - status bar
 - freetype2-cleartype - for better looking fonts
 - xcursor-premium - custom cursor
+- dropbox
+- dunst - notifications server
+- nm-applet & networkmonitor - network monitor applet
 
 TODO:
 - kitty - diff
 - xmonad - workspaces + keybindings fix
+- scratchpad terminal?
+- kde mouse icon - set same as x one
+- taking notes on linux (vim, emacs, evernote?)
+- figure out how to auto-lock screen
+- dunst - notification manager - should we start it using dbus instea?
+- slack notifications
 

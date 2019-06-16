@@ -184,8 +184,11 @@ myLogHook = do
 myStartupHook = do
     setWMName "LG3D"
     spawnOnce "feh --bg-scale ~/Pictures/goats_in_space.jpg"
+    spawnOnce "dunst" -- notification server
+    spawnOnce "nm-applet" -- network monitor applet
     forM_ [".xmonad-workspace-log", ".xmonad-title-log"] $ \file -> do safeSpawn "mkfifo" ["/tmp/" ++ file]
     spawnOnce "polybar -r main -c ~/.config/polybar/config.ini"
+    spawnOnce "redshift" -- brightness manager
     spawnOnce "compton -b"
     spawnOnce "google-chrome-stable"
 

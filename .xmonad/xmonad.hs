@@ -22,6 +22,10 @@ import Control.Monad (forM_, join)
 import XMonad.Util.Run (safeSpawn)
 import XMonad.Util.NamedWindows (getName)
 import qualified XMonad.StackSet as W
+import XMonad.Hooks.InsertPosition
+import XMonad.Layout.SimpleDecoration
+import XMonad.Layout.NoFrillsDecoration
+import XMonad.Util.Themes
 
 -- useful to copy from: https://github.com/ruhatch/.dotfiles/blob/master/.xmonad/xmonad.hs
 -- https://github.com/jonhoo/configs/blob/14e0e155d28c83504e28f3c5bf0f9fc939b12a1e/xmonad/xmonad.hs#L154L157
@@ -33,6 +37,35 @@ import qualified XMonad.StackSet as W
 myModMask = mod4Mask   -- super
 myWorkspaces = ["web","a","b","c","d","e","f"]
 myTerminal = "kitty"
+myFont = "xft:NotoSans-Regular:size=10"
+
+color_bg = "#efefef"
+color_fg = "#252525"
+color_activebg = "#546e7a"
+color_activefg = "#f5f5f5"
+color_urgent = "#e53935"
+
+windowBarTheme = def
+    { fontName              = myFont
+    , inactiveBorderColor   = color_bg
+    , inactiveColor         = color_bg
+    , inactiveTextColor     = color_fg
+    , activeBorderColor     = color_activebg
+    , activeColor           = color_activebg
+    , activeTextColor       = color_activefg
+    , urgentBorderColor     = color_urgent
+    , urgentTextColor       = color_urgent
+    , decoHeight            = 25
+    }
+-- baseWindowTheme = robertTheme
+-- windowBarTheme = (theme baseWindowTheme)
+--     { fontName   = myFont
+--     , decoHeight = 23
+--     , activeColor = "#546e7a"
+--     , activeTextColor = "#252525"
+--     , inactiveColor = "#ddeeeeee"
+--     , inactiveTextColor = "#f5f5f5"
+--     }
 
 ------------------------------------------------------------------------
 -- keybindings
@@ -75,7 +108,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 ------------------------------------------------------------------------
 -- layouts
 
-myLayout = (spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True)
+myLayout =
+  -- adds window titles
+  noFrillsDeco shrinkText windowBarTheme -- adds window titles
+  -- adds spaces around windows
+  $ (spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True)
+  -- the layouts
   $ tiled ||| (Mirror tiled) ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
@@ -107,7 +145,7 @@ myLayout = (spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True)
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = composeAll
+myManageHook = insertPosition End Newer <+> composeAll
     [ className =? "Gimp"           --> doFloat
     , className =? "xfreerdp"       --> doFullFloat
     , resource  =? "desktop_window" --> doIgnore

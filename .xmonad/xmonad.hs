@@ -26,6 +26,7 @@ import XMonad.Hooks.InsertPosition
 import XMonad.Layout.SimpleDecoration
 import XMonad.Layout.NoFrillsDecoration
 import XMonad.Util.Themes
+import XMonad.Util.NamedScratchpad
 
 -- useful to copy from: https://github.com/ruhatch/.dotfiles/blob/master/.xmonad/xmonad.hs
 -- https://github.com/jonhoo/configs/blob/14e0e155d28c83504e28f3c5bf0f9fc939b12a1e/xmonad/xmonad.hs#L154L157
@@ -68,10 +69,19 @@ windowBarTheme = def
 --     }
 
 ------------------------------------------------------------------------
+-- scratchpads
+
+scratchpads = [
+    NS "terminal" "kitty --class scratchpad" (className =? "scratchpad")
+        (customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3))
+    ]
+
+------------------------------------------------------------------------
 -- keybindings
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((0, xK_Print), (spawn "scrot"))
+    , ((controlMask, xK_Return), (namedScratchpadAction scratchpads "terminal"))
     -- , ((mod4Mask, xK_a), (spawn myTerminal))
     -- , ((mod4Mask, xK_c), (spawn "xterm"))
     -- , ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
@@ -200,7 +210,9 @@ main = xmonad $ ewmh desktopConfig
     , workspaces         = myWorkspaces
     , keys               = \c -> myKeys c `M.union` keys XMonad.def c
     , layoutHook         = desktopLayoutModifiers $ myLayout
-    , manageHook         = myManageHook <+> manageHook desktopConfig
+    , manageHook         = myManageHook
+        <+> namedScratchpadManageHook scratchpads
+        <+> manageHook desktopConfig
     , handleEventHook    = fullscreenEventHook <+> handleEventHook desktopConfig
     , startupHook        = myStartupHook <+> startupHook desktopConfig
     , logHook            = myLogHook

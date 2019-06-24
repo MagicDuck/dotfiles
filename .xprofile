@@ -32,5 +32,6 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 # set wallpaper
 #feh --bg-scale ~/Pictures/goats_in_space.jpg &
 
+redshift-gtk & # brigtness manager
 dropbox &
 

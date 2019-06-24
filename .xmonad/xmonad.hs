@@ -188,7 +188,6 @@ myStartupHook = do
     spawnOnce "nm-applet" -- network monitor applet
     forM_ [".xmonad-workspace-log", ".xmonad-title-log"] $ \file -> do safeSpawn "mkfifo" ["/tmp/" ++ file]
     spawnOnce "polybar -r main -c ~/.config/polybar/config.ini"
-    spawnOnce "redshift" -- brightness manager
     spawnOnce "compton -b"
     spawnOnce "google-chrome-stable"
 

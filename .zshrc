@@ -91,6 +91,9 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+## Kittens aliases
+alias icat="kitty +kitten icat"
+
 ## connect to work
 [[ -e ~/.secret.zsh ]] && source ~/.secret.zsh
 alias sapconnect="sudo f5fpc --start --host https://connectpal05.sap.com --user $SAP_USER"

@@ -80,7 +80,7 @@ scratchpads = [
 ------------------------------------------------------------------------
 -- keybindings
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-    [ ((0, xK_Print), (spawn "scrot"))
+    [ ((0, xK_Print), (spawn "flameshot gui"))
     , ((controlMask, xK_Return), (namedScratchpadAction scratchpads "terminal"))
     , ((mod1Mask, xK_Return), (spawn myTerminal))
     , ((mod1Mask, xK_space), (spawn "rofi -combi-modi window,drun,run -show combi -modi combi"))

@@ -17,7 +17,8 @@ yadm. Use it like git to add/push and pull.
 - dropbox
 - dunst - notifications server
 - nm-applet & networkmonitor - network monitor applet
-- boostnote
+- boostnote - note taking
+- flameshot - screenshot taking
 
 TODO:
 - kitty - diff

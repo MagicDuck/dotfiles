@@ -6,32 +6,6 @@ include () {
 
 include ~/.profile
 
-# Adds `~/.scripts` and all subdirectories to $PATH
-export PATH=$PATH:$HOME/bin
-export EDITOR="nvim"
-export TERMINAL="kitty"
-export BROWSER="google-chrome-stable"
-export READER="zathura"
-
-# less/man colors
-export LESS=-R
-export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
-export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"; a="${a%_}"
-export LESS_TERMCAP_me="$(printf '%b' '[0m')"; a="${a%_}"
-export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"; a="${a%_}"
-export LESS_TERMCAP_se="$(printf '%b' '[0m')"; a="${a%_}"
-export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"; a="${a%_}"
-export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
-
 # map Home to Esc
 /usr/bin/xmodmap ~/.Xmodmap
-
-# set up shortcuts
-/usr/bin/sxhkd -c $HOME/.shortcutsrc &
-
-# set wallpaper
-#feh --bg-scale ~/Pictures/goats_in_space.jpg &
-
-redshift-gtk & # brigtness manager
-dropbox &
 

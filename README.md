@@ -5,7 +5,6 @@ yadm. Use it like git to add/push and pull.
 ## Dependencies
 - nvim - editor
 - feh - to set background
-- sxhkd - for custom keybindings
 - betterlockscreen - for lock screen
 - xmonad - window manager
 - kitty - terminal
@@ -18,11 +17,9 @@ yadm. Use it like git to add/push and pull.
 - dropbox
 - dunst - notifications server
 - nm-applet & networkmonitor - network monitor applet
+- boostnote
 
 TODO:
 - kitty - diff
 - xmonad - workspaces + keybindings fix
-- kde mouse icon - set same as x one
-- taking notes on linux (vim, emacs, evernote?)
-- figure out how to auto-lock screen
 

@@ -302,7 +302,7 @@ autocmd FileType html vnoremap <buffer> <leader>i :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <leadedoner>i :call RangeCSSBeautify()<cr>
 
 autocmd BufWritePost *shortcutsrc !pkill -USR1 sxhkd
-autocmd BufWritePost *xmonad.hs !xmonad -restart
+autocmd BufWritePost ~/.xmonad/xmonad.hs call jobstart('/usr/bin/xmonad --restart')
 autocmd BufWritePost ~/.config/polybar/*.ini call jobstart('~/.config/polybar/launch.sh')
 autocmd BufWritePost ~/.config/dunst/dunstrc call jobstart('~/bin/start_dunst.sh')
 

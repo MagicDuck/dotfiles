@@ -38,6 +38,7 @@ import XMonad.Util.NamedScratchpad
 myModMask = mod4Mask   -- super
 myWorkspaces = ["web","a","b","c","d","e","f"]
 myTerminal = "kitty"
+myScreenLocker = "betterlockscreen -l dim"
 myFont = "xft:NotoSans-Regular:size=10"
 
 color_bg = "#efefef"
@@ -78,10 +79,17 @@ scratchpads = [
 
 ------------------------------------------------------------------------
 -- keybindings
-
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((0, xK_Print), (spawn "scrot"))
     , ((controlMask, xK_Return), (namedScratchpadAction scratchpads "terminal"))
+    , ((mod1Mask, xK_Return), (spawn myTerminal))
+    , ((mod1Mask, xK_space), (spawn "rofi -combi-modi window,drun,run -show combi -modi combi"))
+    , ((mod4Mask .|. controlMask, xK_l), (spawn myScreenLocker))
+-- # alt + Return
+-- #     $TERMINAL
+-- # alt + space
+-- #     rofi -combi-modi window,drun,run -show combi -modi combi
+
     -- , ((mod4Mask, xK_a), (spawn myTerminal))
     -- , ((mod4Mask, xK_c), (spawn "xterm"))
     -- , ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
@@ -196,10 +204,14 @@ myStartupHook = do
     spawnOnce "feh --bg-scale ~/Pictures/goats_in_space.jpg"
     spawnOnce "dunst" -- notification server
     spawnOnce "nm-applet" -- network monitor applet
+    spawnOnce "redshift-gtk" -- brightness manager
+    spawnOnce "dropbox"
+    -- TODO: do we need to send this info anymore, we don't use it in polybar?
     forM_ [".xmonad-workspace-log", ".xmonad-title-log"] $ \file -> do safeSpawn "mkfifo" ["/tmp/" ++ file]
     spawnOnce "polybar -r main -c ~/.config/polybar/config.ini"
     spawnOnce "compton -b"
     spawnOnce "google-chrome-stable"
+    spawnOnce ("xautolock -time 1 -locker \"" ++ myScreenLocker ++ "\"")
 
 main = xmonad $ ewmh desktopConfig
     { borderWidth        = 2

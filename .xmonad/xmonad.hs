@@ -211,7 +211,7 @@ myStartupHook = do
     spawnOnce "polybar -r main -c ~/.config/polybar/config.ini"
     spawnOnce "compton -b"
     spawnOnce "google-chrome-stable"
-    spawnOnce ("xautolock -time 1 -locker \"" ++ myScreenLocker ++ "\"")
+    spawnOnce ("xautolock -time 5 -locker \"" ++ myScreenLocker ++ "\"")
 
 main = xmonad $ ewmh desktopConfig
     { borderWidth        = 2

@@ -93,6 +93,7 @@ bindkey '^[[B' history-substring-search-down
 
 ## Kittens aliases
 alias icat="kitty +kitten icat"
+alias d="kitty +kitten diff"
 
 ## connect to work
 [[ -e ~/.secret.zsh ]] && source ~/.secret.zsh
@@ -103,3 +104,4 @@ alias sapstop="sudo f5fpc --stop"
 # alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect -floatbar"
 alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect +floatbar"
 
+unalias grv # to be able to use grv git client

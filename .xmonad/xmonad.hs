@@ -31,6 +31,7 @@ import XMonad.Util.NamedScratchpad
 -- useful to copy from: https://github.com/ruhatch/.dotfiles/blob/master/.xmonad/xmonad.hs
 -- https://github.com/jonhoo/configs/blob/14e0e155d28c83504e28f3c5bf0f9fc939b12a1e/xmonad/xmonad.hs#L154L157
 -- https://gist.github.com/gilbertw1/2fa89193d3bd83cec5378dc9dd481c30
+-- https://gist.github.com/master-q/1136051/bc1b7d9721b7e0a6e6132f4c07a48e524e7bf6db
 
 ------------------------------------------------------------------------
 -- general
@@ -84,44 +85,22 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((controlMask, xK_Return), (namedScratchpadAction scratchpads "terminal"))
     , ((mod1Mask, xK_Return), (spawn myTerminal))
     , ((mod1Mask, xK_space), (spawn "rofi -combi-modi window,drun,run -show combi -modi combi"))
-    , ((mod4Mask .|. controlMask, xK_l), (spawn myScreenLocker))
--- # alt + Return
--- #     $TERMINAL
--- # alt + space
--- #     rofi -combi-modi window,drun,run -show combi -modi combi
+    , ((modm .|. controlMask, xK_l), (spawn myScreenLocker))
 
-    -- , ((mod4Mask, xK_a), (spawn myTerminal))
-    -- , ((mod4Mask, xK_c), (spawn "xterm"))
-    -- , ((mod4Mask, xK_q), (spawn "/usr/bin/bash -c 'notify-send -i time \"Right now, it is\" \"$(date \"+%-I:%M %p, %A %B %d, %Y\")\n$(acpi | sed \"s/Battery 0://\")\"'"))
-    -- , ((mod4Mask, xK_e), (windows $ W.greedyView "mx") >> spawn "/data/jon/cargo-target/release/alacritty -t mutt -e tmux new-session -A -s mail /bin/bash -ic \"mutt -e 'source ~/.mutt/account.fm'\"")
-    -- , ((mod4Mask, xK_t), (spawn "xterm -e /bin/bash -i"))
-    -- , ((modm, xK_Print), (spawn "scrot -s"))
-    -- --, ((mod4Mask, xK_l), (spawn "physlock -dms"))
-    -- , ((mod4Mask, xK_l), (spawn "slock"))
-    -- , ((0, xF86XK_AudioLowerVolume), (spawn "pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ -3% &"))
-    -- , ((0, xF86XK_AudioRaiseVolume), (spawn "pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ +3% &"))
-    -- , ((mod4Mask, xK_j), (spawn "pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ -3% &"))
-    -- , ((mod4Mask, xK_k), (spawn "pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ +3% &"))
-    -- --, ((0, xF86XK_MonBrightnessDown), (spawn "xbacklight - 10 &"))
-    -- --, ((0, xF86XK_MonBrightnessUp), (spawn "xbacklight + 10 &"))
-    -- , ((0, xF86XK_MonBrightnessDown), (spawn "~/bin/adjust-brightness - &"))
-    -- , ((0, xF86XK_MonBrightnessUp), (spawn "~/bin/adjust-brightness + &"))
-    -- , ((0, xF86XK_AudioMute), (spawn "amixer set Master toggle &"))
-    -- , ((0, xF86XK_Display), (spawn "sudo -E ~jon/bin/hotplug-dp.sh &"))
-    -- , ((0, xF86XK_AudioPlay), (spawn "playerctl play-pause &"))
-    -- , ((mod4Mask, xK_p), (spawn "playerctl play-pause &"))
-    -- , ((0, xF86XK_AudioNext), (spawn "playerctl next &"))
-    -- , ((mod4Mask, xK_i), (spawn "playerctl next &"))
-    -- , ((0, xF86XK_AudioPrev), (spawn "playerctl previous &"))
-    -- , ((mod4Mask, xK_u), (spawn "playerctl previous &"))
-    , ((controlMask .|. mod1Mask, xK_Right), nextWS)
-    , ((controlMask .|. mod1Mask, xK_Left), prevWS)
-    , ((controlMask .|. mod1Mask .|. shiftMask, xK_Right), shiftToNext >> nextWS)
-    , ((controlMask .|. mod1Mask .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
-    , ((modm, xK_u),  sendMessage MirrorExpand)  -- expand resizable tall current window
-    , ((modm, xK_i),  sendMessage MirrorShrink)  -- shrink resizble tall current window
+    , ((controlMask .|. modm, xK_k), nextWS)
+    , ((controlMask .|. modm, xK_j), prevWS)
+    , ((controlMask .|. modm .|. shiftMask, xK_k), shiftToNext >> nextWS)
+    , ((controlMask .|. modm .|. shiftMask, xK_j), shiftToPrev >> prevWS)
+
+    -- expand resizable tall current window
+    , ((modm, xK_u),  sendMessage MirrorExpand)
+
+    -- shrink resizble tall current window
+    , ((modm, xK_i),  sendMessage MirrorShrink)
+
+    -- rotate through available layouts
+    , ((modm, xK_r),  sendMessage NextLayout)
     ]
-
 
 ------------------------------------------------------------------------
 -- layouts

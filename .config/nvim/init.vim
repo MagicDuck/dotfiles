@@ -68,10 +68,13 @@ Plug 'ctrlpvim/ctrlp.vim'
     let g:ctrlp_max_files = 0 " no limit
     let g:ctrlp_show_hidden = 1
 
-Plug 'JazzCore/ctrlp-cmatcher'
-    let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
+" Follow instructions on website to install this if ctrlp is slow:
+" Plug 'JazzCore/ctrlp-cmatcher'
+    " let g:ctrlp_match_func = {'match' : 'matcher#cmatch' }
 
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
+" Plug '/usr/bin/fzf'
+Plug 'junegunn/fzf.vim'
 
 Plug 'dyng/ctrlsf.vim'
     let g:ctrlsf_ackprg = 'rg'

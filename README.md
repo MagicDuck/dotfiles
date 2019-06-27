@@ -20,7 +20,3 @@ yadm. Use it like git to add/push and pull.
 - boostnote - note taking
 - flameshot - screenshot taking
 
-TODO:
-- kitty - diff
-- xmonad - workspaces + keybindings fix
-

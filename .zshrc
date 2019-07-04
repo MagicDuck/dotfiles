@@ -1,7 +1,16 @@
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 
+OS="$(uname 2> /dev/null)"
+
 ## package management
-source /usr/share/zsh/share/antigen.zsh
+case $OS in
+  Darwin)
+    source /usr/local/share/antigen/antigen.zsh
+  ;;
+  Linux)
+    source /usr/share/zsh/share/antigen.zsh
+  ;;
+esac
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh

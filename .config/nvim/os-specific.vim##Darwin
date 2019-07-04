@@ -1,0 +1,3 @@
+autocmd BufWritePost ~/.skhdrc call jobstart('skhd --reload')
+autocmd BufWritePost ~/.yabairc call jobstart('brew services restart koekeishiya/formulae/yabai')
+

@@ -6,6 +6,3 @@ include () {
 
 include ~/.profile
 
-# map Home to Esc
-/usr/bin/xmodmap ~/.Xmodmap
-

@@ -180,6 +180,7 @@ myLogHook = do
 
 myStartupHook = do
     setWMName "LG3D"
+    spawnOnce "/usr/bin/xmodmap ~/.Xmodmap" -- map Home to Esc
     spawnOnce "feh --bg-scale ~/Pictures/goats_in_space.jpg"
     spawnOnce "dunst" -- notification server
     spawnOnce "nm-applet" -- network monitor applet

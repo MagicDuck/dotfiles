@@ -270,6 +270,10 @@ endfunction
 command! -nargs=* SearchWebpackNodeModules call SearchWebpackNodeModulesFun( '<args>' )
 noremap <C-F>n :SearchWebpackNodeModules<space>
 
+" commenting
+nmap <C-_>   <Plug>NERDCommenterToggle
+vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
+
 "easymotion
 " <Leader>f{char}{char} to move to {char}
 map  <Leader>s <Plug>(easymotion-bd-f2)
@@ -288,10 +292,6 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 "vimdiff current vs git head (fugitive extension)
 nnoremap <Leader>gd :Gdiff<cr>
 
-" commenting
-nmap <C-_>   <Plug>NERDCommenterToggle
-vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
-
 "switch back to current file and closes fugitive buffer
 nnoremap <Leader>gD <c-w>h<c-w>c
 
@@ -304,8 +304,5 @@ autocmd FileType jsx vnoremap <buffer> <leader>i :call RangeJsxBeautify()<cr>
 autocmd FileType html vnoremap <buffer> <leader>i :call RangeHtmlBeautify()<cr>
 autocmd FileType css vnoremap <buffer> <leadedoner>i :call RangeCSSBeautify()<cr>
 
-autocmd BufWritePost *shortcutsrc !pkill -USR1 sxhkd
-autocmd BufWritePost ~/.xmonad/xmonad.hs call jobstart('/usr/bin/xmonad --restart')
-autocmd BufWritePost ~/.config/polybar/*.ini call jobstart('~/.config/polybar/launch.sh')
-autocmd BufWritePost ~/.config/dunst/dunstrc call jobstart('~/bin/start_dunst.sh')
+source ~/.config/nvim/os-specific.vim
 

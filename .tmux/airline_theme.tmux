@@ -1,0 +1,21 @@
+# This tmux statusbar config was created by tmuxline.vim
+# on Fri, 12 Jul 2019
+
+set -g status-justify "left"
+set -g status "on"
+set -g status-left-style "none"
+set -g message-command-style "fg=colour254,bg=colour31"
+set -g status-right-style "none"
+set -g pane-active-border-style "fg=colour254"
+set -g status-style "none,bg=colour24"
+set -g message-style "fg=colour254,bg=colour31"
+set -g pane-border-style "fg=colour31"
+set -g status-right-length "100"
+set -g status-left-length "100"
+setw -g window-status-activity-style "none"
+setw -g window-status-separator ""
+setw -g window-status-style "none,fg=colour255,bg=colour24"
+set -g status-left "#[fg=colour240,bg=colour254] #S #[fg=colour254,bg=colour24,nobold,nounderscore,noitalics]"
+set -g status-right "#[fg=colour31,bg=colour24,nobold,nounderscore,noitalics]#[fg=colour254,bg=colour31] %Y-%m-%d  %H:%M #[fg=colour254,bg=colour31,nobold,nounderscore,noitalics]#[fg=colour240,bg=colour254] #h "
+setw -g window-status-format "#[fg=colour255,bg=colour24] #I #[fg=colour255,bg=colour24] #W "
+setw -g window-status-current-format "#[fg=colour24,bg=colour31,nobold,nounderscore,noitalics]#[fg=colour254,bg=colour31] #I #[fg=colour254,bg=colour31] #W #[fg=colour31,bg=colour24,nobold,nounderscore,noitalics]"

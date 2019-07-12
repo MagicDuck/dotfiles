@@ -57,7 +57,6 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=500
-export EDITOR=/usr/bin/vim
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
 
@@ -79,9 +78,9 @@ export KEYTIMEOUT=1
 #   bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
 # fi
 # bindkey '^[[2~' overwrite-mode                                  # Insert key
-# bindkey '^[[3~' delete-char                                     # Delete key
-# bindkey '^[[C'  forward-char                                    # Right key
-# bindkey '^[[D'  backward-char                                   # Left key
+bindkey '^[[3~' delete-char                                     # Delete key
+# bindkey '^[[C'  forward-word                                    # Right key
+# bindkey '^[[D'  backward-word                                   # Left key
 # bindkey '^[[5~' history-beginning-search-backward               # Page up key
 # bindkey '^[[6~' history-beginning-search-forward                # Page down key
 #
@@ -124,3 +123,6 @@ alias sapstop="sudo f5fpc --stop"
 alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect +floatbar"
 
 unalias grv # to be able to use grv git client
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/opt/node@8/bin:$PATH"

@@ -48,6 +48,7 @@ Plug 'vim-airline/vim-airline-themes'
     " let g:airline_symbols.readonly = ''
     " let g:airline_symbols.linenr = ''
 
+Plug 'edkolev/tmuxline.vim'
 "Plug 'jelera/vim-javascript-syntax'
 "Plug 'vim-scripts/JavaScript-Indent'
 Plug 'sheerun/vim-polyglot'

@@ -5,7 +5,8 @@ export PATH=$PATH:$HOME/bin
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # default proggies
-export EDITOR="nvim"
+export EDITOR="vim"
 export TERMINAL="kitty"
 export BROWSER="google-chrome-stable"
+export TERM="xterm-256color"
 

@@ -53,6 +53,11 @@
         "<C-c>": false,
     },
     "editor.fontLigatures": true,
-    "editor.fontFamily": "'Noto Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "editor.fontSize": 13
+    "editor.fontFamily": "'Input Mono', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 12,
+    "window.zoomLevel": 1,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "java.configuration.checkProjectSettingsExclusions": false,
+    "editor.renderIndentGuides": false
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # bar settings
-yabai -m config status_bar                   on
+yabai -m config status_bar                   off
 yabai -m config status_bar_text_font         "Helvetica Neue:Bold:14.0"
 yabai -m config status_bar_icon_font         "Hack Nerd Font:Regular:14.0"
 yabai -m config status_bar_background_color  0xff202020
@@ -40,21 +40,21 @@ yabai -m config right_padding                20
 yabai -m config window_gap                   20
 
 # create initial spaces
-yabai -m space --destroy
-yabai -m space --destroy
-yabai -m space --destroy
-yabai -m space --destroy
-yabai -m space --destroy
-yabai -m space --destroy
-yabai -m space --destroy
-
-yabai -m space --create
-yabai -m space --create
-yabai -m space --create
-yabai -m space --create
-yabai -m space --create
-yabai -m space --create
-yabai -m space --create
+# yabai -m space --destroy
+# yabai -m space --destroy
+# yabai -m space --destroy
+# yabai -m space --destroy
+# yabai -m space --destroy
+# yabai -m space --destroy
+# yabai -m space --destroy
+#
+# yabai -m space --create
+# yabai -m space --create
+# yabai -m space --create
+# yabai -m space --create
+# yabai -m space --create
+# yabai -m space --create
+# yabai -m space --create
 
 
 echo "yabai configuration loaded.."

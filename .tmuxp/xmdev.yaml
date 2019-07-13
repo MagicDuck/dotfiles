@@ -1,11 +1,11 @@
 session_name: xmdev
 windows:
-  - window_name: scratch
-    focus: true
+  - focus: true
+    window_name: scratch
     panes:
-      - shell_command:
+      - focus: true
+        shell_command:
         - docker start postgres
-        focus: true
   - window_name: xm-api
     shell_command_before:
       - cd ~/xm-api

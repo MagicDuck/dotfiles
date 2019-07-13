@@ -1,0 +1,28 @@
+session_name: xmdev
+windows:
+  - window_name: scratch
+    focus: true
+    panes:
+      - shell_command:
+        - docker start postgres
+        focus: true
+  - window_name: xm-api
+    shell_command_before:
+      - cd ~/xm-api
+    panes:
+      - ./gradlew bootRun
+  - window_name: customer config
+    shell_command_before:
+      - cd ~/ondemand
+    panes:
+      - ./gradlew customerconfig:start
+  - window_name: webui
+    shell_command_before:
+      - cd ~/ondemand
+    panes:
+      - ./gradlew linkWebui startJetty -i
+  - window_name: webpack
+    shell_command_before:
+      - cd ~/ondemand/react/reactUi
+    panes:
+      - yarn run webpack-dev:hot

@@ -19,4 +19,11 @@ yadm. Use it like git to add/push and pull.
 - nm-applet & networkmonitor - network monitor applet
 - boostnote - note taking
 - flameshot - screenshot taking
+- tmux - terminal multiplexer
+- tmuxp - tmux session manager
+- ranger - CLI file explorer
+
+## Tmuxp sessions
+- tmuxp load xmdev
+
 

@@ -59,5 +59,6 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "java.configuration.checkProjectSettingsExclusions": false,
-    "editor.renderIndentGuides": false
+    "editor.renderIndentGuides": false,
+    "window.title": "${activeEditorMedium}${separator}${rootName}"
 }

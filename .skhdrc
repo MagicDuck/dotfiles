@@ -4,7 +4,7 @@ ctrl - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -
 # focus window
 ctrl - j : yabai -m window --focus prev
 ctrl - k : yabai -m window --focus next
-ctrl - tab: yabai -m window --focus last
+#ctrl - tab: yabai -m window --focus last
 
 # swap window
 ctrl + cmd - j : yabai -m window --swap prev
@@ -18,7 +18,7 @@ ctrl + shift - k : yabai -m window --warp next
 ctrl + shift - c: osascript <<< "tell application \"System Events\" to key code 13 using {command down}"
 
 # fast focus desktop
-cmd + ctrl - tab : yabai -m space --focus last
+# cmd + ctrl - tab : yabai -m space --focus last
 ctrl - h : yabai -m space --focus prev
 ctrl - l : yabai -m space --focus next
 ctrl - 1 : yabai -m space --focus 1

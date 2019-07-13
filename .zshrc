@@ -30,7 +30,9 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
 
 # Load the theme.
-antigen theme robbyrussell
+# workaround for https://github.com/zsh-users/antigen/issues/675
+THEME=robbyrussell
+{antigen list | grep $THEME} &>/dev/null; if [ $? -ne 0 ]; then antigen theme $THEME; fi
 
 # Tell Antigen that you're done.
 antigen apply
@@ -122,7 +124,20 @@ alias sapstop="sudo f5fpc --stop"
 # alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect -floatbar"
 alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect +floatbar"
 
-unalias grv # to be able to use grv git client
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/opt/node@8/bin:$PATH"
+
+# some OS specific config
+case $OS in
+  Darwin)
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    export HOMEBREW_NO_GITHUB_API=1
+    export DISABLE_AUTO_TITLE='true' # for tmuxp
+  ;;
+  Linux)
+    unalias grv # to be able to use grv git client
+  ;;
+esac
+
+alias xmdev="tmuxp load xmdev"

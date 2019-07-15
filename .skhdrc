@@ -1,5 +1,7 @@
 # open terminal
 ctrl - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
+#ctrl - return: ~/bin/iterm
+
 
 # focus window
 ctrl - j : yabai -m window --focus prev

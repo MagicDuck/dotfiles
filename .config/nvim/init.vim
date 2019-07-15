@@ -214,7 +214,7 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 let mapleader = ","
 imap jk <Esc>
 cmap jk <C-U><Esc>
-set timeoutlen=1000
+"set timeoutlen=1000
 vnoremap <C-c> "*y
 inoremap <C-v> <C-O>"*p
 
@@ -307,3 +307,24 @@ autocmd FileType css vnoremap <buffer> <leadedoner>i :call RangeCSSBeautify()<cr
 
 source ~/.config/nvim/os-specific.vim
 
+" window number in status line
+function! WindowNumber(...)
+    let builder = a:1
+    let context = a:2
+    call builder.add_section('airline_b', '%{tabpagewinnr(tabpagenr())}')
+    return 0
+endfunction
+
+call airline#add_statusline_func('WindowNumber')
+call airline#add_inactive_statusline_func('WindowNumber')
+
+" window jumping
+let i = 1
+while i <= 9
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let i = i + 1
+endwhile
+
+" diffing
+set mouse=a
+au VimEnter * if &diff | execute 'windo set wrap' | endif

@@ -141,3 +141,4 @@ case $OS in
 esac
 
 alias xmdev="tmuxp load xmdev"
+alias lst="colorls --light --tree"

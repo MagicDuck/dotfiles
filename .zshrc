@@ -18,6 +18,7 @@ antigen use oh-my-zsh
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundle git
 antigen bundle ssh-agent
+antigen bundle vi-mode
 
 # Syntax highlighting bundle.
 antigen bundle zsh-users/zsh-syntax-highlighting
@@ -65,8 +66,30 @@ WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider
 ## Keybindings section
 # enable vim mode
 # https://dougblack.io/words/zsh-vi-mode.html
-bindkey -v
-export KEYTIMEOUT=1
+# bindkey -v
+export KEYTIMEOUT=50
+bindkey jk vi-cmd-mode
+
+# change cursor shape
+function zle-keymap-select zle-line-init zle-line-finish
+{
+  case $KEYMAP in
+      vicmd)
+          print -n '\033[1 q' # block cursor
+          #echo -ne "\033]12;Green1\007"
+      ;;
+      viins|main)
+          print -n '\033[5 q' # line cursor
+          # echo -ne "\033]12;Orange1\007"
+      ;;
+  esac
+}
+
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+
+
 # TODO: prompt show status
 
 # bindkey '^[[7~' beginning-of-line                               # Home key
@@ -128,6 +151,8 @@ alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.g
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/usr/local/opt/node@8/bin:$PATH"
 
+unalias grv # to be able to use grv git client
+
 # some OS specific config
 case $OS in
   Darwin)
@@ -136,9 +161,12 @@ case $OS in
     export DISABLE_AUTO_TITLE='true' # for tmuxp
   ;;
   Linux)
-    unalias grv # to be able to use grv git client
   ;;
 esac
 
 alias xmdev="tmuxp load xmdev"
 alias lst="colorls --light --tree"
+
+# fzf opts
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'

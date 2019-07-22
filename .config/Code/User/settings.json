@@ -22,7 +22,10 @@
         "menu.selectionForeground": "#616161",
         "menubar.selectionForeground": "#616161",
         "editor.findMatchBorder": "#616161",
-        "selection.background": "#61616140"
+        "selection.background": "#61616140",
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
     },
 
     // vim
@@ -52,13 +55,17 @@
         "<C-v>": false,
         "<C-c>": false,
     },
+    "editor.formatOnSave": true,
     "editor.fontLigatures": true,
     "editor.fontFamily": "'Input Mono', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 12,
     "window.zoomLevel": 1,
     "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "java.configuration.checkProjectSettingsExclusions": false,
     "editor.renderIndentGuides": false,
-    "window.title": "${activeEditorMedium}${separator}${rootName}"
+    "window.title": "${activeEditorMedium}${separator}${rootName}",
+    "emmet.triggerExpansionOnTab": true,
+    "java.configuration.checkProjectSettingsExclusions": false,
+    "vim.debug.silent": true,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false
 }

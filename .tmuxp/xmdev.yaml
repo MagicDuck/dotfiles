@@ -21,6 +21,7 @@ windows:
       - cd ~/ondemand
     panes:
       - ./gradlew linkWebui startJetty -i
+        # - ./gradlew startJetty -i
   - window_name: webpack
     shell_command_before:
       - cd ~/ondemand/react/reactUi

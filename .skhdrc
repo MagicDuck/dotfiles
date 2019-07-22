@@ -1,11 +1,11 @@
 # open terminal
-ctrl - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
+cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
 #ctrl - return: ~/bin/iterm
 
 
 # focus window
-ctrl - j : yabai -m window --focus prev
-ctrl - k : yabai -m window --focus next
+cmd - j : yabai -m window --focus prev
+cmd - k : yabai -m window --focus next
 #ctrl - tab: yabai -m window --focus last
 
 # swap window
@@ -13,40 +13,40 @@ ctrl + cmd - j : yabai -m window --swap prev
 ctrl + cmd - k : yabai -m window --swap next
 
 # move window
-ctrl + shift - j : yabai -m window --warp prev
-ctrl + shift - k : yabai -m window --warp next
+shift + cmd - j : yabai -m window --warp prev
+shift + cmd - k : yabai -m window --warp next
 
 # close window
-ctrl + shift - c: osascript <<< "tell application \"System Events\" to key code 13 using {command down}"
+shift + cmd - c: osascript <<< "tell application \"System Events\" to key code 13 using {command down}"
 
 # fast focus desktop
 # cmd + ctrl - tab : yabai -m space --focus last
-ctrl - h : yabai -m space --focus prev
-ctrl - l : yabai -m space --focus next
-ctrl - 1 : yabai -m space --focus 1
-ctrl - 2 : yabai -m space --focus 2
-ctrl - 3 : yabai -m space --focus 3
-ctrl - 4 : yabai -m space --focus 4
-ctrl - 5 : yabai -m space --focus 5
-ctrl - 6 : yabai -m space --focus 6
-ctrl - 7 : yabai -m space --focus 7
-ctrl - 8 : yabai -m space --focus 8
-ctrl - 9 : yabai -m space --focus 9
-ctrl - 0 : yabai -m space --focus 10
+cmd - h : yabai -m space --focus prev
+cmd - l : yabai -m space --focus next
+cmd - 1 : yabai -m space --focus 1
+cmd - 2 : yabai -m space --focus 2
+cmd - 3 : yabai -m space --focus 3
+cmd - 4 : yabai -m space --focus 4
+cmd - 5 : yabai -m space --focus 5
+cmd - 6 : yabai -m space --focus 6
+cmd - 7 : yabai -m space --focus 7
+cmd - 8 : yabai -m space --focus 8
+cmd - 9 : yabai -m space --focus 9
+cmd - 0 : yabai -m space --focus 10
 
 # move window to desktop
-ctrl + shift - h : yabai -m window --space prev; yabai -m space --focus prev
-ctrl + shift - l : yabai -m window --space next; yabai -m space --focus next
-ctrl + shift - 1 : yabai -m window --space  1; yabai -m space --focus 1
-ctrl + shift - 2 : yabai -m window --space  2; yabai -m space --focus 2
-ctrl + shift - 3 : yabai -m window --space  3; yabai -m space --focus 3
-ctrl + shift - 4 : yabai -m window --space  4; yabai -m space --focus 4
-ctrl + shift - 5 : yabai -m window --space  5; yabai -m space --focus 5
-ctrl + shift - 6 : yabai -m window --space  6; yabai -m space --focus 6
-ctrl + shift - 7 : yabai -m window --space  7; yabai -m space --focus 7
-ctrl + shift - 8 : yabai -m window --space  8; yabai -m space --focus 8
-ctrl + shift - 9 : yabai -m window --space  9; yabai -m space --focus 9
-ctrl + shift - 0 : yabai -m window --space 10; yabai -m space --focus 10
+shift + cmd - h : yabai -m window --space prev; yabai -m space --focus prev
+shift + cmd - l : yabai -m window --space next; yabai -m space --focus next
+shift + cmd - 1 : yabai -m window --space  1; yabai -m space --focus 1
+shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+shift + cmd - 3 : yabai -m window --space  3; yabai -m space --focus 3
+shift + cmd - 4 : yabai -m window --space  4; yabai -m space --focus 4
+shift + cmd - 5 : yabai -m window --space  5; yabai -m space --focus 5
+shift + cmd - 6 : yabai -m window --space  6; yabai -m space --focus 6
+shift + cmd - 7 : yabai -m window --space  7; yabai -m space --focus 7
+shift + cmd - 8 : yabai -m window --space  8; yabai -m space --focus 8
+shift + cmd - 9 : yabai -m window --space  9; yabai -m space --focus 9
+shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
 
 #------------------------------------------------------------------------------
 # balance size of windows

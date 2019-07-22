@@ -129,6 +129,8 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'maksimr/vim-jsbeautify'
 
+Plug 'jremmen/vim-ripgrep'
+
 " Initialize plugin system
 call plug#end()
 

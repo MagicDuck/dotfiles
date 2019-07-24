@@ -1,5 +1,5 @@
 # add scripts to PATH
-export PATH=$PATH:$HOME/bin
+export PATH=$HOME/bin:$PATH
 
 # theming
 export QT_QPA_PLATFORMTHEME="qt5ct"

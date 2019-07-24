@@ -59,6 +59,7 @@ Plug 'sheerun/vim-polyglot'
 "Plug 'Shougo/vimproc.vim'
 "    let g:vimproc#download_windows_dll = 1
 
+
 Plug 'ctrlpvim/ctrlp.vim'
     let g:ctrlp_working_path_mode = 'rw'
     "let g:ctrlp_user_command = '\bin\ag.exe --nocolor --hidden -g "" %s'
@@ -68,6 +69,10 @@ Plug 'ctrlpvim/ctrlp.vim'
     let g:ctrlp_mruf_case_sensitive = 0
     let g:ctrlp_max_files = 0 " no limit
     let g:ctrlp_show_hidden = 1
+
+" fast matcher for ctrlp
+Plug 'nixprime/cpsm'
+    let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 " Follow instructions on website to install this if ctrlp is slow:
 " Plug 'JazzCore/ctrlp-cmatcher'
@@ -85,14 +90,28 @@ Plug 'xolox/vim-session'
     let g:session_autosave = 'yes'
     let g:session_autoload = 'yes'
 
-Plug 'vim-syntastic/syntastic'
-    let g:syntastic_javascript_checkers = ['jshint']
-    let g:syntastic_json_checkers = ['jshint']
-    let g:syntastic_javascript_jshint_args =
-        \ '--config C:/code/hana_epm_fpa/config/coding/jshintConfig.js'
-    let g:syntastic_css_checkers = ['csslint']
-    let g:syntastic_css_csslint_args =
-        \ '--ignore=order-alphabetical,important,ids,adjoining-classes,zero-units'
+" Plug 'vim-syntastic/syntastic'
+"     let g:syntastic_javascript_checkers = ['jshint']
+"     let g:syntastic_json_checkers = ['jshint']
+"     let g:syntastic_javascript_jshint_args =
+"         \ '--config C:/code/hana_epm_fpa/config/coding/jshintConfig.js'
+"     let g:syntastic_css_checkers = ['csslint']
+"     let g:syntastic_css_csslint_args =
+"         \ '--ignore=order-alphabetical,important,ids,adjoining-classes,zero-units'
+
+" Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'w0rp/ale'
+    " let b:ale_linters = {'javascript': ['eslint']}
+    " let g:ale_linters_explicit = 1
+    let g:ale_fixers = {
+    \   'javascript': ['prettier'],
+    \   'css': ['prettier'],
+    \}
+    let g:ale_fix_on_save = 1
+    let g:ale_sign_error = '✘'
+    let g:ale_sign_warning = '⚠'
+    " highlight ALEErrorSign ctermbg=NONE ctermfg=red
+    " highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 
 Plug 'koron/nyancat-vim'
 
@@ -328,5 +347,5 @@ while i <= 9
 endwhile
 
 " diffing
-set mouse=a
+"set mouse=a
 au VimEnter * if &diff | execute 'windo set wrap' | endif

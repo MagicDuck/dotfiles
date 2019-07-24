@@ -8,13 +8,96 @@
         {
             "complex_modifications": {
                 "parameters": {
-                    "basic.simultaneous_threshold_milliseconds": 50,
+                    "basic.simultaneous_threshold_milliseconds": 100,
                     "basic.to_delayed_action_delay_milliseconds": 500,
                     "basic.to_if_alone_timeout_milliseconds": 1000,
                     "basic.to_if_held_down_threshold_milliseconds": 500,
                     "mouse_motion_to_scroll.speed": 100
                 },
-                "rules": []
+                "rules": [
+                    {
+                        "description": "map jk globally to esc",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "j"
+                                        },
+                                        {
+                                            "key_code": "k"
+                                        }
+                                    ]
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ]
+                            }
+
+                        ]
+                    },
+                    {
+                        "description": "caps-lock to ctrl+b",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "caps_lock"
+                                },
+                                "to": {
+                                    "key_code": "b",
+                                    "modifiers": [
+                                        "control"
+                                    ]
+                                }
+                            }
+
+                        ]
+                    },
+                    {
+                        "description": "cmd-left/right to opt-left/right",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": {
+                                    "key_code": "left_arrow",
+                                    "modifiers": [
+                                        "option"
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "right",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command"
+                                        ]
+                                    }
+                                },
+                                "to": {
+                                    "key_code": "right_arrow",
+                                    "modifiers": [
+                                        "option"
+                                    ]
+                                }
+                            }
+
+                        ]
+                    }
+                ]
             },
             "devices": [
                 {
@@ -35,14 +118,6 @@
                             },
                             "to": {
                                 "key_code": "left_option"
-                            }
-                        },
-                        {
-                            "from": {
-                                "key_code": "home"
-                            },
-                            "to": {
-                                "key_code": "escape"
                             }
                         },
                         {

@@ -67,7 +67,8 @@ WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider
 # enable vim mode
 # https://dougblack.io/words/zsh-vi-mode.html
 # bindkey -v
-export KEYTIMEOUT=50
+#export KEYTIMEOUT=50
+export KEYTIMEOUT=1
 bindkey jk vi-cmd-mode
 
 # change cursor shape

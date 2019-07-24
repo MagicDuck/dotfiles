@@ -71,8 +71,8 @@ Plug 'ctrlpvim/ctrlp.vim'
     let g:ctrlp_show_hidden = 1
 
 " fast matcher for ctrlp
-Plug 'nixprime/cpsm'
-    let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+" Plug 'nixprime/cpsm'
+"     let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 " Follow instructions on website to install this if ctrlp is slow:
 " Plug 'JazzCore/ctrlp-cmatcher'
@@ -347,5 +347,5 @@ while i <= 9
 endwhile
 
 " diffing
-"set mouse=a
+set mouse=a
 au VimEnter * if &diff | execute 'windo set wrap' | endif

@@ -19,7 +19,6 @@
                         "description": "map jk globally to esc",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "simultaneous": [
                                         {
@@ -34,16 +33,15 @@
                                     {
                                         "key_code": "escape"
                                     }
-                                ]
+                                ],
+                                "type": "basic"
                             }
-
                         ]
                     },
                     {
                         "description": "caps-lock to ctrl+b",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "caps_lock"
                                 },
@@ -52,16 +50,15 @@
                                     "modifiers": [
                                         "control"
                                     ]
-                                }
+                                },
+                                "type": "basic"
                             }
-
                         ]
                     },
                     {
                         "description": "cmd-left/right to opt-left/right",
                         "manipulators": [
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "left_arrow",
                                     "modifiers": {
@@ -75,10 +72,10 @@
                                     "modifiers": [
                                         "option"
                                     ]
-                                }
+                                },
+                                "type": "basic"
                             },
                             {
-                                "type": "basic",
                                 "from": {
                                     "key_code": "right",
                                     "modifiers": {
@@ -92,9 +89,9 @@
                                     "modifiers": [
                                         "option"
                                     ]
-                                }
+                                },
+                                "type": "basic"
                             }
-
                         ]
                     }
                 ]
@@ -118,6 +115,14 @@
                             },
                             "to": {
                                 "key_code": "left_option"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "home"
+                            },
+                            "to": {
+                                "key_code": "escape"
                             }
                         },
                         {

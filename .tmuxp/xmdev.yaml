@@ -20,7 +20,8 @@ windows:
     shell_command_before:
       - cd ~/ondemand
     panes:
-      - ./gradlew linkWebui startJetty -i
+      - ./gradlew linkWebui startJetty -i --exclude-task webpackDev
+        # - ./gradlew linkWebui startJetty -i
         # - ./gradlew startJetty -i
   - window_name: webpack
     shell_command_before:

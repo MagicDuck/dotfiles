@@ -82,6 +82,7 @@ Plug 'nixprime/cpsm', { 'do': 'env PY3=OFF ./install.sh' }
 
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf' }
 " Plug '/usr/bin/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'dyng/ctrlsf.vim'
@@ -268,9 +269,13 @@ nnoremap <C-Q> <C-W><C-Q>
 nnoremap <leader>q :bp\|bd #<CR>
 
 "finding files
-nnoremap <silent><leader>f :<C-U>CtrlPMixed<CR>
-nnoremap <silent><C-p> :<C-U>CtrlPMixed<CR>
-nnoremap <silent><leader>b :<C-U>CtrlPBuffer<CR>
+" ctrlp has issues with performance
+" nnoremap <silent><leader>f :<C-U>CtrlPMixed<CR>
+" nnoremap <silent><C-p> :<C-U>CtrlPMixed<CR>
+" nnoremap <silent><leader>b :<C-U>CtrlPBuffer<CR>
+nnoremap <silent><leader>f :<C-U>Files<CR>
+nnoremap <silent><C-p> :<C-U>Files<CR>
+nnoremap <silent><leader>b :<C-U>Buffers<CR>
 
 "searching in files
 nmap     <C-F>f <Plug>CtrlSFPrompt

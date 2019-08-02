@@ -20,7 +20,7 @@ windows:
     shell_command_before:
       - cd ~/ondemand
     panes:
-      - ./gradlew linkWebui startJetty -i --exclude-task webpackDev
+      - echo "Sleeping a while to wait for customer config to launch"; sleep 30; ./gradlew startJetty -i
         # - ./gradlew linkWebui startJetty -i
         # - ./gradlew startJetty -i
   - window_name: webpack

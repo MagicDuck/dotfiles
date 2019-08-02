@@ -80,5 +80,10 @@
   "vim.debug.silent": true,
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "workbench.startupEditor": "newUntitledFile"
+  "workbench.startupEditor": "newUntitledFile",
+  "vim.easymotionMarkerBackgroundColor": "#e4f6d2",
+  "vim.easymotionMarkerFontFamily": "Input Mono",
+  "vim.easymotionMarkerForegroundColorOneChar": "black",
+  "vim.easymotionMarkerForegroundColorTwoChar": "black",
+  "vim.easymotionMarkerFontSize": "12"
 }

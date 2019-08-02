@@ -166,7 +166,7 @@ case $OS in
 esac
 
 alias xmdev="tmuxp load xmdev"
-alias kill-xmdev="tmux kill-session -t xmdev"
+alias xmdev-kill="confirm && tmux kill-session -t xmdev"
 alias lst="colorls --light --tree"
 
 # fzf opts

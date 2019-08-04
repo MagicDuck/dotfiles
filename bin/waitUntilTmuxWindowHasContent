@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [ "$#" -ne 4 ]; then
+    echo "Usage: waitUntilTmuxWindowHasContent <session> <window_name> <search_regex>"
+    exit 1;
+fi
+
+session=$1
+window_name=$2
+search_regex=$3
+
+until tmux list-panes -s -F "#{pane_id} #{window_name}" -t $session \
+    | grep "${window_name}" \
+    | head -1 \
+    | cut -d " " -f 1 \
+    | xargs tmux capture-pane -pS -10000 -t \
+    | grep "${search_regex}" > /dev/null \
+    ; do
+    sleep 1;
+done
+exit 0;

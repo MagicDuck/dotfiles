@@ -77,7 +77,7 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "right",
+                                    "key_code": "right_arrow",
                                     "modifiers": {
                                         "mandatory": [
                                             "command"

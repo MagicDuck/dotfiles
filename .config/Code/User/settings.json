@@ -85,5 +85,6 @@
   "vim.easymotionMarkerFontFamily": "Input Mono",
   "vim.easymotionMarkerForegroundColorOneChar": "black",
   "vim.easymotionMarkerForegroundColorTwoChar": "black",
-  "vim.easymotionMarkerFontSize": "12"
+  "vim.easymotionMarkerFontSize": "12",
+  "editor.minimap.enabled": false
 }

@@ -160,6 +160,7 @@ case $OS in
     export JAVA_HOME=$(/usr/libexec/java_home)
     export HOMEBREW_NO_GITHUB_API=1
     export DISABLE_AUTO_TITLE='true' # for tmuxp
+    export GROOVY_HOME=/usr/local/opt/groovy/libexec
   ;;
   Linux)
   ;;

@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+session=$1
+
+echo "Are you sure you want to kill session '${session}' (y/n)? "
+read answer
+
+if [ "$answer" == "${answer#[Yy]}" ] ;then
+    echo "exiting '${answer}'"
+    exit 1
+fi
+
+sessiontest=`tmux ls | grep ${session}`
+
+if [ "${sessiontest}" == "" ];
+then
+        echo no running session ${session}
+else
+        for name in `tmux list-windows -F '#{window_name}' -t ${session}` ; do
+
+        tmux select-window -n
+
+        for pane in `tmux list-panes -F '#{pane_id}' -t ${session}` ; do
+            tmux send-keys -t $pane C-c
+            # send SIGINT to all panes in selected window
+            echo ${session}:$name.${pane//%}
+        done
+
+        for pane in `tmux list-panes -F '#{pane_pid}' -t ${session}` ; do
+            kill -TERM ${pane}
+            # terminate pane
+            done
+        done
+fi
+
+echo list-sessions:
+tmux list-sessions

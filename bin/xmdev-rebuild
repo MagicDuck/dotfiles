@@ -1,0 +1,18 @@
+#!/bin/sh
+
+echo "Do you wish to rebuild xmdev (y/n)? "
+read answer
+
+if [ "$answer" != "${answer#[Yy]}" ] ;then
+    echo "\nMaking sure postres docker started ................." &&
+    docker start postgres && sleep 10 &&
+    echo "\nApplying DB Patches ................." &&
+    cd ~/xm-database &&
+    ./gradlew applyDbPatches &&
+
+    echo "\nRebuild onDemand ...................." &&
+    cd ~/ondemand &&
+    ./gradlew linkWebui
+    #./gradlew clean build -x test
+fi
+

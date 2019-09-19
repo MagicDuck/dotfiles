@@ -1,0 +1,17 @@
+#!/bin/bash
+
+read -p "Run git pull --rebase in xmdev projects? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    cd ~/ondemand
+    git pull --rebase
+
+    cd ~/xm-database
+    git stash
+    git pull --rebase
+    git stash pop
+
+    cd ~/xm-api
+    git pull --rebase
+fi

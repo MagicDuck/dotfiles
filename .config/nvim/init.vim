@@ -143,7 +143,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 
 "Plug 'lambdalisue/vim-gita'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 
 Plug 'ryanoasis/vim-devicons'
 

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+read -p "Kill/cleanup devincloud? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    sudo remove-temp-port-forward-rule devincloud
+    tmux kill-session -t devincloud
+    consul-versionswitch sbadragan webui 0-x-master
+    consul-unregister sbadragan
+fi
+

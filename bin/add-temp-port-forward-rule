@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# call example: add-temp-port-forward-rule devincloud 80 8888
+
+NAME="${1}";
+if [ -z "${1}" ]; then
+    echo "please supply a unique rule name";
+    return;
+fi;
+FROM_PORT="${2}";
+if [ -z "${2}" ]; then
+    echo "please supply a 'from' port";
+    return;
+fi;
+TO_PORT="${3}";
+if [ -z "${3}" ]; then
+    echo "please supply a 'to' port";
+    return;
+fi;
+
+RULE="rdr pass inet proto tcp from any to any port $FROM_PORT -> 127.0.0.1 port $TO_PORT"
+echo "Adding rule: $RULE";
+sudo pfctl -e
+echo $RULE | sudo pfctl -a com.apple/$NAME -f -
+

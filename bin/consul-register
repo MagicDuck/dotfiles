@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# call example: consul-register sbadragan 0-x-sbadragan webui 8888
+
+
+NAME="${1}";
+if [ -z "${1}" ]; then
+    echo "please supply node name";
+    return;
+fi;
+VERSION="${2}";
+if [ -z "${2}" ]; then
+    echo "please supply version tag";
+    return;
+fi;
+
+SERVICE="${3}";
+if [ -z "${3}" ]; then
+    echo "please supply service name";
+    return;
+fi;
+
+PORT="${4}";
+if [ -z "${4}" ]; then
+    echo "please supply port number";
+    return;
+fi;
+
+DC="${5}";
+if [ -z "${5}" ]; then
+    DC="us-central1-dev";
+fi;
+
+IP=$(ifconfig | grep '10.22.[0-9]\{1,\}.[0-9]\{1,\}' -o | head -n 1);
+echo Registering $IP as a named node $NAME in $DC providing service $SERVICE with version $VERSION on port $PORT;
+curl -X PUT -d "{\"Datacenter\": \"$DC\", \"Node\": \"$NAME\", \"Address\": \"$IP\", \"Service\": {\"Service\": \"$SERVICE\", \"Port\": $PORT, \"Tags\": [\"$VERSION\", \"version=$VERSION\"]}}" http://consul.service.$DC.consul:8500/v1/catalog/register
+

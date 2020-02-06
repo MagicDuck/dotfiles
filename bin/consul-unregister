@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# call example: consul-unregister sbadragan
+
+SEARCH="${1}";
+if [ -z "${1}" ]; then
+    SEARCH="multinode-dev-1-205";
+fi;
+DC="${2}";
+if [ -z "${2}" ]; then
+    DC="us-central1-dev";
+fi;
+NODES=$(curl -L  http://consul.service.$DC.consul:8500/v1/catalog/nodes | jq '.[].Node' | grep $SEARCH);
+x=1;
+for i in $NODES;
+do
+    echo deregistering node $(echo $NODES | cut -d ' ' -f$x) from consul, success? :;
+    curl -X PUT -d "{\"Node\": $(echo $NODES | cut -d ' ' -f$x), \"Datacenter\": \"$DC\"}" http://consul.service.$DC.consul:8500/v1/catalog/deregister;
+    echo " ";
+    (( x++ ));
+done

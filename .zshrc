@@ -147,10 +147,10 @@ alias sapinfo="sudo f5fpc --info"
 alias sapstop="sudo f5fpc --stop"
 # alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect -floatbar"
 alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect +floatbar"
-
+alias clean-gradle-cache="find ~/.gradle -type f -name \"*.lock\" -delete"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="/usr/local/opt/node@8/bin:$PATH"
+#export PATH="/usr/local/opt/node@8/bin:$PATH"
 
 unalias grv # to be able to use grv git client
 
@@ -168,6 +168,7 @@ esac
 
 alias xmdev="tmuxp load xmdev"
 alias xmdev-kill="confirm && tmux kill-session -t xmdev"
+alias devincloud="tmuxp load devincloud"
 alias lst="colorls --light --tree"
 
 # fzf opts

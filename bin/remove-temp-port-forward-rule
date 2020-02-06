@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# call example: remove-temp-port-forward-rule devincloud
+
+NAME="${1}";
+if [ -z "${1}" ]; then
+    echo "please supply a unique rule name";
+    return;
+fi;
+
+echo "Removing rule: $NAME";
+echo "" | sudo pfctl -a com.apple/$NAME -f -
+

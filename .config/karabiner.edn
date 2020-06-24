@@ -1,0 +1,57 @@
+;; see example here: https://github.com/nikitavoloboev/dotfiles/blob/master/karabiner/karabiner.edn
+;; goku examples: https://github.com/yqrashawn/GokuRakuJoudo/blob/master/examples.org
+;; goku tutorial: https://github.com/yqrashawn/GokuRakuJoudo/blob/9fe23d5de54f14ff57bac80cf4d80e0c2ad733c7/tutorial.md
+{
+ ;;   "basic.simultaneous_threshold_milliseconds": 100,
+ ;;   "basic.to_delayed_action_delay_milliseconds": 500,
+ ;;   "basic.to_if_alone_timeout_milliseconds": 1000,
+ ;;   "basic.to_if_held_down_threshold_milliseconds": 500,
+ :profiles
+            {:Default {:default true
+                    :sim     100
+                    :delay   500
+                    :alone   1000
+                    :held    500}}
+
+ :devices {:kinesis-keyboard [{:vendor_id 1523 :product_id 7}]}
+ :templates { :alfred "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"com.stephanb.launchers\" with argument \"%s\"'"
+            }
+
+ :main      [
+             {:des "simultaneous j k press to ESC" :rules [[[:j :k] :escape]]}
+             {:des "swap end with left option" :rules [[:##end :left_option :kinesis-keyboard]]}
+             {:des "swap control and command" :rules [[:##left_control :left_command :kinesis-keyboard]
+                                                      [:##right_command :right_control :kinesis-keyboard]
+                                                      [:##right_control :right_command :kinesis-keyboard]
+                                                      ]}
+             {:des "command left/right to opt left/right" :rules [
+                                                      [:!Cleft_arrow {:key :left_arrow :modi [:left_option]}]
+                                                      [:!Cright_arrow {:key :right_arrow :modi [:left_option]}]
+                                                      ]}
+             {:des "command backsapce to opt backspace" :rules [
+                                                      [:!Cdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
+                                                      [:!Qdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
+                                                      ]}
+             {:des "swap left option with left control" :rules [[:##left_option :left_control :kinesis-keyboard]]}
+             {:des "have home emit CS modifiers" :rules [[:##home {:key :left_command :modi [:left_command  :left_shift]}]]}
+             {:des "have caps_lock emit CS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift]}]]}
+
+             {:des   "CS mappings"
+              :rules [
+                      ;; window to left half of screen
+                      [:!CSleft_arrow "/usr/local/bin/yabai -m window --grid 1:2:0:0:1:1"]
+                      ;; window to right half of screen
+                      [:!CSright_arrow "/usr/local/bin/yabai -m window --grid 1:2:1:0:1:1"]
+                      ;; window fill screen
+                      [:!CSup_arrow "/usr/local/bin/yabai -m window --grid 1:1:0:0:1:1"]
+                      ;; window center on screen
+                      [:!CSdown_arrow "/usr/local/bin/yabai -m window --grid 8:8:1:1:6:6"]
+                      ;; window to prev screen
+                      [:!CSopen_bracket "/usr/local/bin/yabai -m window --display prev"]
+                      ;; window to next screen
+                      [:!CSclose_bracket "/usr/local/bin/yabai -m window --display next"]
+                      ]}
+
+             ]
+ }
+

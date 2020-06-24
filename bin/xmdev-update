@@ -1,17 +1,39 @@
-#!/bin/bash
+#!/bin/zsh
 
-read -p "Run git pull --rebase in xmdev projects? " -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    cd ~/ondemand
+header_color='\e[34m'
+clear_color='\e[0m'
+
+echo "Run git pull --rebase in xmdev projects (y/n)? "
+read answer
+
+if [ "$answer" != "${answer#[Yy]}" ] ;then
+    echo -e "$header_color" &&
+    echo -e "\n-------------------------------------------------------------------------------------------------------" &&
+    echo -e "| ondemand" &&
+    echo -e "-------------------------------------------------------------------------------------------------------" &&
+    echo -e "$clear_color" &&
+    cd ~/ondemand &&
+    git pull --rebase &&
+
+    echo -e "$header_color" &&
+    echo -e "\n-------------------------------------------------------------------------------------------------------" &&
+    echo -e "| xm-database" &&
+    echo -e "-------------------------------------------------------------------------------------------------------" &&
+    echo -e "$clear_color" &&
+    cd ~/xm-database &&
+    git stash &&
+    git pull --rebase &&
+    git stash pop &&
+
+    echo -e "$header_color" &&
+    echo -e "\n-------------------------------------------------------------------------------------------------------" &&
+    echo -e "| xm-api" &&
+    echo -e "-------------------------------------------------------------------------------------------------------" &&
+    echo -e "$clear_color" &&
+    cd ~/xm-api &&
     git pull --rebase
 
-    cd ~/xm-database
-    git stash
-    git pull --rebase
-    git stash pop
-
-    cd ~/xm-api
-    git pull --rebase
+    EXITCODE=$?
+    test $EXITCODE -eq 0 && echo "\n\n\e[32m>>> XMDEV REBASE SUCCESS\n$clear_color" || echo "\n\n\e[31m>>> XMDEV REBASE FAILED\n$clear_color";
+    exit $EXITCODE
 fi

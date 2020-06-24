@@ -1,18 +1,38 @@
-#!/bin/sh
+#!/bin/zsh
+
+header_color='\e[34m'
+clear_color='\e[0m'
 
 echo "Do you wish to rebuild xmdev (y/n)? "
 read answer
 
 if [ "$answer" != "${answer#[Yy]}" ] ;then
-    echo "\nMaking sure postres docker started ................." &&
+    echo -e "$header_color" &&
+    echo -e "\n-------------------------------------------------------------------------------------------------------"
+    echo -e "| Making sure postgres docker is started"
+    echo -e "-------------------------------------------------------------------------------------------------------"
+    echo -e "$clear_color" &&
     docker start postgres && sleep 10 &&
-    echo "\nApplying DB Patches ................." &&
+
+    echo -e "$header_color" &&
+    echo -e "\n-------------------------------------------------------------------------------------------------------" &&
+    echo -e "| Applying DB Patches" &&
+    echo -e "-------------------------------------------------------------------------------------------------------" &&
+    echo -e "$clear_color" &&
     cd ~/xm-database &&
     ./gradlew applyDbPatches &&
 
-    echo "\nRebuild onDemand ...................." &&
+    echo -e "$header_color" &&
+    echo -e "\n-------------------------------------------------------------------------------------------------------" &&
+    echo -e "| Rebuilding ondemand" &&
+    echo -e "-------------------------------------------------------------------------------------------------------" &&
+    echo -e "$clear_color" &&
     cd ~/ondemand &&
-    ./gradlew linkWebui
-    #./gradlew clean build -x test
+    #./gradlew linkWebui
+    ./gradlew clean build linkWebui -x test -x :react:reactUi:webpackDev -x :react:reactUi:lintJs
+
+    EXITCODE=$?
+    test $EXITCODE -eq 0 && echo "\n\n\e[32m>>> XMDEV REBUILD SUCCESS\n$clear_color" || echo "\n\n\e[31m>>> XMDEV REBUILD FAILED\n$clear_color";
+    exit $EXITCODE
 fi
 

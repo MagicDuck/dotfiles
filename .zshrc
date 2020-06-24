@@ -148,6 +148,8 @@ alias sapstop="sudo f5fpc --stop"
 # alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect -floatbar"
 alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect +floatbar"
 alias clean-gradle-cache="find ~/.gradle -type f -name \"*.lock\" -delete"
+alias ondemand-changed-strings="cd ~/ondemand/react/reactUi/src/translations; git diff --unified=0 origin/master:./en.json ./en.json; cd -"
+alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 #export PATH="/usr/local/opt/node@8/bin:$PATH"

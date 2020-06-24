@@ -1,6 +1,7 @@
 ;; see example here: https://github.com/nikitavoloboev/dotfiles/blob/master/karabiner/karabiner.edn
 ;; goku examples: https://github.com/yqrashawn/GokuRakuJoudo/blob/master/examples.org
 ;; goku tutorial: https://github.com/yqrashawn/GokuRakuJoudo/blob/9fe23d5de54f14ff57bac80cf4d80e0c2ad733c7/tutorial.md
+;; To check sytax is correct, run `goku` in terminal
 {
  ;;   "basic.simultaneous_threshold_milliseconds": 100,
  ;;   "basic.to_delayed_action_delay_milliseconds": 500,
@@ -34,9 +35,9 @@
                                                       ]}
              {:des "swap left option with left control" :rules [[:##left_option :left_control :kinesis-keyboard]]}
              {:des "have home emit CS modifiers" :rules [[:##home {:key :left_command :modi [:left_command  :left_shift]}]]}
-             {:des "have caps_lock emit CS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift]}]]}
+             {:des "have caps_lock emit CTOS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift :left_option :left_control]}]]}
 
-             {:des   "CS mappings"
+             {:des   "mappings"
               :rules [
                       ;; window to left half of screen
                       [:!CSleft_arrow "/usr/local/bin/yabai -m window --grid 1:2:0:0:1:1"]
@@ -50,8 +51,23 @@
                       [:!CSopen_bracket "/usr/local/bin/yabai -m window --display prev"]
                       ;; window to next screen
                       [:!CSclose_bracket "/usr/local/bin/yabai -m window --display next"]
-                      ]}
 
+                      ;; program launchers
+                      [:!CSo [:alfred "outlook"]]
+                      [:!CSe [:alfred "idea"]]
+                      [:!CSr [:alfred "chrome"]]
+                      [:!CSt [:alfred "safari"]]
+                      [:!CSs [:alfred "slack"]]
+
+                      [:!CSj [:alfred "dayone"]]
+                      [:!CSk [:alfred "fork"]]
+                      [:!CSreturn_or_enter [:alfred "kitty"]]
+                      [:!Creturn_or_enter [:alfred "kitty"]]
+
+                      [:!CSc [:alfred "monosnap"]]
+                      [:!CSl [:alfred "zoom"]]
+                      [:!CSu [:alfred "bear"]]
+                      ]}
              ]
  }
 

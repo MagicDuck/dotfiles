@@ -428,7 +428,7 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "have caps_lock emit CS modifiers",
+        "description" : "have caps_lock emit CTOS modifiers",
         "manipulators" : [ {
           "from" : {
             "key_code" : "caps_lock",
@@ -437,13 +437,13 @@
             }
           },
           "to" : [ {
-            "modifiers" : [ "left_command", "left_shift" ],
+            "modifiers" : [ "left_command", "left_shift", "left_option", "left_control" ],
             "key_code" : "left_command"
           } ],
           "type" : "basic"
         } ]
       }, {
-        "description" : "CS mappings",
+        "description" : "mappings",
         "manipulators" : [ {
           "from" : {
             "key_code" : "left_arrow",
@@ -508,6 +508,138 @@
           },
           "to" : [ {
             "shell_command" : "/usr/local/bin/yabai -m window --display next"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "o",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"outlook\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "e",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"idea\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "r",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"chrome\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "t",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"safari\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"slack\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"dayone\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "k",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"fork\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "return_or_enter",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"kitty\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "return_or_enter",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"kitty\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "c",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"monosnap\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "l",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"zoom\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "u",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"bear\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
           } ],
           "type" : "basic"
         } ]

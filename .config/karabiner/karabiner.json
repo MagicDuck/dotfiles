@@ -428,7 +428,7 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "have caps_lock emit CTOS modifiers",
+        "description" : "have caps_lock emit CS modifiers",
         "manipulators" : [ {
           "from" : {
             "key_code" : "caps_lock",
@@ -437,7 +437,7 @@
             }
           },
           "to" : [ {
-            "modifiers" : [ "left_command", "left_shift", "left_option", "left_control" ],
+            "modifiers" : [ "left_command", "left_shift" ],
             "key_code" : "left_command"
           } ],
           "type" : "basic"
@@ -545,13 +545,24 @@
           "type" : "basic"
         }, {
           "from" : {
+            "key_code" : "d",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"brave\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
             "key_code" : "t",
             "modifiers" : {
               "mandatory" : [ "left_command", "left_shift" ]
             }
           },
           "to" : [ {
-            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"safari\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"todoist\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
           } ],
           "type" : "basic"
         }, {

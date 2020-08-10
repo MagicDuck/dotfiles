@@ -35,7 +35,7 @@
                                                       ]}
              {:des "swap left option with left control" :rules [[:##left_option :left_control :kinesis-keyboard]]}
              {:des "have home emit CS modifiers" :rules [[:##home {:key :left_command :modi [:left_command  :left_shift]}]]}
-             {:des "have caps_lock emit CTOS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift :left_option :left_control]}]]}
+             {:des "have caps_lock emit CS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift ]}]]}
 
              {:des   "mappings"
               :rules [
@@ -56,7 +56,8 @@
                       [:!CSo [:alfred "outlook"]]
                       [:!CSe [:alfred "idea"]]
                       [:!CSr [:alfred "chrome"]]
-                      [:!CSt [:alfred "safari"]]
+                      [:!CSd [:alfred "brave"]]
+                      [:!CSt [:alfred "todoist"]]
                       [:!CSs [:alfred "slack"]]
 
                       [:!CSj [:alfred "dayone"]]

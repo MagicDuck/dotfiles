@@ -29,7 +29,8 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
     echo -e "$clear_color" &&
     cd ~/ondemand &&
     #./gradlew linkWebui
-    ./gradlew clean build linkWebui -x test -x :react:reactUi:webpackDev -x :react:reactUi:lintJs
+    #./gradlew clean build linkWebui -x test -x :react:reactUi:webpackDev -x :react:reactUi:lintJs &&
+    ./gradlew clean build linkWebui -x test -x :react:reactUi:lintJs &&
 
     EXITCODE=$?
     test $EXITCODE -eq 0 && echo "\n\n\e[32m>>> XMDEV REBUILD SUCCESS\n$clear_color" || echo "\n\n\e[31m>>> XMDEV REBUILD FAILED\n$clear_color";

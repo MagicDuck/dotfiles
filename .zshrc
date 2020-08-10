@@ -152,7 +152,6 @@ alias ondemand-changed-strings="cd ~/ondemand/react/reactUi/src/translations; gi
 alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-#export PATH="/usr/local/opt/node@8/bin:$PATH"
 
 unalias grv # to be able to use grv git client
 
@@ -179,3 +178,14 @@ alias lst="colorls --light --tree"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# use ondemand version of node
+#export PATH="./nodejs/node-v12.13.1-darwin-x64/bin:$PATH"
+#export PATH="./nodejs/$(ls ~/ondemand/react/reactUI/nodejs | sort -V | tail -1)/bin:$PATH"
+
+export YVM_DIR=/Users/stephanbadragan/.yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh

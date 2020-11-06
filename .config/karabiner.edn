@@ -71,21 +71,24 @@
                       ;; [:!CSl [:alfred "zoom"]]
                       ;; [:!CSu [:alfred "bear"]]
 
-                      [:!CTOSo [:alfred "outlook"]]
-                      [:!CTOSe [:alfred "idea"]]
-                      [:!CTOSr [:alfred "chrome"]]
+                      [:!CTOSc {:key c :modi [:left_command]}]
                       [:!CTOSd [:alfred "brave"]]
-                      [:!CTOSt [:alfred "todoist"]]
-                      [:!CTOSs [:alfred "slack"]]
-
-                      [:!CTOSj [:alfred "dayone"]]
+                      [:!CTOSe [:alfred "idea"]]
+                      ;;[:!CTOSj [:alfred "dayone"]]
+                      [:!CTOSj [:alfred "todoist"]]
                       [:!CTOSk [:alfred "fork"]]
+                      [:!CTOSl [:alfred "zoom"]]
+                      [:!CTOSm [:alfred "monosnap"]]
+                      [:!CTOSo [:alfred "outlook"]]
+                      [:!CTOSr [:alfred "chrome"]]
+                      [:!CTOSs [:alfred "slack"]]
+                      [:!CTOSt {:key t :modi [:left_command]}]
+                      [:!CTOSu [:alfred "bear"]]
+                      [:!CTOSv {:key v :modi [:left_command]}]
+
                       [:!CTOSreturn_or_enter [:alfred "kitty"]]
                       [:!Creturn_or_enter [:alfred "kitty"]]
 
-                      [:!CTOSc [:alfred "monosnap"]]
-                      [:!CTOSl [:alfred "zoom"]]
-                      [:!CTOSu [:alfred "bear"]]
                       ]}
              ]
  }

@@ -34,8 +34,10 @@
                                                       [:!Qdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
                                                       ]}
              {:des "swap left option with left control" :rules [[:##left_option :left_control :kinesis-keyboard]]}
-             {:des "have home emit CS modifiers" :rules [[:##home {:key :left_command :modi [:left_command  :left_shift]}]]}
-             {:des "have caps_lock emit CS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift ]}]]}
+             ;;{:des "have home emit CS modifiers" :rules [[:##home {:key :left_command :modi [:left_command  :left_shift]}]]}
+             ;;{:des "have caps_lock emit CS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift ]}]]}
+             {:des "have home emit CTOS modifiers" :rules [[:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]]}
+             {:des "have caps_lock emit CTOS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]]}
 
              {:des   "mappings"
               :rules [
@@ -53,21 +55,37 @@
                       [:!CSclose_bracket "/usr/local/bin/yabai -m window --display next"]
 
                       ;; program launchers
-                      [:!CSo [:alfred "outlook"]]
-                      [:!CSe [:alfred "idea"]]
-                      [:!CSr [:alfred "chrome"]]
-                      [:!CSd [:alfred "brave"]]
-                      [:!CSt [:alfred "todoist"]]
-                      [:!CSs [:alfred "slack"]]
+                      ;; [:!CSo [:alfred "outlook"]]
+                      ;; [:!CSe [:alfred "idea"]]
+                      ;; [:!CSr [:alfred "chrome"]]
+                      ;; [:!CSd [:alfred "brave"]]
+                      ;; [:!CSt [:alfred "todoist"]]
+                      ;; [:!CSs [:alfred "slack"]]
 
-                      [:!CSj [:alfred "dayone"]]
-                      [:!CSk [:alfred "fork"]]
-                      [:!CSreturn_or_enter [:alfred "kitty"]]
+                      ;; [:!CSj [:alfred "dayone"]]
+                      ;; [:!CSk [:alfred "fork"]]
+                      ;; [:!CSreturn_or_enter [:alfred "kitty"]]
+                      ;; [:!Creturn_or_enter [:alfred "kitty"]]
+
+                      ;; [:!CSc [:alfred "monosnap"]]
+                      ;; [:!CSl [:alfred "zoom"]]
+                      ;; [:!CSu [:alfred "bear"]]
+
+                      [:!CTOSo [:alfred "outlook"]]
+                      [:!CTOSe [:alfred "idea"]]
+                      [:!CTOSr [:alfred "chrome"]]
+                      [:!CTOSd [:alfred "brave"]]
+                      [:!CTOSt [:alfred "todoist"]]
+                      [:!CTOSs [:alfred "slack"]]
+
+                      [:!CTOSj [:alfred "dayone"]]
+                      [:!CTOSk [:alfred "fork"]]
+                      [:!CTOSreturn_or_enter [:alfred "kitty"]]
                       [:!Creturn_or_enter [:alfred "kitty"]]
 
-                      [:!CSc [:alfred "monosnap"]]
-                      [:!CSl [:alfred "zoom"]]
-                      [:!CSu [:alfred "bear"]]
+                      [:!CTOSc [:alfred "monosnap"]]
+                      [:!CTOSl [:alfred "zoom"]]
+                      [:!CTOSu [:alfred "bear"]]
                       ]}
              ]
  }

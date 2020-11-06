@@ -148,8 +148,10 @@ alias sapstop="sudo f5fpc --stop"
 # alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect -floatbar"
 alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect +floatbar"
 alias clean-gradle-cache="find ~/.gradle -type f -name \"*.lock\" -delete"
-alias ondemand-changed-strings="cd ~/ondemand/react/reactUi/src/translations; git diff --unified=0 origin/master:./en.json ./en.json; cd -"
+alias ondemand-changed-strings="cd ~/ondemand/react/reactUi/src/translations; git --no-pager diff --unified=0 origin/master:./en.json ./en.json | sed '/^@/d' | sed '/^\\+\\+\\+/d' | sed '/^---/d' | sed 's/^\\+  //'; cd -"
 alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
+alias qa-automation-run-local="yarn install && yarn run cypress open --config baseUrl=http://default.xmatters.com/ --env username=admin,password=complex,allure=false"
+alias qa-automation-run-dev="yarn install && yarn run cypress open --config baseUrl=https://sbadragan.dev.xmatters.com/ --env username=admin,password=complex,allure=false"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
@@ -158,19 +160,26 @@ unalias grv # to be able to use grv git client
 # some OS specific config
 case $OS in
   Darwin)
-    export JAVA_HOME=$(/usr/libexec/java_home)
     export HOMEBREW_NO_GITHUB_API=1
     export DISABLE_AUTO_TITLE='true' # for tmuxp
     export GROOVY_HOME=/usr/local/opt/groovy/libexec
+    #export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+    #export JAVA_HOME="/usr/local/opt/openjdk@11"
+    #export JAVA_HOME=$(/usr/libexec/java_home)
   ;;
   Linux)
   ;;
 esac
 
 alias xmdev="tmuxp load xmdev"
+alias xmdev-cloud="tmuxp load xmdev-cloud"
 alias xmdev-kill="confirm && tmux kill-session -t xmdev"
+alias xmdev-cloud-kill="confirm && tmux kill-session -t xmdev-cloud"
 alias devincloud="tmuxp load devincloud"
+alias devincloud-kill="confirm && tmux kill-session -t devincloud"
 alias lst="colorls --light --tree"
+alias git_cleanup_bugfix_branches="git branch | grep bugfix/ | xargs git branch -D"
+alias git_cleanup_branches="git branch | grep -v '*' | grep -v 'master' | xargs git branch -D"
 
 # fzf opts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -189,3 +198,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export YVM_DIR=/Users/stephanbadragan/.yvm
 [ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"

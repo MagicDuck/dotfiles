@@ -20,9 +20,7 @@ windows:
     shell_command_before:
       - cd ~/ondemand
     panes:
-      - echo "\nWaiting for customer config service to start first..." \
-          && waitUntilTmuxWindowHasContent "xmdev" "customer config" "[-][-][-] Started Application in" \
-          && ./gradlew startJetty -i
+      - echo "\nWaiting for customer config service to start first..." && waitUntilTmuxWindowHasContent "xmdev" "customer config" "[-][-][-] Started Application in" && ./gradlew startJetty -i
   - window_name: webpack
     shell_command_before:
       - cd ~/ondemand/react/reactUi

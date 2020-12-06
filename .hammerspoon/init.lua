@@ -27,6 +27,7 @@ end)
 
 hs.hotkey.bind(superKey, "d", function() switchToApp('Brave Browser') end)
 hs.hotkey.bind(superKey, "e", function() switchToApp('IntelliJ IDEA') end)
+hs.hotkey.bind(superKey, "i", function() switchToApp('Parallels Desktop') end)
 hs.hotkey.bind(superKey, "j", function() switchToApp('TickTick') end)
 hs.hotkey.bind(superKey, "k", function() switchToApp('Fork') end)
 hs.hotkey.bind(superKey, "l", function() switchToApp('zoom.us') end)
@@ -38,3 +39,6 @@ hs.hotkey.bind(superKey, "u", function() switchToApp('Bear') end)
 hs.hotkey.bind(superKey, "return", function() switchToApp('kitty') end)
 hs.hotkey.bind({"cmd"}, "return", function() switchToApp('kitty') end)
 
+-------------------------------------------------------------------
+-- TODO: add app resizing as well so we can get rid of yabai
+-------------------------------------------------------------------

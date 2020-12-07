@@ -39,6 +39,56 @@ hs.hotkey.bind(superKey, "u", function() switchToApp('Bear') end)
 hs.hotkey.bind(superKey, "return", function() switchToApp('kitty') end)
 hs.hotkey.bind({"cmd"}, "return", function() switchToApp('kitty') end)
 
+
 -------------------------------------------------------------------
--- TODO: add app resizing as well so we can get rid of yabai
+-- Moving windows between screens
 -------------------------------------------------------------------
+
+local function getNextScreen(win)
+  local screens = hs.screen.allScreens()
+  local currentScreen = win:screen()
+  local currentScreenIndex = -1
+  for index, screen in ipairs(screens) do
+    if (screen == currentScreen) then
+      currentScreenIndex = index
+      break
+    end
+  end
+  local nextScreenIndex = (currentScreenIndex % (#screens)) + 1
+  return screens[nextScreenIndex]
+end
+
+hs.hotkey.bind(superKey, "[", function()
+  local win = hs.window.focusedWindow()
+  win:moveToScreen(getNextScreen(win))
+end)
+
+hs.hotkey.bind(superKey, "]", function()
+  local win = hs.window.focusedWindow()
+  win:moveToScreen(getNextScreen(win))
+end)
+
+
+-------------------------------------------------------------------
+-- Window position/resizing
+-------------------------------------------------------------------
+
+hs.hotkey.bind(superKey, "left", function()
+  local win = hs.window.focusedWindow()
+  win:moveToUnit('[0,0 50x100]', 0)
+end)
+
+hs.hotkey.bind(superKey, "right", function()
+  local win = hs.window.focusedWindow()
+  win:moveToUnit('[50,0 50x100]', 0)
+end)
+
+hs.hotkey.bind(superKey, "up", function()
+  local win = hs.window.focusedWindow()
+  win:moveToUnit('[0,0 100x100]', 0)
+end)
+
+hs.hotkey.bind(superKey, "down", function()
+  local win = hs.window.focusedWindow()
+  win:moveToUnit('[10,10 80x80]', 0)
+end)

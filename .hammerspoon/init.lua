@@ -10,8 +10,9 @@ local superKey = {"cmd", "alt", "ctrl", "shift"}
 -- app switching
 -------------------------------------------------------------------
 
--- TODO: only show window on current screen or move window to current screen
 local function switchToApp(appName)
+  local win = hs.window.focusedWindow()
+  local currentScreen = win:screen()
   local app = hs.application.find(appName)
   if (app and app:isFrontmost()) then
     app:hide()

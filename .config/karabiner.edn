@@ -20,6 +20,8 @@
 
  :main      [
              {:des "simultaneous j k press to ESC" :rules [[[:j :k] :escape]]}
+             {:des "simultaneous d f press to ctrl-space" :rules [[[:d :f]  {:key :spacebar :modi [:left_control]} ]]}
+             {:des "simultaneous f j press to cmd-j" :rules [[[:f :j]  {:key :j :modi [:left_command]} ]]}
              {:des "swap end with left option" :rules [[:##end :left_option :kinesis-keyboard]]}
              {:des "swap control and command" :rules [[:##left_control :left_command :kinesis-keyboard]
                                                       [:##right_command :right_control :kinesis-keyboard]
@@ -41,38 +43,10 @@
 
              {:des   "mappings"
               :rules [
-                      ;; window to left half of screen
-                      [:!CSleft_arrow "/usr/local/bin/yabai -m window --grid 1:2:0:0:1:1"]
-                      ;; window to right half of screen
-                      [:!CSright_arrow "/usr/local/bin/yabai -m window --grid 1:2:1:0:1:1"]
-                      ;; window fill screen
-                      [:!CSup_arrow "/usr/local/bin/yabai -m window --grid 1:1:0:0:1:1"]
-                      ;; window center on screen
-                      [:!CSdown_arrow "/usr/local/bin/yabai -m window --grid 8:8:1:1:6:6"]
-                      ;; window to prev screen
-                      [:!CSopen_bracket "/usr/local/bin/yabai -m window --display prev"]
-                      ;; window to next screen
-                      [:!CSclose_bracket "/usr/local/bin/yabai -m window --display next"]
-
-                      ;; program launchers
-
+                      [:!CTOSb {:key grave_accent_and_tilde :modi [:left_command]}]
                       [:!CTOSc {:key c :modi [:left_command]}]
-                      ;;[:!CTOSd [:alfred "brave"]]
-                      ;;[:!CTOSe [:alfred "idea"]]
-                      ;;;;[:!CTOSj [:alfred "dayone"]]
-                     ;; [:!CTOSj [:alfred "todoist"]]
-                      ;;[:!CTOSk [:alfred "fork"]]
-                     ;; [:!CTOSl [:alfred "zoom"]]
-                     ;; [:!CTOSm [:alfred "monosnap"]]
-                      ;;[:!CTOSo [:alfred "outlook"]]
-                      ;;[:!CTOSr [:alfred "chrome"]]
-                      ;;[:!CTOSs [:alfred "slack"]]
                       [:!CTOSt {:key t :modi [:left_command]}]
-                      ;;[:!CTOSu [:alfred "bear"]]
                       [:!CTOSv {:key v :modi [:left_command]}]
-
-                      ;;[:!CTOSreturn_or_enter [:alfred "kitty"]]
-                      ;;[:!Creturn_or_enter [:alfred "kitty"]]
 
                       ]}
              ]

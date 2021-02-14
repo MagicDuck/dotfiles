@@ -1,0 +1,132 @@
+" Base Key mappings - rest are done through which-key
+"===============================================================================
+
+" esc mapping, not necessary on mac due to karabiner 
+"imap jk <Esc>
+"cmap jk <C-U><Esc>
+
+" leader keys
+noremap <Space> <Nop>
+let mapleader = "\<Space>"
+let maplocalleader = ","
+
+" C-c / C-v copy-paste
+vnoremap <C-c> "*y
+inoremap <C-v> <C-O>"*p
+
+" C-s saving
+nnoremap <silent> <C-S> :<C-U>Update<CR>
+nnoremap <Leader>w :<C-U>Update<CR>
+vnoremap <silent> <C-S> <C-C>:Update<CR> inoremap <silent> <C-S> <C-O>:Update<CR>
+
+" window splits nav
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-Q> <C-W><C-Q>
+
+"Note: command history is:  q:
+
+" finding files with C-p
+nnoremap <silent><C-p> :<C-U>Files<CR>
+
+" window jumping
+let i = 1
+while i <= 9
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let i = i + 1
+endwhile
+
+"- sneak is bound to "s"
+
+" - quickscope is f, t, F, T  &  , and ;  to jump to next occurrence
+
+
+" Which-Key Mappings
+" ==========================================================================
+" Create map to add keys to
+let g:which_key_map =  {}
+
+let g:which_key_map[1] = 'jump to window 1'
+let g:which_key_map[2] = 'jump to window 2'
+let g:which_key_map[3] = 'jump to window 3'
+let i = 4
+while i <= 9
+    execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
+    let g:which_key_map[i] = 'which_key_ignore'
+    let i = i + 1
+endwhile
+
+let g:which_key_map['c'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
+let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
+let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
+let g:which_key_map['F'] = [ ':Rg'                        , 'search text' ]
+let g:which_key_map['b'] = [ ':Buffers'                   , 'search buffers' ]
+let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
+let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger' ]
+let g:which_key_map['R'] = [ ':source ~/.config/nvim/init.vim' , 'reload vim config' ]
+let g:which_key_map['S'] = [ ':Startify'                  , 'start screen' ]
+let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
+let g:which_key_map['m'] = [ ':Marks'                     , 'search marks']
+
+" s is for search
+let g:which_key_map.s = {
+      \ 'name' : '+search' ,
+      \ '/' : [':History/'     , 'history'],
+      \ ';' : [':Commands'     , 'commands'],
+      \ 'a' : [':Ag'           , 'text Ag'],
+      \ 'b' : [':BLines'       , 'current buffer'],
+      \ 'B' : [':Buffers'      , 'open buffers'],
+      \ 'c' : [':Commits'      , 'commits'],
+      \ 'C' : [':BCommits'     , 'buffer commits'],
+      \ 'f' : [':Files'        , 'files'],
+      \ 'g' : [':GFiles'       , 'git files'],
+      \ 'G' : [':GFiles?'      , 'modified git files'],
+      \ 'h' : [':History'      , 'file history'],
+      \ 'H' : [':History:'     , 'command history'],
+      \ 'l' : [':Lines'        , 'lines'] ,
+      \ 'm' : [':Marks'        , 'marks'] ,
+      \ 'M' : [':Maps'         , 'normal maps'] ,
+      \ 'p' : [':Helptags'     , 'help tags'] ,
+      \ 'P' : [':Tags'         , 'project tags'],
+      \ 's' : [':Snippets'     , 'snippets'],
+      \ 'S' : [':Colors'       , 'color schemes'],
+      \ 't' : [':Rg'           , 'text Rg'],
+      \ 'T' : [':BTags'        , 'buffer tags'],
+      \ 'w' : [':Windows'      , 'search windows'],
+      \ 'y' : [':Filetypes'    , 'file types'],
+      \ 'z' : [':FZF'          , 'FZF'],
+      \ }
+
+
+
+" Which-Key config 
+"===============================================================================
+
+let g:which_key_sep = '→'
+let g:which_key_hspace = 10
+"let g:which_key_timeout = 100
+set timeoutlen=300
+
+" Not a fan of floating windows for this
+let g:which_key_use_floating_win = 0
+
+" Change the colors if you want
+highlight default link WhichKey          Operator
+highlight default link WhichKeySeperator DiffAdded
+highlight default link WhichKeyGroup     Identifier
+highlight default link WhichKeyDesc      Function
+
+" Hide status line
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+ \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+
+
+" Map leader to which_key
+nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+
+" Register which key map
+call which_key#register('<Space>', "g:which_key_map")

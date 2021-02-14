@@ -8,7 +8,7 @@ module.exports = {
         // Change the internal list of url shortener services. Default: undefined
         //urlShorteners: (list) => [...list, "custom.urlshortener.com"],
         // Log every request with basic information to console. Default: false
-        logRequests: true
+        logRequests: false
     },
     handlers: [
         {

@@ -11,4 +11,4 @@ export BROWSER="google-chrome-stable"
 export TERM="xterm-256color"
 
 
-export PATH="$HOME/.cargo/bin:$PATH"
+source "$HOME/.cargo/env"

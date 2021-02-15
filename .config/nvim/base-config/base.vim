@@ -19,35 +19,42 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set smarttab
-set hlsearch " highlight search
-set incsearch " incremental search
+set hlsearch           " highlight search
+set incsearch          " incremental search
 set ignorecase
 set smartcase
-set infercase " better case handling for insert mode completion
+set infercase          " better case handling for insert mode completion
 set wrapscan
-
 set smartindent
-"set autoindent
-set autoread " automatically reload files changed outside Vim
-"set autowrite " automatically write files when doing things like :make
-
+set autoindent
+set autoread           " automatically reload files changed outside Vi
+" set autowrite " automatically write files when doing things like :make
 set cmdheight=2
 set laststatus=2
-set showcmd
+set noshowcmd          " don't show command in status line as you type it
 set showfulltag
 set shortmess+=ts
-
-" make backspace work
-set bs=2
-
+set bs=2               " make backspace work
 set wildchar=<Tab> wildmenu wildmode=longest:full,full
-
 set cursorline
-set clipboard=unnamed " use system clipboard
-
+set clipboard=unnamed  " use system clipboard
 set fileformats=unix,dos
-set backupcopy=yes " make file change watchers happy
+set backupcopy=yes     " make file change watchers happy
 set number
+set pumheight=10       " Makes popup menu smaller
+set fileencoding=utf-8 " The encoding written to file
+set ruler              " Show the cursor position all the time
+set iskeyword+=-       " treat dash separated words as a word text object"
+set mouse=a            " Enable your mouse
+set splitbelow         " Horizontal splits will automatically be below
+set splitright         " Vertical splits will automatically be to the right
+set t_Co=256           " Support 256 colors
+set conceallevel=0     " So that I can see `` in markdown files
+set noshowmode         " We don't need to see things like -- INSERT -- anymore
+set nobackup           " This is recommended by coc
+set nowritebackup      " This is recommended by coc
+set updatetime=300     " Faster completion
+set formatoptions-=cro " Stop newline continution of comments
 
 augroup mybaseconfig
   " Remove all mybaseconfig autocommands

@@ -1,35 +1,10 @@
-" Base Key mappings - rest are done through which-key
-"===============================================================================
-
-" esc mapping, not necessary on mac due to karabiner 
-"imap jk <Esc>
-"cmap jk <C-U><Esc>
-
 " leader keys
 noremap <Space> <Nop>
 let mapleader = "\<Space>"
 let maplocalleader = ","
 
-" C-c / C-v copy-paste
-vnoremap <C-c> "*y
-inoremap <C-v> <C-O>"*p
-
-" C-s saving
-nnoremap <silent> <C-S> :<C-U>Update<CR>
-nnoremap <Leader>w :<C-U>Update<CR>
-vnoremap <silent> <C-S> <C-C>:Update<CR> inoremap <silent> <C-S> <C-O>:Update<CR>
-
-" window splits nav
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-Q> <C-W><C-Q>
-
-"Note: command history is:  q:
-
-" finding files with C-p
-nnoremap <silent><C-p> :<C-U>Files<CR>
+" Create map to add keys to
+let g:which_key_map =  {}
 
 " window jumping
 let i = 1
@@ -37,17 +12,6 @@ while i <= 9
     execute 'nnoremap <Leader>' . i . ' :' . i . 'wincmd w<CR>'
     let i = i + 1
 endwhile
-
-"- sneak is bound to "s"
-
-" - quickscope is f, t, F, T  &  , and ;  to jump to next occurrence
-
-
-" Which-Key Mappings
-" ==========================================================================
-" Create map to add keys to
-let g:which_key_map =  {}
-
 let g:which_key_map[1] = 'jump to window 1'
 let g:which_key_map[2] = 'jump to window 2'
 let g:which_key_map[3] = 'jump to window 3'

@@ -34,7 +34,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
-
+Plug 'junegunn/vim-easy-align'
+Plug 'preservim/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " TODO: following not sure about
 

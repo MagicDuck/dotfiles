@@ -9,13 +9,6 @@ syntax enable
 "set guifont=DroidSansMonoForPowerline_NF:h10:cANSI:qDRAFT
 set guifont=Knack_NF:h10:cANSI:qDRAFT
 
-"set background=dark
-"colorscheme sonokai " tutticolor colorful lucius
-"colorscheme zephyr
-"colorscheme OceanicNext
-set background=light
-colorscheme edge
-
 set hidden
 
 filetype on

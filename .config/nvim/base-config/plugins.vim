@@ -37,6 +37,7 @@ Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-easy-align'
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'unkiwii/vim-nerdtree-sync'
 
 " TODO: following not sure about
 

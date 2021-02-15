@@ -46,18 +46,18 @@ Plug 'tommcdo/vim-fubitive'
 " Keeping up to date with master
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'neovim/nvim-lspconfig'
-Plug 'ojroques/nvim-lspfuzzy'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+"Plug 'neovim/nvim-lspconfig'
+"Plug 'ojroques/nvim-lspfuzzy'
+"Plug 'nvim-lua/popup.nvim'
+"Plug 'nvim-lua/plenary.nvim'
+"Plug 'nvim-telescope/telescope.nvim'
 
 " TODO: following not sure about
 
 "Plug 'pelodelfuego/vim-swoop'
     " TODO: figure out how to use
-Plug 'dyng/ctrlsf.vim'
-    let g:ctrlsf_ackprg = 'rg'
+"Plug 'dyng/ctrlsf.vim'
+"    let g:ctrlsf_ackprg = 'rg'
 
 " Initialize plugin system
 call plug#end()

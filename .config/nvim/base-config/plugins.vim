@@ -41,12 +41,16 @@ Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fubitive' 
 
-" Stable version of coc
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Stable version of coc - at the moment it's very slow
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Keeping up to date with master
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-
+Plug 'neovim/nvim-lspconfig'
+Plug 'ojroques/nvim-lspfuzzy'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " TODO: following not sure about
 
@@ -54,11 +58,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " TODO: figure out how to use
 Plug 'dyng/ctrlsf.vim'
     let g:ctrlsf_ackprg = 'rg'
-Plug 'neovim/nvim-lspconfig'
-Plug 'ojroques/nvim-lspfuzzy'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
 
 " Initialize plugin system
 call plug#end()

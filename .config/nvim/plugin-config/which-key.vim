@@ -79,39 +79,39 @@ let g:which_key_map.g = {
       \ 'o' : [':GBrowse'                 , 'open in browser'],
       \ }
 
-" intellisense
-let g:which_key_map.j = {
-      \ 'name' : '+intellisense (coc)' ,
-      \ 'd' : [':CocList diagnostics'     , 'all diagnostics'],
-      \ 'x' : [':CocList extensions'      , 'manage extensions'],
-      \ 'c' : [':CocList commands'        , 'commands'],
-      \ 'o' : [':CocList outlines'        , 'outline'],
-      \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
-      \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
-      \ 'l' : [':CocNext'                 , 'Do default action for next item'],
-      \ 'p' : [':CocListResume'           , 'resume latest'],
-      \ }
-
-
-" Code Action
-let g:which_key_map.a = {
-      \ 'name' : '+code action' ,
-      \ 'f' : [':CocAction'               , 'actions for current line'],
-      \ 'x' : [':CocList extensions'      , 'manage extensions'],
-      \ 'c' : [':CocList commands'        , 'commands'],
-      \ 'o' : [':CocList outlines'        , 'outline'],
-      \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
-      \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
-      \ 'l' : [':CocNext'                 , 'Do default action for next item'],
-      \ 'p' : [':CocListResume'           , 'resume latest'],
-      \ }
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ab  <Plug>(coc-codeaction)
-let g:which_key_map.a.b = 'apply to current buffer'
-" Apply AutoFix to problem on the current line.
-nmap <leader>aa  <Plug>(coc-fix-current)
-let g:which_key_map.a.a = 'autofix current line'
+" intellisense - coc disabled due to poor performance
+" let g:which_key_map.j = {
+"       \ 'name' : '+intellisense (coc)' ,
+"       \ 'd' : [':CocList diagnostics'     , 'all diagnostics'],
+"       \ 'x' : [':CocList extensions'      , 'manage extensions'],
+"       \ 'c' : [':CocList commands'        , 'commands'],
+"       \ 'o' : [':CocList outlines'        , 'outline'],
+"       \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
+"       \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
+"       \ 'l' : [':CocNext'                 , 'Do default action for next item'],
+"       \ 'p' : [':CocListResume'           , 'resume latest'],
+"       \ }
+"
+"
+" " Code Action
+" let g:which_key_map.a = {
+"       \ 'name' : '+code action' ,
+"       \ 'f' : [':CocAction'               , 'actions for current line'],
+"       \ 'x' : [':CocList extensions'      , 'manage extensions'],
+"       \ 'c' : [':CocList commands'        , 'commands'],
+"       \ 'o' : [':CocList outlines'        , 'outline'],
+"       \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
+"       \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
+"       \ 'l' : [':CocNext'                 , 'Do default action for next item'],
+"       \ 'p' : [':CocListResume'           , 'resume latest'],
+"       \ }
+"
+" " Remap keys for applying codeAction to the current buffer.
+" nmap <leader>ab  <Plug>(coc-codeaction)
+" let g:which_key_map.a.b = 'apply to current buffer'
+" " Apply AutoFix to problem on the current line.
+" nmap <leader>aa  <Plug>(coc-fix-current)
+" let g:which_key_map.a.a = 'autofix current line'
 
 
 " Which-Key config 

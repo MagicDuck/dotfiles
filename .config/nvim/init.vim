@@ -17,6 +17,7 @@ source ~/.config/nvim/plugin-config/quickscope.vim
 source ~/.config/nvim/plugin-config/fzf.vim
 source ~/.config/nvim/plugin-config/nerdtree.vim
 source ~/.config/nvim/plugin-config/fugitive.vim
+source ~/.config/nvim/plugin-config/coc.vim
 
 source ~/.config/nvim/os-specific.vim
 " Note: colorscheme is at end so that autocmds targeting it are triggered propertly

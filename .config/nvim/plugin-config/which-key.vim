@@ -63,6 +63,13 @@ let g:which_key_map.s = {
       \ 'z' : [':FZF'          , 'FZF'],
       \ }
 
+" nerd tree
+let g:which_key_map.n = {
+      \ 'name' : '+tree' ,
+      \ 'f' : [':NERDTreeFind'            , 'find buf in tree'],
+      \ 't' : [':NERDTreeToggle'          , 'toggle tre'],
+      \ 'c' : [':NERDTreeClose'           , 'close tree'],
+      \ }
 
 
 " Which-Key config 

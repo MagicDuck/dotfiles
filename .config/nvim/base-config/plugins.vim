@@ -38,6 +38,15 @@ Plug 'junegunn/vim-easy-align'
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'unkiwii/vim-nerdtree-sync'
+Plug 'tpope/vim-fugitive'
+Plug 'tommcdo/vim-fubitive' 
+
+" Stable version of coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Keeping up to date with master
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+
 
 " TODO: following not sure about
 

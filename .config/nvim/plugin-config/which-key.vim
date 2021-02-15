@@ -71,6 +71,13 @@ let g:which_key_map.n = {
       \ 'c' : [':NERDTreeClose'           , 'close tree'],
       \ }
 
+" git
+let g:which_key_map.g = {
+      \ 'name' : '+git' ,
+      \ 'b' : [':Git blame'               , 'blame'],
+      \ 's' : [':Git'                     , 'status'],
+      \ 'o' : [':GBrowse'                 , 'open in browser'],
+      \ }
 
 " Which-Key config 
 "===============================================================================

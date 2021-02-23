@@ -62,5 +62,11 @@
   "vim.easymotionMarkerForegroundColorTwoChar": "black",
   "editor.minimap.enabled": false,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Ra Spring"
+  "workbench.colorTheme": "Ra Spring",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  }
 }

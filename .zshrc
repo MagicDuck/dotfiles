@@ -2,43 +2,47 @@
 
 OS="$(uname 2> /dev/null)"
 
-## package management
-case $OS in
-  Darwin)
-    source /usr/local/share/antigen/antigen.zsh
-  ;;
-  Linux)
-    source /usr/share/zsh/share/antigen.zsh
-  ;;
-esac
 
-# Load the oh-my-zsh's library.
-antigen use oh-my-zsh
+# package management
+# =========================================================================================
 
-# Bundles from the default repo (robbyrussell's oh-my-zsh).
-antigen bundle git
-antigen bundle ssh-agent
-antigen bundle vi-mode
+# case $OS in
+#   Darwin)
+#     source /usr/local/share/antigen/antigen.zsh
+#   ;;
+#   Linux)
+#     source /usr/share/zsh/share/antigen.zsh
+#   ;;
+# esac
+#
+# # Load the oh-my-zsh's library.
+# antigen use oh-my-zsh
+#
+# # Bundles from the default repo (robbyrussell's oh-my-zsh).
+# antigen bundle git
+# antigen bundle ssh-agent
+# antigen bundle vi-mode
+#
+# # Syntax highlighting bundle.
+# antigen bundle zsh-users/zsh-syntax-highlighting
+#     # Due to the following issue:
+#     # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
+#     # Syntax highlighting is really slow when pasting long text. This speeds it
+#     # up to just a slight delay
+#     zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+#
+# antigen bundle zsh-users/zsh-history-substring-search
+#
+# # Load the theme.
+# # workaround for https://github.com/zsh-users/antigen/issues/675
+# THEME=robbyrussell
+# {antigen list | grep $THEME} &>/dev/null; if [ $? -ne 0 ]; then antigen theme $THEME; fi
+#
+# # Tell Antigen that you're done.
+# antigen apply
 
-# Syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
-    # Due to the following issue:
-    # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
-    # Syntax highlighting is really slow when pasting long text. This speeds it
-    # up to just a slight delay
-    zstyle ':bracketed-paste-magic' active-widgets '.self-*'
-
-antigen bundle zsh-users/zsh-history-substring-search
-
-# Load the theme.
-# workaround for https://github.com/zsh-users/antigen/issues/675
-THEME=robbyrussell
-{antigen list | grep $THEME} &>/dev/null; if [ $? -ne 0 ]; then antigen theme $THEME; fi
-
-# Tell Antigen that you're done.
-antigen apply
-
-## Options section
+# Options section
+# =========================================================================================
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob                                               # Case insensitive globbing
@@ -49,6 +53,7 @@ setopt nobeep                                                   # No beep
 setopt appendhistory                                            # Immediately append history instead of overwriting
 setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
 setopt autocd                                                   # if only directory path is entered, cd there.
+setopt promptsubst
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
@@ -63,7 +68,8 @@ SAVEHIST=500
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
 
-## Keybindings section
+# Keybindings section
+# =========================================================================================
 # enable vim mode
 # https://dougblack.io/words/zsh-vi-mode.html
 # bindkey -v
@@ -118,7 +124,15 @@ bindkey '^[[1;3D'  backward-word                                   # Left key
 # bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 # bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
+## Plugins section: Enable fish style features
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 # Color man pages
+# =========================================================================================
 export LESS_TERMCAP_mb=$'\E[01;32m'
 export LESS_TERMCAP_md=$'\E[01;32m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -128,18 +142,8 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
-## Plugins section: Enable fish style features
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-## Kittens aliases
-alias icat="kitty +kitten icat"
-alias d="kitty +kitten diff"
-
-## connect to work
+# SAP connect to work
+# =========================================================================================
 [[ -e ~/.secret.zsh ]] && source ~/.secret.zsh
 alias sapconnect="sudo f5fpc --start --host https://connectpal05.sap.com --user $SAP_USER"
 #alias sapconnect="sudo f5fpc --start --host https://connectphl11.sap.com --user $SAP_USER"
@@ -147,17 +151,10 @@ alias sapinfo="sudo f5fpc --info"
 alias sapstop="sudo f5fpc --stop"
 # alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect -floatbar"
 alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.global.corp.sap +clipboard +fonts +auto-reconnect +floatbar"
-alias clean-gradle-cache="find ~/.gradle -type f -name \"*.lock\" -delete"
-alias ondemand-changed-strings="cd ~/ondemand/react/reactUi/src/translations; git --no-pager diff --unified=0 origin/master:./en.json ./en.json | sed '/^@/d' | sed '/^\\+\\+\\+/d' | sed '/^---/d' | sed 's/^\\+  //'; cd -"
-alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
-alias qa-automation-run-local="yarn install && yarn run cypress open --config baseUrl=http://default.xmatters.com/ --env username=admin,password=complex,allure=false"
-alias qa-automation-run-dev="yarn install && yarn run cypress open --config baseUrl=https://sbadragan.dev.xmatters.com/ --env username=admin,password=complex,allure=false"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-unalias grv # to be able to use grv git client
 
 # some OS specific config
+# =========================================================================================
 case $OS in
   Darwin)
     export HOMEBREW_NO_GITHUB_API=1
@@ -171,6 +168,37 @@ case $OS in
   ;;
 esac
 
+
+# FZF
+# =========================================================================================
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
+# Version Management
+# =========================================================================================
+
+# fast node version manager
+eval "$(fnm env)"
+
+# yarn version management
+export YVM_DIR=/Users/stephanbadragan/.yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# jvm version management
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+
+# Aliases
+# =========================================================================================
+
 alias xmdev="tmuxp load xmdev"
 alias xmdev-cloud="tmuxp load xmdev-cloud"
 alias xmdev-kill="confirm && tmux kill-session -t xmdev"
@@ -181,24 +209,59 @@ alias lst="colorls --light --tree"
 alias git_cleanup_bugfix_branches="git branch | grep bugfix/ | xargs git branch -D"
 alias git_cleanup_branches="git branch | grep -v '*' | grep -v 'master' | xargs git branch -D"
 
-# fzf opts
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+alias clean-gradle-cache="find ~/.gradle -type f -name \"*.lock\" -delete"
+alias ondemand-changed-strings="cd ~/ondemand/react/reactUi/src/translations; git --no-pager diff --unified=0 origin/master:./en.json ./en.json | sed '/^@/d' | sed '/^\\+\\+\\+/d' | sed '/^---/d' | sed 's/^\\+  //'; cd -"
+alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
+alias qa-automation-run-local="yarn install && yarn run cypress open --config baseUrl=http://default.xmatters.com/ --env username=admin,password=complex,allure=false"
+alias qa-automation-run-dev="yarn install && yarn run cypress open --config baseUrl=https://sbadragan.dev.xmatters.com/ --env username=admin,password=complex,allure=false"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+alias icat="kitty +kitten icat"
+alias d="kitty +kitten diff"
 
-# use ondemand version of node
-#export PATH="./nodejs/node-v12.13.1-darwin-x64/bin:$PATH"
-#export PATH="./nodejs/$(ls ~/ondemand/react/reactUI/nodejs | sort -V | tail -1)/bin:$PATH"
+# =========================================================================================
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
 
-export YVM_DIR=/Users/stephanbadragan/.yvm
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-# jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+### End of Zinit's installer chunk
+
+# Plugins    
+# =========================================================================================
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+zinit light zsh-users/zsh-history-substring-search
+zinit light zsh-users/zsh-syntax-highlighting
+    # Due to the following issue:
+    # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
+    # Syntax highlighting is really slow when pasting long text. This speeds it
+    # up to just a slight delay
+    zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
+zinit ice atload"unalias grv"    
+zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
+
+zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/ssh-agent/ssh-agent.plugin.zsh'
+zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
+
+# Theme
+# =========================================================================================
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
+
+# see https://github.com/sindresorhus/pure for more colors
+zstyle :prompt:pure:git:dirty color green
+

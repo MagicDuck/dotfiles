@@ -28,10 +28,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 Plug 'maksimr/vim-jsbeautify'
-Plug 'jremmen/vim-ripgrep'
+"Plug 'jremmen/vim-ripgrep'
 Plug 'shougo/deoplete-lsp'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-easy-align'
@@ -39,23 +39,24 @@ Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'tpope/vim-fugitive'
-Plug 'tommcdo/vim-fubitive' 
+Plug 'tommcdo/vim-fubitive'
+"Plug 'sbdchd/neoformat'
 
 " Stable version of coc - at the moment it's very slow
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Keeping up to date with master
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-"Plug 'neovim/nvim-lspconfig'
-"Plug 'ojroques/nvim-lspfuzzy'
-"Plug 'nvim-lua/popup.nvim'
-"Plug 'nvim-lua/plenary.nvim'
-"Plug 'nvim-telescope/telescope.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'ojroques/nvim-lspfuzzy'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " TODO: following not sure about
 
 "Plug 'pelodelfuego/vim-swoop'
-    " TODO: figure out how to use
+" TODO: figure out how to use
 "Plug 'dyng/ctrlsf.vim'
 "    let g:ctrlsf_ackprg = 'rg'
 

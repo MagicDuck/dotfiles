@@ -12,7 +12,7 @@ module.exports = {
     },
     handlers: [
         {
-            match: [/docs\.google\.com/],
+            match: [/docs\.google\.com/, /docusign\.net/],
             browser: "Google Chrome"
         },
     ]

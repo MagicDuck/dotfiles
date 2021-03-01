@@ -169,16 +169,6 @@ case $OS in
 esac
 
 
-# FZF
-# =========================================================================================
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-
 # Version Management
 # =========================================================================================
 
@@ -257,6 +247,7 @@ zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/ssh-agent/ssh-agent.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
 
+
 # Theme
 # =========================================================================================
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
@@ -264,4 +255,14 @@ zinit light sindresorhus/pure
 
 # see https://github.com/sindresorhus/pure for more colors
 zstyle :prompt:pure:git:dirty color green
+
+
+# FZF
+# =========================================================================================
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 

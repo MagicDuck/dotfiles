@@ -12,11 +12,13 @@ nnoremap <Leader>w :<C-U>Update<CR>
 vnoremap <silent> <C-S> <C-C>:Update<CR> inoremap <silent> <C-S> <C-O>:Update<CR>
 
 " window splits nav
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-Q> <C-W><C-Q>
+
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-Q> <C-W><C-Q>
+" nnoremap <C-Q> <C-W><C-Q>
 
 " Use alt + hjkl to resize windows
 nnoremap <M-j>    :resize -2<CR>

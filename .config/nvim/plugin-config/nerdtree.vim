@@ -16,8 +16,8 @@ augroup mynerdtree
   autocmd!
 
   " Start NERDTree, unless a file or session is specified, eg. vim -S session_file.vim.
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | Startify | NERDTree | wincmd w | endif
+  " autocmd StdinReadPre * let s:std_in=1
+  " autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | Startify | NERDTree | wincmd w | endif
 
   " Exit Vim if NERDTree is the only window left.
   autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
@@ -28,6 +28,6 @@ augroup mynerdtree
       \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
   " Highlight currently open buffer in NERDTree
-  autocmd BufRead * call SyncTree()
+  " autocmd BufRead * call SyncTree()
 augroup END
 

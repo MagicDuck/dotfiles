@@ -22,13 +22,59 @@ while i <= 9
     let i = i + 1
 endwhile
 
+" Code Action
+let g:which_key_map.a = {
+      \ 'name' : '+code action' ,
+      \ 'f' : [':CocAction'               , 'actions for current line'],
+      \ 'x' : [':CocList extensions'      , 'manage extensions'],
+      \ 'c' : [':CocList commands'        , 'commands'],
+      \ 'o' : [':CocList outlines'        , 'outline'],
+      \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
+      \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
+      \ 'l' : [':CocNext'                 , 'Do default action for next item'],
+      \ 'p' : [':CocListResume'           , 'resume latest'],
+      \ }
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ab  <Plug>(coc-codeaction)
+let g:which_key_map.a.b = 'apply to current buffer'
+" Apply AutoFix to problem on the current line.
+nmap <leader>aa  <Plug>(coc-fix-current)
+let g:which_key_map.a.a = 'autofix current line'
+
+let g:which_key_map['b'] = [ ':Buffers'                   , 'search buffers' ]
 let g:which_key_map['c'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
 let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
 let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
 let g:which_key_map['F'] = [ ':Rg'                        , 'search text' ]
-let g:which_key_map['b'] = [ ':Buffers'                   , 'search buffers' ]
-let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
-let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger' ]
+" git
+let g:which_key_map.g = {
+      \ 'name' : '+git' ,
+      \ 'b' : [':Git blame'               , 'blame'],
+      \ 's' : [':Git'                     , 'status'],
+      \ 'o' : [':GBrowse'                 , 'open in browser'],
+      \ }
+
+let g:which_key_map['h'] = [ '<C-W>h'              , 'window left' ]
+" let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
+" intellisense 
+let g:which_key_map.i = {
+      \ 'name' : '+intellisense (coc)' ,
+      \ 'd' : [':CocList diagnostics'     , 'all diagnostics'],
+      \ 'x' : [':CocList extensions'      , 'manage extensions'],
+      \ 'c' : [':CocList commands'        , 'commands'],
+      \ 'o' : [':CocList outlines'        , 'outline'],
+      \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
+      \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
+      \ 'l' : [':CocNext'                 , 'Do default action for next item'],
+      \ 'p' : [':CocListResume'           , 'resume latest'],
+      \ }
+
+let g:which_key_map['j'] = [ '<C-W>j'              , 'window down' ]
+let g:which_key_map['k'] = [ '<C-W>k'              , 'window up' ]
+let g:which_key_map['l'] = [ '<C-W>l'              , 'window right' ]
+let g:which_key_map['r'] = [ ':RnvimrToggle'              , 'ranger' ]
+let g:which_key_map['q'] = [ '<C-W>q'              , 'quit window' ]
 let g:which_key_map['R'] = [ ':source ~/.config/nvim/init.vim' , 'reload vim config' ]
 let g:which_key_map['S'] = [ ':Startify'                  , 'start screen' ]
 let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
@@ -62,56 +108,6 @@ let g:which_key_map.s = {
       \ 'y' : [':Filetypes'    , 'file types'],
       \ 'z' : [':FZF'          , 'FZF'],
       \ }
-
-" nerd tree
-let g:which_key_map.t = {
-      \ 'name' : '+tree' ,
-      \ 'f' : [':NERDTreeFind'            , 'find buf in tree'],
-      \ 't' : [':NERDTreeToggle'          , 'toggle tree'],
-      \ 'c' : [':NERDTreeClose'           , 'close tree'],
-      \ }
-
-" git
-let g:which_key_map.g = {
-      \ 'name' : '+git' ,
-      \ 'b' : [':Git blame'               , 'blame'],
-      \ 's' : [':Git'                     , 'status'],
-      \ 'o' : [':GBrowse'                 , 'open in browser'],
-      \ }
-
-" intellisense - coc disabled due to poor performance
-" let g:which_key_map.j = {
-"       \ 'name' : '+intellisense (coc)' ,
-"       \ 'd' : [':CocList diagnostics'     , 'all diagnostics'],
-"       \ 'x' : [':CocList extensions'      , 'manage extensions'],
-"       \ 'c' : [':CocList commands'        , 'commands'],
-"       \ 'o' : [':CocList outlines'        , 'outline'],
-"       \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
-"       \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
-"       \ 'l' : [':CocNext'                 , 'Do default action for next item'],
-"       \ 'p' : [':CocListResume'           , 'resume latest'],
-"       \ }
-"
-"
-" " Code Action
-" let g:which_key_map.a = {
-"       \ 'name' : '+code action' ,
-"       \ 'f' : [':CocAction'               , 'actions for current line'],
-"       \ 'x' : [':CocList extensions'      , 'manage extensions'],
-"       \ 'c' : [':CocList commands'        , 'commands'],
-"       \ 'o' : [':CocList outlines'        , 'outline'],
-"       \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
-"       \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
-"       \ 'l' : [':CocNext'                 , 'Do default action for next item'],
-"       \ 'p' : [':CocListResume'           , 'resume latest'],
-"       \ }
-"
-" " Remap keys for applying codeAction to the current buffer.
-" nmap <leader>ab  <Plug>(coc-codeaction)
-" let g:which_key_map.a.b = 'apply to current buffer'
-" " Apply AutoFix to problem on the current line.
-" nmap <leader>aa  <Plug>(coc-fix-current)
-" let g:which_key_map.a.a = 'autofix current line'
 
 
 " Which-Key config 

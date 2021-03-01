@@ -1,4 +1,3 @@
-" TODO: merge with stuff that is in Chris@Machine
 set nocompatible
 set encoding=utf-8
 syntax enable
@@ -69,6 +68,9 @@ augroup mybaseconfig
   " line number
   autocmd InsertEnter * :set norelativenumber
   autocmd InsertLeave * :set relativenumber
+
+  " no annoying auto-comments
+  autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 augroup END
 
 " If the current buffer has never been saved, it will have no name,

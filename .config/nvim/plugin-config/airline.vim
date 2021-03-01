@@ -8,7 +8,7 @@ if !exists("my_airline_number_setup")
   function! WindowNumber(...)
       let builder = a:1
       let context = a:2
-      call builder.add_section('airline_b', '%{tabpagewinnr(tabpagenr())}')
+      call builder.add_section_spaced('airline_a', '%{tabpagewinnr(tabpagenr())}')
       return 0
   endfunction
 

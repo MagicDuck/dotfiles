@@ -2,7 +2,9 @@
 " Install with :source ~/.config/nvim/init.vim | PlugInstall
 
 " Specify a directory for plugins
-call plug#begin('~/vimfiles/plugged')
+" TODO: change this
+"call plug#begin('~/vimfiles/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorscheme - must work with treesitter for best effect
 Plug 'sainnhe/edge'
@@ -35,11 +37,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-easy-align'
-Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fubitive'
+Plug 'kevinhwang91/rnvimr'
 "Plug 'sbdchd/neoformat'
 
 " Stable version of coc - at the moment it's very slow

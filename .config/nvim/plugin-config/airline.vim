@@ -1,5 +1,8 @@
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+" let g:airline_theme='cool'
+" let g:airline_theme='papercolor'
+let g:airline_theme='oceanicnextlight'
 
 " window number in status line
 if !exists("my_airline_number_setup")

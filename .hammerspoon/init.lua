@@ -15,9 +15,71 @@ local function switchToApp(appName)
   local currentScreen = win:screen()
   local app = hs.application.find(appName)
   if (app and app:isFrontmost()) then
-    app:hide()
+    --app:hide()
+    local orderedWindows = hs.window.orderedWindows()
+    if (orderedWindows[2]) then
+      orderedWindows[2]:focus()
+    end
   else
     hs.application.open(appName)
+  end
+end
+
+local function str_split_space(str) 
+  parts = {}
+  for i in string.gmatch(str, "%S+") do
+     print(i)
+     table.insert(parts, i)
+  end
+
+  return parts
+end
+
+local function kittyDo(cmd, cb)
+  local task = hs.task.new('/usr/local/bin/kitty', cb, str_split_space("@ --to unix:/tmp/mykitty " .. cmd))
+  task:start()
+end
+
+local function switchToKittyWindow(windowTitle, windowCommand)
+  local win = hs.window.frontmostWindow()
+  if (win:title() == windowTitle) then
+    -- window already focused, focus prev in stack
+    local orderedWindows = hs.window.orderedWindows()
+    if (orderedWindows[2]) then
+      orderedWindows[2]:focus()
+    end
+    return
+  end
+  local currentScreen = win:screen()
+  local app = hs.application.find("kitty")
+
+  function launchWindow()
+    kittyDo('launch --type=os-window --title=' .. windowTitle .. ' ' .. windowCommand, function(exitCode) 
+      if (exitCode ~= 0) then
+        print("Could not launch kitty window: " .. windowTitle .. " with command: ".. windowCommand)
+      end
+    end)
+  end
+
+
+  if (app) then
+    --if (win:title() == windowTitle) then
+      -- window already focused, hide
+      --app:hide()     
+    --else
+      -- try focusing it first
+      kittyDo('focus-window --match=title:' .. windowTitle, function(exitCode, stdout, stderr) 
+        print("cmd", 'focus-window --match=title:' .. windowTitle)
+        if (exitCode ~= 0) then
+          -- not found, try launching
+          launchWindow()
+        end
+      end)
+    --end
+
+  else
+    hs.application.open("kitty", 3) -- wait max 3s
+    launchWindow()
   end
 end
 
@@ -98,7 +160,7 @@ end)
 
 hs.hotkey.bind(superKey, "d", function() switchToApp('Brave Browser') end)
 hs.hotkey.bind(superKey, "e", function() switchToApp('IntelliJ IDEA') end)
-hs.hotkey.bind(superKey, "f", function() switchToApp('Finder') end)
+hs.hotkey.bind(superKey, "f", function() switchToKittyWindow('neovim', '/usr/local/bin/zsh -is eval vim') end)
 hs.hotkey.bind(superKey, "i", function() switchToApp('Parallels Desktop') end)
 hs.hotkey.bind(superKey, "j", function() switchToApp('kittyvim') end)
 --hs.hotkey.bind(superKey, "j", function()
@@ -109,16 +171,17 @@ hs.hotkey.bind(superKey, "j", function() switchToApp('kittyvim') end)
 hs.hotkey.bind(superKey, "k", function() switchToApp('Fork') end)
 hs.hotkey.bind(superKey, "l", function() switchToApp('zoom.us') end)
 hs.hotkey.bind(superKey, "m", function() switchToApp('Mail') end)
+hs.hotkey.bind(superKey, "n", function() switchToApp('Monosnap') end)
 hs.hotkey.bind(superKey, "o", function() switchToApp('Fantastical') end)
+hs.hotkey.bind(superKey, "p", function() switchToApp('Finder') end)
 hs.hotkey.bind(superKey, "r", function() switchToApp('Google Chrome') end)
 hs.hotkey.bind(superKey, "s", function() switchToApp('Slack') end)
 hs.hotkey.bind(superKey, "u", function() switchToApp('Bear') end)
-hs.hotkey.bind(superKey, "v", function() switchToApp('Monosnap') end)
 hs.hotkey.bind(superKey, "w", function() switchToApp('TickTick') end)
 -- superkey + z - launches next meeting from Meeter Pro
 
-hs.hotkey.bind(superKey, "return", function() switchToApp('kitty') end)
-hs.hotkey.bind({"cmd"}, "return", function() switchToApp('kitty') end)
+hs.hotkey.bind(superKey, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
+hs.hotkey.bind({"cmd"}, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
 
 -- move window to other screen
 hs.hotkey.bind(superKey, "[", function()

@@ -2,44 +2,7 @@
 
 OS="$(uname 2> /dev/null)"
 
-
-# package management
-# =========================================================================================
-
-# case $OS in
-#   Darwin)
-#     source /usr/local/share/antigen/antigen.zsh
-#   ;;
-#   Linux)
-#     source /usr/share/zsh/share/antigen.zsh
-#   ;;
-# esac
-#
-# # Load the oh-my-zsh's library.
-# antigen use oh-my-zsh
-#
-# # Bundles from the default repo (robbyrussell's oh-my-zsh).
-# antigen bundle git
-# antigen bundle ssh-agent
-# antigen bundle vi-mode
-#
-# # Syntax highlighting bundle.
-# antigen bundle zsh-users/zsh-syntax-highlighting
-#     # Due to the following issue:
-#     # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
-#     # Syntax highlighting is really slow when pasting long text. This speeds it
-#     # up to just a slight delay
-#     zstyle ':bracketed-paste-magic' active-widgets '.self-*'
-#
-# antigen bundle zsh-users/zsh-history-substring-search
-#
-# # Load the theme.
-# # workaround for https://github.com/zsh-users/antigen/issues/675
-# THEME=robbyrussell
-# {antigen list | grep $THEME} &>/dev/null; if [ $? -ne 0 ]; then antigen theme $THEME; fi
-#
-# # Tell Antigen that you're done.
-# antigen apply
+export PATH="/usr/local/bin:$PATH"
 
 # Options section
 # =========================================================================================
@@ -177,7 +140,7 @@ eval "$(fnm env)"
 
 # yarn version management
 export YVM_DIR=/Users/stephanbadragan/.yvm
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+[ -r $YVM_DIR/yvm.sh ] && source $YVM_DIR/yvm.sh init-sh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
@@ -195,6 +158,7 @@ alias xmdev-kill="confirm && tmux kill-session -t xmdev"
 alias xmdev-cloud-kill="confirm && tmux kill-session -t xmdev-cloud"
 alias devincloud="tmuxp load devincloud"
 alias devincloud-kill="confirm && tmux kill-session -t devincloud"
+alias ls="ls -G"
 alias lst="colorls --light --tree"
 alias git_cleanup_bugfix_branches="git branch | grep bugfix/ | xargs git branch -D"
 alias git_cleanup_branches="git branch | grep -v '*' | grep -v 'master' | xargs git branch -D"
@@ -266,3 +230,11 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# Allows zsh -is eval "command" without exiting 
+# see https://www.zsh.org/mla/users/2005/msg00599.html
+# =========================================================================================
+if [[ $1 == eval ]]
+then
+  "$@"
+  set --
+fi

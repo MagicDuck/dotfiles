@@ -18,6 +18,7 @@ source ~/.config/nvim/plugin-config/fzf.vim
 source ~/.config/nvim/plugin-config/fugitive.vim
 source ~/.config/nvim/plugin-config/ranger.vim
 source ~/.config/nvim/plugin-config/rooter.vim
+source ~/.config/nvim/plugin-config/easyalign.vim
 source ~/.config/nvim/plugin-config/coc.vim
 
 "source ~/.config/nvim/plugin-config/lsp.vim

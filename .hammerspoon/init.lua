@@ -11,8 +11,6 @@ local superKey = {"cmd", "alt", "ctrl", "shift"}
 -------------------------------------------------------------------
 
 local function switchToApp(appName)
-  local win = hs.window.frontmostWindow()
-  local currentScreen = win:screen()
   local app = hs.application.find(appName)
   if (app and app:isFrontmost()) then
     --app:hide()
@@ -25,8 +23,8 @@ local function switchToApp(appName)
   end
 end
 
-local function str_split_space(str) 
-  parts = {}
+local function str_split_space(str)
+  local parts = {}
   for i in string.gmatch(str, "%S+") do
      print(i)
      table.insert(parts, i)
@@ -50,11 +48,10 @@ local function switchToKittyWindow(windowTitle, windowCommand)
     end
     return
   end
-  local currentScreen = win:screen()
   local app = hs.application.find("kitty")
 
-  function launchWindow()
-    kittyDo('launch --type=os-window --title=' .. windowTitle .. ' ' .. windowCommand, function(exitCode) 
+  local function launchWindow()
+    kittyDo('launch --type=os-window --title=' .. windowTitle .. ' ' .. windowCommand, function(exitCode)
       if (exitCode ~= 0) then
         print("Could not launch kitty window: " .. windowTitle .. " with command: ".. windowCommand)
       end
@@ -87,7 +84,7 @@ end
 -- Moving between app windows
 -------------------------------------------------------------------
 
-function table_shallow_copy(t)
+local function table_shallow_copy(t)
   local t2 = {}
   for k,v in pairs(t) do
     t2[k] = v
@@ -95,7 +92,7 @@ function table_shallow_copy(t)
   return t2
 end
 
-function window_sort(w1, w2)
+local function window_sort(w1, w2)
   return w1:id() < w2:id()
 end
 
@@ -106,7 +103,7 @@ local function getNextAppWindow(currentWindow)
 
   -- get a list of sorted window ids
   local ids = {}
-  for k, win in pairs(allWindows) do
+  for _, win in pairs(allWindows) do
     if (win:id() ~= 0) then
       table.insert(ids, win:id())
     end
@@ -180,8 +177,10 @@ hs.hotkey.bind(superKey, "u", function() switchToApp('Bear') end)
 hs.hotkey.bind(superKey, "w", function() switchToApp('TickTick') end)
 -- superkey + z - launches next meeting from Meeter Pro
 
-hs.hotkey.bind(superKey, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
-hs.hotkey.bind({"cmd"}, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
+-- hs.hotkey.bind(superKey, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
+-- hs.hotkey.bind({"cmd"}, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
+hs.hotkey.bind(superKey, "return", function() switchToAp('kitty') end)
+hs.hotkey.bind({"cmd"}, "return", function() switchToApp('kitty') end)
 
 -- move window to other screen
 hs.hotkey.bind(superKey, "[", function()

@@ -2,6 +2,7 @@
 " ==============================================================================
 " - https://www.chrisatmachine.com/Neovim
 
+set rtp+=/usr/local/bin
 
 source ~/.config/nvim/base-config/plugins.vim
 source ~/.config/nvim/base-config/base.vim
@@ -19,8 +20,11 @@ source ~/.config/nvim/plugin-config/fugitive.vim
 source ~/.config/nvim/plugin-config/ranger.vim
 source ~/.config/nvim/plugin-config/rooter.vim
 source ~/.config/nvim/plugin-config/easyalign.vim
-source ~/.config/nvim/plugin-config/coc.vim
+source ~/.config/nvim/plugin-config/quickfix-bfq.vim
+source ~/.config/nvim/plugin-config/deoplete.vim
+luafile ~/.config/nvim/lua/mylspconfig.lua
 
+"source ~/.config/nvim/plugin-config/coc.vim
 "source ~/.config/nvim/plugin-config/lsp.vim
 "source ~/.config/nvim/plugin-config/neoformat.vim
 

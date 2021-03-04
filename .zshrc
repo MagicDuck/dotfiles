@@ -147,6 +147,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # jvm version management
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+# makes sure JAVA_HOME is exported
+eval "$(jenv enable-plugin export)"
 
 
 # Aliases

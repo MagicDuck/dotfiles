@@ -55,6 +55,10 @@ set nowritebackup      " This is recommended by coc
 set updatetime=300     " Faster completion
 set formatoptions-=cro " Stop newline continution of comments
 
+" set grep command
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+command! -nargs=+ Search execute 'silent grep! <args>' | copen 16
+
 augroup mybaseconfig
   " Remove all mybaseconfig autocommands
   autocmd!
@@ -82,4 +86,5 @@ command! -nargs=0 -bar Update if &modified
                            \|        confirm write
                            \|    endif
                            \|endif
+
 

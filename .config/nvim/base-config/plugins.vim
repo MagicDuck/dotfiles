@@ -8,15 +8,16 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorscheme - must work with treesitter for best effect
 Plug 'sainnhe/edge'
+Plug 'mhartington/oceanic-next'
 
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf.vim', { 'commit': '23dda8602f138a9d75dd03803a79733ee783e356'} " fix for Rg not opening up
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf.vim', { 'commit': '23dda8602f138a9d75dd03803a79733ee783e356'} " fix for Rg not opening up
 Plug 'airblade/vim-rooter'
 
 " Session handling
@@ -39,16 +40,23 @@ Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fubitive'
-Plug 'kevinhwang91/rnvimr'
+Plug 'kevinhwang91/rnvimr'    " ranger
+Plug 'kevinhwang91/nvim-bqf'  " quickfix
 "Plug 'sbdchd/neoformat'
 
 " Stable version of coc - at the moment it's very slow
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Keeping up to date with master
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'ojroques/nvim-lspfuzzy'
+
+" manual language server installer has a few
+Plug 'anott03/nvim-lspinstall'
+" auto language server installer - way of the future
+Plug 'alexaandru/nvim-lspupdate'
+
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'

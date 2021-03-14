@@ -52,6 +52,9 @@ Plug 'kevinhwang91/nvim-bqf'  " quickfix
 Plug 'neovim/nvim-lspconfig'
 Plug 'ojroques/nvim-lspfuzzy'
 
+"Plug 'nvim-lua/completion-nvim'
+"Plug 'steelsojka/completion-buffers'
+
 " manual language server installer has a few
 Plug 'anott03/nvim-lspinstall'
 " auto language server installer - way of the future

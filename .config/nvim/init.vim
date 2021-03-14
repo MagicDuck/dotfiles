@@ -22,6 +22,7 @@ source ~/.config/nvim/plugin-config/rooter.vim
 source ~/.config/nvim/plugin-config/easyalign.vim
 source ~/.config/nvim/plugin-config/quickfix-bfq.vim
 source ~/.config/nvim/plugin-config/deoplete.vim
+"source ~/.config/nvim/plugin-config/complete.vim
 luafile ~/.config/nvim/lua/mylspconfig.lua
 
 "source ~/.config/nvim/plugin-config/coc.vim

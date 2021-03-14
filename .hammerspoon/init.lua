@@ -2,6 +2,12 @@ hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
 -------------------------------------------------------------------
+-- IPC config, so we can call hammerspoon from CLI "hs" command
+-------------------------------------------------------------------
+require("hs.ipc")
+hs.ipc.cliInstall()
+
+-------------------------------------------------------------------
 -- constants
 -------------------------------------------------------------------
 local superKey = {"cmd", "alt", "ctrl", "shift"}

@@ -20,7 +20,7 @@ let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffse
 let g:fzf_files_options = ['--keep-right']
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
-let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+let $FZF_DEFAULT_COMMAND="rg --files"
 
 " handling setting and unsetting BAT_THEME for fzf.vim
 let $BAT_THEME='OneHalfLight'

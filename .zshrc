@@ -1,8 +1,61 @@
+# Time load time with this command: time zsh -i -c exit
+
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 
 OS="$(uname 2> /dev/null)"
 
 export PATH="/usr/local/bin:$PATH"
+
+
+# =========================================================================================
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+### End of Zinit's installer chunk
+
+
+# Plugins
+# =========================================================================================
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+zinit light zsh-users/zsh-history-substring-search
+zinit light zsh-users/zsh-syntax-highlighting
+    # Due to the following issue:
+    # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
+    # Syntax highlighting is really slow when pasting long text. This speeds it
+    # up to just a slight delay
+    zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
+zinit ice atload"unalias grv"
+zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
+
+zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/ssh-agent/ssh-agent.plugin.zsh'
+zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
+
+
+# Theme
+# =========================================================================================
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
+
+# see https://github.com/sindresorhus/pure for more colors
+zstyle :prompt:pure:git:dirty color green
+
 
 # Options section
 # =========================================================================================
@@ -38,7 +91,7 @@ WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider
 # bindkey -v
 #export KEYTIMEOUT=50
 export KEYTIMEOUT=1
-bindkey jk vi-cmd-mode
+#TODO: check if necessary: bindkey jk vi-cmd-mode
 
 # change cursor shape
 function zle-keymap-select zle-line-init zle-line-finish
@@ -145,10 +198,19 @@ export YVM_DIR=/Users/stephanbadragan/.yvm
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # jvm version management
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init - --no-rehash)"
+# (jenv rehash &) 2> /dev/null
+# # makes sure JAVA_HOME is exported
+# eval "$(jenv enable-plugin export)"
+
 export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-# makes sure JAVA_HOME is exported
-eval "$(jenv enable-plugin export)"
+#path=($HOME/.jenv/bin(N-/) $path) # path to jenv binary folder
+if type jenv > /dev/null 2>&1; then
+  zinit ice wait"0" lucid
+  # zinit ice wait"0" lucid atload"jenv enable-plugin export"
+  zinit light anquegi/zinit-jenv
+fi
 
 
 # Aliases
@@ -174,54 +236,6 @@ alias qa-automation-run-dev="yarn install && yarn run cypress open --config base
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 
-# =========================================================================================
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
-
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-### End of Zinit's installer chunk
-
-# Plugins    
-# =========================================================================================
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
-zinit light zsh-users/zsh-history-substring-search
-zinit light zsh-users/zsh-syntax-highlighting
-    # Due to the following issue:
-    # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
-    # Syntax highlighting is really slow when pasting long text. This speeds it
-    # up to just a slight delay
-    zstyle ':bracketed-paste-magic' active-widgets '.self-*'
-
-zinit ice atload"unalias grv"    
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
-
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/ssh-agent/ssh-agent.plugin.zsh'
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
-
-
-# Theme
-# =========================================================================================
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
-
-# see https://github.com/sindresorhus/pure for more colors
-zstyle :prompt:pure:git:dirty color green
-
 
 # FZF
 # =========================================================================================
@@ -232,7 +246,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# Allows zsh -is eval "command" without exiting 
+# Allows zsh -is eval "command" without exiting
 # see https://www.zsh.org/mla/users/2005/msg00599.html
 # =========================================================================================
 if [[ $1 == eval ]]
@@ -240,3 +254,4 @@ then
   "$@"
   set --
 fi
+

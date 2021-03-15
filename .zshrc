@@ -88,10 +88,10 @@ WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider
 # =========================================================================================
 # enable vim mode
 # https://dougblack.io/words/zsh-vi-mode.html
-# bindkey -v
+bindkey -v
 #export KEYTIMEOUT=50
 export KEYTIMEOUT=1
-#TODO: check if necessary: bindkey jk vi-cmd-mode
+# bindkey jk vi-cmd-mode
 
 # change cursor shape
 function zle-keymap-select zle-line-init zle-line-finish
@@ -107,6 +107,15 @@ function zle-keymap-select zle-line-init zle-line-finish
       ;;
   esac
 }
+
+# Yank to the system clipboard
+function vi-yank-xclip {
+   zle vi-yank
+   echo "$CUTBUFFER" | pbcopy -i
+}
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
 
 zle -N zle-line-init
 zle -N zle-line-finish

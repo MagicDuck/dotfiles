@@ -56,6 +56,10 @@ local on_attach = function(client, bufnr)
       augroup END
     ]], false)
   end
+
+  -- if client.resolved_capabilities.document_formatting then
+  --   vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync{}")
+  -- end
 end
 
 -- vimls
@@ -116,140 +120,48 @@ lspconfig.sumneko_lua.setup {
 }
 
 -- linting
--- lspconfig.diagnosticls.setup {
---   filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
---   init_options = {
---     filetypes = {
---       javascript = "eslint",
---       typescript = "eslint",
---       javascriptreact = "eslint",
---       typescriptreact = "eslint"
---     },
---     linters = {
---       eslint = {
---         sourceName = "eslint",
---         command = "./node_modules/.bin/eslint",
---         rootPatterns = {
---           ".eslitrc.js",
---           "package.json"
---         },
---         debounce = 100,
---         args = {
---           "--cache",
---           "--stdin",
---           "--stdin-filename",
---           "%filepath",
---           "--format",
---           "json"
---         },
---         parseJson = {
---           errorsRoot = "[0].messages",
---           line = "line",
---           column = "column",
---           endLine = "endLine",
---           endColumn = "endColumn",
---           message = "${message} [${ruleId}]",
---           security = "severity"
---         },
---         securities = {
---           [2] = "error",
---           [1] = "warning"
---         }
---       }
---     }
---   }
+-- Note: this did not work
+-- local prettier = {
+--   formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}",
+--   formatStdin = true
 -- }
-
-
--- local eslint = {
---   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
---   lintStdin = true,
---   lintFormats = {"%f:%l:%c: %m"},
---   lintIgnoreExitCode = true,
---   -- formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
---   -- formatStdin = true
---   formatCommand = "./node_modules/.bin/prettier"
+-- local stylelint = {
+--   formatCommand = "./node_modules/.bin/stylelint --stdin-filename ${INPUT}",
+--   formatStdin = true
 -- }
-
--- local eslint = {
---   lintCommand = './node_modules/.bin/eslint -f compact --stdin',
---   lintStdin = true,
---   lintFormats = {'%f: line %l, col %c, %trror - %m', '%f: line %l, col %c, %tarning - %m'},
---   lintIgnoreExitCode = true,
---   -- formatCommand = './node_modules/.bin/prettier-eslint --stdin --single-quote --print-width 120',
---   -- formatStdin = true,
--- }
-
-
--- lspconfig.efm.setup {
---   on_attach = function(client)
---     client.resolved_capabilities.document_formatting = true
---     client.resolved_capabilities.goto_definition = false
---   end,
---   root_dir = lspconfig.util.root_pattern('.eslintrc.js', '.eslintrc.json'),
---   settings = {
---     languages = {
---       javascript = {eslint},
---       javascriptreact = {eslint},
---       ["javascript.jsx"] = {eslint},
---       typescript = {eslint},
---       ["typescript.tsx"] = {eslint},
---       typescriptreact = {eslint}
---     }
---   },
---   filetypes = {
---     "javascript",
---     "javascriptreact",
---     "javascript.jsx",
---     "typescript",
---     "typescript.tsx",
---     "typescriptreact"
---   },
--- }
-
--- Formatting via efm
-local prettier = {
-  formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}",
-  formatStdin = true
-}
 
 local eslint = {
   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
   lintIgnoreExitCode = true,
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
+  -- formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  -- formatStdin = true
 }
-
--- TODO stylelint
 
 local languages = {
     -- lua = {luafmt},
-    typescript = {prettier, eslint},
-    javascript = {prettier, eslint},
-    typescriptreact = {prettier, eslint},
-    javascriptreact = {prettier, eslint},
-    yaml = {prettier},
-    json = {prettier},
-    html = {prettier},
-    -- scss = {prettier},
-    -- css = {prettier},
-    markdown = {prettier}
+    typescript = {eslint},
+    javascript = {eslint},
+    typescriptreact = {eslint},
+    javascriptreact = {eslint},
+    -- yaml = {prettier},
+    -- json = {prettier},
+    -- html = {prettier},
+    -- TODO stylelint
+    -- scss = {stylelint},
+    -- css = {stylelint},
+    -- markdown = {prettier}
 }
 
 lspconfig.efm.setup {
-  root_dir = lspconfig.util.root_pattern('.eslintrc.js', '.eslintrc.json', '.prettierrc'),
+  root_dir = lspconfig.util.root_pattern('.eslintrc.js', '.eslintrc.json', '.stylelintrc'),
     filetypes = vim.tbl_keys(languages),
     init_options = {documentFormatting = true, codeAction = true},
     settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
-    on_attach = function(client)
+    on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = true
       client.resolved_capabilities.goto_definition = false
-
-      if client.resolved_capabilities.document_formatting then
-        vim.cmd [[augroup lsp_formatting]]
-        vim.cmd [[autocmd!]]
-        vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync({}, 1000)]]
-        vim.cmd [[augroup END]]
-      end
+      on_attach(client, bufnr)
     end,
 }

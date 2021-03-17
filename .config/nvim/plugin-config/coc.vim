@@ -1,8 +1,8 @@
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-html', 'coc-css', 'coc-cssmodules', 'coc-stylelint', 'coc-lua']
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-html', 'coc-css', 'coc-cssmodules', 'coc-stylelintplus', 'coc-lua']
 
 "----------------------------------------------------------------------------
 " Don't pass messages to |ins-completion-menu|.
-" set shortmess+=c
+set shortmess+=c
 
 set signcolumn=auto
 " Always show the signcolumn, otherwise it would shift the text each time
@@ -15,7 +15,7 @@ set signcolumn=auto
 " endif
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-Space> coc#refresh()
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin

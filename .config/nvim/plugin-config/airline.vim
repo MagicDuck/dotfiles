@@ -18,3 +18,5 @@ if !exists("my_airline_number_setup")
   call airline#add_statusline_func('WindowNumber')
   call airline#add_inactive_statusline_func('WindowNumber')
 endif
+
+let g:airline#extensions#tabline#formatter = 'unique_tail'

@@ -37,14 +37,19 @@ Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fubitive'
 Plug 'kevinhwang91/rnvimr'    " ranger
 Plug 'kevinhwang91/nvim-bqf'  " quickfix
-Plug 'hrsh7th/vim-vsnip'
-Plug 'neovim/nvim-lspconfig'
-Plug 'ojroques/nvim-lspfuzzy'
+" Stable version of coc 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Keeping up to date with master
+"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'hrsh7th/vim-vsnip'
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'ojroques/nvim-lspfuzzy'
 " manual language server installer has a few
-Plug 'anott03/nvim-lspinstall'
-Plug 'onsails/lspkind-nvim'
+" Plug 'anott03/nvim-lspinstall'
+" Plug 'onsails/lspkind-nvim'
 " auto language server installer - way of the future
-Plug 'alexaandru/nvim-lspupdate'
+" Plug 'alexaandru/nvim-lspupdate'
+" Plug 'sbdchd/neoformat'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -52,12 +57,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " TODO: following not sure about
 " needed ?
-"Plug 'sbdchd/neoformat'
 
-" Stable version of coc - at the moment it's very slow
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Keeping up to date with master
-"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " TODO: figure out how to use
 "Plug 'pelodelfuego/vim-swoop'

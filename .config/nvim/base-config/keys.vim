@@ -20,7 +20,8 @@ inoremap <C-v> <C-O>"*p
 " C-s saving
 nnoremap <silent> <C-S> :<C-U>Update<CR>
 nnoremap <Leader>w :<C-U>Update<CR>
-vnoremap <silent> <C-S> <C-C>:Update<CR> inoremap <silent> <C-S> <C-O>:Update<CR>
+vnoremap <silent> <C-S> <C-C>:Update<CR>
+inoremap <silent> <C-S> <C-O>:Update<CR>
 
 " enter window mode with backspace
 noremap <BS> <C-W>

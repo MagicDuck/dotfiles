@@ -1,3 +1,11 @@
+" keys to remember
+
+" - command history is:  q:
+" - sneak is bound to "s"
+" - quickscope is f, t, F, T  &  , and ;  to jump to next occurrence
+" - closing other windows except current is "wincmd o"
+
+
 " Create map to add which-key keys to for easy discovery
 let g:which_key_map = {}
 
@@ -50,12 +58,6 @@ endwhile
 
 " finding files with C-p
 nnoremap <silent><C-p> :<C-U>Files<CR>
-
-" command history is:  q:
-
-" sneak is bound to "s"
-
-" quickscope is f, t, F, T  &  , and ;  to jump to next occurrence
 
 " Better nav for omnicomplete
 inoremap <expr> <c-j> ("\<C-n>")

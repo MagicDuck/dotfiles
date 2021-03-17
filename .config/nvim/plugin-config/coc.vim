@@ -1,19 +1,5 @@
 let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-html', 'coc-css', 'coc-cssmodules', 'coc-stylelintplus', 'coc-lua']
 
-"----------------------------------------------------------------------------
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-set signcolumn=auto
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-" if has("patch-8.1.1564")
-"   " Recently vim can merge signcolumn and number column into one
-"   set signcolumn=number
-" else
-"   set signcolumn=yes
-" endif
-
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-Space> coc#refresh()
 
@@ -22,15 +8,10 @@ inoremap <silent><expr> <C-Space> coc#refresh()
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gm <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
@@ -48,13 +29,6 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>F  <Plug>(coc-format-selected)
-nmap <leader>F  <Plug>(coc-format-selected)
 
 augroup mycocsignaturehelp
   autocmd!
@@ -88,40 +62,31 @@ endif
 command! -nargs=0 Format :call CocAction('format')
 
 " Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OrganizeImports   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Keybindings
 let g:which_key_map.a = {
-      \ 'name' : '+code action' ,
-      \ 'f' : [':CocAction'               , 'actions for current line'],
-      \ 'x' : [':CocList extensions'      , 'manage extensions'],
-      \ 'c' : [':CocList commands'        , 'commands'],
-      \ 'o' : [':CocList outlines'        , 'outline'],
-      \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
-      \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
-      \ 'l' : [':CocNext'                 , 'Do default action for next item'],
-      \ 'p' : [':CocListResume'           , 'resume latest'],
-      \ }
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ab  <Plug>(coc-codeaction)
-let g:which_key_map.a.b = 'apply to current buffer'
-" Apply AutoFix to problem on the current line.
-nmap <leader>aa  <Plug>(coc-fix-current)
-let g:which_key_map.a.a = 'autofix current line'
-
-let g:which_key_map.i = {
-      \ 'name' : '+intellisense (coc)' ,
+      \ 'name' : '+coc' ,
+      \ 'a' : [':CocAction'               , 'actions for current line'],
+      \ 'b' : ['<Plug>(coc-codeaction)'   , 'autofix current buffer'],
       \ 'd' : [':CocList diagnostics'     , 'all diagnostics'],
+      \ 'f' : ['<Plug>(coc-fix-current)'  , 'autofix current line'],
+      \ 'F' : ['<Plug>(coc-format-selected)'  , 'Format code'],
+      \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
+      \ 'j' : ['<Plug>(coc-diagnostic-prev)' , 'Prev diagnostic'],
+      \ 'k' : ['<Plug>(coc-diagnostic-next)' , 'Next diagnostic'],
+      \ 'l' : [':CocNext'                 , 'Do default action for next item'],
+      \ 'o' : [':CocList outlines'        , 'outline'],
+      \ 'p' : [':CocListResume'           , 'resume latest'],
+      \ 'r' : ['<Plug>(coc-rename)'       , 'rename'],
+      \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
       \ 'x' : [':CocList extensions'      , 'manage extensions'],
       \ 'c' : [':CocList commands'        , 'commands'],
-      \ 'o' : [':CocList outlines'        , 'outline'],
-      \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
-      \ 'h' : [':CocPrev'                 , 'Do default action for prev item'],
-      \ 'l' : [':CocNext'                 , 'Do default action for next item'],
-      \ 'p' : [':CocListResume'           , 'resume latest'],
       \ }
 
+
+" Formatting selected code.
+xnoremap <leader>aF  <Plug>(coc-format-selected)

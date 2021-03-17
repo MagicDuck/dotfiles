@@ -56,6 +56,7 @@ set nowritebackup      " This is recommended by coc
 set updatetime=300     " Faster completion
 set formatoptions-=cro " Stop newline continution of comments
 set signcolumn=auto    " auto size sign column
+set scrolloff=999      " keep cursor in the middle of the window
 
 " set grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow

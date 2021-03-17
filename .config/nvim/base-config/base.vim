@@ -33,6 +33,7 @@ set laststatus=2
 set noshowcmd          " don't show command in status line as you type it
 set showfulltag
 set shortmess+=ts
+set shortmess+=c      " Avoid showing message extra message when using completion
 set bs=2               " make backspace work
 set wildchar=<Tab> wildmenu wildmode=longest:full,full
 set cursorline

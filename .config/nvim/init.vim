@@ -21,13 +21,11 @@ source ~/.config/nvim/plugin-config/ranger.vim
 source ~/.config/nvim/plugin-config/rooter.vim
 source ~/.config/nvim/plugin-config/easyalign.vim
 source ~/.config/nvim/plugin-config/quickfix-bfq.vim
-"source ~/.config/nvim/plugin-config/deoplete.vim
 luafile ~/.config/nvim/lua/stephan/compe.lua
-"source ~/.config/nvim/plugin-config/complete.vim
+luafile ~/.config/nvim/lua/stephan/lspkind.lua
 luafile ~/.config/nvim/lua/stephan/lspconfig.lua
 
 "source ~/.config/nvim/plugin-config/coc.vim
-"source ~/.config/nvim/plugin-config/lsp.vim
 "source ~/.config/nvim/plugin-config/neoformat.vim
 
 source ~/.config/nvim/os-specific.vim

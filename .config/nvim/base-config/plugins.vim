@@ -2,8 +2,6 @@
 " Install with :source ~/.config/nvim/init.vim | PlugInstall
 
 " Specify a directory for plugins
-" TODO: change this
-"call plug#begin('~/vimfiles/plugged')
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Colorscheme - must work with treesitter for best effect
@@ -14,7 +12,6 @@ Plug 'mhartington/oceanic-next'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'junegunn/fzf.vim', { 'commit': '23dda8602f138a9d75dd03803a79733ee783e356'} " fix for Rg not opening up
@@ -31,8 +28,6 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 Plug 'maksimr/vim-jsbeautify'
-"Plug 'shougo/deoplete-lsp'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'hrsh7th/nvim-compe'
 Plug 'justinmk/vim-sneak'
@@ -42,6 +37,21 @@ Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fubitive'
 Plug 'kevinhwang91/rnvimr'    " ranger
 Plug 'kevinhwang91/nvim-bqf'  " quickfix
+Plug 'hrsh7th/vim-vsnip'
+Plug 'neovim/nvim-lspconfig'
+Plug 'ojroques/nvim-lspfuzzy'
+" manual language server installer has a few
+Plug 'anott03/nvim-lspinstall'
+Plug 'onsails/lspkind-nvim'
+" auto language server installer - way of the future
+Plug 'alexaandru/nvim-lspupdate'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+
+" TODO: following not sure about
+" needed ?
 "Plug 'sbdchd/neoformat'
 
 " Stable version of coc - at the moment it's very slow
@@ -49,25 +59,8 @@ Plug 'kevinhwang91/nvim-bqf'  " quickfix
 " Keeping up to date with master
 "Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-Plug 'neovim/nvim-lspconfig'
-Plug 'ojroques/nvim-lspfuzzy'
-
-"Plug 'nvim-lua/completion-nvim'
-"Plug 'steelsojka/completion-buffers'
-
-" manual language server installer has a few
-Plug 'anott03/nvim-lspinstall'
-" auto language server installer - way of the future
-Plug 'alexaandru/nvim-lspupdate'
-
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-
-" TODO: following not sure about
-
-"Plug 'pelodelfuego/vim-swoop'
 " TODO: figure out how to use
+"Plug 'pelodelfuego/vim-swoop'
 "Plug 'dyng/ctrlsf.vim'
 "    let g:ctrlsf_ackprg = 'rg'
 

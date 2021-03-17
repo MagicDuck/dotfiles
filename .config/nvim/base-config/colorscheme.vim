@@ -7,6 +7,8 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE 
   "autocmd ColorScheme * highlight LineNr guibg=#DADADA 
   autocmd ColorScheme * highlight LineNr guibg=NONE
+  autocmd ColorScheme * highlight SignColumn guibg=NONE 
+  autocmd ColorScheme * highlight FoldColumn guibg=NONE
   "autocmd ColorScheme * highlight SignColumn guibg=#DADADA 
   "autocmd ColorScheme * highlight FoldColumn guibg=#DADADA 
   autocmd ColorScheme * highlight CursorLineNr guibg=#f0f0f0

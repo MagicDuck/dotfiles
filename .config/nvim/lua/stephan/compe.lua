@@ -28,4 +28,5 @@ require('compe').setup {
 }
 
 vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", {expr=true, silent=true, noremap=true})
-vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm()", {expr=true, silent=true, noremap=true})
+vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {expr=true, silent=true, noremap=true})
+

@@ -1,4 +1,15 @@
-local nvim_lsp = require('lspconfig')
+-- command for install
+-- yarn global add eslint_d typescript typescript-language-server
+-- brew install efm-langserver
+
+-- define signs
+vim.fn.sign_define("LspDiagnosticsSignHint", { text="", texthl="LspDiagnosticsSignHint" })
+vim.fn.sign_define("LspDiagnosticsSignInformation", { text="", texthl="LspDiagnosticsSignHint" })
+vim.fn.sign_define("LspDiagnosticsSignWarning", { text="", texthl="LspDiagnosticsSignWarning" })
+vim.fn.sign_define("LspDiagnosticsSignError", { text="✘", texthl="LspDiagnosticsSignError" })
+
+-- configure lsp servers
+local lspconfig = require('lspconfig')
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -48,10 +59,20 @@ local on_attach = function(client, bufnr)
 end
 
 -- vimls
-nvim_lsp["vimls"].setup { on_attach = on_attach }
+lspconfig["vimls"].setup { on_attach = on_attach }
 
 -- tsserver
-nvim_lsp["tsserver"].setup { on_attach = on_attach }
+-- Tsserver setup
+lspconfig.tsserver.setup {
+    root_dir = lspconfig.util.root_pattern("jsconfig.json", "tsconfig.json", "package.json", ".git"),
+    on_attach = function(client, bufnr)
+        -- This makes sure tsserver is not used for formatting (I prefer prettier)
+        client.resolved_capabilities.document_formatting = false
+
+        on_attach(client, bufnr)
+    end,
+    settings = {documentFormatting = false}
+}
 
 -- lua lsp
 local system_name
@@ -68,7 +89,7 @@ end
 -- set the path to the sumneko installation
 local sumneko_root_path = vim.fn.expand('~/lua-language-server')
 local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
-nvim_lsp.sumneko_lua.setup {
+lspconfig.sumneko_lua.setup {
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
@@ -94,3 +115,141 @@ nvim_lsp.sumneko_lua.setup {
   on_attach = on_attach
 }
 
+-- linting
+-- lspconfig.diagnosticls.setup {
+--   filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact"},
+--   init_options = {
+--     filetypes = {
+--       javascript = "eslint",
+--       typescript = "eslint",
+--       javascriptreact = "eslint",
+--       typescriptreact = "eslint"
+--     },
+--     linters = {
+--       eslint = {
+--         sourceName = "eslint",
+--         command = "./node_modules/.bin/eslint",
+--         rootPatterns = {
+--           ".eslitrc.js",
+--           "package.json"
+--         },
+--         debounce = 100,
+--         args = {
+--           "--cache",
+--           "--stdin",
+--           "--stdin-filename",
+--           "%filepath",
+--           "--format",
+--           "json"
+--         },
+--         parseJson = {
+--           errorsRoot = "[0].messages",
+--           line = "line",
+--           column = "column",
+--           endLine = "endLine",
+--           endColumn = "endColumn",
+--           message = "${message} [${ruleId}]",
+--           security = "severity"
+--         },
+--         securities = {
+--           [2] = "error",
+--           [1] = "warning"
+--         }
+--       }
+--     }
+--   }
+-- }
+
+
+-- local eslint = {
+--   lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+--   lintStdin = true,
+--   lintFormats = {"%f:%l:%c: %m"},
+--   lintIgnoreExitCode = true,
+--   -- formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+--   -- formatStdin = true
+--   formatCommand = "./node_modules/.bin/prettier"
+-- }
+
+-- local eslint = {
+--   lintCommand = './node_modules/.bin/eslint -f compact --stdin',
+--   lintStdin = true,
+--   lintFormats = {'%f: line %l, col %c, %trror - %m', '%f: line %l, col %c, %tarning - %m'},
+--   lintIgnoreExitCode = true,
+--   -- formatCommand = './node_modules/.bin/prettier-eslint --stdin --single-quote --print-width 120',
+--   -- formatStdin = true,
+-- }
+
+
+-- lspconfig.efm.setup {
+--   on_attach = function(client)
+--     client.resolved_capabilities.document_formatting = true
+--     client.resolved_capabilities.goto_definition = false
+--   end,
+--   root_dir = lspconfig.util.root_pattern('.eslintrc.js', '.eslintrc.json'),
+--   settings = {
+--     languages = {
+--       javascript = {eslint},
+--       javascriptreact = {eslint},
+--       ["javascript.jsx"] = {eslint},
+--       typescript = {eslint},
+--       ["typescript.tsx"] = {eslint},
+--       typescriptreact = {eslint}
+--     }
+--   },
+--   filetypes = {
+--     "javascript",
+--     "javascriptreact",
+--     "javascript.jsx",
+--     "typescript",
+--     "typescript.tsx",
+--     "typescriptreact"
+--   },
+-- }
+
+-- Formatting via efm
+local prettier = {
+  formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}",
+  formatStdin = true
+}
+
+local eslint = {
+  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintIgnoreExitCode = true,
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+}
+
+-- TODO stylelint
+
+local languages = {
+    -- lua = {luafmt},
+    typescript = {prettier, eslint},
+    javascript = {prettier, eslint},
+    typescriptreact = {prettier, eslint},
+    javascriptreact = {prettier, eslint},
+    yaml = {prettier},
+    json = {prettier},
+    html = {prettier},
+    -- scss = {prettier},
+    -- css = {prettier},
+    markdown = {prettier}
+}
+
+lspconfig.efm.setup {
+  root_dir = lspconfig.util.root_pattern('.eslintrc.js', '.eslintrc.json', '.prettierrc'),
+    filetypes = vim.tbl_keys(languages),
+    init_options = {documentFormatting = true, codeAction = true},
+    settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
+    on_attach = function(client)
+      client.resolved_capabilities.document_formatting = true
+      client.resolved_capabilities.goto_definition = false
+
+      if client.resolved_capabilities.document_formatting then
+        vim.cmd [[augroup lsp_formatting]]
+        vim.cmd [[autocmd!]]
+        vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync({}, 1000)]]
+        vim.cmd [[augroup END]]
+      end
+    end,
+}

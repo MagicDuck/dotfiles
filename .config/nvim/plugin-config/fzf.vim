@@ -1,5 +1,17 @@
-" This is the default extra key bindings
+" Workflows
+" search for file: CTRL-P
+" search for matches in files and open all in quickfix: <leader>F , enter term, C-A (toggle all), C-Q (send to quickfix)
+" search for matches in files and open specific in quickfix: <leader>F , enter term, TAB on individual entries, C-Q (send to quickfix)
+
+" Extra key bindings
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
 let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
@@ -14,13 +26,13 @@ let g:fzf_tags_command = 'ctags -R'
 " Border color
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
 
-    command! -bang -nargs=? -complete=dir Files
-        \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 let g:fzf_files_options = ['--keep-right']
 
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
-let $FZF_DEFAULT_COMMAND="rg --files"
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline --tiebreak=end --bind ctrl-a:toggle-all '
+let $FZF_DEFAULT_COMMAND="rg --files "
 
 " handling setting and unsetting BAT_THEME for fzf.vim
 let $BAT_THEME='OneHalfLight'
@@ -65,11 +77,12 @@ function! RipgrepFzf(query, fullscreen)
   let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
+  " let spec = {'options': ['--with-nth', '--exact', '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+command! -nargs=* -bang Search call RipgrepFzf(<q-args>, <bang>0)
 
 " Git grep
 command! -bang -nargs=* GGrep
@@ -80,7 +93,7 @@ command! -bang -nargs=* GGrep
 " key bindings
 let g:which_key_map['b'] = [ ':Buffers'                   , 'search buffers' ]
 let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['F'] = [ ':Rg'                        , 'search text' ]
+let g:which_key_map['F'] = [ ':Search'                    , 'search text' ]
 let g:which_key_map['m'] = [ ':Marks'                     , 'search marks']
 
 " s is for search

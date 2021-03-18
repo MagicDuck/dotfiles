@@ -1,6 +1,6 @@
 let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
-            \ { 'k': '~/.config/nvim/base-config/keys.vim' },
+            \ { 'K': '~/.config/nvim/base-config/keys.vim' },
             \ { 't': '~/.config/kitty/kitty.conf' },
             \ { 'z': '~/.zshrc' },
             \ '~/ondemand/react/reactUi',

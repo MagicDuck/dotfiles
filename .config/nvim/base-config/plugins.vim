@@ -30,6 +30,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'Raimondi/delimitMate'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'hrsh7th/nvim-compe'
 Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'

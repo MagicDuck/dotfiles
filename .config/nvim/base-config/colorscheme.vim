@@ -10,7 +10,7 @@ augroup colorscheme_custom
   " autocmd ColorScheme * highlight FoldColumn guibg=NONE
   " autocmd ColorScheme * highlight CursorLineNr guibg=#f0f0f0
   " autocmd ColorScheme * highlight CursorLine guibg=#f0f0f0
-  autocmd ColorScheme * highlight Visual guibg=#e9f8ff
+  autocmd ColorScheme * highlight Visual guibg=#E9F5F5
   " autocmd ColorScheme * highlight VertSplit guibg=NONE
   autocmd ColorScheme * highlight Comment guibg=NONE guifg=#808080 gui=NONE
   autocmd ColorScheme * highlight SpecialComment guibg=NONE guifg=#808080 gui=NONE

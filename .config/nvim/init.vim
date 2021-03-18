@@ -12,7 +12,8 @@ source ~/.config/nvim/plugin-config/which-key.vim
 source ~/.config/nvim/plugin-config/startify.vim
 source ~/.config/nvim/plugin-config/airline.vim
 source ~/.config/nvim/plugin-config/nerdcommenter.vim
-source ~/.config/nvim/plugin-config/treesitter.vim
+" source ~/.config/nvim/plugin-config/treesitter.vim
+luafile ~/.config/nvim/lua/stephan/treesitter.lua
 source ~/.config/nvim/plugin-config/sneak.vim
 source ~/.config/nvim/plugin-config/quickscope.vim
 source ~/.config/nvim/plugin-config/fzf.vim

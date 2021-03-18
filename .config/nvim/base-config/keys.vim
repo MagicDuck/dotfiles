@@ -34,6 +34,12 @@ inoremap <silent> <C-S> <C-O>:Update<CR>
 " enter window mode with backspace
 noremap <BS> <C-W>
 
+" moving around windows with control+hjkl
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 " Use alt + hjkl to resize windows
 nnoremap <M-j>    :resize -2<CR>
 nnoremap <M-k>    :resize +2<CR>

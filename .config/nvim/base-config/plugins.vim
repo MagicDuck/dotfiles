@@ -7,6 +7,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Colorscheme - must work with treesitter for best effect
 Plug 'sainnhe/edge'
 Plug 'mhartington/oceanic-next'
+Plug 'tjdevries/colorbuddy.vim'
+Plug 'Th3Whit3Wolf/onebuddy'
+Plug 'Th3Whit3Wolf/one-nvim'
+Plug 'Th3Whit3Wolf/space-nvim'
+Plug 'sainnhe/gruvbox-material'
 
 " Airline
 Plug 'vim-airline/vim-airline'
@@ -55,11 +60,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
-
-" TODO: following not sure about
-" needed ?
-
+Plug 'christoomey/vim-tmux-navigator'
 
 " TODO: figure out how to use
 "Plug 'pelodelfuego/vim-swoop'

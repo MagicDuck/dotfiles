@@ -2,6 +2,7 @@ let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
             \ { 'K': '~/.config/nvim/base-config/keys.vim' },
             \ { 't': '~/.config/kitty/kitty.conf' },
+            \ { 'T': '~/.tmux.conf' },
             \ { 'z': '~/.zshrc' },
             \ '~/ondemand/react/reactUi',
             \ '~/spark',

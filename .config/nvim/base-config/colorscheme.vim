@@ -24,5 +24,5 @@ set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
 "colorscheme sonokai " tutticolor colorful lucius
 "colorscheme zephyr
 "colorscheme OceanicNext
-set background=light
 colorscheme edge
+set background=light

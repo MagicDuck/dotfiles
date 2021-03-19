@@ -25,6 +25,7 @@ source ~/.config/nvim/plugin-config/quickfix-bfq.vim
 " luafile ~/.config/nvim/lua/stephan/compe.lua
 " luafile ~/.config/nvim/lua/stephan/lspkind.lua
 " luafile ~/.config/nvim/lua/stephan/lspconfig.lua
+luafile ~/.config/nvim/lua/stephan/telescope.lua
 
 source ~/.config/nvim/plugin-config/coc.vim
 "source ~/.config/nvim/plugin-config/neoformat.vim

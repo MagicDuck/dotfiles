@@ -1,1 +1,1 @@
-let g:rooter_patterns = ['package.json', '.git', '=nvim']
+let g:rooter_patterns = ['.git', '=nvim', 'package.json', 'yarn.lock']

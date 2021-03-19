@@ -36,6 +36,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'p00f/nvim-ts-rainbow'
 Plug 'hrsh7th/nvim-compe'
 Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
@@ -45,9 +46,9 @@ Plug 'tommcdo/vim-fubitive'
 Plug 'kevinhwang91/rnvimr'    " ranger
 Plug 'kevinhwang91/nvim-bqf'  " quickfix
 " Stable version of coc 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Keeping up to date with master
-"Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'hrsh7th/vim-vsnip'
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'ojroques/nvim-lspfuzzy'

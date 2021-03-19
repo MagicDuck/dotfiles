@@ -2,6 +2,7 @@ let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-Space> coc#refresh()
+"nnoremap <silent><expr> <C-Space> coc#refresh()
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
@@ -72,6 +73,7 @@ let g:which_key_map.a = {
       \ 'name' : '+coc' ,
       \ 'a' : [':CocAction'               , 'actions for current line'],
       \ 'b' : ['<Plug>(coc-codeaction)'   , 'autofix current buffer'],
+      \ 'c' : ['<Plug>(coc-codeaction-cursor)'   , 'code action at selection'],
       \ 'd' : [':CocList diagnostics'     , 'all diagnostics'],
       \ 'f' : ['<Plug>(coc-fix-current)'  , 'autofix current line'],
       \ 'F' : ['<Plug>(coc-format-selected)'  , 'Format code'],
@@ -84,9 +86,11 @@ let g:which_key_map.a = {
       \ 'r' : ['<Plug>(coc-rename)'       , 'rename'],
       \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
       \ 'x' : [':CocList extensions'      , 'manage extensions'],
-      \ 'c' : [':CocList commands'        , 'commands'],
+      \ 'L' : [':CocList commands'        , 'commands'],
       \ }
 
+xmap <leader>d  <Plug>(coc-codeaction-selected)e
+nmap <leader>d  <Plug>(coc-codeaction-selected)e
 
 " Formatting selected code.
 xnoremap <leader>aF  <Plug>(coc-format-selected)

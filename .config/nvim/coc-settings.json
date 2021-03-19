@@ -1,7 +1,7 @@
 {
   "suggest.noselect": false,
   "suggest.autoTrigger": "always",
-  "suggest.enablePreselect": true,
+  "suggest.enablePreselect": false,
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,
   "eslint.alwaysShowStatus": true,
@@ -52,8 +52,10 @@
   },
   "javascript.format.enabled": false,
   "typescript.format.enabled": false,
-  "javascript.showUnused": true,
-  "javascript.suggestionActions.enabled": false,
-  "typescript.suggestionActions.enabled": false,
-  "codeLens.enable": false
+  "javascript.suggest.enabled": true,
+  "javascript.suggestionActions.enabled": true,
+  "javascript.suggest.autoImports": true,
+  "javascript.suggest.paths": true,
+  "typescript.suggestionActions.enabled": true,
+  "typescript.suggest.enabled": true
 }

@@ -37,18 +37,6 @@ augroup mycocsignaturehelp
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-" xmap if <Plug>(coc-funcobj-i)
-" omap if <Plug>(coc-funcobj-i)
-" xmap af <Plug>(coc-funcobj-a)
-" omap af <Plug>(coc-funcobj-a)
-" xmap ic <Plug>(coc-classobj-i)
-" omap ic <Plug>(coc-classobj-i)
-" xmap ac <Plug>(coc-classobj-a)
-" omap ac <Plug>(coc-classobj-a)
-
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -65,7 +53,7 @@ command! -nargs=0 Format :call CocAction('format')
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
-" Add `:OR` command for organize imports of the current buffer.
+" Add `:OrganizeImports` command for organize imports of the current buffer.
 command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Keybindings
@@ -73,7 +61,7 @@ let g:which_key_map.a = {
       \ 'name' : '+coc' ,
       \ 'a' : [':CocAction'               , 'actions for current line'],
       \ 'b' : ['<Plug>(coc-codeaction)'   , 'autofix current buffer'],
-      \ 'c' : ['<Plug>(coc-codeaction-cursor)'   , 'code action at selection'],
+      \ 'c' : ['<Plug>(coc-codeaction-cursor)'   , 'code action at cursor'],
       \ 'd' : [':CocList diagnostics'     , 'all diagnostics'],
       \ 'f' : ['<Plug>(coc-fix-current)'  , 'autofix current line'],
       \ 'F' : ['<Plug>(coc-format-selected)'  , 'Format code'],
@@ -86,11 +74,11 @@ let g:which_key_map.a = {
       \ 'r' : ['<Plug>(coc-rename)'       , 'rename'],
       \ 's' : [':CocList -I symbols'      , 'workspace symbols'],
       \ 'x' : [':CocList extensions'      , 'manage extensions'],
-      \ 'L' : [':CocList commands'        , 'commands'],
+      \ 'C' : [':CocList commands'        , 'commands'],
       \ }
 
-xmap <leader>d  <Plug>(coc-codeaction-selected)e
-nmap <leader>d  <Plug>(coc-codeaction-selected)e
+" xmap <leader>d  <Plug>(coc-codeaction-selected)e
+" nmap <leader>d  <Plug>(coc-codeaction-selected)e
 
 " Formatting selected code.
 xnoremap <leader>aF  <Plug>(coc-format-selected)

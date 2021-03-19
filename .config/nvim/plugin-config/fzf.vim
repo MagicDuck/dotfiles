@@ -92,8 +92,8 @@ command! -bang -nargs=* GGrep
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 " key bindings
-let g:which_key_map['b'] = [ ':Buffers'                   , 'search buffers' ]
-let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
+let g:which_key_map['f'] = [ ':Buffers'                   , 'search buffers' ]
+let g:which_key_map['d'] = [ ':Files'                     , 'search files' ]
 let g:which_key_map['F'] = [ ':Search'                    , 'search text' ]
 let g:which_key_map['m'] = [ ':Marks'                     , 'search marks']
 

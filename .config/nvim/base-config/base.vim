@@ -90,4 +90,4 @@ command! -nargs=0 -bar Update if &modified
                            \|    endif
                            \|endif
 
-
+command! -bar BufOnly execute '%bdelete|edit #|normal `"'

@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-html', 'coc-css', 'coc-cssmodules', 'coc-stylelintplus', 'coc-lua']
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-html', 'coc-css', 'coc-cssmodules', 'coc-stylelintplus', 'coc-lua', 'coc-explorer']
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-Space> coc#refresh()
@@ -82,3 +82,6 @@ let g:which_key_map.a = {
 
 " Formatting selected code.
 xnoremap <leader>aF  <Plug>(coc-format-selected)
+
+let g:which_key_map['e'] = [ ':CocCommand explorer'          , 'explorer']
+

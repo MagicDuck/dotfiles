@@ -27,9 +27,6 @@ let g:fzf_tags_command = 'ctags -R'
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.9, 'height': 0.9,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'rounded' } }
 let g:fzf_preview_window = ['up:50%']
 
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
-
 let g:fzf_files_options = ['--keep-right']
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline --tiebreak=end --bind ctrl-a:toggle-all '
@@ -63,15 +60,15 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 "Get Files
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+command! -bang -nargs=? -complete=dir MyFiles
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 
 " Get text in files with Rg
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+" command! -bang -nargs=* Rg
+"   \ call fzf#vim#grep(
+"   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+"   \   fzf#vim#with_preview(), <bang>0)
 
 " Ripgrep advanced
 function! RipgrepFzf(query, fullscreen)
@@ -83,7 +80,8 @@ function! RipgrepFzf(query, fullscreen)
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 
-command! -nargs=* -bang Search call RipgrepFzf(<q-args>, <bang>0)
+command! -nargs=* -bang Search
+  \ call RipgrepFzf(<q-args>, <bang>0)
 
 " Git grep
 command! -bang -nargs=* GGrep
@@ -91,38 +89,61 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
+" Marks with preview
+function! s:fzf_preview_p(bang, ...) abort
+    let preview_args = get(g:, 'fzf_preview_window', ['up:50%', 'ctrl-/'])
+    if empty(preview_args)
+        return { 'options': ['--preview-window', 'hidden'] }
+    endif
+
+    " For backward-compatiblity
+    if type(preview_args) == type('')
+        let preview_args = [preview_args]
+    endif
+    return call('fzf#vim#with_preview', extend(copy(a:000), preview_args))
+endfunction
+
+command! -bar -bang MarksWithPreview
+      \ call fzf#vim#marks(
+      \     s:fzf_preview_p(<bang>0, {'placeholder': '$([ -r $(echo {4} | sed "s#^~#$HOME#") ] && echo {4} || echo ' . fzf#shellescape(expand('%')) . '):{2}',
+      \               'options': '--preview-window +{2}-/2'}),
+      \     <bang>0)
+
+command! -bar ExitExplorer  if (&ft == "coc-explorer") | wincmd l | endif
+
 " key bindings
-let g:which_key_map['f'] = [ ':Buffers'                   , 'search buffers' ]
-let g:which_key_map['d'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['F'] = [ ':Search'                    , 'search text' ]
-let g:which_key_map['m'] = [ ':Marks'                     , 'search marks']
+" let g:which_key_map['f'] = [ ':if (&ft == "coc-explorer") | wincmd l | endif | Buffers' , 'search buffers' ]
+let g:which_key_map['f'] = [ ':ExitExplorer | Buffers' , 'search buffers' ]
+let g:which_key_map['d'] = [ ':ExitExplorer | MyFiles'                   , 'search files' ]
+let g:which_key_map['F'] = [ ':ExitExplorer | Search'                    , 'search text' ]
+let g:which_key_map['j'] = [ ':ExitExplorer | MarksWithPreview'          , 'search marks with preview']
 
 " s is for search
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
-      \ '/' : [':History/'     , 'history'],
-      \ ';' : [':Commands'     , 'commands'],
-      \ 'a' : [':Ag'           , 'text Ag'],
-      \ 'b' : [':BLines'       , 'current buffer'],
-      \ 'B' : [':Buffers'      , 'open buffers'],
-      \ 'c' : [':Commits'      , 'commits'],
-      \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files'        , 'files'],
-      \ 'g' : [':GFiles'       , 'git files'],
-      \ 'G' : [':GFiles?'      , 'modified git files'],
-      \ 'h' : [':History'      , 'file history'],
-      \ 'H' : [':History:'     , 'command history'],
-      \ 'l' : [':Lines'        , 'lines'] ,
-      \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'M' : [':Maps'         , 'normal maps'] ,
-      \ 'p' : [':Helptags'     , 'help tags'] ,
-      \ 'P' : [':Tags'         , 'project tags'],
-      \ 's' : [':Snippets'     , 'snippets'],
-      \ 'S' : [':Colors'       , 'color schemes'],
-      \ 't' : [':Rg'           , 'text Rg'],
-      \ 'T' : [':BTags'        , 'buffer tags'],
-      \ 'w' : [':Windows'      , 'search windows'],
-      \ 'y' : [':Filetypes'    , 'file types'],
-      \ 'z' : [':FZF'          , 'FZF'],
+      \ '/' : [':ExitExplorer | History/'     , 'history'],
+      \ ';' : [':ExitExplorer | Commands'     , 'commands'],
+      \ 'a' : [':ExitExplorer | Ag'           , 'text Ag'],
+      \ 'b' : [':ExitExplorer | BLines'       , 'current buffer'],
+      \ 'B' : [':ExitExplorer | Buffers'      , 'open buffers'],
+      \ 'c' : [':ExitExplorer | Commits'      , 'commits'],
+      \ 'C' : [':ExitExplorer | BCommits'     , 'buffer commits'],
+      \ 'f' : [':ExitExplorer | MyFiles'      , 'files'],
+      \ 'g' : [':ExitExplorer | GFiles'       , 'git files'],
+      \ 'G' : [':ExitExplorer | GFiles?'      , 'modified git files'],
+      \ 'h' : [':ExitExplorer | History'      , 'file history'],
+      \ 'H' : [':ExitExplorer | History:'     , 'command history'],
+      \ 'l' : [':ExitExplorer | Lines'        , 'lines'] ,
+      \ 'm' : [':ExitExplorer | Marks'        , 'marks'] ,
+      \ 'M' : [':ExitExplorer | Maps'         , 'normal maps'] ,
+      \ 'p' : [':ExitExplorer | Helptags'     , 'help tags'] ,
+      \ 'P' : [':ExitExplorer | Tags'         , 'project tags'],
+      \ 's' : [':ExitExplorer | Snippets'     , 'snippets'],
+      \ 'S' : [':ExitExplorer | Colors'       , 'color schemes'],
+      \ 't' : [':ExitExplorer | Rg'           , 'text Rg'],
+      \ 'T' : [':ExitExplorer | BTags'        , 'buffer tags'],
+      \ 'w' : [':ExitExplorer | Windows'      , 'search windows'],
+      \ 'y' : [':ExitExplorer | Filetypes'    , 'file types'],
+      \ 'z' : [':ExitExplorer | FZF'          , 'FZF'],
       \ }
 

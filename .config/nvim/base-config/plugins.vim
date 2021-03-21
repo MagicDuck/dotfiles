@@ -62,6 +62,8 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'kshenoy/vim-signature'
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
 " TODO: figure out how to use
 "Plug 'pelodelfuego/vim-swoop'

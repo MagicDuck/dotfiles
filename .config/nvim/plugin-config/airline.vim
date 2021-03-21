@@ -20,3 +20,5 @@ if !exists("my_airline_number_setup")
 endif
 
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+" let g:airline_section_z="%p%% %#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L"
+let g:airline_section_z="%p%%"

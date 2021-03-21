@@ -57,5 +57,21 @@
   "javascript.suggest.autoImports": true,
   "javascript.suggest.paths": true,
   "typescript.suggestionActions.enabled": true,
-  "typescript.suggest.enabled": true
+  "typescript.suggest.enabled": true,
+  "javascript.suggest.completeFunctionCalls": false,
+  "tsserver.reportStyleChecksAsWarnings": true,
+  "tsserver.implicitProjectConfig.checkJs": true,
+  "diagnostic.showUnused": true,
+  "explorer.icon.enableVimDevicons": true,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.width": 40,
+  "explorer.file.autoReveal": true,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.git.showIgnored": false,
+  "explorer.keyMappings.global": {
+    "<bs>": false,
+    "<cr>": ["wait", "expandable?", "expand", "open"],
+    "H": ["wait", "gotoParent"],
+    "L": ["wait", "expandable?", "cd", "open"]
+  }
 }

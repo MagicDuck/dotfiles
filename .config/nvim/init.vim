@@ -8,9 +8,9 @@ source ~/.config/nvim/base-config/plugins.vim
 source ~/.config/nvim/base-config/base.vim
 source ~/.config/nvim/base-config/keys.vim
 
+source ~/.config/nvim/plugin-config/airline.vim
 source ~/.config/nvim/plugin-config/which-key.vim
 source ~/.config/nvim/plugin-config/startify.vim
-source ~/.config/nvim/plugin-config/airline.vim
 source ~/.config/nvim/plugin-config/nerdcommenter.vim
 " source ~/.config/nvim/plugin-config/treesitter.vim
 luafile ~/.config/nvim/lua/stephan/treesitter.lua

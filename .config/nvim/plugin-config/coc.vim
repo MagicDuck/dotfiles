@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-html', 'coc-css', 'coc-cssmodules', 'coc-stylelintplus', 'coc-lua', 'coc-explorer']
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-prettier', 'coc-eslint', 'coc-html', 'coc-css', 'coc-cssmodules', 'coc-stylelintplus', 'coc-lua', 'coc-explorer', 'coc-lists']
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <C-Space> coc#refresh()
@@ -85,3 +85,35 @@ xnoremap <leader>aF  <Plug>(coc-format-selected)
 
 let g:which_key_map['e'] = [ ':CocCommand explorer'          , 'explorer']
 
+" Coc-explorer
+"---------------------------------------------------------------------------------------
+" function! s:explorer_cur_dir()
+"   let node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
+"   return fnamemodify(node_info['fullpath'], ':h')
+" endfunction
+"
+" function! s:exec_cur_dir(cmd)
+"   let dir = s:explorer_cur_dir()
+"   " wincmd l
+"   execute 'cd ' . dir
+"   execute a:cmd
+" endfunction
+"
+" function! s:init_explorer()
+"   set winblend=10
+"
+"   " Integration with other plugins
+"
+"   " CocList
+"   " nnoremap <buffer> fg :call <SID>exec_cur_dir('CocList -I grep')<CR>
+"   " nnoremap <buffer> fG :call <SID>exec_cur_dir('CocList -I grep -regex')<CR>
+"   nnoremap <buffer> F :call <SID>exec_cur_dir('Search')<CR>
+"   " nnoremap <buffer> fG :call <SID>exec_cur_dir('CocList -I grep -regex')<CR>
+"   " vim-floaterm
+"   " nnoremap <buffer> ft :call <SID>exec_cur_dir('FloatermNew --wintype=floating')<CR>
+" endfunction
+"
+" augroup MyCocExplorerCustom
+"   autocmd!
+"   autocmd FileType coc-explorer call <SID>init_explorer()
+" augroup END

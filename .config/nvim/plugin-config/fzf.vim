@@ -147,3 +147,6 @@ let g:which_key_map.s = {
       \ 'z' : [':ExitExplorer | FZF'          , 'FZF'],
       \ }
 
+
+" finding files with C-p
+nnoremap <silent><C-p> :ExitExplorer <Bar> MyFiles<CR>

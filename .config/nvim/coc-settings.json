@@ -72,6 +72,8 @@
     "<bs>": false,
     "<cr>": ["wait", "expandable?", "expand", "open"],
     "H": ["wait", "gotoParent"],
-    "L": ["wait", "expandable?", "cd", "open"]
+    "L": ["wait", "expandable?", "cd", "open"],
+    "f": ["searchRecursive"],
+    "F": false
   }
 }

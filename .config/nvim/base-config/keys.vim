@@ -62,9 +62,6 @@ while i <= 9
     let i = i + 1
 endwhile
 
-" finding files with C-p
-nnoremap <silent><C-p> :<C-U>Files<CR>
-
 " Better nav for omnicomplete
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")

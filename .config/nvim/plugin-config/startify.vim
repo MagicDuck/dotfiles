@@ -4,7 +4,7 @@ let g:startify_bookmarks = [
             \ { 't': '~/.config/kitty/kitty.conf' },
             \ { 'T': '~/.tmux.conf' },
             \ { 'z': '~/.zshrc' },
-            \ '~/ondemand/react/reactUi',
+            \ '~/frontend/reactUi',
             \ '~/spark',
             \ '~/xm-api',
             \ '~/xm-openapi-specs',

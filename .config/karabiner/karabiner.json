@@ -282,28 +282,6 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "simultaneous f j press to cmd-j",
-        "manipulators" : [ {
-          "from" : {
-            "simultaneous" : [ {
-              "key_code" : "f"
-            }, {
-              "key_code" : "j"
-            } ],
-            "simultaneous_options" : {
-              "detect_key_down_uninterruptedly" : false,
-              "key_down_order" : "insensitive",
-              "key_up_order" : "insensitive",
-              "key_up_when" : "any"
-            }
-          },
-          "to" : [ {
-            "modifiers" : [ "left_command" ],
-            "key_code" : "j"
-          } ],
-          "type" : "basic"
-        } ]
-      }, {
         "description" : "swap end with left option",
         "manipulators" : [ {
           "from" : {

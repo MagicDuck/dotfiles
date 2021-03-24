@@ -1,5 +1,3 @@
-set termguicolors
-
 augroup colorscheme_custom
   autocmd!
   autocmd ColorScheme * highlight Normal guibg=NONE

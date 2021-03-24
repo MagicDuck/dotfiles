@@ -61,9 +61,13 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope-fzf-writer.nvim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'kshenoy/vim-signature'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'voldikss/vim-floaterm'
 
 " TODO: figure out how to use
 "Plug 'pelodelfuego/vim-swoop'

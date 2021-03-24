@@ -21,7 +21,6 @@
  :main      [
              {:des "simultaneous j k press to ESC" :rules [[[:j :k] :escape]]}
              {:des "simultaneous d f press to ctrl-space" :rules [[[:d :f]  {:key :spacebar :modi [:left_control]} ]]}
-             {:des "simultaneous f j press to cmd-j" :rules [[[:f :j]  {:key :j :modi [:left_command]} ]]}
              {:des "swap end with left option" :rules [[:##end :left_option :kinesis-keyboard]]}
              {:des "swap control and command" :rules [[:##left_control :left_command :kinesis-keyboard]
                                                       [:##right_command :right_control :kinesis-keyboard]

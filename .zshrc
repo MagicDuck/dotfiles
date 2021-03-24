@@ -56,6 +56,8 @@ zinit light sindresorhus/pure
 # see https://github.com/sindresorhus/pure for more colors
 zstyle :prompt:pure:git:dirty color green
 
+# LS_COLORS
+export LS_COLORS="$(vivid generate 'ayu')"  
 
 # Options section
 # =========================================================================================
@@ -251,7 +253,7 @@ alias d="kitty +kitten diff"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --tiebreak=end'
+export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --tiebreak=end --bind ctrl-a:toggle-all'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 

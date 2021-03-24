@@ -57,6 +57,7 @@ set updatetime=300     " Faster completion
 set formatoptions-=cro " Stop newline continution of comments
 set signcolumn=auto    " auto size sign column
 set scrolloff=999      " keep cursor in the middle of the window
+set termguicolors      " true color
 
 " set grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
@@ -78,6 +79,9 @@ augroup mybaseconfig
 
   " no annoying auto-comments
   autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+
+  " enable syntax highlighting in .conf files
+  au BufEnter,BufRead *conf* setf dosini
 augroup END
 
 " If the current buffer has never been saved, it will have no name,
@@ -91,3 +95,4 @@ command! -nargs=0 -bar Update if &modified
                            \|endif
 
 command! -bar BufOnly execute '%bdelete|edit #|normal `"'
+

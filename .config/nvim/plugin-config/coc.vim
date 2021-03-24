@@ -87,33 +87,36 @@ let g:which_key_map['e'] = [ ':CocCommand explorer'          , 'explorer']
 
 " Coc-explorer
 "---------------------------------------------------------------------------------------
-" function! s:explorer_cur_dir()
-"   let node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
-"   return fnamemodify(node_info['fullpath'], ':h')
-" endfunction
-"
-" function! s:exec_cur_dir(cmd)
-"   let dir = s:explorer_cur_dir()
-"   " wincmd l
-"   execute 'cd ' . dir
-"   execute a:cmd
-" endfunction
-"
-" function! s:init_explorer()
-"   set winblend=10
-"
-"   " Integration with other plugins
-"
-"   " CocList
-"   " nnoremap <buffer> fg :call <SID>exec_cur_dir('CocList -I grep')<CR>
-"   " nnoremap <buffer> fG :call <SID>exec_cur_dir('CocList -I grep -regex')<CR>
-"   nnoremap <buffer> F :call <SID>exec_cur_dir('Search')<CR>
-"   " nnoremap <buffer> fG :call <SID>exec_cur_dir('CocList -I grep -regex')<CR>
-"   " vim-floaterm
-"   " nnoremap <buffer> ft :call <SID>exec_cur_dir('FloatermNew --wintype=floating')<CR>
-" endfunction
-"
-" augroup MyCocExplorerCustom
-"   autocmd!
-"   autocmd FileType coc-explorer call <SID>init_explorer()
-" augroup END
+function! s:explorer_cur_dir()
+  let node_info = CocAction('runCommand', 'explorer.getNodeInfo', 0)
+  return fnamemodify(node_info['fullpath'], ':h')
+endfunction
+
+function! s:exec_cur_dir(cmd)
+  let dir = s:explorer_cur_dir()
+  " wincmd l
+  execute 'cd ' . dir
+  execute a:cmd
+endfunction
+
+function! s:searchInFiles()
+  let dir = s:explorer_cur_dir()
+  wincmd l
+  call RipgrepFzf(dir, '')
+endfunction
+
+function! s:init_explorer()
+  " Integration with other plugins
+
+  " CocList
+  " nnoremap <buffer> fg :call <SID>exec_cur_dir('CocList -I grep')<CR>
+  " nnoremap <buffer> fG :call <SID>exec_cur_dir('CocList -I grep -regex')<CR>
+  nnoremap <buffer> F :call <SID>searchInFiles()<CR>
+  " vim-floaterm
+  nnoremap <buffer> tt :call <SID>exec_cur_dir('FloatermNew --wintype=floating --height=0.9 --width=0.9')<CR>
+endfunction
+
+augroup MyCocExplorerCustom
+  autocmd!
+  autocmd FileType coc-explorer call <SID>init_explorer()
+augroup END

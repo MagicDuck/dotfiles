@@ -1,8 +1,3 @@
-" Workflows
-" search for file: CTRL-P
-" search for matches in files and open all in quickfix: <leader>F , enter term, C-A (toggle all), C-Q (send to quickfix)
-" search for matches in files and open specific in quickfix: <leader>F , enter term, TAB on individual entries, C-Q (send to quickfix)
-
 " Extra key bindings
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))

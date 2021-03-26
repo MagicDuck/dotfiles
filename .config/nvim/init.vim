@@ -14,7 +14,7 @@ source ~/.config/nvim/plugin-config/startify.vim
 source ~/.config/nvim/plugin-config/nerdcommenter.vim
 " source ~/.config/nvim/plugin-config/treesitter.vim
 luafile ~/.config/nvim/lua/stephan/treesitter.lua
-source ~/.config/nvim/plugin-config/sneak.vim
+" source ~/.config/nvim/plugin-config/sneak.vim
 source ~/.config/nvim/plugin-config/quickscope.vim
 source ~/.config/nvim/plugin-config/fzf.vim
 source ~/.config/nvim/plugin-config/fugitive.vim
@@ -27,6 +27,7 @@ source ~/.config/nvim/plugin-config/quickfix-bfq.vim
 " luafile ~/.config/nvim/lua/stephan/lspconfig.lua
 luafile ~/.config/nvim/lua/stephan/telescope.lua
 luafile ~/.config/nvim/lua/stephan/colorizer.lua
+luafile ~/.config/nvim/lua/stephan/hop.lua
 
 
 source ~/.config/nvim/plugin-config/coc.vim

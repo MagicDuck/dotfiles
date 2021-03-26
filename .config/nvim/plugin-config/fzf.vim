@@ -116,9 +116,9 @@ command! -bar ExitExplorer  if (&ft == "coc-explorer") | wincmd l | endif
 
 " key bindings
 " let g:which_key_map['f'] = [ ':if (&ft == "coc-explorer") | wincmd l | endif | Buffers' , 'search buffers' ]
-let g:which_key_map['f'] = [ ':ExitExplorer | Buffers' , 'search buffers' ]
+let g:which_key_map['b'] = [ ':ExitExplorer | Buffers' , 'search buffers' ]
 let g:which_key_map['d'] = [ ':ExitExplorer | MyFiles'                   , 'search files' ]
-let g:which_key_map['F'] = [ ':ExitExplorer | Search'                    , 'search text' ]
+let g:which_key_map['f'] = [ ':ExitExplorer | Search'                    , 'search text' ]
 let g:which_key_map['j'] = [ ':ExitExplorer | MarksWithPreview'          , 'search marks with preview']
 
 " s is for search

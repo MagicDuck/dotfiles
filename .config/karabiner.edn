@@ -1,7 +1,23 @@
 ;; see example here: https://github.com/nikitavoloboev/dotfiles/blob/master/karabiner/karabiner.edn
 ;; goku examples: https://github.com/yqrashawn/GokuRakuJoudo/blob/master/examples.org
-;; goku tutorial: https://github.com/yqrashawn/GokuRakuJoudo/blob/9fe23d5de54f14ff57bac80cf4d80e0c2ad733c7/tutorial.md
+;; goku tutorial: https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md
 ;; To check sytax is correct, run `goku` in terminal
+
+;; Modifiers spec:
+;; !  | means mandatory
+;; #  | means optional
+;; C  | left_command
+;; T  | left_control
+;; O  | left_option
+;; S  | left_shift
+;; F  | fn
+;; Q  | right_command
+;; W  | right_control
+;; E  | right_option
+;; R  | right_shift
+;; P  | caps_lock
+;; !! | mandatory command + control + optional + shift (hyper)
+;; ## | optional any
 {
  ;;   "basic.simultaneous_threshold_milliseconds": 100,
  ;;   "basic.to_delayed_action_delay_milliseconds": 500,
@@ -47,6 +63,45 @@
                       [:!CTOSt {:key t :modi [:left_command]}]
                       [:!CTOSv {:key v :modi [:left_command]}]
 
+                      ;; help me get better at not typing shift key on same side of keyboard as key
+                      ;; left side
+                      [:!Sq []]
+                      [:!Sw []]
+                      [:!Se []]
+                      [:!Sr []]
+                      [:!St []]
+                      [:!Sa []]
+                      [:!Ss []]
+                      [:!Sd []]
+                      [:!Sf []]
+                      [:!Sg []]
+                      [:!Sz []]
+                      [:!Sx []]
+                      [:!Sc []]
+                      [:!Sv []]
+                      [:!Sb []]
+                      [:!S1 []]
+                      [:!S2 []]
+                      [:!S3 []]
+                      [:!S4 []]
+                      [:!S5 []]
+                      ;; right side
+                      [:!Ry []]
+                      [:!Ru []]
+                      [:!Ri []]
+                      [:!Ro []]
+                      [:!Rp []]
+                      [:!Rh []]
+                      [:!Rj []]
+                      [:!Rk []]
+                      [:!Rl []]
+                      [:!Rn []]
+                      [:!Rm []]
+                      [:!R6 []]
+                      [:!R7 []]
+                      [:!R8 []]
+                      [:!R9 []]
+                      [:!R0 []]
                       ]}
              ]
  }

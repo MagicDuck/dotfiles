@@ -31,14 +31,13 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'scrooloose/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'ryanoasis/vim-devicons'
-"Plug 'jiangmiao/auto-pairs'
 Plug 'Raimondi/delimitMate'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'hrsh7th/nvim-compe'
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
@@ -68,11 +67,19 @@ Plug 'kshenoy/vim-signature'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'voldikss/vim-floaterm'
+Plug 'voldikss/vim-floaterm'
+Plug 'tpope/vim-surround'
+Plug 'phaazon/hop.nvim'
 
 " TODO: figure out how to use
 "Plug 'pelodelfuego/vim-swoop'
 "Plug 'dyng/ctrlsf.vim'
 "    let g:ctrlsf_ackprg = 'rg'
+
+" alternative plugins
+" - auto-pairs, use instead of 'Raimondi/delimitMate'
+" Plug 'windwp/nvim-autopairs'
+" Plug 'cohama/lexima.vim'
 
 " Initialize plugin system
 call plug#end()

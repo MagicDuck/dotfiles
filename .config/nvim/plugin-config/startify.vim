@@ -25,4 +25,4 @@ let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
 
 " Keybindings
-let g:which_key_map['S'] = [ ':Startify'                  , 'start screen' ]
+let g:which_key_map['i'] = [ ':Startify'                  , 'start screen' ]

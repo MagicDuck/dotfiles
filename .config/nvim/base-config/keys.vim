@@ -70,12 +70,6 @@ inoremap <expr> <c-k> ("\<C-p>")
 inoremap <c-u> <ESC>viwUi
 nnoremap <c-u> viwU<Esc>
 
-" TAB in general mode will move to text buffer
-" TODO: not really necessary, tab could do something more useful
-nnoremap <TAB> :bnext<CR>
-" SHIFT-TAB will go back
-nnoremap <S-TAB> :bprevious<CR>
-
 " Better tabbing
 vnoremap < <gv
 vnoremap > >gv
@@ -84,3 +78,68 @@ vnoremap > >gv
 "nnoremap <Leader>o o<Esc>^Da
 "nnoremap <Leader>O O<Esc>^Da
 
+" quickfix list navigation
+nnoremap <Left>n :cprevious<CR>
+nnoremap <Right>n :cnext<CR>
+
+" tab navigtion
+nnoremap <Right>m :tabnext<CR>
+nnoremap <Left>m :tabprevious<CR>
+
+" clear search highlight
+let g:which_key_map['v'] = [ ':let @/ = ""'  , 'clear search' ]
+
+" marks - map all capital letter marks to lowercase as it's easier to type
+nnoremap ma mA
+nnoremap mb mB
+nnoremap mc mC
+nnoremap md mD
+nnoremap me mE
+nnoremap mf mF
+nnoremap mg mG
+nnoremap mh mH
+nnoremap mi mI
+nnoremap mj mJ
+nnoremap mk mK
+nnoremap ml mL
+nnoremap mm mM
+nnoremap mn mN
+nnoremap mo mO
+nnoremap mp mP
+nnoremap mq mQ
+nnoremap mr mR
+nnoremap ms mS
+nnoremap mt mT
+nnoremap mu mU
+nnoremap mv mV
+nnoremap mw mW
+nnoremap mx mX
+nnoremap my mY
+nnoremap mz mZ
+
+nnoremap 'a 'A
+nnoremap 'b 'B
+nnoremap 'c 'C
+nnoremap 'd 'D
+nnoremap 'e 'E
+nnoremap 'f 'F
+nnoremap 'g 'G
+nnoremap 'h 'H
+nnoremap 'i 'I
+nnoremap 'j 'J
+nnoremap 'k 'K
+nnoremap 'l 'L
+nnoremap 'm 'M
+nnoremap 'n 'N
+nnoremap 'o 'O
+nnoremap 'p 'P
+nnoremap 'q 'Q
+nnoremap 'r 'R
+nnoremap 's 'S
+nnoremap 't 'T
+nnoremap 'u 'U
+nnoremap 'v 'V
+nnoremap 'w 'W
+nnoremap 'x 'X
+nnoremap 'y 'Y
+nnoremap 'z 'Z

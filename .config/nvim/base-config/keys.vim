@@ -89,6 +89,13 @@ nnoremap <Left>m :tabprevious<CR>
 " clear search highlight
 let g:which_key_map['v'] = [ ':let @/ = ""'  , 'clear search' ]
 
+" wildmenu swap arrow keys and left right
+set wildcharm=<C-Z>
+cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
+cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
+cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
+cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
+
 " marks - map all capital letter marks to lowercase as it's easier to type
 nnoremap ma mA
 nnoremap mb mB

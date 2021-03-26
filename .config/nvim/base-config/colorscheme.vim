@@ -18,6 +18,9 @@ augroup colorscheme_custom
   " autocmd ColorScheme * highlight Todo gui=bold
   " autocmd ColorScheme * highlight Todo guibg=#ffc9c9 gui=bold
   " autocmd ColorScheme * highlight Todo guibg=#ffc9c9 gui=bold
+  autocmd ColorScheme * highlight HopNextKey guibg=#ffc9c9 guifg=#222222 gui=bold
+  autocmd ColorScheme * highlight HopNextKey1 guibg=#d4dfff guifg=#222222 gui=bold
+  autocmd ColorScheme * highlight HopNextKey2 guibg=#d4dfff guifg=#222222 gui=bold
 augroup END
 
 " remove odd ~ squiggles from end of buffer

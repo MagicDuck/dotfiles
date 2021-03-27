@@ -22,6 +22,7 @@ let mapleader = "\<Space>"
 let maplocalleader = ","
 
 "C-c / C-v copy-paste
+" Note: kitty maps cmd-c to C-x 
 vnoremap <C-c> "*y
 inoremap <C-v> <C-O>"*p
 
@@ -79,12 +80,35 @@ vnoremap > >gv
 "nnoremap <Leader>O O<Esc>^Da
 
 " quickfix list navigation
-nnoremap <Left>n :cprevious<CR>
-nnoremap <Right>n :cnext<CR>
+command! Cnext try | cnext | catch | cfirst | catch | endtry
+command! Cprev try | cprev | catch | clast | catch | endtry
+command! Lnext try | lnext | catch | lfirst | catch | endtry
+command! Lprev try | lprev | catch | llast | catch | endtry
+
+cabbrev cnext Cnext
+cabbrev cprev Cprev
+cabbrev lnext Lnext
+cabbrev lprev Lprev
+
+nnoremap <Up>c :Cnext<CR>
+nnoremap <Down>c :Cprev<CR>
+
+" merge diff get
+nnoremap <Left>o :diffget 3<CR>
+nnoremap <Right>o :diffget 1<CR>
+
+" conflict navigation
+nnoremap <Down>d ]c
+nnoremap <Up>d [c
 
 " tab navigtion
 nnoremap <Right>m :tabnext<CR>
 nnoremap <Left>m :tabprevious<CR>
+let g:which_key_map.t = {
+      \ 'name' : '+tab' ,
+      \ 't' : [':tabnew | Startify'       , 'new tab with startify'],
+      \ 'c' : [':tabclose'                , 'close tab'],
+      \ }
 
 " clear search highlight
 let g:which_key_map['v'] = [ ':let @/ = ""'  , 'clear search' ]

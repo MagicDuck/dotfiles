@@ -21,10 +21,12 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight HopNextKey guibg=#ffc9c9 guifg=#222222 gui=bold
   autocmd ColorScheme * highlight HopNextKey1 guibg=#d4dfff guifg=#222222 gui=bold
   autocmd ColorScheme * highlight HopNextKey2 guibg=#d4dfff guifg=#222222 gui=bold
+  autocmd ColorScheme * highlight clear DiffText
+  autocmd ColorScheme * highlight DiffText guibg=#DBD1F6
 augroup END
 
-" remove odd ~ squiggles from end of buffer
-set fillchars=fold:\ ,vert:\│,eob:\ ,msgsep:‾
+" remove odd ~ squiggles from end of buffer and other annoying places, like diffs
+set fillchars=diff:\ ,fold:\ ,vert:\│,eob:\ ,msgsep:‾
 
 "set background=dark
 "colorscheme sonokai " tutticolor colorful lucius

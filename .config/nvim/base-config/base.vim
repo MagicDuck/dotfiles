@@ -34,6 +34,7 @@ set noshowcmd          " don't show command in status line as you type it
 set showfulltag
 set shortmess+=ts
 set shortmess+=c      " Avoid showing message extra message when using completion
+set shortmess+=A      " Avoid showing ATTENTION message when editing same file in multiple vims
 set bs=2               " make backspace work
 set wildchar=<Tab> wildmenu wildmode=longest:full,full wildignorecase
 set cursorline

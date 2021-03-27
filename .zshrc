@@ -239,7 +239,7 @@ alias git_cleanup_bugfix_branches="git branch | grep bugfix/ | xargs git branch 
 alias git_cleanup_branches="git branch | grep -v '*' | grep -v 'master' | xargs git branch -D"
 
 alias clean-gradle-cache="find ~/.gradle -type f -name \"*.lock\" -delete"
-alias ondemand-changed-strings="cd ~/ondemand/react/reactUi/src/translations; git --no-pager diff --unified=0 origin/master:./en.json ./en.json | sed '/^@/d' | sed '/^\\+\\+\\+/d' | sed '/^---/d' | sed 's/^\\+  //'; cd -"
+alias frontend-changed-strings="cd ~/frontend/reactUi/src/translations; git --no-pager diff --unified=0 origin/main:./en.json ./en.json | sed '/^@/d' | sed '/^\\+\\+\\+/d' | sed '/^---/d' | sed 's/^\\+  //'; cd -"
 alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 alias qa-automation-run-local="yarn install && yarn run cypress open --config baseUrl=http://default.xmatters.com/ --env username=admin,password=complex,allure=false"
 alias qa-automation-run-dev="yarn install && yarn run cypress open --config baseUrl=https://sbadragan.dev.xmatters.com/ --env username=admin,password=complex,allure=false"

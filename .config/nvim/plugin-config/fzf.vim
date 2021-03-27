@@ -26,7 +26,7 @@ let g:fzf_files_options = ['--keep-right']
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline --tiebreak=length,end --bind ctrl-a:toggle-all '
 let g:my_global_rg_ignore_file = expand("~/.config/nvim/rg_global_ignore") 
-let $FZF_DEFAULT_COMMAND="rg --files " . g:my_global_rg_ignore_file . ' '
+let $FZF_DEFAULT_COMMAND="rg --files --ignore-file " . g:my_global_rg_ignore_file . ' '
 
 " handling setting and unsetting BAT_THEME for fzf.vim
 let $BAT_THEME='OneHalfLight'

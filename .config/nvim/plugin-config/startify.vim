@@ -1,9 +1,18 @@
+let g:startify_lists = [
+      \ { 'type': 'files',     'header': ['   MRU']            },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'commands',  'header': ['   Commands']       },
+      \ ]
+
 let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
             \ { 'K': '~/.config/nvim/base-config/keys.vim' },
             \ { 't': '~/.config/kitty/kitty.conf' },
             \ { 'T': '~/.tmux.conf' },
             \ { 'z': '~/.zshrc' },
+            \ { 'sc': '~/spark/src/common/scss/mixins/_colors.scss'},
+            \ { 'sf': '~/spark/src/common/scss/mixins/_fonts.scss'},
             \ '~/frontend/reactUi',
             \ '~/spark',
             \ '~/xm-api',

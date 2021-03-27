@@ -24,7 +24,7 @@ let g:fzf_preview_window = ['up:50%']
 
 let g:fzf_files_options = ['--keep-right']
 
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline --tiebreak=end --bind ctrl-a:toggle-all '
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline --tiebreak=length,end --bind ctrl-a:toggle-all '
 let $FZF_DEFAULT_COMMAND="rg --files "
 
 " handling setting and unsetting BAT_THEME for fzf.vim

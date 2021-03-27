@@ -25,7 +25,8 @@ let g:fzf_preview_window = ['up:50%']
 let g:fzf_files_options = ['--keep-right']
 
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline --tiebreak=length,end --bind ctrl-a:toggle-all '
-let $FZF_DEFAULT_COMMAND="rg --files "
+let g:my_global_rg_ignore_file = expand("~/.config/nvim/rg_global_ignore") 
+let $FZF_DEFAULT_COMMAND="rg --files " . g:my_global_rg_ignore_file . ' '
 
 " handling setting and unsetting BAT_THEME for fzf.vim
 let $BAT_THEME='OneHalfLight'
@@ -75,9 +76,9 @@ command! -bang -nargs=? -complete=dir MyFiles
 "   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 " endfunction
 function! RipgrepFzf(path, query) 
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query), a:path)
-  let reload_command = printf(command_fmt, '{q}', a:path)
+  let command_fmt = "rg --column --line-number --no-heading --color=always --ignore-file %s --smart-case %s %s || true"
+  let initial_command = printf(command_fmt, g:my_global_rg_ignore_file, shellescape(a:query), a:path)
+  let reload_command = printf(command_fmt, g:my_global_rg_ignore_file, '{q}', a:path)
   " let spec = {'options': ['--with-nth', '--exact', '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), 0)

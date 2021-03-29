@@ -19,6 +19,7 @@
     "typescriptreact",
     "json"
   ],
+  "eslint.codeActionsOnSave.mode": "problems",
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",

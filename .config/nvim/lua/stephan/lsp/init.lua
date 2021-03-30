@@ -9,6 +9,7 @@ require('stephan/lsp/sumneko_lua')
 require('stephan/lsp/vimls')
 require('stephan/lsp/tsserver')
 require('stephan/lsp/diagnosticls')
+require('stephan/lsp/saga')
 
 -- define signs to show in the sign column
 vim.fn.sign_define("LspDiagnosticsSignHint", { text="", texthl="LspDiagnosticsSignHint" })

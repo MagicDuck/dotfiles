@@ -75,6 +75,7 @@ Plug 'onsails/lspkind-nvim'
 " Plug 'sbdchd/neoformat'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
+Plug 'glepnir/lspsaga.nvim'
 
 " TODO: figure out how to use
 "Plug 'pelodelfuego/vim-swoop'

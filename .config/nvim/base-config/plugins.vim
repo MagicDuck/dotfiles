@@ -30,14 +30,11 @@ Plug 'liuchengxu/vim-which-key'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
-Plug 'ryanoasis/vim-devicons'
 Plug 'Raimondi/delimitMate'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'p00f/nvim-ts-rainbow'
-Plug 'hrsh7th/nvim-compe'
-" Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
@@ -45,18 +42,10 @@ Plug 'tommcdo/vim-fubitive'
 Plug 'kevinhwang91/rnvimr'    " ranger
 Plug 'kevinhwang91/nvim-bqf'  " quickfix
 " Stable version of coc 
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Keeping up to date with master
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'hrsh7th/vim-vsnip'
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'ojroques/nvim-lspfuzzy'
-" manual language server installer has a few
-" Plug 'anott03/nvim-lspinstall'
-" Plug 'onsails/lspkind-nvim'
-" auto language server installer - way of the future
-" Plug 'alexaandru/nvim-lspupdate'
-" Plug 'sbdchd/neoformat'
+" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -70,6 +59,22 @@ Plug 'voldikss/vim-floaterm'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-surround'
 Plug 'phaazon/hop.nvim'
+Plug 'rafcamlet/nvim-luapad'
+Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
+"Plug 'akinsho/nvim-bufferline.lua'
+
+" built-in LSP related
+" Plug 'hrsh7th/vim-vsnip'
+" Plug 'ojroques/nvim-lspfuzzy'
+" manual language server installer has a few
+" Plug 'anott03/nvim-lspinstall'
+Plug 'onsails/lspkind-nvim'
+" auto language server installer - way of the future
+" Plug 'alexaandru/nvim-lspupdate'
+" Plug 'sbdchd/neoformat'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
 
 " TODO: figure out how to use
 "Plug 'pelodelfuego/vim-swoop'

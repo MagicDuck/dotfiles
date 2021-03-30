@@ -1,6 +1,7 @@
 {
-  "suggest.noselect": false,
-  "suggest.autoTrigger": "always",
+  "suggest.noselect": "none",
+  "suggest.keepCompleteopt": true,
+  "suggest.autoTrigger": false,
   "suggest.enablePreselect": false,
   "eslint.run": "onSave",
   "eslint.autoFixOnSave": true,

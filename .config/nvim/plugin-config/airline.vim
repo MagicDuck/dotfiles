@@ -23,9 +23,19 @@ endif
 
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 " let g:airline_section_z="%p%% %#__accent_bold#%{g:airline_symbols.linenr}%l%#__restore__#%#__accent_bold#/%L"
-let g:airline_section_z="%p%%"
+" let g:airline_section_b="%{airline#util#wrap(airline#extensions#hunks#get_hunks(),100)}%{airline#util#wrap(airline#extensions#branch#get_head(),80)}"
+function! AirlineInit()
+  let g:airline_section_z="%p%%"
+  let g:airline_section_x=''
+  let g:airline_section_y='_'
+  let g:airline_section_b=''
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
 let airline#extensions#tabline#current_first = 0
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 
+let airline#extensions#nvimlsp#error_symbol = ' '
+let airline#extensions#nvimlsp#warning_sybmol = '⚠️'

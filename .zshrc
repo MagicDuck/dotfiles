@@ -257,6 +257,11 @@ export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --tiebreak=end --bind ctr
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
+# BAT
+# =========================================================================================
+
+export BAT_THEME='OneHalfLight'
+
 # Git fuzzy
 # =========================================================================================
 

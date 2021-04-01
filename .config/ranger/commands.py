@@ -65,7 +65,7 @@ class fzf_select(Command):
 
         env = os.environ.copy()
         env['FZF_DEFAULT_COMMAND'] = fzf_default_command
-        env['FZF_DEFAULT_OPTS'] = '--height=40% --layout=reverse --ansi --preview="{}"'.format('''
+        env['FZF_DEFAULT_OPTS'] = '--height=100% --layout=reverse --ansi --preview="{}"'.format('''
             (
                 batcat --color=always {} ||
                 bat --color=always {} ||

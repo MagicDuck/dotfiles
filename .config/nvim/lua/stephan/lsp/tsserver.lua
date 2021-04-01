@@ -24,6 +24,6 @@ lspconfig.tsserver.setup {
     }
   },
   handlers = {
-    ["textDocument/publishDiagnostics"] = handlers.tsserverPublishDiagnostics,
+    ["textDocument/publishDiagnostics"] = handlers.tsserverPublishDiagnostics
   }
 }

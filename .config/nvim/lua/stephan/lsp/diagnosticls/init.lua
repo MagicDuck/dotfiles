@@ -16,7 +16,6 @@ lspconfig.diagnosticls.setup {
     "scss",
     "css",
     "sass",
-    "json"
   };
   init_options = {
     filetypes = {
@@ -31,7 +30,6 @@ lspconfig.diagnosticls.setup {
     formatFiletypes = {
       javascript = {'prettier', 'eslint'},
       javascriptreact = {'prettier', 'eslint'},
-      json = 'prettier'
     },
     linters = {
       eslint = eslint_linter,

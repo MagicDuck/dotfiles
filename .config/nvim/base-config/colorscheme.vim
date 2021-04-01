@@ -23,6 +23,8 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight HopNextKey2 guibg=#d4dfff guifg=#222222 gui=bold
   autocmd ColorScheme * highlight clear DiffText
   autocmd ColorScheme * highlight DiffText guibg=#DBD1F6
+  autocmd ColorScheme * highlight clear LspDiagnosticsDefaultInformation
+  autocmd ColorScheme * highlight LspDiagnosticsDefaultInformation guifg=#4C9E90
 augroup END
 
 " remove odd ~ squiggles from end of buffer and other annoying places, like diffs

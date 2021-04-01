@@ -56,7 +56,7 @@ set nobackup           " This is recommended by coc
 set nowritebackup      " This is recommended by coc
 set updatetime=300     " Faster completion
 set formatoptions-=cro " Stop newline continution of comments
-set signcolumn=auto    " auto size sign column
+set signcolumn=yes     " always show sign column
 set scrolloff=999      " keep cursor in the middle of the window
 set termguicolors      " true color
 
@@ -82,7 +82,7 @@ augroup mybaseconfig
   autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 
   " enable syntax highlighting in .conf files
-  au BufEnter,BufRead *conf* setf dosini
+  autocmd BufEnter,BufRead *conf setf dosini
 augroup END
 
 " If the current buffer has never been saved, it will have no name,

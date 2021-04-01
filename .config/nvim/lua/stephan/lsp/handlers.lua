@@ -28,8 +28,10 @@ end
 
 exports.tsserverPublishDiagnostics = function(err, method, params, client_id, bufnr, config)
   params.diagnostics = vim.tbl_filter(function(diagnostic)
-    -- allow  name not found diagnostics
-    return diagnostic.code == 2304;
+    return vim.tbl_contains({
+      -- allow  name not found diagnostics
+      2304
+    }, diagnostic.code);
   end, params.diagnostics);
   return vim.lsp.handlers['textDocument/publishDiagnostics'](err, method, params, client_id, bufnr, config)
 end

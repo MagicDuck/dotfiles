@@ -70,5 +70,9 @@ ts.setup {
 
   rainbow = {
     enable = false
+  },
+
+  autotag = {
+    enable = true,
   }
 }

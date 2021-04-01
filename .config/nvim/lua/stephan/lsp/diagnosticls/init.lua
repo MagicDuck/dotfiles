@@ -55,7 +55,9 @@ lspconfig.diagnosticls.setup {
     ["workspace/executeCommand"] = {
       type = 'local_lsp',
       handler = handlers.workspaceExecuteCommand
-    }
+    },
+    ["textDocument/publishDiagnostics"] = ReloadFunc('stephan/lsp/handlers', 'diagnosticlsPublishDiagnostics')
+    -- , handlers.diagnosticlsPublishDiagnostics
   }
 }
 

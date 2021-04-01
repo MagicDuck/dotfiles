@@ -34,6 +34,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'unblevable/quick-scope'
 Plug 'junegunn/vim-easy-align'
@@ -76,6 +77,7 @@ Plug 'onsails/lspkind-nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 
 " TODO: figure out how to use
 "Plug 'pelodelfuego/vim-swoop'

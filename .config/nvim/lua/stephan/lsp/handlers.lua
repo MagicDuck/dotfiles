@@ -36,6 +36,18 @@ exports.tsserverPublishDiagnostics = function(err, method, params, client_id, bu
   return vim.lsp.handlers['textDocument/publishDiagnostics'](err, method, params, client_id, bufnr, config)
 end
 
+exports.diagnosticlsPublishDiagnostics = function(err, method, params, client_id, bufnr, config)
+  params.diagnostics = vim.tbl_map(function(diagnostic)
+    if diagnostic.source == 'eslint' then
+      if diagnostic.message:match("^%[eslint%] Parsing error:") ~= nil then
+        diagnostic.message = "[eslint] Parsing error"
+      end
+    end
+    return diagnostic;
+  end, params.diagnostics);
+  return vim.lsp.handlers['textDocument/publishDiagnostics'](err, method, params, client_id, bufnr, config)
+end
+
 exports.lintCodeAction = function(method, params, client_id, bufnr, config)
   local actions = {}
   for _, diagnostic in pairs(params.context.diagnostics) do

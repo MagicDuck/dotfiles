@@ -75,12 +75,11 @@ command! -bang -nargs=? -complete=dir MyFiles
 "   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
 "   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 " endfunction
-function! RipgrepFzf(path, query) 
-  let command_fmt = "rg --column --line-number --no-heading --color=always --ignore-file %s --smart-case %s %s || true"
-  let initial_command = printf(command_fmt, g:my_global_rg_ignore_file, shellescape(a:query), a:path)
-  let reload_command = printf(command_fmt, g:my_global_rg_ignore_file, '{q}', a:path)
-  " let spec = {'options': ['--with-nth', '--exact', '--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+function! RipgrepFzf(path, rgArgs) 
+  let command_fmt = "rg --column --line-number --no-heading --color=always --ignore-file %s --smart-case %s %s %s || true"
+  let initial_command = printf(command_fmt, g:my_global_rg_ignore_file, "", a:path, a:rgArgs)
+  let reload_command = printf(command_fmt, g:my_global_rg_ignore_file, '{q}', a:path, a:rgArgs)
+  let spec = {'options': ['--phony', '--query', "", '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), 0)
 endfunction
 

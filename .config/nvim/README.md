@@ -3,8 +3,17 @@
 ## Search for file
 CTRL-P
 
+## Search in files
+1. <leader>f
+2. enter term,
+
+## Search in files with particular type
+You can pass any rg opts to :Search
+1. :Search -tscss
+2. enter term, above will only search inside scss files
+
 ## Search in files and open in quickfix
-1. <leader>F
+1. <leader>f
 2. enter term,
 3. select some (TAB) or all (C-a)
 4. C-q (send to quickfix)

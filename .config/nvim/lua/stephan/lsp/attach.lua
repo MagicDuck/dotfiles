@@ -1,8 +1,4 @@
 local global_on_attach = function(client, bufnr)
-  if (bufnr == nil) then
-    return
-  end
-
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -57,13 +53,6 @@ local global_on_attach = function(client, bufnr)
   -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>ad', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
-  -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
-     buf_set_keymap("n", "<leader>af", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  elseif client.resolved_capabilities.document_range_formatting then
-     buf_set_keymap("n", "<leader>af", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
-  end
-
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
@@ -78,10 +67,10 @@ local global_on_attach = function(client, bufnr)
     ]], false)
   end
 
-  local formattingAttached = vim.fn.getbufvar(bufnr, "my_lsp_formatting_attached")
+  local formattingAttached = vim.fn.getbufvar(bufnr or 0, "my_lsp_formatting_attached")
   if formattingAttached ~= "yes" and client.resolved_capabilities.document_formatting then
-    vim.fn.setbufvar(bufnr, "my_lsp_formatting_attached", "yes")
-    vim.api.nvim_command[[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 2000)]]
+    vim.fn.setbufvar(bufnr or 0, "my_lsp_formatting_attached", "yes")
+    vim.api.nvim_command[[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 5000)]]
     buf_set_keymap("n", "<leader>af", "<cmd>lua vim.lsp.buf.formatting()<CR>", { noremap=true, silent=true })
   end
 end

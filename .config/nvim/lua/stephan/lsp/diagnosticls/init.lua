@@ -1,4 +1,5 @@
 local lspconfig = require('lspconfig')
+local util = require('lspconfig/util')
 local handlers = require('stephan/lsp/handlers')
 local attach = require('stephan/lsp/attach')
 local eslint_linter = require('stephan/lsp/diagnosticls/linters/eslint')
@@ -8,6 +9,7 @@ local prettier_formatter = require('stephan/lsp/diagnosticls/formatters/prettier
 
 lspconfig.diagnosticls.setup {
   -- cmd = {"diagnostic-languageserver", "--stdio", "--log-level", "4"},
+  root_dir = util.root_pattern("package.json", "jsconfig.json", ".git"),
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -56,8 +58,8 @@ lspconfig.diagnosticls.setup {
       type = 'local_lsp',
       handler = handlers.workspaceExecuteCommand
     },
-    ["textDocument/publishDiagnostics"] = ReloadFunc('stephan/lsp/handlers', 'diagnosticlsPublishDiagnostics')
-    -- , handlers.diagnosticlsPublishDiagnostics
+    ["textDocument/publishDiagnostics"] = handlers.diagnosticlsPublishDiagnostics
+    -- ["textDocument/publishDiagnostics"] = ReloadFunc('stephan/lsp/handlers', 'diagnosticlsPublishDiagnostics')
   }
 }
 

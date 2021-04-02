@@ -1,7 +1,8 @@
 let g:which_key_sep = '→'
 let g:which_key_hspace = 10
-"let g:which_key_timeout = 100
-set timeoutlen=300
+" let g:which_key_timeout = 300
+" set notimeout
+set timeoutlen=1000
 
 " Not a fan of floating windows for this
 let g:which_key_use_floating_win = 0

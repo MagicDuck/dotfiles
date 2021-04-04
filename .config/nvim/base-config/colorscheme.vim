@@ -25,6 +25,15 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight DiffText guibg=#DBD1F6
   autocmd ColorScheme * highlight clear LspDiagnosticsDefaultInformation
   autocmd ColorScheme * highlight LspDiagnosticsDefaultInformation guifg=#4C9E90
+
+  " autocmd ColorScheme * highlight clear LspDiagnosticsUnderlineError
+  " autocmd ColorScheme * highlight clear LspDiagnosticsUnderlineWarning
+  " autocmd ColorScheme * highlight clear LspDiagnosticsUnderlineInformation
+  " autocmd ColorScheme * highlight clear LspDiagnosticsUnderlineHint
+  autocmd ColorScheme * highlight link TSError Normal
+  " autocmd ColorScheme * highlight clear TSError
+  " autocmd ColorScheme * highlight TSError guibg=#FAF2F2
+
 augroup END
 
 " remove odd ~ squiggles from end of buffer and other annoying places, like diffs

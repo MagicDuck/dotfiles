@@ -21,6 +21,16 @@ local function switchToApp(appName)
   if (app and app:isFrontmost()) then
     --app:hide()
     local orderedWindows = hs.window.orderedWindows()
+    local currentWindow = orderedWindows[1]
+    for _, win in pairs(orderedWindows) do
+      if
+        win:application():name() ~= app:name() and
+          win:screen():id() == currentWindow:screen():id()
+       then
+        win:focus()
+        return
+      end
+    end
     if (orderedWindows[2]) then
       orderedWindows[2]:focus()
     end
@@ -32,15 +42,20 @@ end
 local function str_split_space(str)
   local parts = {}
   for i in string.gmatch(str, "%S+") do
-     print(i)
-     table.insert(parts, i)
+    print(i)
+    table.insert(parts, i)
   end
 
   return parts
 end
 
 local function kittyDo(cmd, cb)
-  local task = hs.task.new('/usr/local/bin/kitty', cb, str_split_space("@ --to unix:/tmp/mykitty " .. cmd))
+  local task =
+    hs.task.new(
+    "/usr/local/bin/kitty",
+    cb,
+    str_split_space("@ --to unix:/tmp/mykitty " .. cmd)
+  )
   task:start()
 end
 
@@ -57,29 +72,36 @@ local function switchToKittyWindow(windowTitle, windowCommand)
   local app = hs.application.find("kitty")
 
   local function launchWindow()
-    kittyDo('launch --type=os-window --title=' .. windowTitle .. ' ' .. windowCommand, function(exitCode)
-      if (exitCode ~= 0) then
-        print("Could not launch kitty window: " .. windowTitle .. " with command: ".. windowCommand)
+    kittyDo(
+      "launch --type=os-window --title=" .. windowTitle .. " " .. windowCommand,
+      function(exitCode)
+        if (exitCode ~= 0) then
+          print(
+            "Could not launch kitty window: " ..
+              windowTitle .. " with command: " .. windowCommand
+          )
+        end
       end
-    end)
+    )
   end
 
-
   if (app) then
+    --end
     --if (win:title() == windowTitle) then
-      -- window already focused, hide
-      --app:hide()     
+    -- window already focused, hide
+    --app:hide()
     --else
-      -- try focusing it first
-      kittyDo('focus-window --match=title:' .. windowTitle, function(exitCode, stdout, stderr) 
-        print("cmd", 'focus-window --match=title:' .. windowTitle)
+    -- try focusing it first
+    kittyDo(
+      "focus-window --match=title:" .. windowTitle,
+      function(exitCode, stdout, stderr)
+        print("cmd", "focus-window --match=title:" .. windowTitle)
         if (exitCode ~= 0) then
           -- not found, try launching
           launchWindow()
         end
-      end)
-    --end
-
+      end
+    )
   else
     hs.application.open("kitty", 3) -- wait max 3s
     launchWindow()
@@ -92,7 +114,7 @@ end
 
 local function table_shallow_copy(t)
   local t2 = {}
-  for k,v in pairs(t) do
+  for k, v in pairs(t) do
     t2[k] = v
   end
   return t2
@@ -153,74 +175,203 @@ end
 -- Key Bindings
 -------------------------------------------------------------------
 
-hs.hotkey.bind(superKey, "a", function()
-  -- show name of application corresponding to current window
-  local win = hs.window.frontmostWindow()
-  hs.alert.show(win:application():name())
-end)
+hs.hotkey.bind(
+  superKey,
+  "a",
+  function()
+    -- show name of application corresponding to current window
+    local win = hs.window.frontmostWindow()
+    hs.alert.show(win:application():name())
+  end
+)
 
 -- superKey + b - cycle through windows of current app
 
-hs.hotkey.bind(superKey, "d", function() switchToApp('Brave Browser') end)
-hs.hotkey.bind(superKey, "e", function() switchToApp('IntelliJ IDEA') end)
-hs.hotkey.bind(superKey, "f", function() switchToKittyWindow('neovim', '/usr/local/bin/zsh -is eval vim') end)
-hs.hotkey.bind(superKey, "i", function() switchToApp('Parallels Desktop') end)
-hs.hotkey.bind(superKey, "j", function() switchToApp('kittyvim') end)
+hs.hotkey.bind(
+  superKey,
+  "d",
+  function()
+    switchToApp("Brave Browser")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "e",
+  function()
+    switchToApp("IntelliJ IDEA")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "f",
+  function()
+    switchToKittyWindow("neovim", "/usr/local/bin/zsh -is eval vim")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "i",
+  function()
+    switchToApp("Parallels Desktop")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "j",
+  function()
+    switchToApp("kittyvim")
+  end
+)
 --hs.hotkey.bind(superKey, "j", function()
 --  local currentWindow = hs.window.frontmostWindow()
 --  local nextWin = getNextAppWindow(currentWindow)
 --  nextWin:focus()
 --end)
-hs.hotkey.bind(superKey, "k", function() switchToApp('Fork') end)
-hs.hotkey.bind(superKey, "l", function() switchToApp('zoom.us') end)
-hs.hotkey.bind(superKey, "m", function() switchToApp('Mail') end)
-hs.hotkey.bind(superKey, "n", function() switchToApp('Monosnap') end)
-hs.hotkey.bind(superKey, "o", function() switchToApp('Fantastical') end)
-hs.hotkey.bind(superKey, "p", function() switchToApp('Finder') end)
-hs.hotkey.bind(superKey, "r", function() switchToApp('Google Chrome') end)
-hs.hotkey.bind(superKey, "s", function() switchToApp('Slack') end)
-hs.hotkey.bind(superKey, "u", function() switchToApp('Bear') end)
-hs.hotkey.bind(superKey, "w", function() switchToApp('TickTick') end)
+hs.hotkey.bind(
+  superKey,
+  "k",
+  function()
+    switchToApp("Fork")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "l",
+  function()
+    switchToApp("zoom.us")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "m",
+  function()
+    switchToApp("Mail")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "n",
+  function()
+    switchToApp("Monosnap")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "o",
+  function()
+    switchToApp("Fantastical")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "p",
+  function()
+    switchToApp("Finder")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "r",
+  function()
+    switchToApp("Google Chrome")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "s",
+  function()
+    switchToApp("Slack")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "u",
+  function()
+    switchToApp("Bear")
+  end
+)
+hs.hotkey.bind(
+  superKey,
+  "w",
+  function()
+    switchToApp("TickTick")
+  end
+)
 -- superkey + z - launches next meeting from Meeter Pro
 
 -- hs.hotkey.bind(superKey, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
 -- hs.hotkey.bind({"cmd"}, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
-hs.hotkey.bind(superKey, "return", function() switchToAp('kitty') end)
-hs.hotkey.bind({"cmd"}, "return", function() switchToApp('kitty') end)
+hs.hotkey.bind(
+  superKey,
+  "return",
+  function()
+    switchToAp("kitty")
+  end
+)
+hs.hotkey.bind(
+  {"cmd"},
+  "return",
+  function()
+    switchToApp("kitty")
+  end
+)
 
 -- move window to other screen
-hs.hotkey.bind(superKey, "[", function()
-  local win = hs.window.frontmostWindow()
-  win:moveToScreen(getNextScreen(win))
-end)
+hs.hotkey.bind(
+  superKey,
+  "[",
+  function()
+    local win = hs.window.frontmostWindow()
+    win:moveToScreen(getNextScreen(win))
+  end
+)
 
 -- move window to other screen
-hs.hotkey.bind(superKey, "]", function()
-  local win = hs.window.frontmostWindow()
-  win:moveToScreen(getNextScreen(win))
-end)
+hs.hotkey.bind(
+  superKey,
+  "]",
+  function()
+    local win = hs.window.frontmostWindow()
+    win:moveToScreen(getNextScreen(win))
+  end
+)
 
 -- move window to left side of screen
-hs.hotkey.bind(superKey, "left", function()
-  local win = hs.window.frontmostWindow()
-  win:moveToUnit('[0,0 50x100]', 0)
-end)
+hs.hotkey.bind(
+  superKey,
+  "left",
+  function()
+    local win = hs.window.frontmostWindow()
+    win:moveToUnit("[0,0 50x100]", 0)
+  end
+)
 
 -- move window to right side of screen
-hs.hotkey.bind(superKey, "right", function()
-  local win = hs.window.frontmostWindow()
-  win:moveToUnit('[50,0 50x100]', 0)
-end)
+hs.hotkey.bind(
+  superKey,
+  "right",
+  function()
+    local win = hs.window.frontmostWindow()
+    win:moveToUnit("[50,0 50x100]", 0)
+  end
+)
 
 -- maximize window
-hs.hotkey.bind(superKey, "up", function()
-  local win = hs.window.frontmostWindow()
-  win:moveToUnit('[0,0 100x100]', 0)
-end)
+hs.hotkey.bind(
+  superKey,
+  "up",
+  function()
+    local win = hs.window.frontmostWindow()
+    win:moveToUnit("[0,0 100x100]", 0)
+  end
+)
 
 -- centered and 80% size window
-hs.hotkey.bind(superKey, "down", function()
-  local win = hs.window.frontmostWindow()
-  win:moveToUnit('[10,10 80x80]', 0)
-end)
-
+hs.hotkey.bind(
+  superKey,
+  "down",
+  function()
+    local win = hs.window.frontmostWindow()
+    win:moveToUnit("[10,10 80x80]", 0)
+  end
+)

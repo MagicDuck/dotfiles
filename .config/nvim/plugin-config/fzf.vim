@@ -8,8 +8,8 @@ endfunction
 let g:fzf_action = {
   \ 'ctrl-q': function('s:build_quickfix_list'),
   \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+  \ 'ctrl-h': 'split',
+  \ 'ctrl-l': 'vsplit' }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -112,44 +112,43 @@ command! -bar -bang MarksWithPreview
       \               'options': '--preview-window +{2}-/2'}),
       \     <bang>0)
 
-command! -bar ExitExplorer  if (&ft == "coc-explorer") | wincmd l | endif
+" command! -bar ExitExplorer  if (&ft == "coc-explorer") | wincmd l | endif
 
 " key bindings
-" let g:which_key_map['f'] = [ ':if (&ft == "coc-explorer") | wincmd l | endif | Buffers' , 'search buffers' ]
-let g:which_key_map['b'] = [ ':ExitExplorer | Buffers' , 'search buffers' ]
-let g:which_key_map['d'] = [ ':ExitExplorer | MyFiles'                   , 'search files' ]
-let g:which_key_map['f'] = [ ':ExitExplorer | Search'                    , 'search text' ]
-let g:which_key_map['j'] = [ ':ExitExplorer | MarksWithPreview'          , 'search marks with preview']
+let g:which_key_map['b'] = [ 'Buffers' , 'search buffers' ]
+let g:which_key_map['d'] = [ 'MyFiles'                   , 'search files' ]
+let g:which_key_map['f'] = [ 'Search'                    , 'search text' ]
+let g:which_key_map['j'] = [ 'MarksWithPreview'          , 'search marks with preview']
 
 " s is for search
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
-      \ '/' : [':ExitExplorer | History/'     , 'history'],
-      \ ';' : [':ExitExplorer | Commands'     , 'commands'],
-      \ 'a' : [':ExitExplorer | Ag'           , 'text Ag'],
-      \ 'b' : [':ExitExplorer | BLines'       , 'current buffer'],
-      \ 'B' : [':ExitExplorer | Buffers'      , 'open buffers'],
-      \ 'c' : [':ExitExplorer | Commits'      , 'commits'],
-      \ 'C' : [':ExitExplorer | BCommits'     , 'buffer commits'],
-      \ 'f' : [':ExitExplorer | MyFiles'      , 'files'],
-      \ 'g' : [':ExitExplorer | GFiles'       , 'git files'],
-      \ 'G' : [':ExitExplorer | GFiles?'      , 'modified git files'],
-      \ 'h' : [':ExitExplorer | History'      , 'file history'],
-      \ 'H' : [':ExitExplorer | History:'     , 'command history'],
-      \ 'l' : [':ExitExplorer | Lines'        , 'lines'] ,
-      \ 'm' : [':ExitExplorer | Marks'        , 'marks'] ,
-      \ 'M' : [':ExitExplorer | Maps'         , 'normal maps'] ,
-      \ 'p' : [':ExitExplorer | Helptags'     , 'help tags'] ,
-      \ 'P' : [':ExitExplorer | Tags'         , 'project tags'],
-      \ 's' : [':ExitExplorer | Snippets'     , 'snippets'],
-      \ 'S' : [':ExitExplorer | Colors'       , 'color schemes'],
-      \ 't' : [':ExitExplorer | Rg'           , 'text Rg'],
-      \ 'T' : [':ExitExplorer | BTags'        , 'buffer tags'],
-      \ 'w' : [':ExitExplorer | Windows'      , 'search windows'],
-      \ 'y' : [':ExitExplorer | Filetypes'    , 'file types'],
-      \ 'z' : [':ExitExplorer | FZF'          , 'FZF'],
+      \ '/' : ['History/'     , 'history'],
+      \ ';' : ['Commands'     , 'commands'],
+      \ 'a' : ['Ag'           , 'text Ag'],
+      \ 'b' : ['BLines'       , 'current buffer'],
+      \ 'B' : ['Buffers'      , 'open buffers'],
+      \ 'c' : ['Commits'      , 'commits'],
+      \ 'C' : ['BCommits'     , 'buffer commits'],
+      \ 'f' : ['MyFiles'      , 'files'],
+      \ 'g' : ['GFiles'       , 'git files'],
+      \ 'G' : ['GFiles?'      , 'modified git files'],
+      \ 'h' : ['History'      , 'file history'],
+      \ 'H' : ['History:'     , 'command history'],
+      \ 'l' : ['Lines'        , 'lines'] ,
+      \ 'm' : ['Marks'        , 'marks'] ,
+      \ 'M' : ['Maps'         , 'normal maps'] ,
+      \ 'p' : ['Helptags'     , 'help tags'] ,
+      \ 'P' : ['Tags'         , 'project tags'],
+      \ 's' : ['Snippets'     , 'snippets'],
+      \ 'S' : ['Colors'       , 'color schemes'],
+      \ 't' : ['Rg'           , 'text Rg'],
+      \ 'T' : ['BTags'        , 'buffer tags'],
+      \ 'w' : ['Windows'      , 'search windows'],
+      \ 'y' : ['Filetypes'    , 'file types'],
+      \ 'z' : ['FZF'          , 'FZF'],
       \ }
 
-
 " finding files with C-p
-nnoremap <silent><C-p> :ExitExplorer <Bar> MyFiles<CR>
+nnoremap <silent><C-p> :MyFiles<CR>
+

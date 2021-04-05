@@ -43,6 +43,7 @@ luafile ~/.config/nvim/lua/stephan/hop.lua
 " source ~/.config/nvim/plugin-config/neoformat.vim
 
 source ~/.config/nvim/os-specific.vim
+source ~/.config/nvim/base-config/notes.vim
 " Note: colorscheme is at end so that autocmds targeting it are triggered propertly
 source ~/.config/nvim/base-config/colorscheme.vim
 

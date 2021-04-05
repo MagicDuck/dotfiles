@@ -25,7 +25,8 @@ lspconfig.diagnosticls.setup {
     "scss",
     "css",
     "sass",
-    "lua"
+    "lua",
+    "markdown"
   },
   init_options = {
     filetypes = {
@@ -40,7 +41,8 @@ lspconfig.diagnosticls.setup {
     formatFiletypes = {
       javascript = {"prettier", "eslint"},
       javascriptreact = {"prettier", "eslint"},
-      lua = {"luafmt"}
+      lua = {"luafmt"},
+      markdown = {"prettier"}
     },
     linters = {
       eslint = eslint_linter,

@@ -7,6 +7,7 @@ let g:startify_lists = [
 
 let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
+            \ { 'e': '~/notes' },
             \ { 'K': '~/.config/nvim/base-config/keys.vim' },
             \ { 't': '~/.config/kitty/kitty.conf' },
             \ { 'T': '~/.tmux.conf' },

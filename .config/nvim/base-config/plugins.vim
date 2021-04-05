@@ -77,6 +77,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
 " Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+Plug 'itchyny/vim-highlighturl'
 
 " TODO: figure out how to use
 "Plug 'pelodelfuego/vim-swoop'

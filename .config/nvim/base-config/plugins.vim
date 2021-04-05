@@ -34,6 +34,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/playground', {'do': ':TSInstall query'}
 Plug 'windwp/nvim-ts-autotag'
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'unblevable/quick-scope'

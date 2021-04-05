@@ -43,7 +43,7 @@ Plug 'tommcdo/vim-fubitive'
 Plug 'kevinhwang91/rnvimr'    " ranger
 Plug 'kevinhwang91/nvim-bqf'  " quickfix
 " Stable version of coc 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Keeping up to date with master
 " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
@@ -56,7 +56,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'kshenoy/vim-signature'
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 Plug 'norcalli/nvim-colorizer.lua'
-Plug 'voldikss/vim-floaterm'
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-surround'
 Plug 'phaazon/hop.nvim'

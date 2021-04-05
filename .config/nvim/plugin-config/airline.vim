@@ -39,3 +39,6 @@ let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
 
 let airline#extensions#nvimlsp#error_symbol = ' '
 let airline#extensions#nvimlsp#warning_sybmol = '⚠️'
+
+let g:airline#extensions#tagbar#enabled = 0
+

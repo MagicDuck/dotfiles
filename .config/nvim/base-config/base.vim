@@ -97,3 +97,5 @@ command! -nargs=0 -bar Update if &modified
 
 command! -bar BufOnly execute '%bdelete|edit #|normal `"'
 
+let g:markdown_fenced_languages = ['bash=sh', 'javascript', 'js=javascript', 'json=javascript', 'typescript', 'ts=typescript', 'html', 'css', 'java']
+

@@ -21,7 +21,7 @@ source ~/.config/nvim/plugin-config/ranger.vim
 source ~/.config/nvim/plugin-config/rooter.vim
 source ~/.config/nvim/plugin-config/easyalign.vim
 source ~/.config/nvim/plugin-config/quickfix-bfq.vim
-source ~/.config/nvim/plugin-config/coc.vim
+" source ~/.config/nvim/plugin-config/coc.vim
 " source ~/.config/nvim/plugin-config/indent-blankline.vim
 " source ~/.config/nvim/plugin-config/chadtree.vim
 

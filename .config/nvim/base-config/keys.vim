@@ -90,8 +90,8 @@ cabbrev cprev Cprev
 cabbrev lnext Lnext
 cabbrev lprev Lprev
 
-nnoremap <Up>c :Cnext<CR>
-nnoremap <Down>c :Cprev<CR>
+nnoremap <Down>c :Cnext<CR>
+nnoremap <Up>c :Cprev<CR>
 
 " merge diff get
 nnoremap <Left>o :diffget 3<CR>

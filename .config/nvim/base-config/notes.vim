@@ -1,9 +1,13 @@
 let g:which_key_map.n = {
       \ 'name' : '+notes' ,
-      \ 'e' : [':cd ~/notes/ | Startify'     , 'open notes dir'],
-      \ 'd' : [':MyFiles ~/notes/'     , 'search note files'],
-      \ 'f' : ['SearchNotes'     , 'search notes text'],
+      \ 'e' : [':cd ~/notes/ | Startify'        , 'open notes dir'],
+      \ 'd' : [':MyFiles ~/notes/'              , 'search note files'],
+      \ 'f' : ['SearchNotes'                    , 'search notes text'],
       \ 'r' : [':e ~/notes/ | RnvimrToggle'     , 'open notes dir with ranger'],
+      \ 'g' : [':lvimgrep /\[ \]/ % | lopen'    , 'open todos in loclist'],
+      \ 'c' : ['<Plug>(simple-todo-mark-switch)'   , 'toggle todo status'],
+      \ 'O' : ['<Plug>(simple-todo-above)'         , 'add todo above'],
+      \ 'o' : ['<Plug>(simple-todo-below)'         , 'add todo below'],
       \ }
 
 command! -nargs=* -bang SearchNotes

@@ -106,8 +106,8 @@ nnoremap <Right>m :tabnext<CR>
 nnoremap <Left>m :tabprevious<CR>
 let g:which_key_map.t = {
       \ 'name' : '+tab' ,
-      \ 't' : [':tabnew | Startify'       , 'new tab with startify'],
-      \ 'c' : [':tabclose'                , 'close tab'],
+      \ 't' : [':tabnew'       , 'new tab'],
+      \ 'c' : [':tabclose'     , 'close tab'],
       \ }
 
 " clear search highlight

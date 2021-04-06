@@ -1,4 +1,5 @@
 let g:startify_lists = [
+      \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
       \ { 'type': 'files',     'header': ['   MRU']            },
       \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
       \ { 'type': 'sessions',  'header': ['   Sessions']       },
@@ -36,3 +37,9 @@ let g:startify_enable_special = 0
 
 " Keybindings
 let g:which_key_map['i'] = [ ':Startify'                  , 'start screen' ]
+
+augroup my_startify
+  autocmd!
+  " open startify on new tabs
+  autocmd TabNewEntered * Startify
+augroup END

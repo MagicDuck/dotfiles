@@ -11,12 +11,10 @@ local luafmt_formatter = require("stephan/lsp/diagnosticls/formatters/luafmt")
 
 lspconfig.diagnosticls.setup {
   -- cmd = {"diagnostic-languageserver", "--stdio", "--log-level", "4"},
-  root_dir = util.root_pattern(
-    "package.json",
-    "jsconfig.json",
-    ".git",
-    "stephanbadragan" -- home dir, could contain config for lua, etc.
-  ),
+  -- root_dir =  util.root_pattern("package.json", "jsconfig.json", ".git"),
+  root_dir = function(filepath)
+    return vim.fn.expand("~")
+  end,
   filetypes = {
     "javascript",
     "javascriptreact",

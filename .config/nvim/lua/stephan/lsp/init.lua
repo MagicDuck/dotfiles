@@ -1,8 +1,8 @@
 -- LSP config main
 
 -- logging
--- vim.lsp.set_log_level("trace")
--- vim.cmd('e '..vim.lsp.get_log_path())
+-- vim.lsp.set_log_level("debug")
+-- vim.cmd("e " .. vim.lsp.get_log_path())
 
 -- configure LSP servers
 -- Pre-requisite for those working is to have servers installed.

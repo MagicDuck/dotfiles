@@ -1,18 +1,17 @@
-LspFormatBuffer = function(bufnr) 
+LspFormatBuffer = function(bufnr)
   local marks = {}
-  local letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  local letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   for i = 1, #letters do
     local letter = letters:sub(i, i)
-    local markLocation = vim.api.nvim_buf_get_mark(0, letter)
-    marks[letter] = markLocation;
+    local markLocation = vim.api.nvim_buf_get_mark(bufnr, letter)
+    marks[letter] = markLocation
   end
 
-  vim.lsp.buf.formatting_sync({}, 5000) 
+  vim.lsp.buf.formatting_sync({}, 5000)
 
   for i = 1, #letters do
     local letter = letters:sub(i, i)
-    local markLocation = marks[letter];
-    local markLocation = vim.api.nvim_buf_get_mark(0, letter)
+    local markLocation = marks[letter]
     local linenr = markLocation[1]
     if (linenr ~= 0) then
       vim.api.nvim_command("" .. linenr .. "mark " .. letter)
@@ -171,9 +170,12 @@ local global_on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting
    then
     vim.fn.setbufvar(bufnr or 0, "my_lsp_formatting_attached", "yes")
+    local bufnum = bufnr or 0
     -- read/write shada?
     -- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 5000) ]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua LspFormatBuffer() ]]
+    vim.api.nvim_command(
+      "autocmd BufWritePre <buffer> lua LspFormatBuffer(" .. bufnum .. ")"
+    )
     -- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.schedule_wrap(function() vim.lsp.buf.formatting_sync({}, 5000); end) ]]
     buf_set_keymap(
       "n",

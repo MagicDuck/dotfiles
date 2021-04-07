@@ -33,6 +33,7 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight link TSError Normal
   " autocmd ColorScheme * highlight clear TSError
   " autocmd ColorScheme * highlight TSError guibg=#FAF2F2
+  " autocmd ColorScheme * highlight markdownHighlightjavascript guibg=#ffc9c9
 
 augroup END
 

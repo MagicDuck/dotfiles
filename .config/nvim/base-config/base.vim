@@ -62,7 +62,6 @@ set termguicolors      " true color
 
 " set grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
-command! -nargs=+ Search execute 'silent grep! <args>' | copen 16
 
 augroup mybaseconfig
   " Remove all mybaseconfig autocommands
@@ -105,4 +104,13 @@ cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
 cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
 cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
 cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
+
+" leader keys
+noremap <Space> <Nop>
+let mapleader = "\<Space>"
+let maplocalleader = ","
+
+" TODO cleanup
+" Create map to add which-key keys to for easy discovery
+let g:which_key_map = {}
 

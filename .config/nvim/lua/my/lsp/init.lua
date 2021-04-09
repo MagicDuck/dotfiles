@@ -22,11 +22,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   }
 )
 
-require("stephan/lsp/sumneko_lua")
-require("stephan/lsp/vimls")
-require("stephan/lsp/tsserver")
-require("stephan/lsp/diagnosticls")
-require("stephan/lsp/saga")
+require("my/lsp/sumneko_lua")
+require("my/lsp/vimls")
+require("my/lsp/tsserver")
+require("my/lsp/diagnosticls")
+require("my/lsp/saga")
 
 -- define signs to show in the sign column
 vim.fn.sign_define(

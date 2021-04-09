@@ -1,6 +1,6 @@
 local lspconfig = require('lspconfig')
-local attach = require('stephan/lsp/attach')
-local handlers = require('stephan/lsp/handlers')
+local attach = require('my/lsp/attach')
+local handlers = require('my/lsp/handlers')
 
 -- custom commands
 local function organize_imports()

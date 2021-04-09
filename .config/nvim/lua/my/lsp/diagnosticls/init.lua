@@ -1,13 +1,13 @@
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
-local handlers = require("stephan/lsp/handlers")
-local attach = require("stephan/lsp/attach")
-local eslint_linter = require("stephan/lsp/diagnosticls/linters/eslint")
-local stylelint_linter = require("stephan/lsp/diagnosticls/linters/stylelint")
-local eslint_formatter = require("stephan/lsp/diagnosticls/formatters/eslint")
+local handlers = require("my/lsp/handlers")
+local attach = require("my/lsp/attach")
+local eslint_linter = require("my/lsp/diagnosticls/linters/eslint")
+local stylelint_linter = require("my/lsp/diagnosticls/linters/stylelint")
+local eslint_formatter = require("my/lsp/diagnosticls/formatters/eslint")
 local prettier_formatter =
-  require("stephan/lsp/diagnosticls/formatters/prettier")
-local luafmt_formatter = require("stephan/lsp/diagnosticls/formatters/luafmt")
+  require("my/lsp/diagnosticls/formatters/prettier")
+local luafmt_formatter = require("my/lsp/diagnosticls/formatters/luafmt")
 
 lspconfig.diagnosticls.setup {
   -- cmd = {"diagnostic-languageserver", "--stdio", "--log-level", "4"},
@@ -69,6 +69,6 @@ lspconfig.diagnosticls.setup {
       handler = handlers.workspaceExecuteCommand
     },
     ["textDocument/publishDiagnostics"] = handlers.diagnosticlsPublishDiagnostics
-    -- ["textDocument/publishDiagnostics"] = ReloadFunc('stephan/lsp/handlers', 'diagnosticlsPublishDiagnostics')
+    -- ["textDocument/publishDiagnostics"] = ReloadFunc('my/lsp/handlers', 'diagnosticlsPublishDiagnostics')
   }
 }

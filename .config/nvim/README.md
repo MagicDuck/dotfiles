@@ -1,3 +1,10 @@
+# Keys to remember
+
+ - command history is:  `q:`
+ - sneak is bound to `s`
+ - quickscope is f, t, F, T  &  , and ;  to jump to next occurrence
+ - closing other windows except current is `wincmd o`
+
 # Workflows
 
 ## Search for file

@@ -46,7 +46,7 @@ local onActionPickerClose = function()
   actionsPickerActions = {}
 end
 
-local mytelescope = require("stephan/telescope")
+local mytelescope = require("my/telescope")
 vim.lsp.handlers["textDocument/codeAction"] = function(
   _, --err,
   _, --method,

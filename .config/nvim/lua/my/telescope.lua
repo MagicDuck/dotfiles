@@ -41,7 +41,7 @@ require("telescope").load_extension("fzf_writer")
 
 function M.pickKeybind(mode)
   local results = {}
-  for lhs, def in pairs(Mappings[mode] or {}) do
+  for lhs, def in pairs(my.state.Mappings[mode] or {}) do
     table.insert(
       results,
       {

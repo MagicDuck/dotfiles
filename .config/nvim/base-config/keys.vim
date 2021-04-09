@@ -90,20 +90,17 @@ cabbrev cprev Cprev
 cabbrev lnext Lnext
 cabbrev lprev Lprev
 
-nnoremap <Down>c :Cnext<CR>
-nnoremap <Up>c :Cprev<CR>
+lua Keybind("n", "<down>c", ":Cnext<CR>", { description = "next in quickfix"})
+lua Keybind("n", "<up>c", ":Cprev<CR>", { description = "prev in quickfix"})
 
-" merge diff get
-nnoremap <Left>o :diffget 3<CR>
-nnoremap <Right>o :diffget 1<CR>
+lua Keybind("n", "<left>o", ":diffget 3<CR>", { description = "conflict resolution: diff get from left"})
+lua Keybind("n", "<right>o", ":diffget 1<CR>", { description = "conflict resolution: diff get from right"})
+lua Keybind("n", "<down>d", "]c", { description = "conflict resolution: next conflict"})
+lua Keybind("n", "<up>d", "[c", { description = "conflict resolution: prev conflict"})
 
-" conflict navigation
-nnoremap <Down>d ]c
-nnoremap <Up>d [c
+lua Keybind("n", "<right>m", ":tabnext<CR>", { description = "next tab"})
+lua Keybind("n", "<left>m", ":tabprevious<CR>", { description = "prev tab"})
 
-" tab navigtion
-nnoremap <Right>m :tabnext<CR>
-nnoremap <Left>m :tabprevious<CR>
 let g:which_key_map.t = {
       \ 'name' : '+tab' ,
       \ 't' : [':tabnew'       , 'new tab'],
@@ -112,13 +109,6 @@ let g:which_key_map.t = {
 
 " clear search highlight
 let g:which_key_map['v'] = [ ':let @/ = ""'  , 'clear search' ]
-
-" wildmenu swap arrow keys and left right
-set wildcharm=<C-Z>
-cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
-cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
-cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
-cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 
 " marks - map all capital letter marks to lowercase as it's easier to type
 nnoremap ma mA

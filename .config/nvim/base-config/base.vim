@@ -99,3 +99,10 @@ command! -bar BufOnly execute '%bdelete|edit #|normal `"'
 
 let g:markdown_fenced_languages = ['bash=sh', 'javascript', 'js=javascript', 'json=javascript', 'typescript', 'ts=typescript', 'html', 'css', 'java']
 
+" wildmenu swap arrow keys and left right
+set wildcharm=<C-Z>
+cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
+cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
+cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
+cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
+

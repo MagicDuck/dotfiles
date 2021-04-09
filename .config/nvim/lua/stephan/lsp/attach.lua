@@ -55,20 +55,25 @@ local global_on_attach = function(client, bufnr)
 
   -- hover help
   -------------
-  buf_set_keymap(
-    "n",
-    "K",
-    ":Lspsaga hover_doc<CR>",
-    {silent = true, noremap = true}
-  )
-  -- buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  -- buf_set_keymap(
+  --   "n",
+  --   "K",
+  --   ":Lspsaga hover_doc<CR>",
+  --   {silent = true, noremap = true}
+  -- )
+  buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap(
     "n",
     "gs",
     ":Lspsaga signature_help<CR>",
     {silent = true, noremap = true}
   )
-  -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap(
+    "n",
+    "<C-k>",
+    "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+    opts
+  )
 
   -- navigation
   -------------
@@ -90,13 +95,13 @@ local global_on_attach = function(client, bufnr)
 
   -- code action
   --------------
-  buf_set_keymap(
-    "n",
-    "ck",
-    ":Lspsaga code_action<CR>",
-    {silent = true, noremap = true}
-  )
-  -- buf_set_keymap('n', '<space>aa', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  -- buf_set_keymap(
+  --   "n",
+  --   "ck",
+  --   ":Lspsaga code_action<CR>",
+  --   {silent = true, noremap = true}
+  -- )
+  buf_set_keymap("n", "ck", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
   buf_set_keymap(
     "n",
     "<C-f>",
@@ -112,19 +117,24 @@ local global_on_attach = function(client, bufnr)
 
   -- diagnostics related
   ----------------------
-  buf_set_keymap(
-    "n",
-    "cc",
-    ":lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>",
-    {silent = true, noremap = true}
-  )
+  -- buf_set_keymap(
+  --   "n",
+  --   "cc",
+  --   ":lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>",
+  --   {silent = true, noremap = true}
+  -- )
+  -- buf_set_keymap(
+  --   "n",
+  --   "cl",
+  --   ":lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>",
+  --   {silent = true, noremap = true}
+  -- )
   buf_set_keymap(
     "n",
     "cl",
-    ":lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>",
-    {silent = true, noremap = true}
+    "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>",
+    opts
   )
-  -- buf_set_keymap('n', '<space>dl', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap(
     "n",
     "<Up>f",

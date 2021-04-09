@@ -1,6 +1,8 @@
-autocmd BufWritePost *shortcutsrc !pkill -USR1 sxhkd
-autocmd BufWritePost ~/.xmonad/xmonad.hs call jobstart('/usr/bin/xmonad --restart')
-autocmd BufWritePost ~/.config/polybar/*.ini call jobstart('~/.config/polybar/launch.sh')
-autocmd BufWritePost ~/.config/dunst/dunstrc call jobstart('~/bin/start_dunst.sh')
-
+augroup MyOsSpecificStuff
+  autocmd!
+  autocmd BufWritePost *shortcutsrc !pkill -USR1 sxhkd
+  autocmd BufWritePost ~/.xmonad/xmonad.hs call jobstart('/usr/bin/xmonad --restart')
+  autocmd BufWritePost ~/.config/polybar/*.ini call jobstart('~/.config/polybar/launch.sh')
+  autocmd BufWritePost ~/.config/dunst/dunstrc call jobstart('~/bin/start_dunst.sh')
+augroup END
 

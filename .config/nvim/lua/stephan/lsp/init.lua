@@ -22,7 +22,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   }
 )
 
--- require("stephan/lsp/sumneko_lua")
+require("stephan/lsp/sumneko_lua")
 require("stephan/lsp/vimls")
 require("stephan/lsp/tsserver")
 require("stephan/lsp/diagnosticls")

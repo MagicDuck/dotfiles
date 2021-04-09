@@ -39,7 +39,7 @@ telescope.setup {
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("fzf_writer")
 
-function M.myMappings(mode)
+function M.pickKeybind(mode)
   local results = {}
   for lhs, def in pairs(Mappings[mode] or {}) do
     table.insert(
@@ -54,7 +54,14 @@ function M.myMappings(mode)
 
   pickers.new(
     {
-      prompt_title = "Keymap (mode " .. mode .. ")",
+      results_title = "Keymap (mode " .. mode .. ")",
+      prompt_title = "",
+      layout_strategy = "vertical",
+      -- winblend = 10,
+      layout_config = {
+        width_padding = 0.20,
+        height_padding = 0.3
+      },
       finder = finders.new_table {
         results = results,
         entry_maker = function(line)

@@ -88,7 +88,9 @@ command! Lprev try | lprev | catch | llast | catch | endtry
 cabbrev cnext Cnext
 cabbrev cprev Cprev
 cabbrev lnext Lnext
-cabbrev lprev Lprev
+cabbrev lprev LPREV
+
+lua Keybind("n", "<leader>k", ":lua require('stephan/telescope').pickKeybind('n')<CR>", { description = "show a list of key bindings to pick from"})
 
 lua Keybind("n", "<down>c", ":Cnext<CR>", { description = "next in quickfix"})
 lua Keybind("n", "<up>c", ":Cprev<CR>", { description = "prev in quickfix"})

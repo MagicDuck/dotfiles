@@ -1,4 +1,4 @@
-my.state.Mappings = {}
+my.state.keyMappings = {}
 
 my.termcode = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -27,11 +27,14 @@ my.keybind = function(conf)
     conf.options.silent = true
   end
 
-  if (my.state.Mappings[conf.mode] == nil) then
-    my.state.Mappings[conf.mode] = {}
+  for i = 1, #conf.mode do
+    local single_mode = conf.mode:sub(i, i)
+    if (my.state.keyMappings[single_mode] == nil) then
+      my.state.keyMappings[single_mode] = {}
+    end
+
+    my.state.keyMappings[single_mode][conf.lhs] = conf
+
+    vim.api.nvim_set_keymap(single_mode, conf.lhs, conf.rhs, conf.options)
   end
-
-  my.state.Mappings[conf.mode][conf.lhs] = conf
-
-  vim.api.nvim_set_keymap(conf.mode, conf.lhs, conf.rhs, conf.options)
 end

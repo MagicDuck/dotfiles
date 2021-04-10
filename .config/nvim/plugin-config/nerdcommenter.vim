@@ -17,6 +17,3 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 let g:NERDCreateDefaultMappings = 0
-
-" Keybindings
-let g:which_key_map['c'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]

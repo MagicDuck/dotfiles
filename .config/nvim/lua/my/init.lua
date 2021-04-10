@@ -8,6 +8,7 @@ end
 
 require("my/global/init")
 require("my/keys")
+require("my/commands")
 require("my/treesitter")
 require("my/compe")
 require("my/lspkind")
@@ -15,3 +16,4 @@ require("my/lsp/init")
 require("my/telescope")
 require("my/colorizer")
 require("my/hop")
+require("my/quickfix-bfq")

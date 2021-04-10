@@ -13,22 +13,15 @@ Plug 'Th3Whit3Wolf/one-nvim'
 Plug 'Th3Whit3Wolf/space-nvim'
 Plug 'sainnhe/gruvbox-material'
 
-" Airline
+" Other plugins
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 "Plug 'junegunn/fzf.vim', { 'commit': '23dda8602f138a9d75dd03803a79733ee783e356'} " fix for Rg not opening up
 Plug 'airblade/vim-rooter'
-
-" Session handling
-Plug 'mhinz/vim-startify'
-
-" remember keys
-Plug 'liuchengxu/vim-which-key'
-
-Plug 'scrooloose/nerdcommenter'
+Plug 'mhinz/vim-startify' 
+Plug 'scrooloose/nerdcommenter' " alt: https://github.com/b3nj5m1n/kommentary
 Plug 'easymotion/vim-easymotion'
 Plug 'Raimondi/delimitMate'
 Plug 'maksimr/vim-jsbeautify'
@@ -43,11 +36,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fubitive'
 Plug 'kevinhwang91/rnvimr'    " ranger
 Plug 'kevinhwang91/nvim-bqf'  " quickfix
-" Stable version of coc 
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Keeping up to date with master
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -64,27 +52,13 @@ Plug 'rafcamlet/nvim-luapad'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 "Plug 'akinsho/nvim-bufferline.lua'
-
-" built-in LSP related
 " Plug 'hrsh7th/vim-vsnip'
-" Plug 'ojroques/nvim-lspfuzzy'
-" manual language server installer has a few
-" Plug 'anott03/nvim-lspinstall'
 Plug 'onsails/lspkind-nvim'
-" auto language server installer - way of the future
-" Plug 'alexaandru/nvim-lspupdate'
-" Plug 'sbdchd/neoformat'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
-" Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 Plug 'itchyny/vim-highlighturl'
 Plug 'vitalk/vim-simple-todo'
-
-" TODO: figure out how to use
-"Plug 'pelodelfuego/vim-swoop'
-"Plug 'dyng/ctrlsf.vim'
-"    let g:ctrlsf_ackprg = 'rg'
 
 " alternative plugins
 " - auto-pairs, use instead of 'Raimondi/delimitMate'

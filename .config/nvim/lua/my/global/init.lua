@@ -1,4 +1,5 @@
 my = {state = {}}
 require("my/global/inspect")
-require("my/global/mappings")
+require("my/global/keyMappings")
+require("my/global/commands")
 require("my/global/reload")

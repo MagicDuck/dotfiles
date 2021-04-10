@@ -33,8 +33,8 @@ set laststatus=2
 set noshowcmd          " don't show command in status line as you type it
 set showfulltag
 set shortmess+=ts
-set shortmess+=c      " Avoid showing message extra message when using completion
-set shortmess+=A      " Avoid showing ATTENTION message when editing same file in multiple vims
+set shortmess+=c       " Avoid showing message extra message when using completion
+set shortmess+=A       " Avoid showing ATTENTION message when editing same file in multiple vims
 set bs=2               " make backspace work
 set wildchar=<Tab> wildmenu wildmode=longest:full,full wildignorecase
 set cursorline
@@ -59,6 +59,7 @@ set formatoptions-=cro " Stop newline continution of comments
 set signcolumn=yes     " always show sign column
 set scrolloff=999      " keep cursor in the middle of the window
 set termguicolors      " true color
+set notimeout          " don't time out on leader commands
 
 " set grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow

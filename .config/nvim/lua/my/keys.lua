@@ -2,7 +2,7 @@
 my.keybind {
   description = "show a list of key bindings to pick from",
   lhs = "<leader>k",
-  rhs = ":lua require('my/telescope').pickKeybind('n')<CR>"
+  rhs = ":lua require('my/telescope/command_picker').pickKeybindOrCommand({mode = 'n'})<CR>"
 }
 
 -- config reload
@@ -205,7 +205,7 @@ my.keybind {
 my.keybind {
   description = "highlighting: clear search highlight",
   lhs = "<leader>v",
-  rhs = ':let @/ = ""'
+  rhs = ':let @/ = ""<CR>'
 }
 
 -- marks
@@ -218,4 +218,67 @@ for i = 1, #letters do
     lhs = "m" .. letter,
     rhs = "m" .. uppercaseLetter
   }
+  my.keybind {
+    description = "marks: go to mark " .. uppercaseLetter,
+    lhs = "'" .. letter,
+    rhs = "'" .. uppercaseLetter
+  }
 end
+
+-- startify
+my.keybind {
+  description = "open startify",
+  lhs = "<leader>i",
+  rhs = ":Startify<CR>"
+}
+
+-- commenting
+my.keybind {
+  description = "comment: toggle comment",
+  mode = "nvsox",
+  lhs = "<leader>c",
+  rhs = "<Plug>NERDCommenterToggle"
+}
+
+-- git
+my.keybind {
+  description = "git: blame",
+  lhs = "<leader>gb",
+  rhs = ":Git blame<CR>"
+}
+my.keybind {
+  description = "git: status",
+  lhs = "<leader>gs",
+  rhs = ":Git status<CR>"
+}
+my.keybind {
+  description = "git: open current file in web browser (stash)",
+  lhs = "<leader>go",
+  rhs = ":GBrowse<CR>"
+}
+
+-- ranger
+my.keybind {
+  description = "ranger: toggle open",
+  lhs = "<leader>r",
+  rhs = ":RnvimrToggle<CR>"
+}
+my.keybind {
+  description = "ranger: toggle open (extra binding that works in terminal mode)",
+  lhs = "<M-o>",
+  rhs = ":RnvimrToggle<CR>"
+}
+my.keybind {
+  mode = "t",
+  description = "ranger: toggle open (extra binding that works in terminal mode)",
+  lhs = "<M-o>",
+  rhs = "<C-\\><C-n>:RnvimrToggle<CR>"
+}
+
+-- easy align
+my.keybind {
+  description = "Easy Align: Start interactive EasyAlign for (e.g. gaip, vipga)",
+  mode = "nvsox",
+  lhs = "ga",
+  rhs = "<Plug>(EasyAlign)"
+}

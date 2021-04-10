@@ -46,7 +46,7 @@ local onActionPickerClose = function()
   actionsPickerActions = {}
 end
 
-local mytelescope = require("my/telescope")
+local code_action_picker = require("my/telescope/code_action_picker")
 vim.lsp.handlers["textDocument/codeAction"] = function(
   _, --err,
   _, --method,
@@ -60,12 +60,13 @@ vim.lsp.handlers["textDocument/codeAction"] = function(
 
   if (actionsPicker == nil) then
     actionsPicker =
-      mytelescope.getCodeActionPicker(
+      code_action_picker.getCodeActionPicker(
       {onActionPickerClose = onActionPickerClose}
     )
     actionsPicker:find()
   end
-  local actionsFinder = mytelescope.getCodeActionFinder(actionsPickerActions)
+  local actionsFinder =
+    code_action_picker.getCodeActionFinder(actionsPickerActions)
   actionsPicker:refresh(actionsFinder, {reset_prompt = false})
 end
 

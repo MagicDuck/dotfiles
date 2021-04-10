@@ -256,6 +256,11 @@ my.keybind {
   lhs = "<leader>go",
   rhs = ":GBrowse<CR>"
 }
+my.keybind {
+  description = "git: pick from modified git files",
+  lhs = "<leader>gm",
+  rhs = "GFiles?"
+}
 
 -- ranger
 my.keybind {
@@ -281,4 +286,46 @@ my.keybind {
   mode = "nvsox",
   lhs = "ga",
   rhs = "<Plug>(EasyAlign)"
+}
+
+-- fuzzy find things
+my.keybind {
+  description = "Search: pick from existing buffers",
+  lhs = "<leader>b",
+  rhs = ":Buffers<CR>"
+}
+my.keybind {
+  description = "Search: pick from project files",
+  lhs = "<leader>d",
+  rhs = ":MyFiles<CR>"
+}
+my.keybind {
+  description = "Search: pick from project files (alternate keybind)",
+  lhs = "<C-p>",
+  rhs = ":MyFiles<CR>"
+}
+my.keybind {
+  description = "Search: find text in project files",
+  lhs = "<leader>f",
+  rhs = ":Search<CR>"
+}
+my.keybind {
+  description = "Search: pick a mark location",
+  lhs = "<leader>j",
+  rhs = ":MarksWithPreview<CR>"
+}
+my.keybind {
+  description = "Search: pick a line in the current buffer",
+  lhs = "<leader>sb",
+  rhs = ":BLines<CR>"
+}
+my.keybind {
+  description = "Search: pick a line in all opened buffers",
+  lhs = "<leader>sl",
+  rhs = ":Lines<CR>"
+}
+my.keybind {
+  description = "Search: pick an exsting window to go to",
+  lhs = "<leader>sw",
+  rhs = ":Windows<CR>"
 }

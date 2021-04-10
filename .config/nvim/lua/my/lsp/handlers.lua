@@ -70,6 +70,18 @@ vim.lsp.handlers["textDocument/codeAction"] = function(
   actionsPicker:refresh(actionsFinder, {reset_prompt = false})
 end
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(
+  vim.lsp.handlers["textDocument/publishDiagnostics"],
+  -- vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    -- Enable underline, use default values
+    underline = false
+    -- Disable a feature
+    -- update_in_insert = false,
+  }
+)
+
 exports.tsserverPublishDiagnostics = function(
   err,
   method,

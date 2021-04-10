@@ -40,16 +40,17 @@ function M.pickKeybindOrCommand(opts)
             return {
               value = def,
               ordinal = def.description .. def.cmd,
-              display = def.description .. "    (" .. def.cmd .. ")"
+              display = "♖ " .. def.description .. "  ♘ " .. def.cmd
             }
           else
             return {
               value = def,
               ordinal = def.description ..
                 utils.display_termcodes(def.lhs) .. def.rhs,
-              display = def.description ..
-                "    (" ..
-                  utils.display_termcodes(def.lhs) .. " -> " .. def.rhs .. ")"
+              display = "♗ " ..
+                def.description ..
+                  "  ♘ " .. utils.display_termcodes(def.lhs) .. " "
+              -- utils.display_termcodes(def.lhs) .. " -> " .. def.rhs .. ")"
             }
           end
         end

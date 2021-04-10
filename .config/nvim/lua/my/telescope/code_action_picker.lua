@@ -39,66 +39,6 @@ telescope.setup {
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("fzf_writer")
 
-function M.pickKeybind(mode)
-  local results = {}
-  for lhs, def in pairs(my.state.Mappings[mode] or {}) do
-    table.insert(
-      results,
-      {
-        lhs = lhs,
-        rhs = def.rhs,
-        description = def.description
-      }
-    )
-  end
-
-  pickers.new(
-    {
-      results_title = "Keymap (mode " .. mode .. ")",
-      prompt_title = "",
-      layout_strategy = "vertical",
-      -- winblend = 10,
-      layout_config = {
-        width_padding = 0.20,
-        height_padding = 0.3
-      },
-      finder = finders.new_table {
-        results = results,
-        entry_maker = function(line)
-          return {
-            value = line,
-            ordinal = line.description ..
-              utils.display_termcodes(line.lhs) .. line.rhs,
-            display = line.description ..
-              "    ( " ..
-                utils.display_termcodes(line.lhs) .. " -> " .. line.rhs .. " )"
-          }
-        end
-      },
-      sorter = sorters.get_generic_fuzzy_sorter(),
-      attach_mappings = function(prompt_bufnr)
-        actions.select_default:replace(
-          function()
-            local selection = action_state.get_selected_entry()
-            vim.api.nvim_feedkeys(
-              vim.api.nvim_replace_termcodes(
-                selection.value.lhs,
-                true,
-                false,
-                true
-              ),
-              "t",
-              true
-            )
-            return actions.close(prompt_bufnr)
-          end
-        )
-        return true
-      end
-    }
-  ):find()
-end
-
 M.getCodeActionFinder = function(codeActions)
   local finder =
     finders.new_table {
@@ -107,7 +47,7 @@ M.getCodeActionFinder = function(codeActions)
       return {
         value = codeAction,
         ordinal = codeAction.title,
-        display = codeAction.title
+        display = "♕ " .. codeAction.title
       }
     end
   }

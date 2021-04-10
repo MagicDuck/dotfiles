@@ -8,5 +8,9 @@ my.command = function(conf)
     error("my.command: description is required")
   end
 
+  if my.state.commands[conf.cmd] ~= nil then
+    P(conf)
+    error("command: duplicate command detected!")
+  end
   my.state.commands[conf.cmd] = conf
 end

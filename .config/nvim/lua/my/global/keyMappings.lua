@@ -33,6 +33,10 @@ my.keybind = function(conf)
       my.state.keyMappings[single_mode] = {}
     end
 
+    if my.state.keyMappings[single_mode][conf.lhs] ~= nil then
+      P(conf)
+      error("keybind: duplicate key mapping detected!")
+    end
     my.state.keyMappings[single_mode][conf.lhs] = conf
 
     vim.api.nvim_set_keymap(single_mode, conf.lhs, conf.rhs, conf.options)

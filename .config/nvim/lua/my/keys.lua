@@ -382,3 +382,75 @@ my.keybind {
   lhs = "<leader>nb",
   rhs = ":EditNoteForBranch<CR>"
 }
+
+-- LSP
+my.keybind {
+  description = "lsp: trigger symbol hover popup",
+  lhs = "K",
+  rhs = ":lua vim.lsp.buf.hover()<CR>"
+}
+my.keybind {
+  description = "lsp: trigger signature help popup",
+  lhs = ",s",
+  rhs = ":lua vim.lsp.buf.signature_help()<CR>"
+}
+my.keybind {
+  description = "lsp: go to symbol declaration",
+  lhs = "gD",
+  rhs = ":lua vim.lsp.buf.declaration()<CR>"
+}
+my.keybind {
+  description = "lsp: go to symbol definition",
+  lhs = "gd",
+  rhs = ":lua vim.lsp.buf.definition()<CR>"
+}
+my.keybind {
+  description = "lsp: go to symbol type definition",
+  lhs = "gy",
+  rhs = ":lua vim.lsp.buf.type_definition()<CR>"
+}
+my.keybind {
+  description = "lsp: go to symbol implementation",
+  lhs = "gm",
+  rhs = ":lua vim.lsp.buf.implementation()<CR>"
+}
+my.keybind {
+  description = "lsp: go to symbol references",
+  lhs = "gr",
+  rhs = ":lua vim.lsp.buf.references() <CR>"
+}
+my.keybind {
+  description = "lsp: rename symbol",
+  lhs = ",r",
+  rhs = ":lua require('lspsaga.rename').rename()<CR>"
+}
+my.keybind {
+  description = "lsp: pick a code action",
+  lhs = ",a",
+  rhs = ":lua require('lspsaga.rename').rename()<CR>"
+}
+my.keybind {
+  description = "lsp: show line diagnostics",
+  lhs = ",l",
+  rhs = ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>"
+}
+my.keybind {
+  description = "lsp: go to previous diagnositc",
+  lhs = "<up>f",
+  rhs = ":lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>"
+}
+my.keybind {
+  description = "lsp: go to next diagnostic",
+  lhs = "<down>f",
+  rhs = ":lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>"
+}
+my.keybind {
+  description = "lsp: put buffer diagnostics into the loclist",
+  lhs = ",f",
+  rhs = ":lua vim.lsp.diagnostic.set_loclist()<CR>"
+}
+my.keybind {
+  description = "lsp: format current buffer",
+  lhs = ",F",
+  rhs = "<cmd>lua vim.lsp.buf.formatting()<CR>"
+}

@@ -68,6 +68,9 @@ augroup mybaseconfig
   " Remove all mybaseconfig autocommands
   autocmd!
 
+  " packer recompile
+  autocmd BufWritePost plugins.lua PackerCompile
+
   " diffing
   autocmd VimEnter * if &diff | execute 'windo set wrap' | endif
   

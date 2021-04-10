@@ -1,7 +1,6 @@
 set rtp+=/usr/local/bin
 
-" TODO: plugins -> lua?
-source ~/.config/nvim/base-config/plugins.vim
+lua require('my/plugins')
 source ~/.config/nvim/base-config/base.vim
 source ~/.config/nvim/base-config/commands.vim
 luafile ~/.config/nvim/lua/my/init.lua

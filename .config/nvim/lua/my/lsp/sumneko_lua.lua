@@ -36,7 +36,8 @@ lspconfig.sumneko_lua.setup {
           "P",
           "ReloadPackage",
           "ReloadFunc",
-          "my"
+          "my",
+          "use"
         }
       },
       workspace = {

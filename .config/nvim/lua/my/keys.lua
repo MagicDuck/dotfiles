@@ -385,67 +385,67 @@ my.keybind {
 
 -- LSP
 my.keybind {
-  description = "lsp: trigger symbol hover popup",
+  description = "lsp: symbol: trigger hover help popup",
   lhs = "K",
   rhs = ":lua vim.lsp.buf.hover()<CR>"
 }
 my.keybind {
-  description = "lsp: trigger signature help popup",
+  description = "lsp: symbol: trigger signature help popup",
   lhs = ",s",
   rhs = ":lua vim.lsp.buf.signature_help()<CR>"
 }
 my.keybind {
-  description = "lsp: go to symbol declaration",
+  description = "lsp: symbol: go to declaration",
   lhs = "gD",
   rhs = ":lua vim.lsp.buf.declaration()<CR>"
 }
 my.keybind {
-  description = "lsp: go to symbol definition",
+  description = "lsp: symbol: go to definition",
   lhs = "gd",
   rhs = ":lua vim.lsp.buf.definition()<CR>"
 }
 my.keybind {
-  description = "lsp: go to symbol type definition",
+  description = "lsp: symbol: go to type definition",
   lhs = "gy",
   rhs = ":lua vim.lsp.buf.type_definition()<CR>"
 }
 my.keybind {
-  description = "lsp: go to symbol implementation",
+  description = "lsp: symbol: go to implementation",
   lhs = "gm",
   rhs = ":lua vim.lsp.buf.implementation()<CR>"
 }
 my.keybind {
-  description = "lsp: go to symbol references",
+  description = "lsp: symbol: go to references",
   lhs = "gr",
   rhs = ":lua vim.lsp.buf.references() <CR>"
 }
 my.keybind {
-  description = "lsp: rename symbol",
+  description = "lsp: symbol: rename",
   lhs = ",r",
   rhs = ":lua require('lspsaga.rename').rename()<CR>"
 }
 my.keybind {
-  description = "lsp: pick a code action",
+  description = "lsp: code action: pick",
   lhs = ",a",
   rhs = ":lua require('lspsaga.rename').rename()<CR>"
 }
 my.keybind {
-  description = "lsp: show line diagnostics",
+  description = "lsp: diagnostics: show from current line",
   lhs = ",l",
   rhs = ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>"
 }
 my.keybind {
-  description = "lsp: go to previous diagnositc",
+  description = "lsp: diagnostics: go to previous",
   lhs = "<up>f",
   rhs = ":lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>"
 }
 my.keybind {
-  description = "lsp: go to next diagnostic",
+  description = "lsp: diagnostics: go to next",
   lhs = "<down>f",
   rhs = ":lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>"
 }
 my.keybind {
-  description = "lsp: put buffer diagnostics into the loclist",
+  description = "lsp: diagnostics: put all buffer diagnostics into the loclist",
   lhs = ",f",
   rhs = ":lua vim.lsp.diagnostic.set_loclist()<CR>"
 }

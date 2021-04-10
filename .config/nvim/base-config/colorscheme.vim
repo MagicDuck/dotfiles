@@ -36,6 +36,8 @@ augroup colorscheme_custom
   " autocmd ColorScheme * highlight markdownHighlightjavascript guibg=#ffc9c9
 
   autocmd ColorScheme * highlight TelescopeNormal guibg=#fafbfc
+  " autocmd ColorScheme * highlight clear Cursor
+  " autocmd ColorScheme * highlight Cursor guibg=#DBD1F6
 augroup END
 
 " remove odd ~ squiggles from end of buffer and other annoying places, like diffs

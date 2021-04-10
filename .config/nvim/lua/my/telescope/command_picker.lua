@@ -55,7 +55,9 @@ function M.pickKeybindOrCommand(opts)
           end
         end
       },
-      sorter = sorters.get_generic_fuzzy_sorter(),
+      -- sorter = sorters.get_generic_fuzzy_sorter(),
+      -- sorter = sorters.fuzzy_with_index_bias(),
+      sorter = sorters.get_fzy_sorter(),
       attach_mappings = function(prompt_bufnr)
         actions.select_default:replace(
           function()

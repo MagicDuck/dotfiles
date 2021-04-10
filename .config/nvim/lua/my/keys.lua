@@ -102,6 +102,7 @@ my.keybind {
 -- windows
 my.keybind {
   description = "window: enter window mode",
+  mode = "n",
   lhs = "<BS>",
   rhs = "<C-W>"
 }

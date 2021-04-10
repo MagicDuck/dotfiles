@@ -61,3 +61,35 @@ command! -bar -bang MarksWithPreview
       \               'options': '--preview-window +{2}-/2'}),
       \     <bang>0)
 
+" Search notes
+"-----------------------------------------------------------------------------------------------
+command! -nargs=* -bang SearchNotes
+  \ call RipgrepFzf('~/notes/', <q-args>)
+
+" Edit/add note file
+"-----------------------------------------------------------------------------------------------
+function! EditNoteFile(bang, path, extension, filename) 
+    let file = expand(fnameescape(a:path) . trim(fnameescape(a:filename)) . a:extension) 
+    let exists = filereadable(file)
+    :exe "e". a:bang. " " . file
+    if !exists
+      call append(0, ["# " . a:filename, "", ""])
+      normal 3gg
+      startinsert
+    endif
+endfunction
+command! -bang -nargs=* EditNote :call EditNoteFile(<q-bang>, "~/notes/", ".md", <q-args>) 
+
+" Edit/add note file for git branch
+"-----------------------------------------------------------------------------------------------
+function! EditBranchNoteFile(bang, path, extension) 
+  let inGit = !system("git rev-parse --git-dir > /dev/null 2>&1; echo $?") 
+  if inGit
+    let branchName = system("git branch | grep \\* | cut -d ' ' -f2")
+    call EditNoteFile(a:bang, a:path, a:extension, branchName)
+  else
+    echo "Not in a git repo!"
+  endif
+endfunction
+
+command! -bang -nargs=* EditNoteForBranch :call EditBranchNoteFile(<q-bang>, "~/notes/", ".md") 

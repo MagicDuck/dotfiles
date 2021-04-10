@@ -329,3 +329,55 @@ my.keybind {
   lhs = "<leader>sw",
   rhs = ":Windows<CR>"
 }
+
+-- notes
+my.keybind {
+  description = "Notes: open notes dir",
+  lhs = "<leader>ne",
+  rhs = ":cd ~/notes/ | Startify<CR>"
+}
+my.keybind {
+  description = "Notes: pick a note file",
+  lhs = "<leader>nd",
+  rhs = ":MyFiles ~/notes/<CR>"
+}
+my.keybind {
+  description = "Notes: find in note files",
+  lhs = "<leader>nf",
+  rhs = ":SearchNotes<CR>"
+}
+my.keybind {
+  description = "Notes: open notes dir with ranger",
+  lhs = "<leader>nr",
+  rhs = ":e ~/notes/ | RnvimrToggle<CR>"
+}
+my.keybind {
+  description = "Notes: todo: open buffer todos in loclist",
+  lhs = "<leader>ng",
+  rhs = ":lvimgrep /\\[[o -]\\]/ % | lopen<CR>"
+}
+my.keybind {
+  description = "Notes: todo: toggle status",
+  lhs = "<leader>nc",
+  rhs = "<Plug>(simple-todo-mark-switch)"
+}
+my.keybind {
+  description = "Notes: todo: add on line above",
+  lhs = "<leader>nO",
+  rhs = "<Plug>(simple-todo-above)"
+}
+my.keybind {
+  description = "Notes: todo: add on line below",
+  lhs = "<leader>no",
+  rhs = "<Plug>(simple-todo-below)"
+}
+my.keybind {
+  description = "Notes: add/edit note",
+  lhs = "<leader>na",
+  rhs = ":EditNote "
+}
+my.keybind {
+  description = "Notes: add/edit note for current git branch",
+  lhs = "<leader>nb",
+  rhs = ":EditNoteForBranch<CR>"
+}

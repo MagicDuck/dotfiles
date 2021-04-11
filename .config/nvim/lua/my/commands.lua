@@ -14,3 +14,7 @@ my.command {
   description = "Git: search in buffer commits",
   cmd = ":BCommits<CR>"
 }
+my.command {
+  description = "Terminal: open at current buffer dir",
+  cmd = ":lua require('my/terminal').openTerminalAtCurrentBufferLocation()<CR>"
+}

@@ -3,9 +3,6 @@
 -- Commands to install them:
 -- yarn global add eslint_d prettier_d_slim_latest stylelint_d lua-fmt diagnostic-languageserver typescript typescript-language-server
 
--- stop all clients (useful when reloading)
-vim.lsp.stop_client(vim.lsp.get_active_clients())
-
 -- logging
 -- vim.lsp.set_log_level("debug")
 -- vim.cmd("e " .. vim.lsp.get_log_path())

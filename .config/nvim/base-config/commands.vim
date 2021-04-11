@@ -29,16 +29,16 @@ command! -nargs=+ RgSearch execute 'silent grep! <args>' | copen 16
 command! -bang -nargs=? -complete=dir MyFiles
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
-function! RipgrepFzf(path, rgArgs) 
+function! RipgrepFzf(path, initialQuery, rgArgs) 
   let command_fmt = "rg --column --line-number --no-heading --color=always --ignore-file %s --smart-case %s %s %s || true"
-  let initial_command = printf(command_fmt, g:my_global_rg_ignore_file, "", a:path, a:rgArgs)
+  let initial_command = printf(command_fmt, g:my_global_rg_ignore_file, shellescape(a:initialQuery), a:path, a:rgArgs)
   let reload_command = printf(command_fmt, g:my_global_rg_ignore_file, '{q}', a:path, a:rgArgs)
-  let spec = {'options': ['--phony', '--query', "", '--bind', 'change:reload:'.reload_command]}
+  let spec = {'options': ['--phony', '--query', a:initialQuery, '--bind', 'change:reload:'.reload_command]}
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), 0)
 endfunction
 
 command! -nargs=* -bang Search
-  \ call RipgrepFzf('', <q-args>)
+  \ call RipgrepFzf('', '', <q-args>)
 
 " Marks with preview
 "-----------------------------------------------------------------------------------------------
@@ -64,7 +64,12 @@ command! -bar -bang MarksWithPreview
 " Search notes
 "-----------------------------------------------------------------------------------------------
 command! -nargs=* -bang SearchNotes
-  \ call RipgrepFzf('~/notes/', <q-args>)
+  \ call RipgrepFzf('~/notes/', '', <q-args>)
+
+" Search notes
+"-----------------------------------------------------------------------------------------------
+command! -nargs=* -bang SearchForTodoComments
+  \ call RipgrepFzf('', 'TODO \(sbadragan\)', <q-args>)
 
 " Edit/add note file
 "-----------------------------------------------------------------------------------------------

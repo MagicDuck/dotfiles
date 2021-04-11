@@ -9,7 +9,7 @@ my.keybind {
 my.keybind {
   description = "reload: vim config",
   lhs = "<leader>R",
-  rhs = ":source ~/.config/nvim/init.vim<CR>"
+  rhs = ":lua my.reloadVim()<CR>"
 }
 
 -- copy/paste/save
@@ -260,7 +260,7 @@ my.keybind {
 my.keybind {
   description = "git: pick from modified git files",
   lhs = "<leader>gm",
-  rhs = "GFiles?"
+  rhs = ":GFiles?<CR>"
 }
 
 -- ranger
@@ -333,54 +333,65 @@ my.keybind {
 
 -- notes
 my.keybind {
-  description = "Notes: open notes dir",
+  description = "notes: open notes dir",
   lhs = "<leader>ne",
   rhs = ":cd ~/notes/ | Startify<CR>"
 }
 my.keybind {
-  description = "Notes: pick a note file",
+  description = "notes: pick a note file",
   lhs = "<leader>nd",
   rhs = ":MyFiles ~/notes/<CR>"
 }
 my.keybind {
-  description = "Notes: find in note files",
+  description = "notes: find in note files",
   lhs = "<leader>nf",
   rhs = ":SearchNotes<CR>"
 }
 my.keybind {
-  description = "Notes: open notes dir with ranger",
+  description = "notes: open notes dir with ranger",
   lhs = "<leader>nr",
   rhs = ":e ~/notes/ | RnvimrToggle<CR>"
 }
 my.keybind {
-  description = "Notes: todo: open buffer todos in loclist",
+  description = "notes: todo: open buffer todos in loclist",
   lhs = "<leader>ng",
   rhs = ":lvimgrep /\\[[o -]\\]/ % | lopen<CR>"
 }
 my.keybind {
-  description = "Notes: todo: toggle status",
+  description = "notes: todo: toggle status",
   lhs = "<leader>nc",
   rhs = "<Plug>(simple-todo-mark-switch)"
 }
 my.keybind {
-  description = "Notes: todo: add on line above",
+  description = "notes: todo: add on line above",
   lhs = "<leader>nO",
   rhs = "<Plug>(simple-todo-above)"
 }
 my.keybind {
-  description = "Notes: todo: add on line below",
+  description = "notes: todo: add on line below",
   lhs = "<leader>no",
   rhs = "<Plug>(simple-todo-below)"
 }
 my.keybind {
-  description = "Notes: add/edit note",
+  description = "notes: add/edit note",
   lhs = "<leader>na",
-  rhs = ":EditNote "
+  rhs = ":EditNote ",
+  options = {silent = false}
 }
 my.keybind {
-  description = "Notes: add/edit note for current git branch",
+  description = "notes: add/edit note for current git branch",
   lhs = "<leader>nb",
   rhs = ":EditNoteForBranch<CR>"
+}
+my.keybind {
+  description = "notes: todo comments: add on line above",
+  lhs = "<leader>nt",
+  rhs = ":lua require('my/todos').addTodoCommentToLineAbove()<CR>"
+}
+my.keybind {
+  description = "notes: todo comments: search in project",
+  lhs = "<leader>ns",
+  rhs = ":SearchForTodoComments<CR>"
 }
 
 -- LSP

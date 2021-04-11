@@ -90,12 +90,12 @@ my.keybind {
 }
 my.keybind {
   description = "tab: create new tab",
-  lhs = "<leader>tt",
+  lhs = "<leader>mt",
   rhs = ":tabnew<CR>"
 }
 my.keybind {
   description = "tab: close current tab",
-  lhs = "<leader>tc",
+  lhs = "<leader>mc",
   rhs = ":tabclose<CR>"
 }
 

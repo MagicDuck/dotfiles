@@ -10,13 +10,16 @@ my.keybind = function(conf)
   end
 
   if (conf.lhs == nil) then
-    error("my.keybind: lhs is required!")
+    print("my.keybind: lhs is required!")
+    return
   end
   if (conf.rhs == nil) then
-    error("my.keybind: rhs is required!")
+    print("my.keybind: rhs is required!")
+    return
   end
   if (conf.description == nil) then
-    error("my.keybind: description is required!")
+    print("my.keybind: description is required!")
+    return
   end
   if (conf.options == nil) then
     conf.options = {}

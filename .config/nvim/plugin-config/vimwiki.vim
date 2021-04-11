@@ -4,7 +4,9 @@ let wiki.syntax = 'markdown'
 let wiki.ext = '.md'
 let wiki.nested_syntaxes = {
   \ 'js': 'javascript',
-  \ 'c++': 'cpp'
+  \ 'sh': 'bash',
+  \ 'shell': 'bash',
+  \ 'json': 'javascript',
   \ }
 let g:vimwiki_list = [wiki]
 

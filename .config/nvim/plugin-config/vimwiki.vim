@@ -12,3 +12,5 @@ let g:vimwiki_list = [wiki]
 
 let g:vimwiki_key_mappings = { 'links': 0 }
 let g:vimwiki_conceal_pre = 1
+let g:vimwiki_listsyms = ' .oOx' 
+    

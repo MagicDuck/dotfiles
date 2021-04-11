@@ -360,22 +360,7 @@ my.keybind {
 my.keybind {
   description = "notes: todo: open buffer todos in loclist",
   lhs = "<leader>ng",
-  rhs = ":lvimgrep /\\[[o -]\\]/ % | lopen<CR>"
-}
-my.keybind {
-  description = "notes: todo: toggle status",
-  lhs = "<leader>nc",
-  rhs = "<Plug>(simple-todo-mark-switch)"
-}
-my.keybind {
-  description = "notes: todo: add on line above",
-  lhs = "<leader>nO",
-  rhs = "<Plug>(simple-todo-above)"
-}
-my.keybind {
-  description = "notes: todo: add on line below",
-  lhs = "<leader>no",
-  rhs = "<Plug>(simple-todo-below)"
+  rhs = ":lvimgrep /\\[[ ]\\]/ % | lopen<CR>"
 }
 my.keybind {
   description = "notes: add/edit note",

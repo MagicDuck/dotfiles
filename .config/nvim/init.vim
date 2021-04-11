@@ -12,7 +12,6 @@ source ~/.config/nvim/plugin-config/quickscope.vim
 source ~/.config/nvim/plugin-config/fugitive.vim
 source ~/.config/nvim/plugin-config/ranger.vim
 source ~/.config/nvim/plugin-config/rooter.vim
-source ~/.config/nvim/plugin-config/simple-todo.vim
 source ~/.config/nvim/plugin-config/fzf.vim
 source ~/.config/nvim/plugin-config/vimwiki.vim
 

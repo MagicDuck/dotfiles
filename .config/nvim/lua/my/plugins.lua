@@ -72,7 +72,7 @@ return require("packer").startup(
     use "hrsh7th/nvim-compe"
     use "glepnir/lspsaga.nvim"
     use "itchyny/vim-highlighturl"
-    use "vitalk/vim-simple-todo"
+    -- use "vitalk/vim-simple-todo"
     use "vimwiki/vimwiki"
 
     -- alternative plugins

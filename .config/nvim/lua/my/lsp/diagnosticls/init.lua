@@ -5,8 +5,7 @@ local attach = require("my/lsp/attach")
 local eslint_linter = require("my/lsp/diagnosticls/linters/eslint")
 local stylelint_linter = require("my/lsp/diagnosticls/linters/stylelint")
 local eslint_formatter = require("my/lsp/diagnosticls/formatters/eslint")
-local prettier_formatter =
-  require("my/lsp/diagnosticls/formatters/prettier")
+local prettier_formatter = require("my/lsp/diagnosticls/formatters/prettier")
 local luafmt_formatter = require("my/lsp/diagnosticls/formatters/luafmt")
 
 lspconfig.diagnosticls.setup {
@@ -24,7 +23,8 @@ lspconfig.diagnosticls.setup {
     "css",
     "sass",
     "lua",
-    "markdown"
+    "markdown",
+    "vimwiki"
   },
   init_options = {
     filetypes = {
@@ -40,7 +40,8 @@ lspconfig.diagnosticls.setup {
       javascript = {"prettier", "eslint"},
       javascriptreact = {"prettier", "eslint"},
       lua = {"luafmt"},
-      markdown = {"prettier"}
+      markdown = {"prettier"},
+      vimwiki = {"prettier"}
     },
     linters = {
       eslint = eslint_linter,

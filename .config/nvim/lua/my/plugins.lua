@@ -75,6 +75,7 @@ return require("packer").startup(
     -- use "vitalk/vim-simple-todo"
     use "vimwiki/vimwiki"
     use "powerman/vim-plugin-AnsiEsc"
+    use "moll/vim-bbye"
 
     -- alternative plugins
     -- auto-pairs, use instead of 'Raimondi/delimitMate'

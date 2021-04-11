@@ -18,7 +18,7 @@ function! MyBwipeout(listed) abort
       execute 'bwipeout' join(map(l:buffers, {_, v -> v.bufnr}))
   endif
 endfunction
-command! -bar -bang Bwipeout call MyBwipeout(<bang>0)
+command! -bar -bang BwipeoutAll call MyBwipeout(<bang>0)
 
 " Grep with rg and open in quickfix
 "-----------------------------------------------------------------------------------------------

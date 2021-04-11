@@ -43,6 +43,13 @@ my.keybind {
   rhs = ":<C-O>:Update<CR>"
 }
 
+-- buffer wipeout while preserving window
+my.keybind {
+  description = "close current buffer while preserving window",
+  lhs = "<leader>q",
+  rhs = ":Bwipeout<CR>"
+}
+
 -- quickfix list
 my.keybind {
   description = "quickfix list: next entry",

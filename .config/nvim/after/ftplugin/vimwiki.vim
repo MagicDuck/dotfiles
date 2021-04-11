@@ -7,7 +7,7 @@ vmap <silent><buffer> + <Plug>VimwikiNormalizeLinkVisual
 vmap <silent><buffer> <CR> <Plug>VimwikiNormalizeLinkVisualCR
 nmap <silent><buffer> <D-CR> <Plug>VimwikiTabnewLink
 nmap <silent><buffer> <C-S-CR> <Plug>VimwikiTabnewLink
-nmap <silent><buffer> ,<BS> <Plug>VimwikiGoBackLink
+nmap <silent><buffer> <BS><BS> <Plug>VimwikiGoBackLink
 nmap <silent><buffer> <TAB> <Plug>VimwikiNextLink
 nmap <silent><buffer> <S-TAB> <Plug>VimwikiPrevLink
 nmap <silent><buffer> <leader>wn <Plug>VimwikiGoto

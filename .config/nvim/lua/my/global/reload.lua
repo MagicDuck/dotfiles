@@ -23,8 +23,11 @@ my.reloadVim = function()
   vim.cmd("source ~/.config/nvim/init.vim")
 
   -- re-edit all buffers
-  vim.cmd("silent! bufdo e!")
+  -- this is necessary due to this line: https://github.com/neovim/nvim-lspconfig/blob/e2cbae0819fd66130d040e2a0e9336e508c3c760/lua/lspconfig/configs.lua#L142
+  vim.cmd("silent! bufdo e! | e")
 
   -- go back to original buffer
   vim.cmd("buffer " .. bufnr)
+  -- edit here in case syntax highlighting is gone
+  vim.cmd("edit")
 end

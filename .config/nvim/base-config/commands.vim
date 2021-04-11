@@ -40,6 +40,16 @@ endfunction
 command! -nargs=* -bang Search
   \ call RipgrepFzf('', '', <q-args>)
 
+" Search for current workd under cursor
+"-----------------------------------------------------------------------------------------------
+function! RipgrepFzfCurrentWord(path, rgArgs) 
+  normal! "ayiw
+  call RipgrepFzf(a:path, @a, a:rgArgs)
+endfunction
+command! -nargs=* -bang SearchCurrentWord
+  \ call RipgrepFzfCurrentWord('', <q-args>)
+
+
 " Marks with preview
 "-----------------------------------------------------------------------------------------------
 function! s:fzf_preview_p(bang, ...) abort
@@ -66,7 +76,7 @@ command! -bar -bang MarksWithPreview
 command! -nargs=* -bang SearchNotes
   \ call RipgrepFzf('~/notes/', '', <q-args>)
 
-" Search notes
+" Search todo comments
 "-----------------------------------------------------------------------------------------------
 command! -nargs=* -bang SearchForTodoComments
   \ call RipgrepFzf('', 'TODO \(sbadragan\)', <q-args>)

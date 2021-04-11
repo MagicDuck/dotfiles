@@ -330,6 +330,11 @@ my.keybind {
   lhs = "<leader>sw",
   rhs = ":Windows<CR>"
 }
+my.keybind {
+  description = "Search: find current word under cursor in project",
+  lhs = "<leader>sf",
+  rhs = ":SearchCurrentWord<CR>"
+}
 
 -- notes
 my.keybind {

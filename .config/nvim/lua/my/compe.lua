@@ -19,9 +19,9 @@ require("compe").setup {
     vsnip = false,
     nvim_lsp = true,
     nvim_lua = true,
+    ultisnips = true,
     -- spell = true;
     tags = true,
-    snippets_nvim = true,
     treesitter = true
   }
 }

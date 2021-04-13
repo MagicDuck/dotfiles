@@ -165,22 +165,22 @@ end
 -- better nav for omnicomplete
 -- inoremap <expr> <c-j> ("\<C-n>")
 -- inoremap <expr> <c-k> ("\<C-p>")
-my.keybind {
-  description = "omnicomplete: nav down",
-  mode = "i",
-  lhs = "<C-j>",
-  -- rhs = my.termcode("<C-n>"),
-  rhs = "<C-n>",
-  options = {expr = true}
-}
-my.keybind {
-  description = "omnicomplete: nav up",
-  mode = "i",
-  lhs = "<C-k>",
-  -- rhs = my.termcode("<C-p>"),
-  rhs = "<C-p>",
-  options = {expr = true}
-}
+-- my.keybind {
+--   description = "omnicomplete: nav down",
+--   mode = "i",
+--   lhs = "<C-j>",
+--   -- rhs = my.termcode("<C-n>"),
+--   rhs = "<C-n>",
+--   options = {expr = true}
+-- }
+-- my.keybind {
+--   description = "omnicomplete: nav up",
+--   mode = "i",
+--   lhs = "<C-k>",
+--   -- rhs = my.termcode("<C-p>"),
+--   rhs = "<C-p>",
+--   options = {expr = true}
+-- }
 
 -- easy capitalization
 my.keybind {

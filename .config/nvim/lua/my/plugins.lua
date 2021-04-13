@@ -76,6 +76,8 @@ return require("packer").startup(
     use "vimwiki/vimwiki"
     use "powerman/vim-plugin-AnsiEsc"
     use "moll/vim-bbye"
+    use "sirver/UltiSnips"
+    use "honza/vim-snippets"
 
     -- alternative plugins
     -- auto-pairs, use instead of 'Raimondi/delimitMate'

@@ -260,28 +260,6 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "simultaneous d f press to ctrl-space",
-        "manipulators" : [ {
-          "from" : {
-            "simultaneous" : [ {
-              "key_code" : "d"
-            }, {
-              "key_code" : "f"
-            } ],
-            "simultaneous_options" : {
-              "detect_key_down_uninterruptedly" : false,
-              "key_down_order" : "insensitive",
-              "key_up_order" : "insensitive",
-              "key_up_when" : "any"
-            }
-          },
-          "to" : [ {
-            "modifiers" : [ "left_control" ],
-            "key_code" : "spacebar"
-          } ],
-          "type" : "basic"
-        } ]
-      }, {
         "description" : "swap end with left option",
         "manipulators" : [ {
           "from" : {

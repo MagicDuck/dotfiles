@@ -28,19 +28,19 @@ my.keybind {
 my.keybind {
   description = "save",
   lhs = "<C-s>",
-  rhs = ":<C-U>:Update<CR>"
+  rhs = ":<C-U>Update<CR>"
 }
 my.keybind {
   description = "save (visual)",
   mode = "v",
   lhs = "<C-s>",
-  rhs = ":<C-C>:Update<CR>"
+  rhs = "<C-C>:Update<CR>"
 }
 my.keybind {
   description = "save (insert)",
   mode = "i",
   lhs = "<C-s>",
-  rhs = ":<C-O>:Update<CR>"
+  rhs = "<C-O>:Update<CR>"
 }
 
 -- buffer wipeout while preserving window

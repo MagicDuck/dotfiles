@@ -88,7 +88,7 @@ function! EditNoteFile(bang, path, extension, filename)
     let exists = filereadable(file)
     :exe "e". a:bang. " " . file
     if !exists
-      call append(0, ["# " . a:filename, "", ""])
+      call append(0, ["# " . trim(a:filename), "", ""])
       normal 3gg
       startinsert
     endif

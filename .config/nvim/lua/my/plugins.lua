@@ -74,7 +74,6 @@ return require("packer").startup(
     use "itchyny/vim-highlighturl"
     -- use "vitalk/vim-simple-todo"
     use "vimwiki/vimwiki"
-    use "powerman/vim-plugin-AnsiEsc"
     use "moll/vim-bbye"
     use "sirver/UltiSnips"
     use "honza/vim-snippets"

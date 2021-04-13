@@ -431,7 +431,10 @@
         "description" : "have caps_lock emit CTOS modifiers in combination with others and caps_lock by itself",
         "manipulators" : [ {
           "from" : {
-            "key_code" : "caps_lock"
+            "key_code" : "caps_lock",
+            "modifiers" : {
+              "mandatory" : [ "right_shift" ]
+            }
           },
           "to" : [ {
             "key_code" : "caps_lock"

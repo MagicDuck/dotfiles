@@ -305,7 +305,7 @@ hs.hotkey.bind(
   superKey,
   "return",
   function()
-    switchToAp("kitty")
+    switchToApp("kitty")
   end
 )
 hs.hotkey.bind(

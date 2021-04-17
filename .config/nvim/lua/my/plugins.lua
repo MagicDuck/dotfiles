@@ -77,6 +77,7 @@ return require("packer").startup(
     use "moll/vim-bbye"
     use "sirver/UltiSnips"
     use "honza/vim-snippets"
+    use "tpope/vim-unimpaired"
 
     -- alternative plugins
     -- auto-pairs, use instead of 'Raimondi/delimitMate'

@@ -13,7 +13,6 @@ my.command = function(conf)
   if my.state.commands[conf.cmd] ~= nil then
     P(conf)
     print("command: duplicate command detected!")
-    return
   end
   my.state.commands[conf.cmd] = conf
 end

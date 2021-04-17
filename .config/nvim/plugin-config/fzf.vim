@@ -1,8 +1,8 @@
 " Extra key bindings
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
+  "copen
+  " cc
 endfunction
 
 let g:fzf_action = {

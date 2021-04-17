@@ -1,5 +1,6 @@
 require("bqf").setup {
   auto_enable = true,
+  magic_window = false, -- this creates issues when it's on and you have multiple splits
   preview = {
     win_height = 12,
     win_vheight = 12,

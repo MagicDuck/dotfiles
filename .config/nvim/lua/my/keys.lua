@@ -43,11 +43,33 @@ my.keybind {
   rhs = "<C-O>:Update<CR>"
 }
 
--- buffer wipeout while preserving window
+-- buffer
 my.keybind {
-  description = "close current buffer while preserving window",
+  description = "buffer: close current buffer while preserving window",
   lhs = "<leader>q",
   rhs = ":Bwipeout<CR>"
+}
+my.keybind {
+  description = "buffer: yank full path of file in current buffer",
+  lhs = "<leader>yf",
+  rhs = ':let @* = expand("%") | echo "yanked: " . @*<CR>'
+}
+my.keybind {
+  description = "buffer: yank full path of file in current buffer",
+  lhs = "<leader>yp",
+  rhs = ':let @* = expand("%:p") | echo "yanked: " . @*<CR>'
+}
+
+-- line
+my.keybind {
+  description = "line: paste on line above, keeping indentation",
+  lhs = "<up>p",
+  rhs = "[p"
+}
+my.keybind {
+  description = "line: paste on line below, keeping indentation",
+  lhs = "<down>p",
+  rhs = "]p"
 }
 
 -- quickfix list
@@ -435,7 +457,7 @@ my.keybind {
 my.keybind {
   description = "lsp: code action: pick",
   lhs = ",a",
-  rhs = ":lua require('lspsaga.rename').rename()<CR>"
+  rhs = ":lua vim.lsp.buf.code_action()<CR>"
 }
 my.keybind {
   description = "lsp: diagnostics: show from current line",

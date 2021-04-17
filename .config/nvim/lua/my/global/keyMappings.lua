@@ -39,7 +39,6 @@ my.keybind = function(conf)
     if my.state.keyMappings[single_mode][conf.lhs] ~= nil then
       P(conf)
       print("keybind: duplicate key mapping detected!")
-      return
     end
     my.state.keyMappings[single_mode][conf.lhs] = conf
 

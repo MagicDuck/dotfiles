@@ -20,15 +20,6 @@ LspFormatBuffer = function(bufnr)
 end
 
 local global_on_attach = function(client, bufnr)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
-
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
   -- Set autocommands conditional on server_capabilities
   -- highlights for current symbol under cursor
   if client.resolved_capabilities.document_highlight then

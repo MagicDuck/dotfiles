@@ -16,7 +16,7 @@ local superKey = {"cmd", "alt", "ctrl", "shift"}
 -- app switching
 -------------------------------------------------------------------
 
-local function switchToApp(appName)
+local function switchToApp(appName, initializeWinFn)
   local app = hs.application.find(appName)
   if (app and app:isFrontmost()) then
     --app:hide()
@@ -36,6 +36,10 @@ local function switchToApp(appName)
     end
   else
     hs.application.open(appName)
+    if initializeWinFn ~= nil then
+      local newWin = hs.window.frontmostWindow()
+      initializeWinFn(newWin)
+    end
   end
 end
 
@@ -59,7 +63,20 @@ local function kittyDo(cmd, cb)
   task:start()
 end
 
-local function switchToKittyWindow(windowTitle, windowCommand)
+local function positionWindowLeftHalf(win)
+  win:moveToUnit("[0,0 50x100]", 0)
+end
+local function positionWindowRightHalf(win)
+  win:moveToUnit("[50,0 50x100]", 0)
+end
+local function positionWindowFullscreen(win)
+  win:moveToUnit("[0,0 100x100]", 0)
+end
+local function positionWindowCentered(win)
+  win:moveToUnit("[10,10 80x80]", 0)
+end
+
+local function switchToKittyWindow(windowTitle, windowCommand, initializeWinFn)
   local win = hs.window.frontmostWindow()
   if (win:title() == windowTitle) then
     -- window already focused, focus prev in stack
@@ -80,6 +97,10 @@ local function switchToKittyWindow(windowTitle, windowCommand)
             "Could not launch kitty window: " ..
               windowTitle .. " with command: " .. windowCommand
           )
+        end
+        if initializeWinFn ~= nil then
+          local newWin = hs.window.frontmostWindow()
+          initializeWinFn(newWin)
         end
       end
     )
@@ -192,34 +213,30 @@ hs.hotkey.bind(
   "d",
   function()
     switchToApp("Brave Browser")
-  end
+  end,
+  positionWindowFullscreen
 )
 hs.hotkey.bind(
   superKey,
   "e",
   function()
     switchToApp("IntelliJ IDEA")
-  end
+  end,
+  positionWindowFullscreen
 )
 hs.hotkey.bind(
   superKey,
   "f",
   function()
     switchToKittyWindow("neovim", "/usr/local/bin/zsh -is eval vim")
-  end
+  end,
+  positionWindowFullscreen
 )
 hs.hotkey.bind(
   superKey,
   "i",
   function()
     switchToApp("Parallels Desktop")
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "j",
-  function()
-    switchToApp("kittyvim")
   end
 )
 --hs.hotkey.bind(superKey, "j", function()
@@ -232,7 +249,8 @@ hs.hotkey.bind(
   "k",
   function()
     switchToApp("Fork")
-  end
+  end,
+  positionWindowCentered
 )
 hs.hotkey.bind(
   superKey,
@@ -246,7 +264,8 @@ hs.hotkey.bind(
   "m",
   function()
     switchToApp("Mail")
-  end
+  end,
+  positionWindowFullscreen
 )
 hs.hotkey.bind(
   superKey,
@@ -260,7 +279,8 @@ hs.hotkey.bind(
   "o",
   function()
     switchToApp("Fantastical")
-  end
+  end,
+  positionWindowCentered
 )
 hs.hotkey.bind(
   superKey,
@@ -274,20 +294,33 @@ hs.hotkey.bind(
   "r",
   function()
     switchToApp("Google Chrome")
-  end
+  end,
+  positionWindowFullscreen
 )
 hs.hotkey.bind(
   superKey,
   "s",
   function()
     switchToApp("Slack")
-  end
+  end,
+  positionWindowFullscreen
 )
+-- hs.hotkey.bind(
+--   superKey,
+--   "u",
+--   function()
+--     switchToApp("Bear")
+--   end
+-- )
 hs.hotkey.bind(
   superKey,
   "u",
   function()
-    switchToApp("Bear")
+    switchToKittyWindow(
+      "notes",
+      "/usr/local/bin/zsh -is eval vim +VimwikiIndex",
+      positionWindowRightHalf
+    )
   end
 )
 hs.hotkey.bind(
@@ -295,24 +328,47 @@ hs.hotkey.bind(
   "w",
   function()
     switchToApp("TickTick")
-  end
+  end,
+  positionWindowFullscreen
 )
 -- superkey + z - launches next meeting from Meeter Pro
 
 -- hs.hotkey.bind(superKey, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
 -- hs.hotkey.bind({"cmd"}, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
+-- hs.hotkey.bind(
+--   superKey,
+--   "return",
+--   function()
+--     switchToApp("kitty")
+--   end
+-- )
+-- hs.hotkey.bind(
+--   {"cmd"},
+--   "return",
+--   function()
+--     switchToApp("kitty")
+--   end
+-- )
 hs.hotkey.bind(
   superKey,
   "return",
   function()
-    switchToApp("kitty")
+    switchToKittyWindow(
+      "terminal",
+      "/usr/local/bin/zsh -is",
+      positionWindowRightHalf
+    )
   end
 )
 hs.hotkey.bind(
   {"cmd"},
   "return",
   function()
-    switchToApp("kitty")
+    switchToKittyWindow(
+      "terminal",
+      "/usr/local/bin/zsh -is",
+      positionWindowRightHalf
+    )
   end
 )
 
@@ -342,7 +398,7 @@ hs.hotkey.bind(
   "left",
   function()
     local win = hs.window.frontmostWindow()
-    win:moveToUnit("[0,0 50x100]", 0)
+    positionWindowLeftHalf(win)
   end
 )
 
@@ -352,7 +408,7 @@ hs.hotkey.bind(
   "right",
   function()
     local win = hs.window.frontmostWindow()
-    win:moveToUnit("[50,0 50x100]", 0)
+    positionWindowRightHalf(win)
   end
 )
 
@@ -362,7 +418,7 @@ hs.hotkey.bind(
   "up",
   function()
     local win = hs.window.frontmostWindow()
-    win:moveToUnit("[0,0 100x100]", 0)
+    positionWindowFullscreen(win)
   end
 )
 
@@ -372,6 +428,6 @@ hs.hotkey.bind(
   "down",
   function()
     local win = hs.window.frontmostWindow()
-    win:moveToUnit("[10,10 80x80]", 0)
+    positionWindowCentered(win)
   end
 )

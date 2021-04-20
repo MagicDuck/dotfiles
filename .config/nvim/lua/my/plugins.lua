@@ -25,8 +25,9 @@ return require("packer").startup(
     use "sainnhe/gruvbox-material"
 
     -- Other plugins
-    use "vim-airline/vim-airline"
-    use "vim-airline/vim-airline-themes"
+    ---- Hmm airline is slow on large files...
+    -- use "vim-airline/vim-airline"
+    -- use "vim-airline/vim-airline-themes"
     use {
       "junegunn/fzf",
       run = function()
@@ -78,6 +79,11 @@ return require("packer").startup(
     use "sirver/UltiSnips"
     use "honza/vim-snippets"
     use "tpope/vim-unimpaired"
+    use "sbdchd/neoformat"
+    use {
+      "glepnir/galaxyline.nvim",
+      branch = "main"
+    }
 
     -- alternative plugins
     -- auto-pairs, use instead of 'Raimondi/delimitMate'

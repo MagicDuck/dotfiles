@@ -6,16 +6,18 @@ ts.setup {
   ensure_installed = {"javascript", "typescript", "lua"},
   highlight = {
     enable = true,
+    disable = {"json"},
     custom_captures = {}
   },
   playground = {
     enable = true,
-    disable = {},
+    disable = {"json"},
     updatetime = 25
   },
   textobjects = {
     select = {
       enable = true,
+      disable = {"json"},
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
@@ -33,6 +35,7 @@ ts.setup {
     },
     swap = {
       enable = true,
+      disable = {"json"},
       swap_previous = {
         ["<Left>s"] = "@parameter.inner"
       },
@@ -42,6 +45,7 @@ ts.setup {
     },
     move = {
       enable = true,
+      disable = {"json"},
       goto_previous_start = {
         ["<Left>j"] = "@function.outer"
       },
@@ -58,6 +62,7 @@ ts.setup {
   },
   incremental_selection = {
     enable = true,
+    disable = {"json"},
     keymaps = {
       init_selection = ",v",
       node_incremental = "<Up>",
@@ -66,12 +71,14 @@ ts.setup {
     }
   },
   indent = {
-    enable = true
+    enable = true,
+    disable = {"json"}
   },
   rainbow = {
     enable = false
   },
   autotag = {
-    enable = true
+    enable = true,
+    disable = {"json"}
   }
 }

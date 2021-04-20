@@ -1,4 +1,6 @@
-require'colorizer'.setup({
-  '*';
-  '!coc-explorer';
-})
+require "colorizer".setup(
+  {
+    "*",
+    "!coc-explorer"
+  }
+)

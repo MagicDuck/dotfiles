@@ -39,6 +39,38 @@ local get_vim_mode_style = function()
   return modes[vim_mode]
 end
 
+local get_filename = function()
+  return vim.fn.expand("%:h:t") .. "/" .. vim.fn.expand("%:t")
+end
+
+local file_readonly = function(readonly_icon)
+  if vim.bo.filetype == "help" then
+    return ""
+  end
+  local icon = readonly_icon or ""
+  if vim.bo.readonly == true then
+    return " " .. icon .. " "
+  end
+  return ""
+end
+
+local current_file_name_provider = function()
+  local file = get_filename()
+  if vim.fn.empty(file) == 1 then
+    return ""
+  end
+  if string.len(file_readonly()) ~= 0 then
+    return file .. file_readonly()
+  end
+  local icon = ""
+  if vim.bo.modifiable then
+    if vim.bo.modified then
+      return file .. " " .. icon .. "  "
+    end
+  end
+  return file .. " "
+end
+
 local sectionCount = {
   left = 0,
   mid = 0,
@@ -129,7 +161,7 @@ addSections(
     },
     {
       name = "fileName",
-      provider = "FileName",
+      provider = current_file_name_provider,
       condition = condition.buffer_not_empty,
       highlight = {colors.base07, colors.base02},
       separator = " ",
@@ -147,9 +179,9 @@ addSections(
       name = "lineColumn",
       provider = "LineColumn",
       condition = condition.buffer_not_empty,
-      highlight = {colors.light01, colors.blue, "bold"},
+      highlight = {colors.light01, colors.base04, "bold"},
       separator = " ",
-      separator_highlight = {colors.blue, colors.blue}
+      separator_highlight = {colors.base04, colors.base04}
     },
     {
       icon = " ",
@@ -180,7 +212,10 @@ addSections(
       name = "gitBranch",
       icon = icons.git,
       provider = "GitBranch",
-      condition = condition.check_git_workspace,
+      condition = function()
+        local remainingWidth = vim.fn.winwidth(0) - get_filename():len()
+        return (remainingWidth >= 80) and condition.check_git_workspace()
+      end,
       highlight = {colors.base07, colors.base02},
       separator = " ",
       separator_highlight = {colors.base07, colors.base02}

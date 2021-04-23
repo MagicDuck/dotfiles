@@ -216,14 +216,14 @@ hs.hotkey.bind(
   end,
   positionWindowFullscreen
 )
-hs.hotkey.bind(
-  superKey,
-  "e",
-  function()
-    switchToApp("IntelliJ IDEA")
-  end,
-  positionWindowFullscreen
-)
+-- hs.hotkey.bind(
+--   superKey,
+--   "e",
+--   function()
+--     switchToApp("IntelliJ IDEA")
+--   end,
+--   positionWindowFullscreen
+-- )
 hs.hotkey.bind(
   superKey,
   "f",

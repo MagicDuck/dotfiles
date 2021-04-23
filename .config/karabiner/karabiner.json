@@ -513,7 +513,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -522,7 +524,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -531,7 +535,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -540,7 +546,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -549,7 +557,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -558,7 +568,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -567,7 +579,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -576,7 +590,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -585,7 +601,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -594,7 +612,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -603,7 +623,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -612,7 +634,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -621,7 +645,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -630,7 +656,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -639,7 +667,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -648,7 +678,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -657,7 +689,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -666,7 +700,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -675,7 +711,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -684,7 +722,9 @@
               "mandatory" : [ "left_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -693,7 +733,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -702,7 +744,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -711,7 +755,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -720,7 +766,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -729,7 +777,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -738,7 +788,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -747,7 +799,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -756,7 +810,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -765,7 +821,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -774,7 +832,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -783,7 +843,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -792,7 +854,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -801,7 +865,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -810,7 +876,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -819,7 +887,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         }, {
           "from" : {
@@ -828,7 +898,9 @@
               "mandatory" : [ "right_shift" ]
             }
           },
-          "to" : [ ],
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
           "type" : "basic"
         } ]
       } ]

@@ -1,7 +1,7 @@
 -- configure LSP servers
 -- Pre-requisite for those working is to have servers installed.
 -- Commands to install them:
--- yarn global add eslint_d prettier_d_slim_latest stylelint_d lua-fmt diagnostic-languageserver typescript typescript-language-server
+-- yarn global add eslint_d @fsouza/prettierd stylelint_d lua-fmt diagnostic-languageserver typescript typescript-language-server ajv-keywords ajv
 
 -- logging
 -- vim.lsp.set_log_level("debug")

@@ -30,4 +30,5 @@ my.reloadVim = function()
   vim.cmd("buffer " .. bufnr)
   -- edit here in case syntax highlighting is gone
   vim.cmd("edit")
+  print("Reloaded configuration!")
 end

@@ -79,7 +79,7 @@ return require("packer").startup(
     use "sirver/UltiSnips"
     use "honza/vim-snippets"
     use "tpope/vim-unimpaired"
-    use "sbdchd/neoformat"
+    -- use "sbdchd/neoformat"
     use {
       "glepnir/galaxyline.nvim",
       branch = "main"

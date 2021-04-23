@@ -55,7 +55,7 @@ my.keybind {
   rhs = ':let @* = expand("%") | echo "yanked: " . @*<CR>'
 }
 my.keybind {
-  description = "buffer: yank full path of file in current buffer",
+  description = "buffer: yank project relative path of file in current buffer",
   lhs = "<leader>yp",
   rhs = ':let @* = expand("%:p") | echo "yanked: " . @*<CR>'
 }
@@ -120,7 +120,7 @@ my.keybind {
 my.keybind {
   description = "tab: create new tab",
   lhs = "<leader>mt",
-  rhs = ":tabnew<CR>"
+  rhs = ":tabnew | Startify<CR>"
 }
 my.keybind {
   description = "tab: close current tab",

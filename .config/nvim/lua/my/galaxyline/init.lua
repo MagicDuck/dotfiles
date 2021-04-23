@@ -214,7 +214,7 @@ addSections(
       provider = "GitBranch",
       condition = function()
         local remainingWidth = vim.fn.winwidth(0) - get_filename():len()
-        return (remainingWidth >= 80) and condition.check_git_workspace()
+        return (remainingWidth >= 83) and condition.check_git_workspace()
       end,
       highlight = {colors.base07, colors.base02},
       separator = " ",

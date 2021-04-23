@@ -24,7 +24,8 @@ let g:startify_bookmarks = [
             \ '~/builtin-script-steps',
             \ '~/qa-automation-ui',
             \ '~/qa-automation',
-            \ '~/qa-automation',
+            \ '~/customer-config-ui-feature-definition/features.json',
+            \ '~/xm-api/src/main/java/com/xmatters/xm/repositories/FeatureToggleRepository.java',
             \ ]
 
 let g:startify_session_autoload = 1
@@ -36,8 +37,8 @@ let g:startify_session_persistence = 1
 let g:startify_enable_special = 0
 let g:startify_files_number = 5
 
-augroup my_startify
-  autocmd!
-  " open startify on new tabs
-  autocmd TabNewEntered * Startify
-augroup END
+" augroup my_startify
+"   autocmd!
+"   " open startify on new tabs
+"   autocmd TabNewEntered * Startify
+" augroup END

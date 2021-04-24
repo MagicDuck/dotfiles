@@ -208,12 +208,12 @@ end
 my.keybind {
   description = "current word: capitalize (visual)",
   mode = "i",
-  lhs = "<C-u>",
+  lhs = "<M-u>",
   rhs = "<ESC>viwUi"
 }
 my.keybind {
   description = "current word: capitalize",
-  lhs = "<C-u>",
+  lhs = "<M-u>",
   rhs = "viwU<ESC>"
 }
 
@@ -483,4 +483,18 @@ my.keybind {
   description = "lsp: format current buffer",
   lhs = ",F",
   rhs = "<cmd>lua vim.lsp.buf.formatting()<CR>"
+}
+
+-- hop
+my.keybind {
+  mode = "nvxo",
+  description = "hop word 2 char",
+  lhs = "s",
+  rhs = "<cmd>HopChar2<CR>"
+}
+my.keybind {
+  mode = "n",
+  description = "hop line",
+  lhs = "S",
+  rhs = "<cmd>HopLine<CR>"
 }

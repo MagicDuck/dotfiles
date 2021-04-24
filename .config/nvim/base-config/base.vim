@@ -58,6 +58,7 @@ set updatetime=300     " Faster completion
 set formatoptions-=cro " Stop newline continution of comments
 set signcolumn=yes     " always show sign column
 set scrolloff=999      " keep cursor in the middle of the window
+set scroll=5           " number of lines the scroll commands should scroll
 set termguicolors      " true color
 set notimeout          " don't time out on leader commands
 

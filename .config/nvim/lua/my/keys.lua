@@ -488,13 +488,34 @@ my.keybind {
 -- hop
 my.keybind {
   mode = "nvxo",
-  description = "hop word 2 char",
+  description = "hop to word - 2 char mode",
   lhs = "s",
   rhs = "<cmd>HopChar2<CR>"
 }
 my.keybind {
   mode = "n",
-  description = "hop line",
+  description = "hop to line",
   lhs = "S",
   rhs = "<cmd>HopLine<CR>"
+}
+-- replace
+my.keybind {
+  mode = "n",
+  description = "replace current word in file",
+  lhs = "<leader>sr",
+  rhs = ":%s/<C-r><C-w>//g<Left><Left>",
+  options = {silent = false}
+}
+-- scrolling
+my.keybind {
+  mode = "n",
+  description = "scroll down",
+  lhs = "<PageDown>",
+  rhs = "<cmd>lua require('neoscroll').scroll(0.1, true, 8)<cr>"
+}
+my.keybind {
+  mode = "n",
+  description = "scroll up",
+  lhs = "<PageUp>",
+  rhs = "<cmd>lua require('neoscroll').scroll(-0.1, true, 8)<cr>"
 }

@@ -84,6 +84,7 @@ return require("packer").startup(
       "glepnir/galaxyline.nvim",
       branch = "main"
     }
+    use "karb94/neoscroll.nvim"
 
     -- alternative plugins
     -- auto-pairs, use instead of 'Raimondi/delimitMate'

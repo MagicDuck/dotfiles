@@ -85,6 +85,7 @@ return require("packer").startup(
       branch = "main"
     }
     use "karb94/neoscroll.nvim"
+    use {"puremourning/vimspector", run = ":VimspectorUpdate"}
 
     -- alternative plugins
     -- auto-pairs, use instead of 'Raimondi/delimitMate'

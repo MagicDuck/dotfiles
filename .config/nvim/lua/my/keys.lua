@@ -519,3 +519,99 @@ my.keybind {
   lhs = "<PageUp>",
   rhs = "<cmd>lua require('neoscroll').scroll(-0.1, true, 8)<cr>"
 }
+-- vimspector debugging
+my.keybind {
+  description = "debugger: when debugging, continue. Otherwise start debugging",
+  lhs = ",dd",
+  rhs = "<Plug>VimspectorContinue"
+}
+my.keybind {
+  description = "debugger: stop",
+  lhs = ",dx",
+  rhs = "<Plug>VimspectorStop"
+}
+my.keybind {
+  description = "debugger: restart debugging with the same configuration",
+  lhs = ",dr",
+  rhs = "<Plug>VimspectorRestart"
+}
+my.keybind {
+  description = "debugger: pause",
+  lhs = ",dp",
+  rhs = "<Plug>VimspectorPause"
+}
+my.keybind {
+  description = "debugger: toggle line breakpoint",
+  lhs = ",db",
+  rhs = "<Plug>VimspectorToggleBreakpoint"
+}
+my.keybind {
+  description = "debugger: toggle conditional line breakpoint",
+  lhs = ",dn",
+  rhs = "<Plug>VimspectorToggleConditionalBreakpoint"
+}
+my.keybind {
+  description = "debugger: add a function breakpoint for expression under cursor",
+  lhs = ",df",
+  rhs = "<Plug>VimspectorAddFunctionBreakpoint"
+}
+my.keybind {
+  description = "debugger: run to cursor",
+  lhs = ",du",
+  rhs = "<Plug>VimspectorRunToCursor"
+}
+my.keybind {
+  description = "debugger: step over",
+  lhs = "<down><down>",
+  rhs = "<Plug>VimspectorStepOver"
+}
+my.keybind {
+  description = "debugger: step into",
+  lhs = "<down>b",
+  rhs = "<Plug>VimspectorStepInto"
+}
+my.keybind {
+  description = "debugger: step out",
+  lhs = "<up>b",
+  rhs = "<Plug>VimspectorStepOut"
+}
+my.keybind {
+  description = "debugger: evaluate expression under cursor (or visual) in popup",
+  lhs = ",de",
+  rhs = "<Plug>VimspectorBalloonEval"
+}
+my.keybind {
+  description = "debugger: jump to call stack window",
+  lhs = ",ds",
+  rhs = ":call win_gotoid(g:vimspector_session_windows.stack_trace)<CR>"
+}
+my.keybind {
+  description = "debugger: jump to variables window",
+  lhs = ",dv",
+  rhs = ":call win_gotoid(g:vimspector_session_windows.variables)<CR>"
+}
+my.keybind {
+  description = "debugger: jump to watches window",
+  lhs = ",dw",
+  rhs = ":call win_gotoid(g:vimspector_session_windows.watches)<CR>"
+}
+my.keybind {
+  description = "debugger: jump to output window",
+  lhs = ",do",
+  rhs = ":call win_gotoid(g:vimspector_session_windows.output)<CR>"
+}
+my.keybind {
+  description = "debugger: jump to code window",
+  lhs = ",dc",
+  rhs = ":call win_gotoid(g:vimspector_session_windows.code)<CR>"
+}
+my.keybind {
+  description = "debugger: jump to terminal window",
+  lhs = ",dt",
+  rhs = ":call win_gotoid(g:vimspector_session_windows.terminal)<CR>"
+}
+my.keybind {
+  description = "debugger: reset (quit)",
+  lhs = ",dq",
+  rhs = ":VimspectorReset<CR>"
+}

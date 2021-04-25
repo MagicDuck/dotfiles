@@ -452,7 +452,7 @@ my.keybind {
 my.keybind {
   description = "lsp: symbol: rename",
   lhs = ",r",
-  rhs = ":lua require('lspsaga.rename').rename()<CR>"
+  rhs = ":lua vim.lsp.buf.rename()<CR>"
 }
 my.keybind {
   description = "lsp: code action: pick",
@@ -467,12 +467,12 @@ my.keybind {
 my.keybind {
   description = "lsp: diagnostics: go to previous",
   lhs = "<up>f",
-  rhs = ":lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>"
+  rhs = ":lua vim.lsp.diagnostic.goto_prev()<CR>"
 }
 my.keybind {
   description = "lsp: diagnostics: go to next",
   lhs = "<down>f",
-  rhs = ":lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>"
+  rhs = ":lua vim.lsp.diagnostic.goto_next()<CR>"
 }
 my.keybind {
   description = "lsp: diagnostics: put all buffer diagnostics into the loclist",

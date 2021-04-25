@@ -71,7 +71,7 @@ return require("packer").startup(
     use "onsails/lspkind-nvim"
     use "neovim/nvim-lspconfig"
     use "hrsh7th/nvim-compe"
-    use "glepnir/lspsaga.nvim"
+    -- use "glepnir/lspsaga.nvim"
     use "itchyny/vim-highlighturl"
     -- use "vitalk/vim-simple-todo"
     use "vimwiki/vimwiki"

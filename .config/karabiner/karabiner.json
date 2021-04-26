@@ -428,8 +428,11 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "have caps_lock emit CTOS modifiers in combination with others and caps_lock by itself",
+        "description" : "have caps_lock emit CTOS modifiers in combination with shfit and caps_lock by itself",
         "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "caps_lock"
+          } ],
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
@@ -437,7 +440,8 @@
             }
           },
           "to" : [ {
-            "key_code" : "caps_lock"
+            "modifiers" : [ "left_command", "left_control", "left_option", "left_shift" ],
+            "key_code" : "left_command"
           } ],
           "type" : "basic"
         }, {
@@ -447,12 +451,23 @@
           "from" : {
             "key_code" : "caps_lock",
             "modifiers" : {
-              "optional" : [ "any" ]
+              "mandatory" : [ "left_shift" ]
             }
           },
           "to" : [ {
             "modifiers" : [ "left_command", "left_control", "left_option", "left_shift" ],
             "key_code" : "left_command"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "caps_lock",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "caps_lock"
           } ],
           "type" : "basic"
         } ]

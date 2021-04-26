@@ -54,9 +54,14 @@
              ;;{:des "have home emit CS modifiers" :rules [[:##home {:key :left_command :modi [:left_command  :left_shift]}]]}
              ;;{:des "have caps_lock emit CS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift ]}]]}
              {:des "have home emit CTOS modifiers" :rules [[:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]]}
-             {:des "have caps_lock emit CTOS modifiers in combination with others and caps_lock by itself" :rules [
-                  [:!Rcaps_lock :caps_lock]
-                  [:##caps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]]}
+             ; {:des "have caps_lock emit CTOS modifiers in combination with others and caps_lock by itself" :rules [
+             ;      [:!Rcaps_lock :caps_lock]
+             ;      [:##caps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]]}
+             {:des "have caps_lock emit CTOS modifiers in combination with shfit and caps_lock by itself" :rules [
+                  [:!Rcaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]
+                  [:!Scaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]
+                  [:##caps_lock :caps_lock]
+                  ]}
 
              {:des   "mappings"
               :rules [

@@ -108,3 +108,4 @@ function! EditBranchNoteFile(bang, path, extension)
 endfunction
 
 command! -bang -nargs=* EditNoteForBranch :call EditBranchNoteFile(<q-bang>, "~/notes/", ".md") 
+

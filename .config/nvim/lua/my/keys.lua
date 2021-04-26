@@ -109,23 +109,28 @@ my.keybind {
 -- tabs
 my.keybind {
   description = "tab: navigate to next tab",
-  lhs = "<right>m",
+  lhs = "<up>t",
   rhs = ":tabnext<CR>"
 }
 my.keybind {
   description = "tab: navigate to previous tab",
-  lhs = "<left>m",
+  lhs = "<down>t",
   rhs = ":tabprevious<CR>"
 }
 my.keybind {
   description = "tab: create new tab",
-  lhs = "<leader>mt",
+  lhs = "<leader>tn",
   rhs = ":tabnew | Startify<CR>"
 }
 my.keybind {
   description = "tab: close current tab",
-  lhs = "<leader>mc",
+  lhs = "<leader>tc",
   rhs = ":tabclose<CR>"
+}
+my.keybind {
+  description = "tab: close current tab",
+  lhs = "<leader>tt",
+  rhs = ":lua require('my/telescope/tab_picker').pickTab()<CR>"
 }
 
 -- windows

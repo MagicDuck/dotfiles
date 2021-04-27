@@ -85,7 +85,11 @@ return require("packer").startup(
       branch = "main"
     }
     use "karb94/neoscroll.nvim"
+
+    -- TODO (sbadragan): this should be loaded conditionally
     use {"puremourning/vimspector", run = ":VimspectorUpdate"}
+    use "junkblocker/git-time-lapse"
+    use "mkitt/tabline.vim"
 
     -- alternative plugins
     -- auto-pairs, use instead of 'Raimondi/delimitMate'

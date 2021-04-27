@@ -109,12 +109,12 @@ my.keybind {
 -- tabs
 my.keybind {
   description = "tab: navigate to next tab",
-  lhs = "<up>t",
+  lhs = "<down>t",
   rhs = ":tabnext<CR>"
 }
 my.keybind {
   description = "tab: navigate to previous tab",
-  lhs = "<down>t",
+  lhs = "<up>t",
   rhs = ":tabprevious<CR>"
 }
 my.keybind {
@@ -295,6 +295,11 @@ my.keybind {
   description = "git: pick from modified git files",
   lhs = "<leader>gm",
   rhs = ":GFiles?<CR>"
+}
+my.keybind {
+  description = "git: history time lapse view of current file changes",
+  lhs = "<leader>gh",
+  rhs = ":GitTimeLapse<CR>"
 }
 
 -- ranger

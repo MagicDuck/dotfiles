@@ -1,0 +1,14 @@
+gui:
+  theme:
+    lightTheme: true
+    activeBorderColor:
+      - black
+      - bold
+    inactiveBorderColor:
+      - black
+    selectedLineBgColor:
+      - default
+git:        
+  paging:
+    colorArg: always
+    pager: delta --syntax-theme OneHalfLight --line-numbers --features "line-numbers decorations" --whitespace-error-style "22 reverse" --paging=never

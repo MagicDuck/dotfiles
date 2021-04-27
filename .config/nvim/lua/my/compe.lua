@@ -16,6 +16,7 @@ require("compe").setup {
   source = {
     path = true,
     buffer = true,
+    -- buffer = {dup = 1},
     vsnip = false,
     nvim_lsp = true,
     nvim_lua = true,

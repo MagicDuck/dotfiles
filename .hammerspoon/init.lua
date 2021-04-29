@@ -17,7 +17,7 @@ local superKey = {"cmd", "alt", "ctrl", "shift"}
 -------------------------------------------------------------------
 
 local function switchToApp(appName, initializeWinFn)
-  local app = hs.application.find(appName)
+  local app = hs.application.get(appName)
   if (app and app:isFrontmost()) then
     --app:hide()
     local orderedWindows = hs.window.orderedWindows()
@@ -86,7 +86,6 @@ local function switchToKittyWindow(windowTitle, windowCommand, initializeWinFn)
     end
     return
   end
-  local app = hs.application.find("kitty")
 
   local function launchWindow()
     kittyDo(
@@ -105,28 +104,34 @@ local function switchToKittyWindow(windowTitle, windowCommand, initializeWinFn)
       end
     )
   end
-
-  if (app) then
-    --end
-    --if (win:title() == windowTitle) then
-    -- window already focused, hide
-    --app:hide()
-    --else
-    -- try focusing it first
+  local function closeInitialWindow()
     kittyDo(
-      "focus-window --match=title:" .. windowTitle,
-      function(exitCode, stdout, stderr)
-        print("cmd", "focus-window --match=title:" .. windowTitle)
+      "close-window --match=id:1",
+      function(exitCode)
         if (exitCode ~= 0) then
-          -- not found, try launching
-          launchWindow()
+          print("Could not close initial kitty window: ")
         end
       end
     )
-  else
-    hs.application.open("kitty", 3) -- wait max 3s
-    launchWindow()
   end
+
+  local app = hs.application.get("kitty")
+  if (app == nil) then
+    hs.application.open("kitty", 3) -- wait max 3s
+  end
+
+  kittyDo(
+    "focus-window --match=title:" .. windowTitle,
+    function(exitCode, stdout, stderr)
+      print("cmd", "focus-window --match=title:" .. windowTitle)
+      print("exitcode", exitCode)
+      if (exitCode ~= 0) then
+        -- not found, try launching
+        launchWindow()
+        closeInitialWindow()
+      end
+    end
+  )
 end
 
 -------------------------------------------------------------------
@@ -354,7 +359,7 @@ hs.hotkey.bind(
   "return",
   function()
     switchToKittyWindow(
-      "terminal",
+      "kitty",
       "/usr/local/bin/zsh -is",
       positionWindowRightHalf
     )
@@ -365,7 +370,7 @@ hs.hotkey.bind(
   "return",
   function()
     switchToKittyWindow(
-      "terminal",
+      "kitty",
       "/usr/local/bin/zsh -is",
       positionWindowRightHalf
     )

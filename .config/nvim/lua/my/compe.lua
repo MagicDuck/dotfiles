@@ -34,25 +34,25 @@ vim.api.nvim_set_keymap(
   "compe#complete()",
   {expr = true, silent = true, noremap = true}
 )
--- vim.api.nvim_set_keymap(
---   "i",
---   "<CR>",
---   "compe#confirm('<CR>')",
---   {expr = true, silent = true, noremap = true}
--- )
---
--- vim.api.nvim_exec(
---   [[
---   function! CloseCompeAndCR()
---     return compe#close('<M-CR>') . "\n"
---   endfunction
--- ]],
---   false
--- )
---
--- vim.api.nvim_set_keymap(
---   "i",
---   "<M-CR>",
---   "CloseCompeAndCR()",
---   {expr = true, silent = true}
--- )
+vim.api.nvim_set_keymap(
+  "i",
+  "<CR>",
+  "compe#confirm('<CR>')",
+  {expr = true, silent = true, noremap = true}
+)
+
+vim.api.nvim_exec(
+  [[
+  function! CloseCompeAndCR()
+    return compe#close('<M-CR>') . "\n"
+  endfunction
+]],
+  false
+)
+
+vim.api.nvim_set_keymap(
+  "i",
+  "<M-CR>",
+  "CloseCompeAndCR()",
+  {expr = true, silent = true}
+)

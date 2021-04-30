@@ -76,6 +76,17 @@ local function positionWindowCentered(win)
   win:moveToUnit("[10,10 80x80]", 0)
 end
 
+local function closeInitialKittyWindow()
+  kittyDo(
+    "close-window --match=title:kitty",
+    function(exitCode)
+      if (exitCode ~= 0) then
+        print("Could not close initial kitty window")
+      end
+    end
+  )
+end
+
 local function switchToKittyWindow(windowTitle, windowCommand, initializeWinFn)
   local win = hs.window.frontmostWindow()
   if (win:title() == windowTitle) then
@@ -96,21 +107,13 @@ local function switchToKittyWindow(windowTitle, windowCommand, initializeWinFn)
             "Could not launch kitty window: " ..
               windowTitle .. " with command: " .. windowCommand
           )
+          return
         end
         if initializeWinFn ~= nil then
           local newWin = hs.window.frontmostWindow()
           initializeWinFn(newWin)
         end
-      end
-    )
-  end
-  local function closeInitialWindow()
-    kittyDo(
-      "close-window --match=id:1",
-      function(exitCode)
-        if (exitCode ~= 0) then
-          print("Could not close initial kitty window: ")
-        end
+        closeInitialKittyWindow()
       end
     )
   end
@@ -124,11 +127,9 @@ local function switchToKittyWindow(windowTitle, windowCommand, initializeWinFn)
     "focus-window --match=title:" .. windowTitle,
     function(exitCode, stdout, stderr)
       print("cmd", "focus-window --match=title:" .. windowTitle)
-      print("exitcode", exitCode)
       if (exitCode ~= 0) then
         -- not found, try launching
         launchWindow()
-        closeInitialWindow()
       end
     end
   )
@@ -359,7 +360,7 @@ hs.hotkey.bind(
   "return",
   function()
     switchToKittyWindow(
-      "kitty",
+      "terminal",
       "/usr/local/bin/zsh -is",
       positionWindowRightHalf
     )
@@ -370,7 +371,7 @@ hs.hotkey.bind(
   "return",
   function()
     switchToKittyWindow(
-      "kitty",
+      "terminal",
       "/usr/local/bin/zsh -is",
       positionWindowRightHalf
     )

@@ -115,7 +115,8 @@ noremap <Space> <Nop>
 let mapleader = "\<Space>"
 let maplocalleader = ","
 
-" TODO cleanup
-" Create map to add which-key keys to for easy discovery
-let g:which_key_map = {}
+" better completion
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <c-j> ("\<C-n>")
+inoremap <expr> <c-k> ("\<C-p>")
 

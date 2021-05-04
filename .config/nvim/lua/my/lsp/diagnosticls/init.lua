@@ -58,6 +58,9 @@ lspconfig.diagnosticls.setup {
     client.resolved_capabilities.code_action = true
     client.resolved_capabilities.execute_command = true
     client.request = handlers.client_request(client)
+
+    -- make sure eslint server still works
+    os.execute("eslint_d restart")
   end,
   on_attach = attach.global_on_attach,
   handlers = {

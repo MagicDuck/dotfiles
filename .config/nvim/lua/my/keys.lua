@@ -59,6 +59,11 @@ my.keybind {
   lhs = "<leader>yp",
   rhs = ':let @* = expand("%:p") | echo "yanked: " . @*<CR>'
 }
+my.keybind {
+  description = "buffer: yank a jest unit test command for current file",
+  lhs = "<leader>yt",
+  rhs = ':let @* = "yarn run test --maxWorkers=2 --watch " . expand("%:t:r") | echo "yanked: " . @*<CR>'
+}
 
 -- line
 my.keybind {

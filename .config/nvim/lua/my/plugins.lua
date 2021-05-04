@@ -87,7 +87,7 @@ return require("packer").startup(
     use "karb94/neoscroll.nvim"
 
     -- TODO (sbadragan): this should be loaded conditionally
-    use {"puremourning/vimspector", run = ":VimspectorUpdate"}
+    use {"puremourning/vimspector", run = ":VimspectorUpdate", keys = {",dd"}}
     use "junkblocker/git-time-lapse"
     use "mkitt/tabline.vim"
 

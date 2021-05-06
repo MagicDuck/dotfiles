@@ -12,7 +12,18 @@ ts.setup {
   playground = {
     enable = true,
     disable = {"json"},
-    updatetime = 25
+    updatetime = 25,
+    keybindings = {
+      toggle_query_editor = "o",
+      toggle_hl_groups = "i",
+      toggle_injected_languages = "t",
+      toggle_anonymous_nodes = "a",
+      toggle_language_display = "I",
+      focus_language = "f",
+      unfocus_language = "F",
+      update = "R",
+      goto_node = "<cr>"
+    }
   },
   textobjects = {
     select = {
@@ -20,17 +31,15 @@ ts.setup {
       disable = {"json"},
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
+        -- Note: those are stored under query/<lang>/textobjects.scm
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-        -- Or you can define your own textobjects like this
-        ["iF"] = {
-          python = "(function_definition) @function",
-          cpp = "(function_definition) @function",
-          c = "(function_definition) @function",
-          java = "(method_declaration) @function"
-        }
+        ["ac"] = "@call.outer",
+        ["ab"] = "@my.block.outer",
+        ["ib"] = "@my.block.inner",
+        ["as"] = "@my.statement",
+        ["ir"] = "@my.variable_decl.rhs",
+        ["ia"] = "@my.args"
       }
     },
     swap = {

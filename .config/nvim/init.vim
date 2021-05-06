@@ -1,4 +1,5 @@
 set rtp+=/usr/local/bin
+set rtp+=/.config/nvim
 
 lua require('my/plugins')
 source ~/.config/nvim/base-config/base.vim

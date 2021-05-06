@@ -37,7 +37,8 @@ return require("packer").startup(
     use "junegunn/fzf.vim"
     use "airblade/vim-rooter"
     use "mhinz/vim-startify"
-    use "scrooloose/nerdcommenter" -- alt: https://github.com/b3nj5m1n/kommentary
+    use "b3nj5m1n/kommentary"
+    use "JoosepAlviste/nvim-ts-context-commentstring"
     -- use "easymotion/vim-easymotion"
     use "Raimondi/delimitMate"
     use "maksimr/vim-jsbeautify"

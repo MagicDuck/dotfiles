@@ -5,9 +5,7 @@ source ~/.config/nvim/base-config/base.vim
 source ~/.config/nvim/base-config/commands.vim
 luafile ~/.config/nvim/lua/my/init.lua
 
-" source ~/.config/nvim/plugin-config/airline.vim
 source ~/.config/nvim/plugin-config/startify.vim
-source ~/.config/nvim/plugin-config/nerdcommenter.vim
 source ~/.config/nvim/plugin-config/quickscope.vim
 source ~/.config/nvim/plugin-config/fugitive.vim
 source ~/.config/nvim/plugin-config/ranger.vim

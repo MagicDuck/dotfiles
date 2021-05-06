@@ -80,5 +80,8 @@ ts.setup {
   autotag = {
     enable = true,
     disable = {"json"}
+  },
+  context_commentstring = {
+    enable = true
   }
 }

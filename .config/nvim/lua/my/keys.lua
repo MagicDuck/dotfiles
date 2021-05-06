@@ -273,11 +273,23 @@ my.keybind {
 }
 
 -- commenting
+--my.keybind {
+--  description = "comment: toggle comment",
+--  mode = "nvsox",
+--  lhs = "<leader>c",
+--  rhs = "<Plug>NERDCommenterToggle"
+--}
 my.keybind {
   description = "comment: toggle comment",
-  mode = "nvsox",
+  mode = "n",
   lhs = "<leader>c",
-  rhs = "<Plug>NERDCommenterToggle"
+  rhs = "<Plug>kommentary_line_default"
+}
+my.keybind {
+  description = "comment: toggle comment",
+  mode = "vx",
+  lhs = "<leader>c",
+  rhs = "<Plug>kommentary_visual_default"
 }
 
 -- git

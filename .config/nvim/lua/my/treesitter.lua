@@ -6,12 +6,10 @@ ts.setup {
   ensure_installed = {"javascript", "typescript", "lua"},
   highlight = {
     enable = true,
-    disable = {"json"},
     custom_captures = {}
   },
   playground = {
     enable = true,
-    disable = {"json"},
     updatetime = 25,
     keybindings = {
       toggle_query_editor = "o",
@@ -28,7 +26,6 @@ ts.setup {
   textobjects = {
     select = {
       enable = true,
-      disable = {"json"},
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         -- Note: those are stored under query/<lang>/textobjects.scm
@@ -44,7 +41,6 @@ ts.setup {
     },
     swap = {
       enable = true,
-      disable = {"json"},
       swap_previous = {
         ["<Left>s"] = "@parameter.inner"
       },
@@ -54,7 +50,6 @@ ts.setup {
     },
     move = {
       enable = true,
-      disable = {"json"},
       goto_previous_start = {
         ["<Left>j"] = "@function.outer"
       },
@@ -71,7 +66,6 @@ ts.setup {
   },
   incremental_selection = {
     enable = true,
-    disable = {"json"},
     keymaps = {
       init_selection = ",v",
       node_incremental = "<Up>",
@@ -80,15 +74,13 @@ ts.setup {
     }
   },
   indent = {
-    enable = true,
-    disable = {"json"}
+    enable = true
   },
   rainbow = {
     enable = false
   },
   autotag = {
-    enable = true,
-    disable = {"json"}
+    enable = true
   },
   context_commentstring = {
     enable = true

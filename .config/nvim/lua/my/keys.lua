@@ -85,7 +85,7 @@ my.keybind {
 }
 my.keybind {
   description = "quickfix list: previous entry",
-  lhs = "<up>c",
+  lhs = "<up>f",
   rhs = ":Cprev<CR>"
 }
 
@@ -107,7 +107,7 @@ my.keybind {
 }
 my.keybind {
   description = "conflict resolution: prev conflict",
-  lhs = "<up>d",
+  lhs = "<up>c",
   rhs = "[c"
 }
 
@@ -493,7 +493,7 @@ my.keybind {
 }
 my.keybind {
   description = "lsp: diagnostics: go to previous",
-  lhs = "<up>f",
+  lhs = "<up>d",
   rhs = ":lua vim.lsp.diagnostic.goto_prev()<CR>"
 }
 my.keybind {

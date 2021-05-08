@@ -29,8 +29,8 @@ ts.setup {
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         -- Note: those are stored under query/<lang>/textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
+        ["af"] = "@my.function.outer",
+        ["if"] = "@my.function.body",
         ["ac"] = "@call.outer",
         ["ab"] = "@my.block.outer",
         ["ib"] = "@my.block.inner",

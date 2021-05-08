@@ -9,3 +9,17 @@
 
 (statement_block (_) @my.block.inner)
 (statement_block) @my.block.outer 
+
+(function_declaration) @my.function.outer
+(arrow_function) @my.function.outer
+(method_definition) @my.function.outer
+(export_statement (function_declaration)) @my.function.outer
+(export_statement value: (function)) @my.function.outer
+(export_statement value: (assignment_expression right: (arrow_function))) @my.function.outer
+(export_statement declaration: (lexical_declaration (variable_declarator value: (arrow_function)))) @my.function.outer
+
+(function_declaration) @my.function.outer
+(arrow_function) @my.function.outer
+
+(arrow_function body: (_) @my.function.body)
+(function_declaration body: (_) @my.function.body)

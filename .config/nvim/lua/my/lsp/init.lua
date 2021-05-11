@@ -1,4 +1,5 @@
 -- configure LSP servers
+-- LSP spec: https://microsoft.github.io/language-server-protocol/specification.html#initialize
 -- Pre-requisite for those working is to have servers installed.
 -- Commands to install them:
 -- yarn global add eslint_d @fsouza/prettierd stylelint_d lua-fmt diagnostic-languageserver typescript typescript-language-server ajv-keywords ajv

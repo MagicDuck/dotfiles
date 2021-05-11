@@ -29,6 +29,7 @@ ts.setup {
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         -- Note: those are stored under query/<lang>/textobjects.scm
+        -- for query lang docs: https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries
         ["af"] = "@my.function.outer",
         ["if"] = "@my.function.body",
         ["ac"] = "@call.outer",

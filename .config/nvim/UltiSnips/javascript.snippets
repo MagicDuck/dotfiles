@@ -1,0 +1,25 @@
+snippet desc
+describe('$1', () => {
+  $2
+})
+endsnippet
+
+snippet itt
+it('$1', () => {
+  $2
+})
+endsnippet
+
+snippet specr
+import { shallow } from 'enzyme';
+import React from 'react';
+import $1 from './$1';
+
+const renderComponent = props => shallow(<$1 {...props} />);
+
+describe('$1', () => {
+  it('renders correctly', () => {
+    expect(renderComponent()).toMatchSnapshot();
+  });
+});
+endsnippet

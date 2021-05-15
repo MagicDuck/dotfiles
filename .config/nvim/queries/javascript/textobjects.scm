@@ -23,3 +23,10 @@
 
 (arrow_function body: (_) @my.function.body)
 (function_declaration body: (_) @my.function.body)
+; ((function_declaration body: (statement_block . (_) @_start (_)* @_end ))
+;  (#make-range! "my.function.body" @_start @_end)
+; )
+
+(((comment) @_start (comment)* @_end)
+ (#make-range! "my.comment" @_start @_end)
+)

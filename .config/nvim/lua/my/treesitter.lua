@@ -30,6 +30,7 @@ ts.setup {
         -- You can use the capture groups defined in textobjects.scm
         -- Note: those are stored under query/<lang>/textobjects.scm
         -- for query lang docs: https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries
+        -- example to do ranges: https://github.com/nvim-treesitter/nvim-treesitter-textobjects/blob/master/queries/lua/textobjects.scm#L24-L27
         ["af"] = "@my.function.outer",
         ["if"] = "@my.function.body",
         ["ac"] = "@call.outer",
@@ -37,7 +38,8 @@ ts.setup {
         ["ib"] = "@my.block.inner",
         ["as"] = "@my.statement",
         ["ir"] = "@my.variable_decl.rhs",
-        ["ia"] = "@my.args"
+        ["ia"] = "@my.args",
+        ["am"] = "@my.comment"
       }
     },
     swap = {

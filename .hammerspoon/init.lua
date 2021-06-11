@@ -218,9 +218,8 @@ hs.hotkey.bind(
   superKey,
   "d",
   function()
-    switchToApp("Brave Browser")
-  end,
-  positionWindowFullscreen
+    switchToApp("Brave Browser", positionWindowFullscreen)
+  end
 )
 -- hs.hotkey.bind(
 --   superKey,
@@ -234,15 +233,22 @@ hs.hotkey.bind(
   superKey,
   "f",
   function()
-    switchToKittyWindow("neovim", "/usr/local/bin/zsh -is eval vim")
-  end,
-  positionWindowFullscreen
+    switchToKittyWindow(
+      "neovim",
+      "/usr/local/bin/zsh -is eval vim",
+      positionWindowFullscreen
+    )
+  end
 )
 hs.hotkey.bind(
   superKey,
   "i",
   function()
-    switchToApp("Parallels Desktop")
+    switchToKittyWindow(
+      "gitui",
+      "/usr/local/bin/zsh -is eval gitui -d ~/frontend",
+      positionWindowCentered
+    )
   end
 )
 --hs.hotkey.bind(superKey, "j", function()
@@ -254,9 +260,8 @@ hs.hotkey.bind(
   superKey,
   "k",
   function()
-    switchToApp("Fork")
-  end,
-  positionWindowCentered
+    switchToApp("Fork", positionWindowCentered)
+  end
 )
 hs.hotkey.bind(
   superKey,
@@ -269,9 +274,8 @@ hs.hotkey.bind(
   superKey,
   "m",
   function()
-    switchToApp("Mail")
-  end,
-  positionWindowFullscreen
+    switchToApp("Mail", positionWindowFullscreen)
+  end
 )
 hs.hotkey.bind(
   superKey,
@@ -284,9 +288,8 @@ hs.hotkey.bind(
   superKey,
   "o",
   function()
-    switchToApp("Fantastical")
-  end,
-  positionWindowCentered
+    switchToApp("Fantastical", positionWindowCentered)
+  end
 )
 hs.hotkey.bind(
   superKey,
@@ -299,17 +302,15 @@ hs.hotkey.bind(
   superKey,
   "r",
   function()
-    switchToApp("Google Chrome")
-  end,
-  positionWindowFullscreen
+    switchToApp("Google Chrome", positionWindowFullscreen)
+  end
 )
 hs.hotkey.bind(
   superKey,
   "s",
   function()
-    switchToApp("Slack")
-  end,
-  positionWindowFullscreen
+    switchToApp("Slack", positionWindowFullscreen)
+  end
 )
 -- hs.hotkey.bind(
 --   superKey,
@@ -333,9 +334,8 @@ hs.hotkey.bind(
   superKey,
   "w",
   function()
-    switchToApp("TickTick")
-  end,
-  positionWindowFullscreen
+    switchToApp("TickTick", positionWindowFullscreen)
+  end
 )
 -- superkey + z - launches next meeting from Meeter Pro
 

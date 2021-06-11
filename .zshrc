@@ -4,7 +4,7 @@
 
 OS="$(uname 2> /dev/null)"
 
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
 
 
 # =========================================================================================

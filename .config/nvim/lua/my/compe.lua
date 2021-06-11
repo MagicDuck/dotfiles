@@ -34,12 +34,12 @@ vim.api.nvim_set_keymap(
   "compe#complete()",
   {expr = true, silent = true, noremap = true}
 )
--- vim.api.nvim_set_keymap(
---   "i",
---   "<CR>",
---   "compe#confirm('<CR>')",
---   {expr = true, silent = true, noremap = true}
--- )
+vim.api.nvim_set_keymap(
+  "i",
+  "<CR>",
+  "compe#confirm('<CR>')",
+  {expr = true, silent = true, noremap = true}
+)
 --
 -- vim.api.nvim_exec(
 --   [[

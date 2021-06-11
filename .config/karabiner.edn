@@ -30,7 +30,9 @@
                     :alone   1000
                     :held    500}}
 
- :devices {:kinesis-keyboard [{:vendor_id 1523 :product_id 7}]}
+ ;;old: :devices {:kinesis-keyboard [{:vendor_id 1523 :product_id 7}]}
+ :devices {:kinesis-keyboard [{:vendor_id 10730 :product_id 258}]}
+ ; :simlayers {:right-shift-mode {:key :return_or_enter}}
  :templates { :alfred "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"com.stephanb.launchers\" with argument \"%s\"'"
             }
 
@@ -62,6 +64,25 @@
                   [:!Scaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]
                   [:##caps_lock :caps_lock]
                   ]}
+             ;; simlayer test - this could be useful for having custom layers for symbols and numbers
+             ; {:des "right shift mode"
+             ;  :rules [
+             ;          [:q :!Sq :right-shift-mode]
+             ;          [:w :!Sw :right-shift-mode]
+             ;          [:e :!Se :right-shift-mode]
+             ;          [:r :!Sr :right-shift-mode]
+             ;          [:t :!St :right-shift-mode]
+             ;          [:a :!Sa :right-shift-mode]
+             ;          [:s :!Ss :right-shift-mode]
+             ;          [:d :!Sd :right-shift-mode]
+             ;          [:f :!Sf :right-shift-mode]
+             ;          [:g :!Sg :right-shift-mode]
+             ;          [:z :!Sz :right-shift-mode]
+             ;          [:x :!Sx :right-shift-mode]
+             ;          [:c :!Sc :right-shift-mode]
+             ;          [:v :!Sv :right-shift-mode]
+             ;          [:b :!Sb :right-shift-mode]
+             ;  ]}
 
              {:des   "mappings"
               :rules [

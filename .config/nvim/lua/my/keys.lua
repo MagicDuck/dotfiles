@@ -62,7 +62,7 @@ my.keybind {
 my.keybind {
   description = "buffer: yank a jest unit test command for current file",
   lhs = "<leader>yt",
-  rhs = ':let @* = "yarn run test --maxWorkers=2 --watch " . expand("%:t:r") | echo "yanked: " . @*<CR>'
+  rhs = ':let @* = "yarn run test --maxWorkers=2 --watch " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>'
 }
 
 -- line
@@ -80,7 +80,7 @@ my.keybind {
 -- quickfix list
 my.keybind {
   description = "quickfix list: next entry",
-  lhs = "<down>c",
+  lhs = "<down>f",
   rhs = ":Cnext<CR>"
 }
 my.keybind {
@@ -102,7 +102,7 @@ my.keybind {
 }
 my.keybind {
   description = "conflict resolution: next conflict",
-  lhs = "<down>d",
+  lhs = "<down>c",
   rhs = "]c"
 }
 my.keybind {
@@ -299,9 +299,9 @@ my.keybind {
   rhs = ":Git blame<CR>"
 }
 my.keybind {
-  description = "git: status",
+  description = "git: status in new tab",
   lhs = "<leader>gs",
-  rhs = ":Git status<CR>"
+  rhs = ":Gtabedit :<CR>"
 }
 my.keybind {
   description = "git: open current file in web browser (stash)",
@@ -498,7 +498,7 @@ my.keybind {
 }
 my.keybind {
   description = "lsp: diagnostics: go to next",
-  lhs = "<down>f",
+  lhs = "<down>d",
   rhs = ":lua vim.lsp.diagnostic.goto_next()<CR>"
 }
 my.keybind {
@@ -550,7 +550,7 @@ my.keybind {
 my.keybind {
   description = "debugger: when debugging, continue. Otherwise start debugging",
   lhs = ",dd",
-  rhs = "<Plug>VimspectorContinue"
+  rhs = ":call vimspector#Continue()<CR>"
 }
 my.keybind {
   description = "debugger: stop",

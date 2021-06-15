@@ -206,7 +206,7 @@ eval "$(fnm env)"
 export YVM_DIR=/Users/stephanbadragan/.yvm
 [ -r $YVM_DIR/yvm.sh ] && source $YVM_DIR/yvm.sh init-sh
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # jvm version management
 # export PATH="$HOME/.jenv/bin:$PATH"
@@ -276,3 +276,5 @@ then
   set --
 fi
 
+
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh

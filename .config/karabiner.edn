@@ -39,11 +39,45 @@
  :main      [
              {:des "simultaneous j k press to ESC" :rules [[[:j :k] :escape]]}
              ; {:des "simultaneous d f press to ctrl-space" :rules [[[:d :f]  {:key :spacebar :modi [:left_control]} ]]}
-             {:des "swap end with left option" :rules [[:##end :left_option :kinesis-keyboard]]}
-             {:des "swap control and command" :rules [[:##left_control :left_command :kinesis-keyboard]
-                                                      [:##right_command :right_control :kinesis-keyboard]
-                                                      [:##right_control :right_command :kinesis-keyboard]
+             ; {:des "command on outside of of thumbs" :rules [
+             ;                                          [:##left_control  :left_command :kinesis-keyboard]
+             ;                                          [:##right_control :right_command :kinesis-keyboard]
+             ;                                          ]}
+             ;; __before_begin__
+            ; {:des "swap end with left option" :rules [[:##end :left_option :kinesis-keyboard]]}
+            ; {:des "ctrl on inside of thumbs" :rules [
+            ;                                          [:##left_control  :left_command :kinesis-keyboard]
+            ;                                          [:##right_control :right_command :kinesis-keyboard]
+            ;                                          [:##left_option :left_control :kinesis-keyboard]
+            ;                                           [:##right_command :right_control :kinesis-keyboard]
+            ;                                          ]}
+             ;; __before_end__
+             ;; __after_begin_1__
+             ; {:des "shift on enter/delete" :rules [
+             ;                                          [:##left_control  :left_command :kinesis-keyboard]
+             ;                                          [:##right_control :return_or_enter :kinesis-keyboard]
+             ;                                          [:##left_option :left_control :kinesis-keyboard]
+             ;                                          [:##right_command :right_control :kinesis-keyboard]
+             ;                                          [:##delete_forward  :left_shift :kinesis-keyboard]
+             ;                                          [:##return_or_enter :right_shift :kinesis-keyboard]
+             ;                                          [:##left_shift :delete_forward :kinesis-keyboard]
+             ;                                          [:##right_shift :return_or_enter :kinesis-keyboard]
+             ;                                          ]}
+             ;; __after_end_1__
+             ;; __after_begin_2__
+             {:des "improved thumb cluster to spare from shift key pain" :rules [
+             ;; lshift lctrl           lopt rshift
+             ;; bsp del hyper cmd      pgup pgdown enter space 
+                                                      [:##left_control  :left_shift :kinesis-keyboard]
+                                                      [:##right_control :right_shift :kinesis-keyboard]
+                                                      [:##left_option :left_control :kinesis-keyboard]
+                                                      [:##right_command :left_option :kinesis-keyboard]
+                                                      [:##left_shift :vk_none :kinesis-keyboard]
+                                                      [:##right_shift :vk_none :kinesis-keyboard]
+                                                      [:##end :left_command :kinesis-keyboard]
                                                       ]}
+             ;; __after_end_2__
+
              {:des "command left/right to opt left/right" :rules [
                                                       [:!Cleft_arrow {:key :left_arrow :modi [:left_option]}]
                                                       [:!Cright_arrow {:key :right_arrow :modi [:left_option]}]
@@ -52,7 +86,7 @@
                                                       [:!Cdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
                                                       [:!Qdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
                                                       ]}
-             {:des "swap left option with left control" :rules [[:##left_option :left_control :kinesis-keyboard]]}
+             ; {:des "swap left option with left control" :rules [[:##left_option :left_control :kinesis-keyboard]]}
              ;;{:des "have home emit CS modifiers" :rules [[:##home {:key :left_command :modi [:left_command  :left_shift]}]]}
              ;;{:des "have caps_lock emit CS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift ]}]]}
              {:des "have home emit CTOS modifiers" :rules [[:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]]}

@@ -260,28 +260,7 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "swap end with left option",
-        "manipulators" : [ {
-          "from" : {
-            "key_code" : "end",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "left_option"
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 10730,
-              "product_id" : 258
-            } ],
-            "type" : "device_if"
-          } ],
-          "type" : "basic"
-        } ]
-      }, {
-        "description" : "swap control and command",
+        "description" : "improved thumb cluster to spare from shift key pain",
         "manipulators" : [ {
           "from" : {
             "key_code" : "left_control",
@@ -290,25 +269,7 @@
             }
           },
           "to" : [ {
-            "key_code" : "left_command"
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 10730,
-              "product_id" : 258
-            } ],
-            "type" : "device_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "right_command",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "right_control"
+            "key_code" : "left_shift"
           } ],
           "conditions" : [ {
             "identifiers" : [ {
@@ -326,7 +287,97 @@
             }
           },
           "to" : [ {
-            "key_code" : "right_command"
+            "key_code" : "right_shift"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "left_option",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_control"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "right_command",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_option"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "left_shift",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "right_shift",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "vk_none"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "end",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "left_command"
           } ],
           "conditions" : [ {
             "identifiers" : [ {
@@ -388,27 +439,6 @@
           "to" : [ {
             "modifiers" : [ "left_option" ],
             "key_code" : "delete_or_backspace"
-          } ],
-          "type" : "basic"
-        } ]
-      }, {
-        "description" : "swap left option with left control",
-        "manipulators" : [ {
-          "from" : {
-            "key_code" : "left_option",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "left_control"
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 10730,
-              "product_id" : 258
-            } ],
-            "type" : "device_if"
           } ],
           "type" : "basic"
         } ]

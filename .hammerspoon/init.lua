@@ -229,17 +229,17 @@ hs.hotkey.bind(
 --   end,
 --   positionWindowFullscreen
 -- )
-hs.hotkey.bind(
-  superKey,
-  "f",
-  function()
-    switchToKittyWindow(
-      "neovim",
-      "/usr/local/bin/zsh -is eval vim",
-      positionWindowFullscreen
-    )
-  end
-)
+-- hs.hotkey.bind(
+--   superKey,
+--   "f",
+--   function()
+--     switchToKittyWindow(
+--       "neovim",
+--       "/usr/local/bin/zsh -is eval vim",
+--       positionWindowFullscreen
+--     )
+--   end
+-- )
 hs.hotkey.bind(
   superKey,
   "i",

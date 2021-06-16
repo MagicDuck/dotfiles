@@ -3,9 +3,11 @@
 ;; goku tutorial: https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md
 ;; To check sytax is correct, run `goku` in terminal
 
-;; Modifiers spec:
-;; !  | means mandatory
-;; #  | means optional
+;; !  | means mandatory -   modifier(s) alone when pressend change behavior
+;; #  | means optional  -   modifiers are optional (but atleast one necessary)
+;;
+;; :!Ca is keycode :a and prefix a with !C
+;;
 ;; C  | left_command
 ;; T  | left_control
 ;; O  | left_option
@@ -15,156 +17,296 @@
 ;; W  | right_control
 ;; E  | right_option
 ;; R  | right_shift
-;; P  | caps_lock
-;; !! | mandatory command + control + optional + shift (hyper)
-;; ## | optional any
+;;
+;; ## | optional any (this has no effect when used on the RHS; only LHS)
+;; !! | command + control + optional + shift (hyper)
+;;
+;; to understand better how modifiers work in karabiner
+;; karabiner definition of mandatory and optional
+;; https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/modifiers/
+;;
+;; need to prefix C T O S F with ! or #
+;;
+;; code for all this:
+;; https://github.com/yqrashawn/GokuRakuJoudo/blob/b9b334a187379f9bc8182ad59e2cca2a1789e9c0/src/karabiner_configurator/keys.clj#L68
 {
  ;;   "basic.simultaneous_threshold_milliseconds": 100,
  ;;   "basic.to_delayed_action_delay_milliseconds": 500,
  ;;   "basic.to_if_alone_timeout_milliseconds": 1000,
  ;;   "basic.to_if_held_down_threshold_milliseconds": 500,
- :profiles
-            {:Default {:default true
-                    :sim     100
-                    :delay   500
-                    :alone   1000
-                    :held    500}}
+:profiles {
+  :Default {  :default true
+              :sim     100    ;; simultaneous_threshold_milliseconds (def: 50)
+                              ;; keys need to be pressed within this threshold to be considered simultaneous
+              :delay   500    ;; to_delayed_action_delay_milliseconds (def: 500)
+                              ;; basically it means time after which the key press is count delayed
+              :alone   1000   ;; to_if_alone_timeout_milliseconds (def: 1000)
+                              ;; hold for 995s and single tap registered; hold for 1005s and seen as modifier
+              :held    500    ;; to_if_held_down_threshold_milliseconds (def: 500)
+                              ;; key is fired twice when 500 ms is elapsed (otherwise seen as a hold command)
+           }
+} ;; profiles
 
- ;;old: :devices {:kinesis-keyboard [{:vendor_id 1523 :product_id 7}]}
- :devices {:kinesis-keyboard [{:vendor_id 10730 :product_id 258}]}
- ; :simlayers {:right-shift-mode {:key :return_or_enter}}
- :templates { :alfred "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"com.stephanb.launchers\" with argument \"%s\"'"
-            }
+:devices {
+  :kinesis-keyboard [
+    {:vendor_id 10730 :product_id 258}
+  ]
+}
 
- :main      [
-             {:des "simultaneous j k press to ESC" :rules [[[:j :k] :escape]]}
-             ; {:des "simultaneous d f press to ctrl-space" :rules [[[:d :f]  {:key :spacebar :modi [:left_control]} ]]}
-             ; {:des "command on outside of of thumbs" :rules [
-             ;                                          [:##left_control  :left_command :kinesis-keyboard]
-             ;                                          [:##right_control :right_command :kinesis-keyboard]
-             ;                                          ]}
-             ;; __before_begin__
-            ; {:des "swap end with left option" :rules [[:##end :left_option :kinesis-keyboard]]}
-            ; {:des "ctrl on inside of thumbs" :rules [
-            ;                                          [:##left_control  :left_command :kinesis-keyboard]
-            ;                                          [:##right_control :right_command :kinesis-keyboard]
-            ;                                          [:##left_option :left_control :kinesis-keyboard]
-            ;                                           [:##right_command :right_control :kinesis-keyboard]
-            ;                                          ]}
-             ;; __before_end__
-             ;; __after_begin_1__
-             ; {:des "shift on enter/delete" :rules [
-             ;                                          [:##left_control  :left_command :kinesis-keyboard]
-             ;                                          [:##right_control :return_or_enter :kinesis-keyboard]
-             ;                                          [:##left_option :left_control :kinesis-keyboard]
-             ;                                          [:##right_command :right_control :kinesis-keyboard]
-             ;                                          [:##delete_forward  :left_shift :kinesis-keyboard]
-             ;                                          [:##return_or_enter :right_shift :kinesis-keyboard]
-             ;                                          [:##left_shift :delete_forward :kinesis-keyboard]
-             ;                                          [:##right_shift :return_or_enter :kinesis-keyboard]
-             ;                                          ]}
-             ;; __after_end_1__
-             ;; __after_begin_2__
-             {:des "improved thumb cluster to spare from shift key pain" :rules [
-             ;; lshift lctrl           lopt rshift
-             ;; bsp del hyper cmd      pgup pgdown enter space 
-                                                      [:##left_control  :left_shift :kinesis-keyboard]
-                                                      [:##right_control :right_shift :kinesis-keyboard]
-                                                      [:##left_option :left_control :kinesis-keyboard]
-                                                      [:##right_command :left_option :kinesis-keyboard]
-                                                      [:##left_shift :vk_none :kinesis-keyboard]
-                                                      [:##right_shift :vk_none :kinesis-keyboard]
-                                                      [:##end :left_command :kinesis-keyboard]
-                                                      ]}
-             ;; __after_end_2__
+;; simlayers are basically "hyper" keys
+;; layers works too, but only recommended for non-typing keys like . or tab
+;; to use more regular typing keys, use simlayers
+; :simlayers {:right-shift-mode {:key :return_or_enter}}
 
-             {:des "command left/right to opt left/right" :rules [
-                                                      [:!Cleft_arrow {:key :left_arrow :modi [:left_option]}]
-                                                      [:!Cright_arrow {:key :right_arrow :modi [:left_option]}]
-                                                      ]}
-             {:des "command backsapce to opt backspace" :rules [
-                                                      [:!Cdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
-                                                      [:!Qdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
-                                                      ]}
-             ; {:des "swap left option with left control" :rules [[:##left_option :left_control :kinesis-keyboard]]}
-             ;;{:des "have home emit CS modifiers" :rules [[:##home {:key :left_command :modi [:left_command  :left_shift]}]]}
-             ;;{:des "have caps_lock emit CS modifiers" :rules [[:##caps_lock {:key :left_command :modi [:left_command :left_shift ]}]]}
-             {:des "have home emit CTOS modifiers" :rules [[:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]]}
-             ; {:des "have caps_lock emit CTOS modifiers in combination with others and caps_lock by itself" :rules [
-             ;      [:!Rcaps_lock :caps_lock]
-             ;      [:##caps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]]}
-             {:des "have caps_lock emit CTOS modifiers in combination with shfit and caps_lock by itself" :rules [
-                  [:!Rcaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]
-                  [:!Scaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]
-                  [:##caps_lock :caps_lock]
-                  ]}
-             ;; simlayer test - this could be useful for having custom layers for symbols and numbers
-             ; {:des "right shift mode"
-             ;  :rules [
-             ;          [:q :!Sq :right-shift-mode]
-             ;          [:w :!Sw :right-shift-mode]
-             ;          [:e :!Se :right-shift-mode]
-             ;          [:r :!Sr :right-shift-mode]
-             ;          [:t :!St :right-shift-mode]
-             ;          [:a :!Sa :right-shift-mode]
-             ;          [:s :!Ss :right-shift-mode]
-             ;          [:d :!Sd :right-shift-mode]
-             ;          [:f :!Sf :right-shift-mode]
-             ;          [:g :!Sg :right-shift-mode]
-             ;          [:z :!Sz :right-shift-mode]
-             ;          [:x :!Sx :right-shift-mode]
-             ;          [:c :!Sc :right-shift-mode]
-             ;          [:v :!Sv :right-shift-mode]
-             ;          [:b :!Sb :right-shift-mode]
-             ;  ]}
+:templates { 
+    :alfred "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"com.stephanb.launchers\" with argument \"%s\"'"
+}
 
-             {:des   "mappings"
-              :rules [
-                      [:!CTOSb {:key grave_accent_and_tilde :modi [:left_command]}]
-                      [:!CTOSc {:key c :modi [:left_command]}]
-                      [:!CTOSt {:key t :modi [:left_command]}]
-                      [:!CTOSv {:key v :modi [:left_command]}]
+:main [
+  ;; each manipulator has a description and multiple rules
+  ;;
+  ;;{:des "..."                               ;; -> description
+  ;; :rules[
+  ;;          [<from>  <to>  <conditions>]    ;; -> rule 1
+  ;;          [<from>  <to>  <conditions>]    ;; -> rule 2
+  ;; ]}
+  ;;
+  ;; rule [:period ["period-mode" 1] nil {:afterup ["period-mode" 0] :alone :period}]
+  ;;       |_____| |_______________| |_| |_________________________________________|
+  ;;        <from>    <to>      <conditions>         <other options>
+  ;;
+  ;; karabiner docs: ;; https://pqrs.org/osx/karabiner/json.html#complex_modifications-manipulator-definition
+  ;; <other options> includs ~to_if_alone~, ~to_if_held_down~,~to_after_key_up~, ~to_delayed_action~ and ~parameters~.
+  ;; <other options> section
+  ;; to_if_alone                                    | :alone
+  ;; to_if_held_down                                | :held
+  ;; to_after_key_up                                | :afterup
+  ;; to_delayed_action                              | :delayed
+  ;;   to_if_canceled                               |   :cancled
+  ;;   to_if_invoked                                |   :invoked
+  ;; parameters                                     | :params
+  ;;   basic.to_if_alone_timeout_milliseconds       |   :alone
+  ;;   basic.to_if_held_down_threshold_milliseconds |   :held
+  ;;   to_delayed_action_delay_milliseconds         |   :delay  FIXME should there be a "basic.", there's none on the spec page
+  ;;
+  ;;
+  ;; (custom variables) & modifiers -> Advanced
+  ;; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/examples.org#custom-variable
+  
+  {:des "simultaneous j k press to ESC" :rules [[[:j :k] :escape]]}
+  
+ ; {:des "simultaneous d f press to ctrl-space" :rules [[[:d :f]  {:key :spacebar :modi [:left_control]} ]]}
+ ; {:des "command on outside of of thumbs" :rules [
+ ;                                          [:##left_control  :left_command :kinesis-keyboard]
+ ;                                          [:##right_control :right_command :kinesis-keyboard]
+ ;                                          ]}
+ ;; __before_begin__
+; {:des "swap end with left option" :rules [[:##end :left_option :kinesis-keyboard]]}
+; {:des "ctrl on inside of thumbs" :rules [
+;                                          [:##left_control  :left_command :kinesis-keyboard]
+;                                          [:##right_control :right_command :kinesis-keyboard]
+;                                          [:##left_option :left_control :kinesis-keyboard]
+;                                           [:##right_command :right_control :kinesis-keyboard]
+;                                          ]}
+ ;; __before_end__
+ ;; __after_begin_1__
+ ; {:des "shift on enter/delete" :rules [
+ ;                                          [:##left_control  :left_command :kinesis-keyboard]
+ ;                                          [:##right_control :return_or_enter :kinesis-keyboard]
+ ;                                          [:##left_option :left_control :kinesis-keyboard]
+ ;                                          [:##right_command :right_control :kinesis-keyboard]
+ ;                                          [:##delete_forward  :left_shift :kinesis-keyboard]
+ ;                                          [:##return_or_enter :right_shift :kinesis-keyboard]
+ ;                                          [:##left_shift :delete_forward :kinesis-keyboard]
+ ;                                          [:##right_shift :return_or_enter :kinesis-keyboard]
+ ;                                          ]}
+ ;; __after_end_1__
+ ; ;; __after_begin_2__
+ ; {:des "improved thumb cluster to spare from shift key pain" :rules [
+ ; ;; lshift lctrl           lopt rshift
+ ; ;; bsp del hyper cmd      pgup pgdown enter space 
+ ;                                          [:##left_control  :left_shift :kinesis-keyboard]
+ ;                                          [:##right_control :right_shift :kinesis-keyboard]
+ ;                                          [:##left_option :left_control :kinesis-keyboard]
+ ;                                          [:##right_command :left_option :kinesis-keyboard]
+ ;                                          [:##left_shift :vk_none :kinesis-keyboard]
+ ;                                          [:##right_shift :vk_none :kinesis-keyboard]
+ ;                                          [:##end :left_command :kinesis-keyboard]
+ ;                                          ]}
+ ; ;; __after_end_2__
+  {:des "improved thumb cluster" :rules [
+  ;; lcmd lctrl           lopt rcmd
+  ;; bsp/shift del hyper cmd      pgup pgdown enter space/shift
+    [:##left_control  :left_command :kinesis-keyboard]
+    ; [:##right_control :right_command :kinesis-keyboard]
+    [:##left_option :left_control :kinesis-keyboard]
+    [:##right_command :left_option :kinesis-keyboard]
+    [:##left_shift :vk_none :kinesis-keyboard]
+    [:##right_shift :vk_none :kinesis-keyboard]
+    ]
+  }
+  
+  {:des "space to space when pressed alone, to shift as modifier"
+         :rules [[:##return_or_enter :right_shift nil {:alone :return_or_enter}]]}
+  {:des "delete to delete when pressed alone, to shift as modifier"
+         :rules [[:##delete_forward :left_shift nil {:alone :delete_forward}]]}
 
-                      ;; help me get better at not typing shift key on same side of keyboard as key
-                      ;; left side
-                      [:!Sq :vk_none]
-                      [:!Sw :vk_none]
-                      [:!Se :vk_none]
-                      [:!Sr :vk_none]
-                      [:!St :vk_none]
-                      [:!Sa :vk_none]
-                      [:!Ss :vk_none]
-                      [:!Sd :vk_none]
-                      [:!Sf :vk_none]
-                      [:!Sg :vk_none]
-                      [:!Sz :vk_none]
-                      [:!Sx :vk_none]
-                      [:!Sc :vk_none]
-                      [:!Sv :vk_none]
-                      [:!Sb :vk_none]
-                      [:!S1 :vk_none]
-                      [:!S2 :vk_none]
-                      [:!S3 :vk_none]
-                      [:!S4 :vk_none]
-                      [:!S5 :vk_none]
-                      ;; right side
-                      [:!Ry :vk_none]
-                      [:!Ru :vk_none]
-                      [:!Ri :vk_none]
-                      [:!Ro :vk_none]
-                      [:!Rp :vk_none]
-                      [:!Rh :vk_none]
-                      [:!Rj :vk_none]
-                      [:!Rk :vk_none]
-                      [:!Rl :vk_none]
-                      [:!Rn :vk_none]
-                      [:!Rm :vk_none]
-                      [:!R6 :vk_none]
-                      [:!R7 :vk_none]
-                      [:!R8 :vk_none]
-                      [:!R9 :vk_none]
-                      [:!R0 :vk_none]
-                      ]}
-             ]
- }
+  {:des "command left/right to opt left/right" :rules [
+                                          [:!Cleft_arrow {:key :left_arrow :modi [:left_option]}]
+                                          [:!Cright_arrow {:key :right_arrow :modi [:left_option]}]
+                                          ]}
+  {:des "command backsapce to opt backspace" :rules [
+                                          [:!Cdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
+                                          [:!Qdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
+                                          ]}
+  {:des "have home emit CTOS modifiers" :rules [[:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]]}
+  {:des "have caps_lock emit CTOS modifiers in combination with shfit and caps_lock by itself" :rules [
+      [:!Rcaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]
+      [:!Scaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} nil {:alone {:key :caps_lock}} ]
+      [:##caps_lock :caps_lock]
+      ]}
+  {:des "numbers layer"
+     :rules [[:end ["numbers-mode" 1] nil {:afterup ["numbers-mode" 0] }]
+             ;; numbers
+             [:spacebar :0 ["numbers-mode" 1]]
+             [:u :1 ["numbers-mode" 1]]
+             [:i :2 ["numbers-mode" 1]]
+             [:o :3 ["numbers-mode" 1]]
+             [:j :4 ["numbers-mode" 1]]
+             [:k :5 ["numbers-mode" 1]]
+             [:l :6 ["numbers-mode" 1]]
+             [:m :7 ["numbers-mode" 1]]
+             [:comma :8 ["numbers-mode" 1]]
+             [:period :9 ["numbers-mode" 1]]
+
+             ;; symbols
+             ; %
+             [:p :!S5 ["numbers-mode" 1]]
+             ; +
+             [:semicolon :!Sequal_sign ["numbers-mode" 1]]
+             ; \
+             [:slash :backslash ["numbers-mode" 1]]
+
+             ; -
+             [:y :hyphen ["numbers-mode" 1]]
+             ; _
+             [:h :!Shyphen ["numbers-mode" 1]]
+             ; =
+             [:n :equal_sign ["numbers-mode" 1]]
+
+             ; ~
+             [:page_up :!Sgrave_accent_and_tilde ["numbers-mode" 1]]
+             ]}
+
+  {:des "symbols layer"
+     :rules [[:right_control ["symbols-mode" 1] nil {:afterup ["symbols-mode" 0] }]
+             ; @
+             [:q :!S2 ["symbols-mode" 1]]
+             ; !
+             [:a :!S1 ["symbols-mode" 1]]
+             ; #
+             [:z :!S3 ["symbols-mode" 1]]
+
+             ; $
+             [:w :!S4 ["symbols-mode" 1]]
+             ; *
+             [:s :!S8 ["symbols-mode" 1]]
+             ; ^
+             [:x :!S6 ["symbols-mode" 1]]
+
+             ; [
+             [:e :open_bracket ["symbols-mode" 1]]
+             ; ]
+             [:r :close_bracket ["symbols-mode" 1]]
+             ; (
+             [:d :!S9 ["symbols-mode" 1]]
+             ; )
+             [:f :!S0 ["symbols-mode" 1]]
+             ; {
+             [:c :!Sopen_bracket ["symbols-mode" 1]]
+             ; }
+             [:v :!Sclose_bracket ["symbols-mode" 1]]
+
+             ; |
+             [:t :!Sbackslash ["symbols-mode" 1]]
+             ; `
+             [:g :grave_accent_and_tilde ["symbols-mode" 1]]
+             ; &
+             [:b :!S7 ["symbols-mode" 1]]
+
+             ; '
+             [:delete_or_backspace :quote ["symbols-mode" 1]]
+             ; "
+             [:right_arrow :!Squote ["symbols-mode" 1]]
+ ]}
+
+ ;; simlayer test - this could be useful for having custom layers for symbols and numbers
+ ; {:des "right shift mode"
+ ;  :rules [
+ ;          [:q :!Sq :right-shift-mode]
+ ;          [:w :!Sw :right-shift-mode]
+ ;          [:e :!Se :right-shift-mode]
+ ;          [:r :!Sr :right-shift-mode]
+ ;          [:t :!St :right-shift-mode]
+ ;          [:a :!Sa :right-shift-mode]
+ ;          [:s :!Ss :right-shift-mode]
+ ;          [:d :!Sd :right-shift-mode]
+ ;          [:f :!Sf :right-shift-mode]
+ ;          [:g :!Sg :right-shift-mode]
+ ;          [:z :!Sz :right-shift-mode]
+ ;          [:x :!Sx :right-shift-mode]
+ ;          [:c :!Sc :right-shift-mode]
+ ;          [:v :!Sv :right-shift-mode]
+ ;          [:b :!Sb :right-shift-mode]
+ ;  ]}
+
+  {:des   "mappings"
+   :rules [
+    [:!CTOSb {:key grave_accent_and_tilde :modi [:left_command]}]
+    [:!CTOSc {:key c :modi [:left_command]}]
+    [:!CTOSt {:key t :modi [:left_command]}]
+    [:!CTOSv {:key v :modi [:left_command]}]
+
+    ;; help me get better at not typing shift key on same side of keyboard as key
+    ;; left side
+    [:!Sq :vk_none]
+    [:!Sw :vk_none]
+    [:!Se :vk_none]
+    [:!Sr :vk_none]
+    [:!St :vk_none]
+    [:!Sa :vk_none]
+    [:!Ss :vk_none]
+    [:!Sd :vk_none]
+    [:!Sf :vk_none]
+    [:!Sg :vk_none]
+    [:!Sz :vk_none]
+    [:!Sx :vk_none]
+    [:!Sc :vk_none]
+    [:!Sv :vk_none]
+    [:!Sb :vk_none]
+    [:!S1 :vk_none]
+    [:!S2 :vk_none]
+    [:!S3 :vk_none]
+    [:!S4 :vk_none]
+    [:!S5 :vk_none]
+    ;; right side
+    [:!Ry :vk_none]
+    [:!Ru :vk_none]
+    [:!Ri :vk_none]
+    [:!Ro :vk_none]
+    [:!Rp :vk_none]
+    [:!Rh :vk_none]
+    [:!Rj :vk_none]
+    [:!Rk :vk_none]
+    [:!Rl :vk_none]
+    [:!Rn :vk_none]
+    [:!Rm :vk_none]
+    [:!R6 :vk_none]
+    [:!R7 :vk_none]
+    [:!R8 :vk_none]
+    [:!R9 :vk_none]
+    [:!R0 :vk_none]
+    ]}
+  ]
+}
 

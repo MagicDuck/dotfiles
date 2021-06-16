@@ -1,14 +1,16 @@
-local lspconfig = require('lspconfig')
-local attach = require('my/lsp/attach')
-local handlers = require('my/lsp/handlers')
+local lspconfig = require("lspconfig")
+local attach = require("my/lsp/attach")
+local handlers = require("my/lsp/handlers")
 
 -- custom commands
 local function organize_imports()
-  vim.lsp.buf.execute_command({
-    command = "_typescript.organizeImports",
-    arguments = {vim.api.nvim_buf_get_name(0)},
-    title = ""
-  })
+  vim.lsp.buf.execute_command(
+    {
+      command = "_typescript.organizeImports",
+      arguments = {vim.api.nvim_buf_get_name(0)},
+      title = ""
+    }
+  )
 end
 
 lspconfig.tsserver.setup {

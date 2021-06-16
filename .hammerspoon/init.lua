@@ -357,6 +357,17 @@ hs.hotkey.bind(
 -- )
 hs.hotkey.bind(
   superKey,
+  "e",
+  function()
+    switchToKittyWindow(
+      "terminal",
+      "/usr/local/bin/zsh -is",
+      positionWindowRightHalf
+    )
+  end
+)
+hs.hotkey.bind(
+  superKey,
   "return",
   function()
     switchToKittyWindow(

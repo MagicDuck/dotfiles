@@ -143,17 +143,27 @@
     [:##right_command :left_option :kinesis-keyboard]
     [:##left_shift :vk_none :kinesis-keyboard]
     [:##right_shift :vk_none :kinesis-keyboard]
-    ]
-  }
-  
-  {:des "space to space when pressed alone, to shift as modifier"
-         :rules [[:##return_or_enter :right_shift nil {:alone :return_or_enter}]]}
-  {:des "delete to delete when pressed alone, to shift as modifier"
-         :rules [[:##delete_forward :left_shift nil {:alone :delete_forward}]]}
+    [:##end :delete_or_backspace :kinesis-keyboard]
+    [:##page_up :return_or_enter :kinesis-keyboard]
+    [:##page_down :delete_forward :kinesis-keyboard]
+    ; [:##return_or_enter :right_shift :kinesis-keyboard]
+    [:return_or_enter :right_shift nil {:alone :return_or_enter}]
+    ; [:##delete_forward :left_shift :kinesis-keyboard]
+    [:delete_forward :left_shift nil {:alone :delete_forward}]
+  ]}
+ 
+  ; {:des "space to space when pressed alone, to shift as modifier"
+  ;        :rules [[:##return_or_enter :right_shift nil {:alone :return_or_enter}]]}
+  ; {:des "delete to delete when pressed alone, to shift as modifier"
+  ;        :rules [[:##delete_forward :left_shift nil {:alone :delete_forward}]]}
 
   {:des "command left/right to opt left/right" :rules [
                                           [:!Cleft_arrow {:key :left_arrow :modi [:left_option]}]
                                           [:!Cright_arrow {:key :right_arrow :modi [:left_option]}]
+                                          ]}
+  {:des "command up/down to page_up/page_down" :rules [
+                                          [:!Cup_arrow :page_up]
+                                          [:!Cdown_arrow :page_down]
                                           ]}
   {:des "command backsapce to opt backspace" :rules [
                                           [:!Cdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
@@ -166,78 +176,82 @@
       [:##caps_lock :caps_lock]
       ]}
   {:des "numbers layer"
-     :rules [[:end ["numbers-mode" 1] nil {:afterup ["numbers-mode" 0] }]
+     :rules [[:delete_or_backspace ["lhs-hold-mode" 1] nil {:afterup ["lhs-hold-mode" 0] :alone :delete_or_backspace }]
              ;; numbers
-             [:spacebar :0 ["numbers-mode" 1]]
-             [:u :1 ["numbers-mode" 1]]
-             [:i :2 ["numbers-mode" 1]]
-             [:o :3 ["numbers-mode" 1]]
-             [:j :4 ["numbers-mode" 1]]
-             [:k :5 ["numbers-mode" 1]]
-             [:l :6 ["numbers-mode" 1]]
-             [:m :7 ["numbers-mode" 1]]
-             [:comma :8 ["numbers-mode" 1]]
-             [:period :9 ["numbers-mode" 1]]
+             [:spacebar :0 ["lhs-hold-mode" 1]]
+             [:u :1 ["lhs-hold-mode" 1]]
+             [:i :2 ["lhs-hold-mode" 1]]
+             [:o :3 ["lhs-hold-mode" 1]]
+             [:j :4 ["lhs-hold-mode" 1]]
+             [:k :5 ["lhs-hold-mode" 1]]
+             [:l :6 ["lhs-hold-mode" 1]]
+             [:m :7 ["lhs-hold-mode" 1]]
+             [:comma :8 ["lhs-hold-mode" 1]]
+             [:period :9 ["lhs-hold-mode" 1]]
 
              ;; symbols
              ; %
-             [:p :!S5 ["numbers-mode" 1]]
+             [:p :!S5 ["lhs-hold-mode" 1]]
              ; +
-             [:semicolon :!Sequal_sign ["numbers-mode" 1]]
+             [:semicolon :!Sequal_sign ["lhs-hold-mode" 1]]
              ; \
-             [:slash :backslash ["numbers-mode" 1]]
+             [:slash :backslash ["lhs-hold-mode" 1]]
 
              ; -
-             [:y :hyphen ["numbers-mode" 1]]
+             [:y :hyphen ["lhs-hold-mode" 1]]
              ; _
-             [:h :!Shyphen ["numbers-mode" 1]]
+             [:h :!Shyphen ["lhs-hold-mode" 1]]
              ; =
-             [:n :equal_sign ["numbers-mode" 1]]
+             [:n :equal_sign ["lhs-hold-mode" 1]]
 
              ; ~
-             [:page_up :!Sgrave_accent_and_tilde ["numbers-mode" 1]]
+             [:page_up :!Sgrave_accent_and_tilde ["lhs-hold-mode" 1]]
+
+             ; ~
+             [:d :page_up ["lhs-hold-mode" 1]]
+             [:f :page_down ["lhs-hold-mode" 1]]
              ]}
 
   {:des "symbols layer"
-     :rules [[:right_control ["symbols-mode" 1] nil {:afterup ["symbols-mode" 0] }]
+     :rules [[:right_control ["rhs-hold-mode" 1] nil {:afterup ["rhs-hold-mode" 0] }]
              ; @
-             [:q :!S2 ["symbols-mode" 1]]
+             [:q :!S2 ["rhs-hold-mode" 1]]
              ; !
-             [:a :!S1 ["symbols-mode" 1]]
+             [:a :!S1 ["rhs-hold-mode" 1]]
              ; #
-             [:z :!S3 ["symbols-mode" 1]]
+             [:z :!S3 ["rhs-hold-mode" 1]]
 
              ; $
-             [:w :!S4 ["symbols-mode" 1]]
+             [:w :!S4 ["rhs-hold-mode" 1]]
              ; *
-             [:s :!S8 ["symbols-mode" 1]]
+             [:s :!S8 ["rhs-hold-mode" 1]]
              ; ^
-             [:x :!S6 ["symbols-mode" 1]]
+             [:x :!S6 ["rhs-hold-mode" 1]]
 
              ; [
-             [:e :open_bracket ["symbols-mode" 1]]
+             [:e :open_bracket ["rhs-hold-mode" 1]]
              ; ]
-             [:r :close_bracket ["symbols-mode" 1]]
+             [:r :close_bracket ["rhs-hold-mode" 1]]
              ; (
-             [:d :!S9 ["symbols-mode" 1]]
+             [:d :!S9 ["rhs-hold-mode" 1]]
              ; )
-             [:f :!S0 ["symbols-mode" 1]]
+             [:f :!S0 ["rhs-hold-mode" 1]]
              ; {
-             [:c :!Sopen_bracket ["symbols-mode" 1]]
+             [:c :!Sopen_bracket ["rhs-hold-mode" 1]]
              ; }
-             [:v :!Sclose_bracket ["symbols-mode" 1]]
+             [:v :!Sclose_bracket ["rhs-hold-mode" 1]]
 
              ; |
-             [:t :!Sbackslash ["symbols-mode" 1]]
+             [:t :!Sbackslash ["rhs-hold-mode" 1]]
              ; `
-             [:g :grave_accent_and_tilde ["symbols-mode" 1]]
+             [:g :grave_accent_and_tilde ["rhs-hold-mode" 1]]
              ; &
-             [:b :!S7 ["symbols-mode" 1]]
+             [:b :!S7 ["rhs-hold-mode" 1]]
 
              ; '
-             [:delete_or_backspace :quote ["symbols-mode" 1]]
+             [:delete_or_backspace :quote ["rhs-hold-mode" 1]]
              ; "
-             [:right_arrow :!Squote ["symbols-mode" 1]]
+             [:right_arrow :!Squote ["rhs-hold-mode" 1]]
  ]}
 
  ;; simlayer test - this could be useful for having custom layers for symbols and numbers

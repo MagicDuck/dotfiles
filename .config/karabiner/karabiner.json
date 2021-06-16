@@ -351,35 +351,77 @@
             "type" : "device_if"
           } ],
           "type" : "basic"
-        } ]
-      }, {
-        "description" : "space to space when pressed alone, to shift as modifier",
-        "manipulators" : [ {
-          "to_if_alone" : [ {
-            "key_code" : "return_or_enter"
-          } ],
+        }, {
           "from" : {
-            "key_code" : "return_or_enter",
+            "key_code" : "end",
             "modifiers" : {
               "optional" : [ "any" ]
             }
           },
           "to" : [ {
+            "key_code" : "delete_or_backspace"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "page_up",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "return_or_enter"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "page_down",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "delete_forward"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_if_alone" : [ {
+            "key_code" : "return_or_enter"
+          } ],
+          "from" : {
+            "key_code" : "return_or_enter"
+          },
+          "to" : [ {
             "key_code" : "right_shift"
           } ],
           "type" : "basic"
-        } ]
-      }, {
-        "description" : "delete to delete when pressed alone, to shift as modifier",
-        "manipulators" : [ {
+        }, {
           "to_if_alone" : [ {
             "key_code" : "delete_forward"
           } ],
           "from" : {
-            "key_code" : "delete_forward",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
+            "key_code" : "delete_forward"
           },
           "to" : [ {
             "key_code" : "left_shift"
@@ -410,6 +452,31 @@
           "to" : [ {
             "modifiers" : [ "left_option" ],
             "key_code" : "right_arrow"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "command up/down to page_up/page_down",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "up_arrow",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "page_up"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "down_arrow",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "page_down"
           } ],
           "type" : "basic"
         } ]
@@ -502,18 +569,21 @@
       }, {
         "description" : "numbers layer",
         "manipulators" : [ {
+          "to_if_alone" : [ {
+            "key_code" : "delete_or_backspace"
+          } ],
           "to_after_key_up" : [ {
             "set_variable" : {
-              "name" : "numbers-mode",
+              "name" : "lhs-hold-mode",
               "value" : 0
             }
           } ],
           "from" : {
-            "key_code" : "end"
+            "key_code" : "delete_or_backspace"
           },
           "to" : [ {
             "set_variable" : {
-              "name" : "numbers-mode",
+              "name" : "lhs-hold-mode",
               "value" : 1
             }
           } ],
@@ -526,7 +596,7 @@
             "key_code" : "0"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -539,7 +609,7 @@
             "key_code" : "1"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -552,7 +622,7 @@
             "key_code" : "2"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -565,7 +635,7 @@
             "key_code" : "3"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -578,7 +648,7 @@
             "key_code" : "4"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -591,7 +661,7 @@
             "key_code" : "5"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -604,7 +674,7 @@
             "key_code" : "6"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -617,7 +687,7 @@
             "key_code" : "7"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -630,7 +700,7 @@
             "key_code" : "8"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -643,7 +713,7 @@
             "key_code" : "9"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -657,7 +727,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -671,7 +741,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -684,7 +754,7 @@
             "key_code" : "backslash"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -697,7 +767,7 @@
             "key_code" : "hyphen"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -711,7 +781,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -724,7 +794,7 @@
             "key_code" : "equal_sign"
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -738,7 +808,33 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "numbers-mode",
+            "name" : "lhs-hold-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "d"
+          },
+          "to" : [ {
+            "key_code" : "page_up"
+          } ],
+          "conditions" : [ {
+            "name" : "lhs-hold-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "f"
+          },
+          "to" : [ {
+            "key_code" : "page_down"
+          } ],
+          "conditions" : [ {
+            "name" : "lhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -749,7 +845,7 @@
         "manipulators" : [ {
           "to_after_key_up" : [ {
             "set_variable" : {
-              "name" : "symbols-mode",
+              "name" : "rhs-hold-mode",
               "value" : 0
             }
           } ],
@@ -758,7 +854,7 @@
           },
           "to" : [ {
             "set_variable" : {
-              "name" : "symbols-mode",
+              "name" : "rhs-hold-mode",
               "value" : 1
             }
           } ],
@@ -772,7 +868,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -786,7 +882,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -800,7 +896,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -814,7 +910,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -828,7 +924,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -842,7 +938,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -855,7 +951,7 @@
             "key_code" : "open_bracket"
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -868,7 +964,7 @@
             "key_code" : "close_bracket"
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -882,7 +978,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -896,7 +992,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -910,7 +1006,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -924,7 +1020,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -938,7 +1034,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -951,7 +1047,7 @@
             "key_code" : "grave_accent_and_tilde"
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -965,7 +1061,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -978,7 +1074,7 @@
             "key_code" : "quote"
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],
@@ -992,7 +1088,7 @@
             "modifiers" : [ "left_shift" ]
           } ],
           "conditions" : [ {
-            "name" : "symbols-mode",
+            "name" : "rhs-hold-mode",
             "value" : 1,
             "type" : "variable_if"
           } ],

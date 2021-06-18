@@ -370,42 +370,6 @@
           } ],
           "type" : "basic"
         }, {
-          "from" : {
-            "key_code" : "page_up",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "return_or_enter"
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 10730,
-              "product_id" : 258
-            } ],
-            "type" : "device_if"
-          } ],
-          "type" : "basic"
-        }, {
-          "from" : {
-            "key_code" : "page_down",
-            "modifiers" : {
-              "optional" : [ "any" ]
-            }
-          },
-          "to" : [ {
-            "key_code" : "delete_forward"
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 10730,
-              "product_id" : 258
-            } ],
-            "type" : "device_if"
-          } ],
-          "type" : "basic"
-        }, {
           "to_if_alone" : [ {
             "key_code" : "return_or_enter"
           } ],
@@ -414,6 +378,13 @@
           },
           "to" : [ {
             "key_code" : "right_shift"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
           } ],
           "type" : "basic"
         }, {
@@ -425,6 +396,13 @@
           },
           "to" : [ {
             "key_code" : "left_shift"
+          } ],
+          "conditions" : [ {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            } ],
+            "type" : "device_if"
           } ],
           "type" : "basic"
         } ]
@@ -586,6 +564,11 @@
               "name" : "lhs-hold-mode",
               "value" : 1
             }
+          } ],
+          "conditions" : [ {
+            "name" : "rhs-hold-mode",
+            "value" : 0,
+            "type" : "variable_if"
           } ],
           "type" : "basic"
         }, {
@@ -801,7 +784,7 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "page_up"
+            "key_code" : "v"
           },
           "to" : [ {
             "key_code" : "grave_accent_and_tilde",
@@ -857,6 +840,11 @@
               "name" : "rhs-hold-mode",
               "value" : 1
             }
+          } ],
+          "conditions" : [ {
+            "name" : "lhs-hold-mode",
+            "value" : 0,
+            "type" : "variable_if"
           } ],
           "type" : "basic"
         }, {
@@ -1071,7 +1059,7 @@
             "key_code" : "delete_or_backspace"
           },
           "to" : [ {
-            "key_code" : "quote"
+            "key_code" : "delete_or_backspace"
           } ],
           "conditions" : [ {
             "name" : "rhs-hold-mode",
@@ -1081,11 +1069,10 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "right_arrow"
+            "key_code" : "delete_forward"
           },
           "to" : [ {
-            "key_code" : "quote",
-            "modifiers" : [ "left_shift" ]
+            "key_code" : "delete_forward"
           } ],
           "conditions" : [ {
             "name" : "rhs-hold-mode",

@@ -1,0 +1,166 @@
+#| --------------------------------------------------------------------------
+
+                     Basic syntax: comments and parentheses
+
+  KMonad's configuration language is styled on various lisps, like scheme or
+  Common Lisp. In a lisp, every statement is entered between '(' and ')'s. If
+  you are more used to Fortan style languages (python, ruby, C, Java, etc.), the
+  change is quite straightforward: the function name moves into the parentheses,
+  and you don't use commas to separate arguments. I.e.
+
+  This:     my_function(a, 3, "Alakazam")
+  Becomes:  (my_function a 3 "Alakazam")
+
+  The reason for this is because Lisp-style languages are very easy to parse and
+  write syntax-highlighters for.
+
+  We also provide standard Lisp syntax for comments:
+  - block comments between: #| and its reverse
+  - line comments following: ;;
+
+  Unlike standard lisp, a single ; does not denote a command, but instead the
+  keycode for semicolon.
+
+  Also, as you might have noticed, whitespace is possible anywhere.
+
+  To check for syntax errors while editing, invoke kmonad with the -d option.
+  -------------------------------------------------------------------------- |#
+
+
+#| --------------------------------------------------------------------------
+
+  For Mac questions I suggest filing an issue and tagging @thoelze1, he wrote
+  the MacOS API. However, input using:
+    (iokit-name "optional product string")
+
+  By default this should grab all keyboards, however if a product string is
+  provided, KMonad will only capture those devices that match the provided
+  product string. If you would like to provide a product string, you can run
+  `make; ./list-keyboards' in c_src/mac to list the product strings of all
+  connected keyboards.
+
+  You initialize output on MacOS using:
+    (kext)
+
+  -------------------------------------------------------------------------- |#
+
+(defcfg
+  ;; For MacOS
+  input  (iokit-name "Advantage2 Keyboard")
+  output (kext)
+
+  ;; Comment this is you want unhandled events not to be emitted
+  fallthrough true
+
+  ;; Set this to false to disable any command-execution in KMonad
+  allow-cmd false
+)
+
+(defsrc
+  =     1     2     3     4     5        6     7     8     9     0     - 
+  tab   q     w     e     r     t        y     u     i     o     p     \
+  caps  a     s     d     f     g        h     j     k     l     ;     '
+  lsft  z     x     c     v     b        n     m     ,     .     /     rsft
+        `              left right        up    down  [     ]
+                        lctl lalt        rmet  rctl 
+                  bspc  del  home        pgup  enter space 
+                              end        pgdn
+)
+
+(defalias
+;;  num  (layer-toggle numbers) ;; Bind num to a button that switches to a layer
+;;  shift_bspc (tap-hold-next-release 400 bspc lsft)
+;;  shift_space (tap-hold-next-release 400 space rsft)
+  
+;;  met_a (tap-hold-next-release 200 a lmet)
+;;  alt_s (tap-hold-next-release 200 s lalt)
+;;  ctl_d (tap-hold-next-release 200 d lctl)
+;;  ctl_k (tap-hold-next-release 200 k rctl)
+;;  alt_l (tap-hold-next-release 200 l lalt)
+;;  met_; (tap-hold-next-release 200 ; rmet)
+;; esc_u (tap-hold-next-release 200 u (layer-next i_esc_layer))
+  
+  shft_f (tap-hold-next-release 200 f lsft)
+  shft_j (tap-hold-next-release 200 j (around rsft (layer-next esc_layer)))
+  cmd_d (tap-hold-next-release 200 d lmet)
+  cmd_k (tap-hold-next-release 200 k lmet)
+  alt_s (tap-hold-next-release 200 s lalt)
+  alt_l (tap-hold-next-release 200 l lalt)
+  ctl_a (tap-hold-next-release 200 a lctl)
+  ctl_; (tap-hold-next-release 200 ; lctl)
+
+  hyper (around lmet (around lalt (around lctl (around lsft (layer-toggle empty_layer)))))
+  num_c (tap-hold-next-release 200 c (layer-toggle num_layer))
+  sym_v (tap-hold-next-release 200 v (layer-toggle symbol_layer))
+  sym_m (tap-hold-next-release 200 m (layer-toggle symbol_layer))
+)
+    
+(deflayer default_layer
+  =       1       2       3       4       5        6       7       8       9       0       - 
+  tab     q       w       e       r       t        y       u       i       o       p       \
+  caps    @ctl_a  @alt_s  @cmd_d  @shft_f g        h       @shft_j @cmd_k  @alt_l  @ctl_;  '
+  lsft    z       x       @num_c  @sym_v  b        n       @sym_m  ,       .       /       rsft
+          `                   left    right        up      down    [       ]
+                              lmet     lctl        lalt    rmet 
+                        bspc   del   @hyper        pgup    enter   space 
+                                       lalt        pgdn
+)
+
+(deflayer esc_layer
+  _       _       _       _       _       _        _       _       _       _       _       _ 
+  _       _       _       _       _       _        _       _       _       _       _       _
+  _       _       _       _       _       _        _       _       esc     esc     _       _
+  _       _       _       _       _       _        _       _       _       _       _       _
+          _                       _       _        _       _       _       _
+                                  _       _        _       _ 
+                          _       _       _        _       _       _ 
+                                          _        _
+)
+
+(deflayer num_layer
+  _       _       _       _       _       _        _       _       _       _       _       _ 
+  _       _       _       _       _       _        _       1       2       3       _       _
+  _       _       _       _       _       _        _       4       5       6       0       _
+  _       _       _       _       _       _        _       7       8       9       _       _
+          _                       _       _        _       _       _       _
+                                  _       _        _       _ 
+                          _       _       _        _       _       _ 
+                                          _        _
+)
+
+(deflayer empty_layer
+  _       _       _       _       _       _        _       _       _       _       _       _ 
+  _       _       _       _       _       _        _       _       _       _       _       _
+  _       _       _       _       _       _        _       _       _       _       _       _
+  _       _       _       _       _       _        _       _       _       _       _       _
+          _                       _       _        _       _       _       _
+                                  _       _        _       _ 
+                          _       _       _        _       _       _ 
+                                          _        _
+)
+
+(deflayer symbol_layer
+  _       _       _       _       _       _        _       _       _       _       _       _ 
+  _       _       @       -       \_      _        _       [       ]       ^       _       _
+  _       $       "       '       `       +        \\      \(      \)      *       =       _
+  _       _       #       &       |       _        !       {       }       %       _       _
+          _                       _       _        _       _       _       _
+                                  _       _        _       _ 
+                          _       _       _        _       _       _ 
+                                          _        _
+)
+
+#| --------------------------------------------------------------------------
+Layer Template:
+
+(deflayer name
+  _       _       _       _       _       _        _       _       _       _       _       _ 
+  _       _       _       _       _       _        _       _       _       _       _       _
+  _       _       _       _       _       _        _       _       _       _       _       _
+  _       _       _       _       _       _        _       _       _       _       _       _
+          _                       _       _        _       _       _       _
+                                  _       _        _       _ 
+                          _       _       _        _       _       _ 
+                                          _        _
+)
+   -------------------------------------------------------------------------- |#

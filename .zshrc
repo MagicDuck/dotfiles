@@ -137,9 +137,15 @@ zle -N zle-keymap-select
 #   bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
 # fi
 # bindkey '^[[2~' overwrite-mode                                  # Insert key
+
+# Note: see man zshzle for info on bindkey
 bindkey '^[[3~' delete-char                                     # Delete key
-bindkey '^[[1;3C'  forward-word                                    # Right key
-bindkey '^[[1;3D'  backward-word                                   # Left key
+bindkey '^[[1;3C'  forward-word                                    # alt+Right key
+bindkey '^[[1;3D'  backward-word                                   # alt+Left key
+bindkey '^[[1;3A'  beginning-of-line                              # alt+up key
+bindkey '^[[1;3B'  end-of-line                                    # alt+down key
+# bindkey '^[[1;\b'    backward-kill-word                             # alt+bksp key - not sure why it does not work
+bindkey '^[[3;3~'  kill-word                                      # alt+del key
 # bindkey '^[[5~' history-beginning-search-backward               # Page up key
 # bindkey '^[[6~' history-beginning-search-forward                # Page down key
 #

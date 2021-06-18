@@ -122,3 +122,11 @@ inoremap <expr> <c-k> ("\<C-p>")
 
 " slightly easier :command
 noremap ; :
+
+" insert mode alt-based motions
+imap <A-BS> <C-W>
+inoremap <A-Del> <C-o>de
+inoremap <A-left> <C-o>0
+inoremap <A-right> <C-o>$
+inoremap <A-up> <C-o>gg
+inoremap <A-down> <C-o>G

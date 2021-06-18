@@ -144,12 +144,12 @@
     [:##left_shift :vk_none :kinesis-keyboard]
     [:##right_shift :vk_none :kinesis-keyboard]
     [:##end :delete_or_backspace :kinesis-keyboard]
-    [:##page_up :return_or_enter :kinesis-keyboard]
-    [:##page_down :delete_forward :kinesis-keyboard]
+    ;[:##page_up :return_or_enter :kinesis-keyboard]
+    ;[:##page_down :delete_forward :kinesis-keyboard]
     ; [:##return_or_enter :right_shift :kinesis-keyboard]
-    [:return_or_enter :right_shift nil {:alone :return_or_enter}]
+    [:return_or_enter :right_shift :kinesis-keyboard {:alone :return_or_enter}]
     ; [:##delete_forward :left_shift :kinesis-keyboard]
-    [:delete_forward :left_shift nil {:alone :delete_forward}]
+    [:delete_forward :left_shift :kinesis-keyboard {:alone :delete_forward}]
   ]}
  
   ; {:des "space to space when pressed alone, to shift as modifier"
@@ -176,7 +176,7 @@
       [:##caps_lock :caps_lock]
       ]}
   {:des "numbers layer"
-     :rules [[:delete_or_backspace ["lhs-hold-mode" 1] nil {:afterup ["lhs-hold-mode" 0] :alone :delete_or_backspace }]
+     :rules [[:delete_or_backspace ["lhs-hold-mode" 1] ["rhs-hold-mode" 0] {:afterup ["lhs-hold-mode" 0] :alone :delete_or_backspace }]
              ;; numbers
              [:spacebar :0 ["lhs-hold-mode" 1]]
              [:u :1 ["lhs-hold-mode" 1]]
@@ -205,15 +205,16 @@
              [:n :equal_sign ["lhs-hold-mode" 1]]
 
              ; ~
-             [:page_up :!Sgrave_accent_and_tilde ["lhs-hold-mode" 1]]
+             [:v :!Sgrave_accent_and_tilde ["lhs-hold-mode" 1]]
 
-             ; ~
+             ; page_up
              [:d :page_up ["lhs-hold-mode" 1]]
+             ; page_down
              [:f :page_down ["lhs-hold-mode" 1]]
              ]}
 
   {:des "symbols layer"
-     :rules [[:right_control ["rhs-hold-mode" 1] nil {:afterup ["rhs-hold-mode" 0] }]
+     :rules [[:right_control ["rhs-hold-mode" 1] ["lhs-hold-mode" 0] {:afterup ["rhs-hold-mode" 0] }]
              ; @
              [:q :!S2 ["rhs-hold-mode" 1]]
              ; !
@@ -248,10 +249,10 @@
              ; &
              [:b :!S7 ["rhs-hold-mode" 1]]
 
-             ; '
-             [:delete_or_backspace :quote ["rhs-hold-mode" 1]]
-             ; "
-             [:right_arrow :!Squote ["rhs-hold-mode" 1]]
+             ; backspace
+             [:delete_or_backspace :delete_or_backspace ["rhs-hold-mode" 1]]
+             ; delete
+             [:delete_forward :delete_forward ["rhs-hold-mode" 1]]
  ]}
 
  ;; simlayer test - this could be useful for having custom layers for symbols and numbers

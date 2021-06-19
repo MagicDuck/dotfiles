@@ -126,7 +126,7 @@ noremap ; :
 " insert mode alt-based motions
 imap <A-BS> <C-W>
 inoremap <A-Del> <C-o>de
-inoremap <A-left> <C-o>0
-inoremap <A-right> <C-o>$
-inoremap <A-up> <C-o>gg
-inoremap <A-down> <C-o>G
+inoremap <A-left> <C-o>b
+inoremap <A-right> <C-o>w
+inoremap <A-up> <C-o>^
+inoremap <A-down> <C-o>$

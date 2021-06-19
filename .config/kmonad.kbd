@@ -70,17 +70,16 @@
 (defalias
   shft_f (tap-hold-next-release 200 f (around lsft (layer-toggle no_rhs_mods_layer)))
   shft_j (tap-hold-next-release 200 j (around rsft (layer-toggle esc_layer)))
-  ;; shft_j (tap-hold-next-release 200 (tap-hold 100 (layer-delay 100 esc_layer) j) (around rsft (layer-toggle esc_layer)))
-  ;;shft_j (tap-hold 100 (layer-delay 400 esc_layer) (tap-hold-next-release 200 j (around rsft (layer-toggle esc_layer))))
 
-  cmd_c (tap-hold-next-release 200 c (around lmet (layer-toggle no_rhs_mods_layer)))
-  cmd_, (tap-hold-next-release 200 , (around lmet (layer-toggle no_lhs_mods_layer)))
+  ;; too easy to type commands by mistake
+  ;;cmd_c (tap-hold-next-release 200 c (around lmet (layer-toggle no_rhs_mods_layer)))
+  ;;cmd_, (tap-hold-next-release 200 , (around lmet (layer-toggle no_lhs_mods_layer)))
   
   alt_x (tap-hold-next-release 200 x (around lalt (layer-toggle no_rhs_mods_layer)))
   alt_. (tap-hold-next-release 200 . (around lalt (layer-toggle no_lhs_mods_layer)))
 
-  ctl_a (tap-hold-next-release 200 a (around lctl (layer-toggle no_rhs_mods_layer)))
-  ctl_; (tap-hold-next-release 200 ; (around lctl (layer-toggle no_lhs_mods_layer)))
+  ctl_z (tap-hold-next-release 200 z (around lctl (layer-toggle no_rhs_mods_layer)))
+  ctl_/ (tap-hold-next-release 200 / (around lctl (layer-toggle no_lhs_mods_layer)))
 
   num_s (tap-hold-next-release 200 s (layer-toggle num_layer))
   num_l (tap-hold-next-release 200 l (layer-toggle num_layer))
@@ -94,8 +93,8 @@
 (deflayer default_layer
   =       1       2       3       4       5        6       7       8       9       0       - 
   tab     q       w       e       r       t        y       u       i       o       p       \
-  caps    @ctl_a  @num_s  @sym_d  @shft_f g        h       @shft_j @sym_k  @num_l  @ctl_;  '
-  lsft    z       @alt_x  @cmd_c  v       b        n       m       @cmd_,  @alt_.  /       rsft
+  caps    a       @num_s  @sym_d  @shft_f g        h       @shft_j @sym_k  @num_l  ;       '
+  lsft    @ctl_z  @alt_x  c       v       b        n       m       ,       @alt_.  @ctl_/  rsft
           `                   left    right        up      down    [       ]
                               lmet     lctl        lalt    rmet 
                         bspc   del   @hyper        pgup    enter   space 

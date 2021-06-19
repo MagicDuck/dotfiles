@@ -70,25 +70,32 @@
 (defalias
   shft_f (tap-hold-next-release 200 f (around lsft (layer-toggle no_rhs_mods_layer)))
   shft_j (tap-hold-next-release 200 j (around rsft (layer-toggle esc_layer)))
-  cmd_d (tap-hold-next-release 200 d (around lmet (layer-toggle no_rhs_mods_layer)))
-  cmd_k (tap-hold-next-release 200 k (around lmet (layer-toggle no_lhs_mods_layer)))
-  alt_s (tap-hold-next-release 200 s (around lalt (layer-toggle no_rhs_mods_layer)))
-  alt_l (tap-hold-next-release 200 l (around lalt (layer-toggle no_lhs_mods_layer)))
+  ;; shft_j (tap-hold-next-release 200 (tap-hold 100 (layer-delay 100 esc_layer) j) (around rsft (layer-toggle esc_layer)))
+  ;;shft_j (tap-hold 100 (layer-delay 400 esc_layer) (tap-hold-next-release 200 j (around rsft (layer-toggle esc_layer))))
+
+  cmd_c (tap-hold-next-release 200 c (around lmet (layer-toggle no_rhs_mods_layer)))
+  cmd_, (tap-hold-next-release 200 , (around lmet (layer-toggle no_lhs_mods_layer)))
+  
+  alt_x (tap-hold-next-release 200 x (around lalt (layer-toggle no_rhs_mods_layer)))
+  alt_. (tap-hold-next-release 200 . (around lalt (layer-toggle no_lhs_mods_layer)))
+
   ctl_a (tap-hold-next-release 200 a (around lctl (layer-toggle no_rhs_mods_layer)))
   ctl_; (tap-hold-next-release 200 ; (around lctl (layer-toggle no_lhs_mods_layer)))
 
+  num_s (tap-hold-next-release 200 s (layer-toggle num_layer))
+  num_l (tap-hold-next-release 200 l (layer-toggle num_layer))
+
+  sym_d (tap-hold-next-release 200 d (layer-toggle symbol_layer))
+  sym_k (tap-hold-next-release 200 k (layer-toggle symbol_layer))
+
   hyper (around lmet (around lalt (around lctl (around lsft (layer-toggle no_mods_layer)))))
-  num_w (tap-hold-next-release 200 w (layer-toggle num_layer))
-  num_o (tap-hold-next-release 200 o (layer-toggle num_layer))
-  sym_e (tap-hold-next-release 200 e (layer-toggle symbol_layer))
-  sym_i (tap-hold-next-release 200 i (layer-toggle symbol_layer))
 )
     
 (deflayer default_layer
   =       1       2       3       4       5        6       7       8       9       0       - 
-  tab     q       @num_w  @sym_e  r       t        y       u       @sym_i  @num_o  p       \
-  caps    @ctl_a  @alt_s  @cmd_d  @shft_f g        h       @shft_j @cmd_k  @alt_l  @ctl_;  '
-  lsft    z       x       c       v       b        n       m       ,       .       /       rsft
+  tab     q       w       e       r       t        y       u       i       o       p       \
+  caps    @ctl_a  @num_s  @sym_d  @shft_f g        h       @shft_j @sym_k  @num_l  @ctl_;  '
+  lsft    z       @alt_x  @cmd_c  v       b        n       m       @cmd_,  @alt_.  /       rsft
           `                   left    right        up      down    [       ]
                               lmet     lctl        lalt    rmet 
                         bspc   del   @hyper        pgup    enter   space 
@@ -97,7 +104,7 @@
 
 (deflayer no_mods_layer
   _       _       _       _       _       _        _       _       _       _       _       _ 
-  _       q       w       e       t       _        _       u       i       o       p       _
+  _       q       w       e       r       _        _       u       i       o       p       _
   _       a       s       d       f       _        _       j       k       l       ;       _
   _       z       x       c       v       _        _       m       ,       .       /       _
           _                       _       _        _       _       _       _
@@ -108,7 +115,7 @@
 
 (deflayer no_lhs_mods_layer
   _       _       _       _       _       _        _       _       _       _       _       _ 
-  _       q       w       e       t       _        _       _       _       _       _       _
+  _       q       w       e       r       _        _       _       _       _       _       _
   _       a       s       d       f       _        _       _       _       _       _       _
   _       z       x       c       v       _        _       _       _       _       _       _
           _                       _       _        _       _       _       _
@@ -131,8 +138,8 @@
 
 (deflayer esc_layer
   _       _       _       _       _       _        _       _       _       _       _       _ 
-  _       q       w       e       t       _        _       _       _       _       _       _
-  _       a       s       d       f       _        _       esc     esc     _       _       _
+  _       q       w       e       r       _        _       _       _       _       _       _
+  _       a       s       d       f       _        _       j       esc     _       _       _
   _       z       x       c       v       _        _       _       _       _       _       _
           _                       _       _        _       _       _       _
                                   _       _        _       _ 

@@ -117,7 +117,8 @@ let maplocalleader = ","
 
 " better completion
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <c-j> ("\<C-n>")
+inoremap <expr> <c-j> <C-n>
+"inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 
 " slightly easier :command
@@ -130,3 +131,6 @@ inoremap <A-left> <C-o>b
 inoremap <A-right> <C-o>w
 inoremap <A-up> <C-o>^
 inoremap <A-down> <C-o>$
+
+" visual block select
+nnoremap X <c-v>

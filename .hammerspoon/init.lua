@@ -368,7 +368,7 @@ hs.hotkey.bind(
 )
 hs.hotkey.bind(
   superKey,
-  "return",
+  "space",
   function()
     switchToKittyWindow(
       "terminal",

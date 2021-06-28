@@ -1,1 +1,1 @@
-/Users/stephanbadragan/.config/nvim/os-specific.vim##Darwin
+os-specific.vim##os.Darwin

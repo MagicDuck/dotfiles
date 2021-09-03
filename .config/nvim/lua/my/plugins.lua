@@ -90,6 +90,7 @@ return require("packer").startup(
     use {"puremourning/vimspector", run = ":VimspectorUpdate"}
     use "junkblocker/git-time-lapse"
     use "mkitt/tabline.vim"
+    use "kmonad/kmonad-vim"
     -- use "wellle/targets.vim"
 
     -- alternative plugins

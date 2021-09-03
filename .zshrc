@@ -119,6 +119,14 @@ function vi-yank-xclip {
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
+# Paste from system clipboard
+function pastefromclipboard {
+  RBUFFER="$(pbpaste)$RBUFFER"
+}
+
+zle -N pastefromclipboard
+bindkey -M vicmd 'p' pastefromclipboard
+
 zle -N zle-line-init
 zle -N zle-line-finish
 zle -N zle-keymap-select
@@ -215,11 +223,11 @@ export YVM_DIR=/Users/stephanbadragan/.yvm
 #export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # jvm version management
-# export PATH="$HOME/.jenv/bin:$PATH"
-# eval "$(jenv init - --no-rehash)"
-# (jenv rehash &) 2> /dev/null
-# # makes sure JAVA_HOME is exported
-# eval "$(jenv enable-plugin export)"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init - --no-rehash)"
+(jenv rehash &) 2> /dev/null
+# makes sure JAVA_HOME is exported
+eval "$(jenv enable-plugin export)"
 
 export PATH="$HOME/.jenv/bin:$PATH"
 #path=($HOME/.jenv/bin(N-/) $path) # path to jenv binary folder

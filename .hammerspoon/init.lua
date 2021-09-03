@@ -18,21 +18,25 @@ local superKey = {"cmd", "alt", "ctrl", "shift"}
 
 local function switchToApp(appName, initializeWinFn)
   local app = hs.application.get(appName)
-  if (app and app:isFrontmost()) then
-    --app:hide()
-    local orderedWindows = hs.window.orderedWindows()
-    local currentWindow = orderedWindows[1]
-    for _, win in pairs(orderedWindows) do
-      if
-        win:application():name() ~= app:name() and
-          win:screen():id() == currentWindow:screen():id()
-       then
-        win:focus()
-        return
+  if app then
+    if app:isFrontmost() then
+      --app:hide()
+      local orderedWindows = hs.window.orderedWindows()
+      local currentWindow = orderedWindows[1]
+      for _, win in pairs(orderedWindows) do
+        if
+          win:application():name() ~= app:name() and
+            win:screen():id() == currentWindow:screen():id()
+         then
+          win:focus()
+          return
+        end
       end
-    end
-    if (orderedWindows[2]) then
-      orderedWindows[2]:focus()
+      if (orderedWindows[2]) then
+        orderedWindows[2]:focus()
+      end
+    else
+      hs.application.open(appName)
     end
   else
     hs.application.open(appName)
@@ -270,13 +274,13 @@ hs.hotkey.bind(
     switchToApp("zoom.us")
   end
 )
-hs.hotkey.bind(
-  superKey,
-  "m",
-  function()
-    switchToApp("Mail", positionWindowFullscreen)
-  end
-)
+-- hs.hotkey.bind(
+--   superKey,
+--   "m",
+--   function()
+--     switchToApp("Mail", positionWindowFullscreen)
+--   end
+-- )
 hs.hotkey.bind(
   superKey,
   "n",
@@ -284,11 +288,18 @@ hs.hotkey.bind(
     switchToApp("Monosnap")
   end
 )
+-- hs.hotkey.bind(
+--   superKey,
+--   "o",
+--   function()
+--     switchToApp("Fantastical", positionWindowCentered)
+--   end
+-- )
 hs.hotkey.bind(
   superKey,
   "o",
   function()
-    switchToApp("Fantastical", positionWindowCentered)
+    switchToApp("Microsoft Outlook", positionWindowCentered)
   end
 )
 hs.hotkey.bind(
@@ -368,7 +379,7 @@ hs.hotkey.bind(
 )
 hs.hotkey.bind(
   superKey,
-  "space",
+  "return",
   function()
     switchToKittyWindow(
       "terminal",

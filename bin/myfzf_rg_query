@@ -1,0 +1,12 @@
+#!/bin/bash
+INITIAL_QUERY=""
+RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" \
+  fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+      --bind "enter:print-query" \
+      --ansi --disabled --query "$INITIAL_QUERY" \
+      --height=50% --layout=reverse \
+      --preview 'bat --style=numbers --color=always --highlight-line {2} --line-range {2}: {1}' \
+      --delimiter :
+      # --preview 'echo --style=numbers --color=always --highlight-line {2} --line-range {2} {1}' \
+

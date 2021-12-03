@@ -45,6 +45,7 @@
   } ;; profiles
 
   :devices {
+    ; :kinesis-keyboard [ {:vendor_id 1523 :product_id 7} ]
     :kinesis-keyboard [ {:vendor_id 10730 :product_id 258} ]
     :iris-keyboard [ {:vendor_id 51984 :product_id 16982} ]
   } ;; devices

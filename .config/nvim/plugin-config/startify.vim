@@ -16,6 +16,7 @@ let g:startify_bookmarks = [
             \ { 'sc': '~/spark/src/common/scss/mixins/_colors.scss'},
             \ { 'sf': '~/spark/src/common/scss/mixins/_fonts.scss'},
             \ '~/frontend/reactUi',
+            \ '~/ondemand',
             \ '~/spark',
             \ '~/xm-api',
             \ '~/xm-openapi-specs',

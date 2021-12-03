@@ -1,0 +1,26 @@
+#!/bin/bash
+
+sprint="${1}";
+if [ -z "${1}" ]; then
+    echo "Please supply sprint (ex: 'Dagobah 308')";
+    exit 1;
+fi;
+
+jq_processing=$(cat <<-END
+  .issues
+  | map({
+    key: .key,
+    self: .self,
+    points: .fields.customfield_10437|tostring,
+    summary: .fields.summary
+    })
+  | map(
+    "| " + .points + " | [" + .key + "|https://xmatters.atlassian.net/browse/" + .key + "] | ["
+    + .summary + "|" + "https://xmatters.atlassian.net/browse/" + .key + "] |\n")
+  | add
+END
+)
+
+
+echo "||STORY POINTS||JIRA ID||JIRA SUMMARY||";
+jira-query "Sprint='$sprint' and Type=Story" |jq -r "$jq_processing"

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+usage() {
+  echo "Usage: $(basename ${0}) <env> <service>"
+  exit 1
+}
+
+[[ -z ${1} ]] || [[ -z ${2} ]] && usage
+
+ENV=${1}
+SERVICE=${2}
+[[ ${SERVICE} == *Version ]] || SERVICE=${SERVICE}Version
+
+CC_URL="http://customerconfig-${ENV}.i.xmatters.com:8080"
+CC_DATA=$(curl -s "${CC_URL}/cv/1/customers?expand=dbrepgroup,instance")
+
+echo ${CC_DATA} \
+    | jq -r '[.[].instance.'${SERVICE}'] | unique | sort | .[]'

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# call example: consul-versionswitch sbadragan webui 0-x-sbadragan
+# call example: instance-switch-version sbadragan webui 0-x-sbadragan
 
 INSTANCE="${1}";
 if [ -z "${1}" ]; then

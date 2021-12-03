@@ -1,0 +1,41 @@
+#!/bin/bash
+#
+# Look up a customer from customer config by its hostname or org UUID
+# Reports a brief summary of the org, UUID, instance, and routing region
+#
+usage() {
+  echo "Usage: $(basename ${0}) <env> <name|org UUID>"
+  exit 1
+}
+
+normalize_name() {
+    local __name=$1
+
+    local myname=$2
+    local domain="xmatters.com"
+    [[ "${ENV}" = "dev" ]] || [[ "${ENV}" = "tst" ]] && domain="${ENV}.${domain}"
+
+    echo "${myname}" | egrep -q "\.xmatters\.com"
+    [[ $? -ne 0 ]] && myname="${myname}.${domain}"
+
+    eval ${__name}=${myname}
+}
+
+ENV=$1
+ORG=$2
+[[ -z ${ENV} ]] || [[ -z ${ORG} ]] && usage
+
+CC_URL="http://customerconfig-${ENV}.i.xmatters.com:8080"
+normalize_name NAME ${ORG}
+
+CC_DATA=$(curl -s "${CC_URL}/cv/1/customers?expand=dbrepgroup,instance")
+
+OUT=$(echo ${CC_DATA} \
+    | jq '.[] | select (.hostnames[] == "'${NAME}'") | "'${NAME}' (UUID: " + .customerId + "; INSTANCE: " + .instance.instanceId + "; DBREPGROUP: " + .dbRepGroup.dbRepGroupId + " IN " + .dbRepGroup.routingRegion + ")"' \
+    | sed -e 's/"//g')
+if [ "${OUT}" = "" ]; then
+    OUT=$(echo ${CC_DATA} \
+   | jq '.[] | select (.customerId == "'${ORG}'") | .hostnames[0] + " (UUID: " + .customerId + "; INSTANCE: " + .instance.instanceId + "; DBREPGROUP: " + .dbRepGroup.dbRepGroupId + " IN " + .dbRepGroup.routingRegion + ")"' \
+    | sed -e 's/"//g;s/\.hosted\././g')
+fi
+echo ${OUT}

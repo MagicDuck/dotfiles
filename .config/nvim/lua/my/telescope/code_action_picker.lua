@@ -64,8 +64,8 @@ M.getCodeActionPicker = function(opts)
       layout_strategy = "vertical",
       winblend = 20,
       layout_config = {
-        width_padding = 0.28,
-        height_padding = 0.3
+        width = 0.6,
+        height = 0.6
       },
       finder = M.getCodeActionFinder({}),
       sorter = sorters.get_generic_fuzzy_sorter(),

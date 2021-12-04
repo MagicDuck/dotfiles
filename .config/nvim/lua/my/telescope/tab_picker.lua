@@ -33,8 +33,8 @@ function M.pickTab()
       layout_strategy = "vertical",
       -- winblend = 10,
       layout_config = {
-        width_padding = 0.20,
-        height_padding = 0.3
+        width = 0.6,
+        height = 0.6
       },
       finder = finders.new_table {
         results = results,

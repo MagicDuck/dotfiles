@@ -12,9 +12,35 @@ exports.client_request = function(client)
 
   client._request_override_applied = true
   return function(method, params, handler, bufnr)
-    if not handler then
-      handler =
-        resolve_handler(client, method) or
+    local customHandler = client.handlers[method]
+    -- print(
+    --   "---invoking lsp handler",
+    --   client.name,
+    --   method,
+    --   type(handler),
+    --   type(customHandler)
+    -- )
+    if
+      (customHandler and type(customHandler) == "table" and
+        customHandler.type == "local_lsp")
+     then
+      local context = {
+        method = method,
+        client_id = client.id,
+        bufnr = bufnr,
+        params = params
+      }
+      local result = customHandler.handler(method, params, client.id, bufnr)
+      local continuationHandler = handler or vim.lsp.handlers[method]
+      if continuationHandler then
+        -- first 1st arg is err
+        continuationHandler(nil, result, context)
+      end
+      vim.api.nvim_command("doautocmd <nomodeline> User LspRequest")
+
+      return true, 1
+    else
+      if not handler and not vim.lsp.handlers[method] then
         error(
           string.format(
             "not found: %q request handler for client %q.",
@@ -22,12 +48,7 @@ exports.client_request = function(client)
             client.name
           )
         )
-    end
-
-    if (type(handler) == "table" and handler.type == "local_lsp") then
-      handler.handler(method, params, client.id, bufnr)
-      return true, 1
-    else
+      end
       return original_client_request(
         method,
         params,
@@ -39,36 +60,44 @@ exports.client_request = function(client)
   end
 end
 
-local actionsPicker = nil
-local actionsPickerActions = {}
-local onActionPickerClose = function()
-  actionsPicker = nil
-  actionsPickerActions = {}
-end
+-- local actionsPicker = nil
+-- local actionsPickerActions = {}
+-- local onActionPickerClose = function()
+--   actionsPicker = nil
+--   actionsPickerActions = {}
+-- end
+--
+-- local code_action_picker = require("my/telescope/code_action_picker")
+-- vim.lsp.handlers["textDocument/codeAction"] = function(
+--   _, --err,
+--   _, --method,
+--   actions,
+--   _, --client_id,
+--   _, --bufnr,
+--   _) -- config
+--   for _, action in pairs(actions or {}) do
+--     table.insert(actionsPickerActions, action)
+--   end
+--
+--   if (actionsPicker == nil) then
+--     actionsPicker =
+--       code_action_picker.getCodeActionPicker(
+--       {onActionPickerClose = onActionPickerClose}
+--     )
+--     actionsPicker:find()
+--   end
+--   local actionsFinder =
+--     code_action_picker.getCodeActionFinder(actionsPickerActions)
+--   actionsPicker:refresh(actionsFinder, {reset_prompt = false})
+-- end
 
-local code_action_picker = require("my/telescope/code_action_picker")
-vim.lsp.handlers["textDocument/codeAction"] = function(
-  _, --err,
-  _, --method,
-  actions,
-  _, --client_id,
-  _, --bufnr,
-  _) -- config
-  for _, action in pairs(actions or {}) do
-    table.insert(actionsPickerActions, action)
-  end
-
-  if (actionsPicker == nil) then
-    actionsPicker =
-      code_action_picker.getCodeActionPicker(
-      {onActionPickerClose = onActionPickerClose}
-    )
-    actionsPicker:find()
-  end
-  local actionsFinder =
-    code_action_picker.getCodeActionFinder(actionsPickerActions)
-  actionsPicker:refresh(actionsFinder, {reset_prompt = false})
-end
+-- local original_vim_ui_select = vim.ui.select
+-- vim.ui.select = function(items, opts, on_choice)
+--   if opts.kind == "codeaction" then
+--
+--   end
+--   return original_vim_ui_select(items, opts, on_choice)
+-- end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
@@ -82,14 +111,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
   }
 )
 
-exports.tsserverPublishDiagnostics = function(
-  err,
-  method,
-  params,
-  client_id,
-  bufnr,
-  config)
-  params.diagnostics =
+exports.tsserverPublishDiagnostics = function(_, result, ctx, config)
+  result.diagnostics =
     vim.tbl_filter(
     function(diagnostic)
       return vim.tbl_contains(
@@ -100,26 +123,18 @@ exports.tsserverPublishDiagnostics = function(
         diagnostic.code
       )
     end,
-    params.diagnostics
+    result.diagnostics
   )
   return vim.lsp.handlers["textDocument/publishDiagnostics"](
-    err,
-    method,
-    params,
-    client_id,
-    bufnr,
+    nil,
+    result,
+    ctx,
     config
   )
 end
 
-exports.diagnosticlsPublishDiagnostics = function(
-  err,
-  method,
-  params,
-  client_id,
-  bufnr,
-  config)
-  params.diagnostics =
+exports.diagnosticlsPublishDiagnostics = function(_, result, ctx, config)
+  result.diagnostics =
     vim.tbl_map(
     function(diagnostic)
       if diagnostic.source == "eslint" then
@@ -129,19 +144,17 @@ exports.diagnosticlsPublishDiagnostics = function(
       end
       return diagnostic
     end,
-    params.diagnostics
+    result.diagnostics
   )
   return vim.lsp.handlers["textDocument/publishDiagnostics"](
-    err,
-    method,
-    params,
-    client_id,
-    bufnr,
+    nil,
+    result,
+    ctx,
     config
   )
 end
 
-exports.lintCodeAction = function(method, params, client_id, bufnr, config)
+exports.lintCodeAction = function(method, params, clientId, bufnr)
   local actions = {}
   for _, diagnostic in pairs(params.context.diagnostics) do
     if (diagnostic.source == "eslint") then
@@ -174,22 +187,10 @@ exports.lintCodeAction = function(method, params, client_id, bufnr, config)
     end
   end
 
-  return vim.lsp.handlers["textDocument/codeAction"](
-    nil,
-    method,
-    actions,
-    client_id,
-    bufnr,
-    config
-  )
+  return actions
 end
 
-exports.workspaceExecuteCommand = function(
-  method,
-  params,
-  client_id,
-  bufnr,
-  config)
+exports.workspaceExecuteCommand = function(method, params, client_id, bufnr)
   if params.command == "add_indented_new_line" then
     local lineNum = params.arguments.lineNum
     local line = vim.fn.getbufline(bufnr, lineNum + 1)[1]

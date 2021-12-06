@@ -15,18 +15,18 @@ require("my/lsp/diagnosticls")
 
 -- define signs to show in the sign column
 vim.fn.sign_define(
-  "LspDiagnosticsSignHint",
-  {text = "", texthl = "LspDiagnosticsSignHint"}
+  "DiagnosticSignHint",
+  {text = "", texthl = "DiagnosticSignHint"}
 )
 vim.fn.sign_define(
-  "LspDiagnosticsSignInformation",
-  {text = "", texthl = "LspDiagnosticsSignHint"}
+  "DiagnosticSignInformation",
+  {text = "", texthl = "DiagnosticSignInfo"}
 )
 vim.fn.sign_define(
-  "LspDiagnosticsSignWarning",
-  {text = "", texthl = "LspDiagnosticsSignWarning"}
+  "DiagnosticSignWarn",
+  {text = "", texthl = "DiagnosticSignWarn"}
 )
 vim.fn.sign_define(
-  "LspDiagnosticsSignError",
-  {text = "✘", texthl = "LspDiagnosticsSignError"}
+  "DiagnosticSignError",
+  {text = "✘", texthl = "DiagnosticSignError"}
 )

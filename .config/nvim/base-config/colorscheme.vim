@@ -38,6 +38,10 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight TelescopeNormal guibg=#fafbfc
   " autocmd ColorScheme * highlight clear Cursor
   " autocmd ColorScheme * highlight Cursor guibg=#DBD1F6
+  
+  autocmd ColorScheme * highlight TSVariable guifg=#222222
+  autocmd ColorScheme * highlight TSParameter guifg=#222222
+  autocmd ColorScheme * highlight TSParameterReference guifg=#222222
 augroup END
 
 " remove odd ~ squiggles from end of buffer and other annoying places, like diffs

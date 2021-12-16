@@ -14,10 +14,16 @@ local function organize_imports()
 end
 
 lspconfig.tsserver.setup {
+  init_options = {
+    hostInfo = "neovim",
+    maxTsServerMemory = 4096,
+    disableAutomaticTypingAcquisition = true
+  },
   on_init = function(client)
     -- This makes sure tsserver is not used for formatting (prefer prettier)
     client.resolved_capabilities.document_formatting = false
   end,
+  capabilities = attach.global_capabilities,
   on_attach = attach.global_on_attach,
   commands = {
     OrganizeImports = {

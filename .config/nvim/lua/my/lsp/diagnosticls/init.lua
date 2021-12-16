@@ -62,6 +62,7 @@ lspconfig.diagnosticls.setup {
     -- make sure eslint server still works
     os.execute("eslint_d restart")
   end,
+  capabilities = attach.global_capabilities,
   on_attach = attach.global_on_attach,
   handlers = {
     ["textDocument/codeAction"] = {

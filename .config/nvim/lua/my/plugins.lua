@@ -58,6 +58,7 @@ return require("packer").startup(
     use "nvim-telescope/telescope.nvim"
     use "nvim-telescope/telescope-fzy-native.nvim"
     use "nvim-telescope/telescope-fzf-writer.nvim"
+    use "nvim-telescope/telescope-ui-select.nvim"
     use "christoomey/vim-tmux-navigator"
     use "kshenoy/vim-signature"
     use "norcalli/nvim-colorizer.lua"
@@ -71,8 +72,25 @@ return require("packer").startup(
     -- use 'hrsh7th/vim-vsnip'
     use "onsails/lspkind-nvim"
     use "neovim/nvim-lspconfig"
-    use "hrsh7th/nvim-compe"
-    -- use "glepnir/lspsaga.nvim"
+
+    -- completion (coq) - tried and it was buggy
+    -- use {"ms-jpq/coq_nvim", branch = "coq"}
+    -- use {"ms-jpq/coq.artifacts", branch = "artifacts"} -- 9000 snippets
+    -- use {"ms-jpq/coq.thirdparty", branch = "3p"}
+
+    -- completion (old compe)
+    -- use "hrsh7th/nvim-compe"
+
+    -- completion (cmp) - seems to work well
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-nvim-lua"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-cmdline"
+    use "hrsh7th/nvim-cmp"
+    use "quangnguyen30192/cmp-nvim-ultisnips"
+
+    use "glepnir/lspsaga.nvim"
     use "itchyny/vim-highlighturl"
     -- use "vitalk/vim-simple-todo"
     use "vimwiki/vimwiki"

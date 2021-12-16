@@ -2,7 +2,7 @@
 -- LSP spec: https://microsoft.github.io/language-server-protocol/specification.html#initialize
 -- Pre-requisite for those working is to have servers installed.
 -- Commands to install them:
--- yarn global add eslint_d @fsouza/prettierd stylelint_d lua-fmt diagnostic-languageserver typescript typescript-language-server ajv-keywords ajv
+-- yarn global add eslint_d @fsouza/prettierd stylelint_d lua-fmt diagnostic-languageserver typescript typescript-language-server ajv-keywords ajv vim-language-server
 
 -- logging
 -- vim.lsp.set_log_level("debug")

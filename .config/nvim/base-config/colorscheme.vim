@@ -36,6 +36,7 @@ augroup colorscheme_custom
   " autocmd ColorScheme * highlight markdownHighlightjavascript guibg=#ffc9c9
 
   autocmd ColorScheme * highlight TelescopeNormal guibg=#fafbfc
+  autocmd ColorScheme * highlight TelescopeMatching guifg=#d05858 gui=bold
   " autocmd ColorScheme * highlight clear Cursor
   " autocmd ColorScheme * highlight Cursor guibg=#DBD1F6
   

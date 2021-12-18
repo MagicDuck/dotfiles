@@ -54,8 +54,8 @@ local global_on_attach = function(client, bufnr)
 end
 
 local global_capabilities = vim.lsp.protocol.make_client_capabilities()
--- global_capabilities =
---   require("cmp_nvim_lsp").update_capabilities(global_capabilities)
+global_capabilities =
+  require("cmp_nvim_lsp").update_capabilities(global_capabilities)
 
 return {
   global_on_attach = global_on_attach,

@@ -2,16 +2,49 @@ local telescope = require("telescope")
 local actions = require("telescope.actions")
 
 telescope.setup {
-  shorten_path = true,
   -- prompt_position = "top",
-  layout_strategy = "center",
   defaults = {
+    shorten_path = true,
+    sorting_strategy = "ascending",
+    layout_strategy = "vertical",
+    layout_config = {
+      preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+      prompt_position = "top",
+      width = function(_, max_columns, _)
+        return max_columns - 16
+      end,
+      height = function(_, _, max_lines)
+        return max_lines - 4
+      end,
+      preview_height = function(_, _, max_lines)
+        return math.min(max_lines - 18, math.floor((max_lines - 8) / 2))
+      end
+    },
+    border = true,
+    color_devicons = false,
+    prompt_prefix = "❯ ",
+    selection_caret = "❯ ",
     mappings = {
       i = {
-        ["<esc>"] = actions.close
+        ["<esc>"] = actions.close,
+        ["<C-k>"] = actions.cycle_history_next,
+        ["<C-j>"] = actions.cycle_history_prev,
+        ["<C-q>"] = function(...)
+          actions.send_selected_to_qflist(...)
+          vim.cmd("copen")
+        end,
+        ["<C-a>"] = actions.select_all
       },
       n = {
         ["<esc>"] = actions.close
+      }
+    },
+    pickers = {
+      live_grep = {
+        results_title = false,
+        layout_config = {
+          prompt_position = "top"
+        }
       }
     },
     extensions = {
@@ -28,6 +61,8 @@ telescope.setup {
   }
 }
 
-telescope.load_extension("fzy_native")
+-- telescope.load_extension("fzy_native")
+telescope.load_extension("fzf")
 telescope.load_extension("fzf_writer")
 telescope.load_extension("ui-select")
+telescope.load_extension("ultisnips")

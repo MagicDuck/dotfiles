@@ -56,7 +56,9 @@ return require("packer").startup(
     use "nvim-lua/popup.nvim"
     use "nvim-lua/plenary.nvim"
     use "nvim-telescope/telescope.nvim"
-    use "nvim-telescope/telescope-fzy-native.nvim"
+    use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+    -- use "nvim-telescope/telescope-fzy-native.nvim" -- alternative to fzf-native
+    use "fhill2/telescope-ultisnips.nvim"
     use "nvim-telescope/telescope-fzf-writer.nvim"
     use "nvim-telescope/telescope-ui-select.nvim"
     use "christoomey/vim-tmux-navigator"
@@ -72,6 +74,7 @@ return require("packer").startup(
     -- use 'hrsh7th/vim-vsnip'
     use "onsails/lspkind-nvim"
     use "neovim/nvim-lspconfig"
+    use "mfussenegger/nvim-jdtls"
 
     -- completion (coq) - tried and it was buggy
     -- use {"ms-jpq/coq_nvim", branch = "coq"}

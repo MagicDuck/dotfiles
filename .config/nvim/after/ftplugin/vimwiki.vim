@@ -17,5 +17,5 @@ nmap <silent><buffer> <C-Down> <Plug>VimwikiDiaryNextDay
 nmap <silent><buffer> <C-Up> <Plug>VimwikiDiaryPrevDay
 
 " fix auto-complete
-inoremap <silent><buffer><expr> <CR>      compe#confirm('<C-]><Esc>:VimwikiReturn 1 5<CR>')
+"inoremap <silent><buffer><expr> <CR>      compe#confirm('<C-]><Esc>:VimwikiReturn 1 5<CR>')
 

@@ -2,7 +2,7 @@
 -- LSP spec: https://microsoft.github.io/language-server-protocol/specification.html#initialize
 -- Pre-requisite for those working is to have servers installed.
 -- Commands to install them:
--- yarn global add eslint_d @fsouza/prettierd stylelint_d lua-fmt diagnostic-languageserver typescript typescript-language-server ajv-keywords ajv vim-language-server cssmodules-language-server
+-- yarn global add eslint_d @fsouza/prettierd stylelint_d lua-fmt diagnostic-languageserver typescript typescript-language-server ajv-keywords ajv vim-language-server cssmodules-language-server vscode-langservers-extracted
 
 -- logging
 -- vim.lsp.set_log_level("debug")
@@ -13,6 +13,7 @@ require("my/lsp/vimls")
 require("my/lsp/tsserver")
 require("my/lsp/diagnosticls")
 require("my/lsp/cssmodules")
+require("my/lsp/cssls")
 -- require("my/lsp/null-ls")
 
 -- define signs to show in the sign column

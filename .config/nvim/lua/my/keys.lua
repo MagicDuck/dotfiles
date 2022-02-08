@@ -1,7 +1,7 @@
 -- show Mappings picker
 my.keybind {
   description = "show a list of key bindings to pick from",
-  lhs = "<leader>k",
+  lhs = "<leader>,",
   rhs = ":lua require('my/telescope/command_picker').pickKeybindOrCommand({mode = 'n'})<CR>"
 }
 
@@ -44,6 +44,11 @@ my.keybind {
 }
 
 -- buffer
+my.keybind {
+  description = "buffer: go to previously viewed/edited buffer",
+  lhs = "<leader>o",
+  rhs = ":b#<CR>"
+}
 my.keybind {
   description = "buffer: close current buffer while preserving window",
   lhs = "<leader>q",
@@ -103,12 +108,12 @@ my.keybind {
 my.keybind {
   description = "conflict resolution: next conflict",
   lhs = "<down>c",
-  rhs = "]c"
+  rhs = "]n"
 }
 my.keybind {
   description = "conflict resolution: prev conflict",
   lhs = "<up>c",
-  rhs = "[c"
+  rhs = "[n"
 }
 
 -- tabs
@@ -142,26 +147,47 @@ my.keybind {
 my.keybind {
   description = "window: enter window mode",
   mode = "n",
-  lhs = "<BS>",
+  lhs = "s",
+  -- lhs = "<leader>w",
   rhs = "<C-W>"
 }
 my.keybind {
   description = "window: navigate down",
+  lhs = "<leader>j",
+  rhs = "<C-W><C-J>"
+}
+my.keybind {
+  description = "window: navigate down (alt)",
   lhs = "<C-j>",
   rhs = "<C-W><C-J>"
 }
 my.keybind {
   description = "window: navigate up",
+  lhs = "<leader>k",
+  rhs = "<C-W><C-K>"
+}
+my.keybind {
+  description = "window: navigate up (alt)",
   lhs = "<C-k>",
   rhs = "<C-W><C-K>"
 }
 my.keybind {
   description = "window: navigate left",
+  lhs = "<leader>h",
+  rhs = "<C-W><C-H>"
+}
+my.keybind {
+  description = "window: navigate left (alt)",
   lhs = "<C-h>",
   rhs = "<C-W><C-H>"
 }
 my.keybind {
   description = "window: navigate right",
+  lhs = "<leader>l",
+  rhs = "<C-W><C-l>"
+}
+my.keybind {
+  description = "window: navigate right (alt)",
   lhs = "<C-l>",
   rhs = "<C-W><C-l>"
 }
@@ -349,32 +375,37 @@ my.keybind {
 my.keybind {
   description = "Search: pick from existing buffers",
   lhs = "<leader>b",
-  rhs = ":Buffers<CR>"
+  -- rhs = ":Buffers<CR>"
+  rhs = ":Telescope buffers<CR>"
 }
 my.keybind {
   description = "Search: pick from project files",
   lhs = "<leader>d",
-  rhs = ":MyFiles<CR>"
+  -- rhs = ":MyFiles<CR>"
+  rhs = ":Telescope find_files<CR>"
 }
 my.keybind {
   description = "Search: pick from project files (alternate keybind)",
   lhs = "<C-p>",
-  rhs = ":MyFiles<CR>"
+  -- rhs = ":MyFiles<CR>"
+  rhs = ":Telescope find_files<CR>"
 }
 my.keybind {
   description = "Search: find text in project files",
   lhs = "<leader>f",
-  rhs = ":Search<CR>"
+  -- rhs = ":Search<CR>"
+  rhs = ":Telescope live_grep<CR>"
 }
-my.keybind {
-  description = "Search: pick a mark location",
-  lhs = "<leader>j",
-  rhs = ":MarksWithPreview<CR>"
-}
+-- my.keybind {
+--   description = "Search: pick a mark location",
+--   lhs = "<leader>j",
+--   rhs = ":MarksWithPreview<CR>"
+-- }
 my.keybind {
   description = "Search: pick a line in the current buffer",
   lhs = "<leader>sb",
-  rhs = ":BLines<CR>"
+  -- rhs = ":BLines<CR>"
+  rhs = ":Telescope current_buffer_fuzzy_find<CR>"
 }
 my.keybind {
   description = "Search: pick a line in all opened buffers",
@@ -387,9 +418,16 @@ my.keybind {
   rhs = ":Windows<CR>"
 }
 my.keybind {
+  mode = "v",
+  description = "Search: find current selection under cursor in project",
+  lhs = "<leader>sf",
+  rhs = 'y<ESC>:lua require("telescope.builtin").live_grep({ default_text="<c-r>0" })<CR>'
+}
+my.keybind {
+  mode = "n",
   description = "Search: find current word under cursor in project",
   lhs = "<leader>sf",
-  rhs = ":SearchCurrentWord<CR>"
+  rhs = 'y<ESC>:lua require("telescope.builtin").live_grep({ default_text=vim.fn.expand("<cword>") })<CR>'
 }
 
 -- notes
@@ -515,14 +553,15 @@ my.keybind {
 -- hop
 my.keybind {
   mode = "nvxo",
-  description = "hop to word - 2 char mode",
-  lhs = "s",
-  rhs = "<cmd>HopChar2<CR>"
+  description = "hop to word",
+  lhs = "f",
+  -- rhs = "<cmd>HopChar2<CR>"
+  rhs = "<cmd>HopWord<CR>"
 }
 my.keybind {
-  mode = "n",
+  mode = "nv",
   description = "hop to line",
-  lhs = "S",
+  lhs = "F",
   rhs = "<cmd>HopLine<CR>"
 }
 -- replace

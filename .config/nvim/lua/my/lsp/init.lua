@@ -11,10 +11,10 @@
 require("my/lsp/sumneko_lua")
 require("my/lsp/vimls")
 require("my/lsp/tsserver")
-require("my/lsp/diagnosticls")
+-- require("my/lsp/diagnosticls")
 require("my/lsp/cssmodules")
 require("my/lsp/cssls")
--- require("my/lsp/null-ls")
+require("my/lsp/null-ls")
 
 -- define signs to show in the sign column
 vim.fn.sign_define(

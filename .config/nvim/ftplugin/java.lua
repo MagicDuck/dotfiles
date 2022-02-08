@@ -26,16 +26,19 @@ local workspaceRoot = vim.fn.expand("~/jdtls-workspaces")
 local projectWorkspaceDir = workspaceRoot .. "/" .. projectName
 
 -- figure out java runtime path
-local javaVersionsDir = vim.fn.expand("~/.jenv/versions")
+-- local javaVersionsDir = vim.fn.expand("~/.jenv/versions")
+-- local java11Dir = "/usr/local/Cellar/openjdk@11/11.0.10"
+local java11Dir = vim.fn.expand("~/.jenv/versions/11")
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   cmd = {
-    javaVersionsDir .. "/11/bin/java", --"java", -- or '/path/to/java11_or_newer/bin/java'
+    java11Dir .. "/bin/java", --"java", -- or '/path/to/java11_or_newer/bin/java'
     -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
+    "-javaagent:" .. vim.fn.expand("~/lombok-1.18.6.jar"),
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -64,6 +67,7 @@ local config = {
   settings = {
     java = {
       -- home = javaVersionsDir .. "/1.8",
+      -- home = java11Dir,
       import = {
         gradle = {
           enabled = true,
@@ -76,26 +80,31 @@ local config = {
         }
       },
       format = {
-        enabled = true,
+        enabled = false,
         comments = {
           enabled = false
         },
-        insertSpaces = false
-      },
-      configuration = {
-        runtimes = {
-          {
-            name = "JavaSE-11",
-            path = javaVersionsDir .. "/11"
-            -- default = projectName ~= "ondemand"
-          }
-          -- {
-          --   name = "JavaSE_1_8",
-          --   path = javaVersionsDir .. "/1.8",
-          --   default = projectName == "ondemand"
-          -- }
+        insertSpaces = false,
+        settings = {
+          url = vim.fn.expand(
+            "~/.config/nvim/ftplugin/eclipse_formatter_style.xml"
+          )
         }
       }
+      -- configuration = {
+      --   runtimes = {
+      --     {
+      --       name = "JavaSE-11",
+      --       path = java11Dir
+      --       -- default = projectName ~= "ondemand"
+      --     }
+      --     -- {
+      --     --   name = "JavaSE_1_8",
+      --     --   path = javaVersionsDir .. "/1.8",
+      --     --   default = projectName == "ondemand"
+      --     -- }
+      --   }
+      -- }
     }
   },
   -- Language server `initializationOptions`

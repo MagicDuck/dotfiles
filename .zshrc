@@ -81,7 +81,7 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.zhistory
-HISTSIZE=1000
+HISTSIZE=10000
 SAVEHIST=500
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
 
@@ -132,43 +132,24 @@ zle -N zle-line-finish
 zle -N zle-keymap-select
 
 
-# TODO: prompt show status
-
-# bindkey '^[[7~' beginning-of-line                               # Home key
-# bindkey '^[[H' beginning-of-line                                # Home key
-# if [[ "${terminfo[khome]}" != "" ]]; then
-#   bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
-# fi
-# bindkey '^[[8~' end-of-line                                     # End key
-# bindkey '^[[F' end-of-line                                     # End key
-# if [[ "${terminfo[kend]}" != "" ]]; then
-#   bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
-# fi
-# bindkey '^[[2~' overwrite-mode                                  # Insert key
 
 # Note: see man zshzle for info on bindkey
-bindkey '^[[3~' delete-char                                     # Delete key
-bindkey '^[[1;3C'  forward-word                                    # alt+Right key
-bindkey '^[[1;3D'  backward-word                                   # alt+Left key
-bindkey '^[[1;3A'  beginning-of-line                              # alt+up key
-bindkey '^[[1;3B'  end-of-line                                    # alt+down key
-# bindkey '^[[1;\b'    backward-kill-word                             # alt+bksp key - not sure why it does not work
-bindkey '^[[3;3~'  kill-word                                      # alt+del key
-# bindkey '^[[5~' history-beginning-search-backward               # Page up key
-# bindkey '^[[6~' history-beginning-search-forward                # Page down key
-#
-# # Navigate words with ctrl+arrow keys
-# bindkey '^[Oc' forward-word                                     #
-# bindkey '^[Od' backward-word                                    #
-# bindkey '^[[1;5D' backward-word                                 #
-# bindkey '^[[1;5C' forward-word                                  #
-# bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
-# bindkey '^[[Z' undo                                             # Shift+tab undo last action
+# use kitty +kitten show_key to get the right UNIX escape sequence
+bindkey '^[[1~' beginning-of-line # Home key
+bindkey '^[[4~' end-of-line       # End key
+bindkey '^[[3~' delete-char       # Delete key
+bindkey '^[[1;3C'  forward-word       # alt+Right key
+bindkey '^[[1;3D'  backward-word      # alt+Left key
+bindkey '^[[1;3A'  beginning-of-line  # alt+up key
+bindkey '^[[1;3B'  end-of-line        # alt+down key
+bindkey '^[^?'     backward-kill-word  # alt+bksp key
+bindkey '^[[3;3~'  kill-word         # alt+del key
+# bindkey '^H'  backward-kill-line         # cmd+bksp key, kitty does not differentiate between it and simple backspace 
+# bindkey '\x1b[3;9~'  kill-line         # cmd+del key, kitty does not differntiate between it and alt+del
+
 
 ## Plugins section: Enable fish style features
 zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 

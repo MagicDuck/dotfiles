@@ -4,6 +4,7 @@ local actions = require("telescope.actions")
 telescope.setup {
   -- prompt_position = "top",
   defaults = {
+    file_ignore_patterns = {"node_modules", "__snapshots__"},
     shorten_path = true,
     sorting_strategy = "ascending",
     layout_strategy = "vertical",
@@ -38,25 +39,34 @@ telescope.setup {
       n = {
         ["<esc>"] = actions.close
       }
-    },
-    pickers = {
-      live_grep = {
-        results_title = false,
-        layout_config = {
-          prompt_position = "top"
-        }
+    }
+  },
+  pickers = {
+    live_grep = {
+      results_title = false,
+      layout_config = {
+        prompt_position = "top"
       }
     },
-    extensions = {
-      fzf_writer = {
-        minimum_grep_characters = 2,
-        minimum_files_characters = 2
+    buffers = {
+      -- only_cwd = true,
+      sort_mru = true,
+      ignore_current_buffer = true
+      -- sort_lastused = true
+    }
+  },
+  extensions = {
+    fzf_writer = {
+      minimum_grep_characters = 2,
+      minimum_files_characters = 2
 
-        -- Disabled by default.
-        -- Will probably slow down some aspects of the sorter, but can make color highlights.
-        -- I will work on this more later.
-        -- use_highlighter = true,
-      }
+      -- Disabled by default.
+      -- Will probably slow down some aspects of the sorter, but can make color highlights.
+      -- I will work on this more later.
+      -- use_highlighter = true,
+    },
+    file_browser = {
+      initial_mode = "normal"
     }
   }
 }
@@ -66,3 +76,4 @@ telescope.load_extension("fzf")
 telescope.load_extension("fzf_writer")
 telescope.load_extension("ui-select")
 telescope.load_extension("ultisnips")
+telescope.load_extension("file_browser")

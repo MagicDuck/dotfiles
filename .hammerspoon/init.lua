@@ -60,7 +60,8 @@ end
 local function kittyDo(cmd, cb)
   local task =
     hs.task.new(
-    "/usr/local/bin/kitty",
+    "/Applications/kitty.app/Contents/MacOS/kitty",
+    -- "/usr/local/bin/kitty",
     cb,
     str_split_space("@ --to unix:/tmp/mykitty " .. cmd)
   )
@@ -82,7 +83,7 @@ end
 
 local function closeInitialKittyWindow()
   kittyDo(
-    "close-window --match=title:kitty",
+    "close-window --match=title:~",
     function(exitCode)
       if (exitCode ~= 0) then
         print("Could not close initial kitty window")
@@ -225,14 +226,14 @@ hs.hotkey.bind(
     switchToApp("Brave Browser", positionWindowFullscreen)
   end
 )
--- hs.hotkey.bind(
---   superKey,
---   "e",
---   function()
---     switchToApp("IntelliJ IDEA")
---   end,
---   positionWindowFullscreen
--- )
+hs.hotkey.bind(
+  superKey,
+  "i",
+  function()
+    switchToApp("IntelliJ IDEA")
+  end,
+  positionWindowFullscreen
+)
 -- hs.hotkey.bind(
 --   superKey,
 --   "f",
@@ -244,17 +245,17 @@ hs.hotkey.bind(
 --     )
 --   end
 -- )
-hs.hotkey.bind(
-  superKey,
-  "i",
-  function()
-    switchToKittyWindow(
-      "gitui",
-      "/usr/local/bin/zsh -is eval gitui -d ~/frontend",
-      positionWindowCentered
-    )
-  end
-)
+-- hs.hotkey.bind(
+--   superKey,
+--   "i",
+--   function()
+--     switchToKittyWindow(
+--       "gitui",
+--       "/usr/local/bin/zsh -is eval gitui -d ~/frontend",
+--       positionWindowCentered
+--     )
+--   end
+-- )
 --hs.hotkey.bind(superKey, "j", function()
 --  local currentWindow = hs.window.frontmostWindow()
 --  local nextWin = getNextAppWindow(currentWindow)
@@ -373,7 +374,7 @@ hs.hotkey.bind(
     switchToKittyWindow(
       "terminal",
       "/usr/local/bin/zsh -is",
-      positionWindowRightHalf
+      positionWindowFullscreen
     )
   end
 )
@@ -384,7 +385,7 @@ hs.hotkey.bind(
     switchToKittyWindow(
       "terminal",
       "/usr/local/bin/zsh -is",
-      positionWindowRightHalf
+      positionWindowFullscreen
     )
   end
 )
@@ -395,7 +396,7 @@ hs.hotkey.bind(
     switchToKittyWindow(
       "terminal",
       "/usr/local/bin/zsh -is",
-      positionWindowRightHalf
+      positionWindowFullscreen
     )
   end
 )

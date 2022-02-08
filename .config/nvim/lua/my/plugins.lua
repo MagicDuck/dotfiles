@@ -61,12 +61,14 @@ return require("packer").startup(
     use "fhill2/telescope-ultisnips.nvim"
     use "nvim-telescope/telescope-fzf-writer.nvim"
     use "nvim-telescope/telescope-ui-select.nvim"
+    use "nvim-telescope/telescope-file-browser.nvim"
     use "christoomey/vim-tmux-navigator"
     use "kshenoy/vim-signature"
     use "norcalli/nvim-colorizer.lua"
     use "voldikss/vim-floaterm"
     use "tpope/vim-surround"
     use "phaazon/hop.nvim"
+    -- use "ggandor/lightspeed.nvim"
     use "rafcamlet/nvim-luapad"
     use "ryanoasis/vim-devicons"
     use "kyazdani42/nvim-web-devicons"
@@ -94,7 +96,7 @@ return require("packer").startup(
     use "quangnguyen30192/cmp-nvim-ultisnips"
 
     -- alternative to diagnostic-ls: it has some issues with eslint freezing on syntax error
-    -- use "jose-elias-alvarez/null-ls.nvim"
+    use "jose-elias-alvarez/null-ls.nvim"
 
     use "glepnir/lspsaga.nvim"
     use "itchyny/vim-highlighturl"

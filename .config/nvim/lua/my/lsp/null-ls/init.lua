@@ -17,6 +17,71 @@ local luafmt = {
   )
 }
 
+local stylelint_d =
+  h.make_builtin(
+  {
+    name = "stylelint_d",
+    method = methods.internal.DIAGNOSTICS,
+    -- method = methods.internal.DIAGNOSTICS_ON_SAVE,
+    filetypes = {"scss", "less", "css", "sass"},
+    generator_opts = {
+      command = "stylelint_d",
+      args = {
+        "--stdin",
+        "--no-color",
+        "--formatter",
+        "json",
+        "--stdin-filename",
+        "$FILENAME"
+      },
+      to_stdin = true,
+      format = "json_raw",
+      -- from_stderr = true,
+      on_output = function(params)
+        local output =
+          params.output and params.output[1] and params.output[1].warnings or {}
+
+        -- json decode failure means stylelint failed to run
+        if params.err then
+          table.insert(output, {text = params.output})
+        end
+
+        local parser =
+          h.diagnostics.from_json(
+          {
+            attributes = {
+              severity = "severity",
+              message = "text"
+            },
+            adapters = {
+              {
+                severity = function(entries)
+                  local sev = entries.severity
+                  if sev == "info" then
+                    return "error"
+                  end
+                  return sev
+                end
+              }
+            }
+            -- severities = {
+            --   h.diagnostics.severities["warning"],
+            --   h.diagnostics.severities["error"]
+            --   -- ["info"] = h.diagnostics.severities["error"]
+            -- }
+          }
+        )
+
+        params.output = output
+        local res = parser(params)
+        P(res)
+        return res
+      end
+    },
+    factory = h.generator_factory
+  }
+)
+
 local checkstyle =
   h.make_builtin(
   {
@@ -118,17 +183,18 @@ local checkstyle =
 
 null_ls.setup(
   {
-    log = {
-      enable = true,
-      level = "trace",
-      use_console = "async"
-    },
+    -- log = {
+    --   enable = true,
+    --   level = "trace",
+    --   use_console = "async"
+    -- },
     diagnostics_format = "[#{s}] #{m} (#{c})",
     sources = {
       -- null_ls.builtins.diagnostics.stylelint.with {
+      stylelint_d,
+      -- stylelint.with {
       --   only_local = "node_modules/.bin"
       -- },
-      null_ls.builtins.diagnostics.stylelint.with {},
       null_ls.builtins.diagnostics.eslint_d.with {},
       null_ls.builtins.formatting.eslint_d.with {},
       null_ls.builtins.code_actions.eslint_d.with {},

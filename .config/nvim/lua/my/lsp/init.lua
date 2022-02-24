@@ -8,13 +8,15 @@
 -- vim.lsp.set_log_level("debug")
 -- vim.cmd("e " .. vim.lsp.get_log_path())
 
-require("my/lsp/sumneko_lua")
-require("my/lsp/vimls")
-require("my/lsp/tsserver")
--- require("my/lsp/diagnosticls")
-require("my/lsp/cssmodules")
-require("my/lsp/cssls")
-require("my/lsp/null-ls")
+if (vim.g.myLspDisabled ~= true) then
+  require("my/lsp/sumneko_lua")
+  require("my/lsp/vimls")
+  require("my/lsp/tsserver")
+  -- require("my/lsp/diagnosticls")
+  require("my/lsp/cssmodules")
+  require("my/lsp/cssls")
+  require("my/lsp/null-ls")
+end
 
 -- define signs to show in the sign column
 vim.fn.sign_define(

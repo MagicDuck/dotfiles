@@ -70,8 +70,10 @@ return require("packer").startup(
     use "phaazon/hop.nvim"
     -- use "ggandor/lightspeed.nvim"
     use "rafcamlet/nvim-luapad"
+    -- devicons
     use "ryanoasis/vim-devicons"
     use "kyazdani42/nvim-web-devicons"
+
     -- use 'akinsho/nvim-bufferline.lua'
     -- use 'hrsh7th/vim-vsnip'
     use "onsails/lspkind-nvim"
@@ -107,10 +109,8 @@ return require("packer").startup(
     use "honza/vim-snippets"
     use "tpope/vim-unimpaired"
     use "sbdchd/neoformat"
-    use {
-      "glepnir/galaxyline.nvim",
-      branch = "main"
-    }
+    use "NTBBloodbath/galaxyline.nvim"
+
     use "karb94/neoscroll.nvim"
 
     use {"puremourning/vimspector", run = ":VimspectorUpdate"}

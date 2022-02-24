@@ -1,8 +1,5 @@
 local galaxyline = require("galaxyline")
 local condition = require("galaxyline.condition")
-local diagnostic = require("galaxyline.provider_diagnostic")
-local vcs = require("galaxyline.provider_vcs")
-local fileinfo = require("galaxyline.provider_fileinfo")
 local colors = require("my/galaxyline/colors")
 local icons = require("my/galaxyline/icons")
 

@@ -24,7 +24,8 @@ set ignorecase
 set smartcase
 set infercase          " better case handling for insert mode completion
 set wrapscan
-set smartindent
+" set smartindent
+" set nosmartindent
 set autoindent
 set autoread           " automatically reload files changed outside Vi
 " set autowrite " automatically write files when doing things like :make

@@ -63,6 +63,9 @@ set scroll=5           " number of lines the scroll commands should scroll
 set termguicolors      " true color
 set notimeout          " don't time out on leader commands
 
+" fix for kitty terminal background tearing
+let &t_ut=''
+
 " set grep command
 set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 

@@ -2,10 +2,95 @@ hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
 -------------------------------------------------------------------
+-- Local config
+-------------------------------------------------------------------
+local localConfig = require("./localConfig")
+
+-------------------------------------------------------------------
 -- IPC config, so we can call hammerspoon from CLI "hs" command
 -------------------------------------------------------------------
 require("hs.ipc")
 hs.ipc.cliInstall()
+
+-------------------------------------------------------------------
+-- Network, auto-switch WIFI off when wired is on and vice-versa
+-------------------------------------------------------------------
+local network = require("./network")
+network.setEthernetInterfaceName("AX88179A")
+local networkWatcher = hs.network.configuration.open()
+networkWatcher:monitorKeys()
+networkWatcher:setCallback(network.handleNetworkChange)
+networkWatcher:start()
+-- TODO (sbadragan): need to call this on caffeinate as well?
+
+-------------------------------------------------------------------
+-- Gitlab
+-------------------------------------------------------------------
+local function getDeployVersion(branchName)
+  local prefix, number = string.match(branchName, "(%w+)[-](%d+)")
+  if (prefix and number) then
+    return "0.x." .. string.lower(prefix) .. number .. "sb"
+  else
+    return "0.x.sbadragan"
+  end
+end
+
+local function getPreId(branchName)
+  local prefix, number = string.match(branchName, "(%w+)[-](%d+)")
+  if (prefix and number) then
+    return string.lower(prefix) .. "-" .. number
+  else
+    return "cor-xxx"
+  end
+end
+
+hs.loadSpoon("gitlab-merge-requests")
+spoon["gitlab-merge-requests"]:setup(
+  {
+    gitlab_host = localConfig.gitlab.gitlab_host,
+    token = localConfig.gitlab.token,
+    username = localConfig.gitlab.username,
+    deployUrls = {
+      frontend = function(args)
+        return "https://jenkins.i.xmatters.com/job/frontend/job/frontend-branch-build-and-deploy/parambuild/?hostnames=stephanbcorp.dev.xmatters.com&branch=" ..
+          hs.http.convertHtmlEntities(args.branchName)
+      end,
+      ondemand = function(args)
+        return "https://jenkins.i.xmatters.com/job/kessel/job/ondemand/job/webui-branch-deploy-gitlab/parambuild/?slackChannel=kessel-builds&" ..
+          "version=" ..
+            getDeployVersion(args.branchName) ..
+              "&branch=" .. hs.http.convertHtmlEntities(args.branchName)
+      end,
+      spark = function(args)
+        return "https://jenkins.i.xmatters.com/job/frontend/job/spark-test-publish/parambuild/?preid=" ..
+          getPreId(args.branchName) ..
+            "&semverIncrementLevel=prepatch&branch=" ..
+              hs.http.convertHtmlEntities(args.branchName)
+      end,
+      ["xM-API"] = function(args)
+        return "https://jenkins.i.xmatters.com/job/kamino/job/xmapi/job/xmapi-branch-build-deploy/parambuild?version=" ..
+          getDeployVersion(args.branchName) ..
+            "&slackChannel=kessel-build&branch=" ..
+              hs.http.convertHtmlEntities(args.branchName)
+      end
+    }
+  }
+)
+spoon["gitlab-merge-requests"]:start()
+
+-------------------------------------------------------------------
+-- JIRA
+-------------------------------------------------------------------
+-- hs.loadSpoon("jira-issues")
+-- spoon["jira-issues"]:setup(
+--   {
+--     jira_host = localConfig.jira.jira_host,
+--     login = localConfig.jira.login,
+--     api_token = localConfig.jira.api_token,
+--     jql = "assignee=currentuser() AND resolution=Unresolved AND status not in (Rejected, Closed) AND type in (Story, Bug) ORDER BY status ASC"
+--   }
+-- )
+-- spoon["jira-issues"]:start()
 
 -------------------------------------------------------------------
 -- constants
@@ -39,7 +124,7 @@ local function switchToApp(appName, initializeWinFn)
       hs.application.open(appName)
     end
   else
-    hs.application.open(appName)
+    hs.application.open(appName, 2, true)
     if initializeWinFn ~= nil then
       local newWin = hs.window.frontmostWindow()
       initializeWinFn(newWin)
@@ -275,13 +360,13 @@ hs.hotkey.bind(
     switchToApp("zoom.us")
   end
 )
--- hs.hotkey.bind(
---   superKey,
---   "m",
---   function()
---     switchToApp("Mail", positionWindowFullscreen)
---   end
--- )
+hs.hotkey.bind(
+  superKey,
+  "m",
+  function()
+    switchToApp("Figma", positionWindowFullscreen)
+  end
+)
 hs.hotkey.bind(
   superKey,
   "n",

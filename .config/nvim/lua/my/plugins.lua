@@ -50,6 +50,7 @@ return require("packer").startup(
     use "unblevable/quick-scope"
     use "junegunn/vim-easy-align"
     use "tpope/vim-fugitive"
+    use "shumphrey/fugitive-gitlab.vim"
     use "tommcdo/vim-fubitive"
     use "kevinhwang91/rnvimr" -- ranger
     use "kevinhwang91/nvim-bqf" -- quickfix
@@ -111,7 +112,8 @@ return require("packer").startup(
     use "sbdchd/neoformat"
     use "NTBBloodbath/galaxyline.nvim"
 
-    use "karb94/neoscroll.nvim"
+    -- smooth scrolling, has some issues with screen tearing and perf
+    -- use "karb94/neoscroll.nvim"
 
     use {"puremourning/vimspector", run = ":VimspectorUpdate"}
     use "junkblocker/git-time-lapse"

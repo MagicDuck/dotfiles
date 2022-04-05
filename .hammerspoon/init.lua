@@ -81,16 +81,16 @@ spoon["gitlab-merge-requests"]:start()
 -------------------------------------------------------------------
 -- JIRA
 -------------------------------------------------------------------
--- hs.loadSpoon("jira-issues")
--- spoon["jira-issues"]:setup(
---   {
---     jira_host = localConfig.jira.jira_host,
---     login = localConfig.jira.login,
---     api_token = localConfig.jira.api_token,
---     jql = "assignee=currentuser() AND resolution=Unresolved AND status not in (Rejected, Closed) AND type in (Story, Bug) ORDER BY status ASC"
---   }
--- )
--- spoon["jira-issues"]:start()
+hs.loadSpoon("jira-issues")
+spoon["jira-issues"]:setup(
+  {
+    jira_host = localConfig.jira.jira_host,
+    login = localConfig.jira.login,
+    api_token = localConfig.jira.api_token,
+    jql = "assignee=currentuser() AND resolution=Unresolved AND status not in (Rejected, Closed) AND type in (Story, Bug) ORDER BY status ASC"
+  }
+)
+spoon["jira-issues"]:start()
 
 -------------------------------------------------------------------
 -- constants

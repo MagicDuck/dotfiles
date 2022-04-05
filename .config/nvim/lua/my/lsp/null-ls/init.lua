@@ -74,7 +74,6 @@ local stylelint_d =
 
         params.output = output
         local res = parser(params)
-        P(res)
         return res
       end
     },

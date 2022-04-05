@@ -26,6 +26,7 @@ let g:startify_bookmarks = [
             \ '/opt/repos/builtin-script-steps',
             \ '/opt/repos/qa-automation-ui',
             \ '/opt/repos/qa-automation',
+            \ '/opt/repos/gitlab-merge-requests.spoon.proj',
             \ '/opt/repos/customer-config-ui-feature-definition/features.json',
             \ '/opt/repos/xm-api/src/main/java/com/xmatters/xm/repositories/FeatureToggleRepository.java',
             \ ]

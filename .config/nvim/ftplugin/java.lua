@@ -1,5 +1,7 @@
 local attach = require("my/lsp/attach")
 
+local JAVA_LSP_DISABLED = true
+
 vim.bo.tabstop = 4
 vim.bo.shiftwidth = 4
 vim.bo.softtabstop = 4
@@ -122,6 +124,6 @@ local config = {
 }
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
-if (vim.g.myLspDisabled ~= true) then
+if (vim.g.myLspDisabled ~= true or JAVA_LSP_DISABLED) then
   require("jdtls").start_or_attach(config)
 end

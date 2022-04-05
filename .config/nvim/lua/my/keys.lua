@@ -149,7 +149,8 @@ my.keybind {
   mode = "n",
   lhs = "s",
   -- lhs = "<leader>w",
-  rhs = "<C-W>"
+  rhs = "<C-W>",
+  options = {silent = false, noremap = true}
 }
 my.keybind {
   description = "window: navigate down",
@@ -577,13 +578,15 @@ my.keybind {
   mode = "n",
   description = "scroll down",
   lhs = "<PageDown>",
-  rhs = "<cmd>lua require('neoscroll').scroll(0.1, true, 8)<cr>"
+  rhs = "30j"
+  -- rhs = "<cmd>lua require('neoscroll').scroll(0.1, true, 8)<cr>"
 }
 my.keybind {
   mode = "n",
   description = "scroll up",
   lhs = "<PageUp>",
-  rhs = "<cmd>lua require('neoscroll').scroll(-0.1, true, 8)<cr>"
+  rhs = "30k"
+  -- rhs = "<cmd>lua require('neoscroll').scroll(-0.1, true, 8)<cr>"
 }
 -- vimspector debugging
 my.keybind {

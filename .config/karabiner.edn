@@ -144,7 +144,7 @@
     ; {:des "simultaneous s v press to &" :rules [[:condi :!iris-keyboard] [[:s :v] :!S7]]}
     ; {:des "simultaneous m k press to *" :rules [[:condi :!iris-keyboard] [[:m :k] :!S8]]}
     
-    {:des "simultaneous d f press to enter" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:d :f] :return_or_enter]]}
+    ; {:des "simultaneous d f press to enter" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:d :f] :return_or_enter]]}
     {:des "simultaneous f g press to del" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:f :g] :delete_forward]]}
     ; {:des "simultaneous c v press to enter" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:c :v] :return_or_enter]]}
 
@@ -156,8 +156,14 @@
       [:##right_command :left_option :kinesis-keyboard]
     ]}
 
-    {:des "end -> delete" :rules [
-      [:##end :delete_forward :kinesis-keyboard]
+    ; {:des "end -> delete" :rules [
+    ;   [:##end :delete_forward :kinesis-keyboard]
+    ; ]}
+
+    {:des "text snippets mode" :rules [
+      [:end ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
+      ; enter code block 
+      [:i [:grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde :return_or_enter :return_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde  :up_arrow] ["snippet-mode" 1]]
     ]}
 
     {:des "shift mode" :rules [
@@ -254,9 +260,45 @@
       [:delete_or_backspace [:spacebar] ["symbol-mode" 1]]
       [:delete_forward [:return_or_enter] ["symbol-mode" 1]]
     ]}
+
+    ; {:des "symbol mode learning wheels - disable the regular symbols" :rules [
+    ;   [:condi :kinesis-keyboard] 
+    ;   [:equal_sign :vk_none]
+    ;   [:!Requal_sign :vk_none]
+    ;   [:!R1 :vk_none]
+    ;   [:!R2 :vk_none]
+    ;   [:!R3 :vk_none]
+    ;   [:!R4 :vk_none]
+    ;   [:!R5 :vk_none]
+    ;   [:grave_accent_and_tilde :vk_none]
+    ;   [:!Rgrave_accent_and_tilde :vk_none]
+    ;   [:!S6 :vk_none]
+    ;   [:!S7 :vk_none]
+    ;   [:!S8 :vk_none]
+    ;   [:!S9 :vk_none]
+    ;   [:!S0 :vk_none]
+    ;   [:hyphen :vk_none]
+    ;   [:!Shyphen :vk_none]
+    ;   [:backslash :vk_none]
+    ;   [:!Sbackslash :vk_none]
+    ;   ; [:open_bracket :vk_none]
+    ;   ; [:close_bracket :vk_none]
+    ;   [:!Sopen_bracket :vk_none]
+    ;   [:!Sclose_bracket :vk_none]
+    ; ]}
     
+
+    {:des "nav mode cmd" :rules [
+      [:condi :kinesis-keyboard ["nav-mode-cmd" 1]] 
+      [:h [:!Oleft_arrow]]
+      [:j [:!Odown_arrow]]
+      [:k [:!Oup_arrow]]
+      [:l [:!Oright_arrow]]
+      ]
+    }
+
     {:des "nav mode" :rules [
-      [:condi :kinesis-keyboard] 
+      [:condi :kinesis-keyboard ["nav-mode-cmd" 0]] 
       [:delete_forward ["nav-mode" 1] nil {:afterup ["nav-mode" 0]}]
       ; [:q [:!Sq ["nav-mode" 0]] ["nav-mode" 1]]
       ; [:w [:!Sw ["nav-mode" 0]] ["nav-mode" 1]]
@@ -269,10 +311,10 @@
       [:o [:!Cdelete_or_backspace] ["nav-mode" 1]]
       [:p [:!Cdelete_forward] ["nav-mode" 1]]
       ; [:backslash [:!Sbackslash] ["nav-mode" 1]]
-      ; [:a [:!Sa] ["nav-mode" 1]]
-      ; [:s [:!Ss] ["nav-mode" 1]]
-      ; [:d [:!Sd] ["nav-mode" 1]]
-      ; [:f [:!Sf] ["nav-mode" 1]]
+      [:a [:left_shift] ["nav-mode" 1]]
+      [:s [:left_option ["nav-mode" 1]] ["nav-mode" 1]]
+      [:d [:left_control] ["nav-mode" 1]]
+      [:f [:left_command ["nav-mode-cmd" 1]] ["nav-mode" 1] {:afterup ["nav-mode-cmd" 0]}]
       ; [:g [:!Sg] ["nav-mode" 1]]
       [:h [:left_arrow] ["nav-mode" 1]]
       [:j [:down_arrow] ["nav-mode" 1]]
@@ -352,9 +394,10 @@
       [:!CTOSv {:key v :modi [:left_command]}]
     ]}
 
-    {:des "better keybinding for switching between windows of same app" :rules [
-      [:!CTOSb {:key grave_accent_and_tilde :modi [:left_command]}]
-    ]}
+    ; using CTOSn from Contexts atm
+    ; {:des "better keybinding for switching between windows of same app" :rules [
+    ;   [:!CTOSn {:key grave_accent_and_tilde :modi [:left_command]}]
+    ; ]}
 
     ; test
     ; {:des "test numbers as layers" :rules [

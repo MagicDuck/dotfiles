@@ -273,40 +273,6 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "simultaneous d f press to enter",
-        "manipulators" : [ {
-          "from" : {
-            "simultaneous" : [ {
-              "key_code" : "d"
-            }, {
-              "key_code" : "f"
-            } ],
-            "simultaneous_options" : {
-              "detect_key_down_uninterruptedly" : false,
-              "key_down_order" : "insensitive",
-              "key_up_order" : "insensitive",
-              "key_up_when" : "any"
-            }
-          },
-          "to" : [ {
-            "key_code" : "return_or_enter"
-          } ],
-          "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 1452,
-              "product_id" : 635
-            }, {
-              "vendor_id" : 10730,
-              "product_id" : 258
-            }, {
-              "vendor_id" : 1523,
-              "product_id" : 7
-            } ],
-            "type" : "device_if"
-          } ],
-          "type" : "basic"
-        } ]
-      }, {
         "description" : "simultaneous f g press to del",
         "manipulators" : [ {
           "from" : {
@@ -428,26 +394,56 @@
           "type" : "basic"
         } ]
       }, {
-        "description" : "end -> delete",
+        "description" : "text snippets mode",
         "manipulators" : [ {
-          "from" : {
-            "key_code" : "end",
-            "modifiers" : {
-              "optional" : [ "any" ]
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "snippet-mode",
+              "value" : 0
             }
+          } ],
+          "from" : {
+            "key_code" : "end"
           },
           "to" : [ {
-            "key_code" : "delete_forward"
+            "set_variable" : {
+              "name" : "snippet-mode",
+              "value" : 1
+            }
           } ],
           "conditions" : [ {
-            "identifiers" : [ {
-              "vendor_id" : 10730,
-              "product_id" : 258
-            }, {
-              "vendor_id" : 1523,
-              "product_id" : 7
-            } ],
-            "type" : "device_if"
+            "name" : "snippet-mode",
+            "value" : 0,
+            "type" : "variable_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "i"
+          },
+          "to" : [ {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "return_or_enter"
+          }, {
+            "key_code" : "return_or_enter"
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "up_arrow"
+          } ],
+          "conditions" : [ {
+            "name" : "snippet-mode",
+            "value" : 1,
+            "type" : "variable_if"
           } ],
           "type" : "basic"
         } ]
@@ -2374,6 +2370,101 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "nav mode cmd",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "h"
+          },
+          "to" : [ {
+            "key_code" : "left_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j"
+          },
+          "to" : [ {
+            "key_code" : "down_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "k"
+          },
+          "to" : [ {
+            "key_code" : "up_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "l"
+          },
+          "to" : [ {
+            "key_code" : "right_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "nav mode",
         "manipulators" : [ {
           "to_after_key_up" : [ {
@@ -2392,6 +2483,10 @@
             }
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "identifiers" : [ {
               "vendor_id" : 10730,
               "product_id" : 258
@@ -2411,6 +2506,10 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2434,6 +2533,10 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2456,6 +2559,10 @@
             "key_code" : "home"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2478,6 +2585,10 @@
             "key_code" : "page_up"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2500,6 +2611,10 @@
             "key_code" : "page_down"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2523,6 +2638,10 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2546,6 +2665,130 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "a"
+          },
+          "to" : [ {
+            "key_code" : "left_shift"
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s"
+          },
+          "to" : [ {
+            "key_code" : "left_option"
+          }, {
+            "set_variable" : {
+              "name" : "nav-mode",
+              "value" : 1
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "d"
+          },
+          "to" : [ {
+            "key_code" : "left_control"
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "nav-mode-cmd",
+              "value" : 0
+            }
+          } ],
+          "from" : {
+            "key_code" : "f"
+          },
+          "to" : [ {
+            "key_code" : "left_command"
+          }, {
+            "set_variable" : {
+              "name" : "nav-mode-cmd",
+              "value" : 1
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2568,6 +2811,10 @@
             "key_code" : "left_arrow"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2590,6 +2837,10 @@
             "key_code" : "down_arrow"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2612,6 +2863,10 @@
             "key_code" : "up_arrow"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2634,6 +2889,10 @@
             "key_code" : "right_arrow"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2656,6 +2915,10 @@
             "key_code" : "end"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2679,6 +2942,10 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2702,6 +2969,10 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2725,6 +2996,10 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2748,6 +3023,10 @@
             "modifiers" : [ "left_option" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2770,6 +3049,10 @@
             "key_code" : "delete_or_backspace"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2792,6 +3075,10 @@
             "key_code" : "delete_forward"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2815,6 +3102,10 @@
             "modifiers" : [ "left_option" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -2837,6 +3128,10 @@
             "key_code" : "return_or_enter"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-cmd",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode",
             "value" : 1,
             "type" : "variable_if"
@@ -3118,21 +3413,6 @@
           "to" : [ {
             "modifiers" : [ "left_command" ],
             "key_code" : "v"
-          } ],
-          "type" : "basic"
-        } ]
-      }, {
-        "description" : "better keybinding for switching between windows of same app",
-        "manipulators" : [ {
-          "from" : {
-            "key_code" : "b",
-            "modifiers" : {
-              "mandatory" : [ "left_command", "left_control", "left_option", "left_shift" ]
-            }
-          },
-          "to" : [ {
-            "modifiers" : [ "left_command" ],
-            "key_code" : "grave_accent_and_tilde"
           } ],
           "type" : "basic"
         } ]

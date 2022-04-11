@@ -422,15 +422,20 @@
             "key_code" : "i"
           },
           "to" : [ {
-            "key_code" : "grave_accent_and_tilde"
+            "key_code" : "return_or_enter",
+            "modifiers" : [ "left_shift" ]
           }, {
             "key_code" : "grave_accent_and_tilde"
           }, {
             "key_code" : "grave_accent_and_tilde"
           }, {
-            "key_code" : "return_or_enter"
+            "key_code" : "grave_accent_and_tilde"
           }, {
-            "key_code" : "return_or_enter"
+            "key_code" : "return_or_enter",
+            "modifiers" : [ "left_shift" ]
+          }, {
+            "key_code" : "return_or_enter",
+            "modifiers" : [ "left_shift" ]
           }, {
             "key_code" : "grave_accent_and_tilde"
           }, {
@@ -3413,6 +3418,20 @@
           "to" : [ {
             "modifiers" : [ "left_command" ],
             "key_code" : "v"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "better keybinding for switching between windows of same app",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "k",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_control", "left_option", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "shell_command" : "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"fork\" in workflow \"com.stephanb.launchers\" with argument \"\"'"
           } ],
           "type" : "basic"
         } ]

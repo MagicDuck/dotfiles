@@ -237,8 +237,7 @@ alias git_cleanup_branches="git branch | grep -v '*' | grep -v 'master' | xargs 
 alias clean-gradle-cache="find ~/.gradle -type f -name \"*.lock\" -delete"
 alias frontend-changed-strings="cd /opt/repos/frontend/reactUi/src/translations; git --no-pager diff --unified=0 origin/main:./en.json ./en.json | sed '/^@/d' | sed '/^\\+\\+\\+/d' | sed '/^---/d' | sed 's/^\\+  //'; cd -"
 alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
-alias qa-automation-run-local="yarn install && yarn run cypress open --config baseUrl=http://default.xmatters.com/ --env username=admin,password=complex,allure=false"
-alias qa-automation-run-dev="yarn install && yarn run cypress open --config baseUrl=https://sbadragan.dev.xmatters.com/ --env username=admin,password=complex,allure=false"
+alias qa-automation-run-kramerica="yarn install && yarn run cypress open --config baseUrl=$KRAMERICA_URL --env username=$KRAMERICA_USER,password=$KRAMERICA_PASSWORD,allure=false"
 
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"

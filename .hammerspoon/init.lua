@@ -26,12 +26,16 @@ networkWatcher:start()
 -------------------------------------------------------------------
 -- Gitlab
 -------------------------------------------------------------------
+local deployHostname = "stephanbcorp.dev.xmatters.com"
+local defaultVersion = "0.x.sbadragan"
+local buildSlackChannel = "kessel-builds"
+
 local function getDeployVersion(branchName)
   local prefix, number = string.match(branchName, "(%w+)[-](%d+)")
   if (prefix and number) then
     return "0.x." .. string.lower(prefix) .. number .. "sb"
   else
-    return "0.x.sbadragan"
+    return defaultVersion
   end
 end
 
@@ -44,36 +48,41 @@ local function getPreId(branchName)
   end
 end
 
+local deployUrls = {
+  frontend = function(args)
+    return "https://jenkins.i.xmatters.com/job/frontend/job/frontend-branch-build-and-deploy/parambuild/?hostnames=" ..
+      deployHostname ..
+        "&branch=" .. hs.http.convertHtmlEntities(args.branchName)
+  end,
+  ondemand = function(args)
+    return "https://jenkins.i.xmatters.com/job/kessel/job/ondemand/job/webui-branch-deploy-gitlab/parambuild/?slackChannel=" ..
+      buildSlackChannel ..
+        "&" ..
+          "version=" ..
+            getDeployVersion(args.branchName) ..
+              "&branch=" .. hs.http.convertHtmlEntities(args.branchName)
+  end,
+  spark = function(args)
+    return "https://jenkins.i.xmatters.com/job/frontend/job/spark-test-publish/parambuild/?preid=" ..
+      getPreId(args.branchName) ..
+        "&semverIncrementLevel=prepatch&branch=" ..
+          hs.http.convertHtmlEntities(args.branchName)
+  end,
+  ["xM-API"] = function(args)
+    return "https://jenkins.i.xmatters.com/job/kamino/job/xmapi/job/xmapi-branch-build-deploy/parambuild?version=" ..
+      getDeployVersion(args.branchName) ..
+        "&slackChannel=kessel-build&branch=" ..
+          hs.http.convertHtmlEntities(args.branchName)
+  end
+}
+
 hs.loadSpoon("gitlab-merge-requests")
 spoon["gitlab-merge-requests"]:setup(
   {
     gitlab_host = localConfig.gitlab.gitlab_host,
     token = localConfig.gitlab.token,
     username = localConfig.gitlab.username,
-    deployUrls = {
-      frontend = function(args)
-        return "https://jenkins.i.xmatters.com/job/frontend/job/frontend-branch-build-and-deploy/parambuild/?hostnames=stephanbcorp.dev.xmatters.com&branch=" ..
-          hs.http.convertHtmlEntities(args.branchName)
-      end,
-      ondemand = function(args)
-        return "https://jenkins.i.xmatters.com/job/kessel/job/ondemand/job/webui-branch-deploy-gitlab/parambuild/?slackChannel=kessel-builds&" ..
-          "version=" ..
-            getDeployVersion(args.branchName) ..
-              "&branch=" .. hs.http.convertHtmlEntities(args.branchName)
-      end,
-      spark = function(args)
-        return "https://jenkins.i.xmatters.com/job/frontend/job/spark-test-publish/parambuild/?preid=" ..
-          getPreId(args.branchName) ..
-            "&semverIncrementLevel=prepatch&branch=" ..
-              hs.http.convertHtmlEntities(args.branchName)
-      end,
-      ["xM-API"] = function(args)
-        return "https://jenkins.i.xmatters.com/job/kamino/job/xmapi/job/xmapi-branch-build-deploy/parambuild?version=" ..
-          getDeployVersion(args.branchName) ..
-            "&slackChannel=kessel-build&branch=" ..
-              hs.http.convertHtmlEntities(args.branchName)
-      end
-    }
+    deployUrls = deployUrls
   }
 )
 spoon["gitlab-merge-requests"]:start()

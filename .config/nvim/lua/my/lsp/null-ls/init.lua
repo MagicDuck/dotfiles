@@ -3,19 +3,19 @@ local attach = require("my/lsp/attach")
 local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
 
-local luafmt = {
-  method = methods.internal.FORMATTING,
-  filetypes = {"lua"},
-  name = "luafmt",
-  generator = h.formatter_factory(
-    {
-      command = "luafmt",
-      args = {"--stdin", "--line-width", "80", "--indent-count", "2"},
-      format = "raw",
-      to_stdin = true
-    }
-  )
-}
+-- local luafmt = {
+--   method = methods.internal.FORMATTING,
+--   filetypes = {"lua"},
+--   name = "luafmt",
+--   generator = h.formatter_factory(
+--     {
+--       command = "luafmt",
+--       args = {"--stdin", "--line-width", "80", "--indent-count", "2"},
+--       format = "raw",
+--       to_stdin = true
+--     }
+--   )
+-- }
 
 local stylelint_d =
   h.make_builtin(
@@ -209,7 +209,7 @@ null_ls.setup(
         }
         -- only_local = "node_modules/.bin"
       },
-      luafmt,
+      null_ls.builtins.formatting.stylua.with {},
       checkstyle.with {
         condition = function(u)
           return u.root_matches("xm%-api")

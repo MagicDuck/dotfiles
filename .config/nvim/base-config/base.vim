@@ -62,6 +62,7 @@ set scrolloff=999      " keep cursor in the middle of the window
 set scroll=5           " number of lines the scroll commands should scroll
 set termguicolors      " true color
 set notimeout          " don't time out on leader commands
+set nofoldenable
 
 " fix for kitty terminal background tearing
 let &t_ut=''
@@ -83,8 +84,9 @@ augroup mybaseconfig
   autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = false}
 
   " line number
-  autocmd InsertEnter * :set norelativenumber
-  autocmd InsertLeave * :set relativenumber
+  set norelativenumber
+  " autocmd InsertEnter * :set norelativenumber
+  " autocmd InsertLeave * :set relativenumber
 
   " no annoying auto-comments
   autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
@@ -137,3 +139,16 @@ inoremap <A-down> <C-o>$
 
 " visual block select
 nnoremap X <c-v>
+
+" don't overwrite copied text when pasting in visual mode
+" vnoremap p "0p
+" vnoremap P "0P
+" vnoremap y "0y
+" vnoremap d "0d
+
+" performance json
+" Change foldmethod for specific filetype
+augroup Folding
+  autocmd!
+  autocmd! BufNewFile,BufRead *.json set foldmethod=indent
+augroup END

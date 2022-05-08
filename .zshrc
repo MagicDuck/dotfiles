@@ -238,10 +238,14 @@ alias clean-gradle-cache="find ~/.gradle -type f -name \"*.lock\" -delete"
 alias frontend-changed-strings="cd /opt/repos/frontend/reactUi/src/translations; git --no-pager diff --unified=0 origin/main:./en.json ./en.json | sed '/^@/d' | sed '/^\\+\\+\\+/d' | sed '/^---/d' | sed 's/^\\+  //'; cd -"
 alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 alias qa-automation-run-kramerica="yarn install && yarn run cypress open --config baseUrl=$KRAMERICA_URL --env username=$KRAMERICA_USER,password=$KRAMERICA_PASSWORD,allure=false"
+alias yarn-test-changed="yarn run test --watch --changedSince=origin/main"
 alias ondemand-dev-in-cloud="cd /opt/repos/ondemand; ./gradlew bootRunDevInCloud -PgcpInstance=kramerica -Pversion=0.x.kramerica -PdevInCloud=true -i"
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 alias qmk-flash-dactyl="qmk flash -kb handwired/dactyl_manuform/5x6 -km MagicDuck"
+alias xmapi-dev-in-cloud="./gradlew  bootRunDevInCloud -PgcpInstance=kramerica -Pversion=0.x.kramerica -x test -x spotbugsTest -x spotbugsMain -x checkstyleTest -x checkstyleMain"
+alias xmapi-dev-in-cloud-stop="xm-instance-switch-version kramerica xmapi 0-x-main"
+alias showkey="kitty +kitten show_key"
 
 
 # FZF

@@ -1,6 +1,9 @@
 hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
+-- window accessibility api timeout - messes up window switching
+hs.window.timeout(0.05)
+
 -------------------------------------------------------------------
 -- Local config
 -------------------------------------------------------------------
@@ -26,212 +29,157 @@ networkWatcher:start()
 -------------------------------------------------------------------
 -- Gitlab
 -------------------------------------------------------------------
-local deployHostname = "stephanbcorp.dev.xmatters.com"
-local defaultVersion = "0.x.sbadragan"
-local buildSlackChannel = "kessel-builds"
-
-local function getDeployVersion(branchName)
-  local prefix, number = string.match(branchName, "(%w+)[-](%d+)")
-  if (prefix and number) then
-    return "0.x." .. string.lower(prefix) .. number .. "sb"
-  else
-    return defaultVersion
-  end
-end
-
-local function getPreId(branchName)
-  local prefix, number = string.match(branchName, "(%w+)[-](%d+)")
-  if (prefix and number) then
-    return string.lower(prefix) .. "-" .. number
-  else
-    return "cor-xxx"
-  end
-end
-
+local gitlabMrs = hs.loadSpoon("gitlab-merge-requests")
 local deployUrls = {
-  frontend = function(args)
-    return "https://jenkins.i.xmatters.com/job/frontend/job/frontend-branch-build-and-deploy/parambuild/?hostnames=" ..
-      deployHostname ..
-        "&branch=" .. hs.http.convertHtmlEntities(args.branchName)
-  end,
-  ondemand = function(args)
-    return "https://jenkins.i.xmatters.com/job/kessel/job/ondemand/job/webui-branch-deploy-gitlab/parambuild/?slackChannel=" ..
-      buildSlackChannel ..
-        "&" ..
-          "version=" ..
-            getDeployVersion(args.branchName) ..
-              "&branch=" .. hs.http.convertHtmlEntities(args.branchName)
-  end,
-  spark = function(args)
-    return "https://jenkins.i.xmatters.com/job/frontend/job/spark-test-publish/parambuild/?preid=" ..
-      getPreId(args.branchName) ..
-        "&semverIncrementLevel=prepatch&branch=" ..
-          hs.http.convertHtmlEntities(args.branchName)
-  end,
-  ["xM-API"] = function(args)
-    return "https://jenkins.i.xmatters.com/job/kamino/job/xmapi/job/xmapi-branch-build-deploy/parambuild?version=" ..
-      getDeployVersion(args.branchName) ..
-        "&slackChannel=kessel-build&branch=" ..
-          hs.http.convertHtmlEntities(args.branchName)
-  end
+	frontend = gitlabMrs.builtin.deployUrls.frontend({ hostname = "stephanbcorp.dev.xmatters.com" }),
+	spark = gitlabMrs.builtin.deployUrls.spark(),
+	ondemand = gitlabMrs.builtin.deployUrls.ondemand({
+		slackChannel = "kessel-builds",
+		versionSuffix = "sb",
+		fallbackVersion = "0.x.sbadragan",
+	}),
+	["xM-API"] = gitlabMrs.builtin.deployUrls["xM-API"]({
+		slackChannel = "kessel-builds",
+		versionSuffix = "sb",
+		fallbackVersion = "0.x.sbadragan",
+	}),
 }
 
-hs.loadSpoon("gitlab-merge-requests")
-spoon["gitlab-merge-requests"]:setup(
-  {
-    gitlab_host = localConfig.gitlab.gitlab_host,
-    token = localConfig.gitlab.token,
-    username = localConfig.gitlab.username,
-    deployUrls = deployUrls
-  }
-)
-spoon["gitlab-merge-requests"]:start()
+gitlabMrs:setup({
+	gitlab_host = localConfig.gitlab.gitlab_host,
+	token = localConfig.gitlab.token,
+	username = localConfig.gitlab.username,
+	deployUrls = deployUrls,
+})
+gitlabMrs:start()
 
 -------------------------------------------------------------------
 -- JIRA
 -------------------------------------------------------------------
 hs.loadSpoon("jira-issues")
-spoon["jira-issues"]:setup(
-  {
-    jira_host = localConfig.jira.jira_host,
-    login = localConfig.jira.login,
-    api_token = localConfig.jira.api_token,
-    jql = "assignee=currentuser() AND resolution=Unresolved AND status not in (Rejected, Closed) AND type in (Story, Bug) ORDER BY status ASC"
-  }
-)
+spoon["jira-issues"]:setup({
+	jira_host = localConfig.jira.jira_host,
+	login = localConfig.jira.login,
+	api_token = localConfig.jira.api_token,
+	jql = "assignee=currentuser() AND resolution=Unresolved AND status not in (Rejected, Closed) AND type in (Story, Bug) ORDER BY status ASC",
+})
 spoon["jira-issues"]:start()
 
 -------------------------------------------------------------------
 -- constants
 -------------------------------------------------------------------
-local superKey = {"cmd", "alt", "ctrl", "shift"}
+local superKey = { "cmd", "alt", "ctrl", "shift" }
 
 -------------------------------------------------------------------
 -- app switching
 -------------------------------------------------------------------
 
 local function switchToApp(appName, initializeWinFn)
-  local app = hs.application.get(appName)
-  if app then
-    if app:isFrontmost() then
-      --app:hide()
-      local orderedWindows = hs.window.orderedWindows()
-      local currentWindow = orderedWindows[1]
-      for _, win in pairs(orderedWindows) do
-        if
-          win:application():name() ~= app:name() and
-            win:screen():id() == currentWindow:screen():id()
-         then
-          win:focus()
-          return
-        end
-      end
-      if (orderedWindows[2]) then
-        orderedWindows[2]:focus()
-      end
-    else
-      hs.application.open(appName)
-    end
-  else
-    hs.application.open(appName, 2, true)
-    if initializeWinFn ~= nil then
-      local newWin = hs.window.frontmostWindow()
-      initializeWinFn(newWin)
-    end
-  end
+	local app = hs.application.get(appName)
+	if app then
+		if app:isFrontmost() then
+			--app:hide()
+			local orderedWindows = hs.window.orderedWindows()
+			local currentWindow = orderedWindows[1]
+			for _, win in pairs(orderedWindows) do
+				if win:application():name() ~= app:name() and win:screen():id() == currentWindow:screen():id() then
+					win:focus()
+					return
+				end
+			end
+			if orderedWindows[2] then
+				orderedWindows[2]:focus()
+			end
+		else
+			hs.application.open(appName)
+		end
+	else
+		hs.application.open(appName, 2, true)
+		if initializeWinFn ~= nil then
+			local newWin = hs.window.frontmostWindow()
+			initializeWinFn(newWin)
+		end
+	end
 end
 
 local function str_split_space(str)
-  local parts = {}
-  for i in string.gmatch(str, "%S+") do
-    print(i)
-    table.insert(parts, i)
-  end
+	local parts = {}
+	for i in string.gmatch(str, "%S+") do
+		print(i)
+		table.insert(parts, i)
+	end
 
-  return parts
+	return parts
 end
 
 local function kittyDo(cmd, cb)
-  local task =
-    hs.task.new(
-    "/Applications/kitty.app/Contents/MacOS/kitty",
-    -- "/usr/local/bin/kitty",
-    cb,
-    str_split_space("@ --to unix:/tmp/mykitty " .. cmd)
-  )
-  task:start()
+	local task = hs.task.new(
+		"/Applications/kitty.app/Contents/MacOS/kitty",
+		-- "/usr/local/bin/kitty",
+		cb,
+		str_split_space("@ --to unix:/tmp/mykitty " .. cmd)
+	)
+	task:start()
 end
 
 local function positionWindowLeftHalf(win)
-  win:moveToUnit("[0,0 50x100]", 0)
+	win:moveToUnit("[0,0 50x100]", 0)
 end
 local function positionWindowRightHalf(win)
-  win:moveToUnit("[50,0 50x100]", 0)
+	win:moveToUnit("[50,0 50x100]", 0)
 end
 local function positionWindowFullscreen(win)
-  win:moveToUnit("[0,0 100x100]", 0)
+	win:moveToUnit("[0,0 100x100]", 0)
 end
 local function positionWindowCentered(win)
-  win:moveToUnit("[10,10 80x80]", 0)
+	win:moveToUnit("[10,10 80x80]", 0)
 end
 
 local function closeInitialKittyWindow()
-  kittyDo(
-    "close-window --match=title:~",
-    function(exitCode)
-      if (exitCode ~= 0) then
-        print("Could not close initial kitty window")
-      end
-    end
-  )
+	kittyDo("close-window --match=title:~", function(exitCode)
+		if exitCode ~= 0 then
+			print("Could not close initial kitty window")
+		end
+	end)
 end
 
 local function switchToKittyWindow(windowTitle, windowCommand, initializeWinFn)
-  local win = hs.window.frontmostWindow()
-  if (win:title() == windowTitle) then
-    -- window already focused, focus prev in stack
-    local orderedWindows = hs.window.orderedWindows()
-    if (orderedWindows[2]) then
-      orderedWindows[2]:focus()
-    end
-    return
-  end
+	local win = hs.window.frontmostWindow()
+	if win:title() == windowTitle then
+		-- window already focused, focus prev in stack
+		local orderedWindows = hs.window.orderedWindows()
+		if orderedWindows[2] then
+			orderedWindows[2]:focus()
+		end
+		return
+	end
 
-  local function launchWindow()
-    kittyDo(
-      "launch --type=os-window --title=" .. windowTitle .. " " .. windowCommand,
-      function(exitCode)
-        if (exitCode ~= 0) then
-          print(
-            "Could not launch kitty window: " ..
-              windowTitle .. " with command: " .. windowCommand
-          )
-          return
-        end
-        if initializeWinFn ~= nil then
-          local newWin = hs.window.frontmostWindow()
-          initializeWinFn(newWin)
-        end
-        closeInitialKittyWindow()
-      end
-    )
-  end
+	local function launchWindow()
+		kittyDo("launch --type=os-window --title=" .. windowTitle .. " " .. windowCommand, function(exitCode)
+			if exitCode ~= 0 then
+				print("Could not launch kitty window: " .. windowTitle .. " with command: " .. windowCommand)
+				return
+			end
+			if initializeWinFn ~= nil then
+				local newWin = hs.window.frontmostWindow()
+				initializeWinFn(newWin)
+			end
+			closeInitialKittyWindow()
+		end)
+	end
 
-  local app = hs.application.get("kitty")
-  if (app == nil) then
-    hs.application.open("kitty", 3) -- wait max 3s
-  end
+	local app = hs.application.get("kitty")
+	if app == nil then
+		hs.application.open("kitty", 3) -- wait max 3s
+	end
 
-  kittyDo(
-    "focus-window --match=title:" .. windowTitle,
-    function(exitCode, stdout, stderr)
-      print("cmd", "focus-window --match=title:" .. windowTitle)
-      if (exitCode ~= 0) then
-        -- not found, try launching
-        launchWindow()
-      end
-    end
-  )
+	kittyDo("focus-window --match=title:" .. windowTitle, function(exitCode, stdout, stderr)
+		print("cmd", "focus-window --match=title:" .. windowTitle)
+		if exitCode ~= 0 then
+			-- not found, try launching
+			launchWindow()
+		end
+	end)
 end
 
 -------------------------------------------------------------------
@@ -239,44 +187,44 @@ end
 -------------------------------------------------------------------
 
 local function table_shallow_copy(t)
-  local t2 = {}
-  for k, v in pairs(t) do
-    t2[k] = v
-  end
-  return t2
+	local t2 = {}
+	for k, v in pairs(t) do
+		t2[k] = v
+	end
+	return t2
 end
 
 local function window_sort(w1, w2)
-  return w1:id() < w2:id()
+	return w1:id() < w2:id()
 end
 
 -- TODO: this is really slow for some reason
 local function getNextAppWindow(currentWindow)
-  local app = currentWindow:application()
-  local allWindows = app:allWindows()
+	local app = currentWindow:application()
+	local allWindows = app:allWindows()
 
-  -- get a list of sorted window ids
-  local ids = {}
-  for _, win in pairs(allWindows) do
-    if (win:id() ~= 0) then
-      table.insert(ids, win:id())
-    end
-  end
-  table.sort(ids)
+	-- get a list of sorted window ids
+	local ids = {}
+	for _, win in pairs(allWindows) do
+		if win:id() ~= 0 then
+			table.insert(ids, win:id())
+		end
+	end
+	table.sort(ids)
 
-  -- get next windows id
-  local currentWinIndex = -1
-  for index, id in ipairs(ids) do
-    if (id == currentWindow:id()) then
-      currentWinIndex = index
-      break
-    end
-  end
-  local nextWinIndex = (currentWinIndex % (#ids)) + 1
-  local nextWinId = ids[nextWinIndex]
+	-- get next windows id
+	local currentWinIndex = -1
+	for index, id in ipairs(ids) do
+		if id == currentWindow:id() then
+			currentWinIndex = index
+			break
+		end
+	end
+	local nextWinIndex = (currentWinIndex % #ids) + 1
+	local nextWinId = ids[nextWinIndex]
 
-  local nextWin = hs.window.find(nextWinId)
-  return nextWin
+	local nextWin = hs.window.find(nextWinId)
+	return nextWin
 end
 
 -------------------------------------------------------------------
@@ -284,50 +232,37 @@ end
 -------------------------------------------------------------------
 
 local function getNextScreen(win)
-  local screens = hs.screen.allScreens()
-  local currentScreen = win:screen()
-  local currentScreenIndex = -1
-  for index, screen in ipairs(screens) do
-    if (screen == currentScreen) then
-      currentScreenIndex = index
-      break
-    end
-  end
-  local nextScreenIndex = (currentScreenIndex % (#screens)) + 1
-  return screens[nextScreenIndex]
+	local screens = hs.screen.allScreens()
+	local currentScreen = win:screen()
+	local currentScreenIndex = -1
+	for index, screen in ipairs(screens) do
+		if screen == currentScreen then
+			currentScreenIndex = index
+			break
+		end
+	end
+	local nextScreenIndex = (currentScreenIndex % #screens) + 1
+	return screens[nextScreenIndex]
 end
 
 -------------------------------------------------------------------
 -- Key Bindings
 -------------------------------------------------------------------
 
-hs.hotkey.bind(
-  superKey,
-  "a",
-  function()
-    -- show name of application corresponding to current window
-    local win = hs.window.frontmostWindow()
-    hs.alert.show(win:application():name())
-  end
-)
+hs.hotkey.bind(superKey, "a", function()
+	-- show name of application corresponding to current window
+	local win = hs.window.frontmostWindow()
+	hs.alert.show(win:application():name())
+end)
 
 -- superKey + b - cycle through windows of current app
 
-hs.hotkey.bind(
-  superKey,
-  "d",
-  function()
-    switchToApp("Brave Browser", positionWindowFullscreen)
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "i",
-  function()
-    switchToApp("IntelliJ IDEA")
-  end,
-  positionWindowFullscreen
-)
+hs.hotkey.bind(superKey, "d", function()
+	switchToApp("Brave Browser", positionWindowFullscreen)
+end)
+hs.hotkey.bind(superKey, "i", function()
+	switchToApp("IntelliJ IDEA")
+end, positionWindowFullscreen)
 -- hs.hotkey.bind(
 --   superKey,
 --   "f",
@@ -355,34 +290,18 @@ hs.hotkey.bind(
 --  local nextWin = getNextAppWindow(currentWindow)
 --  nextWin:focus()
 --end)
-hs.hotkey.bind(
-  superKey,
-  "k",
-  function()
-    switchToApp("Fork", positionWindowCentered)
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "l",
-  function()
-    switchToApp("zoom.us")
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "m",
-  function()
-    switchToApp("Figma", positionWindowFullscreen)
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "n",
-  function()
-    switchToApp("Monosnap")
-  end
-)
+hs.hotkey.bind(superKey, "k", function()
+	switchToApp("Fork", positionWindowCentered)
+end)
+hs.hotkey.bind(superKey, "l", function()
+	switchToApp("zoom.us")
+end)
+hs.hotkey.bind(superKey, "m", function()
+	switchToApp("Figma", positionWindowFullscreen)
+end)
+hs.hotkey.bind(superKey, "n", function()
+	switchToApp("Monosnap")
+end)
 -- hs.hotkey.bind(
 --   superKey,
 --   "o",
@@ -390,34 +309,18 @@ hs.hotkey.bind(
 --     switchToApp("Fantastical", positionWindowCentered)
 --   end
 -- )
-hs.hotkey.bind(
-  superKey,
-  "o",
-  function()
-    switchToApp("Microsoft Outlook", positionWindowCentered)
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "p",
-  function()
-    switchToApp("Finder")
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "r",
-  function()
-    switchToApp("Google Chrome", positionWindowFullscreen)
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "s",
-  function()
-    switchToApp("Slack", positionWindowFullscreen)
-  end
-)
+hs.hotkey.bind(superKey, "o", function()
+	switchToApp("Microsoft Outlook", positionWindowCentered)
+end)
+hs.hotkey.bind(superKey, "p", function()
+	switchToApp("Finder")
+end)
+hs.hotkey.bind(superKey, "r", function()
+	switchToApp("Google Chrome", positionWindowFullscreen)
+end)
+hs.hotkey.bind(superKey, "s", function()
+	switchToApp("Slack", positionWindowFullscreen)
+end)
 -- hs.hotkey.bind(
 --   superKey,
 --   "u",
@@ -425,24 +328,12 @@ hs.hotkey.bind(
 --     switchToApp("Bear")
 --   end
 -- )
-hs.hotkey.bind(
-  superKey,
-  "u",
-  function()
-    switchToKittyWindow(
-      "notes",
-      "/usr/local/bin/zsh -is eval vim +VimwikiIndex",
-      positionWindowRightHalf
-    )
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "w",
-  function()
-    switchToApp("TickTick", positionWindowFullscreen)
-  end
-)
+hs.hotkey.bind(superKey, "u", function()
+	switchToKittyWindow("notes", "/usr/local/bin/zsh -is eval vim +VimwikiIndex", positionWindowRightHalf)
+end)
+hs.hotkey.bind(superKey, "w", function()
+	switchToApp("TickTick", positionWindowFullscreen)
+end)
 -- superkey + z - launches next meeting from Meeter Pro
 
 -- hs.hotkey.bind(superKey, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
@@ -461,96 +352,51 @@ hs.hotkey.bind(
 --     switchToApp("kitty")
 --   end
 -- )
-hs.hotkey.bind(
-  superKey,
-  "e",
-  function()
-    switchToKittyWindow(
-      "terminal",
-      "/usr/local/bin/zsh -is",
-      positionWindowFullscreen
-    )
-  end
-)
-hs.hotkey.bind(
-  superKey,
-  "return",
-  function()
-    switchToKittyWindow(
-      "terminal",
-      "/usr/local/bin/zsh -is",
-      positionWindowFullscreen
-    )
-  end
-)
-hs.hotkey.bind(
-  {"cmd"},
-  "return",
-  function()
-    switchToKittyWindow(
-      "terminal",
-      "/usr/local/bin/zsh -is",
-      positionWindowFullscreen
-    )
-  end
-)
+hs.hotkey.bind(superKey, "e", function()
+	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
+end)
+hs.hotkey.bind(superKey, "f", function()
+	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
+end)
+hs.hotkey.bind(superKey, "return", function()
+	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
+end)
+-- hs.hotkey.bind({ "cmd" }, "return", function()
+-- 	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
+-- end)
 
 -- move window to other screen
-hs.hotkey.bind(
-  superKey,
-  "[",
-  function()
-    local win = hs.window.frontmostWindow()
-    win:moveToScreen(getNextScreen(win))
-  end
-)
+hs.hotkey.bind(superKey, "[", function()
+	local win = hs.window.frontmostWindow()
+	win:moveToScreen(getNextScreen(win))
+end)
 
 -- move window to other screen
-hs.hotkey.bind(
-  superKey,
-  "]",
-  function()
-    local win = hs.window.frontmostWindow()
-    win:moveToScreen(getNextScreen(win))
-  end
-)
+hs.hotkey.bind(superKey, "]", function()
+	local win = hs.window.frontmostWindow()
+	win:moveToScreen(getNextScreen(win))
+end)
 
 -- move window to left side of screen
-hs.hotkey.bind(
-  superKey,
-  "left",
-  function()
-    local win = hs.window.frontmostWindow()
-    positionWindowLeftHalf(win)
-  end
-)
+hs.hotkey.bind(superKey, "left", function()
+	local win = hs.window.frontmostWindow()
+	positionWindowLeftHalf(win)
+end)
 
 -- move window to right side of screen
-hs.hotkey.bind(
-  superKey,
-  "right",
-  function()
-    local win = hs.window.frontmostWindow()
-    positionWindowRightHalf(win)
-  end
-)
+hs.hotkey.bind(superKey, "right", function()
+	local win = hs.window.frontmostWindow()
+	positionWindowRightHalf(win)
+end)
 
 -- maximize window
-hs.hotkey.bind(
-  superKey,
-  "up",
-  function()
-    local win = hs.window.frontmostWindow()
-    positionWindowFullscreen(win)
-  end
-)
+hs.hotkey.bind(superKey, "up", function()
+	local win = hs.window.frontmostWindow()
+	positionWindowFullscreen(win)
+end)
 
 -- centered and 80% size window
-hs.hotkey.bind(
-  superKey,
-  "down",
-  function()
-    local win = hs.window.frontmostWindow()
-    positionWindowCentered(win)
-  end
-)
+hs.hotkey.bind(superKey, "down", function()
+	local win = hs.window.frontmostWindow()
+	positionWindowCentered(win)
+end)

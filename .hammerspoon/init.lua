@@ -2,7 +2,7 @@ hs.loadSpoon("ReloadConfiguration")
 spoon.ReloadConfiguration:start()
 
 -- window accessibility api timeout - messes up window switching
-hs.window.timeout(0.05)
+-- hs.window.timeout(0.05)
 
 -------------------------------------------------------------------
 -- Local config
@@ -73,6 +73,8 @@ local superKey = { "cmd", "alt", "ctrl", "shift" }
 -------------------------------------------------------------------
 -- app switching
 -------------------------------------------------------------------
+local summonApp = require("./summonApp")
+local summon = summonApp.summon
 
 local function switchToApp(appName, initializeWinFn)
 	local app = hs.application.get(appName)
@@ -258,7 +260,9 @@ end)
 -- superKey + b - cycle through windows of current app
 
 hs.hotkey.bind(superKey, "d", function()
-	switchToApp("Brave Browser", positionWindowFullscreen)
+	print("-- summoning Brave Browser")
+	summon("Brave Browser")
+	-- switchToApp("Brave Browser", positionWindowFullscreen)
 end)
 hs.hotkey.bind(superKey, "i", function()
 	switchToApp("IntelliJ IDEA")
@@ -297,7 +301,8 @@ hs.hotkey.bind(superKey, "l", function()
 	switchToApp("zoom.us")
 end)
 hs.hotkey.bind(superKey, "m", function()
-	switchToApp("Figma", positionWindowFullscreen)
+	summon("Figma", positionWindowRightHalf)
+	-- switchToApp("Figma", positionWindowFullscreen)
 end)
 hs.hotkey.bind(superKey, "n", function()
 	switchToApp("Monosnap")
@@ -316,7 +321,8 @@ hs.hotkey.bind(superKey, "p", function()
 	switchToApp("Finder")
 end)
 hs.hotkey.bind(superKey, "r", function()
-	switchToApp("Google Chrome", positionWindowFullscreen)
+	-- switchToApp("Google Chrome", positionWindowFullscreen)
+	summon("Google Chrome")
 end)
 hs.hotkey.bind(superKey, "s", function()
 	switchToApp("Slack", positionWindowFullscreen)

@@ -72,9 +72,6 @@ local superKey = { "cmd", "alt", "ctrl", "shift" }
 -------------------------------------------------------------------
 -- app switching
 -------------------------------------------------------------------
-local summonApp = require("./summonApp")
-local summon = summonApp.summon
-
 local function switchToApp(appName, initializeWinFn)
 	local app = hs.application.get(appName)
 	if app then
@@ -103,26 +100,6 @@ local function switchToApp(appName, initializeWinFn)
 	end
 end
 
-local function str_split_space(str)
-	local parts = {}
-	for i in string.gmatch(str, "%S+") do
-		print(i)
-		table.insert(parts, i)
-	end
-
-	return parts
-end
-
-local function kittyDo(cmd, cb)
-	local task = hs.task.new(
-		"/Applications/kitty.app/Contents/MacOS/kitty",
-		-- "/usr/local/bin/kitty",
-		cb,
-		str_split_space("@ --to unix:/tmp/mykitty " .. cmd)
-	)
-	task:start()
-end
-
 local function positionWindowLeftHalf(win)
 	win:moveToUnit("[0,0 50x100]", 0)
 end
@@ -134,61 +111,6 @@ local function positionWindowFullscreen(win)
 end
 local function positionWindowCentered(win)
 	win:moveToUnit("[10,10 80x80]", 0)
-end
-
-local function closeInitialKittyWindow()
-	kittyDo("close-window --match=title:~", function(exitCode)
-		if exitCode ~= 0 then
-			print("Could not close initial kitty window")
-		end
-	end)
-end
-
-local function switchToKittyWindow(windowTitle, windowCommand, initializeWinFn)
-	local win = hs.window.frontmostWindow()
-	if win:title() == windowTitle then
-		-- window already focused, focus prev in stack
-		local orderedWindows = hs.window.orderedWindows()
-		if orderedWindows[2] then
-			orderedWindows[2]:focus()
-		end
-		return
-	end
-
-	local function launchWindow()
-		kittyDo(
-			"launch --type=os-window --os-window-title="
-				.. windowTitle
-				.. " --title="
-				.. windowTitle
-				.. " "
-				.. windowCommand,
-			function(exitCode)
-				if exitCode ~= 0 then
-					print("Could not launch kitty window: " .. windowTitle .. " with command: " .. windowCommand)
-					return
-				end
-				if initializeWinFn ~= nil then
-					local newWin = hs.window.frontmostWindow()
-					initializeWinFn(newWin)
-				end
-				-- closeInitialKittyWindow()
-			end
-		)
-	end
-
-	local app = hs.application.get("kitty")
-	if app == nil then
-		hs.application.open("kitty")
-	end
-
-	kittyDo("focus-window --match=title:" .. windowTitle, function(exitCode, stdout, stderr)
-		print("cmd", "focus-window --match=title:" .. windowTitle)
-		if exitCode ~= 0 then
-			-- not found, try launching
-			launchWindow()
-		end
-	end)
 end
 
 -------------------------------------------------------------------
@@ -258,6 +180,11 @@ end
 -- Key Bindings
 -------------------------------------------------------------------
 
+local kitty = require("./kitty")
+local summonApp = require("./summonApp")
+summonApp:init()
+local summon = summonApp.summon
+
 local superKeyBindings = {
 	{
 		key = "a",
@@ -270,6 +197,13 @@ local superKeyBindings = {
 	{
 		key = "d",
 		app = "Brave Browser",
+	},
+	{
+		key = "e",
+		app = "kitty",
+		window = {
+			title = "terminal",
+		},
 	},
 	{
 		key = "i",
@@ -304,8 +238,25 @@ local superKeyBindings = {
 		app = "Slack",
 	},
 	{
+		key = "u",
+		app = "kitty",
+		window = {
+			title = "notes",
+			launch = function()
+				kitty.launchWindow({ title = "notes", command = "/usr/local/bin/zsh -is eval vim +VimwikiIndex" })
+			end,
+		},
+	},
+	{
 		key = "w",
 		app = "TickTick",
+	},
+	{
+		key = "return",
+		app = "kitty",
+		window = {
+			title = "terminal",
+		},
 	},
 	-- superkey + z - launches next meeting from Meeter Pro
 }
@@ -315,20 +266,9 @@ hs.fnutils.each(superKeyBindings, function(binding)
 		if binding.fn then
 			binding.fn()
 		else
-			summon(binding.app)
+			summon(binding.app, binding.window)
 		end
 	end)
-end)
-
-hs.hotkey.bind(superKey, "u", function()
-	switchToKittyWindow("notes", "/usr/local/bin/zsh -is eval vim +VimwikiIndex", positionWindowRightHalf)
-end)
-
-hs.hotkey.bind(superKey, "e", function()
-	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
-end)
-hs.hotkey.bind(superKey, "return", function()
-	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
 end)
 
 -- move window to other screen

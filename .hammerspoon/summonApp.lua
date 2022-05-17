@@ -4,45 +4,88 @@ local M = {}
 -- Summon App / Toggle App Visibility
 --------------------------------------------------------------------------------
 
-local currentlyFocusedAppName
 local currentlyFocusedWindow
+local currentlyFocusedAppName
 local lastFocusedWindow
--- local initializeWinFn = {}
 
-hs.window.filter.default:subscribe(hs.window.filter.windowFocused, function(window, appName)
-	currentlyFocusedWindow = window
-	currentlyFocusedAppName = appName
-	-- print('-- Focused: (App: "' .. appName .. '", Window: "' .. window:title() .. '")')
-end)
+function M.init()
+	currentlyFocusedWindow = hs.window.focusedWindow() or hs.window.frontmostWindow()
+	currentlyFocusedAppName = currentlyFocusedWindow:application():name()
+	lastFocusedWindow = nil
+end
 
-hs.window.filter.default:subscribe(hs.window.filter.windowUnfocused, function(window, appName)
-	lastFocusedWindow = window
-	-- print('-- Last Focused Window: "' .. window:title() .. '"')
-end)
+local function updateFocusState(window)
+	if currentlyFocusedWindow == nil or (window:id() ~= currentlyFocusedWindow:id()) then
+		lastFocusedWindow = currentlyFocusedWindow
+		currentlyFocusedWindow = window
+		currentlyFocusedAppName = window:application():name()
+		-- print('-- Focused: (App: "' .. currentlyFocusedAppName .. '", Window: "' .. window:title() .. '")')
+	end
+end
 
--- hs.application.watcher.new(function(appName, eventType, app)
--- 	print("event type", eventType, appName)
--- 	if eventType == hs.application.watcher.launched then
--- 		print("app launched", appName)
--- 		if initializeWinFn[appName] ~= nil then
--- 			print("initing main window for", appName)
--- 			initializeWinFn[appName](app:mainWindow())
--- 		end
--- 	end
--- end):start()
+hs.window.filter.default:subscribe(hs.window.filter.windowFocused, updateFocusState)
 
-function M.summon(appName, initWinFn)
-	-- initializeWinFn[appName] = initWinFn
-	print("-- summoning '" .. appName .. "' ,currently focuseed: '" .. (currentlyFocusedAppName or "nil") .. "'")
-	-- if currentlyFocusedAppName == appName and not next(hs.application.find(appName):allWindows()) then
-	-- 	hs.application.open(appName)
-	if currentlyFocusedAppName ~= appName then
-		hs.application.open(appName)
+-- hs.window.filter.default:subscribe(hs.window.filter.windowUnfocused, function(window, appName)
+-- 	lastFocusedWindow = window
+-- 	-- print('-- Last Focused Window: "' .. window:title() .. '"')
+-- end)
+
+local function launchOrFocusWindow(app, window)
+	local win = app:findWindow(window.title)
+	if win == nil then
+		if window.launch ~= nil then
+			window.launch()
+		end
 	else
-		if lastFocusedWindow then
-			lastFocusedWindow:focus()
+		win:focus()
+		updateFocusState(win)
+	end
+end
+
+local function focusPrevWindow()
+	if lastFocusedWindow == nil then
+		currentlyFocusedWindow:application():hide()
+	else
+		lastFocusedWindow:focus()
+		updateFocusState(lastFocusedWindow)
+	end
+end
+
+function M.summon(appName, window)
+	-- print(
+	-- 	"-- summoning '"
+	-- 		.. appName
+	-- 		.. "' ,currently focuseed: '"
+	-- 		.. (currentlyFocusedAppName or "nil")
+	-- 		.. "', cur win title:"
+	-- 		.. currentlyFocusedWindow:title()
+	-- 		.. ", last focused win:",
+	-- 	(lastFocusedWindow or "nil")
+	-- )
+	if appName ~= currentlyFocusedAppName then
+		local app = hs.application.get(appName)
+		local wasAlreadyOpened = false
+		if app == nil then
+			app = hs.application.open(appName)
+			wasAlreadyOpened = true
+		end
+		if window == nil then
+			if not wasAlreadyOpened then
+				hs.application.open(appName)
+			end
 		else
-			currentlyFocusedWindow:application():hide()
+			launchOrFocusWindow(app, window)
+		end
+	else
+		if window == nil then
+			focusPrevWindow()
+		else
+			if currentlyFocusedWindow:title() == window.title then
+				focusPrevWindow()
+			else
+				local app = hs.application.get(appName)
+				launchOrFocusWindow(app, window)
+			end
 		end
 	end
 end

@@ -3470,21 +3470,6 @@
           } ],
           "type" : "basic"
         } ]
-      }, {
-        "description" : "better keybinding for switching between windows of same app",
-        "manipulators" : [ {
-          "from" : {
-            "key_code" : "n",
-            "modifiers" : {
-              "mandatory" : [ "left_command", "left_control", "left_option", "left_shift" ]
-            }
-          },
-          "to" : [ {
-            "modifiers" : [ "left_command" ],
-            "key_code" : "grave_accent_and_tilde"
-          } ],
-          "type" : "basic"
-        } ]
       } ]
     },
     "devices" : [ {

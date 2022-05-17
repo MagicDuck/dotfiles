@@ -397,10 +397,10 @@
     ]}
 
 
-    ; same app window switching
-    {:des "better keybinding for switching between windows of same app" :rules [
-       [:!CTOSn {:key :grave_accent_and_tilde :modi [:left_command]}]
-    ]}
+    ; same app window switching - we are doing this with hammerspoon now
+    ; {:des "better keybinding for switching between windows of same app" :rules [
+    ;    [:!CTOSn {:key :grave_accent_and_tilde :modi [:left_command]}]
+    ; ]}
 
     ; {:des "prevent using shift+button when they are on the same side of the board" :rules [
     ;   ;; left side

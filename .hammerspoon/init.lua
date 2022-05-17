@@ -24,7 +24,6 @@ local networkWatcher = hs.network.configuration.open()
 networkWatcher:monitorKeys()
 networkWatcher:setCallback(network.handleNetworkChange)
 networkWatcher:start()
--- TODO (sbadragan): need to call this on caffeinate as well?
 
 -------------------------------------------------------------------
 -- Gitlab
@@ -157,22 +156,30 @@ local function switchToKittyWindow(windowTitle, windowCommand, initializeWinFn)
 	end
 
 	local function launchWindow()
-		kittyDo("launch --type=os-window --title=" .. windowTitle .. " " .. windowCommand, function(exitCode)
-			if exitCode ~= 0 then
-				print("Could not launch kitty window: " .. windowTitle .. " with command: " .. windowCommand)
-				return
+		kittyDo(
+			"launch --type=os-window --os-window-title="
+				.. windowTitle
+				.. " --title="
+				.. windowTitle
+				.. " "
+				.. windowCommand,
+			function(exitCode)
+				if exitCode ~= 0 then
+					print("Could not launch kitty window: " .. windowTitle .. " with command: " .. windowCommand)
+					return
+				end
+				if initializeWinFn ~= nil then
+					local newWin = hs.window.frontmostWindow()
+					initializeWinFn(newWin)
+				end
+				-- closeInitialKittyWindow()
 			end
-			if initializeWinFn ~= nil then
-				local newWin = hs.window.frontmostWindow()
-				initializeWinFn(newWin)
-			end
-			closeInitialKittyWindow()
-		end)
+		)
 	end
 
 	local app = hs.application.get("kitty")
 	if app == nil then
-		hs.application.open("kitty", 3) -- wait max 3s
+		hs.application.open("kitty")
 	end
 
 	kittyDo("focus-window --match=title:" .. windowTitle, function(exitCode, stdout, stderr)
@@ -251,125 +258,78 @@ end
 -- Key Bindings
 -------------------------------------------------------------------
 
-hs.hotkey.bind(superKey, "a", function()
-	-- show name of application corresponding to current window
-	local win = hs.window.frontmostWindow()
-	hs.alert.show(win:application():name())
+local superKeyBindings = {
+	{
+		key = "a",
+		fn = function()
+			-- show name of application corresponding to current window
+			local win = hs.window.frontmostWindow()
+			hs.alert.show(win:application():name())
+		end,
+	},
+	{
+		key = "d",
+		app = "Brave Browser",
+	},
+	{
+		key = "i",
+		app = "IntelliJ IDEA",
+	},
+	{
+		key = "k",
+		app = "Fork",
+	},
+	{
+		key = "l",
+		app = "zoom.us",
+	},
+	{
+		key = "m",
+		app = "Figma",
+	},
+	{
+		key = "o",
+		app = "Microsoft Outlook",
+	},
+	{
+		key = "p",
+		app = "Finder",
+	},
+	{
+		key = "r",
+		app = "Google Chrome",
+	},
+	{
+		key = "s",
+		app = "Slack",
+	},
+	{
+		key = "w",
+		app = "TickTick",
+	},
+	-- superkey + z - launches next meeting from Meeter Pro
+}
+
+hs.fnutils.each(superKeyBindings, function(binding)
+	hs.hotkey.bind(superKey, binding.key, function()
+		if binding.fn then
+			binding.fn()
+		else
+			summon(binding.app)
+		end
+	end)
 end)
 
--- superKey + b - cycle through windows of current app
-
-hs.hotkey.bind(superKey, "d", function()
-	print("-- summoning Brave Browser")
-	summon("Brave Browser")
-	-- switchToApp("Brave Browser", positionWindowFullscreen)
-end)
-hs.hotkey.bind(superKey, "i", function()
-	switchToApp("IntelliJ IDEA")
-end, positionWindowFullscreen)
--- hs.hotkey.bind(
---   superKey,
---   "f",
---   function()
---     switchToKittyWindow(
---       "neovim",
---       "/usr/local/bin/zsh -is eval vim",
---       positionWindowFullscreen
---     )
---   end
--- )
--- hs.hotkey.bind(
---   superKey,
---   "i",
---   function()
---     switchToKittyWindow(
---       "gitui",
---       "/usr/local/bin/zsh -is eval gitui -d ~/frontend",
---       positionWindowCentered
---     )
---   end
--- )
---hs.hotkey.bind(superKey, "j", function()
---  local currentWindow = hs.window.frontmostWindow()
---  local nextWin = getNextAppWindow(currentWindow)
---  nextWin:focus()
---end)
-hs.hotkey.bind(superKey, "k", function()
-	switchToApp("Fork", positionWindowCentered)
-end)
-hs.hotkey.bind(superKey, "l", function()
-	switchToApp("zoom.us")
-end)
-hs.hotkey.bind(superKey, "m", function()
-	summon("Figma", positionWindowRightHalf)
-	-- switchToApp("Figma", positionWindowFullscreen)
-end)
-hs.hotkey.bind(superKey, "n", function()
-	switchToApp("Monosnap")
-end)
--- hs.hotkey.bind(
---   superKey,
---   "o",
---   function()
---     switchToApp("Fantastical", positionWindowCentered)
---   end
--- )
-hs.hotkey.bind(superKey, "o", function()
-	switchToApp("Microsoft Outlook", positionWindowCentered)
-end)
-hs.hotkey.bind(superKey, "p", function()
-	switchToApp("Finder")
-end)
-hs.hotkey.bind(superKey, "r", function()
-	-- switchToApp("Google Chrome", positionWindowFullscreen)
-	summon("Google Chrome")
-end)
-hs.hotkey.bind(superKey, "s", function()
-	switchToApp("Slack", positionWindowFullscreen)
-end)
--- hs.hotkey.bind(
---   superKey,
---   "u",
---   function()
---     switchToApp("Bear")
---   end
--- )
 hs.hotkey.bind(superKey, "u", function()
 	switchToKittyWindow("notes", "/usr/local/bin/zsh -is eval vim +VimwikiIndex", positionWindowRightHalf)
 end)
-hs.hotkey.bind(superKey, "w", function()
-	switchToApp("TickTick", positionWindowFullscreen)
-end)
--- superkey + z - launches next meeting from Meeter Pro
 
--- hs.hotkey.bind(superKey, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
--- hs.hotkey.bind({"cmd"}, "return", function() switchToKittyWindow('kitty', '/usr/local/bin/zsh') end)
--- hs.hotkey.bind(
---   superKey,
---   "return",
---   function()
---     switchToApp("kitty")
---   end
--- )
--- hs.hotkey.bind(
---   {"cmd"},
---   "return",
---   function()
---     switchToApp("kitty")
---   end
--- )
 hs.hotkey.bind(superKey, "e", function()
-	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
-end)
-hs.hotkey.bind(superKey, "f", function()
 	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
 end)
 hs.hotkey.bind(superKey, "return", function()
 	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
 end)
--- hs.hotkey.bind({ "cmd" }, "return", function()
--- 	switchToKittyWindow("terminal", "/usr/local/bin/zsh -is", positionWindowFullscreen)
--- end)
 
 -- move window to other screen
 hs.hotkey.bind(superKey, "[", function()

@@ -362,7 +362,7 @@
     ]}
 
     {:des "have caps_lock emit CTOS modifiers in combination with shfit and caps_lock by itself" :rules [
-      [:condi :!iris-keyboard] 
+      [:condi :apple-keyboard] 
       [:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]
       [:!Rcaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} 
           nil {:alone {:key :caps_lock}} ]
@@ -372,44 +372,35 @@
     ]}
 
     {:des "command left/right to opt left/right" :rules [
-      [:condi :!iris-keyboard] 
+      [:condi :kinesis-keyboard] 
       [:!Cleft_arrow {:key :left_arrow :modi [:left_option]}]
       [:!Cright_arrow {:key :right_arrow :modi [:left_option]}]
     ]}
 
     {:des "command up/down to page_up/page_down" :rules [
-      [:condi :!iris-keyboard] 
+      [:condi :kinesis-keyboard] 
       [:!Cup_arrow :page_up]
       [:!Cdown_arrow :page_down]
     ]}
 
     {:des "command backsapce to opt backspace" :rules [
-      [:condi :!iris-keyboard] 
+      [:condi :kinesis-keyboard] 
       [:!Cdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
       [:!Qdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
     ]}
 
     {:des "some common mappings between cmd and hyper" :rules [
+      [:condi :kinesis-keyboard] 
       [:!CTOSc {:key c :modi [:left_command]}]
       [:!CTOSt {:key t :modi [:left_command]}]
       [:!CTOSv {:key v :modi [:left_command]}]
     ]}
 
-    ; sending CTOS stuff throuh to hammerspoon
+
+    ; same app window switching
     {:des "better keybinding for switching between windows of same app" :rules [
-      [:!CTOSk [:alfred "fork"]]
+       [:!CTOSn {:key :grave_accent_and_tilde :modi [:left_command]}]
     ]}
-
-    ; using CTOSn from Contexts atm
-    ; {:des "better keybinding for switching between windows of same app" :rules [
-    ;   [:!CTOSn {:key grave_accent_and_tilde :modi [:left_command]}]
-    ; ]}
-
-    ; test
-    ; {:des "test numbers as layers" :rules [
-    ;   [:##3  :left_shift :kinesis-keyboard]
-    ;   [:##8  :right_shift :kinesis-keyboard]
-    ; ]}
 
     ; {:des "prevent using shift+button when they are on the same side of the board" :rules [
     ;   ;; left side

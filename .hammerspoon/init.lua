@@ -42,6 +42,9 @@ local deployUrls = {
 		versionSuffix = "sb",
 		fallbackVersion = "0.x.sbadragan",
 	}),
+	["xm-database"] = gitlabMrs.builtin.deployUrls["xm-database"]({
+		databaseName = "kramerica",
+	}),
 }
 
 gitlabMrs:setup({
@@ -63,6 +66,27 @@ spoon["jira-issues"]:setup({
 	jql = "assignee=currentuser() AND resolution=Unresolved AND status not in (Rejected, Closed) AND type in (Story, Bug) ORDER BY status ASC",
 })
 spoon["jira-issues"]:start()
+
+-------------------------------------------------------------------
+-- Snippets
+-------------------------------------------------------------------
+local snippets = require("./snippets")
+local xmDemoInstance = localConfig.xmDemoInstance
+snippets.init({
+	{ description = "code block", keys = { "```\n\n```", { char = "up" } } },
+	{ description = "code block from clipboard", keys = { "```\n", { mods = { "cmd" }, char = "v" }, "\n```" } },
+	{
+		description = "xmatters demo/test instance",
+		keys = {
+			xmDemoInstance.host
+				.. " (user = "
+				.. xmDemoInstance.user
+				.. ", password = "
+				.. xmDemoInstance.password
+				.. ")",
+		},
+	},
+})
 
 -------------------------------------------------------------------
 -- Key Bindings
@@ -101,7 +125,7 @@ local superKeyBindings = {
 		app = "zoom.us",
 	},
 	{
-		key = "m",
+		key = "n",
 		app = "Figma",
 	},
 	{
@@ -133,6 +157,13 @@ local superKeyBindings = {
 	{
 		key = "w",
 		app = "TickTick",
+	},
+	{
+		key = "space",
+		app = "kitty",
+		window = {
+			title = "terminal",
+		},
 	},
 	{
 		key = "return",
@@ -178,6 +209,15 @@ local superKeyBindings = {
 		key = "pagedown",
 		fn = wm.moveCurrentWindowToNextScreen,
 	},
+	-- snippets
+	{
+		key = "m",
+		fn = snippets.show,
+		-- fn = function()
+		--     hs.eventtap.keyStrokes("")
+		-- end,
+	},
+
 	-- superkey + z - launches next meeting from Meeter Pro
 }
 

@@ -42,7 +42,7 @@ local function launchOrFocusWindow(app, window)
 	end
 end
 
-local function focusPrevWindow()
+function M.focusPrevWindow()
 	if lastFocusedWindow == nil then
 		currentlyFocusedWindow:application():hide()
 	else
@@ -78,10 +78,10 @@ function M.summon(appName, window)
 		end
 	else
 		if window == nil then
-			focusPrevWindow()
+			M.focusPrevWindow()
 		else
 			if currentlyFocusedWindow:title() == window.title then
-				focusPrevWindow()
+				M.focusPrevWindow()
 			else
 				local app = hs.application.get(appName)
 				launchOrFocusWindow(app, window)

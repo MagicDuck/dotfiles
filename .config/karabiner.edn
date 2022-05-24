@@ -101,7 +101,7 @@
     ;; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/examples.org#custom-variable
 
     ; {:des "simultaneous j k press to ESC" :rules [[[:j :k] :escape]]}
-    ; {:des "simultaneous s d f press to ( )" :rules [[[:s :d] :!S9] [[:d :f] :!S0]]}
+    ; {:des "si/base-config/keys.vimmultaneous s d f press to ( )" :rules [[[:s :d] :!S9] [[:d :f] :!S0]]}
     ; {:des "simultaneous x c v press to { }" :rules [[[:x :c] :!Sopen_bracket] [[:c :v] :!Sclose_bracket]]}
     ; {:des "simultaneous n m press to +" :rules [[[:n :m] :!Sequal_sign]]}
     ; {:des "simultaneous k l press to =" :rules [[[:k :l] :equal_sign]]}
@@ -163,6 +163,7 @@
 
     {:des "text snippets mode" :rules [
       [:end ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
+      ; [:!CTOSm ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
       ; enter code block 
       [:i [:!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde :!Sreturn_or_enter :!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde  :up_arrow] ["snippet-mode" 1]]
     ]}

@@ -49,7 +49,6 @@
   "editor.fontSize": 11,
   "window.zoomLevel": 1,
   "editor.suggestSelection": "first",
-  "editor.renderIndentGuides": false,
   "window.title": "${activeEditorMedium}${separator}${rootName}",
   "emmet.triggerExpansionOnTab": true,
   "java.home": "~/.jenv/versions/11.0.8",
@@ -68,5 +67,6 @@
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true
-  }
+  },
+  "editor.guides.indentation": false
 }

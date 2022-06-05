@@ -51,9 +51,14 @@
     :iris-keyboard [ {:vendor_id 51984 :product_id 16982} ]
   } ;; devices
 
+  :applications {
+    :slack-app ["^com\\.tinyspeck\\.slackmacgap$"]
+  } ;; applications
+
   :templates {
     :alfred "osascript -e 'tell application id \"com.runningwithcrayons.Alfred\" to run trigger \"%s\" in workflow \"com.stephanb.launchers\" with argument \"%s\"'"
     :hs "/usr/local/bin/hs -c \"SwitchToApp('%s')\""
+    ; :typechars "/usr/local/bin/typechars "
    } ;; templates
 
   ;; simlayers are basically "hyper" keys
@@ -160,6 +165,15 @@
     ; {:des "end -> delete" :rules [
     ;   [:##end :delete_forward :kinesis-keyboard]
     ; ]}
+
+    {:des "slack shortcut overrides" :rules [
+      [:condi :slack-app] 
+      [:!Ce :!CSbackslash] ; react with emoji
+      [:!Ch :!Copen_bracket] ; history prev
+      [:!Cl :!Cclose_bracket] ; history next 
+      [:!Cj :!OSdown_arrow] ; next unread
+      [:!Cj :!OSup_arrow] ; prev unread
+    ]}
 
     {:des "text snippets mode" :rules [
       [:end ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
@@ -292,15 +306,41 @@
 
     {:des "nav mode cmd" :rules [
       [:condi :kinesis-keyboard ["nav-mode-cmd" 1]] 
+      [:h [:!Cleft_arrow]]
+      [:j [:!Cdown_arrow]]
+      [:k [:!Cup_arrow]]
+      [:l [:!Cright_arrow]]
+      ]
+    }
+    {:des "nav mode opt" :rules [
+      [:condi :kinesis-keyboard ["nav-mode-opt" 1] ["nav-mode-opt-shift" 0]] 
+      [:a [:left_shift ["nav-mode-opt-shift" 1]] ["nav-mode-opt" 1] {:afterup ["nav-mode-opt-shift" 0]}]
       [:h [:!Oleft_arrow]]
       [:j [:!Odown_arrow]]
       [:k [:!Oup_arrow]]
       [:l [:!Oright_arrow]]
       ]
     }
+    {:des "nav mode shift" :rules [
+      [:condi :kinesis-keyboard ["nav-mode-shift" 1]] 
+      [:s [:left_option ["nav-mode-opt-shift" 1]] ["nav-mode-shift" 1] {:afterup ["nav-mode-opt-shift" 0]}]
+      [:h [:!Sleft_arrow]]
+      [:j [:!Sdown_arrow]]
+      [:k [:!Sup_arrow]]
+      [:l [:!Sright_arrow]]
+      ]
+    }
+    {:des "nav mode opt-shift" :rules [
+      [:condi :kinesis-keyboard ["nav-mode-opt-shift" 1]] 
+      [:h [:!OSleft_arrow]]
+      [:j [:!OSdown_arrow]]
+      [:k [:!OSup_arrow]]
+      [:l [:!OSright_arrow]]
+      ]
+    }
 
     {:des "nav mode" :rules [
-      [:condi :kinesis-keyboard ["nav-mode-cmd" 0]] 
+      [:condi :kinesis-keyboard ["nav-mode-cmd" 0] ["nav-mode-opt" 0] ["nav-mode-shift" 0] ["nav-mode-opt-shift" 0]] 
       [:delete_forward ["nav-mode" 1] nil {:afterup ["nav-mode" 0]}]
       ; [:q [:!Sq ["nav-mode" 0]] ["nav-mode" 1]]
       ; [:w [:!Sw ["nav-mode" 0]] ["nav-mode" 1]]
@@ -313,8 +353,9 @@
       [:o [:!Cdelete_or_backspace] ["nav-mode" 1]]
       [:p [:!Cdelete_forward] ["nav-mode" 1]]
       ; [:backslash [:!Sbackslash] ["nav-mode" 1]]
-      [:a [:left_shift] ["nav-mode" 1]]
-      [:s [:left_option ["nav-mode" 1]] ["nav-mode" 1]]
+      ; [:a [:left_shift] ["nav-mode" 1]]
+      [:a [:left_shift ["nav-mode-shift" 1]] ["nav-mode" 1] {:afterup ["nav-mode-shift" 0]}]
+      [:s [:left_option ["nav-mode-opt" 1]] ["nav-mode" 1] {:afterup ["nav-mode-opt" 0]}]
       [:d [:left_control] ["nav-mode" 1]]
       [:f [:left_command ["nav-mode-cmd" 1]] ["nav-mode" 1] {:afterup ["nav-mode-cmd" 0]}]
       ; [:g [:!Sg] ["nav-mode" 1]]

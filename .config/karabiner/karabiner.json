@@ -395,6 +395,89 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "slack shortcut overrides",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "e",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "backslash",
+            "modifiers" : [ "left_command", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.tinyspeck\\.slackmacgap$" ]
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "h",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "open_bracket",
+            "modifiers" : [ "left_command" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.tinyspeck\\.slackmacgap$" ]
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "l",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "close_bracket",
+            "modifiers" : [ "left_command" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.tinyspeck\\.slackmacgap$" ]
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "down_arrow",
+            "modifiers" : [ "left_option", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.tinyspeck\\.slackmacgap$" ]
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "up_arrow",
+            "modifiers" : [ "left_option", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.tinyspeck\\.slackmacgap$" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "text snippets mode",
         "manipulators" : [ {
           "to_after_key_up" : [ {
@@ -2383,7 +2466,7 @@
           },
           "to" : [ {
             "key_code" : "left_arrow",
-            "modifiers" : [ "left_option" ]
+            "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
             "name" : "nav-mode-cmd",
@@ -2406,7 +2489,7 @@
           },
           "to" : [ {
             "key_code" : "down_arrow",
-            "modifiers" : [ "left_option" ]
+            "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
             "name" : "nav-mode-cmd",
@@ -2429,7 +2512,7 @@
           },
           "to" : [ {
             "key_code" : "up_arrow",
-            "modifiers" : [ "left_option" ]
+            "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
             "name" : "nav-mode-cmd",
@@ -2452,10 +2535,389 @@
           },
           "to" : [ {
             "key_code" : "right_arrow",
-            "modifiers" : [ "left_option" ]
+            "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
             "name" : "nav-mode-cmd",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "nav mode opt",
+        "manipulators" : [ {
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "nav-mode-opt-shift",
+              "value" : 0
+            }
+          } ],
+          "from" : {
+            "key_code" : "a"
+          },
+          "to" : [ {
+            "key_code" : "left_shift"
+          }, {
+            "set_variable" : {
+              "name" : "nav-mode-opt-shift",
+              "value" : 1
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "h"
+          },
+          "to" : [ {
+            "key_code" : "left_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j"
+          },
+          "to" : [ {
+            "key_code" : "down_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "k"
+          },
+          "to" : [ {
+            "key_code" : "up_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "l"
+          },
+          "to" : [ {
+            "key_code" : "right_arrow",
+            "modifiers" : [ "left_option" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "nav mode shift",
+        "manipulators" : [ {
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "nav-mode-opt-shift",
+              "value" : 0
+            }
+          } ],
+          "from" : {
+            "key_code" : "s"
+          },
+          "to" : [ {
+            "key_code" : "left_option"
+          }, {
+            "set_variable" : {
+              "name" : "nav-mode-opt-shift",
+              "value" : 1
+            }
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-shift",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "h"
+          },
+          "to" : [ {
+            "key_code" : "left_arrow",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-shift",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j"
+          },
+          "to" : [ {
+            "key_code" : "down_arrow",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-shift",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "k"
+          },
+          "to" : [ {
+            "key_code" : "up_arrow",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-shift",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "l"
+          },
+          "to" : [ {
+            "key_code" : "right_arrow",
+            "modifiers" : [ "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-shift",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "nav mode opt-shift",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "h"
+          },
+          "to" : [ {
+            "key_code" : "left_arrow",
+            "modifiers" : [ "left_option", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "j"
+          },
+          "to" : [ {
+            "key_code" : "down_arrow",
+            "modifiers" : [ "left_option", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "k"
+          },
+          "to" : [ {
+            "key_code" : "up_arrow",
+            "modifiers" : [ "left_option", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "l"
+          },
+          "to" : [ {
+            "key_code" : "right_arrow",
+            "modifiers" : [ "left_option", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
             "value" : 1,
             "type" : "variable_if"
           }, {
@@ -2489,6 +2951,18 @@
             }
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2512,6 +2986,18 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2539,6 +3025,18 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2565,6 +3063,18 @@
             "key_code" : "home"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2591,6 +3101,18 @@
             "key_code" : "page_up"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2617,6 +3139,18 @@
             "key_code" : "page_down"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2644,6 +3178,18 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2671,6 +3217,18 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2690,13 +3248,36 @@
           } ],
           "type" : "basic"
         }, {
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "nav-mode-shift",
+              "value" : 0
+            }
+          } ],
           "from" : {
             "key_code" : "a"
           },
           "to" : [ {
             "key_code" : "left_shift"
+          }, {
+            "set_variable" : {
+              "name" : "nav-mode-shift",
+              "value" : 1
+            }
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2716,6 +3297,12 @@
           } ],
           "type" : "basic"
         }, {
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "nav-mode-opt",
+              "value" : 0
+            }
+          } ],
           "from" : {
             "key_code" : "s"
           },
@@ -2723,11 +3310,23 @@
             "key_code" : "left_option"
           }, {
             "set_variable" : {
-              "name" : "nav-mode",
+              "name" : "nav-mode-opt",
               "value" : 1
             }
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2754,6 +3353,18 @@
             "key_code" : "left_control"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2791,6 +3402,18 @@
             }
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2817,6 +3440,18 @@
             "key_code" : "left_arrow"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2843,6 +3478,18 @@
             "key_code" : "down_arrow"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2869,6 +3516,18 @@
             "key_code" : "up_arrow"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2895,6 +3554,18 @@
             "key_code" : "right_arrow"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2921,6 +3592,18 @@
             "key_code" : "end"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2948,6 +3631,18 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -2975,6 +3670,18 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -3002,6 +3709,18 @@
             "modifiers" : [ "left_command" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -3029,6 +3748,18 @@
             "modifiers" : [ "left_option" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -3055,6 +3786,18 @@
             "key_code" : "delete_or_backspace"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -3081,6 +3824,18 @@
             "key_code" : "delete_forward"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -3108,6 +3863,18 @@
             "modifiers" : [ "left_option" ]
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -3134,6 +3901,18 @@
             "key_code" : "return_or_enter"
           } ],
           "conditions" : [ {
+            "name" : "nav-mode-opt-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-shift",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
+            "name" : "nav-mode-opt",
+            "value" : 0,
+            "type" : "variable_if"
+          }, {
             "name" : "nav-mode-cmd",
             "value" : 0,
             "type" : "variable_if"
@@ -3506,6 +4285,18 @@
         "vendor_id" : 17485
       },
       "ignore" : false,
+      "manipulate_caps_lock_led" : false,
+      "simple_modifications" : [ ]
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : true,
+        "is_pointing_device" : false,
+        "product_id" : 92,
+        "vendor_id" : 5426
+      },
+      "ignore" : true,
       "manipulate_caps_lock_led" : false,
       "simple_modifications" : [ ]
     } ],

@@ -28,19 +28,19 @@ my.keybind({
 my.keybind({
 	description = "save",
 	lhs = "<C-s>",
-	rhs = ":<C-U>Update<CR>",
+	rhs = ":<C-U>w<CR>",
 })
 my.keybind({
 	description = "save (visual)",
 	mode = "v",
 	lhs = "<C-s>",
-	rhs = "<C-C>:Update<CR>",
+	rhs = "<C-C>:w<CR>",
 })
 my.keybind({
 	description = "save (insert)",
 	mode = "i",
 	lhs = "<C-s>",
-	rhs = "<C-O>:Update<CR>",
+	rhs = "<C-O>:w<CR>",
 })
 
 -- buffer
@@ -119,7 +119,7 @@ my.keybind({
 -- tabs
 my.keybind({
 	description = "tab: navigate to next tab",
-	lhs = "<C-l>",
+	lhs = "<C-k>",
 	rhs = ":tabnext<CR>",
 	mode = "niv",
 })
@@ -137,7 +137,7 @@ my.keybind({
 })
 my.keybind({
 	description = "tab: navigate to previous tab",
-	lhs = "<C-h>",
+	lhs = "<C-j>",
 	rhs = ":tabprevious<CR>",
 	mode = "niv",
 })
@@ -645,17 +645,17 @@ my.keybind({
 })
 my.keybind({
 	description = "debugger: step over",
-	lhs = "<down><down>",
+	lhs = ",dl",
 	rhs = "<Plug>VimspectorStepOver",
 })
 my.keybind({
 	description = "debugger: step into",
-	lhs = "<down>b",
+	lhs = ",dm",
 	rhs = "<Plug>VimspectorStepInto",
 })
 my.keybind({
 	description = "debugger: step out",
-	lhs = "<up>b",
+	lhs = ",da",
 	rhs = "<Plug>VimspectorStepOut",
 })
 my.keybind({

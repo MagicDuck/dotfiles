@@ -72,11 +72,27 @@ spoon["jira-issues"]:start()
 -------------------------------------------------------------------
 local snippets = require("./snippets")
 local xmDemoInstance = localConfig.xmDemoInstance
+local cursor = "▍"
 snippets.init({
-	{ description = "code block", keys = { "```\n\n```", { char = "up" } } },
-	{ description = "code block from clipboard", keys = { "```\n", { mods = { "cmd" }, char = "v" }, "\n```" } },
+	{
+		description = "code block",
+		example = "```\n" .. cursor .. "\n```",
+		keys = { "```", { char = "return" }, { char = "return" }, "```", { char = "up" } },
+	},
+	{
+		description = "code block from clipboard",
+		example = "```\n<paste>\n```" .. cursor,
+		keys = { "```\n", { mods = { "cmd" }, char = "v" }, "\n```" },
+	},
 	{
 		description = "xmatters demo/test instance",
+		example = xmDemoInstance.host
+			.. " (user = "
+			.. xmDemoInstance.user
+			.. ", password = "
+			.. xmDemoInstance.password
+			.. ")"
+			.. cursor,
 		keys = {
 			xmDemoInstance.host
 				.. " (user = "
@@ -111,6 +127,10 @@ local superKeyBindings = {
 		window = {
 			title = "terminal",
 		},
+	},
+	{
+		key = "f",
+		app = "Brave Browser",
 	},
 	{
 		key = "i",
@@ -176,9 +196,9 @@ local superKeyBindings = {
 	{
 		key = "a",
 		fn = function()
-			-- show name of application corresponding to current window
+			-- show name and bundle id of application corresponding to current window
 			local win = hs.window.frontmostWindow()
-			hs.alert.show(win:application():name())
+			hs.alert.show(win:application():name() .. " | " .. win:application():bundleID())
 		end,
 	},
 	{
@@ -216,6 +236,27 @@ local superKeyBindings = {
 		-- fn = function()
 		--     hs.eventtap.keyStrokes("")
 		-- end,
+	},
+	-- keeper password manager autofill
+	{
+		key = "x",
+		fn = function()
+			local win = hs.window.frontmostWindow()
+			win:application():activate() -- this lets keeper know which app we are on
+			hs.timer.doAfter(0.2, function()
+				hs.eventtap.keyStroke({ "cmd", "shift", "alt" }, "m")
+				hs.timer.doAfter(0.2, function()
+					hs.eventtap.keyStroke({}, "return")
+				end)
+			end)
+		end,
+	},
+	-- autoexpand snippets
+	{
+		key = "n",
+		fn = function()
+			hs.eventtap.keyStroke({ "option" }, "j")
+		end,
 	},
 
 	-- superkey + z - launches next meeting from Meeter Pro

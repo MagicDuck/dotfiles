@@ -129,13 +129,35 @@ inoremap <expr> <c-k> ("\<C-p>")
 " slightly easier :command
 noremap ; :
 
-" insert mode alt-based motions
-imap <A-BS> <C-W>
-inoremap <A-Del> <C-o>de
-inoremap <A-left> <C-o>b
-inoremap <A-right> <C-o>w
-inoremap <A-up> <C-o>^
-inoremap <A-down> <C-o>$
+" alt-based motions
+inoremap <a-bs> <c-w>
+inoremap <a-del> <c-o>de
+inoremap <a-left> <c-o>b
+inoremap <a-right> <c-o>w
+inoremap <a-up> <c-o>^
+inoremap <a-down> <c-o>$
+
+cnoremap <a-bs> <c-w>
+cnoremap <a-del> <del>
+cnoremap <a-left> <s-left>
+cnoremap <a-right> <s-right>
+cnoremap <a-up> <home>
+cnoremap <a-down> <end>
+
+nnoremap <A-BS> a<C-W><esc>
+nnoremap <A-Del> de
+nnoremap <A-left> b
+nnoremap <A-right> w
+nnoremap <A-up> ^
+nnoremap <A-down> $
+
+tnoremap <a-bs> <c-w>
+" note: might have to change some of those to exec only when ranger is on
+tnoremap <a-Del> <a-d> 
+tnoremap <a-left> <a-b>
+tnoremap <a-right> <a-f>
+tnoremap <a-up> <home>
+tnoremap <a-down> <end>
 
 " visual block select
 nnoremap X <c-v>
@@ -143,8 +165,6 @@ nnoremap X <c-v>
 " don't overwrite copied text when pasting in visual mode
 " vnoremap p "0p
 " vnoremap P "0P
-" vnoremap y "0y
-" vnoremap d "0d
 
 " performance json
 " Change foldmethod for specific filetype

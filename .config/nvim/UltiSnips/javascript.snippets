@@ -23,3 +23,24 @@ describe('$1', () => {
   });
 });
 endsnippet
+
+snippet mock_hook_named
+import { $1 } from '$2'
+
+jest.mock('$2', () => ({
+  ...jest.requireActual('$2'),
+  $1: jest.fn(),
+}));
+$1.mockReturnValue($3);
+endsnippet
+
+snippet mock_hook_default
+import $1 from '$2'
+
+jest.mock('$2', () => ({
+	__esModule: true,
+  ...jest.requireActual('$2'),
+  default: jest.fn(),
+}));
+$1.mockReturnValue($3);
+endsnippet

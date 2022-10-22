@@ -43,6 +43,8 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight TSVariable guifg=#222222
   autocmd ColorScheme * highlight TSParameter guifg=#222222
   autocmd ColorScheme * highlight TSParameterReference guifg=#222222
+  " autocmd ColorScheme * highlight MyTodo guifg=#4C9E90 gui=bold
+  autocmd ColorScheme * highlight MyTodo guifg=#BE7E05 gui=bold
 augroup END
 
 " remove odd ~ squiggles from end of buffer and other annoying places, like diffs

@@ -165,6 +165,7 @@ nnoremap X <c-v>
 " don't overwrite copied text when pasting in visual mode
 " vnoremap p "0p
 " vnoremap P "0P
+xnoremap p pgvy
 
 " performance json
 " Change foldmethod for specific filetype

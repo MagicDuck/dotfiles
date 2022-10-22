@@ -17,10 +17,13 @@ if [ -z "${3}" ]; then
     echo "please supply version tag";
     return;
 fi;
-DC="${4}";
-if [ -z "${4}" ]; then
-    DC="us-central1-dev";
-fi;
+# DC="${4}";
+# if [ -z "${4}" ]; then
+#     DC="us-central1-dev";
+# fi;
+ENV="${4:-dev}";
 
-curl -H 'Content-Type: application/json' -X PUT -d "{\"instance\": \"$INSTANCE\", \"${SERVICE}Version\": \"$VERSION\"}"  http://customerconfig-dev.i.xmatters.com:8080/cv/1/instances/attributes
+curl -H 'Content-Type: application/json' -X PUT -d "{\"instance\": \"$INSTANCE\", \"${SERVICE}Version\": \"$VERSION\"}"  http://customerconfig-$ENV.i.xmatters.com:8080/cv/1/instances/attributes
+# curl -H 'Content-Type: application/json' -X PUT -d "{\"instance\": \"$INSTANCE\", \"${SERVICE}Version\": \"$VERSION\"}"  http://customerconfig-dev.i.xmatters.com:8080/cv/1/instances/attributes
+# curl http://customerconfig.service.us-central1-$ENV.consul:8080/cv/1/instances/$INSTANCE | jq
 

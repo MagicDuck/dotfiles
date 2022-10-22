@@ -68,5 +68,12 @@
     "**/.settings": true,
     "**/.factorypath": true
   },
-  "editor.guides.indentation": false
+  "editor.guides.indentation": false,
+  "files.associations": {
+    "*.rmd": "markdown"
+  },
+  "r.interpreterPath": "/usr/local/bin/r",
+  "r.linting.enable": true,
+  "r.terminalPath": "/usr/local/bin/r",
+  "r.rpath.mac": "/usr/local/bin/r"
 }

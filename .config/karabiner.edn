@@ -53,6 +53,8 @@
 
   :applications {
     :slack-app ["^com\\.tinyspeck\\.slackmacgap$"]
+    :chrome-browser-apps ["^com\\.brave\\.Browser", "^com\\.google\\.Chrome"]
+    :google-chrome-app ["^com\\.google\\.Chrome"]
   } ;; applications
 
   :templates {
@@ -172,7 +174,14 @@
       [:!Ch :!Copen_bracket] ; history prev
       [:!Cl :!Cclose_bracket] ; history next 
       [:!Cj :!OSdown_arrow] ; next unread
-      [:!Cj :!OSup_arrow] ; prev unread
+      [:!Ck :!OSup_arrow] ; prev unread
+      [:!Co :!CSk] ; open DM 
+      [:!Cs :!CSy] ; set status 
+    ]}
+
+    {:des "chrome shortcut override" :rules [
+      [:condi :google-chrome-app] 
+      [:!CSi :!COi] ; Open dev tools
     ]}
 
     {:des "text snippets mode" :rules [
@@ -246,6 +255,7 @@
       [:r [:!S7] ["symbol-mode" 1]]
       [:t [:!Sbackslash] ["symbol-mode" 1]]
       ; [:y [:!Sy] ["symbol-mode" 1]]
+      [:y [:!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde :!Sreturn_or_enter :!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde  :up_arrow] ["symbol-mode" 1]]
       [:u [:!Sgrave_accent_and_tilde] ["symbol-mode" 1]]
       [:i [:!S8] ["symbol-mode" 1]]
       [:o [:!Sequal_sign] ["symbol-mode" 1]]
@@ -266,7 +276,7 @@
       [:x [:!S1] ["symbol-mode" 1]]
       [:c [:!Sopen_bracket] ["symbol-mode" 1]]
       [:v [:!Sclose_bracket] ["symbol-mode" 1]]
-      ; [:b [:!Sb] ["symbol-mode" 1]]
+      [:b [:tab] ["symbol-mode" 1]]
       [:n [:!S6] ["symbol-mode" 1]]
       ; [:m [:!Sm] ["symbol-mode" 1]]
       [:comma [:!Scomma] ["symbol-mode" 1]]
@@ -274,7 +284,8 @@
       [:slash [:!Sslash] ["symbol-mode" 1]]
     
       [:delete_or_backspace [:spacebar] ["symbol-mode" 1]]
-      [:delete_forward [:return_or_enter] ["symbol-mode" 1]]
+      [:delete_forward [:vk_none ["nav-mode" 1]] ["symbol-mode" 1]]
+      ; [:delete_forward [:return_or_enter] ["symbol-mode" 1]]
     ]}
 
     ; {:des "symbol mode learning wheels - disable the regular symbols" :rules [

@@ -67,7 +67,12 @@ my.keybind({
 my.keybind({
 	description = "buffer: yank a jest unit test command for current file",
 	lhs = "<leader>yt",
-	rhs = ':let @* = "yarn run test --maxWorkers=2 --watch " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
+	rhs = ':let @* = "env DEBUG_PRINT_LIMIT=100000 pnpm run test --maxWorkers=2 --watch " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
+})
+my.keybind({
+	description = "buffer: yank a jest unit test command for current file",
+	lhs = "<leader>yd",
+	rhs = ':let @* = "env DEBUG_PRINT_LIMIT=100000 node --inspect ./node_modules/jest/bin/jest.js --watch --maxWorkers=2 " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
 })
 
 -- line
@@ -118,43 +123,43 @@ my.keybind({
 
 -- tabs
 my.keybind({
-	description = "tab: navigate to next tab",
-	lhs = "<C-k>",
-	rhs = ":tabnext<CR>",
+	description = "tab: navigate to previous tab",
+	lhs = "<C-h>",
+	rhs = "<cmd>tabprevious<CR>",
 	mode = "niv",
 })
 my.keybind({
 	description = "tab: navigate to next tab",
-	lhs = "<C-Right>",
-	rhs = ":tabnext<CR>",
+	lhs = "<C-l>",
+	rhs = "<cmd>tabnext<CR>",
 	mode = "niv",
 })
 my.keybind({
 	description = "tab: navigate to previous tab",
 	lhs = "<C-Left>",
-	rhs = ":tabprevious<CR>",
+	rhs = "<cmd>tabprevious<CR>",
 	mode = "niv",
 })
 my.keybind({
-	description = "tab: navigate to previous tab",
-	lhs = "<C-j>",
-	rhs = ":tabprevious<CR>",
+	description = "tab: navigate to next tab",
+	lhs = "<C-Right>",
+	rhs = "<cmd>tabnext<CR>",
 	mode = "niv",
 })
 my.keybind({
 	description = "tab: create new tab",
 	lhs = "<leader>tn",
-	rhs = ":tabnew | Startify<CR>",
+	rhs = "<cmd>tabnew | Startify<CR>",
 })
 my.keybind({
 	description = "tab: close current tab",
 	lhs = "<leader>tc",
-	rhs = ":tabclose<CR>",
+	rhs = "<cmd>tabclose<CR>",
 })
 my.keybind({
-	description = "tab: close current tab",
+	description = "tab: pick tab using telescope",
 	lhs = "<leader>tt",
-	rhs = ":lua require('my/telescope/tab_picker').pickTab()<CR>",
+	rhs = "<cmd>lua require('my/telescope/tab_picker').pickTab()<CR>",
 })
 
 -- windows
@@ -490,7 +495,8 @@ my.keybind({
 my.keybind({
 	description = "notes: todo comments: search in project",
 	lhs = "<leader>ns",
-	rhs = ":SearchForTodoComments<CR>",
+	rhs = ":TODOTelescope<CR>",
+	-- rhs = ":SearchForTodoComments<CR>",
 })
 
 -- LSP

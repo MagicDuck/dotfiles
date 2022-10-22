@@ -4,7 +4,7 @@
 
 OS="$(uname 2> /dev/null)"
 
-export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 
 
 # =========================================================================================
@@ -243,7 +243,10 @@ alias frontend-changed-strings="cd /opt/repos/frontend/reactUi/src/translations;
 alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 alias qa-automation-run-kramerica="yarn install && yarn run cypress open --config baseUrl=$KRAMERICA_URL --env username=$KRAMERICA_USER,password=$KRAMERICA_PASSWORD,allure=false"
 alias yarn-test-changed="yarn run test --watch --changedSince=origin/main"
-alias ondemand-dev-in-cloud="cd /opt/repos/ondemand; ./gradlew bootRunDevInCloud -PgcpInstance=kramerica -Pversion=0.x.kramerica -PdevInCloud=true -i"
+alias pnpm-test-changed="pnpm run test --watch --changedSince=origin/main"
+alias ebfd-ondemand-dev-in-cloud="cd /opt/repos/ondemand; ./gradlew bootRunDevInCloud -PgcpInstance=kramerica-ebfd -Pversion=0.x.stephanlocal -PdevInCloud=true -PrunVoiceXml=false -PrunSoap=false -i"
+alias ebfd-ondemand-dev-in-cloud-stop="xm-instance-switch-version kramerica-ebfd webui 0-x-main"
+alias ondemand-rebuild="cd /opt/repos/ondemand; ./gradlew clean build -x test -x analyzeClassesDependencies -x analyzeTestClassesDependencies"
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 alias qmk-flash-dactyl="qmk flash -kb handwired/dactyl_manuform/5x6 -km MagicDuck"

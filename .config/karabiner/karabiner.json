@@ -462,7 +462,7 @@
           "type" : "basic"
         }, {
           "from" : {
-            "key_code" : "j",
+            "key_code" : "k",
             "modifiers" : {
               "mandatory" : [ "left_command" ]
             }
@@ -474,6 +474,57 @@
           "conditions" : [ {
             "type" : "frontmost_application_if",
             "bundle_identifiers" : [ "^com\\.tinyspeck\\.slackmacgap$" ]
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "o",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "k",
+            "modifiers" : [ "left_command", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.tinyspeck\\.slackmacgap$" ]
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "s",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "y",
+            "modifiers" : [ "left_command", "left_shift" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.tinyspeck\\.slackmacgap$" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "chrome shortcut override",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "i",
+            "modifiers" : {
+              "mandatory" : [ "left_command", "left_shift" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "i",
+            "modifiers" : [ "left_command", "left_option" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.google\\.Chrome" ]
           } ],
           "type" : "basic"
         } ]
@@ -1914,6 +1965,49 @@
           "type" : "basic"
         }, {
           "from" : {
+            "key_code" : "y"
+          },
+          "to" : [ {
+            "key_code" : "return_or_enter",
+            "modifiers" : [ "left_shift" ]
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "return_or_enter",
+            "modifiers" : [ "left_shift" ]
+          }, {
+            "key_code" : "return_or_enter",
+            "modifiers" : [ "left_shift" ]
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "grave_accent_and_tilde"
+          }, {
+            "key_code" : "up_arrow"
+          } ],
+          "conditions" : [ {
+            "name" : "symbol-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
             "key_code" : "u"
           },
           "to" : [ {
@@ -2323,6 +2417,28 @@
           "type" : "basic"
         }, {
           "from" : {
+            "key_code" : "b"
+          },
+          "to" : [ {
+            "key_code" : "tab"
+          } ],
+          "conditions" : [ {
+            "name" : "symbol-mode",
+            "value" : 1,
+            "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
             "key_code" : "n"
           },
           "to" : [ {
@@ -2440,7 +2556,12 @@
             "key_code" : "delete_forward"
           },
           "to" : [ {
-            "key_code" : "return_or_enter"
+            "key_code" : "vk_none"
+          }, {
+            "set_variable" : {
+              "name" : "nav-mode",
+              "value" : 1
+            }
           } ],
           "conditions" : [ {
             "name" : "symbol-mode",

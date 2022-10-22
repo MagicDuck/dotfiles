@@ -9,6 +9,10 @@
 -- vim.lsp.set_log_level("debug")
 -- vim.cmd("e " .. vim.lsp.get_log_path())
 
+-- environment vars
+-- prevent stupid node deprecation warnings
+vim.env.NODE_OPTIONS = "--no-deprecation"
+
 if vim.g.myLspDisabled ~= true then
 	require("my/lsp/sumneko_lua")
 	require("my/lsp/vimls")
@@ -17,6 +21,7 @@ if vim.g.myLspDisabled ~= true then
 	require("my/lsp/cssmodules")
 	require("my/lsp/cssls")
 	require("my/lsp/null-ls")
+	require("my/lsp/eslint")
 end
 
 -- define signs to show in the sign column

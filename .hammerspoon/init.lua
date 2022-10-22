@@ -58,20 +58,21 @@ gitlabMrs:start()
 -------------------------------------------------------------------
 -- JIRA
 -------------------------------------------------------------------
-hs.loadSpoon("jira-issues")
-spoon["jira-issues"]:setup({
-	jira_host = localConfig.jira.jira_host,
-	login = localConfig.jira.login,
-	api_token = localConfig.jira.api_token,
-	jql = "assignee=currentuser() AND resolution=Unresolved AND status not in (Rejected, Closed) AND type in (Story, Bug) ORDER BY status ASC",
-})
-spoon["jira-issues"]:start()
+-- hs.loadSpoon("jira-issues")
+-- spoon["jira-issues"]:setup({
+-- 	jira_host = localConfig.jira.jira_host,
+-- 	login = localConfig.jira.login,
+-- 	api_token = localConfig.jira.api_token,
+-- 	jql = "assignee=currentuser() AND resolution=Unresolved AND status not in (Rejected, Closed) AND type in (Story, Bug) ORDER BY status ASC",
+-- })
+-- spoon["jira-issues"]:start()
 
 -------------------------------------------------------------------
 -- Snippets
 -------------------------------------------------------------------
 local snippets = require("./snippets")
 local xmDemoInstance = localConfig.xmDemoInstance
+local ebfdDemoInstance = localConfig.ebfdDemoInstance
 local cursor = "▍"
 snippets.init({
 	{
@@ -102,6 +103,26 @@ snippets.init({
 				.. ")",
 		},
 	},
+	{
+		description = "ebfd demo/test instance",
+		example = ebfdDemoInstance.host
+			.. " (user = "
+			.. ebfdDemoInstance.user
+			.. ", password = "
+			.. ebfdDemoInstance.password
+			.. ")"
+			.. cursor,
+		keys = {
+			ebfdDemoInstance.host
+				.. "\n(organization = "
+				.. ebfdDemoInstance.organization
+				.. ", user = "
+				.. ebfdDemoInstance.user
+				.. ", password = "
+				.. ebfdDemoInstance.password
+				.. ")",
+		},
+	},
 })
 
 -------------------------------------------------------------------
@@ -118,6 +139,10 @@ local superKey = { "cmd", "alt", "ctrl", "shift" }
 local superKeyBindings = {
 	-- app switching
 	{
+		key = "b",
+		app = "Postman",
+	},
+	{
 		key = "d",
 		app = "Brave Browser",
 	},
@@ -130,7 +155,12 @@ local superKeyBindings = {
 	},
 	{
 		key = "f",
-		app = "Brave Browser",
+		-- app = "Brave Browser",
+		app = "Obsidian",
+	},
+	{
+		key = "h",
+		app = "Postman",
 	},
 	{
 		key = "i",
@@ -164,15 +194,19 @@ local superKeyBindings = {
 		key = "s",
 		app = "Slack",
 	},
+	-- {
+	-- 	key = "u",
+	-- 	app = "kitty",
+	-- 	window = {
+	-- 		title = "notes",
+	-- 		launch = function()
+	-- 			kitty.launchWindow({ title = "notes", command = "/usr/local/bin/zsh -is eval vim +VimwikiIndex" })
+	-- 		end,
+	-- 	},
+	-- },
 	{
 		key = "u",
-		app = "kitty",
-		window = {
-			title = "notes",
-			launch = function()
-				kitty.launchWindow({ title = "notes", command = "/usr/local/bin/zsh -is eval vim +VimwikiIndex" })
-			end,
-		},
+		app = "Obsidian",
 	},
 	{
 		key = "w",
@@ -222,11 +256,7 @@ local superKeyBindings = {
 		fn = wm.positionCurrentWindowCentered,
 	},
 	{
-		key = "pageup",
-		fn = wm.moveCurrentWindowToNextScreen,
-	},
-	{
-		key = "pagedown",
+		key = ";",
 		fn = wm.moveCurrentWindowToNextScreen,
 	},
 	-- snippets
@@ -252,12 +282,12 @@ local superKeyBindings = {
 		end,
 	},
 	-- autoexpand snippets
-	{
-		key = "n",
-		fn = function()
-			hs.eventtap.keyStroke({ "option" }, "j")
-		end,
-	},
+	-- {
+	-- 	key = "n",
+	-- 	fn = function()
+	-- 		hs.eventtap.keyStroke({ "option" }, "j")
+	-- 	end,
+	-- },
 
 	-- superkey + z - launches next meeting from Meeter Pro
 }

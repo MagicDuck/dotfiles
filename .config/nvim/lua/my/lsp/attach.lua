@@ -1,30 +1,30 @@
 LspFormatBuffer = function(bufnr)
-  local marks = {}
-  local letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  for i = 1, #letters do
-    local letter = letters:sub(i, i)
-    local markLocation = vim.api.nvim_buf_get_mark(bufnr, letter)
-    marks[letter] = markLocation
-  end
+	local marks = {}
+	local letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	for i = 1, #letters do
+		local letter = letters:sub(i, i)
+		local markLocation = vim.api.nvim_buf_get_mark(bufnr, letter)
+		marks[letter] = markLocation
+	end
 
-  vim.lsp.buf.formatting_sync({}, 5000)
+	vim.lsp.buf.formatting_sync({}, 5000)
 
-  for i = 1, #letters do
-    local letter = letters:sub(i, i)
-    local markLocation = marks[letter]
-    local linenr = markLocation[1]
-    if (linenr ~= 0) then
-      vim.api.nvim_command("" .. linenr .. "mark " .. letter)
-    end
-  end
+	for i = 1, #letters do
+		local letter = letters:sub(i, i)
+		local markLocation = marks[letter]
+		local linenr = markLocation[1]
+		if linenr ~= 0 then
+			vim.api.nvim_command("" .. linenr .. "mark " .. letter)
+		end
+	end
 end
 
 local global_on_attach = function(client, bufnr)
-  -- Set autocommands conditional on server_capabilities
-  -- highlights for current symbol under cursor
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
+	-- Set autocommands conditional on server_capabilities
+	-- highlights for current symbol under cursor
+	if client.server_capabilities.documentHighlightProvider then
+		vim.api.nvim_exec(
+			[[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=#f0e2f9
       hi LspReferenceText cterm=bold ctermbg=red guibg=#f0e2f9
       hi LspReferenceWrite cterm=bold ctermbg=red guibg=#f0e2f9
@@ -34,30 +34,22 @@ local global_on_attach = function(client, bufnr)
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]],
-      false
-    )
-  end
+			false
+		)
+	end
 
-  local formattingAttached =
-    vim.fn.getbufvar(bufnr or 0, "my_lsp_formatting_attached")
-  if
-    formattingAttached ~= "yes" and
-      client.resolved_capabilities.document_formatting
-   then
-    vim.fn.setbufvar(bufnr or 0, "my_lsp_formatting_attached", "yes")
-    local bufnum = bufnr or 0
-    -- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 5000) ]]
-    vim.api.nvim_command(
-      "autocmd BufWritePre <buffer> lua LspFormatBuffer(" .. bufnum .. ")"
-    )
-  end
+	local formattingAttached = vim.fn.getbufvar(bufnr or 0, "my_lsp_formatting_attached")
+	if formattingAttached ~= "yes" and client.server_capabilities.documentFormattingProvider then
+		vim.fn.setbufvar(bufnr or 0, "my_lsp_formatting_attached", "yes")
+		local bufnum = bufnr or 0
+		-- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 5000) ]]
+		vim.api.nvim_command("autocmd BufWritePre <buffer> lua LspFormatBuffer(" .. bufnum .. ")")
+	end
 end
 
-local global_capabilities = vim.lsp.protocol.make_client_capabilities()
-global_capabilities =
-  require("cmp_nvim_lsp").update_capabilities(global_capabilities)
+local global_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 return {
-  global_on_attach = global_on_attach,
-  global_capabilities = global_capabilities
+	global_on_attach = global_on_attach,
+	global_capabilities = global_capabilities,
 }

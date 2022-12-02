@@ -1,6 +1,6 @@
 augroup colorscheme_custom
   autocmd!
-  autocmd ColorScheme * highlight Normal guibg=NONE
+  autocmd ColorScheme * highlight Normal guibg=#fafbfc
   autocmd ColorScheme * highlight EndOfBuffer guibg=NONE
 
   autocmd ColorScheme * highlight LineNr guibg=NONE
@@ -45,6 +45,12 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight TSParameterReference guifg=#222222
   " autocmd ColorScheme * highlight MyTodo guifg=#4C9E90 gui=bold
   autocmd ColorScheme * highlight MyTodo guifg=#BE7E05 gui=bold
+
+  " fidget
+  autocmd ColorScheme * highlight link FidgetTitle Title
+  autocmd ColorScheme * highlight link FidgetTask MoreMsg 
+  " autocmd ColorScheme * highlight FidgetTitle guifg=#4C9E90 guibg=#fafbfc
+  " autocmd ColorScheme * highlight FidgetTask guifg=#be7e05 guibg=#fafbfc
 augroup END
 
 " remove odd ~ squiggles from end of buffer and other annoying places, like diffs

@@ -2552,6 +2552,12 @@
           } ],
           "type" : "basic"
         }, {
+          "to_after_key_up" : [ {
+            "set_variable" : {
+              "name" : "nav-mode",
+              "value" : 0
+            }
+          } ],
           "from" : {
             "key_code" : "delete_forward"
           },

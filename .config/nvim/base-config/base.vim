@@ -173,3 +173,4 @@ augroup Folding
   autocmd!
   autocmd! BufNewFile,BufRead *.json set foldmethod=indent
 augroup END
+

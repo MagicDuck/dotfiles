@@ -45,6 +45,10 @@ local deployUrls = {
 	["xm-database"] = gitlabMrs.builtin.deployUrls["xm-database"]({
 		databaseName = "kramerica",
 	}),
+	hyrax = gitlabMrs.builtin.deployUrls.hyrax({
+		slackChannel = "kessel-builds",
+		fallbackTicketName = "sbadragan",
+	}),
 }
 
 gitlabMrs:setup({
@@ -211,6 +215,10 @@ local superKeyBindings = {
 	{
 		key = "w",
 		app = "TickTick",
+	},
+	{
+		key = "y",
+		app = "Safari",
 	},
 	{
 		key = "space",

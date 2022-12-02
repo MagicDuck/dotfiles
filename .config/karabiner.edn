@@ -284,7 +284,7 @@
       [:slash [:!Sslash] ["symbol-mode" 1]]
     
       [:delete_or_backspace [:spacebar] ["symbol-mode" 1]]
-      [:delete_forward [:vk_none ["nav-mode" 1]] ["symbol-mode" 1]]
+      [:delete_forward [:vk_none ["nav-mode" 1]] ["symbol-mode" 1] {:afterup ["nav-mode" 0]}]
       ; [:delete_forward [:return_or_enter] ["symbol-mode" 1]]
     ]}
 

@@ -65,5 +65,9 @@ lspconfig.sumneko_lua.setup {
     }
   },
   capabilities = attach.global_capabilities,
-  on_attach = attach.global_on_attach
+  on_attach = attach.global_on_attach,
+  -- on_init = function(client)
+  --   -- This makes sure it's not used for formatting (prefer standalone formatter)
+  --   client.server_capabilities.documentFormattingProvider = false
+  -- end,
 }

@@ -4,6 +4,7 @@
 -- Commands to install them:
 -- yarn global add eslint_d @fsouza/prettierd stylelint_d lua-fmt diagnostic-languageserver typescript typescript-language-server ajv-keywords ajv vim-language-server cssmodules-language-server vscode-langservers-extracted
 -- brew install stylua
+-- NOTE: try to move those to "mason" instead
 
 -- logging
 -- vim.lsp.set_log_level("debug")
@@ -14,14 +15,20 @@
 vim.env.NODE_OPTIONS = "--no-deprecation"
 
 if vim.g.myLspDisabled ~= true then
-	require("my/lsp/sumneko_lua")
-	require("my/lsp/vimls")
-	require("my/lsp/tsserver")
-	-- require("my/lsp/diagnosticls")
-	require("my/lsp/cssmodules")
-	require("my/lsp/cssls")
-	require("my/lsp/null-ls")
-	require("my/lsp/eslint")
+  -- note: mason needs to go first, to make sure tools are installed
+  require("my/lsp/mason")
+
+  require("my/lsp/null-ls")
+  -- require("my/lsp/diagnosticls")
+
+  -- lsps
+  require("my/lsp/sumneko_lua")
+  require("my/lsp/vimls")
+  require("my/lsp/tsserver")
+  require("my/lsp/cssmodules")
+  require("my/lsp/cssls")
+  -- require("my/lsp/eslint")
+  require("my/lsp/rust_analyzer")
 end
 
 -- define signs to show in the sign column

@@ -18,205 +18,227 @@ local methods = require("null-ls.methods")
 -- }
 
 local stylelint_d = h.make_builtin({
-	name = "stylelint_d",
-	method = methods.internal.DIAGNOSTICS,
-	-- method = methods.internal.DIAGNOSTICS_ON_SAVE,
-	filetypes = { "scss", "less", "css", "sass" },
-	generator_opts = {
-		command = "stylelint_d",
-		args = {
-			"--stdin",
-			"--no-color",
-			"--formatter",
-			"json",
-			"--stdin-filename",
-			"$FILENAME",
-		},
-		to_stdin = true,
-		format = "json_raw",
-		-- from_stderr = true,
-		on_output = function(params)
-			local output = params.output and params.output[1] and params.output[1].warnings or {}
+  name = "stylelint_d",
+  method = methods.internal.DIAGNOSTICS,
+  -- method = methods.internal.DIAGNOSTICS_ON_SAVE,
+  filetypes = { "scss", "less", "css", "sass" },
+  generator_opts = {
+    command = "stylelint_d",
+    args = {
+      "--stdin",
+      "--no-color",
+      "--formatter",
+      "json",
+      "--stdin-filename",
+      "$FILENAME",
+    },
+    to_stdin = true,
+    format = "json_raw",
+    -- from_stderr = true,
+    on_output = function(params)
+      local output = params.output and params.output[1] and params.output[1].warnings or {}
 
-			-- json decode failure means stylelint failed to run
-			if params.err then
-				table.insert(output, { text = params.output })
-			end
+      -- json decode failure means stylelint failed to run
+      if params.err then
+        table.insert(output, { text = params.output })
+      end
 
-			local parser = h.diagnostics.from_json({
-				attributes = {
-					severity = "severity",
-					message = "text",
-				},
-				adapters = {
-					{
-						severity = function(entries)
-							local sev = entries.severity
-							if sev == "info" then
-								return "error"
-							end
-							return sev
-						end,
-					},
-				},
-				-- severities = {
-				--   h.diagnostics.severities["warning"],
-				--   h.diagnostics.severities["error"]
-				--   -- ["info"] = h.diagnostics.severities["error"]
-				-- }
-			})
+      local parser = h.diagnostics.from_json({
+        attributes = {
+          severity = "severity",
+          message = "text",
+        },
+        adapters = {
+          {
+            severity = function(entries)
+              local sev = entries.severity
+              if sev == "info" then
+                return "error"
+              end
+              return sev
+            end,
+          },
+        },
+        -- severities = {
+        --   h.diagnostics.severities["warning"],
+        --   h.diagnostics.severities["error"]
+        --   -- ["info"] = h.diagnostics.severities["error"]
+        -- }
+      })
 
-			params.output = output
-			local res = parser(params)
-			return res
-		end,
-	},
-	factory = h.generator_factory,
+      params.output = output
+      local res = parser(params)
+      return res
+    end,
+  },
+  factory = h.generator_factory,
 })
 
 local checkstyle = h.make_builtin({
-	name = "checkstyle",
-	-- method = methods.internal.DIAGNOSTICS,
-	method = methods.internal.DIAGNOSTICS_ON_SAVE,
-	filetypes = { "java" },
-	generator_opts = {
-		command = vim.fn.expand("~/.jenv/versions/11/bin/java"),
-		args = function(params)
-			local java_args = {}
-			local extra_args = {}
+  name = "checkstyle",
+  -- method = methods.internal.DIAGNOSTICS,
+  method = methods.internal.DIAGNOSTICS_ON_SAVE,
+  filetypes = { "java" },
+  generator_opts = {
+    command = vim.fn.expand("~/.jenv/versions/11/bin/java"),
+    args = function(params)
+      local java_args = {}
+      local extra_args = {}
 
-			local base_args = {
-				"-jar",
-				vim.fn.expand("~/checkstyle/checkstyle-9.2.1-all.jar"),
-				"-f",
-				"sarif",
-			}
+      local base_args = {
+        "-jar",
+        vim.fn.expand("~/checkstyle/checkstyle-9.2.1-all.jar"),
+        "-f",
+        "sarif",
+      }
 
-			if params.root:match("xm%-api") then
-				java_args = {
-					"-Dconfig_loc=./config/checkstyle",
-				}
-				extra_args = {
-					"-c",
-					"./gradle/xMattersFormatAndImportChecks.xml",
-				}
-			end
+      if params.root:match("xm%-api") then
+        java_args = {
+          "-Dconfig_loc=./config/checkstyle",
+        }
+        extra_args = {
+          "-c",
+          "./gradle/xMattersFormatAndImportChecks.xml",
+        }
+      end
 
-			local args = {}
-			for _, v in ipairs(java_args) do
-				table.insert(args, v)
-			end
-			for _, v in ipairs(base_args) do
-				table.insert(args, v)
-			end
-			for _, v in ipairs(extra_args) do
-				table.insert(args, v)
-			end
-			table.insert(args, "$FILENAME")
+      local args = {}
+      for _, v in ipairs(java_args) do
+        table.insert(args, v)
+      end
+      for _, v in ipairs(base_args) do
+        table.insert(args, v)
+      end
+      for _, v in ipairs(extra_args) do
+        table.insert(args, v)
+      end
+      table.insert(args, "$FILENAME")
 
-			return args
-		end,
-		to_stdin = false,
-		format = "json_raw",
-		from_stderr = false,
-		ignore_stderr = true,
-		on_output = function(params)
-			local output = params.output and params.output.runs and params.output.runs[1].results or {}
+      return args
+    end,
+    to_stdin = false,
+    format = "json_raw",
+    from_stderr = false,
+    ignore_stderr = true,
+    on_output = function(params)
+      local output = params.output and params.output.runs and params.output.runs[1].results or {}
 
-			-- json decode failure means it failed to run
-			if params.err then
-				table.insert(output, { text = params.output })
-			end
+      -- json decode failure means it failed to run
+      if params.err then
+        table.insert(output, { text = params.output })
+      end
 
-			local parser = h.diagnostics.from_json({
-				attributes = {
-					severity = "level",
-					locations = "locations",
-				},
-				adapters = {
-					{
-						row = function(entries)
-							return entries.locations[1].physicalLocation.region.startLine
-						end,
-						col = function(entries)
-							return entries.locations[1].physicalLocation.region.startColumn
-						end,
-						end_row = function(entries)
-							return entries.locations[1].physicalLocation.region.startLine
-						end,
-						end_col = function(entries)
-							return entries.locations[1].physicalLocation.region.startColumn
-						end,
-						message = function(entries)
-							return entries.message.text
-						end,
-					},
-				},
-				severities = {
-					h.diagnostics.severities["warning"],
-					h.diagnostics.severities["error"],
-				},
-			})
+      local parser = h.diagnostics.from_json({
+        attributes = {
+          severity = "level",
+          locations = "locations",
+        },
+        adapters = {
+          {
+            row = function(entries)
+              return entries.locations[1].physicalLocation.region.startLine
+            end,
+            col = function(entries)
+              return entries.locations[1].physicalLocation.region.startColumn
+            end,
+            end_row = function(entries)
+              return entries.locations[1].physicalLocation.region.startLine
+            end,
+            end_col = function(entries)
+              return entries.locations[1].physicalLocation.region.startColumn
+            end,
+            message = function(entries)
+              return entries.message.text
+            end,
+          },
+        },
+        severities = {
+          h.diagnostics.severities["warning"],
+          h.diagnostics.severities["error"],
+        },
+      })
 
-			params.output = output
-			return parser(params)
-		end,
-	},
-	factory = h.generator_factory,
+      params.output = output
+      return parser(params)
+    end,
+  },
+  factory = h.generator_factory,
 })
 
 null_ls.setup({
-	-- log = {
-	--   enable = true,
-	--   level = "trace",
-	--   use_console = "async"
-	-- },
-	diagnostics_format = "[#{s}] #{m} (#{c})",
-	sources = {
-		-- null_ls.builtins.diagnostics.stylelint.with {
-		stylelint_d,
-		-- stylelint.with {
-		--   only_local = "node_modules/.bin"
-		-- },
-		-- null_ls.builtins.diagnostics.eslint_d.with({}),
-		-- null_ls.builtins.formatting.eslint_d.with({}),
-		-- null_ls.builtins.code_actions.eslint_d.with({}),
+  -- log = {
+  --   enable = true,
+  --   level = "trace",
+  --   use_console = "async"
+  -- },
+  diagnostics_format = "[#{s}] #{m} (#{c})",
+  sources = {
+    -- null_ls.builtins.diagnostics.stylelint.with {
+    stylelint_d,
+    -- stylelint.with {
+    --   only_local = "node_modules/.bin"
+    -- },
+    null_ls.builtins.diagnostics.eslint_d.with({}),
+    null_ls.builtins.formatting.eslint_d.with({}),
+    null_ls.builtins.code_actions.eslint_d.with({}),
 
-		-- null_ls.builtins.diagnostics.eslint.with({
-		-- 	-- ignore deprecation warnings
-		-- 	filter = function(diagnostic)
-		-- 		return not diagnostic.message:find("DeprecationWarning")
-		-- 	end,
-		-- 	-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-		-- }),
-		-- null_ls.builtins.formatting.eslint.with({
-		-- 	-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-		-- }),
-		-- null_ls.builtins.code_actions.eslint.with({
-		-- 	-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-		-- }),
-		null_ls.builtins.formatting.prettierd.with({
-			-- null_ls.builtins.formatting.prettierd.with {
-			filetypes = {
-				"javascript",
-				"javascriptreact",
-				"typescript",
-				"typescriptreact",
-				"markdown",
-				"vimwiki",
-			},
-			-- only_local = "node_modules/.bin"
-		}),
-		null_ls.builtins.formatting.stylua.with({}),
-		checkstyle.with({
-			condition = function(u)
-				return u.root_matches("xm%-api")
-			end,
-		}),
-	},
-	on_attach = attach.global_on_attach,
-	on_init = function()
-		-- make sure eslint server still works, sometimes it dies for no reason
-		-- os.execute("eslint_d restart")
-	end,
+    -- null_ls.builtins.diagnostics.eslint.with({
+    -- 	-- ignore deprecation warnings
+    -- 	filter = function(diagnostic)
+    -- 		return not diagnostic.message:find("DeprecationWarning")
+    -- 	end,
+    -- 	-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    -- }),
+    -- null_ls.builtins.formatting.eslint.with({
+    -- 	-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    -- }),
+    -- null_ls.builtins.code_actions.eslint.with({
+    -- 	-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    -- }),
+    null_ls.builtins.formatting.prettierd.with({
+      -- null_ls.builtins.formatting.prettierd.with {
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "markdown",
+        "vimwiki",
+      },
+      -- only_local = "node_modules/.bin"
+    }),
+    -- null_ls.builtins.formatting.stylua.with({}),
+    checkstyle.with({
+      condition = function(u)
+        return u.root_matches("xm%-api")
+      end,
+    }),
+  },
+  on_attach = attach.global_on_attach,
+  on_init = function()
+    -- make sure eslint server still works, sometimes it dies for no reason
+    -- os.execute("eslint_d restart")
+  end,
+})
+
+-- handles automatic installation of required tools based on stuff configured in null-ls
+require("mason-null-ls").setup({
+  -- A list of sources to install if they're not already installed.
+  -- This setting has no relation with the `automatic_installation` setting.
+  ensure_installed = nil,
+
+  -- Run `require("null-ls").setup`.
+  -- Will automatically install masons tools based on selected sources in `null-ls`.
+  -- Can also be an exclusion list.
+  -- Example: `automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }`
+  automatic_installation = true,
+
+  -- Whether sources that are installed in mason should be automatically set up in null-ls.
+  -- Removes the need to set up null-ls manually.
+  -- Can either be:
+  -- 	- false: Null-ls is not automatically registered.
+  -- 	- true: Null-ls is automatically registered.
+  -- 	- { types = { SOURCE_NAME = {TYPES} } }. Allows overriding default configuration.
+  -- 	Ex: { types = { eslint_d = {'formatting'} } }
+  automatic_setup = false,
 })

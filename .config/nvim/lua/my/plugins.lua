@@ -125,8 +125,8 @@ return require("packer").startup(function()
     commit = "e5f68db73276c4d4d255f75a77bbe6eff7a476ef",
     requires = { "nvim-lua/plenary.nvim" },
   })
-  -- LSP status spinner
-  use("j-hui/fidget.nvim")
+  -- LSP status spinner, somewhat annoying
+  -- use("j-hui/fidget.nvim")
   use("dstein64/vim-startuptime")
   use("AmeerTaweel/todo.nvim")
   use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })

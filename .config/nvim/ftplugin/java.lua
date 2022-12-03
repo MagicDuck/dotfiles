@@ -10,19 +10,19 @@ vim.bo.shiftwidth = 4
 vim.bo.softtabstop = 4
 
 local jdtlsPath = vim.fn.expand("~/.local/share/nvim/mason/packages/jdtls")
-local launcherVersion = "1.6.400.v20210924-0641"
-
--- figure out which os we are on
-local system_name
-if vim.fn.has("mac") == 1 then
-  system_name = "mac"
-elseif vim.fn.has("unix") == 1 then
-  system_name = "linux"
-elseif vim.fn.has("win32") == 1 then
-  system_name = "win"
-else
-  print("Unsupported system for jdtls")
-end
+-- local launcherVersion = "1.6.400.v20210924-0641"
+--
+-- -- figure out which os we are on
+-- local system_name
+-- if vim.fn.has("mac") == 1 then
+--   system_name = "mac"
+-- elseif vim.fn.has("unix") == 1 then
+--   system_name = "linux"
+-- elseif vim.fn.has("win32") == 1 then
+--   system_name = "win"
+-- else
+--   print("Unsupported system for jdtls")
+-- end
 
 -- figure out project
 local projectRoot = require("jdtls.setup").find_root({ '.git', 'mvnw', 'gradlew' })
@@ -36,34 +36,60 @@ local java17Dir = "/usr/local/opt/openjdk@17/"
 -- local java11Dir = vim.fn.expand("~/.jenv/versions/11")
 -- local java8Dir = "/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
 
+local get_cmd = function()
+  local cmd = {
+
+    -- 💀
+    'jdtls',
+
+    '--jvm-arg=-javaagent:' .. jdtlsPath .. "/lombok.jar",
+    '--jvm-arg=-Xms1g',
+  }
+
+  -- local lombok_javaagent = get_lombok_javaagent()
+  -- if (lombok_javaagent ~= '') then
+  --   table.insert(cmd, lombok_javaagent)
+  -- end
+
+  -- 💀
+  -- See `data directory configuration` section in the README
+  table.insert(cmd, '-data')
+  table.insert(cmd, projectWorkspaceDir)
+
+  return cmd
+end
+
+
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
-  cmd = {
-    java17Dir .. "/bin/java", --"java", -- or '/path/to/java17_or_newer/bin/java'
-    -- depends on if `java` is in your $PATH env variable and if it points to the right version.
+  -- cmd = {
+  --   java17Dir .. "/bin/java", --"java", -- or '/path/to/java17_or_newer/bin/java'
+  --   -- depends on if `java` is in your $PATH env variable and if it points to the right version.
+  --
+  --   "-javaagent:" .. jdtlsPath .. "/lombok.jar",
+  --   "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+  --   "-Dosgi.bundles.defaultStartLevel=4",
+  --   "-Declipse.product=org.eclipse.jdt.ls.core.product",
+  --   "-Dlog.protocol=true",
+  --   "-Dlog.level=ALL",
+  --   "-Xms1g",
+  --   "--add-modules=ALL-SYSTEM",
+  --   "--add-opens",
+  --   "java.base/java.util=ALL-UNNAMED",
+  --   "--add-opens",
+  --   "java.base/java.lang=ALL-UNNAMED",
+  --   "-jar",
+  --   jdtlsPath .. "/plugins/org.eclipse.equinox.launcher_" .. launcherVersion .. ".jar",
+  --   "-configuration",
+  --   jdtlsPath .. "/config_" .. system_name,
+  --   "-data",
+  --   projectWorkspaceDir,
+  -- },
+  -- cmd_cwd = projectRoot,
+  cmd = get_cmd(),
 
-    "-javaagent:" .. jdtlsPath .. "/lombok.jar",
-    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
-    "-Dosgi.bundles.defaultStartLevel=4",
-    "-Declipse.product=org.eclipse.jdt.ls.core.product",
-    "-Dlog.protocol=true",
-    "-Dlog.level=ALL",
-    "-Xms1g",
-    "--add-modules=ALL-SYSTEM",
-    "--add-opens",
-    "java.base/java.util=ALL-UNNAMED",
-    "--add-opens",
-    "java.base/java.lang=ALL-UNNAMED",
-    "-jar",
-    jdtlsPath .. "/plugins/org.eclipse.equinox.launcher_" .. launcherVersion .. ".jar",
-    "-configuration",
-    jdtlsPath .. "/config_" .. system_name,
-    "-data",
-    projectWorkspaceDir,
-  },
-  cmd_cwd = projectRoot,
   -- One dedicated LSP server & client will be started per unique root_dir
   root_dir = projectRoot,
   -- Here you can configure eclipse.jdt.ls specific settings
@@ -71,14 +97,10 @@ local config = {
   -- for a list of options
   settings = {
     java = {
-      -- home = javaVersionsDir .. "/1.8",
-      -- home = java11Dir,
+      home = java17Dir,
       import = {
         gradle = {
           enabled = true,
-          -- java = {
-          --   home = javaVersionsDir .. "/1.8"
-          -- },
           wrapper = {
             enabled = true,
           },
@@ -94,7 +116,11 @@ local config = {
           url = vim.fn.expand("~/.config/nvim/ftplugin/eclipse_formatter_style.xml"),
         },
       },
+      autobuild = {
+        enabled = false
+      },
       configuration = {
+        updateBuildConfiguration = "interactive",
         runtimes = {
           -- {
           --   name = "JavaSE-11",
@@ -109,7 +135,10 @@ local config = {
             -- default = projectName == "ondemand"
           }
         }
-      }
+      },
+      saveActions = {
+        organizeImports = true
+      },
     },
   },
   -- Language server `initializationOptions`
@@ -121,6 +150,9 @@ local config = {
   -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
   init_options = {
     bundles = {},
+    extendedClientCapabilities = {
+      progressReportProvider = false,
+    },
   },
   capabilities = attach.global_capabilities,
   on_attach = attach.global_on_attach,

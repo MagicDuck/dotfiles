@@ -50,8 +50,7 @@ require('lualine').setup {
   options = {
     disabled_filetypes = { -- Filetypes to disable lualine for
       statusline = { 'startify', 'fugitiveblame', 'fugitive' },
-      winbar = { 'startify' },
-      tabbar = { 'gitcommit' }
+      winbar = { 'startify', 'gitcommit' },
     },
     icons_enabled = true,
     theme = my_theme,

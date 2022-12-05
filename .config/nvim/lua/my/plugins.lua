@@ -104,14 +104,17 @@ return require("packer").startup(function()
   use("honza/vim-snippets")
   use("tpope/vim-unimpaired")
   use("sbdchd/neoformat")
-  use("NTBBloodbath/galaxyline.nvim")
+
+  -- status line
+  -- use("NTBBloodbath/galaxyline.nvim") -- not used anymore in favor of lualine
+  use("nvim-lualine/lualine.nvim")
 
   -- smooth scrolling, has some issues with screen tearing and perf
   -- use "karb94/neoscroll.nvim"
 
-  use({ "puremourning/vimspector", run = ":VimspectorUpdate" })
+  -- use({ "puremourning/vimspector", run = ":VimspectorUpdate" })
   -- use("junkblocker/git-time-lapse") -- diffview has better functionality
-  use("mkitt/tabline.vim")
+  -- use("mkitt/tabline.vim")
   use("kmonad/kmonad-vim")
   -- use "wellle/targets.vim"
 
@@ -134,4 +137,10 @@ return require("packer").startup(function()
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")
   use("jayp0521/mason-null-ls.nvim")
+
+  -- debugging
+  use("mfussenegger/nvim-dap")
+  use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+  use("nvim-telescope/telescope-dap.nvim")
+  use("jay-babu/mason-nvim-dap.nvim")
 end)

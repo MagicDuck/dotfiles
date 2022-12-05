@@ -14,7 +14,7 @@ source ~/.config/nvim/plugin-config/rooter.vim
 source ~/.config/nvim/plugin-config/fzf.vim
 source ~/.config/nvim/plugin-config/vimwiki.vim
 source ~/.config/nvim/plugin-config/ultisnip.vim
-source ~/.config/nvim/plugin-config/vimspector.vim
+" source ~/.config/nvim/plugin-config/vimspector.vim
 source ~/.config/nvim/plugin-config/neoformat.vim
 
 source ~/.config/nvim/os-specific.vim

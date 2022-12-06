@@ -113,10 +113,22 @@ require('lualine').setup {
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
+      { 'lsp_progress',
+        display_components = { 'spinner' },
+        spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
+        timer = { progress_enddelay = 500, spinner = 500, lsp_client_name_enddelay = 1000 },
+        colors = {
+          spinner = { bg = colors.base04 },
+          use = true,
+        },
+        padding = { left = 1, right = 0 }
+      },
+      { function() return "lsp " .. icons.lsp end, cond = function() return vim.lsp.buf.server_ready() end,
+        padding = { left = 1, right = 1 }
+      },
       { 'branch',
         icon = { icons.git, color = { bg = colors.base02, gui = "bold" } }
       },
-      { function() return icons.lsp end, cond = function() return vim.lsp.buf.server_ready() end },
       createSpaceComponent(colors.base04),
     },
   },

@@ -108,6 +108,7 @@ return require("packer").startup(function()
   -- status line
   -- use("NTBBloodbath/galaxyline.nvim") -- not used anymore in favor of lualine
   use("nvim-lualine/lualine.nvim")
+  use("arkav/lualine-lsp-progress")
 
   -- smooth scrolling, has some issues with screen tearing and perf
   -- use "karb94/neoscroll.nvim"

@@ -114,7 +114,7 @@ return require("packer").startup(function()
 
   -- use({ "puremourning/vimspector", run = ":VimspectorUpdate" })
   -- use("junkblocker/git-time-lapse") -- diffview has better functionality
-  -- use("mkitt/tabline.vim")
+  use("mkitt/tabline.vim")
   use("kmonad/kmonad-vim")
   -- use "wellle/targets.vim"
 

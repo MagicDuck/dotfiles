@@ -45,12 +45,21 @@ local function getFiletypeComponent(fgColor, bgColor)
   }
 end
 
+local function getFilenameSymbols()
+  return {
+    modified = icons.modified, -- Text to show when the file is modified.
+    readonly = icons.readonly, -- Text to show when the file is non-modifiable or readonly.
+    unnamed = '[No Name]', -- Text to show for unnamed buffers.
+    newfile = '[New]', -- Text to show for new created file before first writting
+  }
+end
+
 require('lualine').setup {
   extensions = {},
   options = {
     disabled_filetypes = { -- Filetypes to disable lualine for
       statusline = { 'startify', 'fugitiveblame', 'fugitive' },
-      winbar = { 'startify', 'gitcommit' },
+      winbar = { 'startify', 'gitcommit', 'qf' },
     },
     icons_enabled = true,
     theme = my_theme,
@@ -80,12 +89,7 @@ require('lualine').setup {
         file_status = true,
         newfile_status = false,
         path = 1, -- relative path
-        symbols = {
-          modified = icons.modified, -- Text to show when the file is modified.
-          readonly = icons.readonly, -- Text to show when the file is non-modifiable or readonly.
-          unnamed = '[No Name]', -- Text to show for unnamed buffers.
-          newfile = '[New]', -- Text to show for new created file before first writting
-        }
+        symbols = getFilenameSymbols()
       },
       { 'diagnostics',
         -- colors = { fg = colors.light01, bg = colors.orange, gui = "bold" },
@@ -117,42 +121,53 @@ require('lualine').setup {
     },
   },
   inactive_sections = {},
-  tabline = {
-    lualine_a = {},
-    lualine_b = {
-      { 'tabs',
-        mode = 2, -- show tab name and number
-        tabs_color = {
-          active = { bg = colors.yellow, fg = colors.light01 },
-          inactive = { bg = colors.base04, fg = colors.light01 },
-        },
-        section_separators = { left = '' },
-        component_separators = { left = '' },
-      }
-    },
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
-  },
+  -- tabline = {
+  --   lualine_a = {},
+  --   lualine_b = {
+  --     { 'tabs',
+  --       -- TODO (sbadragan): temporary hack until they fix it tho use showtabline always
+  --       -- https://github.com/nvim-lualine/lualine.nvim/discussions/845
+  --       cond = function()
+  --         local lessThan2Tabs = #(vim.api.nvim_list_tabpages()) < 2
+  --         if lessThan2Tabs then
+  --           vim.o.showtabline = 1
+  --         else
+  --           vim.o.showtabline = 2
+  --         end
+  --         return not lessThan2Tabs
+  --       end,
+  --       mode = 2, -- show tab name and number
+  --       tabs_color = {
+  --         active = { bg = colors.yellow, fg = colors.light01 },
+  --         inactive = { bg = colors.base04, fg = colors.light01 },
+  --       },
+  --       section_separators = { left = '' },
+  --       component_separators = { left = '' },
+  --     }
+  --   },
+  --   lualine_c = {},
+  --   lualine_x = {},
+  --   lualine_y = {},
+  --   lualine_z = {}
+  -- },
 
   -- bar for each window
   winbar = {
     lualine_a = {},
-    lualine_b = {
-      createSpaceComponent(colors.base04),
+    lualine_b = {},
+    lualine_c = {
+      createSpaceComponent(colors.purple),
 
-      getFiletypeComponent(colors.base07, colors.base02),
+      getFiletypeComponent(colors.base07, colors.base00),
       { 'filename',
-        color = { fg = colors.base07, bg = colors.base02 },
+        color = { fg = colors.base07, bg = colors.base00 },
+        symbols = getFilenameSymbols()
       }
     },
-    lualine_c = {},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
-      'location',
-      createSpaceComponent(colors.base04),
+      createSpaceComponent(colors.purple),
     }
   },
 
@@ -162,13 +177,14 @@ require('lualine').setup {
     lualine_c = {
       createSpaceComponent(colors.base02),
       getFiletypeComponent(colors.base07, colors.base00),
-      'filename'
+      { 'filename',
+        symbols = getFilenameSymbols()
+      }
     },
+    lualine_x = {},
     lualine_y = {},
-    lualine_x = {
-      'location',
+    lualine_z = {
       createSpaceComponent(colors.base02),
     },
-    lualine_z = {},
   },
 }

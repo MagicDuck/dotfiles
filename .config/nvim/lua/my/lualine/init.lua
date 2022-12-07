@@ -1,5 +1,8 @@
 local colors = require("my/lualine/colors")
 local icons = require("my/lualine/icons")
+local qfExtension = require("my/lualine/extensions/quickfix")
+local dapuiExtension = require("my/lualine/extensions/dapui")
+local utils = require("my/lualine/utils")
 
 local my_theme = {
   -- note: these colors dictate separators colors
@@ -32,10 +35,6 @@ local function get_vim_mode_style()
   return modes[vim_mode]
 end
 
-local function createSpaceComponent(color)
-  return { function() return " " end, padding = 0, color = { bg = color } }
-end
-
 local function getFiletypeComponent(fgColor, bgColor)
   return { 'filetype',
     colored = false,
@@ -55,7 +54,7 @@ local function getFilenameSymbols()
 end
 
 require('lualine').setup {
-  extensions = {},
+  extensions = { qfExtension, dapuiExtension },
   options = {
     disabled_filetypes = { -- Filetypes to disable lualine for
       statusline = { 'startify', 'fugitiveblame', 'fugitive' },
@@ -77,7 +76,7 @@ require('lualine').setup {
   -- global status line
   sections = {
     lualine_a = {
-      createSpaceComponent(colors.base04),
+      utils.createSpaceComponent(colors.base04),
       { 'mode',
         color = function()
           return { fg = colors.light01, bg = get_vim_mode_style()[2], gui = "bold" }
@@ -129,7 +128,7 @@ require('lualine').setup {
       { 'branch',
         icon = { icons.git, color = { bg = colors.base02, gui = "bold" } }
       },
-      createSpaceComponent(colors.base04),
+      utils.createSpaceComponent(colors.base04),
     },
   },
   inactive_sections = {},
@@ -168,7 +167,7 @@ require('lualine').setup {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {
-      createSpaceComponent(colors.purple),
+      utils.createSpaceComponent(colors.purple),
 
       getFiletypeComponent(colors.base07, colors.base00),
       { 'filename',
@@ -179,7 +178,7 @@ require('lualine').setup {
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
-      createSpaceComponent(colors.purple),
+      utils.createSpaceComponent(colors.purple),
     }
   },
 
@@ -187,7 +186,7 @@ require('lualine').setup {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {
-      createSpaceComponent(colors.base02),
+      utils.createSpaceComponent(colors.base02),
       getFiletypeComponent(colors.base07, colors.base00),
       { 'filename',
         symbols = getFilenameSymbols()
@@ -196,7 +195,7 @@ require('lualine').setup {
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
-      createSpaceComponent(colors.base02),
+      utils.createSpaceComponent(colors.base02),
     },
   },
 }

@@ -109,13 +109,14 @@ return require("packer").startup(function()
   -- use("NTBBloodbath/galaxyline.nvim") -- not used anymore in favor of lualine
   use("nvim-lualine/lualine.nvim")
   use("arkav/lualine-lsp-progress")
+  -- use("mkitt/tabline.vim") -- simple tabs
+  use("nanozuki/tabby.nvim")
 
   -- smooth scrolling, has some issues with screen tearing and perf
   -- use "karb94/neoscroll.nvim"
 
   -- use({ "puremourning/vimspector", run = ":VimspectorUpdate" })
   -- use("junkblocker/git-time-lapse") -- diffview has better functionality
-  use("mkitt/tabline.vim")
   use("kmonad/kmonad-vim")
   -- use "wellle/targets.vim"
 

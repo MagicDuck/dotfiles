@@ -29,6 +29,9 @@ my.keybind = function(conf)
   if (conf.options.silent == nil) then
     conf.options.silent = true
   end
+  if (conf.options.desc == nil) then
+    conf.options.desc = conf.description
+  end
 
   for i = 1, #conf.mode do
     local single_mode = conf.mode:sub(i, i)

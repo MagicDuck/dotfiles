@@ -146,4 +146,6 @@ return require("packer").startup(function()
   use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
   use("nvim-telescope/telescope-dap.nvim")
   use("jay-babu/mason-nvim-dap.nvim")
+
+  -- use("folke/which-key.nvim")
 end)

@@ -22,7 +22,7 @@ dap.configurations.java = {
   {
     type = 'java',
     request = 'attach',
-    name = "Debug (Attach) local process",
+    name = "Debug (Attach) local process ",
     processId = "${command:pickProcess}",
     hostName = "localhost",
     port = 9598,

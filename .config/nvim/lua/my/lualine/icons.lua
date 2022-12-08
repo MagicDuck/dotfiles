@@ -27,5 +27,6 @@ return {
   git = " ",
   lsp = "⚡️",
   modified = "",
-  readonly = ""
+  readonly = "",
+  debug = ""
 }

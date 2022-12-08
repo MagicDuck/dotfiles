@@ -51,6 +51,30 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight link FidgetTask MoreMsg 
   " autocmd ColorScheme * highlight FidgetTitle guifg=#4C9E90 guibg=#fafbfc
   " autocmd ColorScheme * highlight FidgetTask guifg=#be7e05 guibg=#fafbfc
+
+  autocmd ColorScheme * highlight DapBreakpoint guifg=#d05858
+  autocmd ColorScheme * highlight DapBreakpointCondition guifg=#d05858
+  autocmd ColorScheme * highlight DapLogPoint guifg=#d05858
+  autocmd ColorScheme * highlight DapBreakpointRejected guifg=#65737e
+  autocmd ColorScheme * highlight DapStopped guifg=#4C9E90 guibg=#E4E9F9
+  autocmd ColorScheme * highlight DapStoppedLine guibg=#E4E9F9
+  autocmd ColorScheme * highlight DapStoppedLineNumber guibg=#E4E9F9 guifg=#222222 gui=bold
+
+
+  autocmd ColorScheme * highlight DapUIPlayPause guifg=#4C9E90
+  autocmd ColorScheme * highlight DapUIPlayPauseNC guifg=#65737e
+  autocmd ColorScheme * highlight DapUIStepInto guifg=#4C9E90
+  autocmd ColorScheme * highlight DapUIStepIntoNC guifg=#65737e
+  autocmd ColorScheme * highlight DapUIStepOver guifg=#4C9E90
+  autocmd ColorScheme * highlight DapUIStepOverNC guifg=#65737e
+  autocmd ColorScheme * highlight DapUIStepOut guifg=#4C9E90
+  autocmd ColorScheme * highlight DapUIStepOutNC guifg=#65737e
+  autocmd ColorScheme * highlight DapUIStepBack guifg=#4C9E90
+  autocmd ColorScheme * highlight DapUIStepBackNC guifg=#65737e
+  autocmd ColorScheme * highlight DapUIRestart guifg=#896a98
+  autocmd ColorScheme * highlight DapUIRestartNC guifg=#65737e
+  autocmd ColorScheme * highlight DapUIStop guifg=#b40b11
+  autocmd ColorScheme * highlight DapUIStopNC guifg=#65737e
 augroup END
 
 " remove odd ~ squiggles from end of buffer and other annoying places, like diffs

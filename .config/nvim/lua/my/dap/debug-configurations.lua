@@ -1,0 +1,31 @@
+local dap = require('dap')
+
+-- debug adapters
+-- Note: the java adapter is set up in jdtls.lua
+
+-- debug configurations
+-- useful Cookbook here: https://github.com/mfussenegger/nvim-dap/wiki/Cookbook
+-- vscode docs here: https://code.visualstudio.com/docs/java/java-debugging
+dap.configurations.java = {
+  {
+    type = 'java',
+    request = 'attach',
+    name = "Debug (Attach) local ondemand webui process",
+    -- pid = require('dap.utils').pick_process,
+    processId = "${command:pickProcess}",
+    hostName = "localhost",
+    port = 9598,
+    -- projectName = "${workspaceFolderBasename}"
+    -- it seems  to need the specific project name in order to function correctly when evaluating expressions in repl, etc.
+    projectName = "webui"
+  },
+  {
+    type = 'java',
+    request = 'attach',
+    name = "Debug (Attach) local process",
+    processId = "${command:pickProcess}",
+    hostName = "localhost",
+    port = 9598,
+    projectName = "${workspaceFolderBasename}"
+  },
+}

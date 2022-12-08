@@ -90,6 +90,7 @@ return require("packer").startup(function()
   use("hrsh7th/cmp-path")
   use("hrsh7th/cmp-cmdline")
   use("hrsh7th/nvim-cmp")
+  use("rcarriga/cmp-dap")
   use("quangnguyen30192/cmp-nvim-ultisnips")
 
   -- alternative to diagnostic-ls: it has some issues with eslint freezing on syntax error

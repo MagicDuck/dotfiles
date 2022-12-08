@@ -167,7 +167,6 @@ my.keybind({
   description = "window: enter window mode",
   mode = "n",
   lhs = "s",
-  -- lhs = "<leader>w",
   rhs = "<C-W>",
   options = { silent = false, noremap = true },
 })
@@ -626,6 +625,7 @@ my.keybind({
   rhs = "30k",
   -- rhs = "<cmd>lua require('neoscroll').scroll(-0.1, true, 8)<cr>"
 })
+
 -- vimspector debugging
 -- my.keybind({
 --   description = "debugger: when debugging, continue. Otherwise start debugging",
@@ -722,3 +722,77 @@ my.keybind({
 --   lhs = ",dq",
 --   rhs = ":VimspectorReset<CR>",
 -- })
+
+-- dap debugging
+my.keybind({
+  description = "debugger: when debugging, continue. Otherwise start debugging",
+  lhs = "<leader>ec",
+  rhs = ":lua require('dap').continue()<CR>",
+})
+my.keybind({
+  description = "debugger: pause",
+  lhs = "<leader>ep",
+  rhs = ":lua require('dap').pause()<CR>",
+})
+my.keybind({
+  description = "debugger: step over",
+  lhs = "<leader>er",
+  rhs = ":lua require('dap').step_over()<CR>",
+})
+my.keybind({
+  description = "debugger: step into",
+  lhs = "<leader>ei",
+  rhs = ":lua require('dap').step_into()<CR>",
+})
+my.keybind({
+  description = "debugger: step out",
+  lhs = "<leader>eo",
+  rhs = ":lua require('dap').step_out()<CR>",
+})
+my.keybind({
+  description = "debugger: step back",
+  lhs = "<leader>ea",
+  rhs = ":lua require('dap').step_back()<CR>",
+})
+my.keybind({
+  description = "debugger: run to cursor (temporarily removes all other breakpoints and adds them back after)",
+  lhs = "<leader>ej",
+  rhs = ":lua require('dap').run_to_cursor()<CR>",
+})
+my.keybind({
+  description = "debugger: toggle breakpoint",
+  lhs = "<leader>eb",
+  rhs = ":lua require('dap').toggle_breakpoint()<CR>",
+})
+my.keybind({
+  description = "debugger: set conditional breakpoint",
+  lhs = "<leader>ek",
+  rhs = ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+})
+my.keybind({
+  description = "debugger: set log point",
+  lhs = "<leader>el",
+  rhs = ":lua require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+})
+my.keybind({
+  description = "debugger: open/focus REPL",
+  lhs = "<leader>ef",
+  rhs = ":lua require('dap').repl_open()<CR>",
+})
+my.keybind({
+  description = "debugger: re-run the last debug adapter / configuration that ran",
+  lhs = "<leader>ed",
+  rhs = ":lua require('dap').run_last()<CR>",
+})
+my.keybind({
+  mode = "nv",
+  description = "debugger: evaluate expression under cursor (works with selection in visual mode)",
+  lhs = "<leader>ee",
+  rhs = ":lua require('dap.ui.widgets').hover()<CR>",
+})
+my.keybind({
+  mode = "n",
+  description = "debugger: terminate",
+  lhs = "<leader>eq",
+  rhs = ":lua require('dap').terminate()<CR>",
+})

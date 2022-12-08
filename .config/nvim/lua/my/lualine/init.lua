@@ -3,6 +3,7 @@ local icons = require("my/lualine/icons")
 local qfExtension = require("my/lualine/extensions/quickfix")
 local dapuiExtension = require("my/lualine/extensions/dapui")
 local utils = require("my/lualine/utils")
+local dap = require("dap")
 
 local my_theme = {
   -- note: these colors dictate separators colors
@@ -58,7 +59,7 @@ require('lualine').setup {
   options = {
     disabled_filetypes = { -- Filetypes to disable lualine for
       statusline = { 'startify', 'fugitiveblame', 'fugitive' },
-      winbar = { 'startify', 'gitcommit', 'qf' },
+      winbar = { 'startify', 'gitcommit', 'qf', 'dap-repl' },
     },
     icons_enabled = true,
     theme = my_theme,
@@ -117,13 +118,20 @@ require('lualine').setup {
         spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
         timer = { progress_enddelay = 500, spinner = 500, lsp_client_name_enddelay = 1000 },
         colors = {
-          spinner = { bg = colors.base04 },
-          use = true,
+          spinner = { bg = colors.base02 },
+          -- use = true,
         },
+        color = { bg = colors.base02 },
         padding = { left = 1, right = 0 }
       },
+      -- lsp connected
       { function() return "lsp " .. icons.lsp end, cond = function() return vim.lsp.buf.server_ready() end,
         padding = { left = 1, right = 1 }
+      },
+      -- dap
+      { function() return icons.debug .. ' ' .. dap.status() end,
+        cond = function() return dap.status() ~= '' end,
+        color = { fg = colors.light01, bg = colors.yellow },
       },
       { 'branch',
         icon = { icons.git, color = { bg = colors.base02, gui = "bold" } }

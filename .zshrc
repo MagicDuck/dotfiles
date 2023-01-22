@@ -255,6 +255,8 @@ alias qmk-flash-dactyl="qmk flash -kb handwired/dactyl_manuform/5x6 -km MagicDuc
 alias xmapi-dev-in-cloud="./gradlew  bootRunDevInCloud -PgcpInstance=kramerica -Pversion=0.x.kramerica -x test -x spotbugsTest -x spotbugsMain -x checkstyleTest -x checkstyleMain"
 alias xmapi-dev-in-cloud-stop="xm-instance-switch-version kramerica xmapi 0-x-main"
 alias showkey="kitty +kitten show_key"
+alias gcloud-impersonate-start="gcloud config set auth/impersonate_service_account webui-dev@xmatters-eng-dev.iam.gserviceaccount.com"
+alias gcloud-impersonate-stop="gcloud config unset auth/impersonate_service_account"
 
 
 # FZF
@@ -265,6 +267,10 @@ alias showkey="kitty +kitten show_key"
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --tiebreak=end --bind ctrl-a:toggle-all'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# gcloud
+# =========================================================================================
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 
 # BAT
 # =========================================================================================

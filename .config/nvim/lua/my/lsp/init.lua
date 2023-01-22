@@ -27,7 +27,7 @@ if vim.g.myLspDisabled ~= true then
   require("my/lsp/tsserver")
   require("my/lsp/cssmodules")
   require("my/lsp/cssls")
-  -- require("my/lsp/eslint")
+  require("my/lsp/eslint")
   require("my/lsp/rust_analyzer")
   -- require("my/lsp/jdtls")
 end

@@ -2,7 +2,8 @@
   "global" : {
     "check_for_updates_on_startup" : true,
     "show_in_menu_bar" : false,
-    "show_profile_name_in_menu_bar" : false
+    "show_profile_name_in_menu_bar" : false,
+    "unsafe_ui" : false
   },
   "profiles" : [ {
     "complex_modifications" : {
@@ -133,7 +134,8 @@
         "to" : [ {
           "key_code" : "right_command"
         } ]
-      } ]
+      } ],
+      "treat_as_built_in_keyboard" : false
     } ],
     "fn_function_keys" : [ {
       "from" : {
@@ -527,6 +529,38 @@
             "bundle_identifiers" : [ "^com\\.google\\.Chrome" ]
           } ],
           "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "left_arrow",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "h",
+            "modifiers" : [ "left_command" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.google\\.Chrome" ]
+          } ],
+          "type" : "basic"
+        }, {
+          "from" : {
+            "key_code" : "right_arrow",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "l",
+            "modifiers" : [ "left_command" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.google\\.Chrome" ]
+          } ],
+          "type" : "basic"
         } ]
       }, {
         "description" : "text snippets mode",
@@ -550,6 +584,15 @@
             "name" : "snippet-mode",
             "value" : 0,
             "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
           } ],
           "type" : "basic"
         }, {
@@ -584,6 +627,15 @@
             "name" : "snippet-mode",
             "value" : 1,
             "type" : "variable_if"
+          }, {
+            "identifiers" : [ {
+              "vendor_id" : 10730,
+              "product_id" : 258
+            }, {
+              "vendor_id" : 1523,
+              "product_id" : 7
+            } ],
+            "type" : "device_if"
           } ],
           "type" : "basic"
         } ]
@@ -4389,7 +4441,8 @@
       },
       "ignore" : false,
       "manipulate_caps_lock_led" : false,
-      "simple_modifications" : [ ]
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
     }, {
       "disable_built_in_keyboard_if_exists" : false,
       "fn_function_keys" : [ ],
@@ -4401,7 +4454,8 @@
       },
       "ignore" : false,
       "manipulate_caps_lock_led" : true,
-      "simple_modifications" : [ ]
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
     }, {
       "disable_built_in_keyboard_if_exists" : false,
       "fn_function_keys" : [ ],
@@ -4413,7 +4467,8 @@
       },
       "ignore" : false,
       "manipulate_caps_lock_led" : false,
-      "simple_modifications" : [ ]
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
     }, {
       "disable_built_in_keyboard_if_exists" : false,
       "fn_function_keys" : [ ],
@@ -4425,7 +4480,112 @@
       },
       "ignore" : true,
       "manipulate_caps_lock_led" : false,
-      "simple_modifications" : [ ]
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : true,
+        "is_pointing_device" : false,
+        "product_id" : 635,
+        "vendor_id" : 1452
+      },
+      "ignore" : false,
+      "manipulate_caps_lock_led" : true,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : false,
+        "is_pointing_device" : true,
+        "product_id" : 635,
+        "vendor_id" : 1452
+      },
+      "ignore" : true,
+      "manipulate_caps_lock_led" : false,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : false,
+        "is_pointing_device" : true,
+        "product_id" : 92,
+        "vendor_id" : 5426
+      },
+      "ignore" : true,
+      "manipulate_caps_lock_led" : false,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : true,
+        "is_pointing_device" : false,
+        "product_id" : 34304,
+        "vendor_id" : 1452
+      },
+      "ignore" : false,
+      "manipulate_caps_lock_led" : true,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : true,
+        "is_pointing_device" : false,
+        "product_id" : 132,
+        "vendor_id" : 5426
+      },
+      "ignore" : false,
+      "manipulate_caps_lock_led" : true,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : false,
+        "is_pointing_device" : true,
+        "product_id" : 132,
+        "vendor_id" : 5426
+      },
+      "ignore" : true,
+      "manipulate_caps_lock_led" : false,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : false,
+        "is_pointing_device" : true,
+        "product_id" : 258,
+        "vendor_id" : 10730
+      },
+      "ignore" : true,
+      "manipulate_caps_lock_led" : false,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
+    }, {
+      "disable_built_in_keyboard_if_exists" : false,
+      "fn_function_keys" : [ ],
+      "identifiers" : {
+        "is_keyboard" : false,
+        "is_pointing_device" : true,
+        "product_id" : 13622,
+        "vendor_id" : 17485
+      },
+      "ignore" : true,
+      "manipulate_caps_lock_led" : false,
+      "simple_modifications" : [ ],
+      "treat_as_built_in_keyboard" : false
     } ],
     "fn_function_keys" : [ {
       "from" : {

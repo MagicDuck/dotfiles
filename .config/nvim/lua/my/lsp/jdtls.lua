@@ -110,6 +110,7 @@ exports.getConfig = function()
     },
     capabilities = attach.global_capabilities,
     on_attach = function(client, bufnr)
+      jdtlsSetup.add_commands()
       attach.global_on_attach(client, bufnr)
 
       -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes

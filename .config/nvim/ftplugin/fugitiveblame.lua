@@ -4,4 +4,4 @@
 --   "compe#confirm('<CR>')",
 --   {expr = true, silent = true, noremap = true}
 -- )
-vim.api.nvim_buf_del_keymap(0, "n", "s")
+-- vim.api.nvim_buf_del_keymap(0, "n", "s")

@@ -182,9 +182,12 @@
     {:des "chrome shortcut override" :rules [
       [:condi :google-chrome-app] 
       [:!CSi :!COi] ; Open dev tools
+      [:!Cleft_arrow :!Ch] ; tab prev 
+      [:!Cright_arrow :!Cl] ; tab next 
     ]}
 
     {:des "text snippets mode" :rules [
+      [:condi :kinesis-keyboard] 
       [:end ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
       ; [:!CTOSm ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
       ; enter code block 

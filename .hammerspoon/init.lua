@@ -30,32 +30,32 @@ networkWatcher:start()
 -------------------------------------------------------------------
 local gitlabMrs = hs.loadSpoon("gitlab-merge-requests")
 local deployUrls = {
-	frontend = gitlabMrs.builtin.deployUrls.frontend({ hostname = "stephanbcorp.dev.xmatters.com" }),
-	spark = gitlabMrs.builtin.deployUrls.spark(),
-	ondemand = gitlabMrs.builtin.deployUrls.ondemand({
-		slackChannel = "kessel-builds",
-		versionSuffix = "sb",
-		fallbackVersion = "0.x.sbadragan",
-	}),
-	["xM-API"] = gitlabMrs.builtin.deployUrls["xM-API"]({
-		slackChannel = "kessel-builds",
-		versionSuffix = "sb",
-		fallbackVersion = "0.x.sbadragan",
-	}),
-	["xm-database"] = gitlabMrs.builtin.deployUrls["xm-database"]({
-		databaseName = "kramerica",
-	}),
-	hyrax = gitlabMrs.builtin.deployUrls.hyrax({
-		slackChannel = "kessel-builds",
-		fallbackTicketName = "sbadragan",
-	}),
+  frontend = gitlabMrs.builtin.deployUrls.frontend({ hostname = "stephanbcorp.dev.xmatters.com" }),
+  spark = gitlabMrs.builtin.deployUrls.spark(),
+  ondemand = gitlabMrs.builtin.deployUrls.ondemand({
+    slackChannel = "kessel-builds",
+    versionSuffix = "sb",
+    fallbackVersion = "0.x.sbadragan",
+  }),
+  ["xM-API"] = gitlabMrs.builtin.deployUrls["xM-API"]({
+    slackChannel = "kessel-builds",
+    versionSuffix = "sb",
+    fallbackVersion = "0.x.sbadragan",
+  }),
+  ["xm-database"] = gitlabMrs.builtin.deployUrls["xm-database"]({
+    databaseName = "kramerica",
+  }),
+  hyrax = gitlabMrs.builtin.deployUrls.hyrax({
+    slackChannel = "kessel-builds",
+    fallbackTicketName = "sbadragan",
+  }),
 }
 
 gitlabMrs:setup({
-	gitlab_host = localConfig.gitlab.gitlab_host,
-	token = localConfig.gitlab.token,
-	username = localConfig.gitlab.username,
-	deployUrls = deployUrls,
+  gitlab_host = localConfig.gitlab.gitlab_host,
+  token = localConfig.gitlab.token,
+  username = localConfig.gitlab.username,
+  deployUrls = deployUrls,
 })
 gitlabMrs:start()
 
@@ -72,6 +72,11 @@ gitlabMrs:start()
 -- spoon["jira-issues"]:start()
 
 -------------------------------------------------------------------
+-- Tabs
+-------------------------------------------------------------------
+-- hs.tabs.enableForApp(hs.application.get('Brave Browser'))
+
+-------------------------------------------------------------------
 -- Snippets
 -------------------------------------------------------------------
 local snippets = require("./snippets")
@@ -79,54 +84,54 @@ local xmDemoInstance = localConfig.xmDemoInstance
 local ebfdDemoInstance = localConfig.ebfdDemoInstance
 local cursor = "▍"
 snippets.init({
-	{
-		description = "code block",
-		example = "```\n" .. cursor .. "\n```",
-		keys = { "```", { char = "return" }, { char = "return" }, "```", { char = "up" } },
-	},
-	{
-		description = "code block from clipboard",
-		example = "```\n<paste>\n```" .. cursor,
-		keys = { "```\n", { mods = { "cmd" }, char = "v" }, "\n```" },
-	},
-	{
-		description = "xmatters demo/test instance",
-		example = xmDemoInstance.host
-			.. " (user = "
-			.. xmDemoInstance.user
-			.. ", password = "
-			.. xmDemoInstance.password
-			.. ")"
-			.. cursor,
-		keys = {
-			xmDemoInstance.host
-				.. " (user = "
-				.. xmDemoInstance.user
-				.. ", password = "
-				.. xmDemoInstance.password
-				.. ")",
-		},
-	},
-	{
-		description = "ebfd demo/test instance",
-		example = ebfdDemoInstance.host
-			.. " (user = "
-			.. ebfdDemoInstance.user
-			.. ", password = "
-			.. ebfdDemoInstance.password
-			.. ")"
-			.. cursor,
-		keys = {
-			ebfdDemoInstance.host
-				.. "\n(organization = "
-				.. ebfdDemoInstance.organization
-				.. ", user = "
-				.. ebfdDemoInstance.user
-				.. ", password = "
-				.. ebfdDemoInstance.password
-				.. ")",
-		},
-	},
+  {
+    description = "code block",
+    example = "```\n" .. cursor .. "\n```",
+    keys = { "```", { char = "return" }, { char = "return" }, "```", { char = "up" } },
+  },
+  {
+    description = "code block from clipboard",
+    example = "```\n<paste>\n```" .. cursor,
+    keys = { "```\n", { mods = { "cmd" }, char = "v" }, "\n```" },
+  },
+  {
+    description = "xmatters demo/test instance",
+    example = xmDemoInstance.host
+        .. " (user = "
+        .. xmDemoInstance.user
+        .. ", password = "
+        .. xmDemoInstance.password
+        .. ")"
+        .. cursor,
+    keys = {
+      xmDemoInstance.host
+          .. " (user = "
+          .. xmDemoInstance.user
+          .. ", password = "
+          .. xmDemoInstance.password
+          .. ")",
+    },
+  },
+  {
+    description = "ebfd demo/test instance",
+    example = ebfdDemoInstance.host
+        .. " (user = "
+        .. ebfdDemoInstance.user
+        .. ", password = "
+        .. ebfdDemoInstance.password
+        .. ")"
+        .. cursor,
+    keys = {
+      ebfdDemoInstance.host
+          .. "\n(organization = "
+          .. ebfdDemoInstance.organization
+          .. ", user = "
+          .. ebfdDemoInstance.user
+          .. ", password = "
+          .. ebfdDemoInstance.password
+          .. ")",
+    },
+  },
 })
 
 -------------------------------------------------------------------
@@ -141,171 +146,171 @@ local wm = require("./windowManagement")
 
 local superKey = { "cmd", "alt", "ctrl", "shift" }
 local superKeyBindings = {
-	-- app switching
-	{
-		key = "b",
-		app = "Postman",
-	},
-	{
-		key = "d",
-		app = "Brave Browser",
-	},
-	{
-		key = "e",
-		app = "kitty",
-		window = {
-			title = "terminal",
-		},
-	},
-	{
-		key = "f",
-		-- app = "Brave Browser",
-		app = "Obsidian",
-	},
-	{
-		key = "h",
-		app = "Postman",
-	},
-	{
-		key = "i",
-		app = "IntelliJ IDEA",
-	},
-	{
-		key = "k",
-		app = "Fork",
-	},
-	{
-		key = "l",
-		app = "zoom.us",
-	},
-	{
-		key = "n",
-		app = "Figma",
-	},
-	{
-		key = "o",
-		app = "Microsoft Outlook",
-	},
-	{
-		key = "p",
-		app = "Finder",
-	},
-	{
-		key = "r",
-		app = "Google Chrome",
-	},
-	{
-		key = "s",
-		app = "Slack",
-	},
-	-- {
-	-- 	key = "u",
-	-- 	app = "kitty",
-	-- 	window = {
-	-- 		title = "notes",
-	-- 		launch = function()
-	-- 			kitty.launchWindow({ title = "notes", command = "/usr/local/bin/zsh -is eval vim +VimwikiIndex" })
-	-- 		end,
-	-- 	},
-	-- },
-	{
-		key = "u",
-		app = "Obsidian",
-	},
-	{
-		key = "w",
-		app = "TickTick",
-	},
-	{
-		key = "y",
-		app = "Safari",
-	},
-	{
-		key = "space",
-		app = "kitty",
-		window = {
-			title = "terminal",
-		},
-	},
-	{
-		key = "return",
-		app = "kitty",
-		window = {
-			title = "terminal",
-		},
-	},
-	-- window management
-	{
-		key = "a",
-		fn = function()
-			-- show name and bundle id of application corresponding to current window
-			local win = hs.window.frontmostWindow()
-			hs.alert.show(win:application():name() .. " | " .. win:application():bundleID())
-		end,
-	},
-	{
-		key = "n",
-		fn = wm.focusNextAppWindow,
-	},
-	{
-		key = "left",
-		fn = wm.positionCurrentWindowLeftHalf,
-	},
-	{
-		key = "right",
-		fn = wm.positionCurrentWindowRightHalf,
-	},
-	{
-		key = "up",
-		fn = wm.positionCurrentWindowFullscreen,
-	},
-	{
-		key = "down",
-		fn = wm.positionCurrentWindowCentered,
-	},
-	{
-		key = ";",
-		fn = wm.moveCurrentWindowToNextScreen,
-	},
-	-- snippets
-	{
-		key = "m",
-		fn = snippets.show,
-		-- fn = function()
-		--     hs.eventtap.keyStrokes("")
-		-- end,
-	},
-	-- keeper password manager autofill
-	{
-		key = "x",
-		fn = function()
-			local win = hs.window.frontmostWindow()
-			win:application():activate() -- this lets keeper know which app we are on
-			hs.timer.doAfter(0.2, function()
-				hs.eventtap.keyStroke({ "cmd", "shift", "alt" }, "m")
-				hs.timer.doAfter(0.2, function()
-					hs.eventtap.keyStroke({}, "return")
-				end)
-			end)
-		end,
-	},
-	-- autoexpand snippets
-	-- {
-	-- 	key = "n",
-	-- 	fn = function()
-	-- 		hs.eventtap.keyStroke({ "option" }, "j")
-	-- 	end,
-	-- },
+  -- app switching
+  {
+    key = "b",
+    app = "Postman",
+  },
+  {
+    key = "d",
+    app = "Brave Browser",
+  },
+  {
+    key = "e",
+    app = "kitty",
+    window = {
+      title = "terminal",
+    },
+  },
+  {
+    key = "f",
+    -- app = "Brave Browser",
+    app = "Obsidian",
+  },
+  {
+    key = "h",
+    app = "Postman",
+  },
+  {
+    key = "i",
+    app = "IntelliJ IDEA",
+  },
+  {
+    key = "k",
+    app = "Fork",
+  },
+  {
+    key = "l",
+    app = "zoom.us",
+  },
+  -- {
+  --   key = "n",
+  --   app = "Figma",
+  -- },
+  {
+    key = "o",
+    app = "Microsoft Outlook",
+  },
+  {
+    key = "p",
+    app = "Finder",
+  },
+  {
+    key = "r",
+    app = "Google Chrome",
+  },
+  {
+    key = "s",
+    app = "Slack",
+  },
+  -- {
+  -- 	key = "u",
+  -- 	app = "kitty",
+  -- 	window = {
+  -- 		title = "notes",
+  -- 		launch = function()
+  -- 			kitty.launchWindow({ title = "notes", command = "/usr/local/bin/zsh -is eval vim +VimwikiIndex" })
+  -- 		end,
+  -- 	},
+  -- },
+  {
+    key = "u",
+    app = "Obsidian",
+  },
+  {
+    key = "w",
+    app = "TickTick",
+  },
+  {
+    key = "y",
+    app = "Safari",
+  },
+  {
+    key = "space",
+    app = "kitty",
+    window = {
+      title = "terminal",
+    },
+  },
+  {
+    key = "return",
+    app = "kitty",
+    window = {
+      title = "terminal",
+    },
+  },
+  -- window management
+  {
+    key = "a",
+    fn = function()
+      -- show name and bundle id of application corresponding to current window
+      local win = hs.window.frontmostWindow()
+      hs.alert.show(win:application():name() .. " | " .. win:application():bundleID())
+    end,
+  },
+  -- {
+  --   key = "n",
+  --   fn = wm.focusNextAppWindow,
+  -- },
+  {
+    key = "left",
+    fn = wm.positionCurrentWindowLeftHalf,
+  },
+  {
+    key = "right",
+    fn = wm.positionCurrentWindowRightHalf,
+  },
+  {
+    key = "up",
+    fn = wm.positionCurrentWindowFullscreen,
+  },
+  {
+    key = "down",
+    fn = wm.positionCurrentWindowCentered,
+  },
+  {
+    key = ";",
+    fn = wm.moveCurrentWindowToNextScreen,
+  },
+  -- snippets
+  {
+    key = "m",
+    fn = snippets.show,
+    -- fn = function()
+    --     hs.eventtap.keyStrokes("")
+    -- end,
+  },
+  -- keeper password manager autofill
+  {
+    key = "x",
+    fn = function()
+      local win = hs.window.frontmostWindow()
+      win:application():activate() -- this lets keeper know which app we are on
+      hs.timer.doAfter(0.2, function()
+        hs.eventtap.keyStroke({ "cmd", "shift", "alt" }, "m")
+        hs.timer.doAfter(0.2, function()
+          hs.eventtap.keyStroke({}, "return")
+        end)
+      end)
+    end,
+  },
+  -- autoexpand snippets
+  -- {
+  -- 	key = "n",
+  -- 	fn = function()
+  -- 		hs.eventtap.keyStroke({ "option" }, "j")
+  -- 	end,
+  -- },
 
-	-- superkey + z - launches next meeting from Meeter Pro
+  -- superkey + z - launches next meeting from Meeter Pro
 }
 
 hs.fnutils.each(superKeyBindings, function(binding)
-	hs.hotkey.bind(superKey, binding.key, function()
-		if binding.fn then
-			binding.fn()
-		else
-			summon(binding.app, binding.window)
-		end
-	end)
+  hs.hotkey.bind(superKey, binding.key, function()
+    if binding.fn then
+      binding.fn()
+    else
+      summon(binding.app, binding.window)
+    end
+  end)
 end)

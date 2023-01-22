@@ -17,6 +17,7 @@ module.exports = {
         /docusign\.net/,
         /testrail\.i\.xmatters\.com/,
         /datastudio\.google\.com/,
+        /accounts\.google\.com/,
       ],
       browser: "Google Chrome",
     },

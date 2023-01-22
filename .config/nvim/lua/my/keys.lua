@@ -338,6 +338,11 @@ my.keybind({
 })
 
 -- git
+-- my.keybind({
+--   description = "git: status",
+--   lhs = "<leader>gg",
+--   rhs = ":Neogit<CR>",
+-- })
 my.keybind({
   description = "git: blame",
   lhs = "<leader>gb",
@@ -589,18 +594,25 @@ my.keybind({
 })
 
 -- hop
+-- my.keybind({
+--   mode = "nvxo",
+--   description = "hop to word",
+--   lhs = "f",
+--   -- rhs = "<cmd>HopChar2<CR>"
+--   rhs = "<cmd>HopWord<CR>",
+-- })
+-- my.keybind({
+--   mode = "nv",
+--   description = "hop to line",
+--   lhs = "F",
+--   rhs = "<cmd>HopLine<CR>",
+-- })
+-- leap
 my.keybind({
   mode = "nvxo",
-  description = "hop to word",
+  description = "leap to location",
   lhs = "f",
-  -- rhs = "<cmd>HopChar2<CR>"
-  rhs = "<cmd>HopWord<CR>",
-})
-my.keybind({
-  mode = "nv",
-  description = "hop to line",
-  lhs = "F",
-  rhs = "<cmd>HopLine<CR>",
+  rhs = "<cmd>lua require('my/leap').jump_bidirectional()<CR>",
 })
 -- replace
 my.keybind({

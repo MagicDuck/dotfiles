@@ -158,6 +158,8 @@ tnoremap <a-left> <a-b>
 tnoremap <a-right> <a-f>
 tnoremap <a-up> <home>
 tnoremap <a-down> <end>
+ 
+tnoremap <Esc><Esc> <C-\><C-n>
 
 " visual block select
 nnoremap X <c-v>
@@ -174,3 +176,5 @@ augroup Folding
   autocmd! BufNewFile,BufRead *.json set foldmethod=indent
 augroup END
 
+" easier visual line select
+nnoremap vv V

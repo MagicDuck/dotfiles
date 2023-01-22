@@ -165,6 +165,10 @@ local checkstyle = h.make_builtin({
   factory = h.generator_factory,
 })
 
+function eslintCondition(utils)
+  return utils.root_has_file({ ".eslintrc", ".eslintrc.js" })
+end
+
 null_ls.setup({
   -- log = {
   --   enable = true,
@@ -178,9 +182,16 @@ null_ls.setup({
     -- stylelint.with {
     --   only_local = "node_modules/.bin"
     -- },
-    null_ls.builtins.diagnostics.eslint_d.with({}),
-    null_ls.builtins.formatting.eslint_d.with({}),
-    null_ls.builtins.code_actions.eslint_d.with({}),
+    -- null_ls.builtins.diagnostics.eslint_d.with({
+    --   condition = eslintCondition
+    --   -- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    -- }),
+    -- null_ls.builtins.formatting.eslint_d.with({
+    --   condition = eslintCondition
+    -- }),
+    -- null_ls.builtins.code_actions.eslint_d.with({
+    --   condition = eslintCondition
+    -- }),
 
     -- null_ls.builtins.diagnostics.eslint.with({
     -- 	-- ignore deprecation warnings
@@ -202,8 +213,8 @@ null_ls.setup({
         "javascriptreact",
         "typescript",
         "typescriptreact",
-        "markdown",
-        "vimwiki",
+        -- "markdown",
+        -- "vimwiki",
       },
       -- only_local = "node_modules/.bin"
     }),
@@ -212,6 +223,11 @@ null_ls.setup({
       condition = function(u)
         return u.root_matches("xm%-api")
       end,
+    }),
+    null_ls.builtins.formatting.clang_format.with({
+      filetypes = {
+        "c", "cpp", "cs", "cuda"
+      },
     }),
   },
   on_attach = attach.global_on_attach,

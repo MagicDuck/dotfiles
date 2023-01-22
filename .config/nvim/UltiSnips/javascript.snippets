@@ -10,12 +10,16 @@ it('$1', () => {
 })
 endsnippet
 
+snippet render_component
+const renderComponent = props => renderWithProviders(<$1 {...props} />);
+endsnippet
+
 snippet specr
-import { shallow } from 'enzyme';
 import React from 'react';
+import { renderWithProviders } from 'test/test-utils';
 import $1 from './$1';
 
-const renderComponent = props => shallow(<$1 {...props} />);
+const renderComponent = props => renderWithProviders(<$1 {...props} />);
 
 describe('$1', () => {
   it('renders correctly', () => {

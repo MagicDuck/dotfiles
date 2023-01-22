@@ -21,6 +21,7 @@ return require("packer").startup(function()
   use("sainnhe/gruvbox-material")
 
   -- Other plugins
+  use("nvim-lua/plenary.nvim")
   ---- Hmm airline is slow on large files...
   -- use "vim-airline/vim-airline"
   -- use "vim-airline/vim-airline-themes"
@@ -45,13 +46,19 @@ return require("packer").startup(function()
   use("p00f/nvim-ts-rainbow")
   use("unblevable/quick-scope")
   use("junegunn/vim-easy-align")
+
+  -- git
   use("tpope/vim-fugitive")
   use("shumphrey/fugitive-gitlab.vim")
   use("tommcdo/vim-fubitive")
+  -- use("junkblocker/git-time-lapse") -- diffview has better functionality
+  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+  -- use("lewis6991/gitsigns.nvim") -- meh, did not really like it, does not work the gest with the diffview
+  use("TimUntersberger/neogit") -- meh, only supports inline diffs
+
   use("kevinhwang91/rnvimr") -- ranger
   use("kevinhwang91/nvim-bqf") -- quickfix
   use("nvim-lua/popup.nvim")
-  use("nvim-lua/plenary.nvim")
   use("nvim-telescope/telescope.nvim")
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   -- use "nvim-telescope/telescope-fzy-native.nvim" -- alternative to fzf-native
@@ -65,7 +72,8 @@ return require("packer").startup(function()
   use("norcalli/nvim-colorizer.lua")
   use("voldikss/vim-floaterm")
   use("tpope/vim-surround")
-  use("phaazon/hop.nvim")
+  -- use("phaazon/hop.nvim") -- using leap instead
+  use("ggandor/leap.nvim")
   -- use "ggandor/lightspeed.nvim"
   use("rafcamlet/nvim-luapad")
   -- devicons
@@ -117,7 +125,6 @@ return require("packer").startup(function()
   -- use "karb94/neoscroll.nvim"
 
   -- use({ "puremourning/vimspector", run = ":VimspectorUpdate" })
-  -- use("junkblocker/git-time-lapse") -- diffview has better functionality
   use("kmonad/kmonad-vim")
   -- use "wellle/targets.vim"
 
@@ -135,7 +142,6 @@ return require("packer").startup(function()
   -- use("j-hui/fidget.nvim")
   use("dstein64/vim-startuptime")
   use("AmeerTaweel/todo.nvim")
-  use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 
   use("williamboman/mason.nvim")
   use("williamboman/mason-lspconfig.nvim")

@@ -5,16 +5,19 @@ local M = {}
 -------------------------------------------------------------------
 
 function M.positionCurrentWindowLeftHalf()
-	hs.window.frontmostWindow():moveToUnit("[0,0 50x100]", 0)
+  hs.window.frontmostWindow():moveToUnit("[0,0 50x100]", 0)
 end
+
 function M.positionCurrentWindowRightHalf()
-	hs.window.frontmostWindow():moveToUnit("[50,0 50x100]", 0)
+  hs.window.frontmostWindow():moveToUnit("[50,0 50x100]", 0)
 end
+
 function M.positionCurrentWindowFullscreen()
-	hs.window.frontmostWindow():moveToUnit("[0,0 100x100]", 0)
+  hs.window.frontmostWindow():moveToUnit("[0,0 100x100]", 0)
 end
+
 function M.positionCurrentWindowCentered()
-	hs.window.frontmostWindow():moveToUnit("[10,10 80x80]", 0)
+  hs.window.frontmostWindow():moveToUnit("[10,10 80x80]", 0)
 end
 
 -------------------------------------------------------------------
@@ -22,28 +25,43 @@ end
 -------------------------------------------------------------------
 
 local function getNextAppWindow(currentWindow)
-	local allWindows = hs.fnutils.filter(currentWindow:application():allWindows(), function(w)
-		return w:id() ~= 0
-	end)
-	-- sort by window id
-	table.sort(allWindows, function(a, b)
-		return a:id() < b:id()
-	end)
-	local win = hs.fnutils.find(allWindows, function(w)
-		return currentWindow:id() == w:id()
-	end)
-	local currentWinIndex = hs.fnutils.indexOf(allWindows, win) or -1
+  local allWindows = hs.fnutils.filter(currentWindow:application():visibleWindows(), function(w)
+    return w:id() ~= 0
+  end)
+  -- sort by window id
+  table.sort(allWindows, function(a, b)
+    return a:id() < b:id()
+  end)
 
-	local nextWinIndex = (currentWinIndex % #allWindows) + 1
-	local nextWin = allWindows[nextWinIndex]
+  local wins = hs.fnutils.map(allWindows, function(w)
+    return w:title() .. "-> " .. hs.inspect(w:isVisible())
+  end)
+  -- print('wins', hs.inspect(wins))
 
-	return nextWin
+  local win = hs.fnutils.find(allWindows, function(w)
+    return currentWindow:id() == w:id()
+  end)
+  local currentWinIndex = hs.fnutils.indexOf(allWindows, win) or -1
+
+  local nextWinIndex = (currentWinIndex % #allWindows) + 1
+  local nextWin = allWindows[nextWinIndex]
+
+  -- print('currentWindow', currentWindow:id(), hs.inspect(currentWindow))
+  -- print('win', win:id(), hs.inspect(win))
+  -- print('windows', hs.inspect(allWindows))
+  -- print('index', currentWinIndex, nextWinIndex, #allWindows, hs.inspect(nextWin:id()))
+
+  -- if (nextWin:id() == currentWindow:id()) then
+  --   -- window order got
+  -- end
+
+  return nextWin
 end
 
 function M.focusNextAppWindow()
-	local currentWindow = hs.window.frontmostWindow()
-	local nextWindow = getNextAppWindow(currentWindow)
-	nextWindow:focus()
+  local currentWindow = hs.window.frontmostWindow()
+  local nextWindow = getNextAppWindow(currentWindow)
+  nextWindow:focus()
 end
 
 -------------------------------------------------------------------
@@ -51,27 +69,27 @@ end
 -------------------------------------------------------------------
 
 local function getNextScreen(win, increment)
-	local screens = hs.screen.allScreens()
-	local currentScreen = win:screen()
-	local currentScreenIndex = -1
-	for index, screen in ipairs(screens) do
-		if screen == currentScreen then
-			currentScreenIndex = index
-			break
-		end
-	end
-	local nextScreenIndex = ((currentScreenIndex - 1 + increment) % #screens) + 1
-	return screens[nextScreenIndex]
+  local screens = hs.screen.allScreens()
+  local currentScreen = win:screen()
+  local currentScreenIndex = -1
+  for index, screen in ipairs(screens) do
+    if screen == currentScreen then
+      currentScreenIndex = index
+      break
+    end
+  end
+  local nextScreenIndex = ((currentScreenIndex - 1 + increment) % #screens) + 1
+  return screens[nextScreenIndex]
 end
 
 function M.moveCurrentWindowToNextScreen()
-	local currentWindow = hs.window.frontmostWindow()
-	currentWindow:moveToScreen(getNextScreen(currentWindow, 1))
+  local currentWindow = hs.window.frontmostWindow()
+  currentWindow:moveToScreen(getNextScreen(currentWindow, 1))
 end
 
 function M.moveCurrentWindowToPrevScreen()
-	local currentWindow = hs.window.frontmostWindow()
-	currentWindow:moveToScreen(getNextScreen(currentWindow, -1))
+  local currentWindow = hs.window.frontmostWindow()
+  currentWindow:moveToScreen(getNextScreen(currentWindow, -1))
 end
 
 return M

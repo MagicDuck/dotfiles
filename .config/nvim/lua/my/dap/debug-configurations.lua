@@ -28,4 +28,13 @@ dap.configurations.java = {
     port = 9598,
     projectName = "${workspaceFolderBasename}"
   },
+  -- launching stuff directly did not work for me cause gradle
+  -- {
+  --   type = 'java',
+  --   request = 'launch',
+  --   name = "Debug (Launch) ondemand - webui dev in cloud",
+  --   -- hostName = "localhost",
+  --   -- port = 9598,
+  --   projectName = "webui"
+  -- },
 }

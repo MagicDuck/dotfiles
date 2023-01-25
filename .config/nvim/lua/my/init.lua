@@ -5,6 +5,7 @@ for k, _ in pairs(package.loaded) do
   end
 end
 
+require('impatient')
 require("my/global/init")
 require("my/keys")
 require("my/commands")
@@ -32,5 +33,5 @@ require("my/rest")
 -- require("my/fidget")
 require("my/diffview")
 -- require("my/gitsigns")
-require("my/neogit")
+-- require("my/neogit")
 -- require("my/whichkey")

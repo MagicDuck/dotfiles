@@ -7,7 +7,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 -- configure packages
-return require("packer").startup(function()
+return require("packer").startup({ function()
   -- Packer can manage itself
   use("wbthomason/packer.nvim")
 
@@ -38,7 +38,7 @@ return require("packer").startup(function()
   use("JoosepAlviste/nvim-ts-context-commentstring")
   -- use "easymotion/vim-easymotion"
   -- use("Raimondi/delimitMate") -- auto pair match
-  use("maksimr/vim-jsbeautify")
+  -- use("maksimr/vim-jsbeautify")
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   use("nvim-treesitter/nvim-treesitter-textobjects")
   use({ "nvim-treesitter/playground", run = ":TSInstall query" })
@@ -54,7 +54,7 @@ return require("packer").startup(function()
   -- use("junkblocker/git-time-lapse") -- diffview has better functionality
   use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
   -- use("lewis6991/gitsigns.nvim") -- meh, did not really like it, does not work the gest with the diffview
-  use("TimUntersberger/neogit") -- meh, only supports inline diffs
+  -- use("TimUntersberger/neogit") -- meh, only supports inline diffs
 
   use("kevinhwang91/rnvimr") -- ranger
   use("kevinhwang91/nvim-bqf") -- quickfix
@@ -154,4 +154,12 @@ return require("packer").startup(function()
   use("jay-babu/mason-nvim-dap.nvim")
 
   -- use("folke/which-key.nvim")
-end)
+  use("lewis6991/impatient.nvim")
+end,
+  config = {
+    -- profile = {
+    --   enable = true,
+    --   threshold = 1, -- integer in milliseconds, plugins which load faster than this won't be shown in profile output
+    -- }
+  }
+})

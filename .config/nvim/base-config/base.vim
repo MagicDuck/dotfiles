@@ -11,6 +11,9 @@ set guifont=Knack_NF:h10:cANSI:qDRAFT
 set hidden
 
 filetype on
+" only load filetype.lua
+let g:do_filetype_lua = 1
+let g:did_load_filetypes = 0
 filetype indent on
 filetype plugin on
 set tabstop=2

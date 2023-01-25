@@ -75,6 +75,10 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight DapUIRestartNC guifg=#65737e
   autocmd ColorScheme * highlight DapUIStop guifg=#b40b11
   autocmd ColorScheme * highlight DapUIStopNC guifg=#65737e
+
+  autocmd ColorScheme * highlight LeapMatch guibg=#ffc9c9 guifg=#222222
+  autocmd ColorScheme * highlight LeapLabelPrimary guibg=#ffc9c9 guifg=#222222
+  autocmd ColorScheme * highlight LeapLabelSecondary guibg=#d4dfff guifg=#222222
 augroup END
 
 " remove odd ~ squiggles from end of buffer and other annoying places, like diffs

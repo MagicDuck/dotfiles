@@ -72,7 +72,7 @@ return require("packer").startup(function()
   use("norcalli/nvim-colorizer.lua")
   use("voldikss/vim-floaterm")
   use("tpope/vim-surround")
-  -- use("phaazon/hop.nvim") -- using leap instead
+  use("phaazon/hop.nvim") -- using leap instead
   use("ggandor/leap.nvim")
   -- use "ggandor/lightspeed.nvim"
   use("rafcamlet/nvim-luapad")

@@ -9,3 +9,10 @@ let g:rnvimr_action = {
   \ '<C-h>': 'NvimEdit split',
   \ '<C-l>': 'NvimEdit vsplit'
   \ }
+
+lua << EOF
+-- preload ranger in the background for a faster startup the first time around
+vim.defer_fn(function ()
+    vim.cmd('RnvimrStartBackground')
+end, 1000)
+EOF

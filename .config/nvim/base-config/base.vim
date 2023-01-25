@@ -29,7 +29,7 @@ set wrapscan
 set autoindent
 set autoread           " automatically reload files changed outside Vi
 " set autowrite " automatically write files when doing things like :make
-set cmdheight=2
+set cmdheight=1
 set laststatus=2
 set noshowcmd          " don't show command in status line as you type it
 set showfulltag

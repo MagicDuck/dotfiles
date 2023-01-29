@@ -1,10 +1,16 @@
 -- bootstrap packer
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.api.nvim_command("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-  vim.api.nvim_command("packadd packer.nvim")
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
+
+local packer_bootstrap = ensure_packer()
 
 -- configure packages
 return require("packer").startup({ function()
@@ -155,6 +161,11 @@ return require("packer").startup({ function()
 
   -- use("folke/which-key.nvim")
   use("lewis6991/impatient.nvim")
+
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end,
   config = {
     -- profile = {

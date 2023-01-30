@@ -24,7 +24,8 @@ if vim.g.myLspDisabled ~= true then
   -- lsps
   require("my/lsp/sumneko_lua")
   require("my/lsp/vimls")
-  require("my/lsp/tsserver")
+  -- require("my/lsp/tsserver")
+  require("my/lsp/vtsls")
   require("my/lsp/cssmodules")
   require("my/lsp/cssls")
   require("my/lsp/eslint")

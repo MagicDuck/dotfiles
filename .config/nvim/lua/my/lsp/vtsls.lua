@@ -1,0 +1,45 @@
+local lspconfig = require("lspconfig")
+local attach = require("my/lsp/attach")
+local handlers = require("my/lsp/handlers")
+
+-- custom commands
+local function organize_imports()
+  vim.lsp.buf.execute_command({
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = "",
+  })
+end
+
+-- potentially add https://github.com/yioneko/nvim-vtsls for more goodies
+lspconfig.vtsls.setup({
+  init_options = {
+    hostInfo = "neovim",
+  },
+  on_init = function(client)
+    -- This makes sure tsserver is not used for formatting (prefer prettier)
+    client.server_capabilities.documentFormattingProvider = false
+  end,
+  capabilities = attach.global_capabilities,
+  -- TODO (sbadragan): use goto_source_definition for gd?, so we don't navigate to types??? https://github.com/yioneko/nvim-vtsls
+  on_attach = attach.global_on_attach,
+  -- see https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
+  settings = {
+    typescript = {
+      updateImportsOnFileMove = "always",
+      disableAutomaticTypeAcquisition = true,
+      format = {
+        enable = false,
+      }
+    },
+    javascript = {
+      updateImportsOnFileMove = "always",
+      format = {
+        enable = false,
+      }
+    },
+  },
+  handlers = {
+    ["textDocument/publishDiagnostics"] = handlers.tsserverPublishDiagnostics,
+  },
+})

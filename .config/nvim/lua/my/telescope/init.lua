@@ -38,6 +38,13 @@ telescope.setup({
         ["<C-a>"] = actions.select_all,
         ["<PageUp>"] = actions.preview_scrolling_up,
         ["<PageDown>"] = actions.preview_scrolling_down,
+
+        ["<a-bs>"] = function() vim.cmd "normal! db" end,
+        ["<a-del>"] = function() vim.cmd "normal! de" end,
+        ["<a-left>"] = function() vim.cmd "normal! b" end,
+        ["<a-right>"] = function() vim.cmd "normal! w" end,
+        ["<a-up>"] = function() vim.cmd "normal! ^" end,
+        ["<a-down>"] = function() vim.cmd "normal! $" end,
       },
       n = {
         ["<esc>"] = actions.close,
@@ -74,21 +81,21 @@ telescope.setup({
     file_browser = {
       initial_mode = "normal",
     },
-    live_grep_args = {
-      auto_quoting = true, -- enable/disable auto-quoting
-      mappings = {
-        i = {
-          ["<C-k>"] = lga_actions.quote_prompt(),
-          ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
-          ["<C-n>"] = lga_actions.quote_prompt({ postfix = " --type-add 'spec:*.spec.js' -T spec " }),
-          ["<C-f>"] = actions.to_fuzzy_refine,
-        },
-      },
-      results_title = false,
-      layout_config = {
-        prompt_position = "top",
-      },
-    },
+    -- live_grep_args = {
+    --   auto_quoting = true, -- enable/disable auto-quoting
+    --   mappings = {
+    --     i = {
+    --       ["<C-k>"] = lga_actions.quote_prompt(),
+    --       ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+    --       ["<C-n>"] = lga_actions.quote_prompt({ postfix = " --type-add 'spec:*.spec.js' -T spec " }),
+    --       ["<C-f>"] = actions.to_fuzzy_refine,
+    --     },
+    --   },
+    --   results_title = false,
+    --   layout_config = {
+    --     prompt_position = "top",
+    --   },
+    -- },
   },
 })
 

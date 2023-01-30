@@ -161,6 +161,7 @@ return require("packer").startup({ function()
 
   -- use("folke/which-key.nvim")
   use("lewis6991/impatient.nvim")
+  -- use("ibhagwan/fzf-lua")
 
   -- Put this at the end after all plugins
   if packer_bootstrap then

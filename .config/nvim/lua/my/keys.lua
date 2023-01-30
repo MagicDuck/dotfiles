@@ -435,9 +435,14 @@ my.keybind({
   description = "Search: find text in project files",
   lhs = "<leader>f",
   -- rhs = ":Search<CR>"
-  -- rhs = ":Telescope live_grep<CR>",
-  rhs = ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>',
+  rhs = ":Telescope live_grep<CR>",
+  -- rhs = ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>',
 })
+-- my.keybind({
+--   description = "Search: find text in project files",
+--   lhs = "<leader>f",
+--   rhs = ":FzfLua live_grep<CR>",
+-- })
 -- my.keybind {
 --   description = "Search: pick a mark location",
 --   lhs = "<leader>j",

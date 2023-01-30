@@ -41,7 +41,7 @@ case "$cmd" in
         kitty @launch --type tab --title ondemand  --cwd /opt/repos/ondemand
         ;;
     qmk-flash-dactyl)
-        kitty @launch --type tab --title frontend-test-changed  --cwd /opt/repos/qmk zsh -is eval\
+        kitty @launch --type tab --title qmk-flash --cwd /opt/repos/qmk_firmware zsh -is eval\
           "qmk-flash-dactyl"
         ;;
     *)

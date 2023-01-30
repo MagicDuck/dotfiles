@@ -13,6 +13,10 @@ let g:rnvimr_action = {
 lua << EOF
 -- preload ranger in the background for a faster startup the first time around
 vim.defer_fn(function ()
-    vim.cmd('RnvimrStartBackground')
+    vim.cmd([[
+      RnvimrStartBackground
+      call rnvimr#context#bufnr(-1)
+      call rnvimr#rpc#reset()
+    ]])
 end, 1000)
 EOF

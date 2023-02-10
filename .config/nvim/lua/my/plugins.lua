@@ -75,7 +75,8 @@ return require("packer").startup({ function()
   use("nvim-telescope/telescope-live-grep-args.nvim")
   -- use("christoomey/vim-tmux-navigator")
   use("kshenoy/vim-signature")
-  use("norcalli/nvim-colorizer.lua")
+  -- use("norcalli/nvim-colorizer.lua")
+  use("brenoprata10/nvim-highlight-colors")
   use("voldikss/vim-floaterm")
   use("tpope/vim-surround")
   use("phaazon/hop.nvim") -- using leap instead
@@ -162,6 +163,7 @@ return require("packer").startup({ function()
   -- use("folke/which-key.nvim")
   use("lewis6991/impatient.nvim")
   -- use("ibhagwan/fzf-lua")
+  -- use("kdheepak/lazygit.nvim")
 
   -- Put this at the end after all plugins
   if packer_bootstrap then

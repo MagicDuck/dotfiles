@@ -2,6 +2,7 @@ set rtp+=/usr/local/bin
 set rtp+=/.config/nvim
 
 lua require('my/plugins')
+packadd cfilter
 source ~/.config/nvim/base-config/base.vim
 source ~/.config/nvim/base-config/commands.vim
 luafile ~/.config/nvim/lua/my/init.lua

@@ -217,6 +217,9 @@ null_ls.setup({
         -- "vimwiki",
       },
       -- only_local = "node_modules/.bin"
+      runtime_condition = function(params)
+        return not params.bufname:lower():match("^diffview:///")
+      end
     }),
     -- null_ls.builtins.formatting.stylua.with({}),
     checkstyle.with({

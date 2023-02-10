@@ -91,12 +91,12 @@ my.keybind({
 my.keybind({
   description = "quickfix list: next entry",
   lhs = "<down>f",
-  rhs = ":Cnext<CR>",
+  rhs = ":Cprev<CR>",
 })
 my.keybind({
   description = "quickfix list: previous entry",
   lhs = "<up>f",
-  rhs = ":Cprev<CR>",
+  rhs = ":Cnext<CR>",
 })
 
 -- conflict resolution

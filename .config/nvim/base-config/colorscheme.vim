@@ -81,6 +81,8 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight LeapLabelSecondary guibg=#d4dfff guifg=#222222
 
   autocmd ColorScheme * highlight FzfLuaCurrentLine guibg=#E5EEE4 guifg=#222222 
+
+  autocmd ColorScheme * highlight BqfSign guifg=#DBD1F6 gui=bold guibg=#65737e
 augroup END
 
 " remove odd ~ squiggles from end of buffer and other annoying places, like diffs

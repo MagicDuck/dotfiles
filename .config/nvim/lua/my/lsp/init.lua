@@ -22,7 +22,7 @@ if vim.g.myLspDisabled ~= true then
   -- require("my/lsp/diagnosticls")
 
   -- lsps
-  require("my/lsp/sumneko_lua")
+  require("my/lsp/lua-language-server")
   require("my/lsp/vimls")
   -- require("my/lsp/tsserver")
   require("my/lsp/vtsls")

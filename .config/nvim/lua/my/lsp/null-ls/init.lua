@@ -245,7 +245,7 @@ null_ls.setup({
 require("mason-null-ls").setup({
   -- A list of sources to install if they're not already installed.
   -- This setting has no relation with the `automatic_installation` setting.
-  ensure_installed = nil,
+  ensure_installed = { 'stylelint_d' },
 
   -- Run `require("null-ls").setup`.
   -- Will automatically install masons tools based on selected sources in `null-ls`.

@@ -176,6 +176,10 @@ local superKeyBindings = {
     app = "IntelliJ IDEA",
   },
   {
+    key = "j",
+    app = "TickTick",
+  },
+  {
     key = "k",
     app = "Fork",
   },

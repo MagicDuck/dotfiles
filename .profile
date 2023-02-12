@@ -11,4 +11,4 @@ export BROWSER="google-chrome-stable"
 #export TERM="xterm-256color"
 
 
-source "$HOME/.cargo/env"
+. "$HOME/.cargo/env"

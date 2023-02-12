@@ -28,6 +28,7 @@ return require("packer").startup({
           use("sainnhe/gruvbox-material")
           use("rose-pine/neovim")
           use { "catppuccin/nvim", as = "catppuccin" }
+          use "EdenEast/nightfox.nvim"
 
           -- Other plugins
           use("nvim-lua/plenary.nvim")

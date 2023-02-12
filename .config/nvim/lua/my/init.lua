@@ -8,6 +8,7 @@ end
 require('impatient')
 require("my/global/init")
 require("my/keys")
+require('my/nightfox')
 require("my/commands")
 require("my/treesitter")
 -- require("my/compe")

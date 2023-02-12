@@ -1,6 +1,8 @@
 augroup colorscheme_custom
   autocmd!
-  autocmd ColorScheme * highlight Normal guibg=#fafbfc
+  autocmd ColorScheme * highlight Normal guibg=NONE
+  " autocmd ColorScheme * highlight Normal guibg=#EFF0F2
+  " autocmd ColorScheme * highlight Normal guibg=#fafbfc
   autocmd ColorScheme * highlight EndOfBuffer guibg=NONE
 
   autocmd ColorScheme * highlight LineNr guibg=NONE
@@ -39,7 +41,7 @@ augroup colorscheme_custom
   autocmd ColorScheme * highlight TelescopeMatching guifg=#d05858 gui=bold
   " autocmd ColorScheme * highlight clear Cursor
   " autocmd ColorScheme * highlight Cursor guibg=#DBD1F6
-  
+
   autocmd ColorScheme * highlight TSVariable guifg=#222222
   autocmd ColorScheme * highlight TSParameter guifg=#222222
   autocmd ColorScheme * highlight TSParameterReference guifg=#222222

@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/UltiSnips",
     url = "https://github.com/sirver/UltiSnips"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -213,6 +218,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/neoformat",
     url = "https://github.com/sbdchd/neoformat"
+  },
+  neovim = {
+    loaded = true,
+    path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/neovim",
+    url = "https://github.com/rose-pine/neovim"
   },
   ["null-ls.nvim"] = {
     loaded = true,

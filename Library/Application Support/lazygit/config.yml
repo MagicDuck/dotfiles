@@ -1,14 +1,38 @@
 gui:
   theme:
-    lightTheme: true
+    lightTheme: true 
     activeBorderColor:
-      - black
+      - '#40a02b' # Green
       - bold
     inactiveBorderColor:
-      - black
+      - '#4c4f69' # Text
+    optionsTextColor:
+      - '#1e66f5' # Blue
     selectedLineBgColor:
-      - default
+      - '#E8F5F5' # Surface0
+    selectedRangeBgColor:
+      - '#E8F5F5' # Surface0
+    cherryPickedCommitBgColor:
+      - '#179299' # Teal
+    cherryPickedCommitFgColor:
+      - '#1e66f5' # Blue
+    unstagedChangesColor:
+      - '#40a02b'
+    defaultFgColor:
+      - '#222222'
+  branchColors:
+    'docs': '#11aaff' # use a light blue for branches beginning with 'docs/'
+    '*': '#222222' 
+  authorColors:
+    # use red for John Smith
+    'John Smith': '#222222'
+    # '*': '#be7e05'
+    '*': '#6E006A'
+  showIcons: true
+  showFileTree: false
+  sidePanelWidth: 0.35
 git:        
   paging:
     colorArg: always
     pager: delta --syntax-theme OneHalfLight --line-numbers --features "line-numbers decorations" --whitespace-error-style "22 reverse" --paging=never
+notARepository: 'skip'

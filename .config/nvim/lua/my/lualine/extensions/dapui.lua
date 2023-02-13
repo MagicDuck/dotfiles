@@ -1,11 +1,10 @@
-local colors = require("my/lualine/colors")
 local utils = require("my/lualine/utils")
 
 local M = {}
 
 M.sections = {
   lualine_b = {
-    utils.createSpaceComponent(colors.base04),
+    utils.createSpaceComponent("MyMenubarInactiveCap"),
     { 'filename', file_status = false }
   },
 }

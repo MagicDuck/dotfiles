@@ -1,4 +1,3 @@
-local colors = require("my/lualine/colors")
 local utils = require("my/lualine/utils")
 
 local function is_loclist()
@@ -25,7 +24,7 @@ end
 
 M.sections = {
   lualine_b = {
-    utils.createSpaceComponent(colors.base04),
+    utils.createSpaceComponent("MyMenubarInactiveCap"),
     label
   },
   lualine_c = { title },

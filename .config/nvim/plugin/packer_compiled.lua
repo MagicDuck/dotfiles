@@ -224,6 +224,11 @@ _G.packer_plugins = {
     path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/neovim",
     url = "https://github.com/rose-pine/neovim"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/null-ls.nvim",

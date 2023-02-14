@@ -140,6 +140,7 @@ require('lualine').setup {
         color = "MyStatusbarDapStatus",
       },
       { 'branch',
+        color = "MyStatusbarBranch",
         icon = { icons.git, color = "MyStatusbarBranch" }
       },
       utils.createSpaceComponent("MyMenubarInactiveCap"),

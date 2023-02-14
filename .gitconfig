@@ -1,0 +1,65 @@
+[user]
+	name = Stephan Badragan
+	email = stephan.badragan@everbridge.com
+[core]
+	excludesfile = /Users/stephanbadragan/.gitignore_global
+	pager = delta
+  #pager = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+  syntax-theme = OneHalfLight
+  line-numbers = true
+  features = line-numbers decorations
+  whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+#  commit-decoration-style = bold yellow box ul
+file-style = bold
+#  file-decoration-style = none  
+[merge]
+#	tool = bc3
+# tool = idea
+	tool = nvimdiff4
+[mergetool]
+  rompt = false
+  rustExitCode = true
+	keepBackup = false
+[mergetool "nvimdiff4"]
+#  cmd = vim -d $LOCAL $BASE $REMOTE $MERGED -c 'CocDisable' -c '$wincmd w' -c 'wincmd J' -c 'Git mergetool'
+  cmd = vim -d $LOCAL $BASE $REMOTE $MERGED --cmd ':lua vim.g.myLspDisabled=true' -c '$wincmd w' -c 'wincmd J' -c 'normal ]c'
+[mergetool "idea"]
+    cmd = /usr/local/bin/hs -c \"hs.application.open('IntelliJ IDEA')\" && /usr/local/bin/idea merge \"$LOCAL\" \"$REMOTE\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+    # cmd = /usr/local/bin/hs -c "hs.application.open('IntelliJ IDEA')" && /usr/local/bin/idea merge $(cd $(dirname \"$LOCAL\") && pwd)/$(basename \"$LOCAL\") $(cd $(dirname \"$REMOTE\") && pwd)/$(basename \"$REMOTE\") $(cd $(dirname \"$BASE\") && pwd)/$(basename \"$BASE\") $(cd $(dirname \"$MERGED\") && pwd)/$(basename \"$MERGED\")
+    trustExitCode = true
+[difftool]
+	prompt = false
+[diff]
+  colorMoved = default
+	tool = bc3
+[alias]
+	s = status
+	b = ! git checkout $(git branch | fzf)
+  nb = "!f(){ git checkout -b $1 && git fetch origin ${2:-main} && git reset --hard origin/${2:-main}; };f"
+  squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
+[push]
+	default = current
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[mergetool "bc3"]
+    trustExitCode = true
+[mergetool "meld"]
+    cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+[mergetool "smartsync"]
+    cmd = /Applications/SmartSynchronize.app/Contents/MacOS/SmartSynchronize "$LOCAL" "$REMOTE" "$MERGED"
+    trustExitCode = true
+[difftool "bc3"]
+	trustExitCode = true
+[init]
+	templatedir = ~/.git-templates
+	defaultBranch = main

@@ -10,8 +10,9 @@ local jdtlsSetup = require("jdtls.setup")
 -- JDK paths
 local javaVersionsDir = vim.fn.expand("~/.jenv/versions")
 local jdk8 = javaVersionsDir .. '/1.8'
-local jdk11 = javaVersionsDir .. '/11'
-local jdk17 = javaVersionsDir .. '/17'
+-- local jdk8 = '/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+local jdk11 = javaVersionsDir .. '/11.0'
+local jdk17 = javaVersionsDir .. '/17.0'
 
 -- other paths
 local masonDir = vim.fn.expand("~/.local/share/nvim/mason/packages")
@@ -41,10 +42,12 @@ exports.getConfig = function()
 
   return {
     cmd = getCmd(projectName),
-
+    cmd_env = {
+      JAVA_HOME = jdk17,
+    },
+    cmd_cwd = projectRoot,
     -- One dedicated LSP server & client will be started per unique root_dir
     root_dir = projectRoot,
-
     -- Here you can configure eclipse.jdt.ls specific settings
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
     -- for a list of options
@@ -74,15 +77,17 @@ exports.getConfig = function()
         },
         configuration = {
           updateBuildConfiguration = "interactive",
+          -- Note: This is what determines what java version to use to build each project
           runtimes = {
             {
               name = "JavaSE-11",
               path = jdk11,
-              default = true
+              -- default = true
             },
             {
               name = "JavaSE-1.8",
               path = jdk8,
+              -- default = true
             }
           }
         },
@@ -91,7 +96,6 @@ exports.getConfig = function()
         },
       },
     },
-
     -- Language server `initializationOptions`
     -- You need to extend the `bundles` with paths to jar files
     -- if you want to use additional eclipse.jdt.ls plugins.

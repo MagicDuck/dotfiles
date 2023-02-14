@@ -179,12 +179,32 @@
       [:!Cs :!CSy] ; set status 
     ]}
 
-    {:des "chrome shortcut override" :rules [
-      [:condi :google-chrome-app] 
+    {:des "chrome/brave shortcut override" :rules [
+      [:condi :chrome-browser-apps] 
+
       [:!CSi :!COi] ; Open dev tools
-      [:!Cleft_arrow :!Ch] ; tab prev 
-      [:!Cright_arrow :!Cl] ; tab next 
+
+      ; tab nav
+      [:!Cleft_arrow :!Tpage_up] ; tab prev 
+      [:!Cright_arrow :!Tpage_down] ; tab next 
+      [:!Ch :!Tpage_up] ; tab prev 
+      [:!Cl :!Tpage_down] ; tab next 
+
+      ; tab move
+      [:!CSleft_arrow :!TSpage_up] ; tab prev 
+      [:!CSright_arrow :!TSpage_down] ; tab next 
+      [:!CSh :!TSpage_up] ; tab prev 
+      [:!CSl :!TSpage_down] ; tab next 
+
+      ; tab close
+      [:!Cd :!Cw] 
+
+      ; tab history
+      [:!Cw :!Copen_bracket] 
+      [:!Ce :!Cclose_bracket] 
+      [:!Cu :!CSt] 
     ]}
+
 
     {:des "text snippets mode" :rules [
       [:condi :kinesis-keyboard] 

@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+import sys, os, re, subprocess
+
+# Collect the parameters
+commit_msg_filepath = sys.argv[1]
+if len(sys.argv) > 2:
+    commit_type = sys.argv[2]
+else:
+    commit_type = ''
+if len(sys.argv) > 3:
+    commit_hash = sys.argv[3]
+else:
+    commit_hash = ''
+
+# print("prepare-commit-msg: File: %s\nType: %s\nHash: %s" % (commit_msg_filepath, commit_type, commit_hash))
+
+# Figure out which branch we're on
+try:
+    branch = subprocess.check_output(['git', 'symbolic-ref', '--short', 'HEAD'], stderr=subprocess.DEVNULL).strip().decode()
+except subprocess.CalledProcessError as e:
+    branch = ""
+# print("prepare-commit-msg: On branch '%s'" % branch)
+
+# Populate the commit message with the issue #, if there is one
+jira_id_search = re.search(r"\b[A-Z]+-\d+\b", branch)
+# print("jira_id_search" , jira_id_search)
+jira_id = jira_id_search.group(0) if jira_id_search != None else None 
+# print("jira_id: '%s'" % jira_id)
+if commit_type != 'merge' and jira_id:
+    with open(commit_msg_filepath, 'r+') as f:
+        content = f.read()
+        first_line = content.partition('\n')[0]
+        if jira_id not in first_line:
+            f.seek(0, 0)
+            f.write("%s %s" % (jira_id, content))

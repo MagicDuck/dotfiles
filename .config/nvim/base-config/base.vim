@@ -181,3 +181,7 @@ augroup END
 
 " easier visual line select
 nnoremap vv V
+
+" line begin and end
+nnoremap H ^
+nnoremap L $

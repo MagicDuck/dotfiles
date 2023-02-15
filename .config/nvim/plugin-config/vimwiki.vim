@@ -8,9 +8,12 @@ let wiki.nested_syntaxes = {
   \ 'shell': 'bash',
   \ 'json': 'javascript',
   \ }
-let g:vimwiki_list = [wiki]
+" TODO (sbadragan): enable this or switch to different wiki thing
+" let g:vimwiki_list = [wiki]
 
 let g:vimwiki_key_mappings = { 'links': 0 }
 let g:vimwiki_conceal_pre = 0
 let g:vimwiki_listsyms = ' .oOx' 
-    
+
+" don't use vimwiki filetype
+let g:vimwiki_global_ext = 0

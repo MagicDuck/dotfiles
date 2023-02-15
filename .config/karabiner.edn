@@ -55,6 +55,7 @@
     :slack-app ["^com\\.tinyspeck\\.slackmacgap$"]
     :chrome-browser-apps ["^com\\.brave\\.Browser", "^com\\.google\\.Chrome"]
     :google-chrome-app ["^com\\.google\\.Chrome"]
+    :outlook-app ["^com\\.microsoft\\.Outlook"]
   } ;; applications
 
   :templates {
@@ -177,6 +178,11 @@
       [:!Ck :!OSup_arrow] ; prev unread
       [:!Co :!CSk] ; open DM 
       [:!Cs :!CSy] ; set status 
+    ]}
+
+    {:des "outlook shortcut overrides" :rules [
+      [:condi :outlook-app] 
+      [:!Ce :!Te] ; archive email
     ]}
 
     {:des "chrome/brave shortcut override" :rules [

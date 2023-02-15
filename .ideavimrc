@@ -1,0 +1,70 @@
+" see https://github.com/einverne/dotfiles/blob/master/idea/.ideavimrc for ideas
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smarttab
+set hlsearch " highlight search
+set incsearch " incremental search
+set ignorecase
+set smartcase
+set infercase " better case handling for insert mode completion
+set wrapscan
+
+set clipboard+=unnamed
+
+set ideamarks
+set sneak
+
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
+" config reloader
+noremap <leader>l <ESC>:source ~/.ideavimrc<cr>
+
+set history=1000
+set nu
+" set rnu
+
+" Note: use 'IdeaVim: track action Ids' to find names of those actions
+" or :actionlist <search-term>
+" General
+nnoremap ,r :action RenameElement<CR>
+nnoremap <leader>f :<C-u>action FindInPath<CR>
+vnoremap <leader>f :<C-u>action FindInPath<CR>
+nnoremap <leader>b :<C-u>action RecentFiles<CR>
+nnoremap <leader>d :<C-u>action SearchEverywhere<CR>
+"vnoremap , :<C-u>action EditorSelectWord<CR>
+"vnoremap . :<C-u>action EditorUnSelectWord<CR>
+nnoremap <leader>c :<C-u>action CommentByLineComment<CR>
+vnoremap <leader>c :<C-u>action CommentByLineComment<CR>
+
+" select the project view. Note: to focus editor again, just press esc
+nnoremap <leader>r :<C-u>action SelectInProjectView<CR>
+nnoremap sl :<C-u>action NextSplitter<CR>
+nnoremap sh :<C-u>action PrevSplitter<CR>
+nnoremap sc :<C-u>action Unsplit<CR>
+nnoremap ss :<C-u>action SplitHorizontally<CR>
+nnoremap sv :<C-u>action SplitVertically<CR>
+
+" navigation back and forth
+"noremap <C-i> :<C-u>action Forward<CR>
+"noremap <C-o> :<C-u>action Back<CR>
+
+" Redo
+nnoremap U <C-r>
+
+" go to somewhere (g in normal mode for goto somewhere)
+nnoremap ga :<C-u>action GotoAction<CR>
+nnoremap gc :<C-u>action GotoClass<CR>
+nnoremap gd :<C-u>action GotoDeclaration<CR>
+nnoremap gS :<C-u>action GotoSuperMethod<CR>
+nnoremap gm :<C-u>action GotoImplementation<CR>
+nnoremap gf :<C-u>action GotoFile<CR>
+nnoremap gs :<C-u>action GotoSymbol<CR>
+nnoremap gl :<C-u>action JumpToLastChange<CR>
+nnoremap gu :<C-u>action ShowUsages<CR>
+nnoremap gt :<C-u>action GotoTest<CR>
+nnoremap gj :<C-u>action EditorCodeBlockStart<CR>
+nnoremap gk :<C-u>action EditorCodeBlockEnd<CR>
+

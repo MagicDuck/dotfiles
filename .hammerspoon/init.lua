@@ -97,39 +97,39 @@ snippets.init({
   {
     description = "xmatters demo/test instance",
     example = xmDemoInstance.host
-        .. " (user = "
-        .. xmDemoInstance.user
-        .. ", password = "
-        .. xmDemoInstance.password
-        .. ")"
-        .. cursor,
+    .. " (user = "
+    .. xmDemoInstance.user
+    .. ", password = "
+    .. xmDemoInstance.password
+    .. ")"
+    .. cursor,
     keys = {
       xmDemoInstance.host
-          .. " (user = "
-          .. xmDemoInstance.user
-          .. ", password = "
-          .. xmDemoInstance.password
-          .. ")",
+      .. " (user = "
+      .. xmDemoInstance.user
+      .. ", password = "
+      .. xmDemoInstance.password
+      .. ")",
     },
   },
   {
     description = "ebfd demo/test instance",
     example = ebfdDemoInstance.host
-        .. " (user = "
-        .. ebfdDemoInstance.user
-        .. ", password = "
-        .. ebfdDemoInstance.password
-        .. ")"
-        .. cursor,
+    .. " (user = "
+    .. ebfdDemoInstance.user
+    .. ", password = "
+    .. ebfdDemoInstance.password
+    .. ")"
+    .. cursor,
     keys = {
       ebfdDemoInstance.host
-          .. "\n(organization = "
-          .. ebfdDemoInstance.organization
-          .. ", user = "
-          .. ebfdDemoInstance.user
-          .. ", password = "
-          .. ebfdDemoInstance.password
-          .. ")",
+      .. "\n(organization = "
+      .. ebfdDemoInstance.organization
+      .. ", user = "
+      .. ebfdDemoInstance.user
+      .. ", password = "
+      .. ebfdDemoInstance.password
+      .. ")",
     },
   },
 })
@@ -207,20 +207,21 @@ local superKeyBindings = {
     key = "s",
     app = "Slack",
   },
-  -- {
-  -- 	key = "u",
-  -- 	app = "kitty",
-  -- 	window = {
-  -- 		title = "notes",
-  -- 		launch = function()
-  -- 			kitty.launchWindow({ title = "notes", command = "/usr/local/bin/zsh -is eval vim +VimwikiIndex" })
-  -- 		end,
-  -- 	},
-  -- },
   {
     key = "u",
-    app = "Obsidian",
+    app = "kitty",
+    window = {
+      title = "notes",
+      launch = function()
+        kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim ~/notes/index.md" })
+        -- kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim +VimwikiIndex" })
+      end,
+    },
   },
+  -- {
+  --   key = "u",
+  --   app = "Obsidian",
+  -- },
   {
     key = "w",
     app = "TickTick",
@@ -284,20 +285,27 @@ local superKeyBindings = {
     --     hs.eventtap.keyStrokes("")
     -- end,
   },
-  -- keeper password manager autofill
   {
     key = "x",
     fn = function()
       local win = hs.window.frontmostWindow()
-      win:application():activate() -- this lets keeper know which app we are on
-      hs.timer.doAfter(0.2, function()
-        hs.eventtap.keyStroke({ "cmd", "shift", "alt" }, "m")
-        hs.timer.doAfter(0.2, function()
-          hs.eventtap.keyStroke({}, "return")
-        end)
-      end)
+      win:close()
     end,
   },
+  -- keeper password manager autofill
+  -- {
+  --   key = "x",
+  --   fn = function()
+  --     local win = hs.window.frontmostWindow()
+  --     win:application():activate() -- this lets keeper know which app we are on
+  --     hs.timer.doAfter(0.2, function()
+  --       hs.eventtap.keyStroke({ "cmd", "shift", "alt" }, "m")
+  --       hs.timer.doAfter(0.2, function()
+  --         hs.eventtap.keyStroke({}, "return")
+  --       end)
+  --     end)
+  --   end,
+  -- },
   -- autoexpand snippets
   -- {
   -- 	key = "n",

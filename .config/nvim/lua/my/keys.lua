@@ -813,3 +813,16 @@ my.keybind({
   lhs = "<leader>eq",
   rhs = ":lua require('dap').terminate()<CR>",
 })
+
+my.keybind({
+  mode = "n",
+  description = "markdown: preview open",
+  lhs = "<leader>po",
+  rhs = ":PeekOpen<CR>",
+})
+my.keybind({
+  mode = "n",
+  description = "markdown: preview open",
+  lhs = "<leader>pc",
+  rhs = ":PeekClose<CR>",
+})

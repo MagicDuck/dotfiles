@@ -513,6 +513,25 @@
           "type" : "basic"
         } ]
       }, {
+        "description" : "outlook shortcut overrides",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "e",
+            "modifiers" : {
+              "mandatory" : [ "left_command" ]
+            }
+          },
+          "to" : [ {
+            "key_code" : "e",
+            "modifiers" : [ "left_control" ]
+          } ],
+          "conditions" : [ {
+            "type" : "frontmost_application_if",
+            "bundle_identifiers" : [ "^com\\.microsoft\\.Outlook" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "chrome/brave shortcut override",
         "manipulators" : [ {
           "from" : {

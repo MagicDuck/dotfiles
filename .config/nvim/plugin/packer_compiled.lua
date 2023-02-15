@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
   },
+  ["clipboard-image.nvim"] = {
+    loaded = true,
+    path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/clipboard-image.nvim",
+    url = "https://github.com/ekickx/clipboard-image.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -323,6 +328,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["peek.nvim"] = {
+    loaded = true,
+    path = "/Users/stephanbadragan/.local/share/nvim/site/pack/packer/start/peek.nvim",
+    url = "https://github.com/toppair/peek.nvim"
   },
   playground = {
     loaded = true,

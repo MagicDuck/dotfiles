@@ -176,7 +176,7 @@ local superKeyBindings = {
     app = "IntelliJ IDEA",
   },
   {
-    key = "j",
+    key = "v",
     app = "TickTick",
   },
   {

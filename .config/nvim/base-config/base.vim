@@ -185,3 +185,5 @@ nnoremap vv V
 " line begin and end
 nnoremap H ^
 nnoremap L $
+vnoremap H ^
+vnoremap L $

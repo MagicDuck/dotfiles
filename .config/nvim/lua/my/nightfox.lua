@@ -74,6 +74,7 @@ require('nightfox').setup({
       TelescopeMatching = { fg = "#d05858", style = "bold" },
       SignatureMarkText = { fg = "#B4703E", style = "bold" },
 
+      BqfSign = { fg = "#F8FBF6", bg = "#896a98", style = "bold" },
 
       -- Base Menu Bar UI
       MyMenubarLine = { bg = 'my.menubarBaseBg', fg = 'my.menubarBaseFg' },

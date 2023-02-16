@@ -4,6 +4,8 @@ set tabstop=2
 " I like using H and L for beginning/end of line
 nmap H ^
 nmap L $
+vmap H ^
+vmap L $
 
 " Go back and forward with Ctrl+O and Ctrl+I
 " (make sure to remove default Obsidian shortcuts for these to work)
@@ -19,6 +21,7 @@ nmap <Space>f :liveGrep
 
 exmap openFile obcommand switcher:open
 nmap <Space>d :openFile
+nmap <Space>b :openFile
 
 exmap renameFile obcommand editor:rename-heading
 nmap <Space>r :renameFile
@@ -59,7 +62,8 @@ exmap appReload obcommand app:reload
 nmap <Space>R :appReload
 
 exmap toggleCheckbox obcommand editor:toggle-checklist-status
-map <C-Space> :toggleCheckbox
+nmap <C-Space> :toggleCheckbox
+imap <C-Space> :toggleCheckbox
 
 " other potential commands, execute :obcommand with dev tools open to see them all
 " editor:toggle-bullet-list

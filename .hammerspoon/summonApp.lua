@@ -10,7 +10,7 @@ local lastFocusedWindow
 
 function M.init()
   currentlyFocusedWindow = hs.window.focusedWindow() or hs.window.frontmostWindow()
-  currentlyFocusedAppName = currentlyFocusedWindow:application():name()
+  currentlyFocusedAppName = currentlyFocusedWindow and currentlyFocusedWindow:application():name() or nil
   lastFocusedWindow = nil
 end
 

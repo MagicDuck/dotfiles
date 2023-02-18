@@ -16,24 +16,16 @@ return {
   -- TODO (sbadragan): add this as a dependency where necessary?
   { "nvim-lua/plenary.nvim" },
 
-  { "airblade/vim-rooter" },
-  -- { "mhinz/vim-startify" },
   { "b3nj5m1n/kommentary" },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
-  { "nvim-treesitter/nvim-treesitter",             build = ":TSUpdate",                   name = "treesitter" },
+  { "nvim-treesitter/nvim-treesitter",             build = ":TSUpdate",             name = "treesitter" },
   { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "treesitter" } },
-  { "nvim-treesitter/playground",                  dependencies = { "treesitter" },       build = ":TSInstall query" },
+  { "nvim-treesitter/playground",                  dependencies = { "treesitter" }, build = ":TSInstall query" },
   { "windwp/nvim-ts-autotag" },
   { "p00f/nvim-ts-rainbow" },
   { "junegunn/vim-easy-align" },
 
   -- git
-  { "tpope/vim-fugitive" },
-  { "shumphrey/fugitive-gitlab.vim" },
-  { "tommcdo/vim-fubitive" },
-  { "sindrets/diffview.nvim",                      dependencies = "nvim-lua/plenary.nvim" },
-  { "kevinhwang91/rnvimr" }, -- ranger
-  { "kevinhwang91/nvim-bqf" }, -- quickfix
   -- TODO (sbadragan): might not be needed
   -- { "nvim-lua/popup.nvim" },
   { "nvim-telescope/telescope.nvim" },
@@ -69,12 +61,7 @@ return {
   { "jose-elias-alvarez/null-ls.nvim" },
 
   { "itchyny/vim-highlighturl" },
-  { "vimwiki/vimwiki" },
   { "moll/vim-bbye" },
-  { "sirver/UltiSnips" },
-  { "honza/vim-snippets" },
-  { "tpope/vim-unimpaired" },
-  { "sbdchd/neoformat" },
 
   -- status line
   { "nvim-lualine/lualine.nvim" },

@@ -314,7 +314,7 @@ end
 my.keybind({
   description = "open startify",
   lhs = "<leader>i",
-  rhs = ":Alpha<CR>",
+  rhs = ":lua if (vim.bo.filetype ~= 'alpha') then vim.cmd('Alpha') end<CR>",
 })
 
 -- commenting

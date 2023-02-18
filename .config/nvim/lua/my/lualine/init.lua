@@ -61,8 +61,8 @@ require('lualine').setup {
   extensions = { qfExtension, dapuiExtension },
   options = {
     disabled_filetypes = { -- Filetypes to disable lualine for
-      statusline = { 'startify', 'fugitiveblame', 'fugitive' },
-      winbar = { 'startify', 'gitcommit', 'qf', 'dap-repl' },
+      statusline = { 'alpha', 'fugitiveblame', 'fugitive' },
+      winbar = { 'alpha', 'gitcommit', 'qf', 'dap-repl' },
     },
     icons_enabled = true,
     theme = my_theme,

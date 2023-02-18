@@ -149,7 +149,7 @@ my.keybind({
 my.keybind({
   description = "tab: create new tab",
   lhs = "<leader>tn",
-  rhs = "<cmd>tabnew | Startify<CR>",
+  rhs = "<cmd>tabnew | Alpha<CR>",
 })
 my.keybind({
   description = "tab: close current tab",
@@ -314,7 +314,7 @@ end
 my.keybind({
   description = "open startify",
   lhs = "<leader>i",
-  rhs = ":Startify<CR>",
+  rhs = ":Alpha<CR>",
 })
 
 -- commenting
@@ -481,7 +481,7 @@ my.keybind({
 my.keybind({
   description = "notes: open notes dir",
   lhs = "<leader>ne",
-  rhs = ":cd ~/notes/ | Startify<CR>",
+  rhs = ":cd ~/notes/ | Alpha<CR>",
 })
 my.keybind({
   description = "notes: pick a note file",

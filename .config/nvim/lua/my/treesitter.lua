@@ -1,9 +1,11 @@
 local ts = require("nvim-treesitter.configs")
 
 ts.setup({
-  -- ensure_installed = { "javascript", "typescript", "lua", "http", "json", "java", "rust" },
-  ensure_installed = "all",
-  -- auto_install = true,
+  -- ensure_installed = { "javascript", "typescript", "lua", "http", "json", "java", "rust", "c", "vim", "help" },
+  ensure_installed = { "javascript", "lua", "c", "vim", "help" },
+  -- ensure_installed = "all",
+  auto_install = true,
+  ignore_install = { "comment" }, -- has some performance issues atm
   highlight = {
     enable = true,
     custom_captures = {},

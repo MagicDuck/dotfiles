@@ -1,28 +1,11 @@
 -- TODO (sbadragan): copied from packer plugins, gradually move those to separate files
 
 return {
-  {
-    "EdenEast/nightfox.nvim",
-    lazy = false, -- make sure we load this during startup
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      -- load the colorscheme here
-      -- TODO (sbadragan): move this into config/theme or something?? or maybe plugins dir
-      require('my/nightfox')
-    end,
-  },
-
   -- Other plugins
   -- TODO (sbadragan): add this as a dependency where necessary?
   { "nvim-lua/plenary.nvim" },
 
   { "b3nj5m1n/kommentary" },
-  { "JoosepAlviste/nvim-ts-context-commentstring" },
-  { "nvim-treesitter/nvim-treesitter",             build = ":TSUpdate",             name = "treesitter" },
-  { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "treesitter" } },
-  { "nvim-treesitter/playground",                  dependencies = { "treesitter" }, build = ":TSInstall query" },
-  { "windwp/nvim-ts-autotag" },
-  { "p00f/nvim-ts-rainbow" },
   { "junegunn/vim-easy-align" },
 
   -- git

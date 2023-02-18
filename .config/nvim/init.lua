@@ -13,7 +13,6 @@ require("my/config/autocommands")
 require("my/config/lazy")
 
 -- TODO (sbadragan): move these into the plugins dir
-require("my/treesitter")
 require("my/completion")
 require("my/todo")
 require("my/lspkind")

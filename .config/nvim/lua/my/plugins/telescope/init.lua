@@ -4,7 +4,7 @@ return {
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim",    build = "make" },
-      { "fhill2/telescope-ultisnips.nvim" },
+      { "benfowler/telescope-luasnip.nvim" },
       { "nvim-telescope/telescope-fzf-writer.nvim" },
       { "nvim-telescope/telescope-ui-select.nvim" },
       { "nvim-telescope/telescope-file-browser.nvim" },

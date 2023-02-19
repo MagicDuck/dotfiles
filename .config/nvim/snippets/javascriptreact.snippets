@@ -1,0 +1,13 @@
+snippet < make tag with child
+        <${1:div} $2>
+                ${3:${VISUAL}}
+        </$1>
+
+snippet >
+        <${1:div} $2 />
+
+snippet fmsg
+        <FormattedMessage id="${1:STRING_ID}" />
+
+snippet fmsgv
+        <FormattedMessage id="${1:STRING_ID}" values={{${2:key}:${3:val}}} />

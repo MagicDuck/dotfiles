@@ -18,3 +18,7 @@ my.command {
   description = "terminal: open at current buffer dir",
   cmd = ":lua require('my/terminal').openTerminalAtCurrentBufferLocation()<CR>"
 }
+my.command {
+  description = "edit snippets",
+  cmd = ":EditSnippets<CR>"
+}

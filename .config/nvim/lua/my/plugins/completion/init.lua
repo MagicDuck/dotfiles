@@ -9,7 +9,8 @@ return {
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-cmdline" },
       { "rcarriga/cmp-dap" },
-      { "quangnguyen30192/cmp-nvim-ultisnips" },
+      -- { "quangnguyen30192/cmp-nvim-ultisnips" },
+      { 'saadparwaiz1/cmp_luasnip' },
       { "onsails/lspkind-nvim" },
     },
     config = function()

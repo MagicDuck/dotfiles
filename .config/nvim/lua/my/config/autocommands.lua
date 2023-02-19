@@ -84,3 +84,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
+
+-- force format options (disable auto-comment)
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  group = augroup("force_formatoptions"),
+  callback = function()
+    vim.bo.formatoptions = "jqlnt" -- disable auto-comments
+  end,
+})

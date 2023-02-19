@@ -1,6 +1,5 @@
 local M = {}
 
--- TODO (sbadragan): move into commands.lua
 local addTextAboveCurrentLine = function(newText)
   local pos = vim.fn.getpos(".")
   local lineNum = pos[2]

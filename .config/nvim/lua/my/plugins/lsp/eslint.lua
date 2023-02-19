@@ -7,7 +7,7 @@ lspconfig.eslint.setup({
     vim.api.nvim_command("autocmd BufWritePre <buffer> EslintFixAll")
     attach.global_on_attach(client, bufnr)
   end,
-  -- TODO (sbadragan): prevent eslint LSP for prompting us when there are errors
+  -- prevent eslint LSP for prompting us when there are errors
   handlers = {
     ["window/showMessageRequest"] = function(_, result, params)
       return result

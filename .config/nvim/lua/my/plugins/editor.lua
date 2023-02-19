@@ -13,6 +13,17 @@ return {
   { "ggandor/leap.nvim",
     lazy = true,
     event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+    config = function()
+      vim.api.nvim_create_user_command('MyLeapCurrentWindow', function()
+        require('leap').leap { target_windows = { vim.fn.win_getid() } }
+      end, {})
+      vim.api.nvim_create_user_command('MyLeapAllWindows', function()
+        require('leap').leap { target_windows = vim.tbl_filter(
+          function(win) return vim.api.nvim_win_get_config(win).focusable end,
+          vim.api.nvim_tabpage_list_wins(0)
+        ) }
+      end, {})
+    end
   },
   { 'echasnovski/mini.comment',
     version = '*',
@@ -41,9 +52,39 @@ return {
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
   },
-  { "tpope/vim-surround",
+  -- { "kylechui/nvim-surround",
+  --   lazy = true,
+  --   version = "*",
+  --   event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+  --   config = function()
+  --     require("nvim-surround").setup({})
+  --   end
+  -- },
+  -- { "tpope/vim-surround",
+  --   lazy = true,
+  --   event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+  -- },
+  { 'echasnovski/mini.nvim',
     lazy = true,
+    version = "*",
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    config = function()
+      require('mini.surround').setup({
+        -- Module mappings. Use `''` (empty string) to disable one.
+        mappings = {
+          add = 'Sa', -- Add surrounding in Normal and Visual modes
+          delete = 'Sd', -- Delete surrounding
+          find = 'Sf', -- Find surrounding (to the right)
+          find_left = 'SF', -- Find surrounding (to the left)
+          highlight = 'Sh', -- Highlight surrounding
+          replace = 'Sr', -- Replace surrounding
+          update_n_lines = 'Sn', -- Update `n_lines`
+
+          suffix_last = 'l', -- Suffix to search with "prev" method
+          suffix_next = 'n', -- Suffix to search with "next" method
+        },
+      })
+    end
   },
   { "rafcamlet/nvim-luapad",
     lazy = true,

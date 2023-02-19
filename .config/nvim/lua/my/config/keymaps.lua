@@ -2,7 +2,7 @@
 my.keybind({
   description = "show a list of key bindings to pick from",
   lhs = "<leader>,",
-  rhs = ":lua require('my/telescope/command_picker').pickKeybindOrCommand({mode = 'n'})<CR>",
+  rhs = ":lua require('my/plugins/telescope/command_picker').pickKeybindOrCommand({mode = 'n'})<CR>",
 })
 
 -- config reload
@@ -159,7 +159,7 @@ my.keybind({
 my.keybind({
   description = "tab: pick tab using telescope",
   lhs = "<leader>tt",
-  rhs = "<cmd>lua require('my/telescope/tab_picker').pickTab()<CR>",
+  rhs = "<cmd>lua require('my/telescope/telescope/tab_picker').pickTab()<CR>",
 })
 
 -- windows
@@ -405,12 +405,12 @@ my.keybind({
 })
 
 -- easy align
-my.keybind({
-  description = "Easy Align: Start interactive EasyAlign for (e.g. gaip, vipga)",
-  mode = "nvsox",
-  lhs = "ga",
-  rhs = "<Plug>(EasyAlign)",
-})
+-- my.keybind({
+--   description = "Easy Align: Start interactive EasyAlign for (e.g. gaip, vipga)",
+--   mode = "nvsox",
+--   lhs = "ga",
+--   rhs = "<Plug>(EasyAlign)",
+-- })
 
 -- fuzzy find things
 my.keybind({
@@ -617,7 +617,13 @@ my.keybind({
   mode = "nvxo",
   description = "leap to location",
   lhs = "f",
-  rhs = "<cmd>lua require('my/leap').jump_bidirectional()<CR>",
+  rhs = "<cmd>MyLeapCurrentWindow<CR>",
+})
+my.keybind({
+  mode = "nvxo",
+  description = "leap to location all tab windows",
+  lhs = "F",
+  rhs = "<cmd>MyLeapAllWindows<CR>",
 })
 -- replace
 my.keybind({

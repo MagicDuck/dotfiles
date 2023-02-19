@@ -45,6 +45,7 @@ my.keybind = function(conf)
     end
     my.state.keyMappings[single_mode][conf.lhs] = conf
 
-    vim.api.nvim_set_keymap(single_mode, conf.lhs, conf.rhs, conf.options)
+    -- vim.api.nvim_set_keymap(single_mode, conf.lhs, conf.rhs, conf.options)
+    vim.keymap.set(single_mode, conf.lhs, conf.rhs, conf.options)
   end
 end

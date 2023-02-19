@@ -744,7 +744,7 @@ my.keybind({
 my.keybind({
   description = "debugger: when debugging, continue. Otherwise start debugging",
   lhs = "<leader>ec",
-  rhs = ":lua require('my/dap').reload_continue()<CR>",
+  rhs = ":MyDapReloadContinue<CR>",
 })
 my.keybind({
   description = "debugger: pause",

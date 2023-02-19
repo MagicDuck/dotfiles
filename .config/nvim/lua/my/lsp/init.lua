@@ -14,11 +14,10 @@
 -- prevent stupid node deprecation warnings
 vim.env.NODE_OPTIONS = "--no-deprecation"
 
+-- TODO (sbadragan): figure this part out
 if vim.g.myLspDisabled ~= true then
-  -- note: mason needs to go first, to make sure tools are installed
-  require("my/lsp/mason")
-
   require("my/lsp/null-ls")
+  -- TODO (sbadragan): remove this dir
   -- require("my/lsp/diagnosticls")
 
   -- lsps

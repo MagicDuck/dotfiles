@@ -33,6 +33,7 @@ return {
   { "kmonad/kmonad-vim" },
   { "tpope/vim-surround" },
   { "rafcamlet/nvim-luapad" },
+  { "kshenoy/vim-signature" }, -- for marks to show in gutter
   { "AmeerTaweel/todo.nvim",
     config = function()
       require("todo").setup({

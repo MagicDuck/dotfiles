@@ -1,10 +1,8 @@
-require('my/dap/dapui')
-require('my/dap/debug-configurations')
+require('my/plugins/dap/debug-configurations')
 local dap = require('dap')
 
-local M = {}
 -- reloads configs and then continues
-function M.reload_continue()
+local function reload_continue()
   if dap.status() == '' then
     package.loaded['my/dap/debug-configurations'] = nil
   end
@@ -12,10 +10,10 @@ function M.reload_continue()
   dap.continue()
 end
 
+vim.api.nvim_create_user_command('MyDapReloadContinue', reload_continue, {})
+
 -- debug adapters
 -- Note: the java adapter is set up in jdtls.lua
 
 -- TODO (sbadragan): things that we can add here:
 -- -> can we start ondemand dev in cloud in debug mode and hot reoad changes?
-
-return M

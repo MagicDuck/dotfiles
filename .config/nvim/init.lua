@@ -11,8 +11,3 @@ require("my/config/keymaps")
 require("my/config/commands")
 require("my/config/autocommands")
 require("my/config/lazy")
-
--- TODO (sbadragan): move these into the plugins dir
-require("my/lspkind")
-require("my/lsp/init")
-require("my/dap")

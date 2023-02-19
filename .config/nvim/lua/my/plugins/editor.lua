@@ -9,4 +9,25 @@ return {
     end
   },
   { "ggandor/leap.nvim" },
+  { 'echasnovski/mini.comment',
+    version = '*',
+    config = function()
+      require('mini.comment').setup(
+        {
+          -- Module mappings. Use `''` (empty string) to disable one.
+          mappings = {
+            -- Toggle comment (like `gcip` - comment inner paragraph) for both
+            -- Normal and Visual modes
+            comment = '<leader>c',
+
+            -- Toggle comment on current line
+            comment_line = '<leader>c',
+
+            -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+            textobject = 'ic',
+          },
+        }
+      )
+    end
+  },
 }

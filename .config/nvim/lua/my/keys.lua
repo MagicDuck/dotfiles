@@ -324,18 +324,18 @@ my.keybind({
 --  lhs = "<leader>c",
 --  rhs = "<Plug>NERDCommenterToggle"
 --}
-my.keybind({
-  description = "comment: toggle comment",
-  mode = "n",
-  lhs = "<leader>c",
-  rhs = "<Plug>kommentary_line_default",
-})
-my.keybind({
-  description = "comment: toggle comment",
-  mode = "vx",
-  lhs = "<leader>c",
-  rhs = "<Plug>kommentary_visual_default",
-})
+-- my.keybind({
+--   description = "comment: toggle comment",
+--   mode = "n",
+--   lhs = "<leader>c",
+--   rhs = "<Plug>kommentary_line_default",
+-- })
+-- my.keybind({
+--   description = "comment: toggle comment",
+--   mode = "vx",
+--   lhs = "<leader>c",
+--   rhs = "<Plug>kommentary_visual_default",
+-- })
 
 -- git
 -- my.keybind({

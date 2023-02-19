@@ -5,7 +5,6 @@ return {
   -- TODO (sbadragan): add this as a dependency where necessary?
   { "nvim-lua/plenary.nvim" },
 
-  { "b3nj5m1n/kommentary" },
   { "junegunn/vim-easy-align" },
 
   -- git
@@ -21,7 +20,6 @@ return {
   { "kshenoy/vim-signature" },
   { "voldikss/vim-floaterm" },
   { "tpope/vim-surround" },
-  { "ggandor/leap.nvim" },
   { "rafcamlet/nvim-luapad" },
   -- devicons
   { "nvim-tree/nvim-web-devicons" },

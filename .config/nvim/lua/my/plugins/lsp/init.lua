@@ -5,10 +5,22 @@ vim.env.NODE_OPTIONS = "--no-deprecation"
 -- logging
 -- vim.lsp.set_log_level("debug")
 
+if vim.g.myLspDisabled then
+  return {}
+end
+
 return {
+  -- LSP status spinner, somewhat annoying
+  { "j-hui/fidget.nvim",
+    name = "fidget",
+    config = function()
+      require("fidget").setup({ window = { winblend = 0 } })
+    end
+  },
+
   { "jose-elias-alvarez/null-ls.nvim",
-    enabled = not vim.g.myLspDisabled,
     dependencies = {
+      "fidget",
       { "jayp0521/mason-null-ls.nvim",
         dependencies = { "mason" },
         config = function()
@@ -40,8 +52,8 @@ return {
   },
 
   { "neovim/nvim-lspconfig",
-    enabled = not vim.g.myLspDisabled,
     dependencies = {
+      "fidget",
       { "williamboman/mason-lspconfig.nvim",
         dependencies = { "mason" },
         config = function()
@@ -74,14 +86,7 @@ return {
     end
   },
 
-  { "mfussenegger/nvim-jdtls" }, -- java support
-
-  -- LSP status spinner, somewhat annoying
-  { "j-hui/fidget.nvim",
-    config = function()
-      require("fidget").setup({ window = { winblend = 0 } })
-    end
-  },
+  { "mfussenegger/nvim-jdtls", dependencies = { "fidget" } }, -- java support
 
   { "onsails/lspkind-nvim",
     config = function()

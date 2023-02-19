@@ -30,6 +30,9 @@ return {
       )
     end
   },
+  { "kmonad/kmonad-vim" },
+  { "tpope/vim-surround" },
+  { "rafcamlet/nvim-luapad" },
   { "AmeerTaweel/todo.nvim",
     config = function()
       require("todo").setup({

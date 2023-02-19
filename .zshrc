@@ -302,7 +302,12 @@ export PATH=~/git-fuzzy/bin:$PATH
 
 # Fix file limit exceeded issue
 # =========================================================================================
+
 ulimit -n 10240
+
+# add gnu bin path for stuff like gnu-sed to override default sed
+# =========================================================================================
+export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # Allows zsh -is eval "command" without exiting
 # see https://www.zsh.org/mla/users/2005/msg00599.html

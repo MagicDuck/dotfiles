@@ -470,11 +470,6 @@ my.keybind({
   rhs = ":Lines<CR>",
 })
 my.keybind({
-  description = "Search: pick an exsting window to go to",
-  lhs = "<leader>sw",
-  rhs = ":Windows<CR>",
-})
-my.keybind({
   mode = "v",
   description = "Search: find current selection under cursor in project",
   lhs = "<leader>sf",
@@ -485,6 +480,16 @@ my.keybind({
   description = "Search: find current word under cursor in project",
   lhs = "<leader>sf",
   rhs = 'y<ESC>:lua require("telescope.builtin").live_grep({ default_text=vim.fn.expand("<cword>") })<CR>',
+})
+my.keybind({
+  description = "Search: replace in files using spectre",
+  lhs = "<leader>sd",
+  rhs = ":Spectre<CR>",
+})
+my.keybind({
+  description = "Search: find in help tags",
+  lhs = "<leader>sh",
+  rhs = ":Telescope help_tags<CR>",
 })
 
 -- notes

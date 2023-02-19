@@ -98,6 +98,11 @@ my.keybind({
   lhs = "<up>f",
   rhs = ":Cnext<CR>",
 })
+my.keybind({
+  description = "quickfix list: rename",
+  lhs = "<leader>qr",
+  rhs = ":call setqflist([], 'r', {'title': input('New Quickfix List Name: ')})<CR>",
+})
 
 -- conflict resolution
 my.keybind({

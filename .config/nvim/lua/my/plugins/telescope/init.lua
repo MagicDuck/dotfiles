@@ -1,5 +1,7 @@
 return {
   { "nvim-telescope/telescope.nvim",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim",    build = "make" },
       { "fhill2/telescope-ultisnips.nvim" },

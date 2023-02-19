@@ -47,20 +47,26 @@ local function getBookmarks(startify)
 end
 
 local function getFortune()
-  local handle = io.popen('fortune -s')
-  local fortune = "";
-  if (handle ~= nil) then
-    fortune = handle:read("*a")
-    handle:close()
-  end
-
-  return fortune
+  return ""
+  -- local handle = io.popen('fortune -s')
+  -- local fortune = "";
+  -- if (handle ~= nil) then
+  --   fortune = handle:read("*a")
+  --   handle:close()
+  -- end
+  --
+  -- return fortune
 end
 
 return {
   {
     'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    lazy = true,
+    event = { "VimEnter" },
+    dependencies = {
+      { 'nvim-tree/nvim-web-devicons' },
+      { "nvim-lualine/lualine.nvim" },
+    },
     config = function()
       -- require('alpha').setup(require('alpha.themes.startify').config)
 

@@ -1,6 +1,8 @@
 return {
   -- TODO (sbadragan): replace with luasnip
   { "sirver/UltiSnips",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
       vim.g.UltiSnipsExpandTrigger = "<tab>"
       vim.g.UltiSnipsJumpForwardTrigger = "<C-j>"
@@ -16,5 +18,8 @@ return {
     ]])
     end,
   },
-  { "honza/vim-snippets" },
+  { "honza/vim-snippets",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+  },
 }

@@ -1,5 +1,7 @@
 return {
   { "kevinhwang91/rnvimr",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
       vim.g.rnvimr_enable_picker = 1
       vim.g.rnvimr_enable_bw = 1
@@ -11,15 +13,11 @@ return {
         ['<C-l>'] = 'NvimEdit vsplit'
       }
 
-      local lazyUtil = require("my.lazyUtil")
-      lazyUtil.on_very_lazy(function()
-        vim.cmd([[ RnvimrStartBackground ]])
-      end)
-      --   vim.defer_fn(function()
-      --     vim.cmd([[
-      --   RnvimrStartBackground
-      -- ]])
-      --   end, 1000)
+      -- local lazyUtil = require("my.lazyUtil")
+      -- lazyUtil.on_very_lazy(function()
+      -- already on very lazy
+      vim.cmd([[ RnvimrStartBackground ]])
+      -- end)
     end
   },
 }

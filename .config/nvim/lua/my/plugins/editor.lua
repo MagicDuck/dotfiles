@@ -1,5 +1,7 @@
 return {
   { "brenoprata10/nvim-highlight-colors",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     config = function()
       require("nvim-highlight-colors").setup {
         render = 'background', -- 'background' or 'foreground' or 'first_column'
@@ -8,9 +10,14 @@ return {
       }
     end
   },
-  { "ggandor/leap.nvim" },
+  { "ggandor/leap.nvim",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+  },
   { 'echasnovski/mini.comment',
     version = '*',
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     config = function()
       require('mini.comment').setup(
         {
@@ -30,11 +37,25 @@ return {
       )
     end
   },
-  { "kmonad/kmonad-vim" },
-  { "tpope/vim-surround" },
-  { "rafcamlet/nvim-luapad" },
-  { "kshenoy/vim-signature" }, -- for marks to show in gutter
+  { "kmonad/kmonad-vim",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+  },
+  { "tpope/vim-surround",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+  },
+  { "rafcamlet/nvim-luapad",
+    lazy = true,
+    event = { "VeryLazy" },
+  },
+  { "kshenoy/vim-signature",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+  }, -- for marks to show in gutter
   { "AmeerTaweel/todo.nvim",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     config = function()
       require("todo").setup({
         merge_keywords = false,
@@ -70,6 +91,8 @@ return {
     end
   },
   { "sar/illuminate.nvim",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
       require('illuminate').configure({
         -- providers: provider used to get references in the buffer, ordered by priority

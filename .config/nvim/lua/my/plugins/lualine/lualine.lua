@@ -2,7 +2,6 @@ local icons = require("my/plugins/lualine/icons")
 local qfExtension = require("my/plugins/lualine/extensions/quickfix")
 local dapuiExtension = require("my/plugins/lualine/extensions/dapui")
 local utils = require("my/plugins/lualine/utils")
-local dap = require("dap")
 
 local my_theme = {
   -- note: these colors dictate separators colors
@@ -135,8 +134,8 @@ require('lualine').setup {
         color = "MyStatusbarLsp",
       },
       -- dap
-      { function() return icons.debug .. ' ' .. dap.status() end,
-        cond = function() return dap.status() ~= '' end,
+      { function() return icons.debug .. ' ' .. require("dap").status() end,
+        cond = function() return require("dap").status() ~= '' end,
         color = "MyStatusbarDapStatus",
       },
       { 'branch',

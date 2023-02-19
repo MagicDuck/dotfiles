@@ -1,6 +1,8 @@
 return {
   {
     "kevinhwang91/nvim-bqf",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
       require("bqf").setup {
         auto_enable = true,

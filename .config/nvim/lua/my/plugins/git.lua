@@ -1,6 +1,8 @@
 return {
   {
     "tpope/vim-fugitive",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
       vim.cmd([[
         let g:nremap = {'s': 't'}
@@ -10,11 +12,15 @@ return {
     end,
   },
   { "shumphrey/fugitive-gitlab.vim",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
       vim.g.fugitive_gitlab_domains = { 'https://gitlab.eb-tools.com' }
     end
   },
   { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
       local actions = require("diffview.actions")
 

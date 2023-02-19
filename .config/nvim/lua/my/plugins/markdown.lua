@@ -1,7 +1,12 @@
 return {
-  { "ekickx/clipboard-image.nvim" },
+  { "ekickx/clipboard-image.nvim",
+    lazy = true,
+    ft = "markdown",
+  },
   { 'toppair/peek.nvim',
     build = 'deno task --quiet build:fast',
+    lazy = true,
+    ft = "markdown",
     config = function()
       require('peek').setup({
         auto_load = true, -- whether to automatically load preview when

@@ -1,5 +1,7 @@
 return {
   { "mfussenegger/nvim-dap",
+    lazy = true,
+    event = "VeryLazy",
     dependencies = {
       { "jay-babu/mason-nvim-dap.nvim",
         dependencies = { "mason" },
@@ -35,6 +37,8 @@ return {
     end
   },
   { "rcarriga/nvim-dap-ui",
+    lazy = true,
+    event = "VeryLazy",
     dependencies = { "mfussenegger/nvim-dap" },
     config = function()
       require('my.plugins.dap.dapui')

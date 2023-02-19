@@ -1,11 +1,13 @@
 return {
   { "NTBBloodbath/rest.nvim",
     commit = "e5f68db73276c4d4d255f75a77bbe6eff7a476ef",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("rest-nvim").setup({
         -- Open request results in a horizontal split
-        esult_split_horizontal = false,
+        result_split_horizontal = false,
         -- Keep the http file buffer above|left when split horizontal|vertical
         result_split_in_place = false,
         -- Skip SSL verification, useful for unknown certificates

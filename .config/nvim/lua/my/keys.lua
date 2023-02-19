@@ -617,7 +617,7 @@ my.keybind({
   mode = "nvxo",
   description = "leap to location",
   lhs = "f",
-  rhs = "<cmd>lua require('my/leap').jump_bidirectional()<CR>",
+  rhs = "<cmd>lua require('leap').leap({ target_windows = { vim.fn.win_getid() } })<CR>",
 })
 -- replace
 my.keybind({

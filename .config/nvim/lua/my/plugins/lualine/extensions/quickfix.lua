@@ -1,4 +1,4 @@
-local utils = require("my/lualine/utils")
+local utils = require("my/plugins/lualine/utils")
 
 local function is_loclist()
   return vim.fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0

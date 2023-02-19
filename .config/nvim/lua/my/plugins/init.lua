@@ -19,7 +19,6 @@ return {
   { "nvim-telescope/telescope-file-browser.nvim" },
   { "nvim-telescope/telescope-live-grep-args.nvim" },
   { "kshenoy/vim-signature" },
-  { "brenoprata10/nvim-highlight-colors" },
   { "voldikss/vim-floaterm" },
   { "tpope/vim-surround" },
   { "ggandor/leap.nvim" },
@@ -43,13 +42,8 @@ return {
 
   { "jose-elias-alvarez/null-ls.nvim" },
 
-  { "itchyny/vim-highlighturl" },
+  -- TODO (sbadragan): maybe not needed since provided by kitty
   { "moll/vim-bbye" },
-
-  -- status line
-  { "nvim-lualine/lualine.nvim" },
-  { "arkav/lualine-lsp-progress" },
-  { "nanozuki/tabby.nvim" },
 
   { "kmonad/kmonad-vim" },
 
@@ -62,7 +56,6 @@ return {
   -- LSP status spinner, somewhat annoying
   -- {"j-hui/fidget.nvim"},
 
-  { "dstein64/vim-startuptime" },
   -- TODO (sbadragan): should we use folke's
   { "AmeerTaweel/todo.nvim" },
 

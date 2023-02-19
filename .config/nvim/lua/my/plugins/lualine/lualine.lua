@@ -1,7 +1,7 @@
-local icons = require("my/lualine/icons")
-local qfExtension = require("my/lualine/extensions/quickfix")
-local dapuiExtension = require("my/lualine/extensions/dapui")
-local utils = require("my/lualine/utils")
+local icons = require("my/plugins/lualine/icons")
+local qfExtension = require("my/plugins/lualine/extensions/quickfix")
+local dapuiExtension = require("my/plugins/lualine/extensions/dapui")
+local utils = require("my/plugins/lualine/utils")
 local dap = require("dap")
 
 local my_theme = {

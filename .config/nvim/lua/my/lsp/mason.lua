@@ -4,8 +4,7 @@ require("mason").setup({})
 require("mason-lspconfig").setup({
   -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
   -- This setting has no relation with the `automatic_installation` setting.
-  ensure_installed = { "jdtls", "sumneko_lua" },
-
+  ensure_installed = { "jdtls" },
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
   -- This setting has no relation with the `ensure_installed` setting.
   -- Can either be:
@@ -20,7 +19,6 @@ require("mason-nvim-dap").setup({
   -- A list of adapters to install if they're not already installed.
   -- This setting has no relation with the `automatic_installation` setting.
   ensure_installed = { "javadbg", "node2" },
-
   -- NOTE: this is left here for future porting in case needed
   -- Whether adapters that are set up (via dap) should be automatically installed if they're not already installed.
   -- This setting has no relation with the `ensure_installed` setting.
@@ -30,7 +28,6 @@ require("mason-nvim-dap").setup({
   --   - { exclude: string[] }: All servers set up via mason-nvim-dap, except the ones provided in the list, are automatically installed.
   --       Example: automatic_installation = { exclude = { "python", "delve" } }
   automatic_installation = false,
-
   -- Whether adapters that are installed in mason should be automatically set up in dap.
   -- Removes the need to set up dap manually.
   -- See mappings.adapters and mappings.configurations for settings.

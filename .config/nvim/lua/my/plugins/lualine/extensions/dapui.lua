@@ -1,4 +1,4 @@
-local utils = require("my/lualine/utils")
+local utils = require("my/plugins/lualine/utils")
 
 local M = {}
 

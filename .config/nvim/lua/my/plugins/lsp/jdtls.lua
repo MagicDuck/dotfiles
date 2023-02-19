@@ -4,7 +4,7 @@
 -- - jdtls (installed through mason)
 
 local exports = {}
-local attach = require("my/lsp/attach")
+local attach = require("my/plugins/lsp/attach")
 local jdtlsSetup = require("jdtls.setup")
 
 -- JDK paths

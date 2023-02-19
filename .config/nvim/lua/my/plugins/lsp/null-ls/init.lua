@@ -1,5 +1,5 @@
 local null_ls = require("null-ls")
-local attach = require("my/lsp/attach")
+local attach = require("my/plugins/lsp/attach")
 local h = require("null-ls.helpers")
 local methods = require("null-ls.methods")
 

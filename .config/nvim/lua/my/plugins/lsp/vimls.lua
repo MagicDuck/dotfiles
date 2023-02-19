@@ -1,5 +1,5 @@
 local lspconfig = require("lspconfig")
-local attach = require("my/lsp/attach")
+local attach = require("my/plugins/lsp/attach")
 
 lspconfig["vimls"].setup {
   capabilities = attach.global_capabilities,

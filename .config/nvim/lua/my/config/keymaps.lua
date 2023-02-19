@@ -158,8 +158,13 @@ my.keybind({
 })
 my.keybind({
   description = "tab: pick tab using telescope",
+  lhs = "<leader>tf",
+  rhs = "<cmd>lua require('my/plugins/telescope/tab_picker').pickTab()<CR>",
+})
+my.keybind({
+  description = "tab: pick tab using telescope",
   lhs = "<leader>tt",
-  rhs = "<cmd>lua require('my/telescope/telescope/tab_picker').pickTab()<CR>",
+  rhs = "<cmd>PickBookmark<CR>",
 })
 
 -- windows

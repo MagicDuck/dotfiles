@@ -22,3 +22,8 @@ my.command {
   description = "edit snippets",
   cmd = ":EditSnippets<CR>"
 }
+
+vim.api.nvim_create_user_command('PickBookmark', function()
+  local bookmarks = require('my.config.bookmarks')
+  require('my.plugins.telescope.bookmark_picker').pickBookmark(bookmarks)
+end, {})

@@ -14,7 +14,6 @@ function M.load(opts)
     spec = opts.spec,
     defaults = {
       -- should plugins be lazy-loaded?
-      -- TODO (sbadragan): turn this to true after we add more stuff
       lazy = false,
 
       -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,

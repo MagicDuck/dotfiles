@@ -38,7 +38,7 @@ return {
             ["<C-k>"] = actions.select_prev_entry,
             ["[x"] = actions.prev_conflict,
             ["]x"] = actions.next_conflict,
-            -- TODO (sbadragan): normal! ]cdo will put the next diff in the index buffer. Then use write! to write it out
+            -- TODO: normal! ]cdo will put the next diff in the index buffer. Then use write! to write it out
           },
           file_history_panel = {
             ["<C-j>"] = actions.select_next_entry,

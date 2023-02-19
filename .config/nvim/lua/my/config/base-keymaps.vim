@@ -56,8 +56,9 @@ xnoremap p pgvy
 nnoremap vv V
 
 " line begin and end
-" TODO (sbadragan): can we do this for motions as well
 nnoremap H ^
-nnoremap L $
 vnoremap H ^
+onoremap H ^
+nnoremap L $
 vnoremap L $
+onoremap L $

@@ -13,7 +13,7 @@ return {
           \ 'shell': 'bash',
           \ 'json': 'javascript',
           \ }
-        " TODO (sbadragan): enable this or switch to different wiki thing
+        " TODO: enable this or switch to different wiki thing
         " let g:vimwiki_list = [wiki]
 
         let g:vimwiki_key_mappings = { 'links': 0 }

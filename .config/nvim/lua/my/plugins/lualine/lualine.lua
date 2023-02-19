@@ -150,7 +150,7 @@ require('lualine').setup {
   --   lualine_a = {},
   --   lualine_b = {
   --     { 'tabs',
-  --       -- TODO (sbadragan): temporary hack until they fix it tho use showtabline always
+  --       -- TODO: temporary hack until they fix it tho use showtabline always
   --       -- https://github.com/nvim-lualine/lualine.nvim/discussions/845
   --       cond = function()
   --         local lessThan2Tabs = #(vim.api.nvim_list_tabpages()) < 2

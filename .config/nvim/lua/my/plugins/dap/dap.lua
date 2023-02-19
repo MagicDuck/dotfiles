@@ -14,6 +14,3 @@ vim.api.nvim_create_user_command('MyDapReloadContinue', reload_continue, {})
 
 -- debug adapters
 -- Note: the java adapter is set up in jdtls.lua
-
--- TODO (sbadragan): things that we can add here:
--- -> can we start ondemand dev in cloud in debug mode and hot reoad changes?

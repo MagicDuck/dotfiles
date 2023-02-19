@@ -22,6 +22,7 @@ local lspFormatBuffer = function(bufnr)
 end
 
 local global_on_attach = function(client, bufnr)
+  -- Note: now using illuminate
   -- Set autocommands conditional on server_capabilities
   -- highlights for current symbol under cursor
   -- if client.server_capabilities.documentHighlightProvider then

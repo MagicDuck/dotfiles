@@ -317,26 +317,6 @@ my.keybind({
   rhs = ":lua if (vim.bo.filetype ~= 'alpha') then vim.cmd('Alpha') end<CR>",
 })
 
--- commenting
---my.keybind {
---  description = "comment: toggle comment",
---  mode = "nvsox",
---  lhs = "<leader>c",
---  rhs = "<Plug>NERDCommenterToggle"
---}
--- my.keybind({
---   description = "comment: toggle comment",
---   mode = "n",
---   lhs = "<leader>c",
---   rhs = "<Plug>kommentary_line_default",
--- })
--- my.keybind({
---   description = "comment: toggle comment",
---   mode = "vx",
---   lhs = "<leader>c",
---   rhs = "<Plug>kommentary_visual_default",
--- })
-
 -- git
 -- my.keybind({
 --   description = "git: status",

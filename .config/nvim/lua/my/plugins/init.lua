@@ -5,8 +5,6 @@ return {
   -- TODO (sbadragan): add this as a dependency where necessary?
   { "nvim-lua/plenary.nvim" },
 
-  { "junegunn/vim-easy-align" },
-
   -- git
   -- TODO (sbadragan): might not be needed
   -- { "nvim-lua/popup.nvim" },
@@ -21,8 +19,6 @@ return {
   { "voldikss/vim-floaterm" },
   { "tpope/vim-surround" },
   { "rafcamlet/nvim-luapad" },
-  -- devicons
-  { "nvim-tree/nvim-web-devicons" },
 
   { "onsails/lspkind-nvim" },
   { "neovim/nvim-lspconfig" },
@@ -40,22 +36,11 @@ return {
 
   { "jose-elias-alvarez/null-ls.nvim" },
 
-  -- TODO (sbadragan): maybe not needed since provided by kitty
-  { "moll/vim-bbye" },
-
   { "kmonad/kmonad-vim" },
-
-  {
-    "NTBBloodbath/rest.nvim",
-    commit = "e5f68db73276c4d4d255f75a77bbe6eff7a476ef",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
 
   -- LSP status spinner, somewhat annoying
   -- {"j-hui/fidget.nvim"},
 
-  -- TODO (sbadragan): should we use folke's
-  { "AmeerTaweel/todo.nvim" },
 
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
@@ -63,12 +48,10 @@ return {
 
   -- debugging
   { "mfussenegger/nvim-dap" },
-  { "rcarriga/nvim-dap-ui",             dependencies = { "mfussenegger/nvim-dap" } },
+  { "rcarriga/nvim-dap-ui",                        dependencies = { "mfussenegger/nvim-dap" } },
   { "nvim-telescope/telescope-dap.nvim" },
   { "jay-babu/mason-nvim-dap.nvim" },
 
   -- {"ibhagwan/fzf-lua"},
   -- {"kdheepak/lazygit.nvim"},
-  { "ekickx/clipboard-image.nvim" },
-  { 'toppair/peek.nvim',                run = 'deno task --quiet build:fast' }
 }

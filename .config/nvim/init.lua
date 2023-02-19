@@ -14,11 +14,7 @@ require("my/config/lazy")
 
 -- TODO (sbadragan): move these into the plugins dir
 require("my/completion")
-require("my/todo")
 require("my/lspkind")
 require("my/lsp/init")
 require("my/dap")
 require("my/telescope")
-require("my/devicons")
-require("my/rest")
-require("my/peek")

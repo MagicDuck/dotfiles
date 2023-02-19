@@ -55,4 +55,10 @@ return {
       require("my.lsp.init")
     end
   },
+  -- LSP status spinner, somewhat annoying
+  { "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup({ window = { winblend = 0 } })
+    end
+  },
 }

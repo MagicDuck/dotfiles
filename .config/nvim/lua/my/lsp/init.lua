@@ -15,6 +15,7 @@
 vim.env.NODE_OPTIONS = "--no-deprecation"
 
 -- TODO (sbadragan): figure this part out
+-- TODO (sbadragan): fix up the auto-format, now it says it's using a deprecated function
 if vim.g.myLspDisabled ~= true then
   require("my/lsp/null-ls")
   -- TODO (sbadragan): remove this dir
@@ -29,6 +30,7 @@ if vim.g.myLspDisabled ~= true then
   require("my/lsp/cssls")
   require("my/lsp/eslint")
   require("my/lsp/rust_analyzer")
+  -- TODO (sbadragan): move this over in another config specifically for jdtls?
   -- require("my/lsp/jdtls")
 end
 

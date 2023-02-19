@@ -1,24 +1,24 @@
 local lspFormatBuffer = function(bufnr)
-  local marks = {}
-  local letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  for i = 1, #letters do
-    local letter = letters:sub(i, i)
-    local markLocation = vim.api.nvim_buf_get_mark(bufnr, letter)
-    marks[letter] = markLocation
-  end
+  -- local marks = {}
+  -- local letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  -- for i = 1, #letters do
+  --   local letter = letters:sub(i, i)
+  --   local markLocation = vim.api.nvim_buf_get_mark(bufnr, letter)
+  --   marks[letter] = markLocation
+  -- end
 
   vim.lsp.buf.format({
     timeout_ms = 5000
   })
 
-  for i = 1, #letters do
-    local letter = letters:sub(i, i)
-    local markLocation = marks[letter]
-    local linenr = markLocation[1]
-    if linenr ~= 0 then
-      vim.api.nvim_command("" .. linenr .. "mark " .. letter)
-    end
-  end
+  -- for i = 1, #letters do
+  --   local letter = letters:sub(i, i)
+  --   local markLocation = marks[letter]
+  --   local linenr = markLocation[1]
+  --   if linenr ~= 0 then
+  --     vim.api.nvim_command("" .. linenr .. "mark " .. letter)
+  --   end
+  -- end
 end
 
 local global_on_attach = function(client, bufnr)

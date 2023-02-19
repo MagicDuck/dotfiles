@@ -3,7 +3,7 @@ return {
     name = "treesitter",
     version = false,
     lazy = true,
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
@@ -16,6 +16,7 @@ return {
 
       ts.setup({
         ensure_installed = { "javascript", "lua", "c", "vim", "help", "query" },
+        -- ensure_installed = "all",
         auto_install = true,
         ignore_install = { "comment" }, -- has some performance issues atm
         highlight = {

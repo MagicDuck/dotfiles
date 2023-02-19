@@ -300,6 +300,10 @@ export BAT_THEME='OneHalfLight'
 
 export PATH=~/git-fuzzy/bin:$PATH
 
+# Fix file limit exceeded issue
+# =========================================================================================
+ulimit -n 10240
+
 # Allows zsh -is eval "command" without exiting
 # see https://www.zsh.org/mla/users/2005/msg00599.html
 # =========================================================================================

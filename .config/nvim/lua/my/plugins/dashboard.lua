@@ -47,15 +47,14 @@ local function getBookmarks(startify)
 end
 
 local function getFortune()
-  return ""
-  -- local handle = io.popen('fortune -s')
-  -- local fortune = "";
-  -- if (handle ~= nil) then
-  --   fortune = handle:read("*a")
-  --   handle:close()
-  -- end
-  --
-  -- return fortune
+  local handle = io.popen('fortune -s')
+  local fortune = "";
+  if (handle ~= nil) then
+    fortune = handle:read("*a")
+    handle:close()
+  end
+
+  return fortune
 end
 
 return {
@@ -66,6 +65,7 @@ return {
     dependencies = {
       { 'nvim-tree/nvim-web-devicons' },
       { "nvim-lualine/lualine.nvim" },
+      { 'BlakeJC94/alpha-nvim-fortune' }
     },
     config = function()
       -- require('alpha').setup(require('alpha.themes.startify').config)
@@ -74,17 +74,33 @@ return {
       local alpha = require 'alpha'
       local startify = require 'alpha.themes.startify'
       local header = {
-        [[                                   __                ]],
-        [[      ___     ___    ___   __  __ /\_\    ___ ___    ]],
-        [[     / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-        [[    /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-        [[    \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-        [[     \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-        ""
+        -- [[                                   __                ]],
+        -- [[      ___     ___    ___   __  __ /\_\    ___ ___    ]],
+        -- [[     / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+        -- [[    /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+        -- [[    \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+        -- [[     \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
       }
-      for _, line in pairs(vim.fn.split(getFortune(), "\n")) do
+
+      local headerArt = [[
+     |\_/|
+     | @ @   Woof!
+     |   <>              _
+     |  _/\------____ ((| |))
+     |               `--' |
+ ____|_       ___|   |___.'
+/_/_____/____/_______| ]]
+      for _, line in pairs(vim.fn.split(headerArt, "\n")) do
+        table.insert(header, "     " .. line)
+      end
+
+      local fortune = require("alpha.fortune")
+      for _, line in pairs(fortune()) do
         table.insert(header, "    " .. line)
       end
+      -- for _, line in pairs(vim.fn.split(getFortune(), "\n")) do
+      --   table.insert(header, "    " .. line)
+      -- end
 
       startify.section.header.val = header
       startify.section.top_buttons.val = {
@@ -110,7 +126,7 @@ return {
       startify.config.layout = {
         { type = "padding", val = 1 },
         startify.section.header,
-        { type = "padding", val = 2 },
+        -- { type = "padding", val = 2 },
         startify.section.top_buttons,
         { -- mru
           type = "group",

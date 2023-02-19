@@ -4,10 +4,10 @@ vim.g.maplocalleader = ","
 
 
 -- see: https://neovim.io/doc/user/lua.html#vim.opt
-local opt       = vim.opt
+local opt = vim.opt
 
--- TODO (sbadragan): needed???
-opt.guifont     = "Knack_NF:h10:cANSI:qDRAFT"
+
+vim.cmd.filetype("on")
 opt.shiftwidth  = 2
 opt.softtabstop = 2
 opt.expandtab   = true

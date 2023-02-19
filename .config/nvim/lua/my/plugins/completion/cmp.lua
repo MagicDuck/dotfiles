@@ -27,10 +27,14 @@ cmp.setup({
     -- ["<Up>"] = cmp.mapping.select_prev_item(
     --   {behavior = cmp.SelectBehavior.Select}
     -- ),
-    ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-    ["<PageDown>"] = cmp.mapping(cmp.mapping.scroll_docs( -4), { "i", "c" }),
-    ["<PageUp>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+    -- ["<C-Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    -- ["<C-Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    ["<PageDown>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ["<PageUp>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    -- ["<PageDown>"] = cmp.mapping(cmp.mapping.scroll_docs( -4), { "i", "c" }),
+    -- ["<PageUp>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs( -4), { "i", "c" }),
+    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({
@@ -39,7 +43,7 @@ cmp.setup({
     }),
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    -- ["<CR>"] = cmp.mapping.confirm({ select = false }),
   },
   sources = cmp.config.sources({
     { name = "nvim_lua" },

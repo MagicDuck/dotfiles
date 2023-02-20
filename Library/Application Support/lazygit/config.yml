@@ -6,8 +6,8 @@ gui:
       - bold
     inactiveBorderColor:
       - '#4c4f69' # Text
-    optionsTextColor:
-      - '#1e66f5' # Blue
+    # optionsTextColor:
+      # - '#1e66f5' # Blue
     selectedLineBgColor:
       - '#F0E4DA' # Surface0
     selectedRangeBgColor:
@@ -34,5 +34,5 @@ gui:
 git:        
   paging:
     colorArg: always
-    pager: delta --syntax-theme OneHalfLight --line-numbers --features "line-numbers decorations" --whitespace-error-style "22 reverse" --paging=never
+    pager: delta --paging=never
 notARepository: 'skip'

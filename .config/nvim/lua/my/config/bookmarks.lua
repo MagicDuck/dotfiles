@@ -24,5 +24,6 @@ return {
   '/opt/repos/customer-config-ui-feature-definition/features.json',
   '/opt/repos/xm-api/src/main/java/com/xmatters/xm/repositories/FeatureToggleRepository.java',
   '/opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/keymap.c',
-  '~/notes/.obsidian.vimrc'
+  '~/notes/.obsidian.vimrc',
+  '/Users/stephanbadragan/Library/Application Support/lazygit/config.yml'
 }

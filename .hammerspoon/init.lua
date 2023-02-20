@@ -180,8 +180,19 @@ local superKeyBindings = {
     app = "TickTick",
   },
   {
-    key = "k",
+    key = "u",
     app = "Fork",
+  },
+  {
+    key = "k",
+    app = "kitty",
+    window = {
+      title = "lazygit",
+      launch = function()
+        kitty.launchWindow({ title = "lazygit", command = "/bin/zsh -is eval lazygit" })
+        -- kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim +VimwikiIndex" })
+      end,
+    },
   },
   {
     key = "l",
@@ -207,18 +218,18 @@ local superKeyBindings = {
     key = "s",
     app = "Slack",
   },
-  {
-    key = "u",
-    app = "kitty",
-    window = {
-      title = "notes",
-      launch = function()
-        kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim ~/notes/index.md" })
-        -- kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim +VimwikiIndex" })
-      end,
-    },
-  },
   -- {
+  --   key = "u",
+  --   app = "kitty",
+  --   window = {
+  --     title = "notes",
+  --     launch = function()
+  --       kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim ~/notes/index.md" })
+  --       -- kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim +VimwikiIndex" })
+  --     end,
+  --   },
+  -- },
+  -- -- {
   --   key = "u",
   --   app = "Obsidian",
   -- },

@@ -9,10 +9,23 @@
     diffFilter = delta --color-only
 
 [delta]
-  syntax-theme = OneHalfLight
+  syntax-theme = GitHub
   line-numbers = true
   features = line-numbers decorations
-  whitespace-error-style = 22 reverse
+  light = true
+  navigate = true
+  side-by-side = false
+  minus-style = syntax "#fbdada"
+  minus-emph-style = syntax "#f6b6b6"
+  plus-style = syntax "#E4F4E4"
+  plus-emph-style = syntax "#CCF4CC"
+  map-styles = \
+    bold purple => syntax "#feecf7", \
+    bold blue => syntax "#e5dff6", \
+    bold cyan => syntax "#d8fdf6", \
+    bold yellow => syntax "#f4ffe0"
+  zero-style = syntax
+  whitespace-error-style = "#aaaaaa"
 
 [delta "decorations"]
 #  commit-decoration-style = bold yellow box ul
@@ -25,7 +38,7 @@ file-style = bold
 [mergetool]
   rompt = false
   rustExitCode = true
-	keepBackup = false
+  keepBackup = false
 [mergetool "nvimdiff4"]
 #  cmd = vim -d $LOCAL $BASE $REMOTE $MERGED -c 'CocDisable' -c '$wincmd w' -c 'wincmd J' -c 'Git mergetool'
   cmd = vim -d $LOCAL $BASE $REMOTE $MERGED --cmd ':lua vim.g.myLspDisabled=true' -c '$wincmd w' -c 'wincmd J' -c 'normal ]c'
@@ -37,10 +50,10 @@ file-style = bold
 	prompt = false
 [diff]
   colorMoved = default
-	tool = bc3
+  tool = bc3
 [alias]
-	s = status
-	b = ! git checkout $(git branch | fzf)
+  s = status
+  b = ! git checkout $(git branch | fzf)
   nb = "!f(){ git checkout -b $1 && git fetch origin ${2:-main} && git reset --hard origin/${2:-main}; };f"
   squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 [push]

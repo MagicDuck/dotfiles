@@ -293,7 +293,9 @@ export PATH="$PNPM_HOME:$PATH"
 # BAT
 # =========================================================================================
 
-export BAT_THEME='OneHalfLight'
+# export BAT_THEME='OneHalfLight'
+# export BAT_THEME='Coldark-Cold'
+export BAT_THEME='GitHub'
 
 # Git fuzzy
 # =========================================================================================

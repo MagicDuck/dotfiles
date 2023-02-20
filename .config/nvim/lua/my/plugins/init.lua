@@ -3,5 +3,5 @@ return {
 
   -- Potential plugins to add
   -- {"ibhagwan/fzf-lua"},
-  -- {"kdheepak/lazygit.nvim"},
+  -- { "kdheepak/lazygit.nvim" },
 }

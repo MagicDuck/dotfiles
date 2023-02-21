@@ -2,12 +2,12 @@ vim.g.mapleader = " "
 -- TODO (sbadragan): should we have a different local map leader?
 vim.g.maplocalleader = ","
 
+vim.cmd.filetype("on")
+vim.cmd.filetype("plugin on")
 
 -- see: https://neovim.io/doc/user/lua.html#vim.opt
-local opt = vim.opt
+local opt       = vim.opt
 
-
-vim.cmd.filetype("on")
 opt.shiftwidth  = 2
 opt.softtabstop = 2
 opt.expandtab   = true

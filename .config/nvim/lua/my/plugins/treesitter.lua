@@ -15,9 +15,9 @@ return {
       local ts = require("nvim-treesitter.configs")
 
       ts.setup({
-        ensure_installed = { "javascript", "lua", "c", "vim", "help", "query" },
-        -- ensure_installed = "all",
-        auto_install = true,
+        -- ensure_installed = { "javascript", "lua", "c", "vim", "help", "query" },
+        ensure_installed = "all",
+        -- auto_install = true,
         ignore_install = { "comment" }, -- has some performance issues atm
         highlight = {
           enable = true,

@@ -2,10 +2,12 @@ gui:
   theme:
     lightTheme: true 
     activeBorderColor:
-      - '#40a02b' # Green
+      # - '#40a02b' # Green
+      - '#890F85'
       - bold
     inactiveBorderColor:
       - '#4c4f69' # Text
+      # - '#A2A4BB' # Text
     # optionsTextColor:
       # - '#1e66f5' # Blue
     selectedLineBgColor:
@@ -31,8 +33,13 @@ gui:
   showIcons: true
   showFileTree: false
   sidePanelWidth: 0.35
+  scrollHeight: 20
 git:        
   paging:
     colorArg: always
     pager: delta --paging=never
 notARepository: 'skip'
+keybinding:
+  universal:
+    quit: 'Q'
+    return-alt1: 'q'

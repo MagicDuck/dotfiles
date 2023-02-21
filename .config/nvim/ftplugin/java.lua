@@ -1,4 +1,4 @@
-local myJdtls = require("my/lsp/jdtls")
+local myJdtls = require("my/plugins/lsp/jdtls")
 
 vim.bo.tabstop = 4
 vim.bo.shiftwidth = 4

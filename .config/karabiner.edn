@@ -203,7 +203,7 @@
       [:!CSl :!TSpage_down] ; tab next 
 
       ; tab close
-      [:!Cd :!Cw] 
+      [:!Cx :!Cw] 
 
       ; tab history
       [:!Cw :!Copen_bracket] 

@@ -4,7 +4,9 @@ return {
     event = "VimEnter",
     config = function()
       require("project_nvim").setup {
-        scope_chdir = 'tab',
+        -- scope_chdir = 'tab',
+        detection_methods = { "pattern", "lsp" },
+        scope_chdir = 'win',
         patterns = {
           "package.json",
           ".git",

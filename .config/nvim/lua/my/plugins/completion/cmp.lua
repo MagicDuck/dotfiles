@@ -1,6 +1,8 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 vim.o.completeopt = "menu,menuone,noselect"
+-- see https://github.com/hrsh7th/nvim-cmp/issues/598
+vim.o.lazyredraw = false
 
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append("c")
@@ -11,6 +13,11 @@ cmp.setup({
     return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
       or require("cmp_dap").is_dap_buffer()
   end,
+  performance = {
+    debounce = 300,
+    throttle = 60,
+    fetching_timeout = 300,
+  },
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)

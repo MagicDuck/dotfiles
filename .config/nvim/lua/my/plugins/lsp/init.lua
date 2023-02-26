@@ -80,8 +80,8 @@ return {
       -- lsps
       require("my/plugins/lsp/lua-language-server")
       require("my/plugins/lsp/vimls")
-      -- require("my/lsp/tsserver")
-      require("my/plugins/lsp/vtsls")
+      require("my/plugins/lsp/tsserver")
+      -- require("my/plugins/lsp/vtsls")
       require("my/plugins/lsp/cssmodules")
       require("my/plugins/lsp/cssls")
       require("my/plugins/lsp/eslint")

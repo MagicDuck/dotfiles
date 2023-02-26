@@ -311,6 +311,10 @@ ulimit -n 10240
 # =========================================================================================
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 
+# ranger vim cursor support
+# =========================================================================================
+function ranger () { command ranger "$@"; echo -e "\e[?25h"; }
+
 # Allows zsh -is eval "command" without exiting
 # see https://www.zsh.org/mla/users/2005/msg00599.html
 # =========================================================================================

@@ -14,15 +14,13 @@ import PropTypes from 'prop-types';
 
 import style from './${name}.module.scss';
 
-export function ${name}({}) {
-
+export default function ${name}({}) {
+  // TODO (sbadragan): implement this component 
 }
 
 ${name}.displayName = '${name}';
-
 ${name}.propTypes = {
 };
-
 ${name}.defaultProps = {
 };
 `
@@ -32,6 +30,7 @@ fs.writeFile(
   `
 @import 'colors';
 @import 'fonts';
+// TODO (sbadragan): implement or remove this style
 `
 );
 fs.writeFile(
@@ -44,6 +43,7 @@ import ${name} from './${name}';
 const renderComponent = props => renderWithProviders(<${name} {...props} />);
 
 describe('${name}', () => {
+  // TODO (sbadragan): implement or remove this test
   it('renders correctly', () => {
     expect(renderComponent()).toMatchSnapshot();
   });

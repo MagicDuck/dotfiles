@@ -14,7 +14,7 @@ end
 lspconfig.tsserver.setup({
   init_options = {
     hostInfo = "neovim",
-    maxTsServerMemory = 4096,
+    -- maxTsServerMemory = 4096,
     disableAutomaticTypingAcquisition = true,
   },
   on_init = function(client)

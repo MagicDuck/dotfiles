@@ -1,7 +1,7 @@
 " do not wrap lines
 setlocal textwidth=0
 
-startinsert!
+" startinsert!
 
 " if !exists("g:jiraIdAdded") && getline(1) == ''
 "    let g:jiraIdAdded = "added"

@@ -16,18 +16,14 @@
   navigate = true
   side-by-side = false
   # see delta --show-config for all those
-  plus-empty-line-marker-style  = normal "#E4F4E4"
-  minus-style = syntax "#fbdada"
-  minus-emph-style = syntax "#f6b6b6"
-  plus-style = syntax "#E4F4E4"
-  plus-emph-style = syntax "#CCF4CC"
-  map-styles = \
-    bold purple => syntax "#feecf7", \
-    bold blue => syntax "#e5dff6", \
-    bold cyan => syntax "#d8fdf6", \
-    bold yellow => syntax "#f4ffe0"
+  plus-empty-line-marker-style  = normal "#D0D6CD"
+  minus-style = syntax "#E6C7C8"
+  minus-emph-style = syntax "#EAACAF"
+  plus-style = syntax "#E2E8DF"
+  plus-emph-style = syntax "#AED6D6"
   zero-style = syntax
   whitespace-error-style = "#aaaaaa"
+  hyperlinks = true
 
 [delta "decorations"]
 #  commit-decoration-style = bold yellow box ul

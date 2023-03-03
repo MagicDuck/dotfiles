@@ -31,7 +31,7 @@ local function completeAndInsertFirstMatch()
   cmp.complete()
   doWhenCmpVisible(function()
     cmp.select_next_item()
-  end, 1100, 10)
+  end, 1100, 50)
 end
 
 require("cmp_nvim_lsp").setup() -- not sure why this does not auto-exec

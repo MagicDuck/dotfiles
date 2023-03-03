@@ -15,7 +15,7 @@ end
 require("cmp_nvim_lsp").setup() -- not sure why this does not auto-exec
 cmp.setup({
   enabled = function()
-    return require("cmp_dap").is_dap_buffer()
+    return not require("cmp_dap").is_dap_buffer()
     --vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
   end,
   performance = {
@@ -37,14 +37,15 @@ cmp.setup({
         -- they way you will only jump inside the snippet region
       elseif require('luasnip').expand_or_jumpable() then
         require('luasnip').expand_or_jump()
-      elseif has_words_before() then
+        -- elseif has_words_before() then
+      else
         cmp.complete()
         vim.wait(500, function()
           return cmp.visible()
         end, 100)
         cmp.select_next_item()
-      else
-        fallback()
+        -- else
+        --   fallback()
       end
     end, { "i", "s", "c" }),
 

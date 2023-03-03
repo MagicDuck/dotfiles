@@ -75,9 +75,12 @@ return {
     lazy = true,
     event = { "VeryLazy" },
   },
-  { "kshenoy/vim-signature",
+  { "chentoast/marks.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    config = function()
+      require 'marks'.setup {}
+    end
   }, -- for marks to show in gutter
   { "AmeerTaweel/todo.nvim",
     lazy = true,

@@ -73,6 +73,7 @@ require('nightfox').setup({
 
       TelescopeMatching = { fg = "#d05858", style = "bold" },
       SignatureMarkText = { fg = "#B4703E", style = "bold" },
+      MarkSignHL = { fg = "#B4703E", style = "bold" },
 
       BqfSign = { fg = "#F8FBF6", bg = "#896a98", style = "bold" },
 

@@ -14,8 +14,26 @@ end
 lspconfig.tsserver.setup({
   init_options = {
     hostInfo = "neovim",
-    -- maxTsServerMemory = 4096,
+    -- maxTsServerMemory = 2048,
     disableAutomaticTypingAcquisition = true,
+    preferences = {
+      includeCompletionsForModuleExports = true,
+      includeCompletionsWithSnippetText = false,
+      includeCompletionsWithInsertText = false,
+      includeCompletionsWithClassMemberSnippets = false,
+      includeCompletionsWithObjectLiteralMethodSnippets = false,
+      -- importModuleSpecifierPreference = "shortest",
+      importModuleSpecifierEnding = "minimal",
+      includeInlayParameterNameHints = "none",
+      includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+      includeInlayFunctionParameterTypeHints = false,
+      includeInlayVariableTypeHints = false,
+      includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+      includeInlayPropertyDeclarationTypeHints = false,
+      includeInlayFunctionLikeReturnTypeHints = false,
+      includeInlayEnumMemberValueHints = true,
+      allowIncompleteCompletions = true,
+    }
   },
   on_init = function(client)
     -- This makes sure tsserver is not used for formatting (prefer prettier)

@@ -12,6 +12,28 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local function doWhenCmpVisible(fn, timeout, poll_interval)
+  if cmp.visible() then
+    fn()
+    return
+  end
+
+  if timeout <= 0 then
+    return
+  end
+
+  vim.defer_fn(function()
+    doWhenCmpVisible(fn, timeout - poll_interval, poll_interval)
+  end, poll_interval)
+end
+
+local function completeAndInsertFirstMatch()
+  cmp.complete()
+  doWhenCmpVisible(function()
+    cmp.select_next_item()
+  end, 1100, 10)
+end
+
 require("cmp_nvim_lsp").setup() -- not sure why this does not auto-exec
 cmp.setup({
   enabled = function()
@@ -21,7 +43,7 @@ cmp.setup({
   performance = {
     -- debounce = 500,
     -- throttle = 550,
-    fetching_timeout = 200,
+    fetching_timeout = 1000, -- to account for slow tsserver
   },
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -30,34 +52,69 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-        -- they way you will only jump inside the snippet region
-      elseif require('luasnip').expand_or_jumpable() then
-        require('luasnip').expand_or_jump()
-        -- elseif has_words_before() then
-      else
-        cmp.complete()
-        vim.wait(500, function()
-          return cmp.visible()
-        end, 100)
-        cmp.select_next_item()
-        -- else
-        --   fallback()
+    ["<Tab>"] = cmp.mapping({
+      c = function()
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          completeAndInsertFirstMatch()
+        end
+      end,
+      i = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+          -- they way you will only jump inside the snippet region
+          -- elseif require('luasnip').expand_or_jumpable() then
+          --   require('luasnip').expand_or_jump()
+        elseif has_words_before() then
+          completeAndInsertFirstMatch()
+        else
+          fallback()
+        end
+      end,
+      s = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+          -- they way you will only jump inside the snippet region
+        elseif require('luasnip').expand_or_jumpable() then
+          require('luasnip').expand_or_jump()
+        elseif has_words_before() then
+          completeAndInsertFirstMatch()
+        else
+          fallback()
+        end
       end
-    end, { "i", "s", "c" }),
+    }),
 
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif require('luasnip').jumpable( -1) then
-        require('luasnip').jump( -1)
-      else
-        fallback()
+    ["<S-Tab>"] = cmp.mapping({
+      c = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
+      i = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif require('luasnip').jumpable( -1) then
+          require('luasnip').jump( -1)
+        else
+          fallback()
+        end
+      end,
+      s = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        elseif require('luasnip').jumpable( -1) then
+          require('luasnip').jump( -1)
+        else
+          fallback()
+        end
       end
-    end, { "i", "s", "c" }),
+    }),
 
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
@@ -74,10 +131,17 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = "nvim_lua" },
-    { name = "nvim_lsp" },
+    { name = "nvim_lsp",
+      -- priority = 100,
+      -- max_item_count = 20,
+      -- group_index = 1
+    },
     { name = "path" },
     {
       name = "buffer",
+      -- group_index = 2,
+      max_item_count = 20,
+      -- priority = 10,
       option = {
         -- look for stuff in all buffers
         -- get_bufnrs = function()

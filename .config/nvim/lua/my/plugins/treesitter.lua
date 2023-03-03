@@ -100,7 +100,7 @@ return {
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = ",v",
+            init_selection = "vv",
             node_incremental = "<Up>",
             node_decremental = "<Down>",
             -- scope_incremental = "<Left>",

@@ -6,9 +6,9 @@ cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
 cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 
 " better completion
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <c-j> ("\<C-n>")
-inoremap <expr> <c-k> ("\<C-p>")
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <c-j> ("\<C-n>")
+" inoremap <expr> <c-k> ("\<C-p>")
 
 " slightly easier :command
 noremap ; :
@@ -53,7 +53,7 @@ nnoremap X <c-v>
 xnoremap p pgvy
 
 " easier visual line select
-nnoremap vv V
+" nnoremap vv V
 
 " line begin and end
 nnoremap H ^

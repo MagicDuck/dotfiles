@@ -2,7 +2,7 @@
 setlocal textwidth=0
 
 goto 1
-startinsert
+startinsert!
 
 " if !exists("g:jiraIdAdded") && getline(1) == ''
 "    let g:jiraIdAdded = "added"

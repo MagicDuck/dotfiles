@@ -4,7 +4,7 @@ import { stripIndent } from "common-tags";
 
 let name = await question("Component name? ");
 await $`mkdir ${name}`;
-fs.writeFile(`${name}/index.js`, `export {default} from "./${name}.jsx"`);
+fs.writeFile(`${name}/index.js`, `export {default} from "./${name}"`);
 fs.writeFile(
   `${name}/${name}.jsx`,
   stripIndent`

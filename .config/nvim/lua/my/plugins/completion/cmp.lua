@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
-vim.o.completeopt = "menu,menuone,noselect"
+vim.o.completeopt = "menu,menuone"
 -- see https://github.com/hrsh7th/nvim-cmp/issues/598
 vim.o.lazyredraw = false
 
@@ -13,7 +13,7 @@ local has_words_before = function()
 end
 
 local function doWhenCmpVisible(fn, timeout, poll_interval)
-  if cmp.visible() then
+  if cmp.visible() and #cmp.get_entries() > 0 then
     fn()
     return
   end
@@ -31,7 +31,7 @@ local function completeAndInsertFirstMatch()
   cmp.complete()
   doWhenCmpVisible(function()
     cmp.select_next_item()
-  end, 1100, 50)
+  end, 1100, 10)
 end
 
 require("cmp_nvim_lsp").setup() -- not sure why this does not auto-exec
@@ -44,6 +44,19 @@ cmp.setup({
     -- debounce = 500,
     -- throttle = 550,
     fetching_timeout = 1000, -- to account for slow tsserver
+  },
+  view = {
+    entries = { name = 'wildmenu' }
+  },
+  -- experimental = {
+  --   ghost_text = true
+  -- },
+  -- preselect = cmp.PreselectMode.None,
+  completion = {
+    keyword_length = 3,
+    -- autocomplete = true,
+    -- autocomplete = false,
+    -- keyword_length = 0,
   },
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -65,8 +78,8 @@ cmp.setup({
           cmp.select_next_item()
           -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
           -- they way you will only jump inside the snippet region
-        elseif require('luasnip').expand_or_jumpable() then
-          require('luasnip').expand_or_jump()
+          -- elseif require('luasnip').expand_or_locally_jumpable() then
+          --   require('luasnip').expand_or_jump()
         elseif has_words_before() then
           completeAndInsertFirstMatch()
         else
@@ -78,8 +91,8 @@ cmp.setup({
           cmp.select_next_item()
           -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
           -- they way you will only jump inside the snippet region
-        elseif require('luasnip').expand_or_jumpable() then
-          require('luasnip').expand_or_jump()
+          -- elseif require('luasnip').expand_or_locally_jumpable() then
+          --   require('luasnip').expand_or_jump()
         elseif has_words_before() then
           completeAndInsertFirstMatch()
         else
@@ -99,8 +112,8 @@ cmp.setup({
       i = function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif require('luasnip').jumpable( -1) then
-          require('luasnip').jump( -1)
+          -- elseif require('luasnip').jumpable( -1) then
+          --   require('luasnip').jump( -1)
         else
           fallback()
         end
@@ -108,8 +121,8 @@ cmp.setup({
       s = function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif require('luasnip').jumpable( -1) then
-          require('luasnip').jump( -1)
+          -- elseif require('luasnip').jumpable( -1) then
+          --   require('luasnip').jump( -1)
         else
           fallback()
         end
@@ -118,9 +131,13 @@ cmp.setup({
 
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    ["<C-tab>"] = cmp.mapping.confirm({ select = true }),
 
-    ["<C-space>"] = cmp.mapping.complete(),
+    ["<C-space>"] = cmp.mapping.complete({ config = {
+      view = {
+        entries = { name = 'custom' }
+      },
+    } }),
     ["<PageUp>"] = cmp.mapping.scroll_docs( -4),
     ["<PageDown>"] = cmp.mapping.scroll_docs(4),
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
@@ -137,6 +154,7 @@ cmp.setup({
       -- group_index = 1
     },
     { name = "path" },
+    { name = "luasnip" }, -- For luasnip users.
     {
       name = "buffer",
       -- group_index = 2,
@@ -157,7 +175,6 @@ cmp.setup({
         end
       },
     },
-    { name = "luasnip" }, -- For luasnip users.
   }),
   formatting = {
     -- Youtube: How to set up nice formatting for your sources.
@@ -173,12 +190,6 @@ cmp.setup({
     }),
   },
   ["window.documentation"] = cmp.config.window.bordered(),
-  preselect = cmp.PreselectMode.None,
-  completion = {
-    autocomplete = false,
-    -- keyword_length = 3,
-    keyword_length = 0,
-  },
 })
 
 -- show completion in dap

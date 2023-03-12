@@ -72,38 +72,38 @@ return {
               ["am"] = "@my.comment",
             },
           },
-          swap = {
-            enable = true,
-            swap_previous = {
-              ["<Left>s"] = "@parameter.inner",
-            },
-            swap_next = {
-              ["<Right>s"] = "@parameter.inner",
-            },
-          },
+          -- swap = {
+          --   enable = true,
+          --   swap_previous = {
+          --     ["<Left>s"] = "@parameter.inner",
+          --   },
+          --   swap_next = {
+          --     ["<Right>s"] = "@parameter.inner",
+          --   },
+          -- },
           move = {
             enable = true,
             goto_previous_start = {
-              ["<Left>j"] = "@function.outer",
+              ["<leader>kd"] = "@function.outer",
             },
             goto_next_start = {
-              ["<Right>j"] = "@function.outer",
+              ["<leader>jd"] = "@function.outer",
             },
             goto_previous_end = {
-              ["<Left>k"] = "@function.outer",
+              ["<leader>kD"] = "@function.outer",
             },
             goto_next_end = {
-              ["<Right>k"] = "@function.outer",
+              ["<leader>jD"] = "@function.outer",
             },
           },
         },
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "vv",
-            node_incremental = "<Up>",
-            node_decremental = "<Down>",
-            -- scope_incremental = "<Left>",
+            init_selection = "<bs>",
+            node_incremental = "<bs>",
+            node_decremental = "<del>",
+            scope_incremental = "<a-bs>",
           },
         },
         indent = {

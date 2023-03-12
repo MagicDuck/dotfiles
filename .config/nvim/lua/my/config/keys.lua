@@ -5,13 +5,6 @@ my.keybind({
   rhs = ":lua require('my/plugins/telescope/command_picker').pickKeybindOrCommand({mode = 'n'})<CR>",
 })
 
--- config reload
-my.keybind({
-  description = "reload: vim config",
-  lhs = "<leader>R",
-  rhs = ":lua my.reloadVim()<CR>",
-})
-
 -- copy/paste/save
 my.keybind({
   description = "copy",
@@ -78,24 +71,24 @@ my.keybind({
 -- line
 my.keybind({
   description = "line: paste on line above, keeping indentation",
-  lhs = "<up>p",
-  rhs = "[p",
+  lhs = "gP",
+  rhs = "O<esc>[p",
 })
 my.keybind({
   description = "line: paste on line below, keeping indentation",
-  lhs = "<down>p",
-  rhs = "]p",
+  lhs = "gp",
+  rhs = "o<esc>]p",
 })
 
 -- quickfix list
 my.keybind({
   description = "quickfix list: next entry",
-  lhs = "<down>f",
+  lhs = "<leader>kf",
   rhs = ":Cprev<CR>",
 })
 my.keybind({
   description = "quickfix list: previous entry",
-  lhs = "<up>f",
+  lhs = "<leader>jf",
   rhs = ":Cnext<CR>",
 })
 my.keybind({
@@ -107,22 +100,22 @@ my.keybind({
 -- conflict resolution
 my.keybind({
   description = "conflict resolution: diff get from left",
-  lhs = "<left>o",
+  lhs = "<leader>jo",
   rhs = ":diffget 3<CR>",
 })
 my.keybind({
   description = "conflict resolution: diff get from right",
-  lhs = "<right>o",
+  lhs = "<leader>ko",
   rhs = ":diffget 1<CR>",
 })
 my.keybind({
   description = "conflict resolution: next conflict",
-  lhs = "<down>c",
+  lhs = "<leader>jc",
   rhs = "]n",
 })
 my.keybind({
   description = "conflict resolution: prev conflict",
-  lhs = "<up>c",
+  lhs = "<leader>kc",
   rhs = "[n",
 })
 
@@ -180,46 +173,6 @@ my.keybind({
   rhs = "<C-W>",
   options = { silent = false, noremap = true },
 })
--- my.keybind({
--- 	description = "window: navigate down",
--- 	lhs = "<leader>j",
--- 	rhs = "<C-W><C-J>",
--- })
--- my.keybind({
--- 	description = "window: navigate down (alt)",
--- 	lhs = "<C-j>",
--- 	rhs = "<C-W><C-J>",
--- })
-my.keybind({
-  description = "window: navigate up",
-  lhs = "<leader>k",
-  rhs = "<C-W><C-K>",
-})
--- my.keybind({
--- 	description = "window: navigate up (alt)",
--- 	lhs = "<C-k>",
--- 	rhs = "<C-W><C-K>",
--- })
--- my.keybind({
--- 	description = "window: navigate left",
--- 	lhs = "<leader>h",
--- 	rhs = "<C-W><C-H>",
--- })
--- my.keybind({
--- 	description = "window: navigate left (alt)",
--- 	lhs = "<C-h>",
--- 	rhs = "<C-W><C-H>",
--- })
--- my.keybind({
--- 	description = "window: navigate right",
--- 	lhs = "<leader>l",
--- 	rhs = "<C-W><C-l>",
--- })
--- my.keybind({
--- 	description = "window: navigate right (alt)",
--- 	lhs = "<C-l>",
--- 	rhs = "<C-W><C-l>",
--- })
 my.keybind({
   description = "window: resize down",
   lhs = "<M-j>",
@@ -240,14 +193,6 @@ my.keybind({
   lhs = "<M-l>",
   rhs = ":vertical resize +2<CR>",
 })
-
-for i = 1, 5, 1 do
-  my.keybind({
-    description = "window: jump to window " .. i,
-    lhs = "<leader>" .. i,
-    rhs = ":" .. i .. "wincmd w<CR>",
-  })
-end
 
 -- better nav for omnicomplete
 -- inoremap <expr> <c-j> ("\<C-n>")
@@ -327,25 +272,6 @@ my.keybind({
   rhs = ":lua if (vim.bo.filetype ~= 'alpha') then vim.cmd('Alpha') end<CR>",
 })
 
--- commenting
---my.keybind {
---  description = "comment: toggle comment",
---  mode = "nvsox",
---  lhs = "<leader>c",
---  rhs = "<Plug>NERDCommenterToggle"
---}
-my.keybind({
-  description = "comment: toggle comment",
-  mode = "n",
-  lhs = "<leader>c",
-  rhs = "<Plug>kommentary_line_default",
-})
-my.keybind({
-  description = "comment: toggle comment",
-  mode = "vx",
-  lhs = "<leader>c",
-  rhs = "<Plug>kommentary_visual_default",
-})
 
 -- git
 -- my.keybind({
@@ -594,12 +520,12 @@ my.keybind({
 })
 my.keybind({
   description = "lsp: diagnostics: go to previous",
-  lhs = "<up>d",
+  lhs = "<leader>kd",
   rhs = ":lua vim.diagnostic.goto_prev()<CR>",
 })
 my.keybind({
   description = "lsp: diagnostics: go to next",
-  lhs = "<down>d",
+  lhs = "<leader>jd",
   rhs = ":lua vim.diagnostic.goto_next()<CR>",
 })
 my.keybind({

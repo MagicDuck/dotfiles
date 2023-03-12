@@ -20,22 +20,48 @@ return {
           -- the presets plugin, adds help for a bunch of default keybindings in Neovim
           -- No actual key bindings are created
           presets = {
-            operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+            operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
             motions = false, -- adds help for motions
-            text_objects = false, -- help for text objects triggered after entering an operator
+            text_objects = true, -- help for text objects triggered after entering an operator
             windows = false, -- default bindings on <c-w>
             nav = true, -- misc bindings to work with windows
             z = false, -- bindings for folds, spelling and others prefixed with z
             g = true, -- bindings for prefixed with g
           },
         },
-        -- operators = { ys = "surround change" },
+        operators = { ys = "surround change" },
         popup_mappings = {
           scroll_down = '<PageDown>', -- binding to scroll down inside the popup
           scroll_up = '<PageUp>', -- binding to scroll up inside the popup
         },
         triggers = "auto"
         -- triggers = {} -- only manual opening
+      })
+
+      wk.register({
+        ["<leader>"] = {
+          e = { name = "+debugger" },
+          g = { name = "+git" },
+          j = { name = "+next" },
+          k = { name = "+prev" },
+          n = { name = "+notes" },
+          p = { name = "+preview" },
+          s = { name = "+search" },
+          t = { name = "+tab" },
+          u = { name = "+misc" },
+          y = { name = "+yank" },
+        },
+      })
+      wk.register({
+        mode = 'v',
+        ["<leader>"] = {
+          e = { name = "+debugger" },
+          g = { name = "+git" },
+          s = { name = "+search" },
+        },
+        ["g"] = {
+          r = { name = "+something" },
+        },
       })
     end
   }

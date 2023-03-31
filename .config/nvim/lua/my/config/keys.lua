@@ -1,3 +1,10 @@
+local nextLeaderKey = function(key)
+  return '<C-S-' .. key .. '>'
+end
+local prevLeaderKey = function(key)
+  return '<C-A-' .. key .. '>'
+end
+
 -- show Mappings picker
 my.keybind({
   description = "show a list of key bindings to pick from",
@@ -83,12 +90,12 @@ my.keybind({
 -- quickfix list
 my.keybind({
   description = "quickfix list: next entry",
-  lhs = "<leader>kf",
+  lhs = prevLeaderKey("f"),
   rhs = ":Cprev<CR>",
 })
 my.keybind({
   description = "quickfix list: previous entry",
-  lhs = "<leader>jf",
+  lhs = nextLeaderKey("f"),
   rhs = ":Cnext<CR>",
 })
 my.keybind({
@@ -100,22 +107,22 @@ my.keybind({
 -- conflict resolution
 my.keybind({
   description = "conflict resolution: diff get from left",
-  lhs = "<leader>jo",
+  lhs = nextLeaderKey('o'),
   rhs = ":diffget 3<CR>",
 })
 my.keybind({
   description = "conflict resolution: diff get from right",
-  lhs = "<leader>ko",
+  lhs = prevLeaderKey('o'),
   rhs = ":diffget 1<CR>",
 })
 my.keybind({
   description = "conflict resolution: next conflict",
-  lhs = "<leader>jc",
+  lhs = nextLeaderKey('c'),
   rhs = "]n",
 })
 my.keybind({
   description = "conflict resolution: prev conflict",
-  lhs = "<leader>kc",
+  lhs = prevLeaderKey('c'),
   rhs = "[n",
 })
 
@@ -163,6 +170,12 @@ my.keybind({
   description = "tab: pick tab using telescope",
   lhs = "<leader>tt",
   rhs = "<cmd>PickBookmark<CR>",
+})
+my.keybind({
+  description = "tab: rename",
+  lhs = "<leader>tr",
+  rhs = ":TabRename<space>",
+  options = { silent = false, noremap = true },
 })
 
 -- windows
@@ -520,12 +533,12 @@ my.keybind({
 })
 my.keybind({
   description = "lsp: diagnostics: go to previous",
-  lhs = "<leader>kd",
+  lhs = prevLeaderKey('d'),
   rhs = ":lua vim.diagnostic.goto_prev()<CR>",
 })
 my.keybind({
   description = "lsp: diagnostics: go to next",
-  lhs = "<leader>jd",
+  lhs = nextLeaderKey('d'),
   rhs = ":lua vim.diagnostic.goto_next()<CR>",
 })
 my.keybind({

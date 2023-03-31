@@ -19,8 +19,9 @@ return {
     end
   },
   { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim",
-    lazy = true,
-    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+    lazy = false,
+    -- lazy = true,
+    -- event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
       local actions = require("diffview.actions")
 

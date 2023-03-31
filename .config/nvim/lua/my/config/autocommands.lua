@@ -89,6 +89,17 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   group = augroup("force_formatoptions"),
   callback = function()
-    vim.bo.formatoptions = "jqlnt" -- disable auto-comments
+    -- vim.bo.formatoptions = "jqlnt" -- disable auto-comments
+    vim.opt.formatoptions:remove { "c", "r", "o" }
+  end,
+})
+
+-- start in insert mode at end of line in git commit
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+  group = augroup("gitcommit_start_end_of_line"),
+  pattern = { "COMMIT_EDITMSG" },
+  callback = function()
+    vim.cmd('goto 1');
+    vim.cmd('startinsert!');
   end,
 })

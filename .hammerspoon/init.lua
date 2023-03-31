@@ -18,12 +18,12 @@ hs.ipc.cliInstall()
 -------------------------------------------------------------------
 -- Network, auto-switch WIFI off when wired is on and vice-versa
 -------------------------------------------------------------------
-local network = require("./network")
-network.setEthernetInterfaceName("AX88179A")
-local networkWatcher = hs.network.configuration.open()
-networkWatcher:monitorKeys()
-networkWatcher:setCallback(network.handleNetworkChange)
-networkWatcher:start()
+-- local network = require("./network")
+-- network.setEthernetInterfaceName("AX88179A")
+-- local networkWatcher = hs.network.configuration.open()
+-- networkWatcher:monitorKeys()
+-- networkWatcher:setCallback(network.handleNetworkChange)
+-- networkWatcher:start()
 
 -------------------------------------------------------------------
 -- Gitlab
@@ -213,6 +213,7 @@ local superKeyBindings = {
   {
     key = "r",
     app = "Google Chrome",
+    -- app = "Firefox",
   },
   {
     key = "s",

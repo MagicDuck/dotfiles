@@ -38,8 +38,23 @@ git:
   paging:
     colorArg: always
     pager: delta --paging=never
+  autoFetch: false
 notARepository: 'skip'
 keybinding:
   universal:
     quit: 'Q'
     return-alt1: 'q'
+services:
+  'gitlab.eb-tools.com': 'gitlab:gitlab.eb-tools.com'
+promptToReturnFromSubprocess: false
+customCommands:
+  - key: '<enter>'
+    context: commitFiles
+    description: open commit file in nvim diffview
+    command:  nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^! -- {{.SelectedCommitFile.Name}}'
+    subprocess: true
+  - key: 'O'
+    context: commits
+    description: open commit files in nvim diffview
+    command:  nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^!'
+    subprocess: true

@@ -252,7 +252,7 @@ alias git_cleanup_bugfix_branches="git branch | grep bugfix/ | xargs git branch 
 alias git_cleanup_branches="git branch | grep -v '*' | grep -v 'master' | xargs git branch -D"
 
 alias clean-gradle-cache="find ~/.gradle -type f -name \"*.lock\" -delete"
-alias frontend-changed-strings="cd /opt/repos/frontend/reactUi/src/translations; git --no-pager diff --unified=0 origin/main:./en.json ./en.json | sed '/^@/d' | sed '/^\\+\\+\\+/d' | sed '/^---/d' | sed 's/^\\+  //'; cd -"
+alias frontend-changed-strings="cd /opt/repos/frontend/reactUi/src/translations; git --no-pager diff --unified=0 origin/main:./en.json ./en.json | /usr/bin/sed '/^@/d' | /usr/bin/sed '/^\\+\\+\\+/d' | /usr/bin/sed '/^---/d' | /usr/bin/sed 's/^\\+  //'; cd -"
 alias list_listening_procs="sudo lsof -iTCP -sTCP:LISTEN -n -P"
 alias qa-automation-run-kramerica="yarn install && yarn run cypress open --config baseUrl=$KRAMERICA_URL --env username=$KRAMERICA_USER,password=$KRAMERICA_PASSWORD,allure=false"
 alias yarn-test-changed="yarn run test --watch --changedSince=origin/main"
@@ -287,8 +287,8 @@ source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh
 
 # pnpm
 # =========================================================================================
-export PNPM_HOME="/Users/stephanbadragan/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+# export PNPM_HOME="/Users/stephanbadragan/Library/pnpm"
+# export PATH="$PNPM_HOME:$PATH"
 
 # BAT
 # =========================================================================================

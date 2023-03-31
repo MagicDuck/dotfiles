@@ -13,6 +13,7 @@ vim.opt.laststatus = 0
 vim.opt.swapfile = false
 vim.opt.signcolumn = "no"
 vim.opt.number = true
+vim.cmd([[ set shortmess+=A ]])
 
 -- keymap overrides
 vim.keymap.set("n", "q", "<cmd>q!<cr>", {})

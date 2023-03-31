@@ -39,7 +39,7 @@ file-style = bold
   keepBackup = false
 [mergetool "nvimdiff4"]
 #  cmd = vim -d $LOCAL $BASE $REMOTE $MERGED -c 'CocDisable' -c '$wincmd w' -c 'wincmd J' -c 'Git mergetool'
-  cmd = vim -d $LOCAL $BASE $REMOTE $MERGED --cmd ':lua vim.g.myLspDisabled=true' -c '$wincmd w' -c 'wincmd J' -c 'normal ]c'
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED --cmd ':lua vim.g.myLspDisabled=true' -c '$wincmd w' -c 'wincmd J' -c 'normal ]c'
 [mergetool "idea"]
     cmd = /usr/local/bin/hs -c \"hs.application.open('IntelliJ IDEA')\" && /usr/local/bin/idea merge \"$LOCAL\" \"$REMOTE\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
     # cmd = /usr/local/bin/hs -c "hs.application.open('IntelliJ IDEA')" && /usr/local/bin/idea merge $(cd $(dirname \"$LOCAL\") && pwd)/$(basename \"$LOCAL\") $(cd $(dirname \"$REMOTE\") && pwd)/$(basename \"$REMOTE\") $(cd $(dirname \"$BASE\") && pwd)/$(basename \"$BASE\") $(cd $(dirname \"$MERGED\") && pwd)/$(basename \"$MERGED\")

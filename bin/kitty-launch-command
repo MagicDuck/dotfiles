@@ -19,20 +19,20 @@ case "$cmd" in
         kitty @send-text "vim\n"
         ;;
     frontend-dev)
-        kitty @launch --type tab --location=after --title scratch  --cwd /opt/repos/frontend/reactUi
+        kitty @launch --type tab --location=after --title scratch  --cwd /opt/repos/frontend
         kitty @launch --type tab --location=after --title vim  --cwd /opt/repos/frontend/reactUi zsh -i
         kitty @send-text "vim src/Application/ApplicationShell/ApplicationShell.jsx\n"
-        kitty @launch --type tab --location=after --title webpack  --cwd /opt/repos/frontend/reactUi zsh -i
-        kitty @send-text "pnpm webpack-dev:cloud:hot --env customerUrl=kramerica.dev.xmatters.com\n"
+        kitty @launch --type tab --location=after --title webpack  --cwd /opt/repos/frontend zsh -i
+        kitty @send-text "pnpm react-ui:hot -- --env customerUrl=kramerica.dev.xmatters.com\n"
         kitty @ focus-tab --match title:vim
         ;;
     frontend-webpack)
-        kitty @launch --type tab --location=after --title webpack  --cwd /opt/repos/frontend/reactUi zsh -i
-        kitty @send-text "pnpm webpack-dev:cloud:hot --env customerUrl=kramerica.dev.xmatters.com\n"
+        kitty @launch --type tab --location=after --title webpack  --cwd /opt/repos/frontend zsh -i
+        kitty @send-text "pnpm react-ui:hot -- --env customerUrl=kramerica.dev.xmatters.com\n"
         ;;
     frontend-test-changed)
-        kitty @launch --type tab --location=after --title frontend-test-changed  --cwd /opt/repos/frontend/reactUi zsh -i
-        kitty @send-text "pnpm run test --watch --changedSince=origin/main\n"
+        kitty @launch --type tab --location=after --title frontend-test-changed  --cwd /opt/repos/frontend zsh -i
+        kitty @send-text "pnpm react-ui:test -- --watch --changedSince=origin/main\n"
         ;;
     frontend-test)
         kitty @launch --type tab --location=after --title frontend-test  --cwd /opt/repos/frontend/reactUi

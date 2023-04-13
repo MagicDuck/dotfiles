@@ -28,10 +28,10 @@ local function doWhenCmpVisible(fn, timeout, poll_interval)
 end
 
 local function completeAndInsertFirstMatch()
-  cmp.complete()
-  doWhenCmpVisible(function()
-    cmp.select_next_item()
-  end, 1100, 10)
+  -- cmp.complete()
+  -- doWhenCmpVisible(function()
+  cmp.select_next_item()
+  -- end, 1100, 10)
 end
 
 require("cmp_nvim_lsp").setup() -- not sure why this does not auto-exec
@@ -47,6 +47,12 @@ cmp.setup({
   },
   view = {
     entries = { name = 'wildmenu' }
+  },
+  confirmation = {
+    -- disable commit characters
+    get_commit_characters = function(commit_characters)
+      return {}
+    end
   },
   -- experimental = {
   --   ghost_text = true
@@ -201,7 +207,7 @@ require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {
-  completion = { autocomplete = false },
+  -- completion = { autocomplete = false },
   sources = {
     -- { name = 'buffer' }
     { name = 'buffer', option = { keyword_pattern = [=[[^[:blank:]].*]=] } }
@@ -210,7 +216,7 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
-  completion = { autocomplete = false },
+  -- completion = { autocomplete = false },
   sources = cmp.config.sources({
     { name = 'path' }
   }, {

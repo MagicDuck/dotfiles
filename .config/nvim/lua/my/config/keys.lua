@@ -118,12 +118,14 @@ my.keybind({
 my.keybind({
   description = "conflict resolution: next conflict",
   lhs = nextLeaderKey('c'),
-  rhs = "]n",
+  -- rhs = "]n",
+  rhs = "<Plug>(unimpaired-context-next)",
 })
 my.keybind({
   description = "conflict resolution: prev conflict",
   lhs = prevLeaderKey('c'),
-  rhs = "[n",
+  -- rhs = "[n",
+  rhs = "<Plug>(unimpaired-context-previous)",
 })
 
 -- tabs

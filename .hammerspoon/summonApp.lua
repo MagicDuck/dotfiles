@@ -19,7 +19,7 @@ local function updateFocusState(window)
     lastFocusedWindow = currentlyFocusedWindow
     currentlyFocusedWindow = window
     currentlyFocusedAppName = window:application():name()
-    print('-- Focused: (App: "' .. currentlyFocusedAppName .. '", Window: "' .. window:title() .. '")')
+    -- print('-- Focused: (App: "' .. currentlyFocusedAppName .. '", Window: "' .. window:title() .. '")')
     -- if lastFocusedWindow and window:title() == "Peek preview" and currentlyFocusedAppName == "deno" then
     --   local prevWin = lastFocusedWindow
     --   local previewWin = currentlyFocusedWindow

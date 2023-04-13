@@ -1,6 +1,6 @@
 gui:
   theme:
-    lightTheme: true 
+    lightTheme: true
     activeBorderColor:
       # - '#40a02b' # Green
       - '#890F85'
@@ -13,7 +13,8 @@ gui:
     selectedLineBgColor:
       - '#F0E4DA' # Surface0
     selectedRangeBgColor:
-      - '#E6D2BE' # Surface0
+      # - '#E6D2BE'
+      - reverse
     cherryPickedCommitBgColor:
       - '#179299' # Teal
     cherryPickedCommitFgColor:
@@ -44,11 +45,12 @@ keybinding:
   universal:
     quit: 'Q'
     return-alt1: 'q'
+    copyToClipboard: 'y'
 services:
   'gitlab.eb-tools.com': 'gitlab:gitlab.eb-tools.com'
 promptToReturnFromSubprocess: false
 customCommands:
-  - key: '<enter>'
+  - key: 'O'
     context: commitFiles
     description: open commit file in nvim diffview
     command:  nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^! -- {{.SelectedCommitFile.Name}}'

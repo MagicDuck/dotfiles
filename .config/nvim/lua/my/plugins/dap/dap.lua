@@ -4,9 +4,9 @@ local dap = require('dap')
 -- reloads configs and then continues
 local function reload_continue()
   if dap.status() == '' then
-    package.loaded['my/dap/debug-configurations'] = nil
+    package.loaded['my/plugins/dap/debug-configurations'] = nil
   end
-  require('my/dap/debug-configurations')
+  require('my/plugins/dap/debug-configurations')
   dap.continue()
 end
 

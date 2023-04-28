@@ -27,8 +27,8 @@ require('nightfox').setup({
       search = false,
     },
     module_default = true, -- Default enable value for modules
-    -- modules = {             -- List of various plugins and additional options
-    --   -- ...
+    -- modules = { -- List of various plugins and additional options
+    --   ['dap-ui'] = { enable = true }
     -- },
   },
   palettes = {
@@ -54,6 +54,9 @@ require('nightfox').setup({
 
         menubarInactiveAccent = "#65737e",
         menubarActiveAccent = "#896a98",
+
+        -- debugLineBg = "#F8FBF6"
+        debugLineBg = "#F0E0E0"
       }
     }
   },
@@ -116,6 +119,18 @@ require('nightfox').setup({
       -- Win Bar UI
       MyWinbarFilename = { bg = 'my.menubarBaseBg', fg = 'my.menubarBaseFg' },
       MyWinbarFiletype = { bg = 'my.menubarBaseBg', fg = 'my.menubarBaseFg', style = "bold" },
+
+      -- DapUi/Dap
+      DapUIPlayPause = { fg = 'my.menubarBaseFg' },
+      DapUIRestart = { fg = 'my.menubarBaseFg' },
+      DapUIStepOver = { fg = 'my.menubarBaseFg' },
+      DapUIStepInto = { fg = 'my.menubarBaseFg' },
+      DapUIStepBack = { fg = 'my.menubarBaseFg' },
+      DapUIStepOut = { fg = 'my.menubarBaseFg' },
+      DapUIStop = { fg = 'my.menubarBaseFg' },
+      DapStopped = { bg = 'my.debugLineBg' },
+      DapStoppedLine = { bg = 'my.debugLineBg' },
+      DapStoppedLineNumber = { bg = 'my.debugLineBg' }
     }
   },
 })

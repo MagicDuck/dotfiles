@@ -68,3 +68,9 @@ nnoremap gt :<C-u>action GotoTest<CR>
 nnoremap gj :<C-u>action EditorCodeBlockStart<CR>
 nnoremap gk :<C-u>action EditorCodeBlockEnd<CR>
 
+" marks
+nmap ma mA
+nmap mb mB
+nmap mc mC
+nmap md mD
+nmap me mE

@@ -262,6 +262,8 @@ alias ondemand-dev-in-cloud-stop="xm-instance-switch-version kramerica webui 0-x
 alias ebfd-ondemand-dev-in-cloud="cd /opt/repos/ondemand; ./gradlew bootRunDevInCloud -PgcpInstance=kramerica-ebfd -Pversion=0.x.stephanlocal -PdevInCloud=true -PrunVoiceXml=false -PrunSoap=false -i"
 alias ebfd-ondemand-dev-in-cloud-stop="xm-instance-switch-version kramerica-ebfd webui 0-x-main"
 alias ondemand-rebuild="cd /opt/repos/ondemand; ./gradlew clean build -x test -x analyzeClassesDependencies -x analyzeTestClassesDependencies"
+alias ondemand-webui-integ-test="cd /opt/repos/ondemand; ./gradlew webui:integTest --tests " # param need, ex: com.xmatters.exportimport.RelevanceEngineImportHandlerIntegTest.testImportEngineWithIntegrationNoAuthType
+alias ondemand-webui-integ-test-debug="cd /opt/repos/ondemand; ./gradlew webui:integTest --debug-jvm --tests " # listens to port 5005, param need, ex: com.xmatters.exportimport.RelevanceEngineImportHandlerIntegTest.testImportEngineWithIntegrationNoAuthType
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 alias qmk-flash-dactyl="qmk flash -kb handwired/dactyl_manuform/5x6 -km MagicDuck"

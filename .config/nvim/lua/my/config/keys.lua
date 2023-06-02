@@ -504,6 +504,16 @@ my.keybind({
   rhs = ":lua vim.lsp.buf.definition()<CR>",
 })
 my.keybind({
+  description = "lsp: symbol: go to definition in new tab",
+  lhs = "gt",
+  rhs = "<C-W>v<C-W>T:lua vim.lsp.buf.definition()<CR>",
+})
+my.keybind({
+  description = "lsp: symbol: go to definition in vertical split",
+  lhs = "gv",
+  rhs = "<C-W>v:lua vim.lsp.buf.definition()<CR>",
+})
+my.keybind({
   description = "lsp: symbol: go to type definition",
   lhs = "gy",
   rhs = ":lua vim.lsp.buf.type_definition()<CR>",
@@ -545,13 +555,18 @@ my.keybind({
 })
 my.keybind({
   description = "lsp: diagnostics: put all buffer diagnostics into the loclist",
-  lhs = ",f",
+  lhs = ",F",
   rhs = ":lua vim.diagnostic.setloclist()<CR>",
 })
 my.keybind({
   description = "lsp: format current buffer",
-  lhs = ",F",
+  lhs = ",fb",
   rhs = "<cmd>lua vim.lsp.buf.formatting()<CR>",
+})
+my.keybind({
+  description = "format json",
+  lhs = "<leader>fj",
+  rhs = ":%!jq .<CR>",
 })
 
 -- hop

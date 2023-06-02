@@ -19,7 +19,8 @@ hs.ipc.cliInstall()
 -- Network, auto-switch WIFI off when wired is on and vice-versa
 -------------------------------------------------------------------
 local network = require("./network")
-network.setEthernetInterfaceName("Ethernet Adapter (en6)") -- name shown when unplugged
+-- network.setEthernetInterfaceName("Ethernet Adapter (en6)") -- name shown when unplugged
+network.setEthernetInterfaceName("AX88179A") -- name shown when unplugged
 local networkWatcher = hs.network.configuration.open()
 networkWatcher:monitorKeys()
 networkWatcher:setCallback(network.handleNetworkChange)
@@ -230,6 +231,16 @@ local superKeyBindings = {
   --     end,
   --   },
   -- },
+  {
+    key = "u",
+    app = "kitty",
+    window = {
+      title = "scratchpad",
+      launch = function()
+        kitty.launchWindow({ title = "scratchpad", command = "/bin/zsh -is eval vim ~/scratchpad.md" })
+      end,
+    },
+  },
   -- -- {
   --   key = "u",
   --   app = "Obsidian",

@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# call example: instance-versions sbadragan
-
-INSTANCE="${1}";
-ENV="${2:-dev}";
-curl http://customerconfig.service.us-central1-$ENV.consul:8080/cv/1/instances/$INSTANCE | jq
-

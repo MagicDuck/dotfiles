@@ -37,14 +37,14 @@ function M.load(opts)
       rtp = {
         -- disable some rtp plugins
         disabled_plugins = {
-          "gzip",
+          -- "gzip",
           -- "matchit",
           -- "matchparen",
           -- "netrwPlugin",
-          "tarPlugin",
+          -- "tarPlugin",
           "tohtml",
           "tutor",
-          "zipPlugin",
+          -- "zipPlugin",
         },
       },
     },

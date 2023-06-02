@@ -18,7 +18,7 @@ lspconfig.vtsls.setup({
   settings = {
     typescript = {
       updateImportsOnFileMove = "always",
-      disableAutomaticTypeAcquisition = true,
+      -- disableAutomaticTypeAcquisition = true,
       format = {
         enable = false,
       }

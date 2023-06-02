@@ -22,8 +22,8 @@ exports.client_request = function(client)
     -- )
     if
       (customHandler and type(customHandler) == "table" and
-        customHandler.type == "local_lsp")
-     then
+      customHandler.type == "local_lsp")
+    then
       local context = {
         method = method,
         client_id = client.id,
@@ -101,30 +101,32 @@ end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   vim.lsp.with(
-  vim.lsp.handlers["textDocument/publishDiagnostics"],
-  -- vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    -- Enable underline, use default values
-    underline = false
-    -- Disable a feature
-    -- update_in_insert = false,
-  }
-)
+    vim.lsp.handlers["textDocument/publishDiagnostics"],
+    -- vim.lsp.diagnostic.on_publish_diagnostics,
+    {
+      -- Enable underline, use default values
+      underline = false
+      -- Disable a feature
+      -- update_in_insert = false,
+    }
+  )
 
 exports.tsserverPublishDiagnostics = function(_, result, ctx, config)
+  -- P(result.diagnostics)
   result.diagnostics =
     vim.tbl_filter(
-    function(diagnostic)
-      return vim.tbl_contains(
-        {
-          -- allow  name not found diagnostics
-          2304
-        },
-        diagnostic.code
-      )
-    end,
-    result.diagnostics
-  )
+      function(diagnostic)
+        return vim.tbl_contains(
+          {
+            -- allow  name not found diagnostics
+            2304,
+            2552
+          },
+          diagnostic.code
+        )
+      end,
+      result.diagnostics
+    )
   return vim.lsp.handlers["textDocument/publishDiagnostics"](
     nil,
     result,
@@ -136,16 +138,16 @@ end
 exports.diagnosticlsPublishDiagnostics = function(_, result, ctx, config)
   result.diagnostics =
     vim.tbl_map(
-    function(diagnostic)
-      if diagnostic.source == "eslint" then
-        if diagnostic.message:match("^%[eslint%] Parsing error:") ~= nil then
-          diagnostic.message = "[eslint] Parsing error"
+      function(diagnostic)
+        if diagnostic.source == "eslint" then
+          if diagnostic.message:match("^%[eslint%] Parsing error:") ~= nil then
+            diagnostic.message = "[eslint] Parsing error"
+          end
         end
-      end
-      return diagnostic
-    end,
-    result.diagnostics
-  )
+        return diagnostic
+      end,
+      result.diagnostics
+    )
   return vim.lsp.handlers["textDocument/publishDiagnostics"](
     nil,
     result,

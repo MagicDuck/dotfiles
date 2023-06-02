@@ -8,8 +8,8 @@ return {
         detection_methods = { "pattern", "lsp" },
         scope_chdir = 'win',
         patterns = {
-          "package.json",
           ".git",
+          -- "package.json",
           "_darcs",
           ".hg",
           ".bzr",

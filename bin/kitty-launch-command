@@ -9,6 +9,7 @@ frontend-test-changed
 frontend-test
 ondemand
 qmk-flash-dactyl
+vim-diff
 EOF
 
 local cmd
@@ -23,16 +24,18 @@ case "$cmd" in
         kitty @launch --type tab --location=after --title vim  --cwd /opt/repos/frontend/reactUi zsh -i
         kitty @send-text "vim src/Application/ApplicationShell/ApplicationShell.jsx\n"
         kitty @launch --type tab --location=after --title webpack  --cwd /opt/repos/frontend zsh -i
-        kitty @send-text "pnpm react-ui:hot --env customerUrl=kramerica.dev.xmatters.com\n"
+        # kitty @send-text "pnpm react-ui:hot --env customerUrl=kramerica.dev.xmatters.com\n"
+        kitty @send-text "pnpm dev\n"
         kitty @ focus-tab --match title:vim
         ;;
     frontend-webpack)
         kitty @launch --type tab --location=after --title webpack  --cwd /opt/repos/frontend zsh -i
-        kitty @send-text "pnpm react-ui:hot --env customerUrl=kramerica.dev.xmatters.com\n"
+        # kitty @send-text "pnpm react-ui:hot --env customerUrl=kramerica.dev.xmatters.com\n"
+        kitty @send-text "pnpm dev\n"
         ;;
     frontend-test-changed)
         kitty @launch --type tab --location=after --title frontend-test-changed  --cwd /opt/repos/frontend zsh -i
-        kitty @send-text "pnpm react-ui:test -- --watch --changedSince=origin/main\n"
+        kitty @send-text "pnpm react-ui:test -- --changedSince=origin/main\n"
         ;;
     frontend-test)
         kitty @launch --type tab --location=after --title frontend-test  --cwd /opt/repos/frontend/reactUi
@@ -43,6 +46,10 @@ case "$cmd" in
     qmk-flash-dactyl)
         kitty @launch --type tab --location=after --title qmk-flash --cwd /opt/repos/qmk_firmware zsh -i
         kitty @send-text "qmk-flash-dactyl\n"
+        ;;
+    vim-diff)
+        kitty @launch --type tab --location=after --title vim-diff --cwd -i
+        kitty @send-text "vim -c 'enew | vsplit | enew |' -c diffthis -c 'startinsert | wincmd h | startinsert'\n"
         ;;
     *)
         echo "No command defined for: $cmd"

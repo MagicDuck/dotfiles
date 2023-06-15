@@ -1,8 +1,10 @@
 local nextLeaderKey = function(key)
   return '<C-S-' .. key .. '>'
+  -- return ']' .. key
 end
 local prevLeaderKey = function(key)
   return '<C-A-' .. key .. '>'
+  -- return '[' .. key
 end
 
 -- show Mappings picker
@@ -28,19 +30,19 @@ my.keybind({
 my.keybind({
   description = "save",
   lhs = "<C-s>",
-  rhs = ":<C-U>w<CR>",
+  rhs = ":<C-U>w | lua vim.notify('saved ' .. vim.fn.expand('%'))<CR>",
 })
 my.keybind({
   description = "save (visual)",
   mode = "v",
   lhs = "<C-s>",
-  rhs = "<C-C>:w<CR>",
+  rhs = "<C-C>:w | lua vim.notify('saved ' .. vim.fn.expand('%'))<CR>",
 })
 my.keybind({
   description = "save (insert)",
   mode = "i",
   lhs = "<C-s>",
-  rhs = "<C-O>:w<CR>",
+  rhs = "<C-O>:w | lua vim.notify('saved ' .. vim.fn.expand('%'))<CR>",
 })
 
 -- buffer
@@ -67,12 +69,14 @@ my.keybind({
 my.keybind({
   description = "buffer: yank a jest unit test command for current file",
   lhs = "<leader>yt",
-  rhs = ':let @* = "env DEBUG_PRINT_LIMIT=100000 pnpm run test --maxWorkers=2 --watch " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
+  rhs =
+  ':let @* = "env DEBUG_PRINT_LIMIT=100000 pnpm run test --maxWorkers=2 --watch " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
 })
 my.keybind({
   description = "buffer: yank a jest unit test command for current file",
   lhs = "<leader>yd",
-  rhs = ':let @* = "env DEBUG_PRINT_LIMIT=100000 node --inspect ./node_modules/jest/bin/jest.js --watch --maxWorkers=2 " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
+  rhs =
+  ':let @* = "env DEBUG_PRINT_LIMIT=100000 node --inspect ./node_modules/jest/bin/jest.js --watch --maxWorkers=2 " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
 })
 
 -- line
@@ -338,21 +342,38 @@ my.keybind({
 })
 
 -- ranger
+-- my.keybind({
+--   description = "ranger: toggle open",
+--   lhs = "<leader>r",
+--   rhs = ":RnvimrToggle<CR>",
+-- })
+-- my.keybind({
+--   description = "ranger: toggle open (extra binding that works in terminal mode)",
+--   lhs = "<M-o>",
+--   rhs = ":RnvimrToggle<CR>",
+-- })
+-- my.keybind({
+--   mode = "t",
+--   description = "ranger: toggle open (extra binding that works in terminal mode)",
+--   lhs = "<M-o>",
+--   rhs = "<C-\\><C-n>:RnvimrToggle<CR>",
+-- })
+-- file browser
 my.keybind({
-  description = "ranger: toggle open",
+  description = "file browser: toggle open",
   lhs = "<leader>r",
-  rhs = ":RnvimrToggle<CR>",
+  rhs = ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
 })
 my.keybind({
   description = "ranger: toggle open (extra binding that works in terminal mode)",
   lhs = "<M-o>",
-  rhs = ":RnvimrToggle<CR>",
+  rhs = ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
 })
 my.keybind({
   mode = "t",
   description = "ranger: toggle open (extra binding that works in terminal mode)",
   lhs = "<M-o>",
-  rhs = "<C-\\><C-n>:RnvimrToggle<CR>",
+  rhs = "<C-\\><C-n>:Telescope file_browser path=%:p:h select_buffer=true<CR>",
 })
 
 -- easy align

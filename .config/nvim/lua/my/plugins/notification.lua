@@ -23,7 +23,17 @@ return {
     -- when noice is not enabled, install notify on VeryLazy
     if not lazyUtil.has("noice.nvim") then
       lazyUtil.on_very_lazy(function()
-        vim.notify = require("notify")
+        -- vim.notify = require("notify")
+        local banned_messages = { "This is spam" }
+
+        vim.notify = function(msg, ...)
+          for _, banned in ipairs(banned_messages) do
+            if msg == banned then
+              return
+            end
+          end
+          require("notify")(msg, ...)
+        end
       end)
     end
   end,

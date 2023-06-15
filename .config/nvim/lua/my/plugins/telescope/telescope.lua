@@ -1,6 +1,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
+local fb_actions = require "telescope._extensions.file_browser.actions"
 
 telescope.setup({
   -- prompt_position = "top",
@@ -80,7 +81,47 @@ telescope.setup({
     },
     file_browser = {
       initial_mode = "normal",
-    },
+      theme = "ivy",
+      prompt_path = true,
+      git_status = false,
+      quiet = true,
+      mappings = {
+        ["i"] = {
+          ["<A-c>"] = fb_actions.create,
+          ["<S-CR>"] = fb_actions.create_from_prompt,
+          ["<A-r>"] = fb_actions.rename,
+          ["<A-m>"] = fb_actions.move,
+          ["<A-y>"] = fb_actions.copy,
+          ["<A-d>"] = fb_actions.remove,
+          ["<C-o>"] = fb_actions.open,
+          ["<C-h>"] = fb_actions.goto_parent_dir,
+          ["<C-e>"] = fb_actions.goto_home_dir,
+          ["<C-w>"] = fb_actions.goto_cwd,
+          ["<C-l>"] = fb_actions.change_cwd,
+          ["<C-f>"] = fb_actions.toggle_browser,
+          ["<C-.>"] = fb_actions.toggle_hidden,
+          ["<C-s>"] = fb_actions.toggle_all,
+          ["<bs>"] = fb_actions.backspace,
+        },
+        ["n"] = {
+          ["c"] = fb_actions.create,
+          ["r"] = fb_actions.rename,
+          ["m"] = fb_actions.move,
+          ["y"] = fb_actions.copy,
+          ["d"] = fb_actions.remove,
+          ["o"] = fb_actions.open,
+          ["h"] = fb_actions.goto_parent_dir,
+          ["e"] = fb_actions.goto_home_dir,
+          ["w"] = fb_actions.goto_cwd,
+          ["l"] = fb_actions.change_cwd,
+          ["f"] = fb_actions.toggle_browser,
+          ["."] = fb_actions.toggle_hidden,
+          ["s"] = fb_actions.toggle_all,
+          ["<esc>"] = actions.close,
+          ["q"] = actions.close,
+        },
+      },
+    }
     -- live_grep_args = {
     --   auto_quoting = true, -- enable/disable auto-quoting
     --   mappings = {

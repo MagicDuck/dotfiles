@@ -98,12 +98,12 @@ snippets.init({
   {
     description = "xmatters demo/test instance",
     example = xmDemoInstance.host
-    .. " (user = "
-    .. xmDemoInstance.user
-    .. ", password = "
-    .. xmDemoInstance.password
-    .. ")"
-    .. cursor,
+      .. " (user = "
+      .. xmDemoInstance.user
+      .. ", password = "
+      .. xmDemoInstance.password
+      .. ")"
+      .. cursor,
     keys = {
       xmDemoInstance.host
       .. " (user = "
@@ -116,12 +116,12 @@ snippets.init({
   {
     description = "ebfd demo/test instance",
     example = ebfdDemoInstance.host
-    .. " (user = "
-    .. ebfdDemoInstance.user
-    .. ", password = "
-    .. ebfdDemoInstance.password
-    .. ")"
-    .. cursor,
+      .. " (user = "
+      .. ebfdDemoInstance.user
+      .. ", password = "
+      .. ebfdDemoInstance.password
+      .. ")"
+      .. cursor,
     keys = {
       ebfdDemoInstance.host
       .. "\n(organization = "
@@ -150,7 +150,17 @@ local superKeyBindings = {
   -- app switching
   {
     key = "b",
-    app = "Postman",
+    app = "kitty",
+    window = {
+      title = "combos",
+      launch = function()
+        kitty.launchWindow({
+          title = "combos",
+          command =
+          "/bin/zsh -is eval vim /opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/combos.def"
+        })
+      end,
+    },
   },
   {
     key = "d",
@@ -241,13 +251,14 @@ local superKeyBindings = {
       end,
     },
   },
+  -- v -> ticktick
   -- -- {
   --   key = "u",
   --   app = "Obsidian",
   -- },
   {
     key = "w",
-    app = "TickTick",
+    app = "TablePlus",
   },
   {
     key = "y",

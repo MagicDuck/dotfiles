@@ -1,5 +1,6 @@
 return {
-  { "nvim-treesitter/nvim-treesitter",
+  {
+    "nvim-treesitter/nvim-treesitter",
     name = "treesitter",
     version = false,
     lazy = true,
@@ -127,4 +128,15 @@ return {
       })
     end,
   },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "treesitter",
+    },
+    config = function()
+      require('treesitter-context').setup {}
+    end
+  }
 }

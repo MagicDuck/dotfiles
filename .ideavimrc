@@ -2,19 +2,16 @@
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set expandtab
-set smarttab
 set hlsearch " highlight search
 set incsearch " incremental search
 set ignorecase
 set smartcase
-set infercase " better case handling for insert mode completion
 set wrapscan
+set ideajoin
 
 set clipboard+=unnamed
 
 set ideamarks
-set sneak
 
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
@@ -63,7 +60,7 @@ nnoremap gm :<C-u>action GotoImplementation<CR>
 nnoremap gf :<C-u>action GotoFile<CR>
 nnoremap gs :<C-u>action GotoSymbol<CR>
 nnoremap gl :<C-u>action JumpToLastChange<CR>
-nnoremap gu :<C-u>action ShowUsages<CR>
+nnoremap gr :<C-u>action ShowUsages<CR>
 nnoremap gt :<C-u>action GotoTest<CR>
 nnoremap gj :<C-u>action EditorCodeBlockStart<CR>
 nnoremap gk :<C-u>action EditorCodeBlockEnd<CR>

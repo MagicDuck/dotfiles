@@ -54,6 +54,8 @@
   :applications {
     :slack-app ["^com\\.tinyspeck\\.slackmacgap$"]
     :chrome-browser-apps ["^com\\.brave\\.Browser", "^com\\.google\\.Chrome"]
+    :safari-app ["^com\\.apple\\.Safari"]
+    :vivaldi-app ["^com\\.vivaldi\\.Vivaldi"]
     :google-chrome-app ["^com\\.google\\.Chrome"]
     :outlook-app ["^com\\.microsoft\\.Outlook"]
   } ;; applications
@@ -174,8 +176,10 @@
       [:!Ce :!CSbackslash] ; react with emoji
       [:!Ch :!Copen_bracket] ; history prev
       [:!Cl :!Cclose_bracket] ; history next 
-      [:!Cj :!OSdown_arrow] ; next unread
-      [:!Ck :!OSup_arrow] ; prev unread
+      [:!To :!Copen_bracket] ; history prev
+      [:!Ti :!Cclose_bracket] ; history next 
+      [:!Cdown_arrow :!OSdown_arrow] ; next unread
+      [:!Cup_arrow :!OSup_arrow] ; prev unread
       [:!Co :!CSk] ; open DM 
       [:!Cs :!CSy] ; set status 
     ]}
@@ -195,6 +199,7 @@
       [:!Cright_arrow :!Tpage_down] ; tab next 
       [:!Ch :!Tpage_up] ; tab prev 
       [:!Cl :!Tpage_down] ; tab next 
+      [:!Ci :!Cl] ; open address bar
 
       ; tab move
       [:!CSleft_arrow :!TSpage_up] ; tab prev 
@@ -211,6 +216,50 @@
       [:!Cu :!CSt] 
     ]}
 
+    {:des "safari shortcut override" :rules [
+      [:condi :safari-app] 
+
+      [:!CSi :!COi] ; Open dev tools
+
+      ; tab nav
+      [:!Cleft_arrow :!TStab] ; tab prev 
+      [:!Cright_arrow :!Ttab] ; tab next 
+
+      ; tab group nav
+      [:!Cup_arrow :!CTStab] ; tab group prev 
+      [:!Cdown_arrow :!CTtab] ; tab group next 
+
+      ; tab close
+      ; [:!Cx :!Cw]
+      ; tab group close
+      [:!CSx :!CTw]
+
+      ; tab history
+      [:!Cw :!Copen_bracket] 
+      [:!Ce :!Cclose_bracket] 
+      [:!Cu :!Cz]
+    ]}
+
+    {:des "vivaldi shortcut override" :rules [
+      [:condi :vivaldi-app] 
+
+      ; tab nav
+      [:!Cleft_arrow :!TStab] ; tab prev
+      [:!Cright_arrow :!Ttab] ; tab next
+
+      ; ; workspace nav
+      [:!Cup_arrow :!CTStab] ; tab group prev
+      [:!Cdown_arrow :!CTtab] ; tab group next
+
+      ; tab close
+      [:!Cx :!Cd]
+      [:!Ci :!Cl] ; open address bar
+
+      ; tab history
+      ; [:!Cw :!Copen_bracket] 
+      ; [:!Ce :!Cclose_bracket] 
+      ; [:!Cu :!Cz]
+    ]}
 
     {:des "text snippets mode" :rules [
       [:condi :kinesis-keyboard] 

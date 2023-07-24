@@ -1,5 +1,7 @@
 module.exports = {
-  defaultBrowser: "Brave Browser",
+  // defaultBrowser: "Brave Browser",
+  // defaultBrowser: "Safari",
+  defaultBrowser: "Vivaldi",
   options: {
     // Hide the finicky icon from the top bar. Default: false
     hideIcon: false,

@@ -1,5 +1,6 @@
 return {
-  { "brenoprata10/nvim-highlight-colors",
+  {
+    "brenoprata10/nvim-highlight-colors",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     config = function()
@@ -10,7 +11,8 @@ return {
       }
     end
   },
-  { 'echasnovski/mini.comment',
+  {
+    'echasnovski/mini.comment',
     version = '*',
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
@@ -33,11 +35,13 @@ return {
       )
     end
   },
-  { "kmonad/kmonad-vim",
+  {
+    "kmonad/kmonad-vim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
   },
-  { "kylechui/nvim-surround",
+  {
+    "kylechui/nvim-surround",
     lazy = true,
     version = "*",
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
@@ -71,22 +75,26 @@ return {
   --     })
   --   end
   -- },
-  { "rafcamlet/nvim-luapad",
+  {
+    "rafcamlet/nvim-luapad",
     lazy = true,
     event = { "VeryLazy" },
   },
-  { "tpope/vim-unimpaired",
+  {
+    "tpope/vim-unimpaired",
     lazy = true,
     event = { "VeryLazy" },
   },
-  { "chentoast/marks.nvim",
+  {
+    "chentoast/marks.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     config = function()
       require 'marks'.setup {}
     end
   }, -- for marks to show in gutter
-  { "AmeerTaweel/todo.nvim",
+  {
+    "AmeerTaweel/todo.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     config = function()
@@ -102,13 +110,13 @@ return {
           -- wide is the same as bg, but also highlights the colon
           keyword = "fg", -- "fg", "bg", "wide", or empty
           -- highlights after the keyword (TODO text)
-          after = "", -- "fg", "bg", or empty
+          after = "",     -- "fg", "bg", or empty
           -- pattern can be a string, or a table of regexes that will be checked
           -- vim regex
           pattern = [[.*<(KEYWORDS) \(sbadragan\)\s*:]],
           comments_only = true, -- highlight only inside comments using treesitter
-          max_line_len = 400, -- ignore lines longer than this
-          exclude = {}, -- list of file types to exclude highlighting
+          max_line_len = 400,   -- ignore lines longer than this
+          exclude = {},         -- list of file types to exclude highlighting
         },
         -- list of named colors
         -- a list of hex colors or highlight groups, will use the first available one in the list on RHS
@@ -123,7 +131,8 @@ return {
       })
     end
   },
-  { "sar/illuminate.nvim",
+  {
+    "sar/illuminate.nvim",
     lazy = true,
     event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
@@ -175,7 +184,8 @@ return {
       })
     end
   },
-  { "windwp/nvim-autopairs",
+  {
+    "windwp/nvim-autopairs",
     lazy = true,
     event = { "VeryLazy" },
     config = function()

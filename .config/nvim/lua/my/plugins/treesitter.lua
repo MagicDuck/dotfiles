@@ -85,16 +85,16 @@ return {
           move = {
             enable = true,
             goto_previous_start = {
-              ["<leader>kd"] = "@function.outer",
+              ["<leader>ka"] = "@function.outer",
             },
             goto_next_start = {
-              ["<leader>jd"] = "@function.outer",
+              ["<leader>ja"] = "@function.outer",
             },
             goto_previous_end = {
-              ["<leader>kD"] = "@function.outer",
+              ["<leader>kA"] = "@function.outer",
             },
             goto_next_end = {
-              ["<leader>jD"] = "@function.outer",
+              ["<leader>jA"] = "@function.outer",
             },
           },
         },

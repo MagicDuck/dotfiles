@@ -1,5 +1,6 @@
 return {
-  { "ggandor/leap.nvim",
+  {
+    "ggandor/leap.nvim",
     lazy = true,
     event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()

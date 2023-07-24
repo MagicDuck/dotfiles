@@ -38,3 +38,17 @@ dap.configurations.java = {
   --   projectName = "webui"
   -- },
 }
+
+dap.configurations.rust = {
+  {
+    name = "Launch and debug rust binary for Advent of Code",
+    type = 'codelldb',
+    request = 'launch',
+    program = function()
+      -- return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      return 'target/debug/${workspaceFolderBasename}'
+    end,
+    cwd = '${workspaceFolder}',
+    args = { "input.txt" }
+  }
+}

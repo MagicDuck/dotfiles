@@ -164,19 +164,28 @@ local superKeyBindings = {
   },
   {
     key = "d",
-    app = "Brave Browser",
+    -- app = "Brave Browser",
+    -- app = "Safari",
+    app = "Vivaldi",
   },
   {
     key = "e",
     app = "kitty",
     window = {
       title = "terminal",
+      launch = function()
+        kitty.launchWindow({ title = "terminal", command = "/bin/zsh -is" })
+      end,
     },
   },
   {
     key = "f",
     -- app = "Brave Browser",
     app = "Obsidian",
+  },
+  {
+    key = "g",
+    app = "Documentation",
   },
   {
     key = "h",
@@ -193,6 +202,10 @@ local superKeyBindings = {
   {
     key = "u",
     app = "Fork",
+  },
+  {
+    key = "j",
+    app = "TablePlus",
   },
   {
     key = "k",
@@ -258,11 +271,11 @@ local superKeyBindings = {
   -- },
   {
     key = "w",
-    app = "TablePlus",
+    app = "confluence wiki",
   },
   {
     key = "y",
-    app = "Safari",
+    app = "YouTube",
   },
   {
     key = "space",

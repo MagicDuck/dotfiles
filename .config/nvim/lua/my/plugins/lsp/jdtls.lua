@@ -92,7 +92,7 @@ exports.getConfig = function()
           }
         },
         saveActions = {
-          organizeImports = true
+          organizeImports = false
         },
       },
     },

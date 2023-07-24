@@ -258,9 +258,9 @@ alias qa-automation-run-kramerica="yarn install && yarn run cypress open --confi
 alias yarn-test-changed="yarn run test --watch --changedSince=origin/main"
 alias pnpm-test-changed="pnpm run test --watch --changedSince=origin/main"
 alias ondemand-dev-in-cloud="cd /opt/repos/ondemand; ./gradlew bootRunDevInCloud -PgcpInstance=kramerica -Pversion=0.x.stephanlocal -PdevInCloud=true -PrunVoiceXml=false -PrunSoap=false -i"
-alias ondemand-dev-in-cloud-stop="xm-instance-switch-version kramerica webui 0-x-main"
+alias ondemand-dev-in-cloud-stop="xmvers kramerica webui 0-x-main"
 alias ebfd-ondemand-dev-in-cloud="cd /opt/repos/ondemand; ./gradlew bootRunDevInCloud -PgcpInstance=kramerica-ebfd -Pversion=0.x.stephanlocal -PdevInCloud=true -PrunVoiceXml=false -PrunSoap=false -i"
-alias ebfd-ondemand-dev-in-cloud-stop="xm-instance-switch-version kramerica-ebfd webui 0-x-main"
+alias ebfd-ondemand-dev-in-cloud-stop="xmvers kramerica-ebfd webui 0-x-main"
 alias ondemand-rebuild="cd /opt/repos/ondemand; ./gradlew clean build -x test -x analyzeClassesDependencies -x analyzeTestClassesDependencies"
 alias ondemand-webui-integ-test="cd /opt/repos/ondemand; ./gradlew webui:integTest --tests " # param need, ex: com.xmatters.exportimport.RelevanceEngineImportHandlerIntegTest.testImportEngineWithIntegrationNoAuthType
 alias ondemand-webui-integ-test-debug="cd /opt/repos/ondemand; ./gradlew webui:integTest --debug-jvm --tests " # listens to port 5005, param need, ex: com.xmatters.exportimport.RelevanceEngineImportHandlerIntegTest.testImportEngineWithIntegrationNoAuthType

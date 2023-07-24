@@ -38,8 +38,13 @@ hs.window.filter.default:subscribe(hs.window.filter.windowFocused, updateFocusSt
 -- 	-- print('-- Last Focused Window: "' .. window:title() .. '"')
 -- end)
 
+local function findWindow(app, title)
+  return hs.fnutils.find(hs.window.filter.default:getWindows(),
+    function(w) return w:application():name() == app:name() and w:title() == title end)
+end
+
 local function launchOrFocusWindow(app, window)
-  local win = app:findWindow(window.title)
+  local win = findWindow(app, window.title)
   if win == nil then
     if window.launch ~= nil then
       window.launch()

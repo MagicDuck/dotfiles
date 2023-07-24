@@ -5,40 +5,40 @@ local M = {}
 --------------------------------------------------------------------------------
 
 local function str_split_space(str)
-	local parts = {}
-	for i in string.gmatch(str, "%S+") do
-		print(i)
-		table.insert(parts, i)
-	end
+  local parts = {}
+  for i in string.gmatch(str, "%S+") do
+    print(i)
+    table.insert(parts, i)
+  end
 
-	return parts
+  return parts
 end
 
 function M.exec(cmd, cb)
-	local task = hs.task.new(
-		"/Applications/kitty.app/Contents/MacOS/kitty",
-		-- "/usr/local/bin/kitty",
-		cb,
-		str_split_space("@ --to unix:/tmp/mykitty " .. cmd)
-	)
-	task:start()
+  local task = hs.task.new(
+    "/Applications/kitty.app/Contents/MacOS/kitty",
+    -- "/usr/local/bin/kitty",
+    cb,
+    str_split_space("@ --to unix:/tmp/mykitty " .. cmd)
+  )
+  task:start()
 end
 
 function M.launchWindow(window)
-	M.exec(
-		"launch --type=os-window --os-window-title="
-			.. window.title
-			.. " --title="
-			.. window.title
-			.. " "
-			.. window.command,
-		function(exitCode)
-			if exitCode ~= 0 then
-				print("Could not launch kitty window: " .. window.title .. " with command: " .. window.command)
-				return
-			end
-		end
-	)
+  M.exec(
+    "launch --type=os-window --os-window-title="
+    .. window.title
+    .. " --title="
+    .. window.title
+    .. " "
+    .. window.command,
+    function(exitCode)
+      if exitCode ~= 0 then
+        print("Could not launch kitty window: " .. window.title .. " with command: " .. window.command)
+        return
+      end
+    end
+  )
 end
 
 return M

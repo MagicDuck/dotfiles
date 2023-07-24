@@ -236,7 +236,7 @@ null_ls.setup({
   on_attach = attach.global_on_attach,
   on_init = function()
     -- make sure eslint server still works, sometimes it dies for no reason
-    os.execute("eslint_d restart")
+    -- os.execute("eslint_d restart")
     os.execute("prettierd restart")
   end,
 })

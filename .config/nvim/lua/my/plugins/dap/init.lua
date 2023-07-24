@@ -1,15 +1,17 @@
 return {
-  { "mfussenegger/nvim-dap",
+  {
+    "mfussenegger/nvim-dap",
     lazy = true,
     event = "VeryLazy",
     dependencies = {
-      { "jay-babu/mason-nvim-dap.nvim",
+      {
+        "jay-babu/mason-nvim-dap.nvim",
         dependencies = { "mason" },
         config = function()
           require("mason-nvim-dap").setup({
             -- A list of adapters to install if they're not already installed.
             -- This setting has no relation with the `automatic_installation` setting.
-            ensure_installed = { "javadbg", "node2" },
+            ensure_installed = { "javadbg", "node2", "codelldb" },
             -- NOTE: this is left here for future porting in case needed
             -- Whether adapters that are set up (via dap) should be automatically installed if they're not already installed.
             -- This setting has no relation with the `ensure_installed` setting.
@@ -36,7 +38,8 @@ return {
       require('my.plugins.dap.dap')
     end
   },
-  { "rcarriga/nvim-dap-ui",
+  {
+    "rcarriga/nvim-dap-ui",
     lazy = true,
     event = "VeryLazy",
     dependencies = { "mfussenegger/nvim-dap" },

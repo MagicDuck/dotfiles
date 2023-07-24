@@ -1,10 +1,14 @@
+-- local nextLeaderKey = function(key)
+--   return '<C-S-' .. key .. '>'
+-- end
+-- local prevLeaderKey = function(key)
+--   return '<C-A-' .. key .. '>'
+-- end
 local nextLeaderKey = function(key)
-  return '<C-S-' .. key .. '>'
-  -- return ']' .. key
+  return '<leader>j' .. key
 end
 local prevLeaderKey = function(key)
-  return '<C-A-' .. key .. '>'
-  -- return '[' .. key
+  return '<leader>k' .. key
 end
 
 -- show Mappings picker
@@ -617,6 +621,21 @@ my.keybind({
   lhs = "F",
   rhs = "<cmd>MyLeapAllWindows<CR>",
 })
+my.keybind({
+  mode = "n",
+  description = "leap line select",
+  lhs = "R",
+  rhs =
+  "<cmd>lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('Vf<space><space>', true, false, true), 't', true)<CR>",
+})
+my.keybind({
+  mode = "n",
+  description = "leap line select",
+  lhs = "Y",
+  rhs =
+  "<cmd>lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('yf<space><space>', true, false, true), 't', true)<CR>",
+})
+
 -- replace
 my.keybind({
   mode = "n",

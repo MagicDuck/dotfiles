@@ -46,7 +46,7 @@ my.keybind({
   description = "save (insert)",
   mode = "i",
   lhs = "<C-s>",
-  rhs = "<C-O>:w | lua vim.notify('saved ' .. vim.fn.expand('%'))<CR>",
+  rhs = "<ESC>:w | lua vim.notify('saved ' .. vim.fn.expand('%'))<CR>",
 })
 
 -- buffer

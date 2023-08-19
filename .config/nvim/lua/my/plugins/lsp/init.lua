@@ -11,7 +11,9 @@ end
 
 return {
   -- LSP status spinner, somewhat annoying
-  { "j-hui/fidget.nvim",
+  {
+    "j-hui/fidget.nvim",
+    branch = "legacy",
     lazy = true,
     event = { "VeryLazy" },
     config = function()
@@ -19,11 +21,13 @@ return {
     end
   },
 
-  { "jose-elias-alvarez/null-ls.nvim",
+  {
+    "jose-elias-alvarez/null-ls.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     dependencies = {
-      { "jayp0521/mason-null-ls.nvim",
+      {
+        "jayp0521/mason-null-ls.nvim",
         dependencies = { "mason" },
         config = function()
           -- handles automatic installation of required tools based on stuff configured in null-ls
@@ -53,11 +57,13 @@ return {
     end
   },
 
-  { "neovim/nvim-lspconfig",
+  {
+    "neovim/nvim-lspconfig",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     dependencies = {
-      { "williamboman/mason-lspconfig.nvim",
+      {
+        "williamboman/mason-lspconfig.nvim",
         dependencies = { "mason" },
         config = function()
           require("mason-lspconfig").setup({
@@ -89,16 +95,28 @@ return {
     end
   },
 
-  { "mfussenegger/nvim-jdtls", -- java support
+  {
+    "mfussenegger/nvim-jdtls", -- java support
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
   },
 
-  { "onsails/lspkind-nvim",
+  {
+    "onsails/lspkind-nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     config = function()
       require('lspkind').init()
+    end
+  },
+
+  {
+    "lvimuser/lsp-inlayhints.nvim",
+    -- branch = 'anticonceal',
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    config = function()
+      require("lsp-inlayhints").setup()
     end
   },
 }

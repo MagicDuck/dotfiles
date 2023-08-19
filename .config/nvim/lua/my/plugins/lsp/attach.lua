@@ -58,6 +58,9 @@ local global_on_attach = function(client, bufnr)
       end,
     })
   end
+
+  -- this adds inline hints, but does not seem to work super well as you ened to call .toggle() twice for them to show up
+  -- require("lsp-inlayhints").on_attach(client, bufnr)
 end
 
 local global_capabilities = require("cmp_nvim_lsp").default_capabilities()

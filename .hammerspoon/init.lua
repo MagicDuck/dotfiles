@@ -269,10 +269,10 @@ local superKeyBindings = {
   --   key = "u",
   --   app = "Obsidian",
   -- },
-  {
-    key = "w",
-    app = "confluence wiki",
-  },
+  -- {
+  --   key = "w",
+  --   app = "confluence wiki",
+  -- },
   {
     key = "y",
     app = "YouTube",

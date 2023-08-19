@@ -75,6 +75,15 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufRead" }, {
   end,
 })
 
+-- Enable syntax highlight in Jenkinsfile files
+vim.api.nvim_create_autocmd({ "BufEnter", "BufRead" }, {
+  group = augroup("syntax_highlight_conf_files"),
+  pattern = { "Jenkinsfile" },
+  callback = function()
+    vim.bo.filetype = "groovy"
+  end,
+})
+
 -- Wrap diffs
 vim.api.nvim_create_autocmd("VimEnter", {
   group = augroup("diff_wrap"),

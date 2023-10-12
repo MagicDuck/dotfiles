@@ -50,6 +50,10 @@ local deployUrls = {
     slackChannel = "kessel-builds",
     fallbackTicketName = "sbadragan",
   }),
+  multinode = gitlabMrs.builtin.deployUrls.multinode({
+    slackChannel = "kessel-builds",
+    fallbackTicketName = "sbadragan",
+  }),
 }
 
 gitlabMrs:setup({

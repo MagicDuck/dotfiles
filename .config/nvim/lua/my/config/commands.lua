@@ -24,6 +24,6 @@ my.command {
 }
 
 vim.api.nvim_create_user_command('PickBookmark', function()
-  local bookmarks = require('my.config.bookmarks')
-  require('my.plugins.telescope.bookmark_picker').pickBookmark(bookmarks)
+  local get_bookmarks = require('my.config.bookmarks')
+  require('my.plugins.telescope.bookmark_picker').pickBookmark(get_bookmarks())
 end, {})

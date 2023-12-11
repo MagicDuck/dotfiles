@@ -49,6 +49,9 @@ keybinding:
 services:
   'gitlab.eb-tools.com': 'gitlab:gitlab.eb-tools.com'
 promptToReturnFromSubprocess: false
+os:
+  # fixes creating MR for branches with '/'
+  openLink: open "$(echo "{{link}}" | sed 's/%2F/\//g')"
 customCommands:
   - key: 'O'
     context: commitFiles

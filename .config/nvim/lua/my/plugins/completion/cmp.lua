@@ -28,17 +28,17 @@ local function doWhenCmpVisible(fn, timeout, poll_interval)
 end
 
 local function completeAndInsertFirstMatch()
-  -- cmp.complete()
+  cmp.complete()
   -- doWhenCmpVisible(function()
-  cmp.select_next_item()
+  --   cmp.select_next_item()
   -- end, 1100, 10)
 end
 
 require("cmp_nvim_lsp").setup() -- not sure why this does not auto-exec
 cmp.setup({
   enabled = function()
-    return not require("cmp_dap").is_dap_buffer()
-    --vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+    return (not require("cmp_dap").is_dap_buffer()) and vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+    -- return not require("cmp_dap").is_dap_buffer() and not vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
   end,
   performance = {
     -- debounce = 500,
@@ -46,22 +46,24 @@ cmp.setup({
     fetching_timeout = 1000, -- to account for slow tsserver
   },
   view = {
-    entries = { name = 'wildmenu' }
+    -- update this to change how menu displays
+    -- entries = { name = 'wildmenu' }
   },
   confirmation = {
     -- disable commit characters
-    get_commit_characters = function(commit_characters)
-      return {}
-    end
+    -- get_commit_characters = function(commit_characters)
+    --   return {}
+    -- end
   },
-  -- experimental = {
-  --   ghost_text = true
-  -- },
-  -- preselect = cmp.PreselectMode.None,
+  experimental = {
+    ghost_text = true
+  },
+  -- changed recently
+  preselect = cmp.PreselectMode.None,
   completion = {
     keyword_length = 3,
     -- autocomplete = true,
-    -- autocomplete = false,
+    autocomplete = false,
     -- keyword_length = 0,
   },
   snippet = {
@@ -71,6 +73,10 @@ cmp.setup({
     end,
   },
   mapping = {
+    -- ["<Tab>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<Tab>"] = cmp.mapping({
       c = function()
         if cmp.visible() then
@@ -106,34 +112,34 @@ cmp.setup({
         end
       end
     }),
-
-    ["<S-Tab>"] = cmp.mapping({
-      c = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        else
-          fallback()
-        end
-      end,
-      i = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-          -- elseif require('luasnip').jumpable( -1) then
-          --   require('luasnip').jump( -1)
-        else
-          fallback()
-        end
-      end,
-      s = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-          -- elseif require('luasnip').jumpable( -1) then
-          --   require('luasnip').jump( -1)
-        else
-          fallback()
-        end
-      end
-    }),
+    --
+    -- ["<S-Tab>"] = cmp.mapping({
+    --   c = function(fallback)
+    --     if cmp.visible() then
+    --       cmp.select_prev_item()
+    --     else
+    --       fallback()
+    --     end
+    --   end,
+    --   i = function(fallback)
+    --     if cmp.visible() then
+    --       cmp.select_prev_item()
+    --       -- elseif require('luasnip').jumpable( -1) then
+    --       --   require('luasnip').jump( -1)
+    --     else
+    --       fallback()
+    --     end
+    --   end,
+    --   s = function(fallback)
+    --     if cmp.visible() then
+    --       cmp.select_prev_item()
+    --       -- elseif require('luasnip').jumpable( -1) then
+    --       --   require('luasnip').jump( -1)
+    --     else
+    --       fallback()
+    --     end
+    --   end
+    -- }),
 
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
@@ -144,7 +150,7 @@ cmp.setup({
         entries = { name = 'custom' }
       },
     } }),
-    ["<PageUp>"] = cmp.mapping.scroll_docs( -4),
+    ["<PageUp>"] = cmp.mapping.scroll_docs(-4),
     ["<PageDown>"] = cmp.mapping.scroll_docs(4),
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({
@@ -154,7 +160,8 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = "nvim_lua" },
-    { name = "nvim_lsp",
+    {
+      name = "nvim_lsp",
       -- priority = 100,
       -- max_item_count = 20,
       -- group_index = 1
@@ -175,7 +182,11 @@ cmp.setup({
         get_bufnrs = function()
           local bufs = {}
           for _, win in ipairs(vim.api.nvim_list_wins()) do
-            bufs[vim.api.nvim_win_get_buf(win)] = true
+            local buf = vim.api.nvim_win_get_buf(win)
+            local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+            if byte_size <= 1024 * 1024 then -- 1 Megabyte max
+              bufs[buf] = true
+            end
           end
           return vim.tbl_keys(bufs)
         end
@@ -187,11 +198,11 @@ cmp.setup({
     format = lspkind.cmp_format({
       with_text = true,
       menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[api]",
         path = "[path]",
         luasnip = "[snip]",
+        buffer = "[buf]",
+        nvim_lua = "[api]",
+        nvim_lsp = "[LSP]",
       },
     }),
   },
@@ -209,8 +220,8 @@ require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 cmp.setup.cmdline('/', {
   -- completion = { autocomplete = false },
   sources = {
-    -- { name = 'buffer' }
-    { name = 'buffer', option = { keyword_pattern = [=[[^[:blank:]].*]=] } }
+    { name = 'buffer' }
+    -- { name = 'buffer', option = { keyword_pattern = [=[[^[:blank:]].*]=] } }
   }
 })
 

@@ -86,6 +86,7 @@ gitlabMrs:start()
 -------------------------------------------------------------------
 local snippets = require("./snippets")
 local xmDemoInstance = localConfig.xmDemoInstance
+local xmDemoInstance2 = localConfig.xmDemoInstance2
 local ebfdDemoInstance = localConfig.ebfdDemoInstance
 local cursor = "▍"
 snippets.init({
@@ -114,6 +115,24 @@ snippets.init({
       .. xmDemoInstance.user
       .. ", password = "
       .. xmDemoInstance.password
+      .. ")",
+    },
+  },
+  {
+    description = "(2) xmatters demo/test instance",
+    example = xmDemoInstance2.host
+      .. " (user = "
+      .. xmDemoInstance2.user
+      .. ", password = "
+      .. xmDemoInstance2.password
+      .. ")"
+      .. cursor,
+    keys = {
+      xmDemoInstance2.host
+      .. " (user = "
+      .. xmDemoInstance2.user
+      .. ", password = "
+      .. xmDemoInstance2.password
       .. ")",
     },
   },

@@ -29,9 +29,10 @@ end
 
 local function completeAndInsertFirstMatch()
   cmp.complete()
-  -- doWhenCmpVisible(function()
-  --   cmp.select_next_item()
-  -- end, 1100, 10)
+  -- cmp.select_next_item()
+  doWhenCmpVisible(function()
+    cmp.select_next_item()
+  end, 1100, 10)
 end
 
 require("cmp_nvim_lsp").setup() -- not sure why this does not auto-exec
@@ -55,9 +56,9 @@ cmp.setup({
     --   return {}
     -- end
   },
-  experimental = {
-    ghost_text = true
-  },
+  -- experimental = {
+  --   ghost_text = true
+  -- },
   -- changed recently
   preselect = cmp.PreselectMode.None,
   completion = {

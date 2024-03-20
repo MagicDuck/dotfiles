@@ -63,6 +63,11 @@ nnoremap L $
 vnoremap L $
 onoremap L $
 
+inoremap <Home> <Esc>^i
+nnoremap <Home> ^
+vnoremap <Home> ^
+onoremap <Home> ^
+
 " Quickfix list navigation that loops around
 command! Cnext try | cnext | catch | cfirst | catch | endtry
 command! Cprev try | cprev | catch | clast | catch | endtry

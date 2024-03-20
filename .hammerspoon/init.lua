@@ -396,3 +396,30 @@ hs.fnutils.each(superKeyBindings, function(binding)
     end
   end)
 end)
+
+-- -- hotkeys remaps for apps
+-- local app_hotkeys = {
+--   {
+--     app = "Slack",
+--     shortcut = { "cmd", "s" },
+--     mapto = { { "cmd", "shift" }, "y" }
+--   },
+--   {
+--     app = "Slack",
+--     shortcut = { "cmd", "down" },
+--     mapto = { { "alt", "shift" }, "down" }
+--   }
+-- }
+-- hs.fnutils.each(app_hotkeys, function(binding)
+--   hs.hotkey.bind(binding.shortcut[1], binding.shortcut[2],
+--     function()
+--       if (hs.window.focusedWindow():application():name() == binding.app) then
+--         hs.eventtap.keyStroke(binding.mapto[1], binding.mapto[2])
+--       end
+--     end)
+-- end)
+-- -- hs.hotkey.bind({ "cmd" }, "s", function()
+-- --   if (hs.window.focusedWindow():application():name() == 'Slack') then
+-- --     hs.eventtap.keyStroke({ "cmd", "shift" }, 'y')
+-- --   end
+-- -- end)

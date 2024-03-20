@@ -132,7 +132,7 @@
     ; {:des "simultaneous m k press to *" :rules [[[:m :k] :!S8]]}
 
 
-    {:des "simultaneous j k press to ESC" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:j :k] :escape]]}
+    ; {:des "simultaneous j k press to ESC" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:j :k] :escape]]}
     ; {:des "simultaneous s d press to (" :rules [[:condi :!iris-keyboard] [[:s :d] :!S9]]}
     ; {:des "simultaneous d v press to )" :rules [[:condi :!iris-keyboard] [[:d :v] :!S0]]}
     ; {:des "simultaneous x c v press to { }" :rules [[:condi :!iris-keyboard] [[:x :c] :!Sopen_bracket] [[:c :v] :!Sclose_bracket]]}
@@ -156,16 +156,16 @@
     ; {:des "simultaneous m k press to *" :rules [[:condi :!iris-keyboard] [[:m :k] :!S8]]}
     
     ; {:des "simultaneous d f press to enter" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:d :f] :return_or_enter]]}
-    {:des "simultaneous f g press to del" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:f :g] :delete_forward]]}
+    ; {:des "simultaneous f g press to del" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:f :g] :delete_forward]]}
     ; {:des "simultaneous c v press to enter" :rules [[:condi :kinesis-keyboard :apple-keyboard] [[:c :v] :return_or_enter]]}
 
-    {:des "improved thumb cluster" :rules [
-      ;; lcmd lctrl           lopt rcmd
-      [:##left_control  :left_command :kinesis-keyboard]
-      [:##right_control :right_command :kinesis-keyboard]
-      [:##left_option :left_control :kinesis-keyboard]
-      [:##right_command :left_option :kinesis-keyboard]
-    ]}
+    ; {:des "improved thumb cluster" :rules [
+    ;   ;; lcmd lctrl           lopt rcmd
+    ;   [:##left_control  :left_command :kinesis-keyboard]
+    ;   [:##right_control :right_command :kinesis-keyboard]
+    ;   [:##left_option :left_control :kinesis-keyboard]
+    ;   [:##right_command :left_option :kinesis-keyboard]
+    ; ]}
 
     ; {:des "end -> delete" :rules [
     ;   [:##end :delete_forward :kinesis-keyboard]
@@ -178,8 +178,8 @@
       [:!Cl :!Cclose_bracket] ; history next 
       [:!To :!Copen_bracket] ; history prev
       [:!Ti :!Cclose_bracket] ; history next 
-      [:!Cdown_arrow :!OSdown_arrow] ; next unread
-      [:!Cup_arrow :!OSup_arrow] ; prev unread
+      [:!Cright_arrow :!OSdown_arrow] ; next unread
+      [:!Cleft_arrow :!OSup_arrow] ; prev unread
       [:!Co :!CSk] ; open DM 
       [:!Cs :!CSy] ; set status 
     ]}
@@ -261,110 +261,110 @@
       ; [:!Cu :!Cz]
     ]}
 
-    {:des "text snippets mode" :rules [
-      [:condi :kinesis-keyboard] 
-      [:end ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
-      ; [:!CTOSm ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
-      ; enter code block 
-      [:i [:!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde :!Sreturn_or_enter :!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde  :up_arrow] ["snippet-mode" 1]]
-    ]}
+    ; {:des "text snippets mode" :rules [
+    ;   [:condi :kinesis-keyboard] 
+    ;   [:end ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
+    ;   ; [:!CTOSm ["snippet-mode" 1] ["snippet-mode" 0] {:afterup ["snippet-mode" 0]}]
+    ;   ; enter code block 
+    ;   [:i [:!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde :!Sreturn_or_enter :!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde  :up_arrow] ["snippet-mode" 1]]
+    ; ]}
 
-    {:des "shift mode" :rules [
-      [:condi :kinesis-keyboard] 
-      [:delete_or_backspace ["shift-mode" 1] ["symbol-mode" 0] {:afterup ["shift-mode" 0]}]
-      [:q [:!Sq] ["shift-mode" 1]] [:w [:!Sw] ["shift-mode" 1]] [:e [:!Se] ["shift-mode" 1]]
-      [:r [:!Sr] ["shift-mode" 1]]
-      [:t [:!St] ["shift-mode" 1]]
-      [:y [:!Sy] ["shift-mode" 1]]
-      [:u [:!Su] ["shift-mode" 1]]
-      [:i [:!Si] ["shift-mode" 1]]
-      [:o [:!So] ["shift-mode" 1]]
-      [:p [:!Sp] ["shift-mode" 1]]
-      [:backslash [:!Sbackslash] ["shift-mode" 1]]
-      [:a [:!Sa] ["shift-mode" 1]]
-      [:s [:!Ss] ["shift-mode" 1]]
-      [:d [:!Sd] ["shift-mode" 1]]
-      [:f [:!Sf] ["shift-mode" 1]]
-      [:g [:!Sg] ["shift-mode" 1]]
-      [:h [:!Sh] ["shift-mode" 1]]
-      [:j [:!Sj] ["shift-mode" 1]]
-      [:k [:!Sk] ["shift-mode" 1]]
-      [:l [:!Sl] ["shift-mode" 1]]
-      [:semicolon [:!Ssemicolon] ["shift-mode" 1]]
-      [:quote [:!Squote] ["shift-mode" 1]]
-      [:z [:!Sz] ["shift-mode" 1]]
-      [:x [:!Sx] ["shift-mode" 1]]
-      [:c [:!Sc] ["shift-mode" 1]]
-      [:v [:!Sv] ["shift-mode" 1]]
-      [:b [:!Sb] ["shift-mode" 1]]
-      [:n [:!Sn] ["shift-mode" 1]]
-      [:m [:!Sm] ["shift-mode" 1]]
-      [:comma [:!Scomma] ["shift-mode" 1]]
-      [:period [:!Speriod] ["shift-mode" 1]]
-      [:slash [:!Sslash] ["shift-mode" 1]]
-      [:open_bracket [:!Sopen_bracket] ["shift-mode" 1]]
-      [:close_bracket [:!Sclose_bracket] ["shift-mode" 1]]
-      [:up_arrow [:!Sup_arrow] ["shift-mode" 1]]
-      [:down_arrow [:!Sdown_arrow] ["shift-mode" 1]]
-      [:left_arrow [:!Sleft_arrow] ["shift-mode" 1]]
-      [:right_arrow [:!Sright_arrow] ["shift-mode" 1]]
-      [:equal_sign [:!Sequal_sign] ["shift-mode" 1]]
-      [:grave_accent_and_tilde [:!Sgrave_accent_and_tilde] ["shift-mode" 1]]
-      [:0 [:!S0] ["shift-mode" 1]]
-      [:1 [:!S1] ["shift-mode" 1]]
-      [:2 [:!S2] ["shift-mode" 1]]
-      [:3 [:!S3] ["shift-mode" 1]]
-      [:4 [:!S4] ["shift-mode" 1]]
-      [:5 [:!S5] ["shift-mode" 1]]
-      [:6 [:!S6] ["shift-mode" 1]]
-      [:7 [:!S7] ["shift-mode" 1]]
-      [:8 [:!S8] ["shift-mode" 1]]
-      [:9 [:!S9] ["shift-mode" 1]]
-      [:0 [:!S0] ["shift-mode" 1]]
-      [:hyphen [:!Shyphen] ["shift-mode" 1]]
-    ]}
-
-    {:des "symbol mode" :rules [
-      [:condi :kinesis-keyboard] 
-      [:return_or_enter ["symbol-mode" 1] ["nav-mode" 0] {:afterup ["symbol-mode" 0]}]
-      [:q [:!S5] ["symbol-mode" 1]]
-      [:w [:grave_accent_and_tilde] ["symbol-mode" 1]]
-      [:e [:equal_sign] ["symbol-mode" 1]]
-      [:r [:!S7] ["symbol-mode" 1]]
-      [:t [:!Sbackslash] ["symbol-mode" 1]]
-      ; [:y [:!Sy] ["symbol-mode" 1]]
-      [:y [:!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde :!Sreturn_or_enter :!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde  :up_arrow] ["symbol-mode" 1]]
-      [:u [:!Sgrave_accent_and_tilde] ["symbol-mode" 1]]
-      [:i [:!S8] ["symbol-mode" 1]]
-      [:o [:!Sequal_sign] ["symbol-mode" 1]]
-      [:p [:!S3] ["symbol-mode" 1]]
-      ; [:backslash [:!Sbackslash] ["symbol-mode" 1]]
-      [:a [:!Squote] ["symbol-mode" 1]]
-      [:s [:quote] ["symbol-mode" 1]]
-      [:d [:!S9] ["symbol-mode" 1]]
-      [:f [:!S0] ["symbol-mode" 1]]
-      [:g [:hyphen] ["symbol-mode" 1]]
-      [:h [:!S2] ["symbol-mode" 1]]
-      [:j [:open_bracket] ["symbol-mode" 1]]
-      [:k [:close_bracket] ["symbol-mode" 1]]
-      [:l [:!Shyphen] ["symbol-mode" 1]]
-      [:semicolon [:!S4] ["symbol-mode" 1]]
-      ; [:quote [:!Squote] ["symbol-mode" 1]]
-      [:z [:backslash] ["symbol-mode" 1]]
-      [:x [:!S1] ["symbol-mode" 1]]
-      [:c [:!Sopen_bracket] ["symbol-mode" 1]]
-      [:v [:!Sclose_bracket] ["symbol-mode" 1]]
-      [:b [:tab] ["symbol-mode" 1]]
-      [:n [:!S6] ["symbol-mode" 1]]
-      ; [:m [:!Sm] ["symbol-mode" 1]]
-      [:comma [:!Scomma] ["symbol-mode" 1]]
-      [:period [:!Speriod] ["symbol-mode" 1]]
-      [:slash [:!Sslash] ["symbol-mode" 1]]
-    
-      [:delete_or_backspace [:spacebar] ["symbol-mode" 1]]
-      [:delete_forward [:vk_none ["nav-mode" 1]] ["symbol-mode" 1] {:afterup ["nav-mode" 0]}]
-      ; [:delete_forward [:return_or_enter] ["symbol-mode" 1]]
-    ]}
+    ; {:des "shift mode" :rules [
+    ;   [:condi :kinesis-keyboard] 
+    ;   [:delete_or_backspace ["shift-mode" 1] ["symbol-mode" 0] {:afterup ["shift-mode" 0]}]
+    ;   [:q [:!Sq] ["shift-mode" 1]] [:w [:!Sw] ["shift-mode" 1]] [:e [:!Se] ["shift-mode" 1]]
+    ;   [:r [:!Sr] ["shift-mode" 1]]
+    ;   [:t [:!St] ["shift-mode" 1]]
+    ;   [:y [:!Sy] ["shift-mode" 1]]
+    ;   [:u [:!Su] ["shift-mode" 1]]
+    ;   [:i [:!Si] ["shift-mode" 1]]
+    ;   [:o [:!So] ["shift-mode" 1]]
+    ;   [:p [:!Sp] ["shift-mode" 1]]
+    ;   [:backslash [:!Sbackslash] ["shift-mode" 1]]
+    ;   [:a [:!Sa] ["shift-mode" 1]]
+    ;   [:s [:!Ss] ["shift-mode" 1]]
+    ;   [:d [:!Sd] ["shift-mode" 1]]
+    ;   [:f [:!Sf] ["shift-mode" 1]]
+    ;   [:g [:!Sg] ["shift-mode" 1]]
+    ;   [:h [:!Sh] ["shift-mode" 1]]
+    ;   [:j [:!Sj] ["shift-mode" 1]]
+    ;   [:k [:!Sk] ["shift-mode" 1]]
+    ;   [:l [:!Sl] ["shift-mode" 1]]
+    ;   [:semicolon [:!Ssemicolon] ["shift-mode" 1]]
+    ;   [:quote [:!Squote] ["shift-mode" 1]]
+    ;   [:z [:!Sz] ["shift-mode" 1]]
+    ;   [:x [:!Sx] ["shift-mode" 1]]
+    ;   [:c [:!Sc] ["shift-mode" 1]]
+    ;   [:v [:!Sv] ["shift-mode" 1]]
+    ;   [:b [:!Sb] ["shift-mode" 1]]
+    ;   [:n [:!Sn] ["shift-mode" 1]]
+    ;   [:m [:!Sm] ["shift-mode" 1]]
+    ;   [:comma [:!Scomma] ["shift-mode" 1]]
+    ;   [:period [:!Speriod] ["shift-mode" 1]]
+    ;   [:slash [:!Sslash] ["shift-mode" 1]]
+    ;   [:open_bracket [:!Sopen_bracket] ["shift-mode" 1]]
+    ;   [:close_bracket [:!Sclose_bracket] ["shift-mode" 1]]
+    ;   [:up_arrow [:!Sup_arrow] ["shift-mode" 1]]
+    ;   [:down_arrow [:!Sdown_arrow] ["shift-mode" 1]]
+    ;   [:left_arrow [:!Sleft_arrow] ["shift-mode" 1]]
+    ;   [:right_arrow [:!Sright_arrow] ["shift-mode" 1]]
+    ;   [:equal_sign [:!Sequal_sign] ["shift-mode" 1]]
+    ;   [:grave_accent_and_tilde [:!Sgrave_accent_and_tilde] ["shift-mode" 1]]
+    ;   [:0 [:!S0] ["shift-mode" 1]]
+    ;   [:1 [:!S1] ["shift-mode" 1]]
+    ;   [:2 [:!S2] ["shift-mode" 1]]
+    ;   [:3 [:!S3] ["shift-mode" 1]]
+    ;   [:4 [:!S4] ["shift-mode" 1]]
+    ;   [:5 [:!S5] ["shift-mode" 1]]
+    ;   [:6 [:!S6] ["shift-mode" 1]]
+    ;   [:7 [:!S7] ["shift-mode" 1]]
+    ;   [:8 [:!S8] ["shift-mode" 1]]
+    ;   [:9 [:!S9] ["shift-mode" 1]]
+    ;   [:0 [:!S0] ["shift-mode" 1]]
+    ;   [:hyphen [:!Shyphen] ["shift-mode" 1]]
+    ; ]}
+    ;
+    ; {:des "symbol mode" :rules [
+    ;   [:condi :kinesis-keyboard] 
+    ;   [:return_or_enter ["symbol-mode" 1] ["nav-mode" 0] {:afterup ["symbol-mode" 0]}]
+    ;   [:q [:!S5] ["symbol-mode" 1]]
+    ;   [:w [:grave_accent_and_tilde] ["symbol-mode" 1]]
+    ;   [:e [:equal_sign] ["symbol-mode" 1]]
+    ;   [:r [:!S7] ["symbol-mode" 1]]
+    ;   [:t [:!Sbackslash] ["symbol-mode" 1]]
+    ;   ; [:y [:!Sy] ["symbol-mode" 1]]
+    ;   [:y [:!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde :!Sreturn_or_enter :!Sreturn_or_enter :grave_accent_and_tilde :grave_accent_and_tilde :grave_accent_and_tilde  :up_arrow] ["symbol-mode" 1]]
+    ;   [:u [:!Sgrave_accent_and_tilde] ["symbol-mode" 1]]
+    ;   [:i [:!S8] ["symbol-mode" 1]]
+    ;   [:o [:!Sequal_sign] ["symbol-mode" 1]]
+    ;   [:p [:!S3] ["symbol-mode" 1]]
+    ;   ; [:backslash [:!Sbackslash] ["symbol-mode" 1]]
+    ;   [:a [:!Squote] ["symbol-mode" 1]]
+    ;   [:s [:quote] ["symbol-mode" 1]]
+    ;   [:d [:!S9] ["symbol-mode" 1]]
+    ;   [:f [:!S0] ["symbol-mode" 1]]
+    ;   [:g [:hyphen] ["symbol-mode" 1]]
+    ;   [:h [:!S2] ["symbol-mode" 1]]
+    ;   [:j [:open_bracket] ["symbol-mode" 1]]
+    ;   [:k [:close_bracket] ["symbol-mode" 1]]
+    ;   [:l [:!Shyphen] ["symbol-mode" 1]]
+    ;   [:semicolon [:!S4] ["symbol-mode" 1]]
+    ;   ; [:quote [:!Squote] ["symbol-mode" 1]]
+    ;   [:z [:backslash] ["symbol-mode" 1]]
+    ;   [:x [:!S1] ["symbol-mode" 1]]
+    ;   [:c [:!Sopen_bracket] ["symbol-mode" 1]]
+    ;   [:v [:!Sclose_bracket] ["symbol-mode" 1]]
+    ;   [:b [:tab] ["symbol-mode" 1]]
+    ;   [:n [:!S6] ["symbol-mode" 1]]
+    ;   ; [:m [:!Sm] ["symbol-mode" 1]]
+    ;   [:comma [:!Scomma] ["symbol-mode" 1]]
+    ;   [:period [:!Speriod] ["symbol-mode" 1]]
+    ;   [:slash [:!Sslash] ["symbol-mode" 1]]
+    ;
+    ;   [:delete_or_backspace [:spacebar] ["symbol-mode" 1]]
+    ;   [:delete_forward [:vk_none ["nav-mode" 1]] ["symbol-mode" 1] {:afterup ["nav-mode" 0]}]
+    ;   ; [:delete_forward [:return_or_enter] ["symbol-mode" 1]]
+    ; ]}
 
     ; {:des "symbol mode learning wheels - disable the regular symbols" :rules [
     ;   [:condi :kinesis-keyboard] 
@@ -393,139 +393,139 @@
     ; ]}
     
 
-    {:des "nav mode cmd" :rules [
-      [:condi :kinesis-keyboard ["nav-mode-cmd" 1]] 
-      [:h [:!Cleft_arrow]]
-      [:j [:!Cdown_arrow]]
-      [:k [:!Cup_arrow]]
-      [:l [:!Cright_arrow]]
-      ]
-    }
-    {:des "nav mode opt" :rules [
-      [:condi :kinesis-keyboard ["nav-mode-opt" 1] ["nav-mode-opt-shift" 0]] 
-      [:a [:left_shift ["nav-mode-opt-shift" 1]] ["nav-mode-opt" 1] {:afterup ["nav-mode-opt-shift" 0]}]
-      [:h [:!Oleft_arrow]]
-      [:j [:!Odown_arrow]]
-      [:k [:!Oup_arrow]]
-      [:l [:!Oright_arrow]]
-      ]
-    }
-    {:des "nav mode shift" :rules [
-      [:condi :kinesis-keyboard ["nav-mode-shift" 1]] 
-      [:s [:left_option ["nav-mode-opt-shift" 1]] ["nav-mode-shift" 1] {:afterup ["nav-mode-opt-shift" 0]}]
-      [:h [:!Sleft_arrow]]
-      [:j [:!Sdown_arrow]]
-      [:k [:!Sup_arrow]]
-      [:l [:!Sright_arrow]]
-      ]
-    }
-    {:des "nav mode opt-shift" :rules [
-      [:condi :kinesis-keyboard ["nav-mode-opt-shift" 1]] 
-      [:h [:!OSleft_arrow]]
-      [:j [:!OSdown_arrow]]
-      [:k [:!OSup_arrow]]
-      [:l [:!OSright_arrow]]
-      ]
-    }
-
-    {:des "nav mode" :rules [
-      [:condi :kinesis-keyboard ["nav-mode-cmd" 0] ["nav-mode-opt" 0] ["nav-mode-shift" 0] ["nav-mode-opt-shift" 0]] 
-      [:delete_forward ["nav-mode" 1] nil {:afterup ["nav-mode" 0]}]
-      ; [:q [:!Sq ["nav-mode" 0]] ["nav-mode" 1]]
-      ; [:w [:!Sw ["nav-mode" 0]] ["nav-mode" 1]]
-      [:e [:!Cf] ["nav-mode" 1]]
-      [:r [:!Cr] ["nav-mode" 1]]
-      ; [:t [:!St] ["nav-mode" 1]]
-      [:y [:home] ["nav-mode" 1]]
-      [:u [:page_up] ["nav-mode" 1]]
-      [:i [:page_down] ["nav-mode" 1]]
-      [:o [:!Cdelete_or_backspace] ["nav-mode" 1]]
-      [:p [:!Cdelete_forward] ["nav-mode" 1]]
-      ; [:backslash [:!Sbackslash] ["nav-mode" 1]]
-      ; [:a [:left_shift] ["nav-mode" 1]]
-      [:a [:left_shift ["nav-mode-shift" 1]] ["nav-mode" 1] {:afterup ["nav-mode-shift" 0]}]
-      [:s [:left_option ["nav-mode-opt" 1]] ["nav-mode" 1] {:afterup ["nav-mode-opt" 0]}]
-      [:d [:left_control] ["nav-mode" 1]]
-      [:f [:left_command ["nav-mode-cmd" 1]] ["nav-mode" 1] {:afterup ["nav-mode-cmd" 0]}]
-      ; [:g [:!Sg] ["nav-mode" 1]]
-      [:h [:left_arrow] ["nav-mode" 1]]
-      [:j [:down_arrow] ["nav-mode" 1]]
-      [:k [:up_arrow] ["nav-mode" 1]]
-      [:l [:right_arrow] ["nav-mode" 1]]
-      [:semicolon [:end] ["nav-mode" 1]]
-      ; [:quote [:!Squote] ["nav-mode" 1]]
-      ; [:z [:!Sz] ["nav-mode" 1]]
-      [:x [:!Cx] ["nav-mode" 1]]
-      [:c [:!Cc] ["nav-mode" 1]]
-      [:v [:!Cv] ["nav-mode" 1]]
-      ; [:b [:!Sb] ["nav-mode" 1]]
-      [:n [:!Odelete_or_backspace] ["nav-mode" 1]]
-      [:m [:delete_or_backspace] ["nav-mode" 1]]
-      [:comma [:delete_forward] ["nav-mode" 1]]
-      [:period [:!Odelete_forward] ["nav-mode" 1]]
-      ; [:slash [:!Sslash] ["nav-mode" 1]]
-      ; [:open_bracket [:!Sopen_bracket] ["nav-mode" 1]]
-      ; [:close_bracket [:!Sclose_bracket] ["nav-mode" 1]]
-      ; [:up_arrow [:!Sup_arrow] ["nav-mode" 1]]
-      ; [:down_arrow [:!Sdown_arrow] ["nav-mode" 1]]
-      ; [:left_arrow [:!Sleft_arrow] ["nav-mode" 1]]
-      ; [:right_arrow [:!Sright_arrow] ["nav-mode" 1]]
-      ; [:equal_sign [:!Sequal_sign] ["nav-mode" 1]]
-      ; [:grave_accent_and_tilde [:!Sgrave_accent_and_tilde] ["nav-mode" 1]]
-      ; [:0 [:!S0] ["nav-mode" 1]]
-      ; [:1 [:!S1] ["nav-mode" 1]]
-      ; [:2 [:!S2] ["nav-mode" 1]]
-      ; [:3 [:!S3] ["nav-mode" 1]]
-      ; [:4 [:!S4] ["nav-mode" 1]]
-      ; [:5 [:!S5] ["nav-mode" 1]]
-      ; [:6 [:!S6] ["nav-mode" 1]]
-      ; [:7 [:!S7] ["nav-mode" 1]]
-      ; [:8 [:!S8] ["nav-mode" 1]]
-      ; [:9 [:!S9] ["nav-mode" 1]]
-      ; [:0 [:!S0] ["nav-mode" 1]]
-      ; [:hyphen [:!Shyphen] ["nav-mode" 1]]
-      [:return_or_enter [:return_or_enter] ["nav-mode" 1]]
-    ]}
-
-    {:des "have home emit CTOS modifiers" :rules [
-      [:condi :kinesis-keyboard] 
-      [:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]
-    ]}
-
-    {:des "have caps_lock emit CTOS modifiers in combination with shfit and caps_lock by itself" :rules [
-      [:condi :apple-keyboard] 
-      [:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]
-      [:!Rcaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} 
-          nil {:alone {:key :caps_lock}} ]
-      [:!Scaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} 
-          nil {:alone {:key :caps_lock}} ]
-      [:##caps_lock :caps_lock]
-    ]}
-
-    {:des "command left/right to opt left/right" :rules [
-      [:condi :kinesis-keyboard] 
-      [:!Cleft_arrow {:key :left_arrow :modi [:left_option]}]
-      [:!Cright_arrow {:key :right_arrow :modi [:left_option]}]
-    ]}
-
-    {:des "command up/down to page_up/page_down" :rules [
-      [:condi :kinesis-keyboard] 
-      [:!Cup_arrow :page_up]
-      [:!Cdown_arrow :page_down]
-    ]}
-
-    {:des "command backsapce to opt backspace" :rules [
-      [:condi :kinesis-keyboard] 
-      [:!Cdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
-      [:!Qdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
-    ]}
-
-    {:des "some common mappings between cmd and hyper" :rules [
-      [:condi :kinesis-keyboard] 
-      [:!CTOSc {:key c :modi [:left_command]}]
-      [:!CTOSt {:key t :modi [:left_command]}]
-      [:!CTOSv {:key v :modi [:left_command]}]
-    ]}
+    ; {:des "nav mode cmd" :rules [
+    ;   [:condi :kinesis-keyboard ["nav-mode-cmd" 1]] 
+    ;   [:h [:!Cleft_arrow]]
+    ;   [:j [:!Cdown_arrow]]
+    ;   [:k [:!Cup_arrow]]
+    ;   [:l [:!Cright_arrow]]
+    ;   ]
+    ; }
+    ; {:des "nav mode opt" :rules [
+    ;   [:condi :kinesis-keyboard ["nav-mode-opt" 1] ["nav-mode-opt-shift" 0]] 
+    ;   [:a [:left_shift ["nav-mode-opt-shift" 1]] ["nav-mode-opt" 1] {:afterup ["nav-mode-opt-shift" 0]}]
+    ;   [:h [:!Oleft_arrow]]
+    ;   [:j [:!Odown_arrow]]
+    ;   [:k [:!Oup_arrow]]
+    ;   [:l [:!Oright_arrow]]
+    ;   ]
+    ; }
+    ; {:des "nav mode shift" :rules [
+    ;   [:condi :kinesis-keyboard ["nav-mode-shift" 1]] 
+    ;   [:s [:left_option ["nav-mode-opt-shift" 1]] ["nav-mode-shift" 1] {:afterup ["nav-mode-opt-shift" 0]}]
+    ;   [:h [:!Sleft_arrow]]
+    ;   [:j [:!Sdown_arrow]]
+    ;   [:k [:!Sup_arrow]]
+    ;   [:l [:!Sright_arrow]]
+    ;   ]
+    ; }
+    ; {:des "nav mode opt-shift" :rules [
+    ;   [:condi :kinesis-keyboard ["nav-mode-opt-shift" 1]] 
+    ;   [:h [:!OSleft_arrow]]
+    ;   [:j [:!OSdown_arrow]]
+    ;   [:k [:!OSup_arrow]]
+    ;   [:l [:!OSright_arrow]]
+    ;   ]
+    ; }
+    ;
+    ; {:des "nav mode" :rules [
+    ;   [:condi :kinesis-keyboard ["nav-mode-cmd" 0] ["nav-mode-opt" 0] ["nav-mode-shift" 0] ["nav-mode-opt-shift" 0]] 
+    ;   [:delete_forward ["nav-mode" 1] nil {:afterup ["nav-mode" 0]}]
+    ;   ; [:q [:!Sq ["nav-mode" 0]] ["nav-mode" 1]]
+    ;   ; [:w [:!Sw ["nav-mode" 0]] ["nav-mode" 1]]
+    ;   [:e [:!Cf] ["nav-mode" 1]]
+    ;   [:r [:!Cr] ["nav-mode" 1]]
+    ;   ; [:t [:!St] ["nav-mode" 1]]
+    ;   [:y [:home] ["nav-mode" 1]]
+    ;   [:u [:page_up] ["nav-mode" 1]]
+    ;   [:i [:page_down] ["nav-mode" 1]]
+    ;   [:o [:!Cdelete_or_backspace] ["nav-mode" 1]]
+    ;   [:p [:!Cdelete_forward] ["nav-mode" 1]]
+    ;   ; [:backslash [:!Sbackslash] ["nav-mode" 1]]
+    ;   ; [:a [:left_shift] ["nav-mode" 1]]
+    ;   [:a [:left_shift ["nav-mode-shift" 1]] ["nav-mode" 1] {:afterup ["nav-mode-shift" 0]}]
+    ;   [:s [:left_option ["nav-mode-opt" 1]] ["nav-mode" 1] {:afterup ["nav-mode-opt" 0]}]
+    ;   [:d [:left_control] ["nav-mode" 1]]
+    ;   [:f [:left_command ["nav-mode-cmd" 1]] ["nav-mode" 1] {:afterup ["nav-mode-cmd" 0]}]
+    ;   ; [:g [:!Sg] ["nav-mode" 1]]
+    ;   [:h [:left_arrow] ["nav-mode" 1]]
+    ;   [:j [:down_arrow] ["nav-mode" 1]]
+    ;   [:k [:up_arrow] ["nav-mode" 1]]
+    ;   [:l [:right_arrow] ["nav-mode" 1]]
+    ;   [:semicolon [:end] ["nav-mode" 1]]
+    ;   ; [:quote [:!Squote] ["nav-mode" 1]]
+    ;   ; [:z [:!Sz] ["nav-mode" 1]]
+    ;   [:x [:!Cx] ["nav-mode" 1]]
+    ;   [:c [:!Cc] ["nav-mode" 1]]
+    ;   [:v [:!Cv] ["nav-mode" 1]]
+    ;   ; [:b [:!Sb] ["nav-mode" 1]]
+    ;   [:n [:!Odelete_or_backspace] ["nav-mode" 1]]
+    ;   [:m [:delete_or_backspace] ["nav-mode" 1]]
+    ;   [:comma [:delete_forward] ["nav-mode" 1]]
+    ;   [:period [:!Odelete_forward] ["nav-mode" 1]]
+    ;   ; [:slash [:!Sslash] ["nav-mode" 1]]
+    ;   ; [:open_bracket [:!Sopen_bracket] ["nav-mode" 1]]
+    ;   ; [:close_bracket [:!Sclose_bracket] ["nav-mode" 1]]
+    ;   ; [:up_arrow [:!Sup_arrow] ["nav-mode" 1]]
+    ;   ; [:down_arrow [:!Sdown_arrow] ["nav-mode" 1]]
+    ;   ; [:left_arrow [:!Sleft_arrow] ["nav-mode" 1]]
+    ;   ; [:right_arrow [:!Sright_arrow] ["nav-mode" 1]]
+    ;   ; [:equal_sign [:!Sequal_sign] ["nav-mode" 1]]
+    ;   ; [:grave_accent_and_tilde [:!Sgrave_accent_and_tilde] ["nav-mode" 1]]
+    ;   ; [:0 [:!S0] ["nav-mode" 1]]
+    ;   ; [:1 [:!S1] ["nav-mode" 1]]
+    ;   ; [:2 [:!S2] ["nav-mode" 1]]
+    ;   ; [:3 [:!S3] ["nav-mode" 1]]
+    ;   ; [:4 [:!S4] ["nav-mode" 1]]
+    ;   ; [:5 [:!S5] ["nav-mode" 1]]
+    ;   ; [:6 [:!S6] ["nav-mode" 1]]
+    ;   ; [:7 [:!S7] ["nav-mode" 1]]
+    ;   ; [:8 [:!S8] ["nav-mode" 1]]
+    ;   ; [:9 [:!S9] ["nav-mode" 1]]
+    ;   ; [:0 [:!S0] ["nav-mode" 1]]
+    ;   ; [:hyphen [:!Shyphen] ["nav-mode" 1]]
+    ;   [:return_or_enter [:return_or_enter] ["nav-mode" 1]]
+    ; ]}
+    ;
+    ; {:des "have home emit CTOS modifiers" :rules [
+    ;   [:condi :kinesis-keyboard] 
+    ;   [:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]
+    ; ]}
+    ;
+    ; {:des "have caps_lock emit CTOS modifiers in combination with shfit and caps_lock by itself" :rules [
+    ;   [:condi :apple-keyboard] 
+    ;   [:##home {:key :left_command :modi [:left_command :left_control :left_option :left_shift]}]
+    ;   [:!Rcaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} 
+    ;       nil {:alone {:key :caps_lock}} ]
+    ;   [:!Scaps_lock {:key :left_command :modi [:left_command :left_control :left_option :left_shift]} 
+    ;       nil {:alone {:key :caps_lock}} ]
+    ;   [:##caps_lock :caps_lock]
+    ; ]}
+    ;
+    ; {:des "command left/right to opt left/right" :rules [
+    ;   [:condi :kinesis-keyboard] 
+    ;   [:!Cleft_arrow {:key :left_arrow :modi [:left_option]}]
+    ;   [:!Cright_arrow {:key :right_arrow :modi [:left_option]}]
+    ; ]}
+    ;
+    ; {:des "command up/down to page_up/page_down" :rules [
+    ;   [:condi :kinesis-keyboard] 
+    ;   [:!Cup_arrow :page_up]
+    ;   [:!Cdown_arrow :page_down]
+    ; ]}
+    ;
+    ; {:des "command backsapce to opt backspace" :rules [
+    ;   [:condi :kinesis-keyboard] 
+    ;   [:!Cdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
+    ;   [:!Qdelete_or_backspace {:key :delete_or_backspace :modi [:left_option]}]
+    ; ]}
+    ;
+    ; {:des "some common mappings between cmd and hyper" :rules [
+    ;   [:condi :kinesis-keyboard] 
+    ;   [:!CTOSc {:key c :modi [:left_command]}]
+    ;   [:!CTOSt {:key t :modi [:left_command]}]
+    ;   [:!CTOSv {:key v :modi [:left_command]}]
+    ; ]}
 
 
     ; same app window switching - we are doing this with hammerspoon now

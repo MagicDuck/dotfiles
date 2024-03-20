@@ -57,6 +57,7 @@ return {
         textobjects = {
           select = {
             enable = true,
+            lookahead = true,
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
               -- Note: those are stored under query/<lang>/textobjects.scm
@@ -71,6 +72,10 @@ return {
               ["ir"] = "@my.variable_decl.rhs",
               ["ia"] = "@my.args",
               ["am"] = "@my.comment",
+              ["a="] = { query = "@assignment.outer", desc = "Select outer part of an assignment" },
+              ["i="] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
+              ["l="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
+              ["r="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
             },
           },
           -- swap = {
@@ -96,10 +101,17 @@ return {
             goto_next_end = {
               ["<leader>jA"] = "@function.outer",
             },
+            goto_next = {
+              ["<leader>jb"] = { query = { "@parameter.inner", "@conditional.inner", "@call.inner", "@block.inner", "@class.inner" } },
+            },
+            goto_previous = {
+              ["<leader>kb"] = { query = { "@parameter.inner", "@conditional.inner", "@call.inner", "@block.inner", "@class.inner" } },
+            },
           },
         },
         incremental_selection = {
           enable = true,
+          lookahead = true,
           keymaps = {
             init_selection = "<bs>",
             node_incremental = "<bs>",

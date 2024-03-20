@@ -267,7 +267,7 @@ my.keybind({
 -- highlighting
 my.keybind({
   description = "highlighting: clear search highlight",
-  lhs = "<leader>v",
+  lhs = "<leader>uv",
   rhs = ':let @/ = ""<CR>',
 })
 
@@ -842,4 +842,24 @@ my.keybind({
   description = "markdown: preview open",
   lhs = "<leader>pc",
   rhs = ":PeekClose<CR>",
+})
+
+-- switch to alternate file
+my.keybind({
+  mode = "n",
+  description = "vsplit edit associated file: jsx file",
+  lhs = "<leader>vf",
+  rhs = ":lua vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.jsx')<CR>",
+})
+my.keybind({
+  mode = "n",
+  description = "vsplit edit associated file: spec file",
+  lhs = "<leader>vt",
+  rhs = ":lua vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.spec.js')<CR>",
+})
+my.keybind({
+  mode = "n",
+  description = "vsplit edit associated file: module scss file",
+  lhs = "<leader>vc",
+  rhs = ":lua vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.module.scss')<CR>",
 })

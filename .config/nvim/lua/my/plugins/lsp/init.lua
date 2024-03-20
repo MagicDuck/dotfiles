@@ -34,7 +34,7 @@ return {
           require("mason-null-ls").setup({
             -- A list of sources to install if they're not already installed.
             -- This setting has no relation with the `automatic_installation` setting.
-            ensure_installed = { 'stylelint_d' },
+            ensure_installed = {},
             -- Run `require("null-ls").setup`.
             -- Will automatically install masons tools based on selected sources in `null-ls`.
             -- Can also be an exclusion list.
@@ -91,6 +91,7 @@ return {
       require("my/plugins/lsp/cssmodules")
       require("my/plugins/lsp/cssls")
       require("my/plugins/lsp/eslint")
+      require("my/plugins/lsp/stylelint")
       require("my/plugins/lsp/rust_analyzer")
     end
   },

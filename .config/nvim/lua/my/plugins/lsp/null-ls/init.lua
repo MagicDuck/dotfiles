@@ -178,7 +178,7 @@ null_ls.setup({
   diagnostics_format = "[#{s}] #{m} (#{c})",
   sources = {
     -- null_ls.builtins.diagnostics.stylelint.with {
-    stylelint_d,
+    -- stylelint_d,
     -- stylelint.with {
     --   only_local = "node_modules/.bin"
     -- },

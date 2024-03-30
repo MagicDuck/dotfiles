@@ -111,11 +111,11 @@ snippets.init({
       .. cursor,
     keys = {
       xmDemoInstance.host
-      .. " (user = "
-      .. xmDemoInstance.user
-      .. ", password = "
-      .. xmDemoInstance.password
-      .. ")",
+      -- .. " (user = "
+      -- .. xmDemoInstance.user
+      -- .. ", password = "
+      -- .. xmDemoInstance.password
+      -- .. ")",
     },
   },
   {
@@ -129,11 +129,11 @@ snippets.init({
       .. cursor,
     keys = {
       xmDemoInstance2.host
-      .. " (user = "
-      .. xmDemoInstance2.user
-      .. ", password = "
-      .. xmDemoInstance2.password
-      .. ")",
+      -- .. " (user = "
+      -- .. xmDemoInstance2.user
+      -- .. ", password = "
+      -- .. xmDemoInstance2.password
+      -- .. ")",
     },
   },
   {

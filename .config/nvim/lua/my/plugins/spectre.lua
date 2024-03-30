@@ -4,7 +4,7 @@ return {
     lazy = true,
     event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()
-      require('spectre').setup({ replace_engine = { sed = { cmd = "sed" } } })
+      require('spectre').setup({ is_block_ui_break = true, replace_engine = { sed = { cmd = "sed" } } })
     end
   },
 }

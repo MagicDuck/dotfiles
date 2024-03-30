@@ -515,7 +515,7 @@ my.keybind({
 })
 my.keybind({
   description = "lsp: symbol: trigger signature help popup",
-  lhs = ",s",
+  lhs = "<leader>ls",
   rhs = ":lua vim.lsp.buf.signature_help()<CR>",
 })
 my.keybind({
@@ -555,17 +555,17 @@ my.keybind({
 })
 my.keybind({
   description = "lsp: symbol: rename",
-  lhs = ",r",
+  lhs = "<leader>lr",
   rhs = ":lua vim.lsp.buf.rename()<CR>",
 })
 my.keybind({
   description = "lsp: code action: pick",
-  lhs = ",a",
+  lhs = "<leader>la",
   rhs = ":lua vim.lsp.buf.code_action()<CR>",
 })
 my.keybind({
   description = "lsp: diagnostics: show from current line",
-  lhs = ",l",
+  lhs = "<leader>ld",
   rhs = ":lua vim.diagnostic.open_float()<CR>",
 })
 my.keybind({
@@ -580,12 +580,12 @@ my.keybind({
 })
 my.keybind({
   description = "lsp: diagnostics: put all buffer diagnostics into the loclist",
-  lhs = ",F",
+  lhs = "<leader>ll",
   rhs = ":lua vim.diagnostic.setloclist()<CR>",
 })
 my.keybind({
   description = "lsp: format current buffer",
-  lhs = ",fb",
+  lhs = "<leader>lf",
   rhs = "<cmd>lua vim.lsp.buf.formatting()<CR>",
 })
 my.keybind({
@@ -609,17 +609,30 @@ my.keybind({
 --   rhs = "<cmd>HopLine<CR>",
 -- })
 -- leap
+-- my.keybind({
+--   mode = "nvxo",
+--   description = "leap to location",
+--   lhs = "f",
+--   rhs = "<cmd>MyLeapCurrentWindow<CR>",
+-- })
+-- my.keybind({
+--   mode = "nvxo",
+--   description = "leap to location all tab windows",
+--   lhs = "F",
+--   rhs = "<cmd>MyLeapAllWindows<CR>",
+-- })
+-- leap
 my.keybind({
-  mode = "nvxo",
-  description = "leap to location",
+  mode = "nxo",
+  description = "flash to location",
   lhs = "f",
-  rhs = "<cmd>MyLeapCurrentWindow<CR>",
+  rhs = "<cmd>lua require('flash').jump()<cr>",
 })
 my.keybind({
-  mode = "nvxo",
-  description = "leap to location all tab windows",
-  lhs = "F",
-  rhs = "<cmd>MyLeapAllWindows<CR>",
+  mode = "nxo",
+  description = "flash: select using treesitter",
+  lhs = ",",
+  rhs = "<cmd>lua require('flash').treesitter()<cr>",
 })
 my.keybind({
   mode = "n",

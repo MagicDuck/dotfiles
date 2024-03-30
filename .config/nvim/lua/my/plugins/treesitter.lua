@@ -20,25 +20,26 @@ return {
         ensure_installed = "all",
         -- auto_install = true,
         ignore_install = { "comment" }, -- has some performance issues atm
-        highlight = {
-          enable = true,
-          custom_captures = {},
-        },
-        disable = function(lang, buf)
-          local first_line = vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1]
-          if first_line ~= nil and string.len(first_line) > 500 then
-            -- this is probably a minified file, don't attempt to highlight
-            return true
-          end
-          local max_filesize = 200 * 1024 -- 200 KB
-          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-          if ok and stats and stats.size > max_filesize then
-            -- large file, don't attempt highlight
-            return true
-          end
-
-          return false
-        end,
+        -- This stuff seems to be already better taken of by default
+        -- highlight = {
+        --   enable = true,
+        --   custom_captures = {},
+        -- },
+        -- disable = function(lang, buf)
+        --   local first_line = vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1]
+        --   if first_line ~= nil and string.len(first_line) > 500 then
+        --     -- this is probably a minified file, don't attempt to highlight
+        --     return true
+        --   end
+        --   local max_filesize = 200 * 1024 -- 200 KB
+        --   local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+        --   if ok and stats and stats.size > max_filesize then
+        --     -- large file, don't attempt highlight
+        --     return true
+        --   end
+        --
+        --   return false
+        -- end,
         playground = {
           enable = true,
           updatetime = 25,

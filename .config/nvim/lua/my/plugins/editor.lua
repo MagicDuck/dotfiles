@@ -193,4 +193,12 @@ return {
       require("nvim-autopairs").setup {}
     end
   },
+  -- speed up loading large files
+  {
+    "pteroctopus/faster.nvim",
+    lazy = false,
+    config = function()
+      require('faster').setup()
+    end
+  },
 }

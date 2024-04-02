@@ -1,4 +1,5 @@
 gui:
+  nerdFontsVersion: "3"
   theme:
     lightTheme: true
     activeBorderColor:

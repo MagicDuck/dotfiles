@@ -114,15 +114,15 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
 })
 
 -- absolute number in insert mode, relative otherwise
-vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-  group = augroup("insert_mode_absolute_numbers"),
-  callback = function()
-    vim.opt.relativenumber = false;
-  end,
-})
-vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-  group = augroup("other_mode_relative_numbers"),
-  callback = function()
-    vim.opt.relativenumber = true;
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+--   group = augroup("insert_mode_absolute_numbers"),
+--   callback = function()
+--     vim.opt.relativenumber = false;
+--   end,
+-- })
+-- vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+--   group = augroup("other_mode_relative_numbers"),
+--   callback = function()
+--     vim.opt.relativenumber = true;
+--   end,
+-- })

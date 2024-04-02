@@ -21,10 +21,10 @@ return {
         -- auto_install = true,
         ignore_install = { "comment" }, -- has some performance issues atm
         -- This stuff seems to be already better taken of by default
-        -- highlight = {
-        --   enable = true,
-        --   custom_captures = {},
-        -- },
+        highlight = {
+          enable = true,
+          custom_captures = {},
+        },
         -- disable = function(lang, buf)
         --   local first_line = vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1]
         --   if first_line ~= nil and string.len(first_line) > 500 then

@@ -9,7 +9,7 @@
     diffFilter = delta --color-only
 
 [delta]
-  syntax-theme = GitHub
+  syntax-theme = gruvbox-light
   line-numbers = true
   features = line-numbers decorations
   light = true
@@ -17,9 +17,9 @@
   side-by-side = false
   # see delta --show-config for all those
   plus-empty-line-marker-style  = normal "#D0D6CD"
-  minus-style = syntax "#E6C7C8"
+  minus-style = syntax "#F0CDCE"
   minus-emph-style = syntax "#EAACAF"
-  plus-style = syntax "#E2E8DF"
+  plus-style = syntax "#E1EBDC"
   plus-emph-style = syntax "#AED6D6"
   zero-style = syntax
   whitespace-error-style = "#aaaaaa"

@@ -298,7 +298,7 @@ source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh
 
 # export BAT_THEME='OneHalfLight'
 # export BAT_THEME='Coldark-Cold'
-export BAT_THEME='GitHub'
+# export BAT_THEME='GitHub'
 export BAT_THEME='gruvbox-light'
 
 # Git fuzzy

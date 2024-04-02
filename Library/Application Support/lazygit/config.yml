@@ -12,7 +12,7 @@ gui:
     # optionsTextColor:
       # - '#1e66f5' # Blue
     selectedLineBgColor:
-      - '#F0E4DA' # Surface0
+      - '#F0F0ED' # Surface0
     selectedRangeBgColor:
       # - '#E6D2BE'
       - reverse

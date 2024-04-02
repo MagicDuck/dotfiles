@@ -17,7 +17,8 @@ return {
         -- background = "#F6F2EE",
         background = "#FAFAF9",
         selectionBg = "#E7D2BE",
-        commentBackground = "#F0E4DA",
+        commentBackground = "#F0F0ED",
+        -- commentBackground = "#F0E4DA",
         commentFg = "#544D47",
 
         menubarBaseBg = "#D7CFC9",
@@ -50,7 +51,7 @@ return {
           ["@text.todo"] = { bg = my.commentBackground, fg = "#4C9E90", bold = true },
           MyTodo = { bg = my.commentBackground, fg = "#BE7E05", bold = true },
 
-          CursorLine = { bg = "#F0E4DA" },
+          CursorLine = { bg = "#F0F0ED" },
 
           TelescopeMatching = { fg = "#d05858", bold = true },
           SignatureMarkText = { fg = "#B4703E", bold = true },

@@ -13,6 +13,7 @@ return {
       { "windwp/nvim-ts-autotag" },
     },
     config = function()
+      vim.g.skip_ts_context_commentstring_module = true
       local ts = require("nvim-treesitter.configs")
 
       ts.setup({
@@ -126,19 +127,20 @@ return {
         autotag = {
           enable = true,
         },
-        context_commentstring = {
-          enable = true,
-          config = {
-            javascript = {
-              __default = "// %s",
-              jsx_element = "{/* %s */}",
-              jsx_fragment = "{/* %s */}",
-              jsx_attribute = "// %s",
-              comment = "// %s",
-            },
+      })
+
+      require('ts_context_commentstring').setup {
+        -- enable_autocmd = false,
+        languages = {
+          javascript = {
+            __default = "// %s",
+            jsx_element = "{/* %s */}",
+            jsx_fragment = "{/* %s */}",
+            jsx_attribute = "// %s",
+            comment = "// %s",
           },
         },
-      })
+      }
     end,
   },
   {

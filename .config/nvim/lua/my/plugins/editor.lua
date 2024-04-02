@@ -133,7 +133,7 @@ return {
     end
   },
   {
-    "sar/illuminate.nvim",
+    "RRethy/vim-illuminate",
     lazy = true,
     event = { "BufReadPost", "BufNewFile", "VeryLazy" },
     config = function()

@@ -14,7 +14,8 @@
 (arrow_function) @my.function.outer
 (method_definition) @my.function.outer
 (export_statement (function_declaration)) @my.function.outer
-(export_statement value: (function)) @my.function.outer
+
+; broken -> (export_statement value: (function)) @my.function.outer
 (export_statement value: (assignment_expression right: (arrow_function))) @my.function.outer
 (export_statement declaration: (lexical_declaration (variable_declarator value: (arrow_function)))) @my.function.outer
 

@@ -27,6 +27,7 @@ return {
 
             -- Toggle comment on current line
             comment_line = '<leader>c',
+            comment_visual = '<leader>c',
 
             -- Define 'comment' textobject (like `dgc` - delete whole comment block)
             textobject = 'ic',
@@ -95,11 +96,12 @@ return {
     end
   }, -- for marks to show in gutter
   {
-    "AmeerTaweel/todo.nvim",
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     config = function()
-      require("todo").setup({
+      require("todo-comments").setup({
         merge_keywords = false,
         keywords = {
           TODO = { icon = " ", color = "todo" },

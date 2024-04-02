@@ -17,6 +17,7 @@ return {
           light0 = my.background,
           light0_hard = my.background,
           light1 = my.background,
+          light2 = my.background,
           light3 = my.selectionBg
         }
       })

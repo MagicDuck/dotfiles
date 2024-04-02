@@ -36,6 +36,8 @@ M.my = my
 
 -- use :Inspect or :Inspect! to check hl group under cursor
 M.highlights = {
+  FlashLabel = { bg = "#65737E", fg = "#F0F2F5", bold = true },
+
   Comment = { bg = my.commentBackground, fg = my.commentFg, italic = false },
 
   SpecialComment = { bg = my.commentBackground, fg = my.commentFg, italic = false },

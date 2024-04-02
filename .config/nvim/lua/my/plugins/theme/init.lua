@@ -11,6 +11,7 @@ return {
       require("gruvbox").setup({
         contrast = "hard",
         bold = false,
+        invert_selection = false,
         overrides = overrides,
         palette_overrides = {
           light0 = my.background,

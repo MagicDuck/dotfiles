@@ -63,7 +63,8 @@ local global_on_attach = function(client, bufnr)
   -- require("lsp-inlayhints").on_attach(client, bufnr)
 end
 
-local global_capabilities = require("cmp_nvim_lsp").default_capabilities()
+-- local global_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local global_capabilities = vim.lsp.protocol.make_client_capabilities();
 
 return {
   global_on_attach = global_on_attach,

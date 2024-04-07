@@ -44,7 +44,9 @@ cmp.setup({
   performance = {
     -- debounce = 500,
     -- throttle = 550,
-    fetching_timeout = 1000, -- to account for slow tsserver
+    -- fetching_timeout = 1000, -- to account for slow tsserver
+    fetching_timeout = 300, -- to account for slow tsserver
+    max_view_entries = 50,
   },
   view = {
     -- update this to change how menu displays
@@ -146,11 +148,13 @@ cmp.setup({
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<C-tab>"] = cmp.mapping.confirm({ select = true }),
 
-    ["<C-space>"] = cmp.mapping.complete({ config = {
-      view = {
-        entries = { name = 'custom' }
-      },
-    } }),
+    ["<C-space>"] = cmp.mapping.complete({
+      config = {
+        view = {
+          entries = { name = 'custom' }
+        },
+      }
+    }),
     ["<PageUp>"] = cmp.mapping.scroll_docs(-4),
     ["<PageDown>"] = cmp.mapping.scroll_docs(4),
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
@@ -164,7 +168,7 @@ cmp.setup({
     {
       name = "nvim_lsp",
       -- priority = 100,
-      -- max_item_count = 20,
+      max_item_count = 100,
       -- group_index = 1
     },
     { name = "path" },
@@ -207,7 +211,16 @@ cmp.setup({
       },
     }),
   },
-  ["window.documentation"] = cmp.config.window.bordered(),
+  window = {
+    completion = {
+      border = "rounded",
+      winhighlight = "Normal:CmpNormal",
+    },
+    documentation = {
+      border = "rounded",
+      winhighlight = "Normal:CmpDocNormal",
+    },
+  },
 })
 
 -- show completion in dap

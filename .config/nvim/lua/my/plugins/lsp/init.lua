@@ -21,39 +21,98 @@ return {
     end
   },
 
+  -- {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   lazy = true,
+  --   event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+  --   dependencies = {
+  --     {
+  --       "jayp0521/mason-null-ls.nvim",
+  --       dependencies = { "mason" },
+  --       config = function()
+  --         -- handles automatic installation of required tools based on stuff configured in null-ls
+  --         require("mason-null-ls").setup({
+  --           -- A list of sources to install if they're not already installed.
+  --           -- This setting has no relation with the `automatic_installation` setting.
+  --           ensure_installed = {},
+  --           -- Run `require("null-ls").setup`.
+  --           -- Will automatically install masons tools based on selected sources in `null-ls`.
+  --           -- Can also be an exclusion list.
+  --           -- Example: `automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }`
+  --           automatic_installation = false,
+  --           -- Whether sources that are installed in mason should be automatically set up in null-ls.
+  --           -- Removes the need to set up null-ls manually.
+  --           -- Can either be:
+  --           -- 	- false: Null-ls is not automatically registered.
+  --           -- 	- true: Null-ls is automatically registered.
+  --           -- 	- { types = { SOURCE_NAME = {TYPES} } }. Allows overriding default configuration.
+  --           -- 	Ex: { types = { eslint_d = {'formatting'} } }
+  --           automatic_setup = false,
+  --         })
+  --       end
+  --     },
+  --   },
+  --   config = function()
+  --     require("my/plugins/lsp/null-ls")
+  --   end
+  -- },
+
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "stevearc/conform.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
-    dependencies = {
-      {
-        "jayp0521/mason-null-ls.nvim",
-        dependencies = { "mason" },
-        config = function()
-          -- handles automatic installation of required tools based on stuff configured in null-ls
-          require("mason-null-ls").setup({
-            -- A list of sources to install if they're not already installed.
-            -- This setting has no relation with the `automatic_installation` setting.
-            ensure_installed = {},
-            -- Run `require("null-ls").setup`.
-            -- Will automatically install masons tools based on selected sources in `null-ls`.
-            -- Can also be an exclusion list.
-            -- Example: `automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }`
-            automatic_installation = true,
-            -- Whether sources that are installed in mason should be automatically set up in null-ls.
-            -- Removes the need to set up null-ls manually.
-            -- Can either be:
-            -- 	- false: Null-ls is not automatically registered.
-            -- 	- true: Null-ls is automatically registered.
-            -- 	- { types = { SOURCE_NAME = {TYPES} } }. Allows overriding default configuration.
-            -- 	Ex: { types = { eslint_d = {'formatting'} } }
-            automatic_setup = false,
-          })
-        end
-      },
-    },
     config = function()
-      require("my/plugins/lsp/null-ls")
+      require("conform").setup({
+        format_on_save = { timeout_ms = 500, lsp_fallback = true },
+        formatters_by_ft = {
+          -- lua = { "stylua" },
+          -- Use a sub-list to run only the first available formatter
+          -- javascript = { { "prettier" } },
+          -- javascriptreact = { { "prettier" } },
+          -- typescript = { { "prettier" } },
+          -- scss = { { "prettier" } },
+          -- css = { { "prettier" } },
+          -- markdown = { { "prettier" } },
+          -- json = { { "prettier" } },
+
+          javascript = { { "prettierd", "prettier" } },
+          javascriptreact = { { "prettierd", "prettier" } },
+          typescript = { { "prettierd", "prettier" } },
+          typescriptreact = { { "prettierd", "prettier" } },
+
+          json = { { "prettierd", "prettier" } },
+          jsonc = { { "prettierd", "prettier" } },
+
+          scss = { { "prettierd", "prettier" } },
+          css = { { "prettierd", "prettier" } },
+
+          --- if we enable biome
+          -- javascript = { { "biome", "prettierd", "prettier" } },
+          -- javascriptreact = { { "biome", "prettierd", "prettier" } },
+          -- typescript = { { "biome", "prettierd", "prettier" } },
+          -- typescriptreact = { { "biome", "prettierd", "prettier" } },
+          --
+          -- json = { { "biome", "prettierd", "prettier" } },
+          -- jsonc = { { "biome", "prettierd", "prettier" } },
+
+          c = { "clang-format" },
+          cpp = { "clang-format" },
+          cs = { "clang-format" },
+          cuda = { "clang-format" },
+        },
+      })
+
+      vim.api.nvim_create_user_command("Format", function(args)
+        local range = nil
+        if args.count ~= -1 then
+          local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+          range = {
+            start = { args.line1, 0 },
+            ["end"] = { args.line2, end_line:len() },
+          }
+        end
+        require("conform").format({ async = true, lsp_fallback = true, range = range })
+      end, { range = true })
     end
   },
 

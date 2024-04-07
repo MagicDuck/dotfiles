@@ -18,7 +18,7 @@ return {
           light0_hard = my.background,
           light1 = my.background,
           light2 = my.background,
-          light3 = my.selectionBg
+          light3 = my.selectionBg,
         }
       })
       vim.cmd.colorscheme("gruvbox")

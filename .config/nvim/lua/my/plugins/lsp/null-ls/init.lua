@@ -206,7 +206,21 @@ null_ls.setup({
     -- null_ls.builtins.code_actions.eslint.with({
     -- 	-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     -- }),
-
+    null_ls.builtins.formatting.prettierd.with({
+      -- null_ls.builtins.formatting.prettierd.with {
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        -- "markdown",
+        -- "vimwiki",
+      },
+      -- only_local = "node_modules/.bin"
+      runtime_condition = function(params)
+        return not params.bufname:lower():match("^diffview:///")
+      end
+    }),
     -- null_ls.builtins.formatting.stylua.with({}),
     checkstyle.with({
       condition = function(u)
@@ -223,6 +237,6 @@ null_ls.setup({
   on_init = function()
     -- make sure eslint server still works, sometimes it dies for no reason
     -- os.execute("eslint_d restart")
-    -- os.execute("prettierd restart")
+    os.execute("prettierd restart")
   end,
 })

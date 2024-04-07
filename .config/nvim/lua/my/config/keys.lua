@@ -503,7 +503,7 @@ my.keybind({
 my.keybind({
   description = "notes: todo comments: search in project",
   lhs = "<leader>ns",
-  rhs = ":TODOTelescope<CR>",
+  rhs = ":TodoTelescope<CR>",
   -- rhs = ":SearchForTodoComments<CR>",
 })
 
@@ -875,4 +875,11 @@ my.keybind({
   description = "vsplit edit associated file: module scss file",
   lhs = "<leader>vc",
   rhs = ":lua vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.module.scss')<CR>",
+})
+
+-- snippets
+my.keybind({
+  description = "Snippets: search and insert snippet with telescope",
+  lhs = "<leader>a",
+  rhs = ":Telescope luasnip<CR>",
 })

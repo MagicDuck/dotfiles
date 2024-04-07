@@ -30,13 +30,23 @@ local my = {
 
   -- debugLineBg = "#F8FBF6"
   debugLineBg = "#F0E0E0",
-  cursorLineBg = "#F0F0ED"
+  cursorLineBg = "#F0F0ED",
+  searchBg = "#896a98",
 }
 M.my = my
 
+-- for completion menu
+-- Pmenu = { fg = colors.fg1, bg = colors.bg2 },
+-- PmenuSel = { fg = colors.bg2, bg = colors.blue, bold = config.bold },
+-- PmenuSbar = { bg = colors.bg2 },
+-- PmenuThumb = { bg = colors.bg4 },
+
 -- use :Inspect or :Inspect! to check hl group under cursor
 M.highlights = {
+  Pmenu = { fg = "#000000", bg = "#F0F2F5" },
+
   FlashLabel = { bg = "#65737E", fg = "#F0F2F5", bold = true },
+  Search = { bg = my.searchBg, fg = "#FAFAF9", reverse = false },
 
   Comment = { bg = my.commentBackground, fg = my.commentFg, italic = false },
 

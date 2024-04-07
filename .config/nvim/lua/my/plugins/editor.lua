@@ -1,16 +1,24 @@
 return {
   {
-    "brenoprata10/nvim-highlight-colors",
+    'NvChad/nvim-colorizer.lua',
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     config = function()
-      require("nvim-highlight-colors").setup {
-        render = 'background', -- 'background' or 'foreground' or 'first_column'
-        enable_named_colors = false,
-        enable_tailwind = false
-      }
+      require('colorizer').setup()
     end
   },
+  -- {
+  --   "brenoprata10/nvim-highlight-colors",
+  --   lazy = true,
+  --   event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+  --   config = function()
+  --     require("nvim-highlight-colors").setup {
+  --       render = 'background', -- 'background' or 'foreground' or 'first_column'
+  --       enable_named_colors = false,
+  --       enable_tailwind = false
+  --     }
+  --   end
+  -- },
   {
     'echasnovski/mini.comment',
     version = '*',

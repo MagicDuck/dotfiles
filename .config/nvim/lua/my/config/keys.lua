@@ -879,7 +879,8 @@ my.keybind({
 
 -- snippets
 my.keybind({
+  mode = "i",
   description = "Snippets: search and insert snippet with telescope",
-  lhs = "<leader>a",
-  rhs = ":Telescope luasnip<CR>",
+  lhs = "<C-j>",
+  rhs = "<esc>:Telescope luasnip<CR>",
 })

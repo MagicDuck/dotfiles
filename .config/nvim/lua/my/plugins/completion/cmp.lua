@@ -1,6 +1,6 @@
 local cmp = require("cmp")
 local lspkind = require("lspkind")
-vim.o.completeopt = "menu,menuone"
+-- vim.o.completeopt = "menu,menuone"
 -- see https://github.com/hrsh7th/nvim-cmp/issues/598
 vim.o.lazyredraw = false
 
@@ -58,15 +58,17 @@ cmp.setup({
     --   return {}
     -- end
   },
-  -- experimental = {
-  --   ghost_text = true
-  -- },
+  experimental = {
+    ghost_text = true
+  },
   -- changed recently
-  preselect = cmp.PreselectMode.None,
+  preselect = cmp.PreselectMode.Item,
   completion = {
     keyword_length = 3,
-    -- autocomplete = false,
-    -- keyword_length = 0,
+    autocomplete = {
+      cmp.TriggerEvent.TextChanged,
+    },
+    completeopt = 'menu,menuone',
   },
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -75,45 +77,45 @@ cmp.setup({
     end,
   },
   mapping = {
-    -- ["<Tab>"] = cmp.mapping.complete(),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-    ["<Tab>"] = cmp.mapping({
-      c = function()
-        if cmp.visible() then
-          cmp.select_next_item()
-        else
-          completeAndInsertFirstMatch()
-        end
-      end,
-      i = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-          -- they way you will only jump inside the snippet region
-          -- elseif require('luasnip').expand_or_locally_jumpable() then
-          --   require('luasnip').expand_or_jump()
-        elseif has_words_before() then
-          completeAndInsertFirstMatch()
-        else
-          fallback()
-        end
-      end,
-      s = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item()
-          -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-          -- they way you will only jump inside the snippet region
-          -- elseif require('luasnip').expand_or_locally_jumpable() then
-          --   require('luasnip').expand_or_jump()
-        elseif has_words_before() then
-          completeAndInsertFirstMatch()
-        else
-          fallback()
-        end
-      end
-    }),
+    ["<tab>"] = cmp.mapping.confirm(),
+    -- ["<c-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    -- ["<Tab>"] = cmp.mapping({
+    --   c = function()
+    --     if cmp.visible() then
+    --       cmp.select_next_item()
+    --     else
+    --       completeAndInsertFirstMatch()
+    --     end
+    --   end,
+    --   i = function(fallback)
+    --     if cmp.visible() then
+    --       cmp.select_next_item()
+    --       -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+    --       -- they way you will only jump inside the snippet region
+    --       -- elseif require('luasnip').expand_or_locally_jumpable() then
+    --       --   require('luasnip').expand_or_jump()
+    --     elseif has_words_before() then
+    --       completeAndInsertFirstMatch()
+    --     else
+    --       fallback()
+    --     end
+    --   end,
+    --   s = function(fallback)
+    --     if cmp.visible() then
+    --       cmp.select_next_item()
+    --       -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+    --       -- they way you will only jump inside the snippet region
+    --       -- elseif require('luasnip').expand_or_locally_jumpable() then
+    --       --   require('luasnip').expand_or_jump()
+    --     elseif has_words_before() then
+    --       completeAndInsertFirstMatch()
+    --     else
+    --       fallback()
+    --     end
+    --   end
+    -- }),
     --
     -- ["<S-Tab>"] = cmp.mapping({
     --   c = function(fallback)
@@ -145,7 +147,7 @@ cmp.setup({
 
     -- Accept currently selected item. If none selected, `select` first item.
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ["<C-tab>"] = cmp.mapping.confirm({ select = true }),
+    -- ["<C-tab>"] = cmp.mapping.confirm({ select = true }),
 
     ["<C-space>"] = cmp.mapping.complete({
       config = {
@@ -156,7 +158,7 @@ cmp.setup({
     }),
     ["<PageUp>"] = cmp.mapping.scroll_docs(-4),
     ["<PageDown>"] = cmp.mapping.scroll_docs(4),
-    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({
       i = cmp.abort(),
       c = cmp.close(),

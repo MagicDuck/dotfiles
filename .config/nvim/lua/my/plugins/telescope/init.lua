@@ -1,5 +1,6 @@
 return {
-  { "nvim-telescope/telescope.nvim",
+  {
+    "nvim-telescope/telescope.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     dependencies = {
@@ -10,6 +11,7 @@ return {
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-live-grep-args.nvim" },
       { "nvim-telescope/telescope-dap.nvim" },
+      { "nvim-telescope/telescope-symbols.nvim" }
     },
     config = function()
       require('my.plugins.telescope.telescope')

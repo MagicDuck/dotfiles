@@ -243,6 +243,27 @@
         "basic.to_if_held_down_threshold_milliseconds" : 0
       },
       "rules" : [ {
+        "description" : "simultaneous j k press to ESC",
+        "manipulators" : [ {
+          "from" : {
+            "simultaneous" : [ {
+              "key_code" : "j"
+            }, {
+              "key_code" : "k"
+            } ],
+            "simultaneous_options" : {
+              "detect_key_down_uninterruptedly" : false,
+              "key_down_order" : "insensitive",
+              "key_up_order" : "insensitive",
+              "key_up_when" : "any"
+            }
+          },
+          "to" : [ {
+            "key_code" : "escape"
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
         "description" : "slack shortcut overrides",
         "manipulators" : [ {
           "from" : {
@@ -878,6 +899,21 @@
           "conditions" : [ {
             "type" : "frontmost_application_if",
             "bundle_identifiers" : [ "^com\\.vivaldi\\.Vivaldi" ]
+          } ],
+          "type" : "basic"
+        } ]
+      }, {
+        "description" : "have caps emit CTOS modifiers",
+        "manipulators" : [ {
+          "from" : {
+            "key_code" : "caps_lock",
+            "modifiers" : {
+              "optional" : [ "any" ]
+            }
+          },
+          "to" : [ {
+            "modifiers" : [ "left_command", "left_control", "left_option", "left_shift" ],
+            "key_code" : "left_command"
           } ],
           "type" : "basic"
         } ]

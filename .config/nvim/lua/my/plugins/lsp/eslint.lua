@@ -12,14 +12,18 @@ lspconfig.eslint.setup({
     attach.global_on_attach(client, bufnr)
   end,
   -- prevent eslint LSP for prompting us when there are errors
-  handlers = {
-    ["window/showMessageRequest"] = function(_, result, params)
-      return result
-    end,
-  },
+  -- handlers = {
+  --   ["window/showMessageRequest"] = function(_, result, params)
+  --     return result
+  --   end,
+  -- },
   settings = {
     useESLintClass = true,
+    experimental = {
+      useFlatConfig = true,
+    },
     run = "onSave", -- default is onType
-    format = false
+    format = false,
+    quiet = true
   }
 })

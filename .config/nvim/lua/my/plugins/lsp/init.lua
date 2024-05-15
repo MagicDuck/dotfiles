@@ -86,6 +86,17 @@ return {
           scss = { { "prettierd", "prettier" } },
           css = { { "prettierd", "prettier" } },
 
+          -- javascript = { { "prettier" } },
+          -- javascriptreact = { { "prettier" } },
+          -- typescript = { { "prettier" } },
+          -- typescriptreact = { { "prettier" } },
+          --
+          -- json = { { "prettier" } },
+          -- jsonc = { { "prettier" } },
+          --
+          -- scss = { { "prettier" } },
+          -- css = { { "prettier" } },
+
           --- if we enable biome
           -- javascript = { { "biome", "prettierd", "prettier" } },
           -- javascriptreact = { { "biome", "prettierd", "prettier" } },

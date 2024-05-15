@@ -25,6 +25,9 @@ lspconfig.vtsls.setup({
     },
     javascript = {
       updateImportsOnFileMove = "always",
+      implicitProjectConfig = {
+        checkJs = true,
+      },
       format = {
         enable = false,
       }

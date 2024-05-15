@@ -61,12 +61,12 @@ my.keybind({
   rhs = ":Bwipeout<CR>",
 })
 my.keybind({
-  description = "buffer: yank full path of file in current buffer",
+  description = "buffer: yank project relative path of file in current buffer",
   lhs = "<leader>yf",
   rhs = ':let @* = expand("%") | echo "yanked: " . @*<CR>',
 })
 my.keybind({
-  description = "buffer: yank project relative path of file in current buffer",
+  description = "buffer: yank full path of file in current buffer",
   lhs = "<leader>yp",
   rhs = ':let @* = expand("%:p") | echo "yanked: " . @*<CR>',
 })
@@ -453,6 +453,11 @@ my.keybind({
   rhs = ":Spectre<CR>",
 })
 my.keybind({
+  description = "Search: replace in files using grug-far",
+  lhs = "<leader>ss",
+  rhs = ":GrugFar<CR>",
+})
+my.keybind({
   description = "Search: find in help tags",
   lhs = "<leader>sh",
   rhs = ":Telescope help_tags<CR>",
@@ -535,7 +540,7 @@ my.keybind({
 })
 my.keybind({
   description = "lsp: symbol: go to definition in vertical split",
-  lhs = "gv",
+  lhs = "gs",
   rhs = "<C-W>v:lua vim.lsp.buf.definition()<CR>",
 })
 my.keybind({
@@ -883,4 +888,12 @@ my.keybind({
   description = "Snippets: search and insert snippet with telescope",
   lhs = "<C-j>",
   rhs = "<esc>:Telescope luasnip<CR>",
+})
+
+-- messages window
+my.keybind({
+  mode = "n",
+  description = "Messages : show messages window",
+  lhs = "<leader>m",
+  rhs = "<esc>:messages<CR>",
 })

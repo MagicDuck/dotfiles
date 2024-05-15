@@ -61,6 +61,7 @@ opt.grepformat = "%f:%l:%c:%m"
 opt.shiftround = true
 opt.grepprg = "rg --vimgrep --smart-case --follow"
 opt.fillchars = { diff = " ", fold = " ", vert = "│", eob = " ", msgsep = "‾" }
+-- opt.backspace = { 'start' }
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   opt.splitkeep = "screen"

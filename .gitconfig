@@ -34,7 +34,7 @@ file-style = bold
 # tool = idea
 	tool = nvimdiff4
 [mergetool]
-  rompt = false
+  prompt = false
   rustExitCode = true
   keepBackup = false
 [mergetool "nvimdiff4"]

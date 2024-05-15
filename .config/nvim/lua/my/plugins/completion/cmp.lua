@@ -45,7 +45,7 @@ cmp.setup({
     -- debounce = 500,
     -- throttle = 550,
     -- fetching_timeout = 1000, -- to account for slow tsserver
-    fetching_timeout = 300, -- to account for slow tsserver
+    fetching_timeout = 100,
     max_view_entries = 50,
   },
   view = {
@@ -65,8 +65,7 @@ cmp.setup({
   preselect = cmp.PreselectMode.None,
   completion = {
     keyword_length = 3,
-    -- autocomplete = true,
-    autocomplete = false,
+    -- autocomplete = false,
     -- keyword_length = 0,
   },
   snippet = {

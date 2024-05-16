@@ -11,12 +11,14 @@ return {
       { "honza/vim-snippets" },
     },
     config = function()
+      local luasnip = require('luasnip')
+
       require("luasnip.loaders.from_snipmate").lazy_load()
       -- One peculiarity of honza/vim-snippets is that the file with the global snippets is _.snippets, so global snippets
       -- are stored in `ls.snippets._`.
       -- We need to tell luasnip that "_" contains global snippets:
-      require('luasnip').filetype_extend("all", { "_" })
-      require('luasnip').filetype_extend("javascriptreact", { "javascript" })
+      luasnip.filetype_extend("all", { "_" })
+      luasnip.filetype_extend("javascriptreact", { "javascript" })
 
       vim.api.nvim_create_user_command('EditSnippets', function()
         require("luasnip.loaders").edit_snippet_files({
@@ -36,48 +38,23 @@ return {
           end
         })
       end, {})
-      -- vim.cmd([[
-      --   " press <Tab> to expand or jump in a snippet. These can also be mapped separately
-      --   " via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-      --   imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-      --   " -1 for jumping backwards.
-      --   inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
-      --
-      --   snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-      --   snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-      --
-      --   " For changing choices in choiceNodes (not strictly necessary for a basic setup).
-      --   imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-      --   smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-      -- ]])
-      -- vim.cmd([[
-      --   " press <Tab> to expand or jump in a snippet. These can also be mapped separately
-      --   " via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-      --   imap <silent><expr> <C-space> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-      --   " -1 for jumping backwards.
-      --   inoremap <silent> <A-space> <cmd>lua require'luasnip'.jump(-1)<Cr>
-      --
-      --   snoremap <silent> <C-space> <cmd>lua require('luasnip').jump(1)<Cr>
-      --   snoremap <silent> <A-space> <cmd>lua require('luasnip').jump(-1)<Cr>
-      --
-      --   " For changing choices in choiceNodes (not strictly necessary for a basic setup).
-      --   imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-      --   smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-      -- ]])
-      vim.cmd([[
-        " press <Tab> to expand or jump in a snippet. These can also be mapped separately
-        " via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-        imap <silent><expr> <end> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<end>'
-        " -1 for jumping backwards.
-        inoremap <silent> <home> <cmd>lua require'luasnip'.jump(-1)<Cr>
 
-        snoremap <silent> <end> <cmd>lua require('luasnip').jump(1)<Cr>
-        snoremap <silent> <home> <cmd>lua require('luasnip').jump(-1)<Cr>
+      vim.keymap.set({ "i", "s" }, "<end>", function()
+        if luasnip.expand_or_jumpable() then
+          luasnip.expand_or_jump()
+        end
+      end, { silent = true })
+      vim.keymap.set({ "i", "s" }, "<home>", function()
+        if luasnip.jumpable(-1) then
+          luasnip.jump(-1)
+        end
+      end, { silent = true })
 
-        " For changing choices in choiceNodes (not strictly necessary for a basic setup).
-        imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-        smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-      ]])
+      vim.keymap.set({ "i", "s" }, "<C-e>", function()
+        if luasnip.choice_active() then
+          luasnip.change_choice(1)
+        end
+      end, { silent = true })
     end
   }
 }

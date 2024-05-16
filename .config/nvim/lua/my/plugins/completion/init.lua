@@ -13,6 +13,18 @@ return {
       -- { "quangnguyen30192/cmp-nvim-ultisnips" },
       { 'saadparwaiz1/cmp_luasnip' },
       { "onsails/lspkind-nvim" },
+      {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {
+          hint_enable = false,
+          hint_prefix = "👇",
+          -- TODO (sbadragan): should be available in 0.10
+          hint_inline = function() return false end,
+          floating_window = true,
+        },
+        config = function(_, opts) require 'lsp_signature'.setup(opts) end
+      }
     },
     config = function()
       require('my.plugins.completion.cmp')

@@ -7,34 +7,6 @@ vim.o.lazyredraw = false
 -- Don't show the dumb matching stuff.
 vim.opt.shortmess:append("c")
 
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
-local function doWhenCmpVisible(fn, timeout, poll_interval)
-  if cmp.visible() and #cmp.get_entries() > 0 then
-    fn()
-    return
-  end
-
-  if timeout <= 0 then
-    return
-  end
-
-  vim.defer_fn(function()
-    doWhenCmpVisible(fn, timeout - poll_interval, poll_interval)
-  end, poll_interval)
-end
-
-local function completeAndInsertFirstMatch()
-  cmp.complete()
-  -- cmp.select_next_item()
-  doWhenCmpVisible(function()
-    cmp.select_next_item()
-  end, 1100, 10)
-end
-
 require("cmp_nvim_lsp").setup() -- not sure why this does not auto-exec
 cmp.setup({
   enabled = function()
@@ -62,14 +34,18 @@ cmp.setup({
     ghost_text = true
   },
   -- changed recently
-  preselect = cmp.PreselectMode.Item,
+  -- preselect = cmp.PreselectMode.Item,
+  preselect = cmp.PreselectMode.None,
   completion = {
     keyword_length = 3,
     autocomplete = {
       cmp.TriggerEvent.TextChanged,
     },
-    completeopt = 'menu,menuone',
+    -- change this and preselect if you want auto-selecting the first option to happen
+    -- completeopt = 'menu,menuone',
+    completeopt = 'menu,menuone,noselect',
   },
+  -- Enable luasnip to handle snippet expansion
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
@@ -77,92 +53,13 @@ cmp.setup({
     end,
   },
   mapping = {
-    ["<tab>"] = cmp.mapping.confirm(),
-    -- ["<c-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<tab>"] = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }),
+    -- ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    -- ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
     ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    -- ["<Tab>"] = cmp.mapping({
-    --   c = function()
-    --     if cmp.visible() then
-    --       cmp.select_next_item()
-    --     else
-    --       completeAndInsertFirstMatch()
-    --     end
-    --   end,
-    --   i = function(fallback)
-    --     if cmp.visible() then
-    --       cmp.select_next_item()
-    --       -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-    --       -- they way you will only jump inside the snippet region
-    --       -- elseif require('luasnip').expand_or_locally_jumpable() then
-    --       --   require('luasnip').expand_or_jump()
-    --     elseif has_words_before() then
-    --       completeAndInsertFirstMatch()
-    --     else
-    --       fallback()
-    --     end
-    --   end,
-    --   s = function(fallback)
-    --     if cmp.visible() then
-    --       cmp.select_next_item()
-    --       -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-    --       -- they way you will only jump inside the snippet region
-    --       -- elseif require('luasnip').expand_or_locally_jumpable() then
-    --       --   require('luasnip').expand_or_jump()
-    --     elseif has_words_before() then
-    --       completeAndInsertFirstMatch()
-    --     else
-    --       fallback()
-    --     end
-    --   end
-    -- }),
-    --
-    -- ["<S-Tab>"] = cmp.mapping({
-    --   c = function(fallback)
-    --     if cmp.visible() then
-    --       cmp.select_prev_item()
-    --     else
-    --       fallback()
-    --     end
-    --   end,
-    --   i = function(fallback)
-    --     if cmp.visible() then
-    --       cmp.select_prev_item()
-    --       -- elseif require('luasnip').jumpable( -1) then
-    --       --   require('luasnip').jump( -1)
-    --     else
-    --       fallback()
-    --     end
-    --   end,
-    --   s = function(fallback)
-    --     if cmp.visible() then
-    --       cmp.select_prev_item()
-    --       -- elseif require('luasnip').jumpable( -1) then
-    --       --   require('luasnip').jump( -1)
-    --     else
-    --       fallback()
-    --     end
-    --   end
-    -- }),
-
-    -- Accept currently selected item. If none selected, `select` first item.
-    -- Set `select` to `false` to only confirm explicitly selected items.
-    -- ["<C-tab>"] = cmp.mapping.confirm({ select = true }),
-
-    ["<C-space>"] = cmp.mapping.complete({
-      config = {
-        view = {
-          entries = { name = 'custom' }
-        },
-      }
-    }),
     ["<PageUp>"] = cmp.mapping.scroll_docs(-4),
     ["<PageDown>"] = cmp.mapping.scroll_docs(4),
-    -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-    ["<C-e>"] = cmp.mapping({
-      i = cmp.abort(),
-      c = cmp.close(),
-    }),
   },
   sources = cmp.config.sources({
     -- { name = "nvim_lua" },
@@ -177,6 +74,7 @@ cmp.setup({
     {
       name = "buffer",
       -- group_index = 2,
+      keyword_length = 3,
       max_item_count = 20,
       -- priority = 10,
       option = {
@@ -236,7 +134,6 @@ cmp.setup.cmdline('/', {
   -- completion = { autocomplete = false },
   sources = {
     { name = 'buffer' }
-    -- { name = 'buffer', option = { keyword_pattern = [=[[^[:blank:]].*]=] } }
   }
 })
 
@@ -249,10 +146,3 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
-
--- autopairs, does not seem to work atm
--- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
--- cmp.event:on(
---   'confirm_done',
---   cmp_autopairs.on_confirm_done()
--- )

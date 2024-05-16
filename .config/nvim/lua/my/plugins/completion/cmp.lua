@@ -165,7 +165,7 @@ cmp.setup({
     }),
   },
   sources = cmp.config.sources({
-    { name = "nvim_lua" },
+    -- { name = "nvim_lua" },
     {
       name = "nvim_lsp",
       -- priority = 100,
@@ -215,11 +215,11 @@ cmp.setup({
   window = {
     completion = {
       border = "rounded",
-      winhighlight = "Normal:CmpNormal",
+      -- winhighlight = "Normal:CmpNormal",
     },
     documentation = {
       border = "rounded",
-      winhighlight = "Normal:CmpDocNormal",
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None,Error:None",
     },
   },
 })

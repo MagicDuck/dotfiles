@@ -44,6 +44,12 @@ M.my = my
 -- use :Inspect or :Inspect! to check hl group under cursor
 M.highlights = {
   Pmenu = { fg = "#000000", bg = "#F0F2F5" },
+  NormalFloat = { bg = "#F0F2F5" },
+  FloatBorder = { fg = "#000000", bg = "#F0F2F5" },
+
+  -- workaround for lsp hover window hightlight bug in markdown
+  markdownError = { link = 'None' },
+
 
   FlashLabel = { bg = "#65737E", fg = "#F0F2F5", bold = true },
   Search = { bg = my.searchBg, fg = "#FAFAF9", reverse = false },

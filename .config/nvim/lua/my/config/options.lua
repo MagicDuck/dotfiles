@@ -76,3 +76,10 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSig
 vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DiagnosticSignError", { text = "✘", texthl = "DiagnosticSignError" })
+
+-- see https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '■', -- Could be '●', '▎', 'x'
+  }
+})

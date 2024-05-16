@@ -9,6 +9,16 @@ if vim.g.myLspDisabled then
   return {}
 end
 
+-- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
+-- note worarkound for lua highlighting bracket
+-- !curl -sS https://raw.githubusercontent.com/neovim/neovim/v0.7.2/runtime/syntax/lua.vim > $VIMRUNTIME/syntax/lua.vim
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
+})
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = "rounded",
+})
+
 return {
   -- LSP status spinner, somewhat annoying
   {
@@ -151,6 +161,8 @@ return {
           })
         end
       },
+      -- sets up for plugin dev /etc
+      { "folke/neodev.nvim", opts = {} },
     },
     config = function()
       -- lsps

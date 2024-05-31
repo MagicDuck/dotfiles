@@ -32,26 +32,21 @@ my.keybind({
   rhs = '<C-O>"*p',
 })
 my.keybind({
-  description = 'save alt',
-  lhs = '<leader><leader>',
-  rhs = ":<C-U>w | lua vim.notify('saved ' .. vim.fn.expand('%'))<CR>",
-})
-my.keybind({
   description = 'save',
   lhs = '<C-s>',
-  rhs = ":<C-U>w | lua vim.notify('saved ' .. vim.fn.expand('%'))<CR>",
+  rhs = ':<C-U>w<CR>',
 })
 my.keybind({
   description = 'save (visual)',
   mode = 'v',
   lhs = '<C-s>',
-  rhs = "<C-C>:w | lua vim.notify('saved ' .. vim.fn.expand('%'))<CR>",
+  rhs = '<C-C>:w<CR>',
 })
 my.keybind({
   description = 'save (insert)',
   mode = 'i',
   lhs = '<C-s>',
-  rhs = "<ESC>:w | lua vim.notify('saved ' .. vim.fn.expand('%'))<CR>",
+  rhs = '<ESC>:w<CR>',
 })
 
 -- buffer

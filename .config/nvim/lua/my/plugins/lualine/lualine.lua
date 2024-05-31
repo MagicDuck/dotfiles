@@ -1,35 +1,35 @@
-local icons = require("my/plugins/lualine/icons")
-local qfExtension = require("my/plugins/lualine/extensions/quickfix")
-local dapuiExtension = require("my/plugins/lualine/extensions/dapui")
-local utils = require("my/plugins/lualine/utils")
+local icons = require('my/plugins/lualine/icons')
+local qfExtension = require('my/plugins/lualine/extensions/quickfix')
+local dapuiExtension = require('my/plugins/lualine/extensions/dapui')
+local utils = require('my/plugins/lualine/utils')
 
 local my_theme = {
   -- note: these colors dictate separators colors
   -- but we typically do separator caps manually anyways so it gets ignored usually
   normal = {
-    a = "MyMenubarLine",
-    b = "MyMenubarLine",
-    c = "MyMenubarLine",
-    x = "MyMenubarLine",
-    y = "MyMenubarLine",
-    z = "MyMenubarLine",
+    a = 'MyMenubarLine',
+    b = 'MyMenubarLine',
+    c = 'MyMenubarLine',
+    x = 'MyMenubarLine',
+    y = 'MyMenubarLine',
+    z = 'MyMenubarLine',
   },
 }
 
 local modes = {
-  n = { name = "NORMAL", color = "MyStatusbarModeNormal" },
-  v = { name = "VISUAL", color = "MyStatusbarModeVisual" },
-  V = { name = "V-LINE", color = "MyStatusbarModeVLine" },
-  [""] = { name = "V-BLOCK", color = "MyStatusbarModeVBlock" },
-  s = { name = "SELECT", color = "MyStatusbarModeSelect" },
-  S = { name = "S-LINE", color = "MyStatusbarModeSLine" },
-  [""] = { name = "S-BLOCK", color = "MyStatusbarModeSBlock" },
-  i = { name = "INSERT", color = "MyStatusbarModeInsert" },
-  R = { name = "REPLACE", color = "MyStatusbarModeReplace" },
-  c = { name = "COMMAND", color = "MyStatusbarModeCommand" },
-  r = { name = "PROMPT", color = "MyStatusbarModePrompt" },
-  ["!"] = { name = "EXTERNAL", color = "MyStatusbarModeExternal" },
-  t = { name = "TERMINAL", color = "MyStatusbarModeTerminal" },
+  n = { name = 'NORMAL', color = 'MyStatusbarModeNormal' },
+  v = { name = 'VISUAL', color = 'MyStatusbarModeVisual' },
+  V = { name = 'V-LINE', color = 'MyStatusbarModeVLine' },
+  [''] = { name = 'V-BLOCK', color = 'MyStatusbarModeVBlock' },
+  s = { name = 'SELECT', color = 'MyStatusbarModeSelect' },
+  S = { name = 'S-LINE', color = 'MyStatusbarModeSLine' },
+  [''] = { name = 'S-BLOCK', color = 'MyStatusbarModeSBlock' },
+  i = { name = 'INSERT', color = 'MyStatusbarModeInsert' },
+  R = { name = 'REPLACE', color = 'MyStatusbarModeReplace' },
+  c = { name = 'COMMAND', color = 'MyStatusbarModeCommand' },
+  r = { name = 'PROMPT', color = 'MyStatusbarModePrompt' },
+  ['!'] = { name = 'EXTERNAL', color = 'MyStatusbarModeExternal' },
+  t = { name = 'TERMINAL', color = 'MyStatusbarModeTerminal' },
 }
 
 local function get_vim_mode_color()
@@ -43,7 +43,7 @@ local function getFiletypeComponent(color)
     colored = false,
     color = color,
     icon_only = true,
-    padding = { left = 1, right = 0 }
+    padding = { left = 1, right = 0 },
   }
 end
 
@@ -56,7 +56,7 @@ local function getFilenameSymbols()
   }
 end
 
-require('lualine').setup {
+require('lualine').setup({
   extensions = { qfExtension, dapuiExtension },
   options = {
     disabled_filetypes = { -- Filetypes to disable lualine for
@@ -74,75 +74,81 @@ require('lualine').setup {
       statusline = 1000,
       tabline = 1000,
       winbar = 1000,
-    }
+    },
   },
   -- global status line
   sections = {
     lualine_a = {
-      utils.createSpaceComponent("MyMenubarInactiveCap"),
-      { 'mode',
+      utils.createSpaceComponent('MyMenubarInactiveCap'),
+      {
+        'mode',
         color = get_vim_mode_color,
         -- color = function()
         --   return { fg = "#E8EBF0", bg = get_vim_mode_style()[2], gui = "bold" }
         -- end
       },
-      getFiletypeComponent("MyStatusbarFiletype"),
-      { 'filename',
-        color = "MyStatusbarFilename",
+      getFiletypeComponent('MyStatusbarFiletype'),
+      {
+        'filename',
+        color = 'MyStatusbarFilename',
         file_status = true,
         newfile_status = false,
         path = 1, -- relative path
-        symbols = getFilenameSymbols()
+        symbols = getFilenameSymbols(),
       },
-      { 'diagnostics',
+      {
+        'diagnostics',
         -- colors = { fg = colors.light01, bg = colors.orange, gui = "bold" },
         diagnostics_color = {
-          error = "MyStatusbarDiagnosticError",
-          warn = "MyStatusbarDiagnosticWarn",
+          error = 'MyStatusbarDiagnosticError',
+          warn = 'MyStatusbarDiagnosticWarn',
           -- info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
           -- hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
         },
         sections = { 'error', 'warn' },
       },
-      { 'location',
-        color = "MyStatusbarFileLocation",
-      },
-      { 'progress',
-        color = "MyStatusbarFileProgress",
-      },
-      utils.createRightCap("MyStatusbarFileProgressCap"),
+      { 'location', color = 'MyStatusbarFileLocation' },
+      { 'progress', color = 'MyStatusbarFileProgress' },
+      utils.createRightCap('MyStatusbarFileProgressCap'),
     },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
-      { 'lsp_progress',
+      {
+        'lsp_progress',
         display_components = { 'spinner' },
         spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
         timer = { progress_enddelay = 500, spinner = 500, lsp_client_name_enddelay = 1000 },
         colors = {
-          spinner = "MyStatusbarLsp",
+          spinner = 'MyStatusbarLsp',
           -- use = true,
         },
-        color = "MyStatusbarLsp",
-        padding = { left = 1, right = 0 }
+        color = 'MyStatusbarLsp',
+        padding = { left = 1, right = 0 },
       },
-      -- lsp connected
-      { function() return "lsp " .. icons.lsp end, cond = function() return vim.lsp.buf.server_ready() end,
-        padding = { left = 1, right = 1 },
-        color = "MyStatusbarLsp",
-      },
+      -- lsp connected - does not work in 0.10
+      -- { function() return "lsp " .. icons.lsp end, cond = function() return vim.lsp.buf.server_ready() end,
+      --   padding = { left = 1, right = 1 },
+      --   color = "MyStatusbarLsp",
+      -- },
       -- dap
-      { function() return icons.debug .. ' ' .. require("dap").status() end,
-        cond = function() return require("dap").status() ~= '' end,
-        color = "MyStatusbarDapStatus",
+      {
+        function()
+          return icons.debug .. ' ' .. require('dap').status()
+        end,
+        cond = function()
+          return require('dap').status() ~= ''
+        end,
+        color = 'MyStatusbarDapStatus',
       },
-      { 'branch',
-        color = "MyStatusbarBranch",
-        icon = { icons.git, color = "MyStatusbarBranch" }
+      {
+        'branch',
+        color = 'MyStatusbarBranch',
+        icon = { icons.git, color = 'MyStatusbarBranch' },
       },
-      utils.createSpaceComponent("MyMenubarInactiveCap"),
+      utils.createSpaceComponent('MyMenubarInactiveCap'),
     },
   },
   inactive_sections = {},
@@ -181,36 +187,30 @@ require('lualine').setup {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {
-      utils.createSpaceComponent("MyMenubarActiveCap"),
+      utils.createSpaceComponent('MyMenubarActiveCap'),
 
-      getFiletypeComponent("MyWinbarFiletype"),
-      { 'filename',
-        color = "MyWinbarFilename",
-        symbols = getFilenameSymbols()
-      },
+      getFiletypeComponent('MyWinbarFiletype'),
+      { 'filename', color = 'MyWinbarFilename', symbols = getFilenameSymbols() },
     },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
-      utils.createSpaceComponent("MyMenubarActiveCap"),
-    }
+      utils.createSpaceComponent('MyMenubarActiveCap'),
+    },
   },
 
   inactive_winbar = {
     lualine_a = {},
     lualine_b = {},
     lualine_c = {
-      utils.createSpaceComponent("MyMenubarInactiveCap"),
+      utils.createSpaceComponent('MyMenubarInactiveCap'),
       getFiletypeComponent('MyWinbarFiletype'),
-      { 'filename',
-        color = "MyWinbarFilename",
-        symbols = getFilenameSymbols()
-      }
+      { 'filename', color = 'MyWinbarFilename', symbols = getFilenameSymbols() },
     },
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
-      utils.createSpaceComponent("MyMenubarInactiveCap"),
+      utils.createSpaceComponent('MyMenubarInactiveCap'),
     },
   },
-}
+})

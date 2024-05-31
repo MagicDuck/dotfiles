@@ -1,54 +1,69 @@
-local telescope = require("telescope")
-local actions = require("telescope.actions")
-local lga_actions = require("telescope-live-grep-args.actions")
-local fb_actions = require "telescope._extensions.file_browser.actions"
+local telescope = require('telescope')
+local actions = require('telescope.actions')
+local lga_actions = require('telescope-live-grep-args.actions')
+local fb_actions = require('telescope._extensions.file_browser.actions')
 
 telescope.setup({
   -- prompt_position = "top",
   defaults = {
-    file_ignore_patterns = { "node_modules", "__snapshots__" },
+    file_ignore_patterns = { 'node_modules', '__snapshots__' },
     shorten_path = true,
-    sorting_strategy = "ascending",
-    layout_strategy = "vertical",
+    sorting_strategy = 'ascending',
+    layout_strategy = 'vertical',
     layout_config = {
-      preview_cutoff = 1, -- Preview should always show (unless previewer = false)
-      prompt_position = "top",
-      width = function(_, max_columns, _)
-        return max_columns - 16
-      end,
-      height = function(_, _, max_lines)
-        return max_lines - 4
-      end,
-      preview_height = function(_, _, max_lines)
-        return math.min(max_lines - 18, math.floor((max_lines - 8) / 2))
-      end,
+      vertical = {
+        preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+        prompt_position = 'top',
+        -- loooks better without those
+        -- width = function(_, max_columns, _)
+        --   return max_columns - 16
+        -- end,
+        -- height = function(_, _, max_lines)
+        --   return max_lines - 4
+        -- end,
+        -- preview_height = function(_, _, max_lines)
+        --   return math.min(max_lines - 18, math.floor((max_lines - 8) / 2))
+        -- end,
+      },
     },
     border = true,
     color_devicons = false,
-    prompt_prefix = "❯ ",
-    selection_caret = "❯ ",
+    prompt_prefix = '❯ ',
+    selection_caret = '❯ ',
     mappings = {
       i = {
-        ["<esc>"] = actions.close,
-        ["<C-k>"] = actions.cycle_history_next,
-        ["<C-j>"] = actions.cycle_history_prev,
-        ["<C-q>"] = function(...)
+        ['<esc>'] = actions.close,
+        ['<C-k>'] = actions.cycle_history_next,
+        ['<C-j>'] = actions.cycle_history_prev,
+        ['<C-q>'] = function(...)
           actions.send_selected_to_qflist(...)
-          vim.cmd("copen")
+          vim.cmd('copen')
         end,
-        ["<C-a>"] = actions.select_all,
-        ["<PageUp>"] = actions.preview_scrolling_up,
-        ["<PageDown>"] = actions.preview_scrolling_down,
+        ['<C-a>'] = actions.select_all,
+        ['<PageUp>'] = actions.preview_scrolling_up,
+        ['<PageDown>'] = actions.preview_scrolling_down,
 
-        ["<a-bs>"] = function() vim.cmd "normal! db" end,
-        ["<a-del>"] = function() vim.cmd "normal! de" end,
-        ["<a-left>"] = function() vim.cmd "normal! b" end,
-        ["<a-right>"] = function() vim.cmd "normal! w" end,
-        ["<a-up>"] = function() vim.cmd "normal! ^" end,
-        ["<a-down>"] = function() vim.cmd "normal! $" end,
+        ['<a-bs>'] = function()
+          vim.cmd('normal! db')
+        end,
+        ['<a-del>'] = function()
+          vim.cmd('normal! de')
+        end,
+        ['<a-left>'] = function()
+          vim.cmd('normal! b')
+        end,
+        ['<a-right>'] = function()
+          vim.cmd('normal! w')
+        end,
+        ['<a-up>'] = function()
+          vim.cmd('normal! ^')
+        end,
+        ['<a-down>'] = function()
+          vim.cmd('normal! $')
+        end,
       },
       n = {
-        ["<esc>"] = actions.close,
+        ['<esc>'] = actions.close,
       },
     },
   },
@@ -56,10 +71,10 @@ telescope.setup({
     live_grep = {
       results_title = false,
       layout_config = {
-        prompt_position = "top",
+        prompt_position = 'top',
       },
       mappings = {
-        i = { ["<c-f>"] = actions.to_fuzzy_refine },
+        i = { ['<c-f>'] = actions.to_fuzzy_refine },
       },
     },
     buffers = {
@@ -80,48 +95,48 @@ telescope.setup({
       -- use_highlighter = true,
     },
     file_browser = {
-      initial_mode = "normal",
-      theme = "ivy",
+      initial_mode = 'normal',
+      theme = 'ivy',
       prompt_path = true,
       git_status = false,
       quiet = true,
       mappings = {
-        ["i"] = {
-          ["<A-c>"] = fb_actions.create,
-          ["<S-CR>"] = fb_actions.create_from_prompt,
-          ["<A-r>"] = fb_actions.rename,
-          ["<A-m>"] = fb_actions.move,
-          ["<A-y>"] = fb_actions.copy,
-          ["<A-d>"] = fb_actions.remove,
-          ["<C-o>"] = fb_actions.open,
-          ["<C-h>"] = fb_actions.goto_parent_dir,
-          ["<C-e>"] = fb_actions.goto_home_dir,
-          ["<C-w>"] = fb_actions.goto_cwd,
-          ["<C-l>"] = fb_actions.change_cwd,
-          ["<C-f>"] = fb_actions.toggle_browser,
-          ["<C-.>"] = fb_actions.toggle_hidden,
-          ["<C-s>"] = fb_actions.toggle_all,
-          ["<bs>"] = fb_actions.backspace,
+        ['i'] = {
+          ['<A-c>'] = fb_actions.create,
+          ['<S-CR>'] = fb_actions.create_from_prompt,
+          ['<A-r>'] = fb_actions.rename,
+          ['<A-m>'] = fb_actions.move,
+          ['<A-y>'] = fb_actions.copy,
+          ['<A-d>'] = fb_actions.remove,
+          ['<C-o>'] = fb_actions.open,
+          ['<C-h>'] = fb_actions.goto_parent_dir,
+          ['<C-e>'] = fb_actions.goto_home_dir,
+          ['<C-w>'] = fb_actions.goto_cwd,
+          ['<C-l>'] = fb_actions.change_cwd,
+          ['<C-f>'] = fb_actions.toggle_browser,
+          ['<C-.>'] = fb_actions.toggle_hidden,
+          ['<C-s>'] = fb_actions.toggle_all,
+          ['<bs>'] = fb_actions.backspace,
         },
-        ["n"] = {
-          ["c"] = fb_actions.create,
-          ["r"] = fb_actions.rename,
-          ["m"] = fb_actions.move,
-          ["y"] = fb_actions.copy,
-          ["d"] = fb_actions.remove,
-          ["o"] = fb_actions.open,
-          ["h"] = fb_actions.goto_parent_dir,
-          ["e"] = fb_actions.goto_home_dir,
-          ["w"] = fb_actions.goto_cwd,
-          ["l"] = fb_actions.change_cwd,
-          ["f"] = fb_actions.toggle_browser,
-          ["."] = fb_actions.toggle_hidden,
-          ["s"] = fb_actions.toggle_all,
-          ["<esc>"] = actions.close,
-          ["q"] = actions.close,
+        ['n'] = {
+          ['c'] = fb_actions.create,
+          ['r'] = fb_actions.rename,
+          ['m'] = fb_actions.move,
+          ['y'] = fb_actions.copy,
+          ['d'] = fb_actions.remove,
+          ['o'] = fb_actions.open,
+          ['h'] = fb_actions.goto_parent_dir,
+          ['e'] = fb_actions.goto_home_dir,
+          ['w'] = fb_actions.goto_cwd,
+          ['l'] = fb_actions.change_cwd,
+          ['f'] = fb_actions.toggle_browser,
+          ['.'] = fb_actions.toggle_hidden,
+          ['s'] = fb_actions.toggle_all,
+          ['<esc>'] = actions.close,
+          ['q'] = actions.close,
         },
       },
-    }
+    },
     -- live_grep_args = {
     --   auto_quoting = true, -- enable/disable auto-quoting
     --   mappings = {
@@ -141,9 +156,9 @@ telescope.setup({
 })
 
 -- telescope.load_extension("fzy_native")
-telescope.load_extension("fzf")
-telescope.load_extension("fzf_writer")
-telescope.load_extension("ui-select")
-telescope.load_extension("luasnip")
-telescope.load_extension("file_browser")
+telescope.load_extension('fzf')
+telescope.load_extension('fzf_writer')
+telescope.load_extension('ui-select')
+telescope.load_extension('luasnip')
+telescope.load_extension('file_browser')
 telescope.load_extension('dap')

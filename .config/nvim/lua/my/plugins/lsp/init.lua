@@ -200,14 +200,4 @@ return {
       require('lspkind').init()
     end,
   },
-
-  {
-    'lvimuser/lsp-inlayhints.nvim',
-    -- branch = 'anticonceal',
-    lazy = true,
-    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
-    config = function()
-      require('lsp-inlayhints').setup()
-    end,
-  },
 }

@@ -1,26 +1,25 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    name = "treesitter",
+    'nvim-treesitter/nvim-treesitter',
+    name = 'treesitter',
     version = false,
     lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
-    build = ":TSUpdate",
+    event = { 'BufReadPre', 'BufNewFile' },
+    build = ':TSUpdate',
     dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
-      { "JoosepAlviste/nvim-ts-context-commentstring" },
-      { "nvim-treesitter/playground" },
-      { "windwp/nvim-ts-autotag" },
+      { 'nvim-treesitter/nvim-treesitter-textobjects' },
+      -- { 'JoosepAlviste/nvim-ts-context-commentstring' },
+      { 'nvim-treesitter/playground' },
+      { 'windwp/nvim-ts-autotag' },
     },
     config = function()
-      vim.g.skip_ts_context_commentstring_module = true
-      local ts = require("nvim-treesitter.configs")
+      local ts = require('nvim-treesitter.configs')
 
       ts.setup({
         -- ensure_installed = { "javascript", "lua", "c", "vim", "help", "query" },
-        ensure_installed = "all",
+        ensure_installed = 'all',
         -- auto_install = true,
-        ignore_install = { "comment" }, -- has some performance issues atm
+        ignore_install = { 'comment' }, -- has some performance issues atm
         -- This stuff seems to be already better taken of by default
         highlight = {
           enable = true,
@@ -45,15 +44,15 @@ return {
           enable = true,
           updatetime = 25,
           keybindings = {
-            toggle_query_editor = "o",
-            toggle_hl_groups = "i",
-            toggle_injected_languages = "t",
-            toggle_anonymous_nodes = "a",
-            toggle_language_display = "I",
-            focus_language = "f",
-            unfocus_language = "F",
-            update = "R",
-            goto_node = "<cr>",
+            toggle_query_editor = 'o',
+            toggle_hl_groups = 'i',
+            toggle_injected_languages = 't',
+            toggle_anonymous_nodes = 'a',
+            toggle_language_display = 'I',
+            focus_language = 'f',
+            unfocus_language = 'F',
+            update = 'R',
+            goto_node = '<cr>',
           },
         },
         textobjects = {
@@ -65,19 +64,19 @@ return {
               -- Note: those are stored under query/<lang>/textobjects.scm
               -- for query lang docs: https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries
               -- example to do ranges: https://github.com/nvim-treesitter/nvim-treesitter-textobjects/blob/master/queries/lua/textobjects.scm#L24-L27
-              ["af"] = "@my.function.outer",
-              ["if"] = "@my.function.body",
-              ["ac"] = "@call.outer",
-              ["ab"] = "@my.block.outer",
-              ["ib"] = "@my.block.inner",
-              ["as"] = "@my.statement",
-              ["ir"] = "@my.variable_decl.rhs",
-              ["ia"] = "@my.args",
-              ["am"] = "@my.comment",
-              ["a="] = { query = "@assignment.outer", desc = "Select outer part of an assignment" },
-              ["i="] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
-              ["l="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
-              ["r="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
+              ['af'] = '@my.function.outer',
+              ['if'] = '@my.function.body',
+              ['ac'] = '@call.outer',
+              ['ab'] = '@my.block.outer',
+              ['ib'] = '@my.block.inner',
+              ['as'] = '@my.statement',
+              ['ir'] = '@my.variable_decl.rhs',
+              ['ia'] = '@my.args',
+              ['am'] = '@my.comment',
+              ['a='] = { query = '@assignment.outer', desc = 'Select outer part of an assignment' },
+              ['i='] = { query = '@assignment.inner', desc = 'Select inner part of an assignment' },
+              ['l='] = { query = '@assignment.lhs', desc = 'Select left hand side of an assignment' },
+              ['r='] = { query = '@assignment.rhs', desc = 'Select right hand side of an assignment' },
             },
           },
           -- swap = {
@@ -92,22 +91,26 @@ return {
           move = {
             enable = true,
             goto_previous_start = {
-              ["<leader>ka"] = "@function.outer",
+              ['<leader>ka'] = '@function.outer',
             },
             goto_next_start = {
-              ["<leader>ja"] = "@function.outer",
+              ['<leader>ja'] = '@function.outer',
             },
             goto_previous_end = {
-              ["<leader>kA"] = "@function.outer",
+              ['<leader>kA'] = '@function.outer',
             },
             goto_next_end = {
-              ["<leader>jA"] = "@function.outer",
+              ['<leader>jA'] = '@function.outer',
             },
             goto_next = {
-              ["<leader>jb"] = { query = { "@parameter.inner", "@conditional.inner", "@call.inner", "@block.inner", "@class.inner" } },
+              ['<leader>jb'] = {
+                query = { '@parameter.inner', '@conditional.inner', '@call.inner', '@block.inner', '@class.inner' },
+              },
             },
             goto_previous = {
-              ["<leader>kb"] = { query = { "@parameter.inner", "@conditional.inner", "@call.inner", "@block.inner", "@class.inner" } },
+              ['<leader>kb'] = {
+                query = { '@parameter.inner', '@conditional.inner', '@call.inner', '@block.inner', '@class.inner' },
+              },
             },
           },
         },
@@ -115,10 +118,10 @@ return {
           enable = true,
           lookahead = true,
           keymaps = {
-            init_selection = "<bs>",
-            node_incremental = "<bs>",
-            node_decremental = "<del>",
-            scope_incremental = "<a-bs>",
+            init_selection = '<bs>',
+            node_incremental = '<bs>',
+            node_decremental = '<del>',
+            scope_incremental = '<a-bs>',
           },
         },
         indent = {
@@ -128,30 +131,17 @@ return {
           enable = true,
         },
       })
-
-      require('ts_context_commentstring').setup {
-        -- enable_autocmd = false,
-        languages = {
-          javascript = {
-            __default = "// %s",
-            jsx_element = "{/* %s */}",
-            jsx_fragment = "{/* %s */}",
-            jsx_attribute = "// %s",
-            comment = "// %s",
-          },
-        },
-      }
     end,
   },
   {
-    "nvim-treesitter/nvim-treesitter-context",
+    'nvim-treesitter/nvim-treesitter-context',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      "treesitter",
+      'treesitter',
     },
     config = function()
-      require('treesitter-context').setup {}
-    end
-  }
+      require('treesitter-context').setup({})
+    end,
+  },
 }

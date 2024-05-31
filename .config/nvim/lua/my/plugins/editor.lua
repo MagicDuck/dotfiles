@@ -1,24 +1,22 @@
 return {
   {
-    'NvChad/nvim-colorizer.lua',
+    'brenoprata10/nvim-highlight-colors',
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
-      require('colorizer').setup()
+      require('nvim-highlight-colors').setup({
+        render = 'virtual',
+        enable_named_colors = false,
+        enable_tailwind = false,
+      })
     end,
   },
-  -- {
-  --   "brenoprata10/nvim-highlight-colors",
-  --   lazy = true,
-  --   event = { "BufReadPre", "BufNewFile", "VeryLazy" },
-  --   config = function()
-  --     require("nvim-highlight-colors").setup {
-  --       render = 'background', -- 'background' or 'foreground' or 'first_column'
-  --       enable_named_colors = false,
-  --       enable_tailwind = false
-  --     }
-  --   end
-  -- },
+  {
+    'folke/ts-comments.nvim',
+    opts = {},
+    event = 'VeryLazy',
+    enabled = vim.fn.has('nvim-0.10.0') == 1,
+  },
   {
     'echasnovski/mini.comment',
     version = '*',
@@ -47,19 +45,6 @@ return {
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
   },
-  -- {
-  --   "kylechui/nvim-surround",
-  --   lazy = true,
-  --   version = "*",
-  --   event = { "BufReadPre", "BufNewFile", "VeryLazy" },
-  --   config = function()
-  --     require("nvim-surround").setup({})
-  --   end
-  -- },
-  -- { "tpope/vim-surround",
-  --   lazy = true,
-  --   event = { "BufReadPre", "BufNewFile", "VeryLazy" },
-  -- },
   {
     'echasnovski/mini.surround',
     lazy = true,

@@ -28,12 +28,12 @@ cnoremap <a-right> <s-right>
 cnoremap <a-up> <home>
 cnoremap <a-down> <end>
 
-nnoremap <A-BS> a<C-W><esc>
-nnoremap <A-Del> de
-nnoremap <A-left> b
-nnoremap <A-right> w
-nnoremap <A-up> ^
-nnoremap <A-down> $
+" nnoremap <A-BS> a<C-W><esc>
+" nnoremap <A-Del> de
+" nnoremap <A-left> b
+" nnoremap <A-right> w
+" nnoremap <A-up> ^
+" nnoremap <A-down> $
 
 tnoremap <a-bs> <c-w>
 tnoremap <a-Del> <a-d> 

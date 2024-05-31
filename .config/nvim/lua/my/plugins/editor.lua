@@ -2,10 +2,10 @@ return {
   {
     'NvChad/nvim-colorizer.lua',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
       require('colorizer').setup()
-    end
+    end,
   },
   -- {
   --   "brenoprata10/nvim-highlight-colors",
@@ -23,31 +23,29 @@ return {
     'echasnovski/mini.comment',
     version = '*',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
-      require('mini.comment').setup(
-        {
-          -- Module mappings. Use `''` (empty string) to disable one.
-          mappings = {
-            -- Toggle comment (like `gcip` - comment inner paragraph) for both
-            -- Normal and Visual modes
-            comment = '<leader>c',
+      require('mini.comment').setup({
+        -- Module mappings. Use `''` (empty string) to disable one.
+        mappings = {
+          -- Toggle comment (like `gcip` - comment inner paragraph) for both
+          -- Normal and Visual modes
+          comment = '<leader>c',
 
-            -- Toggle comment on current line
-            comment_line = '<leader>c',
-            comment_visual = '<leader>c',
+          -- Toggle comment on current line
+          comment_line = '<leader>c',
+          comment_visual = '<leader>c',
 
-            -- Define 'comment' textobject (like `dgc` - delete whole comment block)
-            textobject = 'ic',
-          },
-        }
-      )
-    end
+          -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+          textobject = 'ic',
+        },
+      })
+    end,
   },
   {
-    "kmonad/kmonad-vim",
+    'kmonad/kmonad-vim',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
   },
   -- {
   --   "kylechui/nvim-surround",
@@ -65,87 +63,87 @@ return {
   {
     'echasnovski/mini.surround',
     lazy = true,
-    version = "*",
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    version = '*',
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
-      require("mini.surround").setup({
+      require('mini.surround').setup({
         -- Module mappings. Use `''` (empty string) to disable one.
         mappings = {
-          add = 'S',           -- Add surrounding in Normal and Visual modes
-          delete = '',         -- Delete surrounding
-          find = '',           -- Find surrounding (to the right)
-          find_left = '',      -- Find surrounding (to the left)
-          highlight = '',      -- Highlight surrounding
-          replace = '',        -- Replace surrounding
+          add = 'S', -- Add surrounding in Normal and Visual modes
+          delete = '', -- Delete surrounding
+          find = '', -- Find surrounding (to the right)
+          find_left = '', -- Find surrounding (to the left)
+          highlight = '', -- Highlight surrounding
+          replace = '', -- Replace surrounding
           update_n_lines = '', -- Update `n_lines`
 
-          suffix_last = 'l',   -- Suffix to search with "prev" method
-          suffix_next = 'n',   -- Suffix to search with "next" method
+          suffix_last = 'l', -- Suffix to search with "prev" method
+          suffix_next = 'n', -- Suffix to search with "next" method
         },
       })
-    end
+    end,
   },
   {
-    "rafcamlet/nvim-luapad",
+    'rafcamlet/nvim-luapad',
     lazy = true,
-    event = { "VeryLazy" },
+    event = { 'VeryLazy' },
   },
   {
-    "tpope/vim-unimpaired",
+    'tpope/vim-unimpaired',
     lazy = true,
-    event = { "VeryLazy" },
+    event = { 'VeryLazy' },
   },
   {
-    "chentoast/marks.nvim",
+    'chentoast/marks.nvim',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
-      require 'marks'.setup {}
-    end
+      require('marks').setup({})
+    end,
   }, -- for marks to show in gutter
   {
-    "folke/todo-comments.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    'folke/todo-comments.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
-      require("todo-comments").setup({
+      require('todo-comments').setup({
         merge_keywords = false,
         keywords = {
-          TODO = { icon = " ", color = "todo" },
+          TODO = { icon = ' ', color = 'todo' },
         },
         highlight = {
           -- highlights before the keyword (typically comment characters)
-          before = "", -- "fg", "bg", or empty
+          before = '', -- "fg", "bg", or empty
           -- highlights of the keyword
           -- wide is the same as bg, but also highlights the colon
-          keyword = "fg", -- "fg", "bg", "wide", or empty
+          keyword = 'fg', -- "fg", "bg", "wide", or empty
           -- highlights after the keyword (TODO text)
-          after = "",     -- "fg", "bg", or empty
+          after = '', -- "fg", "bg", or empty
           -- pattern can be a string, or a table of regexes that will be checked
           -- vim regex
           pattern = [[.*<(KEYWORDS) \(sbadragan\)\s*:]],
           comments_only = true, -- highlight only inside comments using treesitter
-          max_line_len = 400,   -- ignore lines longer than this
-          exclude = {},         -- list of file types to exclude highlighting
+          max_line_len = 400, -- ignore lines longer than this
+          exclude = {}, -- list of file types to exclude highlighting
         },
         -- list of named colors
         -- a list of hex colors or highlight groups, will use the first available one in the list on RHS
         colors = {
-          todo = { "MyTodo" },
-          default = { "Identifier", "#7C3AED" },
+          todo = { 'MyTodo' },
+          default = { 'Identifier', '#7C3AED' },
         },
         search = {
           -- don't replace the (KEYWORDS) placeholder
           pattern = [[\b(KEYWORDS) \(sbadragan\):]], -- ripgrep regex
         },
       })
-    end
+    end,
   },
   {
-    "RRethy/vim-illuminate",
+    'RRethy/vim-illuminate',
     lazy = true,
-    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     config = function()
       require('illuminate').configure({
         -- providers: provider used to get references in the buffer, ordered by priority
@@ -193,22 +191,30 @@ return {
         -- min_count_to_highlight: minimum number of matches required to perform highlighting
         min_count_to_highlight = 2,
       })
-    end
+    end,
   },
   {
-    "windwp/nvim-autopairs",
+    'windwp/nvim-autopairs',
     lazy = true,
-    event = { "VeryLazy" },
+    event = { 'VeryLazy' },
     config = function()
-      require("nvim-autopairs").setup {}
-    end
+      require('nvim-autopairs').setup({})
+    end,
   },
   -- speed up loading large files
   {
-    "pteroctopus/faster.nvim",
+    'pteroctopus/faster.nvim',
     lazy = false,
     config = function()
       require('faster').setup()
-    end
+    end,
+  },
+  {
+    'danymat/neogen',
+    lazy = true,
+    event = { 'VeryLazy' },
+    config = function()
+      require('neogen').setup({ snippet_engine = 'luasnip' })
+    end,
   },
 }

@@ -30,9 +30,9 @@ cmp.setup({
     --   return {}
     -- end
   },
-  experimental = {
-    ghost_text = true
-  },
+  -- experimental = {
+  --   ghost_text = true
+  -- },
   -- changed recently
   -- preselect = cmp.PreselectMode.Item,
   preselect = cmp.PreselectMode.None,
@@ -54,10 +54,10 @@ cmp.setup({
   },
   mapping = {
     ["<tab>"] = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }),
-    -- ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    -- ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    -- ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    -- ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     ["<PageUp>"] = cmp.mapping.scroll_docs(-4),
     ["<PageDown>"] = cmp.mapping.scroll_docs(4),
   },

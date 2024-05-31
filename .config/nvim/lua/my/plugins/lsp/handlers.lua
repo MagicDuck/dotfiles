@@ -20,15 +20,12 @@ exports.client_request = function(client)
     --   type(handler),
     --   type(customHandler)
     -- )
-    if
-      (customHandler and type(customHandler) == "table" and
-      customHandler.type == "local_lsp")
-    then
+    if customHandler and type(customHandler) == 'table' and customHandler.type == 'local_lsp' then
       local context = {
         method = method,
         client_id = client.id,
         bufnr = bufnr,
-        params = params
+        params = params,
       }
       local result = customHandler.handler(method, params, client.id, bufnr)
       local continuationHandler = handler or vim.lsp.handlers[method]
@@ -36,26 +33,14 @@ exports.client_request = function(client)
         -- first 1st arg is err
         continuationHandler(nil, result, context)
       end
-      vim.api.nvim_command("doautocmd <nomodeline> User LspRequest")
+      vim.api.nvim_command('doautocmd <nomodeline> User LspRequest')
 
       return true, 1
     else
       if not handler and not vim.lsp.handlers[method] then
-        error(
-          string.format(
-            "not found: %q request handler for client %q.",
-            method,
-            client.name
-          )
-        )
+        error(string.format('not found: %q request handler for client %q.', method, client.name))
       end
-      return original_client_request(
-        method,
-        params,
-        handler,
-        bufnr,
-        client.config
-      )
+      return original_client_request(method, params, handler, bufnr, client.config)
     end
   end
 end
@@ -99,93 +84,66 @@ end
 --   return original_vim_ui_select(items, opts, on_choice)
 -- end
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(
-    vim.lsp.handlers["textDocument/publishDiagnostics"],
-    -- vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-      -- Enable underline, use default values
-      underline = false
-      -- Disable a feature
-      -- update_in_insert = false,
-    }
-  )
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.handlers['textDocument/publishDiagnostics'],
+  -- vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    -- Enable underline, use default values
+    underline = false,
+    -- Disable a feature
+    -- update_in_insert = false,
+  }
+)
 
 exports.tsserverPublishDiagnostics = function(_, result, ctx, config)
-  -- P(result.diagnostics)
-  result.diagnostics =
-    vim.tbl_filter(
-      function(diagnostic)
-        return vim.tbl_contains(
-          {
-            -- allow  name not found diagnostics
-            2304,
-            2552
-          },
-          diagnostic.code
-        )
-      end,
-      result.diagnostics
-    )
-  return vim.lsp.handlers["textDocument/publishDiagnostics"](
-    nil,
-    result,
-    ctx,
-    config
-  )
+  if vim.endswith(vim.loop.cwd() or '', 'frontend') then
+    result.diagnostics = vim.tbl_filter(function(diagnostic)
+      return vim.tbl_contains({
+        -- allow  name not found diagnostics
+        2304,
+        2552,
+      }, diagnostic.code)
+    end, result.diagnostics)
+  end
+  return vim.lsp.handlers['textDocument/publishDiagnostics'](nil, result, ctx, config)
 end
 
 exports.diagnosticlsPublishDiagnostics = function(_, result, ctx, config)
-  result.diagnostics =
-    vim.tbl_map(
-      function(diagnostic)
-        if diagnostic.source == "eslint" then
-          if diagnostic.message:match("^%[eslint%] Parsing error:") ~= nil then
-            diagnostic.message = "[eslint] Parsing error"
-          end
-        end
-        return diagnostic
-      end,
-      result.diagnostics
-    )
-  return vim.lsp.handlers["textDocument/publishDiagnostics"](
-    nil,
-    result,
-    ctx,
-    config
-  )
+  result.diagnostics = vim.tbl_map(function(diagnostic)
+    if diagnostic.source == 'eslint' then
+      if diagnostic.message:match('^%[eslint%] Parsing error:') ~= nil then
+        diagnostic.message = '[eslint] Parsing error'
+      end
+    end
+    return diagnostic
+  end, result.diagnostics)
+  return vim.lsp.handlers['textDocument/publishDiagnostics'](nil, result, ctx, config)
 end
 
 exports.lintCodeAction = function(method, params, clientId, bufnr)
   local actions = {}
   for _, diagnostic in pairs(params.context.diagnostics) do
-    if (diagnostic.source == "eslint") then
-      local rule = string.match(diagnostic.message, "%[([^%]]*)%][ ]*$")
-      table.insert(
-        actions,
-        {
-          arguments = {
-            newText = "// eslint-disable-next-line " .. rule,
-            lineNum = diagnostic.range.start.line
-          },
-          command = "add_indented_new_line",
-          title = "Suppress eslint rule " .. rule
-        }
-      )
+    if diagnostic.source == 'eslint' then
+      local rule = string.match(diagnostic.message, '%[([^%]]*)%][ ]*$')
+      table.insert(actions, {
+        arguments = {
+          newText = '// eslint-disable-next-line ' .. rule,
+          lineNum = diagnostic.range.start.line,
+        },
+        command = 'add_indented_new_line',
+        title = 'Suppress eslint rule ' .. rule,
+      })
     end
-    if (diagnostic.source == "stylelint") then
-      local rule = string.match(diagnostic.message, "%(([^%]]*)%)[ ]*$")
-      table.insert(
-        actions,
-        {
-          arguments = {
-            newText = "/* stylelint-disable-next-line " .. rule .. " */",
-            lineNum = diagnostic.range.start.line
-          },
-          command = "add_indented_new_line",
-          title = "Suppress stylelint rule " .. rule
-        }
-      )
+    if diagnostic.source == 'stylelint' then
+      local rule = string.match(diagnostic.message, '%(([^%]]*)%)[ ]*$')
+      table.insert(actions, {
+        arguments = {
+          newText = '/* stylelint-disable-next-line ' .. rule .. ' */',
+          lineNum = diagnostic.range.start.line,
+        },
+        command = 'add_indented_new_line',
+        title = 'Suppress stylelint rule ' .. rule,
+      })
     end
   end
 
@@ -193,10 +151,10 @@ exports.lintCodeAction = function(method, params, clientId, bufnr)
 end
 
 exports.workspaceExecuteCommand = function(method, params, client_id, bufnr)
-  if params.command == "add_indented_new_line" then
+  if params.command == 'add_indented_new_line' then
     local lineNum = params.arguments.lineNum
     local line = vim.fn.getbufline(bufnr, lineNum + 1)[1]
-    local prefix = string.match(line, "^%s*")
+    local prefix = string.match(line, '^%s*')
     vim.fn.appendbufline(bufnr, lineNum, prefix .. params.arguments.newText)
   end
 end

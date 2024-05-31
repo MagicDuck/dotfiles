@@ -207,7 +207,7 @@ esac
 # =========================================================================================
 
 # fast node version manager
-eval "$(fnm env)"
+eval "$(fnm env --use-on-cd)"
 # export FNM_DIR="/opt/repos/.fnm"
 
 # yarn version management

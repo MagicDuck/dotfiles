@@ -1,6 +1,6 @@
 -- LSP spec: https://microsoft.github.io/language-server-protocol/specification.html#initialize
 -- prevent stupid node deprecation warnings
-vim.env.NODE_OPTIONS = "--no-deprecation"
+vim.env.NODE_OPTIONS = '--no-deprecation'
 
 -- logging
 -- vim.lsp.set_log_level("debug")
@@ -12,23 +12,23 @@ end
 -- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
 -- note worarkound for lua highlighting bracket
 -- !curl -sS https://raw.githubusercontent.com/neovim/neovim/v0.7.2/runtime/syntax/lua.vim > $VIMRUNTIME/syntax/lua.vim
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = "rounded",
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = 'rounded',
 })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = "rounded",
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+  border = 'rounded',
 })
 
 return {
   -- LSP status spinner, somewhat annoying
   {
-    "j-hui/fidget.nvim",
-    branch = "legacy",
+    'j-hui/fidget.nvim',
+    branch = 'legacy',
     lazy = true,
-    event = { "VeryLazy" },
+    event = { 'VeryLazy' },
     config = function()
-      require("fidget").setup({ window = { winblend = 0 } })
-    end
+      require('fidget').setup({ window = { winblend = 0 } })
+    end,
   },
 
   -- {
@@ -68,14 +68,14 @@ return {
   -- },
 
   {
-    "stevearc/conform.nvim",
+    'stevearc/conform.nvim',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
-      require("conform").setup({
+      require('conform').setup({
         format_on_save = { timeout_ms = 500, lsp_fallback = true },
         formatters_by_ft = {
-          -- lua = { "stylua" },
+          lua = { 'stylua' },
           -- Use a sub-list to run only the first available formatter
           -- javascript = { { "prettier" } },
           -- javascriptreact = { { "prettier" } },
@@ -85,16 +85,16 @@ return {
           -- markdown = { { "prettier" } },
           -- json = { { "prettier" } },
 
-          javascript = { { "prettierd", "prettier" } },
-          javascriptreact = { { "prettierd", "prettier" } },
-          typescript = { { "prettierd", "prettier" } },
-          typescriptreact = { { "prettierd", "prettier" } },
+          javascript = { { 'prettierd', 'prettier' } },
+          javascriptreact = { { 'prettierd', 'prettier' } },
+          typescript = { { 'prettierd', 'prettier' } },
+          typescriptreact = { { 'prettierd', 'prettier' } },
 
-          json = { { "prettierd", "prettier" } },
-          jsonc = { { "prettierd", "prettier" } },
+          json = { { 'prettierd', 'prettier' } },
+          jsonc = { { 'prettierd', 'prettier' } },
 
-          scss = { { "prettierd", "prettier" } },
-          css = { { "prettierd", "prettier" } },
+          scss = { { 'prettierd', 'prettier' } },
+          css = { { 'prettierd', 'prettier' } },
 
           -- javascript = { { "prettier" } },
           -- javascriptreact = { { "prettier" } },
@@ -116,40 +116,40 @@ return {
           -- json = { { "biome", "prettierd", "prettier" } },
           -- jsonc = { { "biome", "prettierd", "prettier" } },
 
-          c = { "clang-format" },
-          cpp = { "clang-format" },
-          cs = { "clang-format" },
-          cuda = { "clang-format" },
+          c = { 'clang-format' },
+          cpp = { 'clang-format' },
+          cs = { 'clang-format' },
+          cuda = { 'clang-format' },
         },
       })
 
-      vim.api.nvim_create_user_command("Format", function(args)
+      vim.api.nvim_create_user_command('Format', function(args)
         local range = nil
         if args.count ~= -1 then
           local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
           range = {
             start = { args.line1, 0 },
-            ["end"] = { args.line2, end_line:len() },
+            ['end'] = { args.line2, end_line:len() },
           }
         end
-        require("conform").format({ async = true, lsp_fallback = true, range = range })
+        require('conform').format({ async = true, lsp_fallback = true, range = range })
       end, { range = true })
-    end
+    end,
   },
 
   {
-    "neovim/nvim-lspconfig",
+    'neovim/nvim-lspconfig',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     dependencies = {
       {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "mason" },
+        'williamboman/mason-lspconfig.nvim',
+        dependencies = { 'mason' },
         config = function()
-          require("mason-lspconfig").setup({
+          require('mason-lspconfig').setup({
             -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
             -- This setting has no relation with the `automatic_installation` setting.
-            ensure_installed = { "jdtls" },
+            ensure_installed = { 'jdtls' },
             -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
             -- This setting has no relation with the `ensure_installed` setting.
             -- Can either be:
@@ -159,47 +159,55 @@ return {
             --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
             automatic_installation = true,
           })
-        end
+        end,
       },
       -- sets up for plugin dev /etc
-      { "folke/neodev.nvim", opts = {} },
+      { 'folke/neodev.nvim' },
     },
     config = function()
+      require('neodev').setup({
+        override = function(root_dir, options)
+          if vim.startswith(root_dir, '/opt/repos/') then
+            options.plugins = { 'mini.test' }
+            return options
+          end
+        end,
+      })
       -- lsps
-      require("my/plugins/lsp/lua-language-server")
-      require("my/plugins/lsp/vimls")
+      require('my/plugins/lsp/lua-language-server')
+      require('my/plugins/lsp/vimls')
       -- require("my/plugins/lsp/tsserver")
-      require("my/plugins/lsp/vtsls")
-      require("my/plugins/lsp/cssmodules")
-      require("my/plugins/lsp/cssls")
-      require("my/plugins/lsp/eslint")
-      require("my/plugins/lsp/stylelint")
-      require("my/plugins/lsp/rust_analyzer")
-    end
+      require('my/plugins/lsp/vtsls')
+      require('my/plugins/lsp/cssmodules')
+      require('my/plugins/lsp/cssls')
+      require('my/plugins/lsp/eslint')
+      require('my/plugins/lsp/stylelint')
+      require('my/plugins/lsp/rust_analyzer')
+    end,
   },
 
   {
-    "mfussenegger/nvim-jdtls", -- java support
+    'mfussenegger/nvim-jdtls', -- java support
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
   },
 
   {
-    "onsails/lspkind-nvim",
+    'onsails/lspkind-nvim',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
       require('lspkind').init()
-    end
+    end,
   },
 
   {
-    "lvimuser/lsp-inlayhints.nvim",
+    'lvimuser/lsp-inlayhints.nvim',
     -- branch = 'anticonceal',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
-      require("lsp-inlayhints").setup()
-    end
+      require('lsp-inlayhints').setup()
+    end,
   },
 }

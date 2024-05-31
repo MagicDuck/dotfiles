@@ -1,11 +1,11 @@
-local lspconfig = require("lspconfig")
-local attach = require("my/plugins/lsp/attach")
-local handlers = require("my/plugins/lsp/handlers")
+local lspconfig = require('lspconfig')
+local attach = require('my/plugins/lsp/attach')
+local handlers = require('my/plugins/lsp/handlers')
 
 -- potentially add https://github.com/yioneko/nvim-vtsls for more goodies
 lspconfig.vtsls.setup({
   init_options = {
-    hostInfo = "neovim",
+    hostInfo = 'neovim',
   },
   on_init = function(client)
     -- This makes sure tsserver is not used for formatting (prefer prettier)
@@ -17,23 +17,23 @@ lspconfig.vtsls.setup({
   -- see https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
   settings = {
     typescript = {
-      updateImportsOnFileMove = "always",
+      updateImportsOnFileMove = 'always',
       -- disableAutomaticTypeAcquisition = true,
       format = {
         enable = false,
-      }
+      },
     },
     javascript = {
-      updateImportsOnFileMove = "always",
+      updateImportsOnFileMove = 'always',
       implicitProjectConfig = {
         checkJs = true,
       },
       format = {
         enable = false,
-      }
+      },
     },
   },
   handlers = {
-    ["textDocument/publishDiagnostics"] = handlers.tsserverPublishDiagnostics,
+    ['textDocument/publishDiagnostics'] = handlers.tsserverPublishDiagnostics,
   },
 })

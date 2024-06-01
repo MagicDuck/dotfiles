@@ -1,9 +1,9 @@
 " wildmenu swap arrow keys and left right
 set wildcharm=<C-Z>
-cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
-cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
-cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
-cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
+" cnoremap <expr> <up> wildmenumode() ? "\<left>" : "\<up>"
+" cnoremap <expr> <down> wildmenumode() ? "\<right>" : "\<down>"
+" cnoremap <expr> <left> wildmenumode() ? "\<up>" : "\<left>"
+" cnoremap <expr> <right> wildmenumode() ? " \<bs>\<C-Z>" : "\<right>"
 
 " better completion
 " inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

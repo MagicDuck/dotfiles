@@ -1,17 +1,16 @@
-local cmp = require("cmp")
-local lspkind = require("lspkind")
+local cmp = require('cmp')
+local lspkind = require('lspkind')
 -- vim.o.completeopt = "menu,menuone"
 -- see https://github.com/hrsh7th/nvim-cmp/issues/598
-vim.o.lazyredraw = false
+-- vim.o.lazyredraw = false
 
 -- Don't show the dumb matching stuff.
-vim.opt.shortmess:append("c")
+vim.opt.shortmess:append('c')
 
-require("cmp_nvim_lsp").setup() -- not sure why this does not auto-exec
+require('cmp_nvim_lsp').setup() -- not sure why this does not auto-exec
 cmp.setup({
   enabled = function()
-    return (not require("cmp_dap").is_dap_buffer()) and vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-    -- return not require("cmp_dap").is_dap_buffer() and not vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+    return (not require('cmp_dap').is_dap_buffer()) and vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt'
   end,
   performance = {
     -- debounce = 500,
@@ -52,27 +51,25 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
-  mapping = {
-    ["<tab>"] = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }),
-    ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    -- ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    -- ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    ["<PageUp>"] = cmp.mapping.scroll_docs(-4),
-    ["<PageDown>"] = cmp.mapping.scroll_docs(4),
-  },
+  mapping = cmp.mapping.preset.insert({
+    ['<tab>'] = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }),
+    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ['<PageUp>'] = cmp.mapping.scroll_docs(-4),
+    ['<PageDown>'] = cmp.mapping.scroll_docs(4),
+  }),
   sources = cmp.config.sources({
     -- { name = "nvim_lua" },
     {
-      name = "nvim_lsp",
+      name = 'nvim_lsp',
       -- priority = 100,
       max_item_count = 100,
       -- group_index = 1
     },
-    { name = "path" },
-    { name = "luasnip" }, -- For luasnip users.
+    { name = 'path' },
+    { name = 'luasnip' }, -- For luasnip users.
     {
-      name = "buffer",
+      name = 'buffer',
       -- group_index = 2,
       keyword_length = 3,
       max_item_count = 20,
@@ -93,7 +90,7 @@ cmp.setup({
             end
           end
           return vim.tbl_keys(bufs)
-        end
+        end,
       },
     },
   }),
@@ -102,47 +99,52 @@ cmp.setup({
     format = lspkind.cmp_format({
       with_text = true,
       menu = {
-        path = "[path]",
-        luasnip = "[snip]",
-        buffer = "[buf]",
-        nvim_lua = "[api]",
-        nvim_lsp = "[LSP]",
+        path = '[path]',
+        luasnip = '[snip]',
+        buffer = '[buf]',
+        nvim_lua = '[api]',
+        nvim_lsp = '[LSP]',
       },
     }),
   },
   window = {
     completion = {
-      border = "rounded",
+      border = 'rounded',
       -- winhighlight = "Normal:CmpNormal",
     },
     documentation = {
-      border = "rounded",
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None,Error:None",
+      border = 'rounded',
+      winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,Search:None,Error:None',
     },
   },
 })
 
 -- show completion in dap
-require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
   sources = {
-    { name = "dap" },
+    { name = 'dap' },
   },
 })
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {
-  -- completion = { autocomplete = false },
+  mapping = cmp.mapping.preset.cmdline({
+    ['<tab>'] = { c = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }) },
+  }),
   sources = {
-    { name = 'buffer' }
-  }
+    { name = 'buffer' },
+  },
 })
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
-  -- completion = { autocomplete = false },
+  mapping = cmp.mapping.preset.cmdline({
+    ['<tab>'] = { c = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }) },
+  }),
   sources = cmp.config.sources({
-    { name = 'path' }
+    { name = 'path' },
   }, {
-    { name = 'cmdline' }
-  })
+    { name = 'cmdline' },
+  }),
+  matching = { disallow_symbol_nonprefix_matching = false },
 })

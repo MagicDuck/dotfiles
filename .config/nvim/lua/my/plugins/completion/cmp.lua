@@ -36,7 +36,7 @@ cmp.setup({
   -- preselect = cmp.PreselectMode.Item,
   preselect = cmp.PreselectMode.None,
   completion = {
-    keyword_length = 3,
+    -- keyword_length = 3,
     autocomplete = {
       cmp.TriggerEvent.TextChanged,
     },

@@ -175,9 +175,14 @@ my.keybind({
   rhs = "<cmd>lua require('my/plugins/telescope/tab_picker').pickTab()<CR>",
 })
 my.keybind({
-  description = 'tab: pick tab using telescope',
+  description = 'tab: edit bookmark in new tab',
   lhs = '<leader>tt',
-  rhs = '<cmd>PickBookmark<CR>',
+  rhs = '<cmd>EditBookmarkAsTab<CR>',
+})
+my.keybind({
+  description = 'tab: edit bookmark in current tab',
+  lhs = '<leader>to',
+  rhs = '<cmd>EditBookmark<CR>',
 })
 my.keybind({
   description = 'tab: rename',

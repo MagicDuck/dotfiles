@@ -108,7 +108,7 @@ require('lualine').setup({
         sections = { 'error', 'warn' },
       },
       { 'location', color = 'MyStatusbarFileLocation' },
-      -- { 'progress', color = 'MyStatusbarFileProgress' },
+      { 'progress', color = 'MyStatusbarFileProgress' },
       utils.createRightCap('MyStatusbarFileProgressCap'),
     },
     lualine_b = {},
@@ -116,18 +116,18 @@ require('lualine').setup({
     lualine_x = {},
     lualine_y = {},
     lualine_z = {
-      {
-        'lsp_progress',
-        display_components = { 'spinner' },
-        spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
-        timer = { progress_enddelay = 500, spinner = 500, lsp_client_name_enddelay = 1000 },
-        colors = {
-          spinner = 'MyStatusbarLsp',
-          -- use = true,
-        },
-        color = 'MyStatusbarLsp',
-        padding = { left = 1, right = 0 },
-      },
+      -- {
+      --   'lsp_progress',
+      --   display_components = { 'spinner' },
+      --   spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
+      --   timer = { progress_enddelay = 500, spinner = 500, lsp_client_name_enddelay = 1000 },
+      --   colors = {
+      --     spinner = 'MyStatusbarLsp',
+      --     -- use = true,
+      --   },
+      --   color = 'MyStatusbarLsp',
+      --   padding = { left = 1, right = 0 },
+      -- },
       -- lsp connected - does not work in 0.10
       -- { function() return "lsp " .. icons.lsp end, cond = function() return vim.lsp.buf.server_ready() end,
       --   padding = { left = 1, right = 1 },

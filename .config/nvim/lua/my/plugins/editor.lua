@@ -202,4 +202,14 @@ return {
       require('neogen').setup({ snippet_engine = 'luasnip' })
     end,
   },
+  -- {
+  --   'LintaoAmons/bookmarks.nvim',
+  --   lazy = true,
+  --   event = { 'VeryLazy' },
+  --   tag = 'v0.5.3', -- optional, pin the plugin at specific version for stability
+  --   dependencies = {
+  --     { 'nvim-telescope/telescope.nvim' },
+  --     { 'stevearc/dressing.nvim' }, -- optional: to have the same UI shown in the GIF
+  --   },
+  -- },
 }

@@ -297,6 +297,24 @@ for i = 1, #letters do
     rhs = "'" .. uppercaseLetter,
   })
 end
+-- my.keybind({
+--   description = 'bookmarks: add new',
+--   lhs = 'mm',
+--   rhs = '<cmd>BookmarksMark<CR>',
+--   mode = 'nv',
+-- })
+-- my.keybind({
+--   description = 'bookmarks: open',
+--   lhs = 'mo',
+--   rhs = '<cmd>BookmarksGoto<CR>',
+--   mode = 'nv',
+-- })
+-- my.keybind({
+--   description = 'bookmarks: find and trigger command',
+--   lhs = 'mt',
+--   rhs = '<cmd>BookmarksCommands<CR>',
+--   mode = 'nv',
+-- })
 
 -- startify
 my.keybind({

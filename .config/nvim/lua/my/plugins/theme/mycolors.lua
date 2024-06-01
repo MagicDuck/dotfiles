@@ -2,36 +2,36 @@ local M = {}
 
 local my = {
   -- background = "#F6F2EE",
-  background = "#FAFAF9",
+  background = '#FAFAF9',
   -- selectionBg = "#E7D2BE",
-  selectionBg = "#DBEDED",
+  selectionBg = '#DBEDED',
 
-  commentBackground = "#F0F0ED",
+  commentBackground = '#F0F0ED',
   -- commentBackground = "#F0E4DA",
-  commentFg = "#544D47",
+  commentFg = '#544D47',
 
   -- menubarBaseBg = "#D7CFC9",
   -- menubarBaseBg = "#E0E5E1",
-  menubarBaseBg = "#D6DDDB",
+  menubarBaseBg = '#D6DDDB',
 
   -- menubarBg1 = "#E4DCD4",
   -- menubarBg1 = "#CED6D1",
-  menubarBg1 = "#E4E9E8",
-  menubarBg2 = "#65737e",
-  menubarBg3 = "#a48c32",
-  menubarBg4 = "#b4713d",
+  menubarBg1 = '#E4E9E8',
+  menubarBg2 = '#65737e',
+  menubarBg3 = '#a48c32',
+  menubarBg4 = '#b4713d',
 
-  menubarBaseFg = "#1b2b34",
-  menubarFg1 = "#E8EBF0",
-  menubarFg2 = "#F8FBF6",
+  menubarBaseFg = '#1b2b34',
+  menubarFg1 = '#E8EBF0',
+  menubarFg2 = '#F8FBF6',
 
-  menubarInactiveAccent = "#65737e",
-  menubarActiveAccent = "#896a98",
+  menubarInactiveAccent = '#65737e',
+  menubarActiveAccent = '#896a98',
 
   -- debugLineBg = "#F8FBF6"
-  debugLineBg = "#F0E0E0",
-  cursorLineBg = "#F0F0ED",
-  searchBg = "#896a98",
+  debugLineBg = '#F0E0E0',
+  cursorLineBg = '#F0F0ED',
+  searchBg = '#896a98',
 }
 M.my = my
 
@@ -43,16 +43,17 @@ M.my = my
 
 -- use :Inspect or :Inspect! to check hl group under cursor
 M.highlights = {
-  Pmenu = { fg = "#000000", bg = "#F0F2F5" },
-  NormalFloat = { bg = "#F0F2F5" },
-  FloatBorder = { fg = "#000000", bg = "#F0F2F5" },
+  NoiceLspProgressTitle = { fg = '#000000', bg = '#F0F2F5' },
+
+  Pmenu = { fg = '#000000', bg = '#F0F2F5' },
+  NormalFloat = { bg = '#F0F2F5' },
+  FloatBorder = { fg = '#000000', bg = '#F0F2F5' },
 
   -- workaround for lsp hover window hightlight bug in markdown
   markdownError = { link = 'None' },
 
-
-  FlashLabel = { bg = "#65737E", fg = "#F0F2F5", bold = true },
-  Search = { bg = my.searchBg, fg = "#FAFAF9", reverse = false },
+  FlashLabel = { bg = '#65737E', fg = '#F0F2F5', bold = true },
+  Search = { bg = my.searchBg, fg = '#FAFAF9', reverse = false },
 
   Comment = { bg = my.commentBackground, fg = my.commentFg, italic = false },
 
@@ -61,18 +62,18 @@ M.highlights = {
 
   TreesitterContext = { bg = my.commentBackground },
 
-  Todo = { bg = my.commentBackground, fg = "#4C9E90", bold = true },
-  ["@text.todo"] = { bg = my.commentBackground, fg = "#4C9E90", bold = true },
-  MyTodo = { bg = my.commentBackground, fg = "#BE7E05", bold = true },
+  Todo = { bg = my.commentBackground, fg = '#4C9E90', bold = true },
+  ['@text.todo'] = { bg = my.commentBackground, fg = '#4C9E90', bold = true },
+  MyTodo = { bg = my.commentBackground, fg = '#BE7E05', bold = true },
 
   CursorLine = { bg = my.cursorLineBg },
 
-  TelescopeMatching = { fg = "#d05858", bold = true },
+  TelescopeMatching = { fg = '#d05858', bold = true },
   TelescopeSelection = { default = true, bg = my.cursorLineBg },
-  SignatureMarkText = { fg = "#B4703E", bold = true },
-  MarkSignHL = { fg = "#B4703E", bold = true },
+  SignatureMarkText = { fg = '#B4703E', bold = true },
+  MarkSignHL = { fg = '#B4703E', bold = true },
 
-  BqfSign = { fg = "#F8FBF6", bg = "#896a98", bold = true },
+  BqfSign = { fg = '#F8FBF6', bg = '#896a98', bold = true },
 
   -- Base Menu Bar UI
   MyMenubarLine = { bg = my.menubarBaseBg, fg = my.menubarBaseFg },
@@ -124,7 +125,7 @@ M.highlights = {
   DapUIStop = { fg = my.menubarBaseFg },
   DapStopped = { bg = my.debugLineBg },
   DapStoppedLine = { bg = my.debugLineBg },
-  DapStoppedLineNumber = { bg = my.debugLineBg }
+  DapStoppedLineNumber = { bg = my.debugLineBg },
 }
 
-return M;
+return M

@@ -8,7 +8,7 @@ local lspFormatBuffer = function(bufnr)
   -- end
 
   vim.lsp.buf.format({
-    timeout_ms = 5000
+    timeout_ms = 5000,
   })
 
   -- for i = 1, #letters do
@@ -49,22 +49,19 @@ local global_on_attach = function(client, bufnr)
   --   -- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 5000) ]]
   --   vim.api.nvim_command("autocmd BufWritePre <buffer> lua LspFormatBuffer(" .. bufnum .. ")")
   -- end
-  if client.supports_method("textDocument/formatting") and client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("LspFormat." .. bufnr, {}),
+  if client.supports_method('textDocument/formatting') and client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = vim.api.nvim_create_augroup('LspFormat.' .. bufnr, {}),
       buffer = bufnr,
       callback = function()
         lspFormatBuffer(bufnr)
       end,
     })
   end
-
-  -- this adds inline hints, but does not seem to work super well as you ened to call .toggle() twice for them to show up
-  -- require("lsp-inlayhints").on_attach(client, bufnr)
 end
 
--- local global_capabilities = require("cmp_nvim_lsp").default_capabilities()
-local global_capabilities = vim.lsp.protocol.make_client_capabilities();
+local global_capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- local global_capabilities = vim.lsp.protocol.make_client_capabilities()
 
 return {
   global_on_attach = global_on_attach,

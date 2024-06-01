@@ -1,13 +1,14 @@
 return {
-  { "nvim-lualine/lualine.nvim",
+  {
+    'nvim-lualine/lualine.nvim',
     lazy = true,
-    event = "VeryLazy",
+    event = 'VeryLazy',
     dependencies = {
-      { "arkav/lualine-lsp-progress" },
+      -- using fidget instead
+      -- { 'arkav/lualine-lsp-progress' },
     },
     config = function()
       require('my.plugins.lualine.lualine')
-    end
+    end,
   },
 }
-

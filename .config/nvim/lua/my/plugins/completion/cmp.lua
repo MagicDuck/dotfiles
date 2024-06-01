@@ -59,14 +59,12 @@ cmp.setup({
     ['<PageDown>'] = cmp.mapping.scroll_docs(4),
   }),
   sources = cmp.config.sources({
-    -- { name = "nvim_lua" },
     {
       name = 'nvim_lsp',
       -- priority = 100,
       max_item_count = 100,
       -- group_index = 1
     },
-    -- { name = 'nvim_lsp_signature_help' }, -- a bit busy, <C-m> seems sufficient atm
     { name = 'path' },
     { name = 'luasnip' }, -- For luasnip users.
     {

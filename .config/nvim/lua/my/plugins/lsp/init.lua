@@ -23,49 +23,13 @@ return {
   -- LSP status spinner, somewhat annoying
   {
     'j-hui/fidget.nvim',
-    branch = 'legacy',
+    -- branch = 'legacy',
     lazy = true,
     event = { 'VeryLazy' },
     config = function()
-      require('fidget').setup({ window = { winblend = 0 } })
+      require('fidget').setup({})
     end,
   },
-
-  -- {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   lazy = true,
-  --   event = { "BufReadPre", "BufNewFile", "VeryLazy" },
-  --   dependencies = {
-  --     {
-  --       "jayp0521/mason-null-ls.nvim",
-  --       dependencies = { "mason" },
-  --       config = function()
-  --         -- handles automatic installation of required tools based on stuff configured in null-ls
-  --         require("mason-null-ls").setup({
-  --           -- A list of sources to install if they're not already installed.
-  --           -- This setting has no relation with the `automatic_installation` setting.
-  --           ensure_installed = {},
-  --           -- Run `require("null-ls").setup`.
-  --           -- Will automatically install masons tools based on selected sources in `null-ls`.
-  --           -- Can also be an exclusion list.
-  --           -- Example: `automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }`
-  --           automatic_installation = false,
-  --           -- Whether sources that are installed in mason should be automatically set up in null-ls.
-  --           -- Removes the need to set up null-ls manually.
-  --           -- Can either be:
-  --           -- 	- false: Null-ls is not automatically registered.
-  --           -- 	- true: Null-ls is automatically registered.
-  --           -- 	- { types = { SOURCE_NAME = {TYPES} } }. Allows overriding default configuration.
-  --           -- 	Ex: { types = { eslint_d = {'formatting'} } }
-  --           automatic_setup = false,
-  --         })
-  --       end
-  --     },
-  --   },
-  --   config = function()
-  --     require("my/plugins/lsp/null-ls")
-  --   end
-  -- },
 
   {
     'stevearc/conform.nvim',

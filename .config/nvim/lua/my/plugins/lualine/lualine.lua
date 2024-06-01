@@ -108,7 +108,7 @@ require('lualine').setup({
         sections = { 'error', 'warn' },
       },
       { 'location', color = 'MyStatusbarFileLocation' },
-      { 'progress', color = 'MyStatusbarFileProgress' },
+      -- { 'progress', color = 'MyStatusbarFileProgress' },
       utils.createRightCap('MyStatusbarFileProgressCap'),
     },
     lualine_b = {},

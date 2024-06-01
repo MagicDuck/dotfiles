@@ -1,7 +1,7 @@
 local M = {}
 
 function M.load(opts)
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
   if not vim.loop.fs_stat(lazypath) then
     -- bootstrap lazy.nvim
     -- stylua: ignore
@@ -10,7 +10,7 @@ function M.load(opts)
   end
   vim.opt.rtp:prepend(lazypath)
 
-  require("lazy").setup({
+  require('lazy').setup({
     spec = opts.spec,
     defaults = {
       -- should plugins be lazy-loaded?
@@ -21,17 +21,20 @@ function M.load(opts)
       version = false, -- always use the latest git commit
       -- version = "*", -- try installing the latest stable version for plugins that support semver
     },
-    install = { colorscheme = { "dayfox", "habamax" } },
+    install = { colorscheme = { 'dayfox', 'habamax' } },
+    change_detection = {
+      -- automatically check for config file changes and reload the ui
+      enabled = false,
+    },
     custom_keys = {
       -- you can define custom key maps here.
       -- To disable one of the defaults, set it to false
 
       -- disable defaults
       -- open lazygit log
-      ["<localleader>l"] = false,
+      ['<localleader>l'] = false,
       -- open a terminal for the plugin dir
-      ["<localleader>t"] = false
-
+      ['<localleader>t'] = false,
     },
     performance = {
       rtp = {
@@ -42,8 +45,8 @@ function M.load(opts)
           -- "matchparen",
           -- "netrwPlugin",
           -- "tarPlugin",
-          "tohtml",
-          "tutor",
+          'tohtml',
+          'tutor',
           -- "zipPlugin",
         },
       },

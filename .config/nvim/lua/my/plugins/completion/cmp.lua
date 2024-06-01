@@ -66,6 +66,7 @@ cmp.setup({
       max_item_count = 100,
       -- group_index = 1
     },
+    -- { name = 'nvim_lsp_signature_help' }, -- a bit busy, <C-m> seems sufficient atm
     { name = 'path' },
     { name = 'luasnip' }, -- For luasnip users.
     {

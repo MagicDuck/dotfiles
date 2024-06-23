@@ -273,6 +273,7 @@ alias xmapi-dev-in-cloud-stop="xm-instance-switch-version kramerica xmapi 0-x-ma
 alias showkey="kitty +kitten show_key"
 alias gcloud-impersonate-start="gcloud config set auth/impersonate_service_account webui-dev@xmatters-eng-dev.iam.gserviceaccount.com"
 alias gcloud-impersonate-stop="gcloud config unset auth/impersonate_service_account"
+alias ly="lazygit -w ~ -g ~/.local/share/yadm/repo.git   "
 
 
 # FZF

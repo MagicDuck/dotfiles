@@ -1,4 +1,4 @@
-hs.loadSpoon("ReloadConfiguration")
+hs.loadSpoon('ReloadConfiguration')
 spoon.ReloadConfiguration:start()
 
 -- window accessibility api timeout - messes up window switching
@@ -7,20 +7,20 @@ spoon.ReloadConfiguration:start()
 -------------------------------------------------------------------
 -- Local config
 -------------------------------------------------------------------
-local localConfig = require("./localConfig")
+local localConfig = require('./localConfig')
 
 -------------------------------------------------------------------
 -- IPC config, so we can call hammerspoon from CLI "hs" command
 -------------------------------------------------------------------
-require("hs.ipc")
+require('hs.ipc')
 hs.ipc.cliInstall()
 
 -------------------------------------------------------------------
 -- Network, auto-switch WIFI off when wired is on and vice-versa
 -------------------------------------------------------------------
-local network = require("./network")
+local network = require('./network')
 -- network.setEthernetInterfaceName("Ethernet Adapter (en6)") -- name shown when unplugged
-network.setEthernetInterfaceName("AX88179A") -- name shown when unplugged
+network.setEthernetInterfaceName('AX88179A') -- name shown when unplugged
 local networkWatcher = hs.network.configuration.open()
 networkWatcher:monitorKeys()
 networkWatcher:setCallback(network.handleNetworkChange)
@@ -29,30 +29,30 @@ networkWatcher:start()
 -------------------------------------------------------------------
 -- Gitlab
 -------------------------------------------------------------------
-local gitlabMrs = hs.loadSpoon("gitlab-merge-requests")
+local gitlabMrs = hs.loadSpoon('gitlab-merge-requests')
 local deployUrls = {
-  frontend = gitlabMrs.builtin.deployUrls.frontend({ hostname = "stephanbcorp.dev.xmatters.com" }),
+  frontend = gitlabMrs.builtin.deployUrls.frontend({ hostname = 'stephanbcorp.dev.xmatters.com' }),
   spark = gitlabMrs.builtin.deployUrls.spark(),
   ondemand = gitlabMrs.builtin.deployUrls.ondemand({
-    slackChannel = "kessel-builds",
-    versionSuffix = "sb",
-    fallbackVersion = "0.x.sbadragan",
+    slackChannel = 'kessel-builds',
+    versionSuffix = 'sb',
+    fallbackVersion = '0.x.sbadragan',
   }),
-  ["xM-API"] = gitlabMrs.builtin.deployUrls["xM-API"]({
-    slackChannel = "kessel-builds",
-    versionSuffix = "sb",
-    fallbackVersion = "0.x.sbadragan",
+  ['xM-API'] = gitlabMrs.builtin.deployUrls['xM-API']({
+    slackChannel = 'kessel-builds',
+    versionSuffix = 'sb',
+    fallbackVersion = '0.x.sbadragan',
   }),
-  ["xm-database"] = gitlabMrs.builtin.deployUrls["xm-database"]({
-    databaseName = "kramerica",
+  ['xm-database'] = gitlabMrs.builtin.deployUrls['xm-database']({
+    databaseName = 'kramerica',
   }),
   hyrax = gitlabMrs.builtin.deployUrls.hyrax({
-    slackChannel = "kessel-builds",
-    fallbackTicketName = "sbadragan",
+    slackChannel = 'kessel-builds',
+    fallbackTicketName = 'sbadragan',
   }),
   multinode = gitlabMrs.builtin.deployUrls.multinode({
-    slackChannel = "kessel-builds",
-    fallbackTicketName = "sbadragan",
+    slackChannel = 'kessel-builds',
+    fallbackTicketName = 'sbadragan',
   }),
 }
 
@@ -61,6 +61,13 @@ gitlabMrs:setup({
   token = localConfig.gitlab.token,
   username = localConfig.gitlab.username,
   deployUrls = deployUrls,
+  filterMR = function(mr)
+    local _, _, projectName = string.find(mr.references.full, '/([%w-._]+)!')
+    if projectName == 'frontend' then
+      return false
+    end
+    return false
+  end,
 })
 gitlabMrs:start()
 
@@ -84,33 +91,33 @@ gitlabMrs:start()
 -------------------------------------------------------------------
 -- Snippets
 -------------------------------------------------------------------
-local snippets = require("./snippets")
+local snippets = require('./snippets')
 local xmDemoInstance = localConfig.xmDemoInstance
 local xmDemoInstance2 = localConfig.xmDemoInstance2
 local ebfdDemoInstance = localConfig.ebfdDemoInstance
-local cursor = "▍"
+local cursor = '▍'
 snippets.init({
   {
-    description = "code block",
-    example = "```\n" .. cursor .. "\n```",
-    keys = { "```", { char = "return" }, { char = "return" }, "```", { char = "up" } },
+    description = 'code block',
+    example = '```\n' .. cursor .. '\n```',
+    keys = { '```', { char = 'return' }, { char = 'return' }, '```', { char = 'up' } },
   },
   {
-    description = "code block from clipboard",
-    example = "```\n<paste>\n```" .. cursor,
-    keys = { "```\n", { mods = { "cmd" }, char = "v" }, "\n```" },
+    description = 'code block from clipboard',
+    example = '```\n<paste>\n```' .. cursor,
+    keys = { '```\n', { mods = { 'cmd' }, char = 'v' }, '\n```' },
   },
   {
-    description = "xmatters demo/test instance",
+    description = 'xmatters demo/test instance',
     example = xmDemoInstance.host
-      .. " (user = "
+      .. ' (user = '
       .. xmDemoInstance.user
-      .. ", password = "
+      .. ', password = '
       .. xmDemoInstance.password
-      .. ")"
+      .. ')'
       .. cursor,
     keys = {
-      xmDemoInstance.host
+      xmDemoInstance.host,
       -- .. " (user = "
       -- .. xmDemoInstance.user
       -- .. ", password = "
@@ -119,16 +126,16 @@ snippets.init({
     },
   },
   {
-    description = "(2) xmatters demo/test instance",
+    description = '(2) xmatters demo/test instance',
     example = xmDemoInstance2.host
-      .. " (user = "
+      .. ' (user = '
       .. xmDemoInstance2.user
-      .. ", password = "
+      .. ', password = '
       .. xmDemoInstance2.password
-      .. ")"
+      .. ')'
       .. cursor,
     keys = {
-      xmDemoInstance2.host
+      xmDemoInstance2.host,
       -- .. " (user = "
       -- .. xmDemoInstance2.user
       -- .. ", password = "
@@ -137,23 +144,23 @@ snippets.init({
     },
   },
   {
-    description = "ebfd demo/test instance",
+    description = 'ebfd demo/test instance',
     example = ebfdDemoInstance.host
-      .. " (user = "
+      .. ' (user = '
       .. ebfdDemoInstance.user
-      .. ", password = "
+      .. ', password = '
       .. ebfdDemoInstance.password
-      .. ")"
+      .. ')'
       .. cursor,
     keys = {
       ebfdDemoInstance.host
-      .. "\n(organization = "
-      .. ebfdDemoInstance.organization
-      .. ", user = "
-      .. ebfdDemoInstance.user
-      .. ", password = "
-      .. ebfdDemoInstance.password
-      .. ")",
+        .. '\n(organization = '
+        .. ebfdDemoInstance.organization
+        .. ', user = '
+        .. ebfdDemoInstance.user
+        .. ', password = '
+        .. ebfdDemoInstance.password
+        .. ')',
     },
   },
 })
@@ -162,109 +169,108 @@ snippets.init({
 -- Key Bindings
 -------------------------------------------------------------------
 
-local kitty = require("./kitty")
-local summonApp = require("./summonApp")
+local kitty = require('./kitty')
+local summonApp = require('./summonApp')
 summonApp:init()
 local summon = summonApp.summon
-local wm = require("./windowManagement")
+local wm = require('./windowManagement')
 
-local superKey = { "cmd", "alt", "ctrl", "shift" }
+local superKey = { 'cmd', 'alt', 'ctrl', 'shift' }
 local superKeyBindings = {
   -- app switching
   {
-    key = "b",
-    app = "kitty",
+    key = 'b',
+    app = 'kitty',
     window = {
-      title = "combos",
+      title = 'combos',
       launch = function()
         kitty.launchWindow({
-          title = "combos",
-          command =
-          "/bin/zsh -is eval vim /opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/combos.def"
+          title = 'combos',
+          command = '/bin/zsh -is eval vim /opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/combos.def',
         })
       end,
     },
   },
   {
-    key = "d",
+    key = 'd',
     -- app = "Brave Browser",
     -- app = "Safari",
-    app = "Vivaldi",
+    app = 'Vivaldi',
   },
   {
-    key = "e",
-    app = "kitty",
+    key = 'e',
+    app = 'kitty',
     window = {
-      title = "terminal",
+      title = 'terminal',
       launch = function()
-        kitty.launchWindow({ title = "terminal", command = "/bin/zsh -is" })
+        kitty.launchWindow({ title = 'terminal', command = '/bin/zsh -is' })
       end,
     },
   },
   {
-    key = "f",
+    key = 'f',
     -- app = "Brave Browser",
-    app = "Obsidian",
+    app = 'Obsidian',
   },
   {
-    key = "g",
-    app = "Documentation",
+    key = 'g',
+    app = 'Documentation',
   },
   {
-    key = "h",
-    app = "Postman",
+    key = 'h',
+    app = 'Postman',
   },
   {
-    key = "i",
-    app = "IntelliJ IDEA",
+    key = 'i',
+    app = 'IntelliJ IDEA',
   },
   {
-    key = "v",
-    app = "TickTick",
+    key = 'v',
+    app = 'TickTick',
   },
   {
-    key = "u",
-    app = "Fork",
+    key = 'u',
+    app = 'Fork',
   },
   {
-    key = "j",
-    app = "TablePlus",
+    key = 'j',
+    app = 'TablePlus',
   },
   {
-    key = "k",
-    app = "kitty",
+    key = 'k',
+    app = 'kitty',
     window = {
-      title = "lazygit",
+      title = 'lazygit',
       launch = function()
-        kitty.launchWindow({ title = "lazygit", command = "/bin/zsh -is eval lazygit" })
+        kitty.launchWindow({ title = 'lazygit', command = '/bin/zsh -is eval lazygit' })
         -- kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim +VimwikiIndex" })
       end,
     },
   },
   {
-    key = "l",
-    app = "zoom.us",
+    key = 'l',
+    app = 'zoom.us',
   },
   -- {
   --   key = "n",
   --   app = "Figma",
   -- },
   {
-    key = "o",
-    app = "Microsoft Outlook",
+    key = 'o',
+    app = 'Microsoft Outlook',
   },
   {
-    key = "p",
-    app = "Finder",
+    key = 'p',
+    app = 'Finder',
   },
   {
-    key = "r",
-    app = "Google Chrome",
+    key = 'r',
+    app = 'Google Chrome',
     -- app = "Firefox",
   },
   {
-    key = "s",
-    app = "Slack",
+    key = 's',
+    app = 'Slack',
   },
   -- {
   --   key = "u",
@@ -278,12 +284,15 @@ local superKeyBindings = {
   --   },
   -- },
   {
-    key = "u",
-    app = "kitty",
+    key = 'u',
+    app = 'kitty',
     window = {
-      title = "scratchpad",
+      title = 'scratchpad',
       launch = function()
-        kitty.launchWindow({ title = "scratchpad", command = "/bin/zsh -is eval vim ~/scratchpad.md" })
+        kitty.launchWindow({
+          title = 'scratchpad',
+          command = '/bin/zsh -is eval vim ~/scratchpad.md',
+        })
       end,
     },
   },
@@ -297,30 +306,30 @@ local superKeyBindings = {
   --   app = "confluence wiki",
   -- },
   {
-    key = "y",
-    app = "YouTube",
+    key = 'y',
+    app = 'YouTube',
   },
   {
-    key = "space",
-    app = "kitty",
+    key = 'space',
+    app = 'kitty',
     window = {
-      title = "terminal",
+      title = 'terminal',
     },
   },
   {
-    key = "return",
-    app = "kitty",
+    key = 'return',
+    app = 'kitty',
     window = {
-      title = "terminal",
+      title = 'terminal',
     },
   },
   -- window management
   {
-    key = "a",
+    key = 'a',
     fn = function()
       -- show name and bundle id of application corresponding to current window
       local win = hs.window.frontmostWindow()
-      hs.alert.show(win:application():name() .. " | " .. win:application():bundleID())
+      hs.alert.show(win:application():name() .. ' | ' .. win:application():bundleID())
     end,
   },
   -- {
@@ -328,35 +337,35 @@ local superKeyBindings = {
   --   fn = wm.focusNextAppWindow,
   -- },
   {
-    key = "left",
+    key = 'left',
     fn = wm.positionCurrentWindowLeftHalf,
   },
   {
-    key = "right",
+    key = 'right',
     fn = wm.positionCurrentWindowRightHalf,
   },
   {
-    key = "up",
+    key = 'up',
     fn = wm.positionCurrentWindowFullscreen,
   },
   {
-    key = "down",
+    key = 'down',
     fn = wm.positionCurrentWindowCentered,
   },
   {
-    key = ";",
+    key = ';',
     fn = wm.moveCurrentWindowToNextScreen,
   },
   -- snippets
   {
-    key = "m",
+    key = 'm',
     fn = snippets.show,
     -- fn = function()
     --     hs.eventtap.keyStrokes("")
     -- end,
   },
   {
-    key = "x",
+    key = 'x',
     fn = function()
       local win = hs.window.frontmostWindow()
       win:close()

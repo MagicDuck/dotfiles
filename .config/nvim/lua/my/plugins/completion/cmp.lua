@@ -53,10 +53,12 @@ cmp.setup({
   },
   mapping = cmp.mapping.preset.insert({
     ['<tab>'] = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }),
-    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    -- ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    -- ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     ['<PageUp>'] = cmp.mapping.scroll_docs(-4),
     ['<PageDown>'] = cmp.mapping.scroll_docs(4),
+    -- ['<up>'] = { i = false },
+    -- ['<down>'] = { i = false },
   }),
   sources = cmp.config.sources({
     {

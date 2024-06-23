@@ -41,13 +41,13 @@ return {
         formatters_by_ft = {
           lua = { 'stylua' },
           -- Use a sub-list to run only the first available formatter
-          -- javascript = { { "prettier" } },
-          -- javascriptreact = { { "prettier" } },
-          -- typescript = { { "prettier" } },
-          -- scss = { { "prettier" } },
-          -- css = { { "prettier" } },
-          -- markdown = { { "prettier" } },
-          -- json = { { "prettier" } },
+          -- javascript = { { 'prettier' } },
+          -- javascriptreact = { { 'prettier' } },
+          -- typescript = { { 'prettier' } },
+          -- scss = { { './node_modules/.bin/prettier' } },
+          -- css = { { 'prettier' } },
+          -- json = { { 'prettier' } },
+          -- jsonc = { { 'prettier' } },
 
           javascript = { { 'prettierd', 'prettier' } },
           javascriptreact = { { 'prettierd', 'prettier' } },
@@ -143,7 +143,9 @@ return {
       -- require("my/plugins/lsp/tsserver")
       require('my/plugins/lsp/vtsls')
       require('my/plugins/lsp/cssmodules')
-      require('my/plugins/lsp/cssls')
+
+      -- TODO (sbadragan): this one has problems currently since it applies formatting, need to disable that somehow
+      -- require('my/plugins/lsp/cssls')
       require('my/plugins/lsp/eslint')
       require('my/plugins/lsp/stylelint')
       require('my/plugins/lsp/rust_analyzer')

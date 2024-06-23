@@ -484,10 +484,17 @@ my.keybind({
   lhs = '<leader>ss',
   rhs = ':GrugFar<CR>',
 })
+-- my.keybind({
+--   description = 'Search: find in help tags',
+--   lhs = '<leader>sh',
+--   rhs = ':Telescope help_tags<CR>',
+--   mode = 'n',
+-- })
 my.keybind({
-  description = 'Search: find in help tags',
+  description = 'Search: find in help tags visual',
   lhs = '<leader>sh',
-  rhs = ':Telescope help_tags<CR>',
+  rhs = 'y<ESC>:lua require("telescope.builtin").help_tags({ default_text=vim.fn.expand("<cword>") })<CR>',
+  mode = 'n',
 })
 
 -- notes
@@ -663,8 +670,9 @@ my.keybind({
 my.keybind({
   mode = 'nxo',
   description = 'flash: select using treesitter',
-  lhs = '<A-backspace>',
+  lhs = '<cr>',
   rhs = "<cmd>lua require('flash').treesitter()<cr>",
+  options = { silent = false, noremap = true },
 })
 my.keybind({
   mode = 'n',
@@ -920,7 +928,8 @@ my.keybind({
   mode = 'n',
   description = 'Messages : show messages window',
   lhs = '<leader>m',
-  rhs = '<esc>:messages<CR>',
+  -- rhs = '<esc>:messages<CR>',
+  rhs = '<esc>:Bmessages<CR>',
 })
 
 -- tests

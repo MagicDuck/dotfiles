@@ -96,7 +96,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 )
 
 exports.tsserverPublishDiagnostics = function(_, result, ctx, config)
-  if vim.endswith(vim.loop.cwd() or '', 'frontend') then
+  if vim.endswith(vim.loop.cwd() or '', '/frontend') then
     result.diagnostics = vim.tbl_filter(function(diagnostic)
       return vim.tbl_contains({
         -- allow  name not found diagnostics

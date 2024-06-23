@@ -202,6 +202,11 @@ return {
       require('neogen').setup({ snippet_engine = 'luasnip' })
     end,
   },
+  {
+    'ariel-frischer/bmessages.nvim',
+    event = 'CmdlineEnter',
+    opts = {},
+  },
   -- {
   --   'LintaoAmons/bookmarks.nvim',
   --   lazy = true,

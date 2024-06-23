@@ -319,6 +319,21 @@ export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 # =========================================================================================
 function ranger () { command ranger "$@"; echo -e "\e[?25h"; }
 
+# miniconda python virtual env
+# =========================================================================================
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+
 # Allows zsh -is eval "command" without exiting
 # see https://www.zsh.org/mla/users/2005/msg00599.html
 # =========================================================================================

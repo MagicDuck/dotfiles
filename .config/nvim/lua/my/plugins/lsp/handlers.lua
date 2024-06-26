@@ -108,6 +108,17 @@ exports.tsserverPublishDiagnostics = function(_, result, ctx, config)
   return vim.lsp.handlers['textDocument/publishDiagnostics'](nil, result, ctx, config)
 end
 
+exports.tsserverDefinition = function(err, result, ctx, ...)
+  local res = result
+  if result and #result > 1 then
+    -- shave off .d.ts references when they occur together with actual source location
+    res = vim.tbl_filter(function(entry)
+      return not vim.endswith(entry.targetUri, '.d.ts')
+    end, result)
+  end
+  return vim.lsp.handlers['textDocument/definition'](err, res, ctx, ...)
+end
+
 exports.diagnosticlsPublishDiagnostics = function(_, result, ctx, config)
   result.diagnostics = vim.tbl_map(function(diagnostic)
     if diagnostic.source == 'eslint' then

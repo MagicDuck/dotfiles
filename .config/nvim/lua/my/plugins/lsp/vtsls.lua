@@ -35,5 +35,6 @@ lspconfig.vtsls.setup({
   },
   handlers = {
     ['textDocument/publishDiagnostics'] = handlers.tsserverPublishDiagnostics,
+    ['textDocument/definition'] = handlers.tsserverDefinition,
   },
 })

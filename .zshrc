@@ -192,6 +192,7 @@ alias saprdp="xfreerdp /bpp:16 /u:$SAP_USER /d:GLOBAL /f /v:VANN34331165A.amer.g
 case $OS in
   Darwin)
     export HOMEBREW_NO_GITHUB_API=1
+    export HOMEBREW_NO_AUTO_UPDATE="1"
     export DISABLE_AUTO_TITLE='true' # for tmuxp
     export GROOVY_HOME=/usr/local/opt/groovy/libexec
     #export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
@@ -343,4 +344,6 @@ then
   "$@"
   set --
 fi
+
+[[ -z "${ZELLIJ}" ]] && zellij -l welcome
 

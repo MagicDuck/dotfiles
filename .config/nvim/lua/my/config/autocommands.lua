@@ -125,6 +125,15 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('commentstring_kdl'),
+  pattern = { 'kdl' },
+  callback = function()
+    vim.opt.commentstring = '// %s'
+  end,
+  desc = 'Change commentstring for kdl files',
+})
+
 -- vim.api.nvim_create_autocmd('FileType', {
 --   group = augroup('test'),
 --   pattern = { 'grug-far' },

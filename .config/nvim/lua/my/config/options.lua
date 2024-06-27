@@ -7,8 +7,10 @@ vim.cmd.filetype('plugin on')
 -- see: https://neovim.io/doc/user/lua.html#vim.opt
 local opt = vim.opt
 
-opt.shiftwidth = 2
-opt.softtabstop = 2
+-- set through editorconfig
+-- opt.shiftwidth = 2
+-- opt.softtabstop = 2
+vim.g.editorconfig = true
 opt.expandtab = true
 opt.smarttab = true
 opt.hlsearch = true -- highlight search

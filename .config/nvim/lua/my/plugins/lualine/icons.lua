@@ -1,32 +1,31 @@
 return {
-  duck = "🦆",
-  goat = "🐐",
-  knight = "♞",
-  clubs = "♣︎",
+  duck = '🦆',
+  goat = '🐐',
+  knight = '♞',
+  clubs = '♣︎',
   -- sep = {
   --   left = "",
   --   right = "",
   --   space = " "
   -- },
   sep = {
-    left = "",
-    right = "",
-    space = " ",
+    left = '',
+    right = '',
+    space = ' ',
   },
   diagnostic = {
-    error = " ",
-    warn = " ",
-    info = " ",
+    error = ' ',
+    warn = ' ',
+    info = ' ',
   },
   diff = {
-    add = " ",
-    modified = " ",
-    remove = " ",
+    add = ' ',
+    modified = ' ',
+    remove = ' ',
   },
-  -- git = ""
-  git = " ",
-  lsp = "⚡️",
-  modified = "",
-  readonly = "",
-  debug = ""
+  git = '',
+  lsp = '⚡️',
+  modified = '',
+  readonly = '󰌾',
+  debug = '',
 }

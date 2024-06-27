@@ -345,5 +345,5 @@ then
   set --
 fi
 
-[[ -z "${ZELLIJ}" ]] && zellij -l welcome
+# [[ -z "${ZELLIJ}" ]] && zellij -l welcome
 

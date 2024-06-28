@@ -1,5 +1,8 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+local act = wezterm.action
+local util = require("util")
+local commands = require("commands")
 
 local config = wezterm.config_builder()
 
@@ -24,6 +27,8 @@ config.tab_bar_at_bottom = true
 config.tab_max_width = 32
 config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
+config.switch_to_last_active_tab_when_closing_tab = true
+
 local function tab_title(tab_info)
   local title = tab_info.tab_title
   -- if the tab title is explicitly set, take that
@@ -69,6 +74,28 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, conf, hover, max_width
   }
 end)
 
+-- right status
+wezterm.on("update-right-status", function(window, pane)
+  local background = "#b4713d"
+  local foreground = "#F0F2F5"
+  local edge_background = "#FAFAF9"
+  local edge_foreground = background
+
+  -- Make it italic and underlined
+  window:set_right_status(wezterm.format({
+    { Background = { Color = edge_background } },
+    { Foreground = { Color = edge_foreground } },
+    { Text = " " },
+    { Background = { Color = background } },
+    { Foreground = { Color = foreground } },
+    { Text = " 󰡚 " .. window:active_workspace() },
+    { Background = { Color = edge_background } },
+    { Foreground = { Color = edge_foreground } },
+    { Text = "" },
+    { Text = " " },
+  }))
+end)
+
 -- color scheme
 config.color_scheme = "GruvboxLight"
 config.colors = {
@@ -85,21 +112,23 @@ config.inactive_pane_hsb = {
 -- keys
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 3000 }
 config.keys = {
+  -- DEBUG overlay
+  { key = "i", mods = "CMD|SHIFT", action = wezterm.action.ShowDebugOverlay },
   -- prev tab
-  { key = "h", mods = "CMD", action = wezterm.action.ActivateTabRelative(-1) },
+  { key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
   -- next tab
-  { key = "l", mods = "CMD", action = wezterm.action.ActivateTabRelative(1) },
+  { key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
   -- move tab left
-  { key = "h", mods = "CMD|SHIFT", action = wezterm.action.MoveTabRelative(-1) },
+  { key = "h", mods = "CMD|SHIFT", action = act.MoveTabRelative(-1) },
   -- move tab right
-  { key = "l", mods = "CMD|SHIFT", action = wezterm.action.MoveTabRelative(1) },
+  { key = "l", mods = "CMD|SHIFT", action = act.MoveTabRelative(1) },
   -- close tab
-  { key = "x", mods = "CMD", action = wezterm.action.CloseCurrentTab({ confirm = false }) },
+  { key = "x", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
   -- rename tab
   {
     key = "n",
     mods = "CMD",
-    action = wezterm.action.PromptInputLine({
+    action = act.PromptInputLine({
       description = "Enter new name for tab",
       action = wezterm.action_callback(function(window, pane, line)
         -- line will be `nil` if they hit escape without entering anything
@@ -113,9 +142,9 @@ config.keys = {
   },
   -- panes mode
   {
-    key = "p",
+    key = "s",
     mods = "CMD",
-    action = wezterm.action.ActivateKeyTable({
+    action = act.ActivateKeyTable({
       name = "splits",
       one_shot = true,
     }),
@@ -124,52 +153,195 @@ config.keys = {
   {
     key = "h",
     mods = "ALT",
-    action = wezterm.action.ActivatePaneDirection("Left"),
+    action = act.ActivatePaneDirection("Left"),
   },
   {
     key = "l",
     mods = "ALT",
-    action = wezterm.action.ActivatePaneDirection("Right"),
+    action = act.ActivatePaneDirection("Right"),
   },
   {
     key = "k",
     mods = "ALT",
-    action = wezterm.action.ActivatePaneDirection("Up"),
+    action = act.ActivatePaneDirection("Up"),
   },
   {
     key = "j",
     mods = "ALT",
-    action = wezterm.action.ActivatePaneDirection("Down"),
+    action = act.ActivatePaneDirection("Down"),
+  },
+  -- workspaces mode
+  {
+    key = "w",
+    mods = "CMD",
+    action = act.ActivateKeyTable({
+      name = "workspaces",
+      one_shot = true,
+    }),
+  },
+  -- fuzzy commands
+  {
+    key = "a",
+    mods = "CMD",
+    action = act.ShowLauncherArgs({ flags = "FUZZY|COMMANDS" }),
+  },
+  -- fuzzy workspaces
+  {
+    key = "o",
+    mods = "CMD",
+    action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
+  },
+  -- lazygit
+  {
+    key = "k",
+    mods = "CMD",
+    action = wezterm.action_callback(function(window, pane)
+      util.toggleTabWithCmd(window, pane, "lazygit", { "lazygit" })
+    end),
+  },
+  -- scratch buffer
+  {
+    key = "u",
+    mods = "CMD",
+    action = wezterm.action_callback(function(window, pane)
+      util.toggleTabWithCmd(window, pane, "scratch", { "nvim", "~/scratchpad.md" })
+    end),
+  },
+  -- scrollback buffer in vim
+  {
+    key = "i",
+    mods = "CMD",
+    action = wezterm.action_callback(function(window, pane)
+      util.openScrollbackInVIM(window, pane)
+    end),
+  },
+  -- open links with keyboard
+  {
+    key = "e",
+    mods = "CMD",
+    action = act.QuickSelectArgs({
+      label = "open",
+      patterns = { "https?://\\S+" },
+      action = wezterm.action_callback(function(win, pane)
+        local url = win:get_selection_text_for_pane(pane)
+        wezterm.open_with(url)
+      end),
+    }),
+  },
+  {
+    key = "y",
+    mods = "CMD",
+    action = wezterm.action.ActivateCommandPalette,
+  },
+  -- run selected command
+  {
+    key = "r",
+    mods = "CMD",
+    action = act.InputSelector({
+      fuzzy = true,
+      action = wezterm.action_callback(function(window, pane, id, label)
+        if not id and not label then
+          wezterm.log_info("cancelled")
+        else
+          commands.invoke_cb(window, pane, id)
+        end
+      end),
+      title = "Select a command to run",
+      choices = commands.get_choices(),
+    }),
   },
 }
 
 config.key_tables = {
   splits = {
     -- split vertical
-    { key = "v", action = wezterm.action.SplitPane({ direction = "Right", size = { Percent = 50 } }) },
+    { key = "v", action = act.SplitPane({ direction = "Right", size = { Percent = 50 } }) },
     -- split horizontal
-    { key = "s", action = wezterm.action.SplitPane({ direction = "Down", size = { Percent = 50 } }) },
+    { key = "s", action = act.SplitPane({ direction = "Down", size = { Percent = 50 } }) },
     -- rotate
-    { key = "r", action = wezterm.action.RotatePanes("Clockwise") },
+    { key = "r", action = act.RotatePanes("Clockwise") },
     -- close pane
-    { key = "c", action = wezterm.action.CloseCurrentPane({ confirm = false }) },
+    { key = "c", action = act.CloseCurrentPane({ confirm = false }) },
+    -- move across panes
+    {
+      key = "h",
+      action = act.ActivatePaneDirection("Left"),
+    },
+    {
+      key = "l",
+      action = act.ActivatePaneDirection("Right"),
+    },
+    {
+      key = "k",
+      action = act.ActivatePaneDirection("Up"),
+    },
+    {
+      key = "j",
+      action = act.ActivatePaneDirection("Down"),
+    },
     -- resize mode
     {
       key = "r",
-      action = wezterm.action.ActivateKeyTable({
+      action = act.ActivateKeyTable({
         name = "resize_pane",
         one_shot = false,
       }),
     },
   },
   resize_pane = {
-    { key = "h", action = wezterm.action.AdjustPaneSize({ "Left", 1 }) },
-    { key = "l", action = wezterm.action.AdjustPaneSize({ "Right", 1 }) },
-    { key = "k", action = wezterm.action.AdjustPaneSize({ "Up", 1 }) },
-    { key = "j", action = wezterm.action.AdjustPaneSize({ "Down", 1 }) },
+    { key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
+    { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
+    { key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
+    { key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
 
     -- Cancel the mode by pressing escape
     { key = "Escape", action = "PopKeyTable" },
+  },
+  workspaces = {
+    -- new workspace creation
+    {
+      key = "n",
+      action = act.PromptInputLine({
+        description = wezterm.format({
+          { Attribute = { Intensity = "Bold" } },
+          { Foreground = { AnsiColor = "Fuchsia" } },
+          { Text = "Enter new name for current workspace" },
+        }),
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            window:perform_action(
+              act.SwitchToWorkspace({
+                name = line,
+              }),
+              pane
+            )
+          end
+        end),
+      }),
+    },
+    -- rename workspace
+    {
+      key = "r",
+      action = act.PromptInputLine({
+        description = wezterm.format({
+          { Attribute = { Intensity = "Bold" } },
+          { Foreground = { AnsiColor = "Fuchsia" } },
+          { Text = "Enter name for new workspace" },
+        }),
+        action = wezterm.action_callback(function(window, pane, line)
+          if line then
+            wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
+          end
+        end),
+      }),
+    },
+    -- fuzzy workspace select
+    {
+      key = "o",
+      action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
+    },
+    { key = "j", action = act.SwitchWorkspaceRelative(1) },
+    { key = "k", action = act.SwitchWorkspaceRelative(-1) },
   },
 }
 

@@ -6,7 +6,6 @@ OS="$(uname 2> /dev/null)"
 
 export PATH="$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 
-
 # =========================================================================================
 ### Added by Zinit's installer
 
@@ -55,6 +54,9 @@ zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/ssh-agent/ssh-agent.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
 
+# Homebrew
+# =========================================================================================
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Theme
 # =========================================================================================
@@ -202,7 +204,6 @@ case $OS in
   Linux)
   ;;
 esac
-
 
 # Version Management
 # =========================================================================================

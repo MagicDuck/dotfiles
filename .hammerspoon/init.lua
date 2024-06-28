@@ -240,17 +240,17 @@ local superKeyBindings = {
     key = 'j',
     app = 'TablePlus',
   },
-  {
-    key = 'k',
-    app = 'kitty',
-    window = {
-      title = 'lazygit',
-      launch = function()
-        kitty.launchWindow({ title = 'lazygit', command = '/bin/zsh -is eval lazygit' })
-        -- kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim +VimwikiIndex" })
-      end,
-    },
-  },
+  -- {
+  --   key = 'k',
+  --   app = 'kitty',
+  --   window = {
+  --     title = 'lazygit',
+  --     launch = function()
+  --       kitty.launchWindow({ title = 'lazygit', command = '/bin/zsh -is eval lazygit' })
+  --       -- kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim +VimwikiIndex" })
+  --     end,
+  --   },
+  -- },
   {
     key = 'l',
     app = 'zoom.us',
@@ -287,19 +287,19 @@ local superKeyBindings = {
   --     end,
   --   },
   -- },
-  {
-    key = 'u',
-    app = 'kitty',
-    window = {
-      title = 'scratchpad',
-      launch = function()
-        kitty.launchWindow({
-          title = 'scratchpad',
-          command = '/bin/zsh -is eval vim ~/scratchpad.md',
-        })
-      end,
-    },
-  },
+  -- {
+  --   key = 'u',
+  --   app = 'kitty',
+  --   window = {
+  --     title = 'scratchpad',
+  --     launch = function()
+  --       kitty.launchWindow({
+  --         title = 'scratchpad',
+  --         command = '/bin/zsh -is eval vim ~/scratchpad.md',
+  --       })
+  --     end,
+  --   },
+  -- },
   -- v -> ticktick
   -- -- {
   --   key = "u",

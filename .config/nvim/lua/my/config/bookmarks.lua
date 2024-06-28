@@ -9,6 +9,7 @@ local function get_bookmarks()
     '~/.config/kitty/kitty.conf',
     '~/.tmux.conf',
     '~/.hammerspoon/init.lua',
+    '~/.config/wezterm/wezterm.lua',
     '~/.config/zellij/config.kdl',
     '~/.zshrc',
     '/opt/repos/frontend/libs/spark/src/common/scss/mixins/_colors.scss',

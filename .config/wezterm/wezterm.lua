@@ -326,7 +326,7 @@ config.key_tables = {
         description = wezterm.format({
           { Attribute = { Intensity = "Bold" } },
           { Foreground = { AnsiColor = "Fuchsia" } },
-          { Text = "Enter name for new workspace" },
+          { Text = "Enter new name for current workspace" },
         }),
         action = wezterm.action_callback(function(window, pane, line)
           if line then

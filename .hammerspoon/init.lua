@@ -178,19 +178,19 @@ local wm = require('./windowManagement')
 local superKey = { 'cmd', 'alt', 'ctrl', 'shift' }
 local superKeyBindings = {
   -- app switching
-  {
-    key = 'b',
-    app = 'kitty',
-    window = {
-      title = 'combos',
-      launch = function()
-        kitty.launchWindow({
-          title = 'combos',
-          command = '/bin/zsh -is eval vim /opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/combos.def',
-        })
-      end,
-    },
-  },
+  -- {
+  --   key = 'b',
+  --   app = 'kitty',
+  --   window = {
+  --     title = 'combos',
+  --     launch = function()
+  --       kitty.launchWindow({
+  --         title = 'combos',
+  --         command = '/bin/zsh -is eval vim /opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/combos.def',
+  --       })
+  --     end,
+  --   },
+  -- },
   {
     key = 'd',
     -- app = "Brave Browser",

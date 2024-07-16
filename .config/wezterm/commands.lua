@@ -1,6 +1,8 @@
+local wezterm = require("wezterm")
+local act = wezterm.action
 local M = {}
 
-local function spawn_tab_with(window, tabName, cmds, dir)
+local function spawn_tab_with(window, tabName, cmds, dir, suspend_last)
   local newTab, newPane = window:mux_window():spawn_tab({
     args = { "zsh", "-i" },
   })
@@ -9,8 +11,9 @@ local function spawn_tab_with(window, tabName, cmds, dir)
     newPane:send_text("cd " .. dir .. "\n")
   end
   if cmds then
-    for _, cmd in ipairs(cmds) do
-      newPane:send_text(cmd .. "\n")
+    for i, cmd in ipairs(cmds) do
+      local suspend = i == #cmds and suspend_last
+      newPane:send_text(cmd .. (suspend and "" or "\n"))
     end
   end
 
@@ -71,12 +74,21 @@ local choices = {
       spawn_tab_with(window, "ondemand", {}, "/opt/repos/ondemand")
     end,
   },
+  -- {
+  --   label = "qmk flash dactyl",
+  --   cb = function(window)
+  --     spawn_tab_with(window, "qmk-flash-dactyl", {
+  --       "cd /opt/repos/qmk_firmware",
+  --       "qmk-flash-dactyl",
+  --     })
+  --   end,
+  -- },
   {
-    label = "qmk flash dactyl",
+    label = "qmk flash cyboard",
     cb = function(window)
-      spawn_tab_with(window, "qmk-flash-dactyl", {
-        "cd /opt/repos/qmk_firmware",
-        "qmk-flash-dactyl",
+      spawn_tab_with(window, "qmk-flash-cyboard", {
+        "cd /opt/repos/vial-qmk",
+        "qmk-flash-cyboard",
       })
     end,
   },
@@ -86,6 +98,25 @@ local choices = {
       spawn_tab_with(window, "vim-diff", {
         "vim -c 'enew | vsplit | enew |' -c diffthis -c 'startinsert | wincmd h | startinsert'",
       })
+    end,
+  },
+  {
+    label = "grug-far-dev",
+    cb = function(window)
+      local dir = "/opt/repos/grug-far.nvim"
+
+      spawn_tab_with(window, "scratch", {}, dir)
+      local vimTab = spawn_tab_with(window, "vim", {
+        "vim lua/grug-far.lua",
+      }, dir)
+      spawn_tab_with(window, "live_test", {
+        "vim -c GrugFar",
+      }, dir, true)
+      spawn_tab_with(window, "unit_test", {
+        "make test file=tests/test_history.lua update_screenshots=true",
+      }, dir, true)
+
+      vimTab:activate()
     end,
   },
 }

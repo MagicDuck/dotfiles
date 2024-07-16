@@ -93,7 +93,8 @@ require('lualine').setup({
         color = 'MyStatusbarFilename',
         file_status = true,
         newfile_status = false,
-        path = 1, -- relative path
+        -- path = 1, -- relative path
+        path = 2, -- absolute path
         symbols = getFilenameSymbols(),
       },
       {

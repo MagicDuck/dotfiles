@@ -237,6 +237,9 @@ if type jenv > /dev/null 2>&1; then
   zinit light anquegi/zinit-jenv
 fi
 
+# EB vars
+# =========================================================================================
+export EB_FE_DEV_CERT_FILE="/opt/repos/eb/config/certs/eb-localdev.pem"
 
 # Aliases
 # =========================================================================================
@@ -270,6 +273,7 @@ alias ondemand-webui-integ-test-debug="cd /opt/repos/ondemand; ./gradlew webui:i
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 alias qmk-flash-dactyl="qmk flash -kb handwired/dactyl_manuform/5x6 -km MagicDuck"
+alias qmk-flash-cyboard="qmk flash -kb cyboard/dactyl/manuform_number_row -km sbadragan"
 alias xmapi-dev-in-cloud="./gradlew  bootRunDevInCloud -PgcpInstance=kramerica -Pversion=0.x.kramerica -x test -x spotbugsTest -x spotbugsMain -x checkstyleTest -x checkstyleMain"
 alias xmapi-dev-in-cloud-stop="xm-instance-switch-version kramerica xmapi 0-x-main"
 alias showkey="kitty +kitten show_key"

@@ -165,6 +165,11 @@ my.keybind({
   rhs = '<cmd>tabnew | Alpha<CR>',
 })
 my.keybind({
+  description = 'tab: duplicate current tab',
+  lhs = '<leader>td',
+  rhs = '<cmd>tabnew %<CR>',
+})
+my.keybind({
   description = 'tab: close current tab',
   lhs = '<leader>tc',
   rhs = '<cmd>tabclose<CR>',
@@ -483,6 +488,11 @@ my.keybind({
   description = 'Search: replace in files using grug-far',
   lhs = '<leader>ss',
   rhs = ':GrugFar<CR>',
+})
+my.keybind({
+  description = 'Search (toggle): replace in files using grug-far',
+  lhs = '<leader>st',
+  rhs = ':lua require("grug-far").toggle_instance({instanceName="search", staticTitle="Find and Replace"})<CR>',
 })
 -- my.keybind({
 --   description = 'Search: find in help tags',

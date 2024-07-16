@@ -305,7 +305,7 @@ config.key_tables = {
         description = wezterm.format({
           { Attribute = { Intensity = "Bold" } },
           { Foreground = { AnsiColor = "Fuchsia" } },
-          { Text = "Enter new name for current workspace" },
+          { Text = "Enter name for new workspace" },
         }),
         action = wezterm.action_callback(function(window, pane, line)
           if line then
@@ -331,6 +331,9 @@ config.key_tables = {
         action = wezterm.action_callback(function(window, pane, line)
           if line then
             wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
+            -- wezterm.emit("update-right-status")
+
+            -- window:set_right_status("bob")
           end
         end),
       }),

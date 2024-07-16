@@ -134,13 +134,16 @@ vim.api.nvim_create_autocmd('FileType', {
   desc = 'Change commentstring for kdl files',
 })
 
--- vim.api.nvim_create_autocmd('FileType', {
---   group = augroup('test'),
---   pattern = { 'grug-far' },
---   callback = function()
---     print('hello from grug-far')
---   end,
--- })
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('test'),
+  pattern = { 'grug-far' },
+  callback = function()
+    vim.keymap.set('n', '<localleader>w', function()
+      local state = unpack(require('grug-far').toggle_flags({ '--fixed-strings' }))
+      vim.notify('grug-far: toggled --fixed-strings ' .. (state and 'ON' or 'OFF'))
+    end, { buffer = true })
+  end,
+})
 
 -- absolute number in insert mode, relative otherwise
 -- vim.api.nvim_create_autocmd({ "InsertEnter" }, {

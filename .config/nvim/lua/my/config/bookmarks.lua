@@ -19,7 +19,9 @@ local function get_bookmarks()
     '/opt/repos/frontend/reactUi',
     '/opt/repos/customer-config-ui-feature-definition/features.json',
     '/opt/repos/xm-api/src/main/java/com/xmatters/xm/repositories/FeatureToggleRepository.java',
-    '/opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/keymap.c',
+    -- '/opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/keymap.c',
+    '/opt/repos/vial-qmk/keyboards/cyboard/dactyl/manuform_number_row/keymaps/sbadragan/keymap.c',
+    '/opt/repos/eb/eb-ui-360/src/EBMui/theme/index.ts',
   }
   vim.list_extend(bookmarks, scan.scan_dir('/opt/repos', { hidden = false, depth = 1, add_dirs = true }))
   vim.list_extend(bookmarks, scan.scan_dir('/opt/repos/eb', { hidden = false, depth = 1, add_dirs = true }))

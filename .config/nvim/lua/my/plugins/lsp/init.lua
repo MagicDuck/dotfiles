@@ -125,19 +125,21 @@ return {
           })
         end,
       },
-      -- sets up for plugin dev /etc
-      { 'folke/neodev.nvim' },
+      {
+        'folke/lazydev.nvim',
+        ft = 'lua', -- only load on lua files
+        opts = {
+          library = {
+            -- Load luvit types when the `vim.uv` word is found
+            { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+            { path = 'wezterm-types', mods = { 'wezterm' } },
+          },
+        },
+      },
+      { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
+      { 'justinsgithub/wezterm-types', lazy = true },
     },
     config = function()
-      require('neodev').setup({
-        override = function(root_dir, options)
-          if vim.startswith(root_dir, '/opt/repos/') then
-            options.plugins = { 'mini.test' }
-            return options
-          end
-        end,
-      })
-      -- lsps
       require('my/plugins/lsp/lua-language-server')
       require('my/plugins/lsp/vimls')
       -- require("my/plugins/lsp/tsserver")

@@ -5,3 +5,9 @@ prepend_keymap = [
 # append_keymap = [
 # 	{ on = [ "g", "a" ], run = 'my-fev-command2', desc = "Just for test!" },
 # ]
+
+[input]
+prepend_keymap = [
+	{ on = [ "<Esc>" ], run = 'close', desc = "Cancel input" },
+]
+

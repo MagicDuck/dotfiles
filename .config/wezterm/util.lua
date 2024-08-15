@@ -21,14 +21,18 @@ function M.toggleTabWithCmd(window, pane, tabName, args)
   newTab:set_title(tabName)
 end
 
-function M.openScrollbackInVIM(window, pane)
-  local active_tab_index = 0
+function M.get_active_tab_index(window)
   for _, item in ipairs(window:mux_window():tabs_with_info()) do
     if item.is_active then
-      active_tab_index = item.index
-      break
+      return item.index
     end
   end
+
+  return 0
+end
+
+function M.openScrollbackInVIM(window, pane)
+  local active_tab_index = M.get_active_tab_index(window)
 
   local text = pane:get_lines_as_escapes(pane:get_dimensions().scrollback_rows)
   -- Create a temporary file to pass to vim
@@ -66,6 +70,22 @@ function M.openScrollbackInVIM(window, pane)
   -- to avoid cluttering up the temporary directory.
   wezterm.sleep_ms(1000)
   os.remove(name)
+end
+
+function M.createTab(window, pane)
+  local mux_window = window:mux_window()
+  local current_index = M.get_active_tab_index(window)
+
+  mux_window:spawn_tab({})
+  -- Move the new active tab to the right of the previously active tab
+  window:perform_action(act.MoveTab(current_index + 1), pane)
+end
+
+-- Equivalent to POSIX basename(3)
+-- Given "/foo/bar" returns "bar"
+-- Given "c:\\foo\\bar" returns "bar"
+function M.basename(s)
+  return string.gsub(s, "(.*[/\\])(.*)", "%2")
 end
 
 return M

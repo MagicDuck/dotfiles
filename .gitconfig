@@ -70,3 +70,5 @@ file-style = bold
 [init]
 	templatedir = ~/.git-templates
 	defaultBranch = main
+[http]
+	sslcainfo = /Users/stephanbadragan/zcc/certs/allCAbundle.pem

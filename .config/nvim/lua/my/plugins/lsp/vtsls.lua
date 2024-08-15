@@ -18,13 +18,14 @@ lspconfig.vtsls.setup({
   settings = {
     typescript = {
       updateImportsOnFileMove = 'always',
-      -- disableAutomaticTypeAcquisition = true,
+      disableAutomaticTypeAcquisition = true,
       format = {
         enable = false,
       },
     },
     javascript = {
       updateImportsOnFileMove = 'always',
+      disableAutomaticTypeAcquisition = true,
       implicitProjectConfig = {
         checkJs = true,
       },

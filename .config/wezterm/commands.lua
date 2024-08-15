@@ -33,7 +33,7 @@ local choices = {
     label = "frontend-dev",
     cb = function(window)
       local dir = "/opt/repos/frontend"
-      spawn_tab_with(window, "scratch", {}, dir)
+      spawn_tab_with(window, "misc", {}, dir)
       local vimTab = spawn_tab_with(window, "vim", {
         "vim src/Application/ApplicationShell/ApplicationShell.jsx",
       }, dir)
@@ -105,7 +105,7 @@ local choices = {
     cb = function(window)
       local dir = "/opt/repos/grug-far.nvim"
 
-      spawn_tab_with(window, "scratch", {}, dir)
+      spawn_tab_with(window, "misc", {}, dir)
       local vimTab = spawn_tab_with(window, "vim", {
         "vim lua/grug-far.lua",
       }, dir)

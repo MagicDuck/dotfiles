@@ -485,15 +485,29 @@ my.keybind({
   rhs = ':Spectre<CR>',
 })
 my.keybind({
+  mode = 'n',
   description = 'Search: replace in files using grug-far',
   lhs = '<leader>ss',
   rhs = ':GrugFar<CR>',
 })
-my.keybind({
-  description = 'Search (toggle): replace in files using grug-far',
-  lhs = '<leader>st',
-  rhs = ':lua require("grug-far").toggle_instance({instanceName="search", staticTitle="Find and Replace"})<CR>',
-})
+-- my.keybind({
+--   mode = 'v',
+--   description = 'Search (visual): replace in files using grug-far',
+--   lhs = '<leader>ss',
+--   -- rhs = ':GrugFar<CR>',
+--   -- rhs = ':lua require("grug-far").grug_far()<CR>',
+--   rhs = ':lua require("grug-far").with_visual_selection()<CR>',
+-- })
+-- my.keybind({
+--   description = 'Search (toggle): replace in files using grug-far',
+--   lhs = '<leader>st',
+--   rhs = ':lua require("grug-far").toggle_instance({instanceName="search", staticTitle="Find and Replace"})<CR>',
+-- })
+
+-- vim.keymap.set({ 'n', 'v' }, '<leader>ss', function()
+--   require('grug-far').grug_far()
+-- end, { noremap = true, desc = 'something', nowait = true })
+
 -- my.keybind({
 --   description = 'Search: find in help tags',
 --   lhs = '<leader>sh',

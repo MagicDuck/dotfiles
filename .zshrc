@@ -280,6 +280,8 @@ alias showkey="kitty +kitten show_key"
 alias gcloud-impersonate-start="gcloud config set auth/impersonate_service_account webui-dev@xmatters-eng-dev.iam.gserviceaccount.com"
 alias gcloud-impersonate-stop="gcloud config unset auth/impersonate_service_account"
 alias ly="lazygit -w ~ -g ~/.local/share/yadm/repo.git   "
+alias my_conda_list_env="conda env list"
+alias my_conda_activate="conda activate"
 
 
 # FZF
@@ -352,3 +354,6 @@ fi
 
 # [[ -z "${ZELLIJ}" ]] && zellij -l welcome
 
+export AWS_CA_BUNDLE=/Users/stephanbadragan/zcc/certs/ZscalerRootCertificate-2048-SHA256.crt
+export REQUESTS_CA_BUNDLE=/Users/stephanbadragan/zcc/certs/allCAbundle.pem
+export NODE_EXTRA_CA_CERTS=/Users/stephanbadragan/zcc/certs/allCAbundle.pem

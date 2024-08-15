@@ -35,9 +35,8 @@ local function tab_title(tab_info)
   if title and #title > 0 then
     return title
   end
-  -- Otherwise, use the title from the active pane
-  -- in that tab
-  return tab_info.active_pane.title
+
+  return util.basename(tab_info.active_pane.title)
 end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, conf, hover, max_width)
@@ -114,6 +113,20 @@ config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 3000 }
 config.keys = {
   -- DEBUG overlay
   { key = "i", mods = "CMD|SHIFT", action = wezterm.action.ShowDebugOverlay },
+  -- create tab
+  {
+    key = "t",
+    mods = "CMD",
+    action = wezterm.action_callback(function(window, pane)
+      util.createTab(window, pane)
+    end),
+  },
+  -- fuzzy tabs select
+  {
+    key = "b",
+    mods = "CMD",
+    action = act.ShowLauncherArgs({ flags = "FUZZY|TABS" }),
+  },
   -- prev tab
   { key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
   -- next tab

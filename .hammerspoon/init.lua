@@ -66,7 +66,7 @@ gitlabMrs:setup({
     if projectName == 'frontend' then
       return false
     end
-    return false
+    return true
   end,
 })
 gitlabMrs:start()

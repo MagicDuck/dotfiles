@@ -78,7 +78,7 @@ setopt rcexpandparam                                            # Array expensio
 setopt nocheckjobs                                              # Don't warn about running processes when exiting
 setopt numericglobsort                                          # Sort filenames numerically when it makes sense
 setopt nobeep                                                   # No beep
-setopt appendhistory                                            # Immediately append history instead of overwriting
+setopt share_history                                            # Share history between tabs
 setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
 setopt autocd                                                   # if only directory path is entered, cd there.
 setopt promptsubst

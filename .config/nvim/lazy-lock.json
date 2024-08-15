@@ -73,5 +73,6 @@
   "vim-snippets": { "branch": "master", "commit": "a1f605c302c6a6b2346de5eca245c0406fef13ba" },
   "vim-unimpaired": { "branch": "master", "commit": "6d44a6dc2ec34607c41ec78acf81657248580bf1" },
   "wezterm-types": { "branch": "main", "commit": "1518752906ba3fac0060d9efab6e4d3ec15d4b5a" },
-  "which-key.nvim": { "branch": "main", "commit": "4b7167f8fb2dba3d01980735e3509e172c024c29" }
+  "which-key.nvim": { "branch": "main", "commit": "4b7167f8fb2dba3d01980735e3509e172c024c29" },
+  "yazi.nvim": { "branch": "main", "commit": "74eb5fdc501505fcdc8088cf60a10c4ece5a260b" }
 }

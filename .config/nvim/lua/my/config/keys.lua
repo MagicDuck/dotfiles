@@ -176,7 +176,7 @@ my.keybind({
 })
 my.keybind({
   description = 'tab: pick tab using telescope',
-  lhs = '<leader>tf',
+  lhs = '<leader>st',
   rhs = "<cmd>lua require('my/plugins/telescope/tab_picker').pickTab()<CR>",
 })
 my.keybind({
@@ -396,21 +396,26 @@ my.keybind({
 -- })
 -- file browser
 my.keybind({
-  description = 'file browser: toggle open',
+  description = 'file browser: open at file',
   lhs = '<leader>r',
-  rhs = ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
+  rhs = ':Yazi<CR>',
 })
-my.keybind({
-  description = 'ranger: toggle open (extra binding that works in terminal mode)',
-  lhs = '<M-o>',
-  rhs = ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
-})
-my.keybind({
-  mode = 't',
-  description = 'ranger: toggle open (extra binding that works in terminal mode)',
-  lhs = '<M-o>',
-  rhs = '<C-\\><C-n>:Telescope file_browser path=%:p:h select_buffer=true<CR>',
-})
+-- my.keybind({
+--   description = 'file browser: toggle open',
+--   lhs = '<leader>r',
+--   rhs = ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
+-- })
+-- my.keybind({
+--   description = 'file browser: toggle open',
+--   lhs = '<M-o>',
+--   rhs = ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
+-- })
+-- my.keybind({
+--   mode = 't',
+--   description = 'ranger: toggle open (extra binding that works in terminal mode)',
+--   lhs = '<M-o>',
+--   rhs = '<C-\\><C-n>:Telescope file_browser path=%:p:h select_buffer=true<CR>',
+-- })
 
 -- easy align
 -- my.keybind({
@@ -487,7 +492,7 @@ my.keybind({
 my.keybind({
   mode = 'n',
   description = 'Search: replace in files using grug-far',
-  lhs = '<leader>ss',
+  lhs = '<leader>so',
   rhs = ':GrugFar<CR>',
 })
 -- my.keybind({
@@ -694,7 +699,7 @@ my.keybind({
 my.keybind({
   mode = 'nxo',
   description = 'flash: select using treesitter',
-  lhs = '<cr>',
+  lhs = '<tab>',
   rhs = "<cmd>lua require('flash').treesitter()<cr>",
   options = { silent = false, noremap = true },
 })

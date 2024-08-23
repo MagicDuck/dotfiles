@@ -29,42 +29,39 @@ return {
             g = true, -- bindings for prefixed with g
           },
         },
-        operators = { ys = 'surround change' },
-        popup_mappings = {
+        keys = {
           scroll_down = '<PageDown>', -- binding to scroll down inside the popup
           scroll_up = '<PageUp>', -- binding to scroll up inside the popup
         },
-        triggers = 'auto',
-        -- triggers = {} -- only manual opening
       })
 
-      wk.register({
-        ['<leader>'] = {
-          e = { name = '+debugger' },
-          g = { name = '+git' },
-          h = { name = '+doc' },
-          j = { name = '+next' },
-          k = { name = '+prev' },
-          l = { name = '+lsp' },
-          n = { name = '+notes' },
-          p = { name = '+preview' },
-          s = { name = '+search' },
-          t = { name = '+tab' },
-          u = { name = '+misc' },
-          v = { name = '+split' },
-          y = { name = '+yank' },
-        },
+      wk.add({
+        mode = { 'n' },
+        { '<leader>e', group = '+debugger' },
+        { '<leader>g', group = '+git' },
+        { '<leader>h', group = '+doc' },
+        { '<leader>j', group = '+next' },
+        { '<leader>k', group = '+prev' },
+        { '<leader>l', group = '+lsp' },
+        { '<leader>n', group = '+notes' },
+        { '<leader>p', group = '+preview' },
+        { '<leader>s', group = '+search' },
+        { '<leader>t', group = '+tab' },
+        { '<leader>u', group = '+misc' },
+        { '<leader>v', group = '+split' },
+        { '<leader>y', group = '+yank' },
+        { '<leader>q', group = '+quickfix' },
+        -- { 'ys', desc = 'surround change' },
       })
-      wk.register({
-        mode = 'v',
-        ['<leader>'] = {
-          e = { name = '+debugger' },
-          g = { name = '+git' },
-          s = { name = '+search' },
-        },
-        -- ["g"] = {
-        --   r = { name = "+something" },
-        -- },
+      wk.add({
+        mode = { 'v' },
+        { '<leader>e', group = '+debugger' },
+        { '<leader>g', group = '+git' },
+        { '<leader>s', group = '+search' },
+      })
+      wk.add({
+        mode = { 'o', 'v' },
+        { 's', desc = 'surround change' },
       })
     end,
   },

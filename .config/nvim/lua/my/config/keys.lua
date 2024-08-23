@@ -57,7 +57,7 @@ my.keybind({
 })
 my.keybind({
   description = 'buffer: close current buffer while preserving window',
-  lhs = '<leader>q',
+  lhs = '<leader>x',
   rhs = ':Bwipeout<CR>',
 })
 my.keybind({
@@ -658,7 +658,7 @@ my.keybind({
 })
 my.keybind({
   description = 'format json',
-  lhs = '<leader>fj',
+  lhs = '<leader>uj',
   rhs = ':%!jq .<CR>',
 })
 

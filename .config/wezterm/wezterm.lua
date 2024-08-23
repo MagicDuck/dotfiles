@@ -29,6 +29,9 @@ config.use_fancy_tab_bar = false
 config.show_new_tab_button_in_tab_bar = false
 config.switch_to_last_active_tab_when_closing_tab = true
 
+-- scrollback
+config.scrollback_lines = 100000
+
 local function tab_title(tab_info)
   local title = tab_info.tab_title
   -- if the tab title is explicitly set, take that

@@ -1,9 +1,10 @@
 return {
-  { "nanozuki/tabby.nvim",
+  {
+    'nanozuki/tabby.nvim',
     lazy = true,
-    event = "VeryLazy",
+    event = 'VeryLazy',
     config = function()
       require('my.plugins.tabby.tabby')
-    end
+    end,
   },
 }

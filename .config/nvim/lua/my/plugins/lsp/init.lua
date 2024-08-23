@@ -40,15 +40,8 @@ return {
         format_on_save = { timeout_ms = 500, lsp_fallback = true },
         formatters_by_ft = {
           lua = { 'stylua' },
-          -- Use a sub-list to run only the first available formatter
-          -- javascript = { { 'prettier' } },
-          -- javascriptreact = { { 'prettier' } },
-          -- typescript = { { 'prettier' } },
-          -- scss = { { './node_modules/.bin/prettier' } },
-          -- css = { { 'prettier' } },
-          -- json = { { 'prettier' } },
-          -- jsonc = { { 'prettier' } },
 
+          -- TODO (sbadragan): before
           javascript = { { 'prettierd', 'prettier' } },
           javascriptreact = { { 'prettierd', 'prettier' } },
           typescript = { { 'prettierd', 'prettier' } },
@@ -57,28 +50,17 @@ return {
           json = { { 'prettierd', 'prettier' } },
           jsonc = { { 'prettierd', 'prettier' } },
 
+          --- if we enable biome - actually using it from lsp
+          -- javascript = { { 'biome', 'prettierd', 'prettier' } },
+          -- javascriptreact = { { 'biome', 'prettierd', 'prettier' } },
+          -- typescript = { { 'biome', 'prettierd', 'prettier' } },
+          -- typescriptreact = { { 'biome', 'prettierd', 'prettier' } },
+          --
+          -- json = { { 'biome', 'prettierd', 'prettier' } },
+          -- jsonc = { { 'biome', 'prettierd', 'prettier' } },
+
           scss = { { 'prettierd', 'prettier' } },
           css = { { 'prettierd', 'prettier' } },
-
-          -- javascript = { { "prettier" } },
-          -- javascriptreact = { { "prettier" } },
-          -- typescript = { { "prettier" } },
-          -- typescriptreact = { { "prettier" } },
-          --
-          -- json = { { "prettier" } },
-          -- jsonc = { { "prettier" } },
-          --
-          -- scss = { { "prettier" } },
-          -- css = { { "prettier" } },
-
-          --- if we enable biome
-          -- javascript = { { "biome", "prettierd", "prettier" } },
-          -- javascriptreact = { { "biome", "prettierd", "prettier" } },
-          -- typescript = { { "biome", "prettierd", "prettier" } },
-          -- typescriptreact = { { "biome", "prettierd", "prettier" } },
-          --
-          -- json = { { "biome", "prettierd", "prettier" } },
-          -- jsonc = { { "biome", "prettierd", "prettier" } },
 
           c = { 'clang-format' },
           cpp = { 'clang-format' },
@@ -151,6 +133,7 @@ return {
       require('my/plugins/lsp/eslint')
       require('my/plugins/lsp/stylelint')
       require('my/plugins/lsp/rust_analyzer')
+      require('my/plugins/lsp/biome')
     end,
   },
 

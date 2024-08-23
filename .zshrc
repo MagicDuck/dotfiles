@@ -41,6 +41,8 @@ zinit light-mode for \
 #    zinit-zsh/z-a-patch-dl \
 #    zinit-zsh/z-a-bin-gem-node
 zinit light zsh-users/zsh-history-substring-search
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="standout"
+
 zinit light zsh-users/zsh-syntax-highlighting
     # Due to the following issue:
     # https://github.com/zsh-users/zsh-syntax-highlighting/issues/295
@@ -54,20 +56,36 @@ zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/ssh-agent/ssh-agent.plugin.zsh'
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
 
+zinit light olets/zsh-window-title
+export ZSH_WINDOW_TITLE_DIRECTORY_DEPTH=1
+
 # Homebrew
 # =========================================================================================
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Theme
 # =========================================================================================
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
+
+# Old "pure" theme
+#------------------------------------------------------------------
+# zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+# zinit light sindresorhus/pure
 
 # see https://github.com/sindresorhus/pure for more colors
-zstyle :prompt:pure:git:dirty color green
+# zstyle :prompt:pure:git:dirty color green
 
 # LS_COLORS
-export LS_COLORS="$(vivid generate 'ayu')"  
+# export LS_COLORS="$(vivid generate 'gruvbox-light-hard')"
+#------------------------------------------------------------------
+
+# Load starship theme
+# line 1: `starship` binary as command, from github release
+# line 2: starship setup at clone(create init.zsh, completion)
+# line 3: pull behavior same as clone, source init.zsh
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 
 # Options section
 # =========================================================================================
@@ -251,7 +269,8 @@ alias xmdev-kill="confirm && tmux kill-session -t xmdev"
 alias xmdev-cloud-kill="confirm && tmux kill-session -t xmdev-cloud"
 alias devincloud="tmuxp load devincloud"
 alias devincloud-kill="confirm && tmux kill-session -t devincloud"
-alias ls="ls -G"
+# alias ls="ls -G"
+alias ls="eza --icons=auto --width=80 --group-directories-first"
 alias lst="colorls --light --tree"
 alias git_cleanup_bugfix_branches="git branch | grep bugfix/ | xargs git branch -D"
 alias git_cleanup_branches="git branch | grep -v '*' | grep -v 'master' | xargs git branch -D"

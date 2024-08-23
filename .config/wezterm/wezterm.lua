@@ -40,6 +40,7 @@ local function tab_title(tab_info)
   end
 
   return util.basename(tab_info.active_pane.title)
+  -- return tab_info.active_pane.title
 end
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, conf, hover, max_width)

@@ -37,30 +37,21 @@ return {
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
       require('conform').setup({
-        format_on_save = { timeout_ms = 500, lsp_fallback = true },
+        format_on_save = { timeout_ms = 1000, lsp_fallback = true },
+        stop_after_first = true,
         formatters_by_ft = {
           lua = { 'stylua' },
 
-          -- TODO (sbadragan): before
-          javascript = { { 'prettierd', 'prettier' } },
-          javascriptreact = { { 'prettierd', 'prettier' } },
-          typescript = { { 'prettierd', 'prettier' } },
-          typescriptreact = { { 'prettierd', 'prettier' } },
+          javascript = { 'prettierd', 'prettier' },
+          javascriptreact = { 'prettierd', 'prettier' },
+          typescript = { 'prettierd', 'prettier' },
+          typescriptreact = { 'prettierd', 'prettier' },
 
-          json = { { 'prettierd', 'prettier' } },
-          jsonc = { { 'prettierd', 'prettier' } },
+          json = { 'prettierd', 'prettier' },
+          jsonc = { 'prettierd', 'prettier' },
 
-          --- if we enable biome - actually using it from lsp
-          -- javascript = { { 'biome', 'prettierd', 'prettier' } },
-          -- javascriptreact = { { 'biome', 'prettierd', 'prettier' } },
-          -- typescript = { { 'biome', 'prettierd', 'prettier' } },
-          -- typescriptreact = { { 'biome', 'prettierd', 'prettier' } },
-          --
-          -- json = { { 'biome', 'prettierd', 'prettier' } },
-          -- jsonc = { { 'biome', 'prettierd', 'prettier' } },
-
-          scss = { { 'prettierd', 'prettier' } },
-          css = { { 'prettierd', 'prettier' } },
+          scss = { 'prettierd', 'prettier' },
+          css = { 'prettierd', 'prettier' },
 
           c = { 'clang-format' },
           cpp = { 'clang-format' },
@@ -82,7 +73,17 @@ return {
       end, { range = true })
     end,
   },
-
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = 'wezterm-types', mods = { 'wezterm' } },
+      },
+    },
+  },
   {
     'neovim/nvim-lspconfig',
     lazy = true,
@@ -106,17 +107,6 @@ return {
             automatic_installation = true,
           })
         end,
-      },
-      {
-        'folke/lazydev.nvim',
-        ft = 'lua', -- only load on lua files
-        opts = {
-          library = {
-            -- Load luvit types when the `vim.uv` word is found
-            { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-            { path = 'wezterm-types', mods = { 'wezterm' } },
-          },
-        },
       },
       { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
       { 'justinsgithub/wezterm-types', lazy = true },

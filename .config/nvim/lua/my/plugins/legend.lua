@@ -33,6 +33,10 @@ return {
           scroll_down = '<PageDown>', -- binding to scroll down inside the popup
           scroll_up = '<PageUp>', -- binding to scroll up inside the popup
         },
+        disable = {
+          ft = { 'grug-far' },
+          bt = {},
+        },
       })
 
       wk.add({
@@ -51,7 +55,6 @@ return {
         { '<leader>v', group = '+split' },
         { '<leader>y', group = '+yank' },
         { '<leader>q', group = '+quickfix' },
-        -- { 'ys', desc = 'surround change' },
       })
       wk.add({
         mode = { 'v' },

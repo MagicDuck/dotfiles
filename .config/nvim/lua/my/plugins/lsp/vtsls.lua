@@ -16,6 +16,15 @@ lspconfig.vtsls.setup({
   on_attach = attach.global_on_attach,
   -- see https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
   settings = {
+    servers = {
+      vtsls = {
+        settings = {
+          vtsls = {
+            autoUseWorkspaceTsdk = false,
+          },
+        },
+      },
+    },
     typescript = {
       updateImportsOnFileMove = 'always',
       disableAutomaticTypeAcquisition = true,

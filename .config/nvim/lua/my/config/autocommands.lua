@@ -145,6 +145,14 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('grug-far-keybindings', { clear = true }),
+  pattern = { 'grug-far' },
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, 'n', '<C-enter>', '<localleader>o<localleader>c', {})
+  end,
+})
+
 -- absolute number in insert mode, relative otherwise
 -- vim.api.nvim_create_autocmd({ "InsertEnter" }, {
 --   group = augroup("insert_mode_absolute_numbers"),

@@ -26,6 +26,9 @@ lspconfig.vtsls.setup({
       },
     },
     typescript = {
+      tsserver = {
+        maxTsServerMemory = 8192,
+      },
       updateImportsOnFileMove = 'always',
       disableAutomaticTypeAcquisition = true,
       format = {

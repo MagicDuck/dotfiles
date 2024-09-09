@@ -284,6 +284,13 @@ return {
     end,
   },
   -- {
+  --   'echasnovski/mini.icons',
+  --   version = false,
+  --   config = function()
+  --     require('mini.icons').setup()
+  --   end,
+  -- },
+  -- {
   --   'LintaoAmons/bookmarks.nvim',
   --   lazy = true,
   --   event = { 'VeryLazy' },

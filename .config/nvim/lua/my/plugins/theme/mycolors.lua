@@ -3,6 +3,7 @@ local M = {}
 local my = {
   -- background = "#F6F2EE",
   background = '#FAFAF9',
+
   -- selectionBg = "#E7D2BE",
   selectionBg = '#DBEDED',
 

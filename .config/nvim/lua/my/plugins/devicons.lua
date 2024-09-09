@@ -1,9 +1,10 @@
 return {
-  { "nvim-tree/nvim-web-devicons",
+  {
+    'nvim-tree/nvim-web-devicons',
     lazy = true,
-    event = { "VimEnter" },
+    event = { 'VimEnter' },
     config = function()
-      require "nvim-web-devicons".setup {
+      require('nvim-web-devicons').setup({
         -- your personnal icons can go here (to override)
         -- DevIcon will be appended to `name`
         -- override = {
@@ -16,8 +17,8 @@ return {
 
         -- globally enable default icons (default to false)
         -- will get overriden by `get_icons` option
-        default = true
-      }
-    end
+        default = true,
+      })
+    end,
   },
 }

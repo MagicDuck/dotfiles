@@ -78,3 +78,6 @@ cabbrev cnext Cnext
 cabbrev cprev Cprev
 cabbrev lnext Lnext
 cabbrev lprev Lprev
+
+xnoremap il 0o$h
+onoremap il :normal vil<CR>

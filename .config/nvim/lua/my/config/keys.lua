@@ -709,12 +709,12 @@ my.keybind({
   lhs = 'R',
   rhs = "<cmd>lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('Vf<space><space>', true, false, true), 't', true)<CR>",
 })
-my.keybind({
-  mode = 'n',
-  description = 'leap line select',
-  lhs = 'Y',
-  rhs = "<cmd>lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('yf<space><space>', true, false, true), 't', true)<CR>",
-})
+-- my.keybind({
+--   mode = 'n',
+--   description = 'leap line select',
+--   lhs = 'Y',
+--   rhs = "<cmd>lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('yf<space><space>', true, false, true), 't', true)<CR>",
+-- })
 
 -- replace
 my.keybind({

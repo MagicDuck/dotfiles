@@ -21,12 +21,12 @@ return {
       })
 
       vim.keymap.set({ 'n', 'x' }, '<leader>sw', function()
-        grugFar.grug_far({
+        grugFar.open({
           prefills = {
             paths = vim.fn.expand('%'),
           },
         })
-      end, { desc = 'Search on current file' })
+      end, { desc = 'grug-far: Search on current file' })
 
       local gfInstance
       local count = 1
@@ -41,7 +41,7 @@ return {
         -- local prefills = { search = 'grug', replacement = 'curly' }
 
         if not grugFar.has_instance(gfInstance) then
-          gfInstance = grugFar.grug_far({ prefills = prefills })
+          gfInstance = grugFar.open({ prefills = prefills })
         else
           grugFar.open_instance(gfInstance)
           grugFar.update_instance_prefills(gfInstance, prefills, true)

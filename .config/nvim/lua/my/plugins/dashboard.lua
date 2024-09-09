@@ -66,7 +66,10 @@ return {
       end
 
       local fortune = require('alpha.fortune')
-      for _, line in pairs(vim.split(fortune(), '\n')) do
+      local fortune_result = fortune()
+      local fortune_lines = type(fortune_result) == 'table' and fortune_result or vim.split(fortune_result, '\n')
+      -- for _, line in pairs(vim.split(fortune(), '\n')) do
+      for _, line in pairs(fortune_lines) do
         table.insert(header, '    ' .. line)
       end
       -- for _, line in pairs(vim.fn.split(getFortune(), "\n")) do

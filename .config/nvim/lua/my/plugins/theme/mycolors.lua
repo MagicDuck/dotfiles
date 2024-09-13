@@ -8,7 +8,7 @@ local my = {
   commentBackground = '#F0F0ED',
   commentFg = '#544D47',
 
-  menubarBaseBg = '#D6DDDB',
+  menubarBaseBg = '#D1D4DE',
 
   menubarBg1 = '#E4E9E8',
   menubarBg2 = '#65737e',
@@ -25,6 +25,10 @@ local my = {
   debugLineBg = '#F0E0E0',
   cursorLineBg = '#F0F0ED',
   searchBg = '#896a98',
+
+  floatBg = '#F0F2F5',
+
+  todoFg = ' #BE7E05',
 }
 M.my = my
 
@@ -37,11 +41,9 @@ end
 
 function M.get_override_highlights()
   return {
-    NoiceLspProgressTitle = { fg = '#000000', bg = '#F0F2F5' },
-
-    Pmenu = { fg = '#000000', bg = '#F0F2F5' },
-    NormalFloat = { bg = '#F0F2F5' },
-    FloatBorder = { fg = '#000000', bg = '#F0F2F5' },
+    Pmenu = { fg = '#000000', bg = my.floatBg },
+    NormalFloat = { bg = my.floatBg },
+    FloatBorder = { fg = '#000000', bg = my.floatBg },
 
     -- workaround for lsp hover window hightlight bug in markdown
     markdownError = { link = 'None' },
@@ -96,8 +98,10 @@ end
 -- use :Inspect or :Inspect! to check hl group under cursor
 function M.get_my_highlights()
   return {
+    Visual = { bg = my.selectionBg },
+
     -- my special todos
-    MyTodo = { bg = my.commentBackground, fg = '#BE7E05', bold = true },
+    MyTodo = { bg = my.commentBackground, fg = my.todoFg, bold = true },
 
     -- Base Menu Bar UI
     MyMenubarLine = { bg = my.menubarBaseBg, fg = my.menubarBaseFg },

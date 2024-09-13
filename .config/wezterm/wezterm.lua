@@ -43,10 +43,29 @@ local function tab_title(tab_info)
   -- return tab_info.active_pane.title
 end
 
+-- color scheme
+-- config.color_scheme = "GruvboxLight"
+-- config.color_scheme = "Atelier Cave Light (base16)"
+-- config.color_scheme = "Belafonte Day"
+-- config.color_scheme = "Ef-Day"
+config.color_scheme = "Equilibrium Gray Light (base16)"
+-- local term_background = "#FAFAF9"
+local term_background = "#E0E2EA"
+config.colors = {
+  background = term_background,
+  tab_bar = {
+    background = term_background,
+  },
+}
+config.inactive_pane_hsb = {
+  saturation = 1.0,
+  brightness = 1.0,
+}
+
 wezterm.on("format-tab-title", function(tab, tabs, panes, conf, hover, max_width)
   local background = "#65737E"
   local foreground = "#F0F2F5"
-  local edge_background = "#FAFAF9"
+  local edge_background = term_background
 
   if tab.is_active or hover then
     background = "#E5C07B"
@@ -81,7 +100,7 @@ end)
 wezterm.on("update-right-status", function(window, pane)
   local background = "#b4713d"
   local foreground = "#F0F2F5"
-  local edge_background = "#FAFAF9"
+  local edge_background = term_background
   local edge_foreground = background
 
   -- Make it italic and underlined
@@ -98,19 +117,6 @@ wezterm.on("update-right-status", function(window, pane)
     { Text = " " },
   }))
 end)
-
--- color scheme
-config.color_scheme = "GruvboxLight"
-config.colors = {
-  background = "#FAFAF9",
-  tab_bar = {
-    background = "#FAFAF9",
-  },
-}
-config.inactive_pane_hsb = {
-  saturation = 1.0,
-  brightness = 1.0,
-}
 
 -- keys
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 3000 }

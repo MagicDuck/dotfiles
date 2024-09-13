@@ -1,4 +1,4 @@
+require('my.plugins.theme.default')
 return {
-  require('my.plugins.theme.gruvbox'),
-  -- require('my.plugins.theme.onedark'),
+  -- require('my.plugins.theme.gruvbox'),
 }

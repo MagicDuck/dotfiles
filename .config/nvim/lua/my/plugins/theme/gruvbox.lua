@@ -6,7 +6,8 @@ return {
   priority = 1000, -- make sure to load this before all the other start plugins
   config = function()
     local my = mycolors.set_base_colors({
-      background = '#FAFAF9',
+      -- background = '#FAFAF9',
+      background = '#E0E2EA',
 
       selectionBg = '#DBEDED',
 

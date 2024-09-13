@@ -1,12 +1,14 @@
 local mycolors = require('my.plugins.theme.mycolors')
+local highlights = mycolors.get_my_highlights()
+
 local theme = {
   -- You can use highlights as string or do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
-  fill = mycolors.highlights.TabLineFill,
-  head = mycolors.highlights.TabLine,
-  current_tab = mycolors.highlights.TabLineSel,
-  tab = mycolors.highlights.TabLine,
-  win = mycolors.highlights.TabLine,
-  tail = mycolors.highlights.TabLine,
+  fill = highlights.MyTabLineFill,
+  head = highlights.MyTabLine,
+  current_tab = highlights.MyTabLineSel,
+  tab = highlights.MyTabLine,
+  win = highlights.MyTabLine,
+  tail = highlights.MyTabLine,
 }
 
 require('tabby.tabline').set(function(line)

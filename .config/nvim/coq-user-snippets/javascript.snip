@@ -1,0 +1,46 @@
+snippet desc jest describe
+        describe('$1', () => {
+          $2
+        })
+
+snippet itt jest it
+        it('${1:description}', () => {
+          ${2:content}
+        })
+
+snippet render_component jest render component
+        const renderComponent = props => renderWithProviders(<$1 {...props} />);
+
+snippet specr jest compnent spec template
+        import React from 'react';
+        import { renderWithProviders } from 'test/test-utils';
+        import $1 from './$1';
+
+        const renderComponent = props => renderWithProviders(<$1 {...props} />);
+
+        describe('$1', () => {
+          it('renders correctly', () => {
+            expect(renderComponent()).toMatchSnapshot();
+          });
+        });
+
+snippet mock_hook_named jest mock named hook
+        import { $1 } from '$2'
+
+        jest.mock('$2', () => ({
+          ...jest.requireActual('$2'),
+          $1: jest.fn(),
+        }));
+        $1.mockReturnValue($3);
+
+snippet mock_hook_default jest mock default hook
+        import $1 from '$2'
+
+        jest.mock('$2', () => ({
+                __esModule: true,
+          ...jest.requireActual('$2'),
+          default: jest.fn(),
+        }));
+        $1.mockReturnValue($3);
+
+

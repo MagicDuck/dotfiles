@@ -699,7 +699,7 @@ my.keybind({
 my.keybind({
   mode = 'nxo',
   description = 'flash: select using treesitter',
-  lhs = '<tab>',
+  lhs = '.',
   rhs = "<cmd>lua require('flash').treesitter()<cr>",
   options = { silent = false, noremap = true },
 })

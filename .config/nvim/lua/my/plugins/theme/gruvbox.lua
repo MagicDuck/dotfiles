@@ -31,6 +31,8 @@ return {
       cursorLineBg = '#F0F0ED',
       searchBg = '#896a98',
     })
+    mycolors.apply_my_highlights()
+    mycolors.apply_override_highlights()
 
     require('gruvbox').setup({
       contrast = 'hard',
@@ -46,8 +48,5 @@ return {
     })
     vim.cmd.colorscheme('gruvbox')
     vim.opt.background = 'light'
-
-    mycolors.apply_my_highlights()
-    mycolors.apply_override_highlights()
   end,
 }

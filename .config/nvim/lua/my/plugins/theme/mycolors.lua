@@ -83,9 +83,14 @@ function M.get_override_highlights()
 end
 
 function M.apply_override_highlights()
-  for k, v in pairs(M.get_override_highlights()) do
-    vim.api.nvim_set_hl(0, k, v)
-  end
+  vim.api.nvim_create_autocmd('ColorScheme', {
+    group = vim.api.nvim_create_augroup('my-colorscheme-override-highlights', { clear = true }),
+    callback = function()
+      for k, v in pairs(M.get_override_highlights()) do
+        vim.api.nvim_set_hl(0, k, v)
+      end
+    end,
+  })
 end
 
 -- use :Inspect or :Inspect! to check hl group under cursor
@@ -137,9 +142,14 @@ function M.get_my_highlights()
 end
 
 function M.apply_my_highlights()
-  for k, v in pairs(M.get_my_highlights()) do
-    vim.api.nvim_set_hl(0, k, v)
-  end
+  vim.api.nvim_create_autocmd('ColorScheme', {
+    group = vim.api.nvim_create_augroup('my-colorscheme-my-highlights', { clear = true }),
+    callback = function()
+      for k, v in pairs(M.get_my_highlights()) do
+        vim.api.nvim_set_hl(0, k, v)
+      end
+    end,
+  })
 end
 
 return M

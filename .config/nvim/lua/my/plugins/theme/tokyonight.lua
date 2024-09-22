@@ -1,7 +1,7 @@
 local mycolors = require('my.plugins.theme.mycolors')
 
 return {
-  'ellisonleao/gruvbox.nvim',
+  'folke/tokyonight.nvim',
   lazy = false, -- make sure we load this during startup
   priority = 1000, -- make sure to load this before all the other start plugins
   config = function()
@@ -32,21 +32,10 @@ return {
       searchBg = '#896a98',
     })
     mycolors.apply_my_highlights()
-    mycolors.apply_override_highlights()
+    -- mycolors.apply_override_highlights()
 
-    require('gruvbox').setup({
-      contrast = 'hard',
-      bold = true,
-      invert_selection = false,
-      palette_overrides = {
-        light0 = my.background,
-        light0_hard = my.background,
-        light1 = my.background,
-        light2 = my.background,
-        light3 = my.selectionBg,
-      },
-    })
-    vim.cmd.colorscheme('gruvbox')
+    require('tokyonight').setup({})
+    vim.cmd.colorscheme('tokyonight-day')
     vim.opt.background = 'light'
   end,
 }

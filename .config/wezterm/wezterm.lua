@@ -44,13 +44,13 @@ local function tab_title(tab_info)
 end
 
 -- color scheme
--- config.color_scheme = "GruvboxLight"
+config.color_scheme = "GruvboxLight"
 -- config.color_scheme = "Atelier Cave Light (base16)"
 -- config.color_scheme = "Belafonte Day"
 -- config.color_scheme = "Ef-Day"
-config.color_scheme = "Equilibrium Gray Light (base16)"
--- local term_background = "#FAFAF9"
-local term_background = "#E0E2EA"
+-- config.color_scheme = "Equilibrium Gray Light (base16)"
+local term_background = "#FAFAF9"
+-- local term_background = "#E0E2EA"
 config.colors = {
   background = term_background,
   tab_bar = {
@@ -138,15 +138,15 @@ config.keys = {
     action = act.ShowLauncherArgs({ flags = "FUZZY|TABS" }),
   },
   -- prev tab
-  { key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
+  { key = "h", mods = "CMD",       action = act.ActivateTabRelative(-1) },
   -- next tab
-  { key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
+  { key = "l", mods = "CMD",       action = act.ActivateTabRelative(1) },
   -- move tab left
   { key = "h", mods = "CMD|SHIFT", action = act.MoveTabRelative(-1) },
   -- move tab right
   { key = "l", mods = "CMD|SHIFT", action = act.MoveTabRelative(1) },
   -- close tab
-  { key = "x", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
+  { key = "x", mods = "CMD",       action = act.CloseCurrentTab({ confirm = false }) },
   -- rename tab
   {
     key = "n",
@@ -312,10 +312,10 @@ config.key_tables = {
     },
   },
   resize_pane = {
-    { key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
-    { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
-    { key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
-    { key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
+    { key = "h",      action = act.AdjustPaneSize({ "Left", 1 }) },
+    { key = "l",      action = act.AdjustPaneSize({ "Right", 1 }) },
+    { key = "k",      action = act.AdjustPaneSize({ "Up", 1 }) },
+    { key = "j",      action = act.AdjustPaneSize({ "Down", 1 }) },
 
     -- Cancel the mode by pressing escape
     { key = "Escape", action = "PopKeyTable" },

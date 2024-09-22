@@ -1,17 +1,18 @@
 local mycolors = require('my.plugins.theme.mycolors')
 
 return {
-  'ellisonleao/gruvbox.nvim',
+  'projekt0n/github-nvim-theme',
   lazy = false, -- make sure we load this during startup
   priority = 1000, -- make sure to load this before all the other start plugins
   config = function()
     local my = mycolors.set_base_colors({
-      background = '#FAFAF9',
+      background = '#FFFFFF',
 
       selectionBg = '#DBEDED',
 
-      commentBackground = '#F0F0ED',
-      commentFg = '#544D47',
+      -- commentBackground = '#F0F0ED',
+      commentBackground = '#FFFFFF',
+      commentFg = '#292623',
 
       menubarBaseBg = '#D6DDDB',
 
@@ -34,19 +35,14 @@ return {
     mycolors.apply_my_highlights()
     mycolors.apply_override_highlights()
 
-    require('gruvbox').setup({
-      contrast = 'hard',
-      bold = true,
-      invert_selection = false,
-      palette_overrides = {
-        light0 = my.background,
-        light0_hard = my.background,
-        light1 = my.background,
-        light2 = my.background,
-        light3 = my.selectionBg,
+    require('github-theme').setup({
+      inverse = { -- Inverse highlight for different types
+        match_paren = false,
+        visual = false,
+        search = false,
       },
     })
-    vim.cmd.colorscheme('gruvbox')
+    vim.cmd.colorscheme('github_light_high_contrast')
     vim.opt.background = 'light'
   end,
 }

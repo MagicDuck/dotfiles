@@ -1,7 +1,8 @@
 local mycolors = require('my.plugins.theme.mycolors')
 
 return {
-  'ellisonleao/gruvbox.nvim',
+  'catppuccin/nvim',
+  name = 'catppuccin',
   lazy = false, -- make sure we load this during startup
   priority = 1000, -- make sure to load this before all the other start plugins
   config = function()
@@ -32,21 +33,18 @@ return {
       searchBg = '#896a98',
     })
     mycolors.apply_my_highlights()
-    mycolors.apply_override_highlights()
+    -- mycolors.apply_override_highlights()
 
-    require('gruvbox').setup({
-      contrast = 'hard',
-      bold = true,
-      invert_selection = false,
-      palette_overrides = {
-        light0 = my.background,
-        light0_hard = my.background,
-        light1 = my.background,
-        light2 = my.background,
-        light3 = my.selectionBg,
+    require('catppuccin').setup({
+      flavour = 'auto',
+      color_overrides = {
+        latte = {
+          peach = '#DC5101',
+          blue = '#178199',
+        },
       },
     })
-    vim.cmd.colorscheme('gruvbox')
+    vim.cmd.colorscheme('catppuccin-latte')
     vim.opt.background = 'light'
   end,
 }

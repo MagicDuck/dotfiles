@@ -28,7 +28,7 @@ local my = {
 
   floatBg = '#F0F2F5',
 
-  todoFg = ' #BE7E05',
+  todoFg = '#BE7E05',
 }
 M.my = my
 

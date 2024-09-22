@@ -49,19 +49,21 @@ local global_on_attach = function(client, bufnr)
   --   -- vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync({}, 5000) ]]
   --   vim.api.nvim_command("autocmd BufWritePre <buffer> lua LspFormatBuffer(" .. bufnum .. ")")
   -- end
-  if client.supports_method('textDocument/formatting') and client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = vim.api.nvim_create_augroup('LspFormat.' .. bufnr, {}),
-      buffer = bufnr,
-      callback = function()
-        lspFormatBuffer(bufnr)
-      end,
-    })
-  end
+
+  -- TODO (sbadragan): handled by conform
+  -- if client.supports_method('textDocument/formatting') and client.server_capabilities.documentFormattingProvider then
+  --   vim.api.nvim_create_autocmd('BufWritePre', {
+  --     group = vim.api.nvim_create_augroup('LspFormat.' .. bufnr, {}),
+  --     buffer = bufnr,
+  --     callback = function()
+  --       lspFormatBuffer(bufnr)
+  --     end,
+  --   })
+  -- end
 end
 
-local global_capabilities = require('cmp_nvim_lsp').default_capabilities()
--- local global_capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 return {
   global_on_attach = global_on_attach,

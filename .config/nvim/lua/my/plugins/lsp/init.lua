@@ -36,27 +36,41 @@ return {
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
+      local js_format = function(bufnr)
+        if require('conform').get_formatter_info('biome-check', bufnr).available then
+          return { 'biome-check', lsp_format = 'fallback' }
+        else
+          return { 'prettierd', 'prettier', lsp_format = 'fallback' }
+        end
+      end
+
       require('conform').setup({
+        notify_on_error = false,
         format_on_save = { timeout_ms = 1000, lsp_fallback = true },
         stop_after_first = true,
         formatters_by_ft = {
           lua = { 'stylua' },
 
-          javascript = { 'prettierd', 'prettier' },
-          javascriptreact = { 'prettierd', 'prettier' },
-          typescript = { 'prettierd', 'prettier' },
-          typescriptreact = { 'prettierd', 'prettier' },
+          javascript = js_format,
+          javascriptreact = js_format,
+          typescript = js_format,
+          typescriptreact = js_format,
 
-          json = { 'prettierd', 'prettier' },
-          jsonc = { 'prettierd', 'prettier' },
+          json = js_format,
+          jsonc = js_format,
 
-          scss = { 'prettierd', 'prettier' },
-          css = { 'prettierd', 'prettier' },
+          scss = { 'prettierd', 'prettier', lsp_format = 'fallback' },
+          css = { 'prettierd', 'prettier', lsp_format = 'fallback' },
 
-          c = { 'clang-format' },
-          cpp = { 'clang-format' },
-          cs = { 'clang-format' },
-          cuda = { 'clang-format' },
+          c = { 'clang-format', lsp_format = 'fallback' },
+          cpp = { 'clang-format', lsp_format = 'fallback' },
+          cs = { 'clang-format', lsp_format = 'fallback' },
+          cuda = { 'clang-format', lsp_format = 'fallback' },
+        },
+        formatters = {
+          ['biome-check'] = {
+            require_cwd = true,
+          },
         },
       })
 
@@ -115,7 +129,8 @@ return {
       require('my/plugins/lsp/lua-language-server')
       require('my/plugins/lsp/vimls')
       -- require("my/plugins/lsp/tsserver")
-      require('my/plugins/lsp/vtsls')
+      -- require('my/plugins/lsp/vtsls')
+      require('my/plugins/lsp/ts_ls')
       require('my/plugins/lsp/cssmodules')
 
       -- TODO (sbadragan): this one has problems currently since it applies formatting, need to disable that somehow

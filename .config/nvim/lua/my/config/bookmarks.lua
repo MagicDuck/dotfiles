@@ -12,6 +12,7 @@ local function get_bookmarks()
     '~/.config/wezterm/wezterm.lua',
     '~/.config/zellij/config.kdl',
     '~/.zshrc',
+    '~/app_window_toggler',
     '/opt/repos/frontend/libs/spark/src/common/scss/mixins/_colors.scss',
     '/opt/repos/frontend/libs/spark/src/common/scss/mixins/_fonts.scss',
     '~/notes/.obsidian.vimrc',

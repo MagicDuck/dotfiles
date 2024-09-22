@@ -46,4 +46,4 @@ function registerToggleAppShortcut(name, key) {
 registerToggleAppShortcut('dolphin', 'P')
 registerToggleAppShortcut('firefox', 'R')
 registerToggleAppShortcut('wezterm-gui', 'e')
-registerToggleAppShortcut('brave-browser', 'd')
+registerToggleAppShortcut('vivaldi-stable', 'd')

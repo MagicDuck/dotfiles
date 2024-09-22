@@ -1,0 +1,21 @@
+{
+    "KPlugin": {
+        "Name": "app window toggler",
+        "Description": "toggles app windows",
+        "Icon": "preferences-system-windows",
+        
+        "Authors": [
+            {
+                "Email": "sbadragan@gmail.com",
+                "Name": "Stephan Badragan"
+            }
+        ],
+        "Id": "app_window_toggler",
+        "Version": "1.0",
+        "License": "GPLv3",
+        "Website": "https://github.com/MagicDuck/app_window_toggler"
+    },
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js",
+    "KPackageStructure": "KWin/Script"
+}

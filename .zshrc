@@ -61,7 +61,13 @@ export ZSH_WINDOW_TITLE_DIRECTORY_DEPTH=1
 
 # Homebrew
 # =========================================================================================
-eval "$(/opt/homebrew/bin/brew shellenv)"
+case $OS in
+  Darwin)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  ;;
+  Linux)
+  ;;
+esac
 
 # Theme
 # =========================================================================================
@@ -314,7 +320,13 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # gcloud
 # =========================================================================================
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+case $OS in
+  Darwin)
+    source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+  ;;
+  Linux)
+  ;;
+esac
 
 # pnpm
 # =========================================================================================
@@ -349,17 +361,23 @@ function ranger () { command ranger "$@"; echo -e "\e[?25h"; }
 
 # miniconda python virtual env
 # =========================================================================================
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
+case $OS in
+  Darwin)
+    __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
     eval "$__conda_setup"
-else
+    else
     if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
         . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
     else
         export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
     fi
-fi
-unset __conda_setup
+  fi
+  unset __conda_setup
+  ;;
+  Linux)
+  ;;
+esac
 
 
 # Allows zsh -is eval "command" without exiting
@@ -373,6 +391,14 @@ fi
 
 # [[ -z "${ZELLIJ}" ]] && zellij -l welcome
 
-export AWS_CA_BUNDLE=/Users/stephanbadragan/zcc/certs/ZscalerRootCertificate-2048-SHA256.crt
-export REQUESTS_CA_BUNDLE=/Users/stephanbadragan/zcc/certs/allCAbundle.pem
-export NODE_EXTRA_CA_CERTS=/Users/stephanbadragan/zcc/certs/allCAbundle.pem
+# certs
+# =========================================================================================
+case $OS in
+  Darwin)
+    export AWS_CA_BUNDLE=/Users/stephanbadragan/zcc/certs/ZscalerRootCertificate-2048-SHA256.crt
+    export REQUESTS_CA_BUNDLE=/Users/stephanbadragan/zcc/certs/allCAbundle.pem
+    export NODE_EXTRA_CA_CERTS=/Users/stephanbadragan/zcc/certs/allCAbundle.pem
+  ;;
+  Linux)
+  ;;
+esac

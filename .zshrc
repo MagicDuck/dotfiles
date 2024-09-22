@@ -166,24 +166,34 @@ zle -N zle-line-finish
 zle -N zle-keymap-select
 
 
-
 # Note: see man zshzle for info on bindkey
 # use kitty +kitten show_key to get the right UNIX escape sequence
-bindkey '^[[1~' beginning-of-line # Home key
-bindkey '^[[4~' end-of-line       # End key
-bindkey '^[[3~' delete-char       # Delete key
-bindkey '^[[1;3C'  forward-word       # alt+Right key
-bindkey '^[f'  forward-word       # alt+f key
-bindkey '^[[1;3D'  backward-word      # alt+Left key
-bindkey '^[b'  backward-word      # alt+b key
-bindkey '^[[1;3A'  beginning-of-line  # alt+up key
-bindkey '^[[1~'  beginning-of-line  # home key
-bindkey '^[[1;3B'  end-of-line        # alt+down key
-bindkey '^[[4~'  end-of-line        # end key
-bindkey '^[^?'     backward-kill-word  # alt+bksp key
-bindkey '^[[3;3~'  kill-word         # alt+del key
-# bindkey '^H'  backward-kill-line         # cmd+bksp key, kitty does not differentiate between it and simple backspace 
-# bindkey '\x1b[3;9~'  kill-line         # cmd+del key, kitty does not differntiate between it and alt+del
+case $OS in
+  Darwin)
+    bindkey '^[[1~' beginning-of-line # Home key
+    bindkey '^[[4~' end-of-line       # End key
+    bindkey '^[[3~' delete-char       # Delete key
+    bindkey '^[[1;3C'  forward-word       # alt+Right key
+    bindkey '^[f'  forward-word       # alt+f key
+    bindkey '^[[1;3D'  backward-word      # alt+Left key
+    bindkey '^[b'  backward-word      # alt+b key
+    bindkey '^[[1;3A'  beginning-of-line  # alt+up key
+    bindkey '^[[1~'  beginning-of-line  # home key
+    bindkey '^[[1;3B'  end-of-line        # alt+down key
+    bindkey '^[[4~'  end-of-line        # end key
+    bindkey '^[^?'     backward-kill-word  # alt+bksp key
+    bindkey '^[[3;3~'  kill-word         # alt+del key
+        # bindkey '^H'  backward-kill-line         # cmd+bksp key, kitty does not differentiate between it and simple backspace 
+        # bindkey '\x1b[3;9~'  kill-line         # cmd+del key, kitty does not differntiate between it and alt+del
+  ;;
+  Linux)
+    bindkey '^[[3~' delete-char       # Delete key
+    bindkey '^[[1;5C'  forward-word       # alt+Right key
+    bindkey '^[[1;5D'  backward-word      # alt+Left key
+    bindkey '^H'     backward-kill-word  # alt+bksp key
+    bindkey '^[[3;5~'  kill-word         # alt+del key
+  ;;
+esac
 
 
 ## Plugins section: Enable fish style features

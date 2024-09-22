@@ -153,18 +153,18 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('test-js-lint', { clear = true }),
-  pattern = { 'javascript' },
-  callback = function(params)
-    vim.api.nvim_create_autocmd({ 'BufWritePre', 'BufLeave', 'WinLeave', 'FocusLost' }, {
-      buffer = buf,
-      callback = function()
-        error('this is an error')
-      end,
-    })
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = vim.api.nvim_create_augroup('test-js-lint', { clear = true }),
+--   pattern = { 'javascript' },
+--   callback = function(params)
+--     vim.api.nvim_create_autocmd({ 'BufWritePre', 'BufLeave', 'WinLeave', 'FocusLost' }, {
+--       buffer = buf,
+--       callback = function()
+--         error('this is an error')
+--       end,
+--     })
+--   end,
+-- })
 
 -- absolute number in insert mode, relative otherwise
 -- vim.api.nvim_create_autocmd({ "InsertEnter" }, {

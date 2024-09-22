@@ -1,6 +1,6 @@
 return {
   {
-    dir = '/opt/repos/grug-far.nvim',
+    dir = '~/repos/grug-far.nvim',
     name = 'grug-far',
     lazy = false,
     event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },

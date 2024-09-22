@@ -10,7 +10,7 @@ local config = wezterm.config_builder()
 
 -- fonts
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = isLinux and 11 or 13.5
+config.font_size = isLinux and 10 or 13.5
 config.line_height = 1.35
 
 config.window_frame = {

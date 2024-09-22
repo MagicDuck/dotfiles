@@ -1,8 +1,0 @@
-#!/bin/bash
-# X Profile file. Runs on login.
-include () {
-    [[ -f "$1"  ]] && source "$1"
-}
-
-include ~/.profile
-

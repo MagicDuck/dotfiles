@@ -3,12 +3,14 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local util = require("util")
 local commands = require("commands")
+local OS = util.OS
+local isLinux = util.isLinux
 
 local config = wezterm.config_builder()
 
 -- fonts
 config.font = wezterm.font("JetBrains Mono")
-config.font_size = 13.5
+config.font_size = isLinux and 11 or 13.5
 config.line_height = 1.35
 
 config.window_frame = {
@@ -121,6 +123,8 @@ end)
 -- keys
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 3000 }
 config.keys = {
+  { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+
   -- DEBUG overlay
   { key = "i", mods = "CMD|SHIFT", action = wezterm.action.ShowDebugOverlay },
   -- create tab

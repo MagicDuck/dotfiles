@@ -2,6 +2,20 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local M = {}
 
+function M.get_cmd_out(cmd, raw)
+  local f = assert(io.popen(cmd, 'r'))
+  local s = assert(f:read('*a'))
+  f:close()
+  if raw then return s end
+  s = string.gsub(s, '^%s+', '')
+  s = string.gsub(s, '%s+$', '')
+  s = string.gsub(s, '[\n\r]+', ' ')
+  return s
+end
+
+M.OS = M.get_cmd_out('uname')
+M.isLinux = M.OS == 'Linux'
+
 function M.toggleTabWithCmd(window, pane, tabName, args)
   for _, tab in ipairs(window:mux_window():tabs_with_info()) do
     if tab.tab:get_title() == tabName then

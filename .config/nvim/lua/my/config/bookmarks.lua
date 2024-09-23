@@ -1,5 +1,12 @@
 local scan = require('plenary.scandir')
 
+local function add_subdirs_of(bookmarks, dir)
+  local d = vim.fn.expand(dir)
+  if vim.fn.isdirectory(d) > 0 then
+    vim.list_extend(bookmarks, scan.scan_dir(d, { hidden = false, depth = 1, add_dirs = true }))
+  end
+end
+
 local function get_bookmarks()
   local bookmarks = {
     { 'i', '~/.config/nvim/init.lua' },
@@ -23,12 +30,14 @@ local function get_bookmarks()
     -- '/opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/keymap.c',
     '/opt/repos/vial-qmk/keyboards/cyboard/dactyl/manuform_number_row/keymaps/sbadragan/keymap.c',
     '/opt/repos/eb/eb-ui-360/src/EBMui/theme/index.ts',
+    '~/app_window_toggler/contents/code/main.js',
     '~/.config/yazi/yazi.toml',
   }
-  vim.list_extend(bookmarks, scan.scan_dir('/opt/repos', { hidden = false, depth = 1, add_dirs = true }))
-  vim.list_extend(bookmarks, scan.scan_dir('/opt/repos/eb', { hidden = false, depth = 1, add_dirs = true }))
-  vim.list_extend(bookmarks, scan.scan_dir('/opt/repos/frontend/libs', { hidden = false, depth = 1, add_dirs = true }))
-  vim.list_extend(bookmarks, scan.scan_dir('/opt/repos/aoc2022', { hidden = false, depth = 1, add_dirs = true }))
+
+  add_subdirs_of(bookmarks, '~/repos')
+  add_subdirs_of(bookmarks, '~/repos/eb')
+  add_subdirs_of(bookmarks, '~/repos/frontend/libs')
+  add_subdirs_of(bookmarks, '~/repos/frontend/aoc2022')
 
   return bookmarks
 end

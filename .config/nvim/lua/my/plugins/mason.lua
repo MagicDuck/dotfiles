@@ -1,10 +1,11 @@
 return {
-  { "williamboman/mason.nvim",
-    name = "mason",
+  {
+    'williamboman/mason.nvim',
+    name = 'mason',
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
-      require("mason").setup({})
-    end
+      require('mason').setup({ ensure_installed = 'stylua' })
+    end,
   },
 }

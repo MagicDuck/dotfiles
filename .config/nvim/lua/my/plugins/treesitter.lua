@@ -1,3 +1,5 @@
+local is_linux = vim.fn.has('linux') == 1
+
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -129,7 +131,7 @@ return {
             init_selection = '<bs>',
             node_incremental = '<bs>',
             node_decremental = '<del>',
-            scope_incremental = '<a-bs>',
+            scope_incremental = is_linux and '<c-h>' or '<a-bs>', -- c-h is c-bs weirdly enough
           },
         },
         indent = {

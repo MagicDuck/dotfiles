@@ -13,34 +13,52 @@ set wildcharm=<C-Z>
 " slightly easier :command
 noremap ; :
 
-" alt-based motions
-inoremap <a-bs> <c-w>
-inoremap <a-del> <c-o>de
-inoremap <a-left> <c-o>b
-inoremap <a-right> <c-o>w
-inoremap <a-up> <c-o>^
-inoremap <a-down> <c-o>$
+if has("linux")
+   " ctrl-based motions
+   " c-h is c-bs
+   inoremap <c-h> <c-w>
+   inoremap <c-del> <c-o>de
+   inoremap <c-left> <c-o>b
+   inoremap <c-right> <c-o>w
+   inoremap <c-up> <c-o>^
+   inoremap <c-down> <c-o>$
 
-cnoremap <a-bs> <c-w>
-cnoremap <a-del> <del>
-cnoremap <a-left> <s-left>
-cnoremap <a-right> <s-right>
-cnoremap <a-up> <home>
-cnoremap <a-down> <end>
+   " cnoremap <c-bs> <c-w>
+   cnoremap <c-del> <del>
+   cnoremap <c-left> <s-left>
+   cnoremap <c-right> <s-right>
+   cnoremap <c-up> <home>
+   cnoremap <c-down> <end>
 
-" nnoremap <A-BS> a<C-W><esc>
-" nnoremap <A-Del> de
-" nnoremap <A-left> b
-" nnoremap <A-right> w
-" nnoremap <A-up> ^
-" nnoremap <A-down> $
+   " tnoremap <c-bs> <c-w>
+   tnoremap <c-Del> <a-d> 
+   tnoremap <c-left> <a-b>
+   tnoremap <c-right> <a-f>
+   tnoremap <c-up> <home>
+   tnoremap <c-down> <end>
+else
+   " alt-based motions
+   inoremap <a-bs> <c-w>
+   inoremap <a-del> <c-o>de
+   inoremap <a-left> <c-o>b
+   inoremap <a-right> <c-o>w
+   inoremap <a-up> <c-o>^
+   inoremap <a-down> <c-o>$
 
-tnoremap <a-bs> <c-w>
-tnoremap <a-Del> <a-d> 
-tnoremap <a-left> <a-b>
-tnoremap <a-right> <a-f>
-tnoremap <a-up> <home>
-tnoremap <a-down> <end>
+   cnoremap <a-bs> <c-w>
+   cnoremap <a-del> <del>
+   cnoremap <a-left> <s-left>
+   cnoremap <a-right> <s-right>
+   cnoremap <a-up> <home>
+   cnoremap <a-down> <end>
+
+   tnoremap <a-bs> <c-w>
+   tnoremap <a-Del> <a-d> 
+   tnoremap <a-left> <a-b>
+   tnoremap <a-right> <a-f>
+   tnoremap <a-up> <home>
+   tnoremap <a-down> <end>
+endif
  
 tnoremap <Esc><Esc> <C-\><C-n>
 

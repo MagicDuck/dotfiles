@@ -2,6 +2,11 @@ local telescope = require('telescope')
 local actions = require('telescope.actions')
 local lga_actions = require('telescope-live-grep-args.actions')
 local fb_actions = require('telescope._extensions.file_browser.actions')
+local is_linux = vim.fn.has('linux') == 1
+
+local function ins_mod_special(key)
+  return is_linux and '<c-' .. key .. '>' or '<a-' .. key .. '>'
+end
 
 telescope.setup({
   -- prompt_position = "top",
@@ -43,22 +48,23 @@ telescope.setup({
         ['<PageUp>'] = actions.preview_scrolling_up,
         ['<PageDown>'] = actions.preview_scrolling_down,
 
-        ['<a-bs>'] = function()
+        -- h is bs weirdly enough
+        [ins_mod_special('h')] = function()
           vim.cmd('normal! db')
         end,
-        ['<a-del>'] = function()
+        [ins_mod_special('del')] = function()
           vim.cmd('normal! de')
         end,
-        ['<a-left>'] = function()
+        [ins_mod_special('left')] = function()
           vim.cmd('normal! b')
         end,
-        ['<a-right>'] = function()
+        [ins_mod_special('right')] = function()
           vim.cmd('normal! w')
         end,
-        ['<a-up>'] = function()
+        [ins_mod_special('up')] = function()
           vim.cmd('normal! ^')
         end,
-        ['<a-down>'] = function()
+        [ins_mod_special('down')] = function()
           vim.cmd('normal! $')
         end,
       },

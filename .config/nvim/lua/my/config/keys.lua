@@ -137,27 +137,15 @@ my.keybind({
 -- tabs
 my.keybind({
   description = 'tab: navigate to previous tab',
-  lhs = '<C-h>',
+  lhs = '<A-space>',
   rhs = '<cmd>tabprevious<CR>',
-  mode = 'niv',
+  mode = 'n',
 })
 my.keybind({
   description = 'tab: navigate to next tab',
-  lhs = '<C-l>',
+  lhs = '<tab>',
   rhs = '<cmd>tabnext<CR>',
-  mode = 'niv',
-})
-my.keybind({
-  description = 'tab: navigate to previous tab',
-  lhs = '<C-Left>',
-  rhs = '<cmd>tabprevious<CR>',
-  mode = 'niv',
-})
-my.keybind({
-  description = 'tab: navigate to next tab',
-  lhs = '<C-Right>',
-  rhs = '<cmd>tabnext<CR>',
-  mode = 'niv',
+  mode = 'n',
 })
 my.keybind({
   description = 'tab: create new tab',

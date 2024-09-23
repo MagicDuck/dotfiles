@@ -1,0 +1,15 @@
+{
+  "cssTheme": "Catppuccin",
+  "theme": "moonstone",
+  "textFontFamily": "PT Mono,InconsolataGo Nerd Font Mono,CaskaydiaCove Nerd Font,JetBrainsMono NF,Helvetica Neue,Monaco,Input Sans,Arial,Avenir,Courier New,Hack,Hack Nerd Font Mono",
+  "enabledCssSnippets": [
+    "cursor",
+    "omnisearch",
+    "codeblock"
+  ],
+  "baseFontSize": 14,
+  "accentColor": "",
+  "showViewHeader": true,
+  "translucency": false,
+  "monospaceFontFamily": "JetBrainsMono NF"
+}

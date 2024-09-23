@@ -1,0 +1,11 @@
+{
+	"id": "slackify-note",
+	"name": "Slackify Note",
+	"version": "1.2.1",
+	"minAppVersion": "0.15.0",
+	"description": "Converts a note to a Slack-compliant markdown using [slackify-markdown](https://www.npmjs.com/package/slackify-markdown)",
+	"author": "Jeremy Overman",
+	"authorUrl": "https://obsidian.md",
+	"fundingUrl": "https://obsidian.md/pricing",
+	"isDesktopOnly": false
+}

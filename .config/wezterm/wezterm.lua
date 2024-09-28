@@ -10,6 +10,10 @@ local config = wezterm.config_builder()
 
 -- fonts
 config.font = wezterm.font("JetBrains Mono")
+-- config.font = wezterm.font("0xProto", { weight = "Regular", stretch = "Normal", style = "Normal" })
+-- config.font = wezterm.font("LXGW WenKai Mono TC")
+-- config.font = wezterm.font("0xProto")
+-- config.font_size = isLinux and 10 or 13.5
 config.font_size = isLinux and 10 or 13.5
 config.line_height = 1.35
 
@@ -51,8 +55,8 @@ config.color_scheme = "GruvboxLight"
 -- config.color_scheme = "Belafonte Day"
 -- config.color_scheme = "Ef-Day"
 -- config.color_scheme = "Equilibrium Gray Light (base16)"
-local term_background = "#FAFAF9"
--- local term_background = "#E0E2EA"
+-- local term_background = "#FAFAF9"
+local term_background = "#E0E2EA"
 config.colors = {
   background = term_background,
   tab_bar = {
@@ -123,7 +127,7 @@ end)
 -- keys
 config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 3000 }
 config.keys = {
-  { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+  { key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
 
   -- DEBUG overlay
   { key = "i", mods = "CMD|SHIFT", action = wezterm.action.ShowDebugOverlay },
@@ -142,15 +146,15 @@ config.keys = {
     action = act.ShowLauncherArgs({ flags = "FUZZY|TABS" }),
   },
   -- prev tab
-  { key = "h", mods = "CMD",       action = act.ActivateTabRelative(-1) },
+  { key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
   -- next tab
-  { key = "l", mods = "CMD",       action = act.ActivateTabRelative(1) },
+  { key = "l", mods = "CMD", action = act.ActivateTabRelative(1) },
   -- move tab left
   { key = "h", mods = "CMD|SHIFT", action = act.MoveTabRelative(-1) },
   -- move tab right
   { key = "l", mods = "CMD|SHIFT", action = act.MoveTabRelative(1) },
   -- close tab
-  { key = "x", mods = "CMD",       action = act.CloseCurrentTab({ confirm = false }) },
+  { key = "x", mods = "CMD", action = act.CloseCurrentTab({ confirm = false }) },
   -- rename tab
   {
     key = "n",
@@ -316,10 +320,10 @@ config.key_tables = {
     },
   },
   resize_pane = {
-    { key = "h",      action = act.AdjustPaneSize({ "Left", 1 }) },
-    { key = "l",      action = act.AdjustPaneSize({ "Right", 1 }) },
-    { key = "k",      action = act.AdjustPaneSize({ "Up", 1 }) },
-    { key = "j",      action = act.AdjustPaneSize({ "Down", 1 }) },
+    { key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
+    { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
+    { key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
+    { key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
 
     -- Cancel the mode by pressing escape
     { key = "Escape", action = "PopKeyTable" },

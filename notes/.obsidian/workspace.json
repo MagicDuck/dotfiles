@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Test.md.md",
+                "file": "feature/COR-103234 Comm update include prev attachment.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Test.md.md",
+                "file": "feature/COR-103234 Comm update include prev attachment.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,11 +128,14 @@
   },
   "active": "d4d5d94b885f7591",
   "lastOpenFiles": [
-    "Test.md.md",
+    "assets/Pasted image 20240925150354.png",
+    "cimp/CIMP-123 Fe comms tsc in ci.md",
+    "feature/COR-103234 Comm update include prev attachment.md",
+    "feature/COR-103363 Comms update event type.md",
+    "cimp/COR-104593 Biomejs in fe-communications.md",
+    "password change.md",
     "installing-linux.md",
     "assets/Pasted image 20240920221956.png",
-    "cimp/COR-104593 Biomejs in fe-communications.md",
-    "feature/COR-103363 Comms update event type.md",
     "assets/Pasted image 20240916185957.png",
     "feature/COR-103343 New communications update form.md",
     "feature/Feature/grug diff replace.md",
@@ -156,10 +159,7 @@
     "Pasted image 20230110123759.png",
     "sup/EBS Knowledge Transfer.md",
     "feat",
-    "SUP-27813 Unable to confirm operator confirm.md",
     "bufix",
-    "Flow Designer Knowledge Transfer.md",
-    "cimp/COR-123 Do something.md",
     "lua info ",
     "assets/Pasted image 20240726132752.png",
     "assets/Pasted image 20240726132649.png",

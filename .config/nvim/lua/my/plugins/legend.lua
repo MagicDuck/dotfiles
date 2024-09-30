@@ -34,7 +34,7 @@ return {
           scroll_up = '<PageUp>', -- binding to scroll up inside the popup
         },
         disable = {
-          ft = { 'grug-far' },
+          -- ft = { 'grug-far' },
           bt = {},
         },
       })

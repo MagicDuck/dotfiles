@@ -283,6 +283,14 @@ return {
       end)
     end,
   },
+  {
+    'nmac427/guess-indent.nvim',
+    lazy = true,
+    event = { 'VeryLazy' },
+    config = function()
+      require('guess-indent').setup({})
+    end,
+  },
   -- {
   --   'echasnovski/mini.icons',
   --   version = false,

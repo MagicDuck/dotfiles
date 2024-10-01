@@ -6,4 +6,5 @@ return {
   -- require('my.plugins.theme.catpuccin'),
   -- require('my.plugins.theme.onedark'),
   -- require('my.plugins.theme.dracula'),
+  -- require('my.plugins.theme.zenbones'),
 }

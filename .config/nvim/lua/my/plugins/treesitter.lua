@@ -12,7 +12,7 @@ return {
       { 'nvim-treesitter/nvim-treesitter-textobjects' },
       -- { 'JoosepAlviste/nvim-ts-context-commentstring' },
       { 'nvim-treesitter/playground' },
-      { 'windwp/nvim-ts-autotag' },
+      -- { 'windwp/nvim-ts-autotag' },
     },
     config = function()
       local ts = require('nvim-treesitter.configs')

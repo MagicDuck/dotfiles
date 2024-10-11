@@ -128,9 +128,8 @@ return {
     config = function()
       require('my/plugins/lsp/lua-language-server')
       require('my/plugins/lsp/vimls')
-      -- require("my/plugins/lsp/tsserver")
       -- require('my/plugins/lsp/vtsls')
-      require('my/plugins/lsp/ts_ls')
+      -- require('my/plugins/lsp/ts_ls')
       require('my/plugins/lsp/cssmodules')
 
       -- TODO (sbadragan): this one has problems currently since it applies formatting, need to disable that somehow
@@ -140,6 +139,22 @@ return {
       require('my/plugins/lsp/rust_analyzer')
       require('my/plugins/lsp/biome')
     end,
+  },
+  -- typescript through lua LS
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {
+      settings = {
+        -- JSXCloseTag
+        -- WARNING: it is disabled by default (maybe you configuration or distro already uses nvim-ts-autotag,
+        -- that maybe have a conflict if enable this feature. )
+        jsx_close_tag = {
+          enable = true,
+          filetypes = { 'javascriptreact', 'typescriptreact' },
+        },
+      },
+    },
   },
 
   {

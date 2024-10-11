@@ -14,6 +14,7 @@ $conda\
 $python\
 $nodejs\
 $cmd_duration"""
+command_timeout = 1000
 
 [directory]
 style = "blue"

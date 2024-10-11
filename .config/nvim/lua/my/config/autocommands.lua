@@ -135,21 +135,13 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  group = augroup('test'),
-  pattern = { 'grug-far' },
-  callback = function()
-    vim.keymap.set('n', '<localleader>w', function()
-      local state = unpack(require('grug-far').toggle_flags({ '--fixed-strings' }))
-      vim.notify('grug-far: toggled --fixed-strings ' .. (state and 'ON' or 'OFF'))
-    end, { buffer = true })
-  end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('grug-far-keybindings', { clear = true }),
   pattern = { 'grug-far' },
   callback = function()
-    vim.api.nvim_buf_set_keymap(0, 'n', '<C-enter>', '<localleader>o<localleader>c', {})
+    -- jump back to search
+    vim.keymap.set('n', '<left>', function()
+      vim.api.nvim_win_set_cursor(vim.fn.bufwinid(0), { 3, 0 })
+    end, { buffer = true })
   end,
 })
 

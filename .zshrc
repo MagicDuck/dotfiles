@@ -81,10 +81,10 @@ esac
 # zstyle :prompt:pure:git:dirty color green
 
 # LS_COLORS
-# export LS_COLORS="$(vivid generate 'gruvbox-light-hard')"
+export LS_COLORS="$(vivid generate 'modus-operandi')"
 #------------------------------------------------------------------
 
-# Load starship theme
+# Load starship
 # line 1: `starship` binary as command, from github release
 # line 2: starship setup at clone(create init.zsh, completion)
 # line 3: pull behavior same as clone, source init.zsh

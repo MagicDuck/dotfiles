@@ -84,3 +84,9 @@ vim.diagnostic.config({
     prefix = '■', -- Could be '●', '▎', 'x'
   },
 })
+
+-- add error format for tsc
+-- from a buffer, can use with :cexpr getline(1, '$')
+vim.cmd([[
+  set errorformat=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m
+]])

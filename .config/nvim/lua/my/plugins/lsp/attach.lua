@@ -50,7 +50,7 @@ local global_on_attach = function(client, bufnr)
   --   vim.api.nvim_command("autocmd BufWritePre <buffer> lua LspFormatBuffer(" .. bufnum .. ")")
   -- end
 
-  -- TODO (sbadragan): handled by conform
+  -- handled by conform
   -- if client.supports_method('textDocument/formatting') and client.server_capabilities.documentFormattingProvider then
   --   vim.api.nvim_create_autocmd('BufWritePre', {
   --     group = vim.api.nvim_create_augroup('LspFormat.' .. bufnr, {}),
@@ -63,9 +63,10 @@ local global_on_attach = function(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- TODO (sbadragan): commented out for blink.cmp to work
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 return {
   global_on_attach = global_on_attach,
-  global_capabilities = global_capabilities,
+  global_capabilities = capabilities,
 }

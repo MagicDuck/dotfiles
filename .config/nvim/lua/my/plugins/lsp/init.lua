@@ -148,6 +148,7 @@ return {
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
   },
 
+  -- TODO (sbadragan): commented out for blink.cmp to work
   {
     'onsails/lspkind-nvim',
     lazy = true,

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "feature/COR-103234 Comm update include prev attachment.md",
+                "file": "cimp/COR-104593 Biomejs in fe-communications.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "feature/COR-103234 Comm update include prev attachment.md",
+                "file": "cimp/COR-104593 Biomejs in fe-communications.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,9 +128,12 @@
   },
   "active": "d4d5d94b885f7591",
   "lastOpenFiles": [
+    "feature/COR-103335 Comms update successful launch.md",
+    "cimp/Cimp/NOISSUE fix theme types.md",
+    "feature/COR-103234 Comm update include prev attachment.md",
+    "cimp/Cimp",
     "assets/Pasted image 20240925150354.png",
     "cimp/CIMP-123 Fe comms tsc in ci.md",
-    "feature/COR-103234 Comm update include prev attachment.md",
     "feature/COR-103363 Comms update event type.md",
     "cimp/COR-104593 Biomejs in fe-communications.md",
     "password change.md",
@@ -157,7 +160,6 @@
     "feature/COR-123 Do something.md",
     "adding steps to zephyr tests.md",
     "Pasted image 20230110123759.png",
-    "sup/EBS Knowledge Transfer.md",
     "feat",
     "bufix",
     "lua info ",
@@ -168,12 +170,10 @@
     "aws",
     "assets/Pasted image 20240723111129.png",
     "assets/Pasted image 20240723110911.png",
-    "assets/Pasted image 20240723110002.png",
     "eb",
     "keyboards",
     "xmatters",
     "learning",
-    "Untitled 1.canvas",
-    "dev-env"
+    "Untitled 1.canvas"
   ]
 }

@@ -7,17 +7,14 @@ return {
     config = function()
       local grugFar = require('grug-far')
       grugFar.setup({
-        keymaps = {
-          -- openNextLocation = { n = '<down>' },
-          -- openPrevLocation = { n = '<up>' },
+        helpLine = {
+          enabled = false,
         },
-        -- searchOnInsertLeave = true,
-        -- engine = 'astgrep',
-        -- engines = {
-        --   astgrep = {
-        --     path = '/Users/stephanbadragan/astgrep/sg',
-        --   },
-        -- },
+        engines = {
+          astgrep = {
+            -- path = '/Users/stephanbadragan/astgrep/sg',
+          },
+        },
       })
 
       vim.keymap.set({ 'n', 'x' }, '<leader>sw', function()

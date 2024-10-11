@@ -291,21 +291,28 @@ return {
       require('guess-indent').setup({})
     end,
   },
+  {
+    'Chaitanyabsprip/fastaction.nvim',
+    ---@type FastActionConfig
+    opts = {
+      priority = {
+        -- dart = {
+        --   { pattern = "organize import", key ="o", order = 1 },
+        --   { pattern = "extract method", key ="x", order = 2 },
+        --   { pattern = "extract widget", key ="e", order = 3 },
+        -- },
+      },
+      register_ui_select = true,
+      popup = {
+        relative = 'cursor',
+      },
+    },
+  },
   -- {
   --   'echasnovski/mini.icons',
   --   version = false,
   --   config = function()
   --     require('mini.icons').setup()
   --   end,
-  -- },
-  -- {
-  --   'LintaoAmons/bookmarks.nvim',
-  --   lazy = true,
-  --   event = { 'VeryLazy' },
-  --   tag = 'v0.5.3', -- optional, pin the plugin at specific version for stability
-  --   dependencies = {
-  --     { 'nvim-telescope/telescope.nvim' },
-  --     { 'stevearc/dressing.nvim' }, -- optional: to have the same UI shown in the GIF
-  --   },
   -- },
 }

@@ -109,6 +109,20 @@ my.keybind({
   lhs = '<leader>qr',
   rhs = ":call setqflist([], 'r', {'title': input('New Quickfix List Name: ')})<CR>",
 })
+my.keybind({
+  description = 'quickfix list: toggle',
+  lhs = '<leader>sd',
+  rhs = function()
+    local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
+    local action = qf_winid > 0 and 'cclose' or 'copen'
+    vim.cmd('botright ' .. action)
+  end,
+})
+my.keybind({
+  description = 'quickfix list: history',
+  lhs = '<leader>sk',
+  rhs = ':Telescope quickfixhistory<CR>',
+})
 
 -- conflict resolution
 my.keybind({
@@ -473,11 +487,6 @@ my.keybind({
   rhs = 'y<ESC>:lua require("telescope.builtin").live_grep({ default_text=vim.fn.expand("<cword>") })<CR>',
 })
 my.keybind({
-  description = 'Search: replace in files using spectre',
-  lhs = '<leader>sd',
-  rhs = ':Spectre<CR>',
-})
-my.keybind({
   mode = 'n',
   description = 'Search: replace in files using grug-far',
   lhs = '<leader>so',
@@ -582,7 +591,51 @@ my.keybind({
 my.keybind({
   description = 'lsp: symbol: go to definition',
   lhs = 'gd',
-  rhs = ':lua vim.lsp.buf.definition()<CR>',
+  rhs = function()
+    local openLocation = function(loc)
+      local targetBuf = vim.fn.bufnr(loc.filename)
+      local targetWin = 0
+      if targetBuf == -1 then
+        vim.fn.win_execute(targetWin, 'e! ' .. vim.fn.fnameescape(loc.filename), true)
+        targetBuf = vim.api.nvim_win_get_buf(targetWin)
+      else
+        vim.api.nvim_win_set_buf(targetWin, targetBuf)
+      end
+      pcall(vim.api.nvim_win_set_cursor, targetWin, { loc.lnum or 1, loc.col and loc.col - 1 or 0 })
+    end
+
+    vim.lsp.buf.definition({
+      on_list = function(options)
+        local items = {}
+        for _, item in ipairs(options.items) do
+          if not vim.iter(items):find(function(it)
+            return item.lnum == it.lnum
+          end) then
+            table.insert(items, item)
+          end
+        end
+
+        if #items == 0 then
+          print('no definitions found!')
+          return
+        end
+
+        if #items == 1 then
+          openLocation(items[1])
+          return
+        end
+
+        vim.ui.select(items, {
+          prompt = 'Select where to go:',
+          format_item = function(item)
+            return item.text .. '\n' .. item.filename .. ':' .. item.lnum .. ':' .. item.col
+          end,
+        }, function(choice)
+          openLocation(choice)
+        end)
+      end,
+    })
+  end,
 })
 my.keybind({
   description = 'lsp: symbol: go to definition in new tab',

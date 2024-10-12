@@ -513,7 +513,7 @@ my.keybind({
 })
 my.keybind({
   description = 'lsp: symbol: trigger signature help popup',
-  lhs = '<C-M>',
+  lhs = '<C-k>',
   rhs = ':lua vim.lsp.buf.signature_help()<CR>',
 })
 my.keybind({

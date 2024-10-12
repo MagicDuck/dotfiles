@@ -625,10 +625,15 @@ my.keybind({
           return
         end
 
+        local cwd = vim.fn.getcwd()
         vim.ui.select(items, {
           prompt = 'Select where to go:',
           format_item = function(item)
-            return item.text .. '\n' .. item.filename .. ':' .. item.lnum .. ':' .. item.col
+            local filename = item.filename
+            if vim.startswith(filename, cwd) then
+              filename = '.' .. filename:sub(#cwd + 1)
+            end
+            return vim.trim(item.text) .. '\n    ' .. filename .. ':' .. item.lnum .. ':' .. item.col
           end,
         }, function(choice)
           openLocation(choice)
@@ -1012,4 +1017,16 @@ my.keybind({
   description = 'mini.test: run tests',
   lhs = '<leader>xt',
   rhs = ':lua require("mini.test").run()<CR>',
+})
+
+-- overseer
+my.keybind({
+  description = 'overseer: run task',
+  lhs = '<leader>wr',
+  rhs = '<cmd>OverseerRun<CR>',
+})
+my.keybind({
+  description = 'overseer: toggle',
+  lhs = '<leader>wt',
+  rhs = '<cmd>OverseerToggle<CR>',
 })

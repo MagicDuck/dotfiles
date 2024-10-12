@@ -1,9 +1,3 @@
--- local nextLeaderKey = function(key)
---   return '<C-S-' .. key .. '>'
--- end
--- local prevLeaderKey = function(key)
---   return '<C-A-' .. key .. '>'
--- end
 local nextLeaderKey = function(key)
   return '<leader>j' .. key
 end
@@ -227,26 +221,6 @@ my.keybind({
   rhs = ':vertical resize +2<CR>',
 })
 
--- better nav for omnicomplete
--- inoremap <expr> <c-j> ("\<C-n>")
--- inoremap <expr> <c-k> ("\<C-p>")
--- my.keybind {
---   description = "omnicomplete: nav down",
---   mode = "i",
---   lhs = "<C-j>",
---   -- rhs = my.termcode("<C-n>"),
---   rhs = "<C-n>",
---   options = {expr = true}
--- }
--- my.keybind {
---   description = "omnicomplete: nav up",
---   mode = "i",
---   lhs = "<C-k>",
---   -- rhs = my.termcode("<C-p>"),
---   rhs = "<C-p>",
---   options = {expr = true}
--- }
-
 -- easy capitalization
 my.keybind({
   description = 'current word: capitalize (visual)',
@@ -304,24 +278,6 @@ for i = 1, #letters do
     rhs = "'" .. uppercaseLetter,
   })
 end
--- my.keybind({
---   description = 'bookmarks: add new',
---   lhs = 'mm',
---   rhs = '<cmd>BookmarksMark<CR>',
---   mode = 'nv',
--- })
--- my.keybind({
---   description = 'bookmarks: open',
---   lhs = 'mo',
---   rhs = '<cmd>BookmarksGoto<CR>',
---   mode = 'nv',
--- })
--- my.keybind({
---   description = 'bookmarks: find and trigger command',
---   lhs = 'mt',
---   rhs = '<cmd>BookmarksCommands<CR>',
---   mode = 'nv',
--- })
 
 -- startify
 my.keybind({
@@ -492,30 +448,7 @@ my.keybind({
   lhs = '<leader>so',
   rhs = ':GrugFar<CR>',
 })
--- my.keybind({
---   mode = 'v',
---   description = 'Search (visual): replace in files using grug-far',
---   lhs = '<leader>ss',
---   -- rhs = ':GrugFar<CR>',
---   -- rhs = ':lua require("grug-far").grug_far()<CR>',
---   rhs = ':lua require("grug-far").with_visual_selection()<CR>',
--- })
--- my.keybind({
---   description = 'Search (toggle): replace in files using grug-far',
---   lhs = '<leader>st',
---   rhs = ':lua require("grug-far").toggle_instance({instanceName="search", staticTitle="Find and Replace"})<CR>',
--- })
 
--- vim.keymap.set({ 'n', 'v' }, '<leader>ss', function()
---   require('grug-far').grug_far()
--- end, { noremap = true, desc = 'something', nowait = true })
-
--- my.keybind({
---   description = 'Search: find in help tags',
---   lhs = '<leader>sh',
---   rhs = ':Telescope help_tags<CR>',
---   mode = 'n',
--- })
 my.keybind({
   description = 'Search: find in help tags visual',
   lhs = '<leader>sh',
@@ -708,34 +641,6 @@ my.keybind({
   rhs = ':%!jq .<CR>',
 })
 
--- hop
--- my.keybind({
---   mode = "nvxo",
---   description = "hop to word",
---   lhs = "f",
---   -- rhs = "<cmd>HopChar2<CR>"
---   rhs = "<cmd>HopWord<CR>",
--- })
--- my.keybind({
---   mode = "nv",
---   description = "hop to line",
---   lhs = "F",
---   rhs = "<cmd>HopLine<CR>",
--- })
--- leap
--- my.keybind({
---   mode = "nvxo",
---   description = "leap to location",
---   lhs = "f",
---   rhs = "<cmd>MyLeapCurrentWindow<CR>",
--- })
--- my.keybind({
---   mode = "nvxo",
---   description = "leap to location all tab windows",
---   lhs = "F",
---   rhs = "<cmd>MyLeapAllWindows<CR>",
--- })
--- leap
 my.keybind({
   mode = 'nxo',
   description = 'flash to location',
@@ -776,112 +681,13 @@ my.keybind({
   description = 'scroll down',
   lhs = '<PageDown>',
   rhs = '30j',
-  -- rhs = "<cmd>lua require('neoscroll').scroll(0.1, true, 8)<cr>"
 })
 my.keybind({
   mode = 'n',
   description = 'scroll up',
   lhs = '<PageUp>',
   rhs = '30k',
-  -- rhs = "<cmd>lua require('neoscroll').scroll(-0.1, true, 8)<cr>"
 })
-
--- vimspector debugging
--- my.keybind({
---   description = "debugger: when debugging, continue. Otherwise start debugging",
---   lhs = ",dd",
---   rhs = ":call vimspector#Continue()<CR>",
--- })
--- my.keybind({
---   description = "debugger: stop",
---   lhs = ",dx",
---   rhs = "<Plug>VimspectorStop",
--- })
--- my.keybind({
---   description = "debugger: restart debugging with the same configuration",
---   lhs = ",dr",
---   rhs = "<Plug>VimspectorRestart",
--- })
--- my.keybind({
---   description = "debugger: pause",
---   lhs = ",dp",
---   rhs = "<Plug>VimspectorPause",
--- })
--- my.keybind({
---   description = "debugger: toggle line breakpoint",
---   lhs = ",db",
---   rhs = "<Plug>VimspectorToggleBreakpoint",
--- })
--- my.keybind({
---   description = "debugger: toggle conditional line breakpoint",
---   lhs = ",dn",
---   rhs = "<Plug>VimspectorToggleConditionalBreakpoint",
--- })
--- my.keybind({
---   description = "debugger: add a function breakpoint for expression under cursor",
---   lhs = ",df",
---   rhs = "<Plug>VimspectorAddFunctionBreakpoint",
--- })
--- my.keybind({
---   description = "debugger: run to cursor",
---   lhs = ",du",
---   rhs = "<Plug>VimspectorRunToCursor",
--- })
--- my.keybind({
---   description = "debugger: step over",
---   lhs = ",dl",
---   rhs = "<Plug>VimspectorStepOver",
--- })
--- my.keybind({
---   description = "debugger: step into",
---   lhs = ",dm",
---   rhs = "<Plug>VimspectorStepInto",
--- })
--- my.keybind({
---   description = "debugger: step out",
---   lhs = ",da",
---   rhs = "<Plug>VimspectorStepOut",
--- })
--- my.keybind({
---   description = "debugger: evaluate expression under cursor (or visual) in popup",
---   lhs = ",de",
---   rhs = "<Plug>VimspectorBalloonEval",
--- })
--- my.keybind({
---   description = "debugger: jump to call stack window",
---   lhs = ",ds",
---   rhs = ":call win_gotoid(g:vimspector_session_windows.stack_trace)<CR>",
--- })
--- my.keybind({
---   description = "debugger: jump to variables window",
---   lhs = ",dv",
---   rhs = ":call win_gotoid(g:vimspector_session_windows.variables)<CR>",
--- })
--- my.keybind({
---   description = "debugger: jump to watches window",
---   lhs = ",dw",
---   rhs = ":call win_gotoid(g:vimspector_session_windows.watches)<CR>",
--- })
--- my.keybind({
---   description = "debugger: jump to output window",
---   lhs = ",do",
---   rhs = ":call win_gotoid(g:vimspector_session_windows.output)<CR>",
--- })
--- my.keybind({
---   description = "debugger: jump to code window",
---   lhs = ",dc",
---   rhs = ":call win_gotoid(g:vimspector_session_windows.code)<CR>",
--- })
--- my.keybind({
---   description = "debugger: jump to terminal window",
---   lhs = ",dt",
---   rhs = ":call win_gotoid(g:vimspector_session_windows.terminal)<CR>",
--- })
--- my.keybind({
---   description = "debugger: reset (quit)",
---   lhs = ",dq",
---   rhs = ":VimspectorReset<CR>",
--- })
 
 -- dap debugging
 my.keybind({

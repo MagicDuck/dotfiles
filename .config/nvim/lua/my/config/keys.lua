@@ -145,13 +145,13 @@ my.keybind({
 -- tabs
 my.keybind({
   description = 'tab: navigate to previous tab',
-  lhs = '<A-space>',
+  lhs = '<left>',
   rhs = '<cmd>tabprevious<CR>',
   mode = 'n',
 })
 my.keybind({
   description = 'tab: navigate to next tab',
-  lhs = '<tab>',
+  lhs = '<right>',
   rhs = '<cmd>tabnext<CR>',
   mode = 'n',
 })

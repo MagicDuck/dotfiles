@@ -16,10 +16,27 @@
                 "file": "cimp/COR-104593 Biomejs in fe-communications.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "COR-104593 Biomejs in fe-communications"
+            }
+          },
+          {
+            "id": "e5a036e6fc4c346a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "feature/COR-103241 Resend communication.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "COR-103241 Resend communication"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -39,7 +56,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -54,7 +73,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -62,7 +83,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -85,7 +108,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "cimp/COR-104593 Biomejs in fe-communications.md",
+                "file": "cimp/COR-102271 Cypress poc.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +116,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for COR-102271 Cypress poc"
             }
           },
           {
@@ -105,7 +130,9 @@
                 "sortOrder": "frequency",
                 "showSearch": false,
                 "searchQuery": ""
-              }
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
             }
           }
         ]
@@ -126,8 +153,11 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "d4d5d94b885f7591",
+  "active": "e5a036e6fc4c346a",
   "lastOpenFiles": [
+    "cimp/cypress poc in fe-communications.md",
+    "feature/COR-103241 Resend communication.md",
+    "cimp/COR-104593 Biomejs in fe-communications.md",
     "feature/COR-103335 Comms update successful launch.md",
     "cimp/Cimp/NOISSUE fix theme types.md",
     "feature/COR-103234 Comm update include prev attachment.md",
@@ -135,7 +165,6 @@
     "assets/Pasted image 20240925150354.png",
     "cimp/CIMP-123 Fe comms tsc in ci.md",
     "feature/COR-103363 Comms update event type.md",
-    "cimp/COR-104593 Biomejs in fe-communications.md",
     "password change.md",
     "installing-linux.md",
     "assets/Pasted image 20240920221956.png",
@@ -157,8 +186,6 @@
     "Veracode.md",
     "bugfix/COR-105132 Soap alertus regression.md",
     "bugfix/SUP-27735 operator confirm is null.md",
-    "feature/COR-123 Do something.md",
-    "adding steps to zephyr tests.md",
     "Pasted image 20230110123759.png",
     "feat",
     "bufix",

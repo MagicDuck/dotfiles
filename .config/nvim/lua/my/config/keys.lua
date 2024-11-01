@@ -1,3 +1,5 @@
+local is_linux = vim.fn.has('linux') == 1
+
 local nextLeaderKey = function(key)
   return '<leader>j' .. key
 end
@@ -305,7 +307,7 @@ my.keybind({
 my.keybind({
   description = 'git: open current file in web browser (stash)',
   lhs = '<leader>go',
-  rhs = ':GBrowse<CR>',
+  rhs = ':GBrowseMain<CR>',
 })
 my.keybind({
   description = 'git: pick from modified git files',
@@ -454,6 +456,11 @@ my.keybind({
   lhs = '<leader>sh',
   rhs = 'y<ESC>:lua require("telescope.builtin").help_tags({ default_text=vim.fn.expand("<cword>") })<CR>',
   mode = 'n',
+})
+my.keybind({
+  description = 'Search: resume telescope search',
+  lhs = '<leader>su',
+  rhs = ':Telescope resume<CR>',
 })
 
 -- notes
@@ -650,7 +657,7 @@ my.keybind({
 my.keybind({
   mode = 'nxo',
   description = 'flash: select using treesitter',
-  lhs = '.',
+  lhs = is_linux and '<c-h>' or '<a-bs>', -- c-h is c-bs weirdly enough
   rhs = "<cmd>lua require('flash').treesitter()<cr>",
   options = { silent = false, noremap = true },
 })

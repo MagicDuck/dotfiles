@@ -2,9 +2,10 @@ local mycolors = require('my.plugins.theme.mycolors')
 local my = mycolors.set_base_colors({
   background = '#E0E2EA',
 
-  selectionBg = '#9B9EA4',
+  selectionBg = '#DADCEB',
 
   commentBackground = '#D3D5DC',
+
   commentFg = '#111111',
 
   menubarBaseBg = '#C9CBD2',

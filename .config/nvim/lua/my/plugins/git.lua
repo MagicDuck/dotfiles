@@ -20,6 +20,15 @@ return {
     end,
   },
   {
+    'tpope/vim-rhubarb',
+    lazy = true,
+    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
+    config = function()
+      -- if I ever need this:
+      -- vim.g.github_enterprise_urls = {'https://example.com'}
+    end,
+  },
+  {
     'sindrets/diffview.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
     lazy = false,

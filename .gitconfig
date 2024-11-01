@@ -48,7 +48,8 @@ file-style = bold
 [alias]
   s = status
   b = ! git checkout $(git branch | fzf)
-  nb = "!f(){ main_branch=$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5); git checkout -b $1 && git fetch origin $main_branch && git reset --hard origin/$main_branch; };f"
+  # nb = "!f(){ main_branch=$(git remote show origin -n | grep 'HEAD branch' | cut -d' ' -f5); git checkout -b $1 && git fetch origin $main_branch && git reset --hard origin/$main_branch; };f"
+  nb = "!f(){ main_branch=$(basename $(git rev-parse --abbrev-ref origin/HEAD)); git checkout -b $1 && git fetch origin $main_branch && git reset --hard origin/$main_branch; };f"
   squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 [push]
 	default = current

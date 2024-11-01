@@ -22,6 +22,10 @@ my.command({
   description = 'edit snippets',
   cmd = ':EditSnippets<CR>',
 })
+my.command({
+  description = 'git: open selection online',
+  cmd = ':GBrowseMain<CR>',
+})
 
 vim.api.nvim_create_user_command('EditBookmarkAsTab', function()
   local get_bookmarks = require('my.config.bookmarks')
@@ -32,3 +36,9 @@ vim.api.nvim_create_user_command('EditBookmark', function()
   local get_bookmarks = require('my.config.bookmarks')
   require('my.plugins.telescope.bookmark_picker').pickBookmark('edit', get_bookmarks())
 end, {})
+
+vim.api.nvim_create_user_command('GBrowseMain', function(params)
+  local branch = vim.trim(vim.fn.system('basename $(git rev-parse --abbrev-ref origin/HEAD)'))
+  local range = params.line1 .. (params.range > 1 and ',' .. params.line2 or '')
+  vim.cmd(range .. 'GBrowse origin/' .. branch .. ':' .. vim.fn.expand('%'))
+end, { range = true })

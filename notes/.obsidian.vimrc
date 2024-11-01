@@ -10,60 +10,60 @@ vmap L $
 " Go back and forward with Ctrl+O and Ctrl+I
 " (make sure to remove default Obsidian shortcuts for these to work)
 exmap back obcommand app:go-back
-nmap <C-o> :back
+nmap <C-o> :back<cr>
 exmap forward obcommand app:go-forward
-nmap <C-i> :forward
+nmap <C-i> :forward<cr>
 
 unmap <Space>
 
 exmap liveGrep obcommand omnisearch:show-modal
-nmap <Space>f :liveGrep
+nmap <Space>f :liveGrep<cr>
 
 exmap openFile obcommand switcher:open
-nmap <Space>d :openFile
-nmap <Space>b :openFile
+nmap <Space>d :openFile<cr>
+nmap <Space>b :openFile<cr>
 
 exmap renameFile obcommand editor:rename-heading
 nmap <Space>r :renameFile
 
 nunmap s 
 exmap vsplit obcommand workspace:split-vertical
-nmap sv :vsplit
+nmap sv :vsplit<cr>
 exmap hsplit obcommand workspace:split-horizontal
-nmap ss :hsplit
+nmap ss :hsplit<cr>
 exmap closeTab obcommand workspace:close
-nmap sc :closeTab
+nmap sc :closeTab<cr>
 exmap closeOtherTab obcommand workspace:close-others
-nmap so :closeOtherTab
+nmap so :closeOtherTab<cr>
 
 exmap moveBot obcommand editor:focus-bottom
-nmap sj :moveBot 
+nmap sj :moveBot<cr>
 exmap moveTop obcommand editor:focus-top
-nmap sk :moveTop 
+nmap sk :moveTop<cr>  
 exmap moveLeft obcommand editor:focus-left
-nmap sh :moveLeft 
+nmap sh :moveLeft<cr>  
 exmap moveRight obcommand editor:focus-right
-nmap sl :moveRight 
+nmap sl :moveRight<cr> 
 
 exmap prevTab obcommand workspace:previous-tab
-nmap <C-Left> :prevTab
+nmap <C-Left> :prevTab<cr> 
 exmap nextTab obcommand workspace:next-tab
-nmap <C-Right> :nextTab
+nmap <C-Right> :nextTab<cr> 
 exmap newTab obcommand workspace:new-tab
-nmap <Space>tn :newTab
+nmap <Space>tn :newTab<cr> 
 
 exmap toggleComments obcommand editor:toggle-comments
-nmap <Space>c :toggleComments
+nmap <Space>c :toggleComments<cr> 
 
 " Quickly remove search highlights
-nmap <Space>v :nohl
+nmap <Space>v :nohl<cr> 
 
 exmap appReload obcommand app:reload
-nmap <Space>R :appReload
+nmap <Space>R :appReload<cr> 
 
 exmap toggleCheckbox obcommand editor:toggle-checklist-status
-nmap <C-Space> :toggleCheckbox
-imap <C-Space> :toggleCheckbox
+nmap <C-Space> :toggleCheckbox<cr> 
+imap <C-Space> :toggleCheckbox<cr> 
 
 " other potential commands, execute :obcommand with dev tools open to see them all
 " editor:toggle-bullet-list

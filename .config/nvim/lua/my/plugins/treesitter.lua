@@ -87,6 +87,8 @@ return {
               ['i='] = { query = '@assignment.inner', desc = 'Select inner part of an assignment' },
               ['l='] = { query = '@assignment.lhs', desc = 'Select left hand side of an assignment' },
               ['r='] = { query = '@assignment.rhs', desc = 'Select right hand side of an assignment' },
+              ['ax'] = '@attribute.outer',
+              ['ix'] = '@attribute.inner',
             },
           },
           -- swap = {
@@ -131,7 +133,7 @@ return {
             init_selection = '<bs>',
             node_incremental = '<bs>',
             node_decremental = '<del>',
-            scope_incremental = is_linux and '<c-h>' or '<a-bs>', -- c-h is c-bs weirdly enough
+            -- scope_incremental = is_linux and '<c-h>' or '<a-bs>', -- c-h is c-bs weirdly enough
           },
         },
         indent = {

@@ -32,10 +32,7 @@ config.background = {
   },
   {
     source = {
-      -- File = "/Users/stephanbadragan/Documents/PIXNIO-325636-5700x3800.jpeg",
-      -- File = "/Users/stephanbadragan/Documents/PIXNIO-325640-1945x1459.jpeg",
-      -- File = "/Users/stephanbadragan/Documents/wallpapersden.com_abstract-wave-grey-duotone_1920x1080.jpg",
-      File = "/Users/stephanbadragan/Documents/image-from-rawpixel-id-3864381-jpeg.jpg",
+      File = wezterm.home_dir .. "/wallpapers/ocean_waves.jpg",
     },
     hsb = { brightness = 0.2 },
     opacity = 0.1,
@@ -82,7 +79,6 @@ config.color_scheme = "GruvboxLight"
 -- config.color_scheme = "Equilibrium Gray Light (base16)"
 -- local term_background = "#FAFAF9"
 local term_background = "#E0E2EA"
--- local term_background = "rgba(E0E2EA 80)"
 config.colors = {
   background = term_background,
   tab_bar = {

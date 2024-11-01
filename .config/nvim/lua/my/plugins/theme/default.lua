@@ -31,7 +31,12 @@ local my = mycolors.set_base_colors({
   todoFg = '#A80000',
 })
 mycolors.apply_my_highlights()
-mycolors.apply_override_highlights()
+mycolors.apply_override_highlights({
+  PmenuSel = { bg = my.menubarBg2, fg = 'white' },
+  PmenuKindSel = { link = 'PmenuSel' },
+  PmenuExtraSel = { link = 'PmenuSel' },
+  BlinkCmpMenuSelection = { link = 'PmenuSel' },
+})
 
 vim.cmd.colorscheme('default')
 vim.opt.background = 'light'

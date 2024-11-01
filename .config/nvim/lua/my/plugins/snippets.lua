@@ -59,6 +59,7 @@ return {
       end, { silent = true })
     end,
   },
+
   -- {
   --   'garymjr/nvim-snippets',
   --   keys = {
@@ -71,7 +72,7 @@ return {
   --           end)
   --           return
   --         end
-  --         return '<Tab>'
+  --         return '<end>'
   --       end,
   --       expr = true,
   --       silent = true,
@@ -103,6 +104,9 @@ return {
   --       silent = true,
   --       mode = { 'i', 's' },
   --     },
+  --   },
+  --   opts = {
+  --     friendly_snippets = true,
   --   },
   -- },
 }

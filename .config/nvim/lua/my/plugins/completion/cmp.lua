@@ -145,6 +145,24 @@ cmp.setup.cmdline('/', {
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline({
     ['<tab>'] = { c = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }) },
+    ['<down>'] = {
+      c = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          fallback()
+        end
+      end,
+    },
+    ['<up>'] = {
+      c = function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          fallback()
+        end
+      end,
+    },
   }),
   sources = cmp.config.sources({
     { name = 'path' },

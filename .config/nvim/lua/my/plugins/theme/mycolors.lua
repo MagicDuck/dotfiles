@@ -84,11 +84,14 @@ function M.get_override_highlights()
   }
 end
 
-function M.apply_override_highlights()
+function M.apply_override_highlights(extra_hl_groups)
   vim.api.nvim_create_autocmd('ColorScheme', {
     group = vim.api.nvim_create_augroup('my-colorscheme-override-highlights', { clear = true }),
     callback = function()
       for k, v in pairs(M.get_override_highlights()) do
+        vim.api.nvim_set_hl(0, k, v)
+      end
+      for k, v in pairs(extra_hl_groups) do
         vim.api.nvim_set_hl(0, k, v)
       end
     end,

@@ -308,6 +308,22 @@ return {
       },
     },
   },
+  {
+    'atusy/treemonkey.nvim',
+    lazy = true,
+    event = { 'VeryLazy' },
+    config = function()
+      vim.keymap.set({ 'x', 'o' }, 'm', function()
+        require('treemonkey').select({
+          ignore_injections = false,
+          highlight = {
+            -- backdrop = 'Comment',
+            label = 'TelescopeMatching',
+          },
+        })
+      end)
+    end,
+  },
   -- {
   --   'echasnovski/mini.icons',
   --   version = false,

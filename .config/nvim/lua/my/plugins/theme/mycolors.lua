@@ -51,7 +51,7 @@ function M.get_override_highlights()
     FlashLabel = { bg = '#65737E', fg = '#F0F2F5', bold = true },
     Search = { bg = my.searchBg, fg = '#FAFAF9', reverse = false },
 
-    Comment = { bg = my.commentBackground, fg = my.commentFg, italic = false },
+    Comment = { bg = my.commentBackground, fg = my.commentFg, italic = true },
 
     SpecialComment = { bg = my.commentBackground, fg = my.commentFg, italic = false },
     TSComment = { bg = my.commentBackground, fg = my.commentFg, italic = false },

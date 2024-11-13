@@ -45,7 +45,9 @@ function M.pickKeybindOrCommand(opts)
           else
             return {
               value = def,
-              ordinal = def.description .. utils.display_termcodes(def.lhs) .. def.rhs,
+              ordinal = def.description
+                .. utils.display_termcodes(def.lhs)
+                .. (type(def.rhs) == 'string' and def.rhs or 'function'),
               display = '󰡜 ' .. def.description .. '  󰡘 ' .. utils.display_termcodes(def.lhs) .. ' ',
               -- utils.display_termcodes(def.lhs) .. " -> " .. def.rhs .. ")"
             }

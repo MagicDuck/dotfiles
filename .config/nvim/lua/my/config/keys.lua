@@ -640,7 +640,7 @@ my.keybind({
 my.keybind({
   description = 'lsp: format current buffer',
   lhs = '<leader>lf',
-  rhs = '<cmd>lua vim.lsp.buf.formatting()<CR>',
+  rhs = '<cmd>lua vim.lsp.buf.format()<CR>',
 })
 my.keybind({
   description = 'format json',

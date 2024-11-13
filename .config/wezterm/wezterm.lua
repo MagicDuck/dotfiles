@@ -9,14 +9,69 @@ local isLinux = util.isLinux
 local config = wezterm.config_builder()
 
 -- fonts
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font_with_fallback({
+  { family = "JetBrains Mono" },
+  {
+    family = "Monaspace Xenon",
+    -- family = "Monaspace Argon",
+    harfbuzz_features = {
+      "ss01",
+      "ss02",
+      "ss03",
+      "ss04",
+      "ss05",
+      "ss06",
+      "ss07",
+      "ss08",
+      "ss09",
+      "calt",
+      "dlig",
+      "liga",
+    },
+  },
+})
+
+config.font_rules = {
+  --
+  -- Italic (comments)
+  --
+  {
+    intensity = "Normal",
+    italic = true,
+    font = wezterm.font({
+      family = "Monaspace Radon",
+      -- weight = "Light",
+      stretch = "Normal",
+      style = "Normal",
+      harfbuzz_features = {
+        "ss01",
+        "ss02",
+        "ss03",
+        "ss04",
+        "ss05",
+        "ss06",
+        "ss07",
+        "ss08",
+        "ss09",
+        "calt",
+        "dlig",
+        "liga",
+      },
+    }),
+  },
+}
+
+-- config.font = wezterm.font("JetBrains Mono")
 -- config.font = wezterm.font("Fantasque Sans Mono")
 -- config.font = wezterm.font("0xProto", { weight = "Regular", stretch = "Normal", style = "Normal" })
 -- config.font = wezterm.font("LXGW WenKai Mono TC")
 -- config.font = wezterm.font("0xProto")
 
 config.font_size = isLinux and 10 or 13.5
-config.line_height = 1.35
+config.line_height = 1.4
+
+-- config.font_size = isLinux and 10 or 13.5
+-- config.line_height = 1.35
 
 -- config.font_size = isLinux and 10 or 15
 -- config.line_height = 1.5

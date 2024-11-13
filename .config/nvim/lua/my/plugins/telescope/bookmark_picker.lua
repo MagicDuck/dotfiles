@@ -56,6 +56,9 @@ function M.pickBookmark(command, bookmarks)
           actions.close(prompt_bufnr)
 
           vim.cmd(command .. ' ' .. bookmark.path)
+          if vim.fn.isdirectory(bookmark.path) then
+            vim.fn.chdir(bookmark.path)
+          end
         end)
         return true
       end,

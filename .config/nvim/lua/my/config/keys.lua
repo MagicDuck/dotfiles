@@ -647,6 +647,11 @@ my.keybind({
   lhs = '<leader>uj',
   rhs = ':%!jq .<CR>',
 })
+my.keybind({
+  description = 'lsp: toggle outline',
+  lhs = '<leader>lo',
+  rhs = '<cmd>AerialToggle left<CR>',
+})
 
 my.keybind({
   mode = 'nxo',

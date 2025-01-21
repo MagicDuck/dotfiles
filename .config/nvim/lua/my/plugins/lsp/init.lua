@@ -1,3 +1,4 @@
+local handlers = require('my/plugins/lsp/handlers')
 -- LSP spec: https://microsoft.github.io/language-server-protocol/specification.html#initialize
 -- prevent stupid node deprecation warnings
 vim.env.NODE_OPTIONS = '--no-deprecation'
@@ -144,8 +145,20 @@ return {
       require('my/plugins/lsp/stylelint')
       require('my/plugins/lsp/rust_analyzer')
       require('my/plugins/lsp/biome')
+      require('my/plugins/lsp/gopls')
     end,
   },
+
+  {
+    'davidosomething/format-ts-errors.nvim',
+    config = function()
+      require('format-ts-errors').setup({
+        add_markdown = false, -- wrap output with markdown ```ts ``` markers
+        start_indent_level = 0, -- initial indent
+      })
+    end,
+  },
+
   -- typescript through lua LS
   {
     'pmizio/typescript-tools.nvim',
@@ -159,6 +172,9 @@ return {
           enable = true,
           filetypes = { 'javascriptreact', 'typescriptreact' },
         },
+      },
+      handlers = {
+        ['textDocument/publishDiagnostics'] = handlers.tsserverPublishDiagnostics,
       },
     },
   },

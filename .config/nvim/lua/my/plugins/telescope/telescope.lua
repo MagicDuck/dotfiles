@@ -41,15 +41,16 @@ telescope.setup({
         ['<C-k>'] = actions.cycle_history_next,
         ['<C-j>'] = actions.cycle_history_prev,
         ['<C-q>'] = function(...)
+          actions.select_all(...)
           actions.send_selected_to_qflist(...)
           vim.cmd('copen')
         end,
-        ['<C-a>'] = actions.select_all,
+        -- ['<C-a>'] = actions.select_all,
         ['<PageUp>'] = actions.preview_scrolling_up,
         ['<PageDown>'] = actions.preview_scrolling_down,
 
-        -- h is bs weirdly enough
-        [ins_mod_special('h')] = function()
+        -- h is bs weirdly enough, maybe only on linux??
+        [ins_mod_special('bs')] = function()
           vim.cmd('normal! db')
         end,
         [ins_mod_special('del')] = function()

@@ -38,8 +38,7 @@ file-style = bold
   rustExitCode = true
   keepBackup = false
 [mergetool "nvimdiff4"]
-#  cmd = vim -d $LOCAL $BASE $REMOTE $MERGED -c 'CocDisable' -c '$wincmd w' -c 'wincmd J' -c 'Git mergetool'
-  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED --cmd ':lua vim.g.myLspDisabled=true' -c '$wincmd w' -c 'wincmd J' -c 'normal ]c'
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED --cmd ':lua vim.g.myLspDisabled=true' -c '$wincmd w' -c 'wincmd J' -c 'normal gg' -c 'normal ]c'
 [difftool]
 	prompt = false
 [diff]
@@ -50,6 +49,7 @@ file-style = bold
   b = ! git checkout $(git branch | fzf)
   # nb = "!f(){ main_branch=$(git remote show origin -n | grep 'HEAD branch' | cut -d' ' -f5); git checkout -b $1 && git fetch origin $main_branch && git reset --hard origin/$main_branch; };f"
   nb = "!f(){ main_branch=$(basename $(git rev-parse --abbrev-ref origin/HEAD)); git checkout -b $1 && git fetch origin $main_branch && git reset --hard origin/$main_branch; };f"
+  r = "!f(){ main_branch=$(basename $(git rev-parse --abbrev-ref origin/HEAD)); git pull --rebase origin $main_branch; };f"
   squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
 [push]
 	default = current

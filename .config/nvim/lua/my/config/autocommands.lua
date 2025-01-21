@@ -134,16 +134,16 @@ vim.api.nvim_create_autocmd('FileType', {
   desc = 'Change commentstring for kdl files',
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  group = vim.api.nvim_create_augroup('grug-far-keybindings', { clear = true }),
-  pattern = { 'grug-far' },
-  callback = function()
-    -- jump back to search
-    vim.keymap.set('n', '<left>', function()
-      vim.api.nvim_win_set_cursor(vim.fn.bufwinid(0), { 3, 0 })
-    end, { buffer = true })
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = vim.api.nvim_create_augroup('grug-far-keybindings', { clear = true }),
+--   pattern = { 'grug-far' },
+--   callback = function()
+--     -- jump back to search
+--     vim.keymap.set('n', '<left>', function()
+--       vim.api.nvim_win_set_cursor(vim.fn.bufwinid(0), { 3, 0 })
+--     end, { buffer = true })
+--   end,
+-- })
 
 -- vim.api.nvim_create_autocmd('FileType', {
 --   group = vim.api.nvim_create_augroup('test-js-lint', { clear = true }),

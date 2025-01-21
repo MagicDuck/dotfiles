@@ -17,6 +17,19 @@ return {
         },
       })
 
+      -- local last_inputs = {}
+      -- vim.keymap.set({ 'n', 'x' }, '<leader>sw', function()
+      --   local prefills = vim.deepcopy(last_inputs)
+      --   prefills.search = vim.fn.expand('<cword>')
+      --
+      --   grugFar.open({
+      --     onUnload = function(instanceName)
+      --       last_inputs = grugFar.get_instance_inputs(instanceName)
+      --     end,
+      --     prefills = prefills,
+      --   })
+      -- end, { desc = 'grug-far: search, using last options' })
+
       vim.keymap.set({ 'n', 'x' }, '<leader>sw', function()
         grugFar.open({
           prefills = {

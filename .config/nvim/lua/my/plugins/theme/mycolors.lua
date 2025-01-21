@@ -29,6 +29,16 @@ local my = {
   floatBg = '#F0F2F5',
 
   todoFg = '#BE7E05',
+
+  diffAddBg = '#E1EBDC',
+  diffRemoveBg = '#F0CDCE',
+  -- diffChangeBg = '#E5D5B6',
+  -- diffTextBg = '#E5CFA4',
+  diffChangeBg = '#E5DED0',
+  diffTextBg = '#E5D5B6',
+
+  conflictSepFg = '#F8FBF6',
+  conflictSepBg = '#65737E',
 }
 M.my = my
 
@@ -81,6 +91,19 @@ function M.get_override_highlights()
     DapStopped = { bg = my.debugLineBg },
     DapStoppedLine = { bg = my.debugLineBg },
     DapStoppedLineNumber = { bg = my.debugLineBg },
+
+    -- diff / conflicts
+    DiffAdd = { bg = my.diffAddBg },
+    DiffDelete = { bg = my.diffRemoveBg },
+    DiffChange = { bg = my.diffChangeBg },
+    DiffText = { bg = my.diffTextBg },
+
+    GitConflictCurrent = { bg = my.diffTextBg },
+    GitConflictIncoming = { bg = my.diffAddBg },
+    GitConflictAncestor = { bg = my.diffChangeBg },
+    GitConflictCurrentLabel = { fg = my.conflictSepFg, bg = my.conflictSepBg },
+    GitConflictIncomingLabel = { fg = my.conflictSepFg, bg = my.conflictSepBg },
+    GitConflictAncestorLabel = { fg = my.conflictSepFg, bg = my.conflictSepBg },
   }
 end
 

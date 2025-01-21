@@ -158,4 +158,13 @@ return {
       })
     end,
   },
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      'treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+  },
 }

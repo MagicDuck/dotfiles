@@ -105,6 +105,16 @@ exports.tsserverPublishDiagnostics = function(_, result, ctx, config)
       }, diagnostic.code)
     end, result.diagnostics)
   end
+
+  local format = require('format-ts-errors')
+  result.diagnostics = vim
+    .iter(result.diagnostics)
+    :map(function(diagnostic)
+      local formatter = format[diagnostic.code]
+      diagnostic.message = formatter and formatter(diagnostic.message) or diagnostic.message
+      return diagnostic
+    end)
+    :totable()
   return vim.lsp.handlers['textDocument/publishDiagnostics'](nil, result, ctx, config)
 end
 

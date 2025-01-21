@@ -288,7 +288,16 @@ return {
     lazy = true,
     event = { 'VeryLazy' },
     config = function()
-      require('guess-indent').setup({})
+      require('guess-indent').setup({
+        auto_cmd = true, -- Set to false to disable automatic execution
+        override_editorconfig = true, -- Set to true to override settings set by .editorconfig
+        -- filetype_exclude = {
+        --   'netrw',
+        --   'tutor',
+        --   'make',
+        -- },
+      })
+      -- vim.cmd([[ autocmd BufReadPost * :silent GuessIndent ]])
     end,
   },
   {
@@ -322,6 +331,32 @@ return {
           },
         })
       end)
+    end,
+  },
+  -- {
+  --   'rhysd/conflict-marker.vim',
+  --   lazy = false,
+  --   event = { 'VeryLazy' },
+  --   config = function()
+  --     vim.cmd([[
+  --       highlight ConflictMarkerBegin guibg=#2f7366
+  --     ]])
+  --   end,
+  -- },
+  {
+    'akinsho/git-conflict.nvim',
+    version = '*',
+    config = function()
+      require('git-conflict').setup({
+        default_mappings = {
+          ours = 'co',
+          theirs = 'ct',
+          none = 'cn',
+          both = 'cb',
+          next = 'cj',
+          prev = 'ck',
+        },
+      })
     end,
   },
   -- {

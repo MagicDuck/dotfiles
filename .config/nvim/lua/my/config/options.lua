@@ -88,7 +88,7 @@ vim.diagnostic.config({
 -- add error format for tsc
 -- from a buffer, can use with :cexpr getline(1, '$')
 vim.cmd([[
-  set errorformat=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m
+  set errorformat=%+A\ %#%f\ %#(%l\\\,%c):\ %m,%C%m,%f:%l:%c
 ]])
 
 -- diff opts

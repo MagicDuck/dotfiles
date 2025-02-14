@@ -187,13 +187,13 @@ return {
     end,
   },
   -- speed up loading large files
-  {
-    'pteroctopus/faster.nvim',
-    lazy = false,
-    config = function()
-      require('faster').setup()
-    end,
-  },
+  -- {
+  --   'pteroctopus/faster.nvim',
+  --   lazy = false,
+  --   config = function()
+  --     require('faster').setup()
+  --   end,
+  -- },
   {
     'danymat/neogen',
     lazy = true,
@@ -333,16 +333,6 @@ return {
       end)
     end,
   },
-  -- {
-  --   'rhysd/conflict-marker.vim',
-  --   lazy = false,
-  --   event = { 'VeryLazy' },
-  --   config = function()
-  --     vim.cmd([[
-  --       highlight ConflictMarkerBegin guibg=#2f7366
-  --     ]])
-  --   end,
-  -- },
   {
     'akinsho/git-conflict.nvim',
     version = '*',
@@ -359,11 +349,24 @@ return {
       })
     end,
   },
-  -- {
-  --   'echasnovski/mini.icons',
-  --   version = false,
-  --   config = function()
-  --     require('mini.icons').setup()
-  --   end,
-  -- },
+  {
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      bigfile = { enabled = true },
+      -- dashboard = { enabled = true },
+      -- explorer = { enabled = true },
+      -- indent = { enabled = true },
+      -- input = { enabled = true },
+      -- picker = { enabled = true },
+      -- notifier = { enabled = true },
+      quickfile = { enabled = true },
+      -- scope = { enabled = true },
+      -- scroll = { enabled = true },
+      -- statuscolumn = { enabled = true },
+      -- words = { enabled = true },
+    },
+  },
 }

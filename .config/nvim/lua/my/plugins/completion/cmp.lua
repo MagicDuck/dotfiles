@@ -133,8 +133,20 @@ require('cmp').setup.filetype({ 'dap-repl', 'dapui_watches', 'dapui_hover' }, {
 
 -- Use buffer source for `/`.
 cmp.setup.cmdline('/', {
+  completion = {
+    autocomplete = false,
+    completeopt = 'menu,menuone',
+  },
   mapping = cmp.mapping.preset.cmdline({
-    ['<tab>'] = { c = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }) },
+    ['<tab>'] = {
+      c = function()
+        if cmp.visible() then
+          cmp.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true })
+        else
+          cmp.complete()
+        end
+      end,
+    },
   }),
   sources = {
     { name = 'buffer' },
@@ -143,8 +155,20 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':'.
 cmp.setup.cmdline(':', {
+  completion = {
+    autocomplete = false,
+    completeopt = 'menu,menuone',
+  },
   mapping = cmp.mapping.preset.cmdline({
-    ['<tab>'] = { c = cmp.mapping.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true }) },
+    ['<tab>'] = {
+      c = function()
+        if cmp.visible() then
+          cmp.confirm({ behaviour = cmp.ConfirmBehavior.Insert, select = true })
+        else
+          cmp.complete()
+        end
+      end,
+    },
     ['<down>'] = {
       c = function(fallback)
         if cmp.visible() then

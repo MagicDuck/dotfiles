@@ -273,7 +273,7 @@ return {
       end
 
       local lazygit_by_cwd = {}
-      vim.keymap.set({ 'i', 'n', 'v' }, '<C-g>', function()
+      vim.keymap.set({ 'i', 'n', 'v', 't' }, '<C-g>', function()
         local cwd = vim.fn.getcwd()
         if not lazygit_by_cwd[cwd] then
           lazygit_by_cwd[cwd] = get_lazygit(cwd)

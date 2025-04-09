@@ -1,27 +1,21 @@
 return {
-  { "ahmedkhalf/project.nvim",
-    lazy = true,
-    event = "VimEnter",
+  {
+    'echasnovski/mini.misc',
     config = function()
-      require("project_nvim").setup {
-        -- scope_chdir = 'tab',
-        detection_methods = { "pattern", "lsp" },
-        scope_chdir = 'win',
-        patterns = {
-          ".git",
-          -- "package.json",
-          "_darcs",
-          ".hg",
-          ".bzr",
-          ".svn",
-          "Makefile",
-          '=nvim',
-          '=ondemand',
-          '!=webui',
-          'gradlew',
-          '=~/notes',
-        },
-      }
-    end
+      -- set up CWD depending on current file
+      require('mini.misc').setup_auto_root(function(name, path)
+        for _, n in ipairs({ '.git', '.obsidian' }) do
+          if name == n then
+            return true
+          end
+        end
+
+        if path:match('%.config/nvim') then
+          return true
+        end
+
+        return false
+      end)
+    end,
   },
 }

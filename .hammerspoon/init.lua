@@ -196,6 +196,7 @@ local superKeyBindings = {
     -- app = "Brave Browser",
     -- app = "Safari",
     app = 'Vivaldi',
+    -- app = 'Zen',
   },
   {
     key = 'e',
@@ -275,6 +276,7 @@ local superKeyBindings = {
   {
     key = 's',
     app = 'Slack',
+    -- app = 'Microsoft Teams',
   },
   -- {
   --   key = "u",

@@ -61,7 +61,7 @@ else
    tnoremap <a-down> <end>
 endif
  
-tnoremap <Esc><Esc> <C-\><C-n>
+tnoremap <s-esc> <C-\><C-n>
 
 " visual block select
 nnoremap X <c-v>

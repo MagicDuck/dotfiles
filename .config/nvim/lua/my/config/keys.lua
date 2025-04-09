@@ -77,6 +77,15 @@ my.keybind({
   rhs = ':let @* = "env DEBUG_PRINT_LIMIT=100000 node --inspect ./node_modules/jest/bin/jest.js --watch --maxWorkers=2 " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
 })
 
+my.keybind({
+  description = 'buffer: rename',
+  lhs = '<leader>ur',
+  rhs = function()
+    local old_name = vim.api.nvim_buf_get_name(0)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(':file ' .. old_name, true, false, true), 't', true)
+  end,
+})
+
 -- line
 my.keybind({
   description = 'line: paste on line above, keeping indentation',

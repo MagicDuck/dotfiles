@@ -1,13 +1,15 @@
-require('my.plugins.theme.default')
+-- require('my.plugins.theme.default')
 return {
   -- require('my.plugins.theme.tinted'),
   -- require('my.plugins.theme.gruvbox'),
   -- require('my.plugins.theme.nightfox'),
-  -- require('my.plugins.theme.github'),
+  require('my.plugins.theme.github'),
   -- require('my.plugins.theme.catpuccin'),
   -- require('my.plugins.theme.onedark'),
   -- require('my.plugins.theme.dracula'),
   -- require('my.plugins.theme.zenbones'),
+  -- require('my.plugins.theme.cyberdream'),
+
   {
     'xiyaowong/transparent.nvim',
     lazy = false, -- make sure we load this during startup
@@ -28,6 +30,7 @@ return {
       vim.cmd('TransparentEnable')
     end,
   },
+
   -- {
   --   'MrSloth-dev/Switcheroo.nvim',
   --   dependencies = {

@@ -6,34 +6,53 @@ return {
   priority = 1000, -- make sure to load this before all the other start plugins
   config = function()
     local my = mycolors.set_base_colors({
-      background = '#FFFFFF',
+      background = '#E0E2EA',
 
-      selectionBg = '#DBEDED',
+      selectionBg = '#DADCEB',
 
-      -- commentBackground = '#F0F0ED',
-      commentBackground = '#FFFFFF',
-      commentFg = '#292623',
+      commentBackground = '#D3D5DC',
 
-      menubarBaseBg = '#D6DDDB',
+      commentFg = '#111111',
 
-      menubarBg1 = '#E4E9E8',
+      menubarBaseBg = '#C9CBD2',
+
+      menubarBg1 = '#D4D6DB',
       menubarBg2 = '#65737e',
       menubarBg3 = '#a48c32',
       menubarBg4 = '#b4713d',
 
       menubarBaseFg = '#1b2b34',
-      menubarFg1 = '#E8EBF0',
-      menubarFg2 = '#F8FBF6',
+      menubarFg1 = '#F6FAFF',
+      menubarFg2 = '#FCFFFA',
 
       menubarInactiveAccent = '#65737e',
       menubarActiveAccent = '#896a98',
 
       debugLineBg = '#F0E0E0',
-      cursorLineBg = '#F0F0ED',
+      cursorLineBg = '#D3D5DC',
       searchBg = '#896a98',
+
+      floatBg = '#D3D5DC',
+
+      todoFg = '#A80000',
+
+      error = '#8B0E0E',
+      errorBg = '#E1A19B',
+      -- errorBg = '#F4D9D5',
     })
     mycolors.apply_my_highlights()
-    mycolors.apply_override_highlights()
+    mycolors.apply_override_highlights({
+      PmenuSel = { bg = my.menubarBg2, fg = 'white' },
+      PmenuKindSel = { link = 'PmenuSel' },
+      PmenuExtraSel = { link = 'PmenuSel' },
+      BlinkCmpMenuSelection = { link = 'PmenuSel' },
+      IncSearch = { fg = '#F5F3F4', bg = '#B55252' },
+      Changed = { bg = '#F0E0AA' },
+      WinSeparator = { fg = '#1A2B34' },
+      DiagnosticSignError = { fg = my.error },
+      DiagnosticError = { fg = my.error },
+      DiagnosticVirtualTextError = { fg = my.error },
+    })
 
     require('github-theme').setup({
       inverse = { -- Inverse highlight for different types

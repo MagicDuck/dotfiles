@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "feature/COR-103241 Resend comms.md",
+                "file": "feature/COR-113029 ui 360 v1 update.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "COR-103241 Resend comms"
+              "title": "COR-113029 ui 360 v1 update"
             }
           }
         ]
@@ -40,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -140,7 +141,14 @@
   },
   "active": "e5a036e6fc4c346a",
   "lastOpenFiles": [
+    "FDP to KDP pipeline migration for frontend.md",
+    "assets/Pasted image 20250402135144.png",
+    "accessibility training UsableNet recordings.md",
     "feature/COR-113029 ui 360 v1 update.md",
+    "feature/COR-118364 Green vars.md",
+    "feature/COR-107469 Priority level tooltips.md",
+    "astgrep-rules in grug-far.md",
+    "feature/COR-103241 Resend comms.md",
     "cimp/COR-104593 Biomejs in fe-communications.md",
     "assets/Pasted image 20250204150813.png",
     "assets/Pasted image 20250204150758.png",
@@ -151,8 +159,6 @@
     "assets/Pasted image 20250204150326.png",
     "assets/Pasted image 20250204150219.png",
     "assets/Pasted image 20250204150140.png",
-    "assets/Pasted image 20250204150055.png",
-    "feature/COR-103241 Resend comms.md",
     "feature/COR-114390 Add skeleton to details page.md",
     "feature/COR-114036 Sms hong kong validation.md",
     "feature/COR-108502 Recipient picker.md",
@@ -171,11 +177,6 @@
     "cimp/CIMP-123 Fe comms tsc in ci.md",
     "password change.md",
     "installing-linux.md",
-    "feature/COR-103343 New communications update form.md",
-    "feature/Feature/grug diff replace.md",
-    "templates/Pathed Note.md",
-    "templates/CIMP Work.md",
-    "templates/Bug Work.md",
     "feature/Feature",
     "feat",
     "bufix",

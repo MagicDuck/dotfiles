@@ -114,7 +114,7 @@ function M.apply_override_highlights(extra_hl_groups)
       for k, v in pairs(M.get_override_highlights()) do
         vim.api.nvim_set_hl(0, k, v)
       end
-      for k, v in pairs(extra_hl_groups) do
+      for k, v in pairs(extra_hl_groups or {}) do
         vim.api.nvim_set_hl(0, k, v)
       end
     end,

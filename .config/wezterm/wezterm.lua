@@ -76,8 +76,8 @@ config.line_height = 1.4
 -- config.font_size = isLinux and 10 or 15
 -- config.line_height = 1.5
 
--- config.window_background_opacity = 0.95
--- config.macos_window_background_blur = 30
+-- config.window_background_opacity = 0.85
+-- config.macos_window_background_blur = 45
 config.background = {
   {
     source = { Color = "#FAFAF9" },
@@ -235,6 +235,12 @@ config.keys = {
     mods = "CMD",
     action = act.ShowLauncherArgs({ flags = "FUZZY|TABS" }),
   },
+  -- other tab
+  {
+    key = "o",
+    mods = "CMD",
+    action = act.ActivateLastTab,
+  },
   -- prev tab
   { key = "h", mods = "CMD", action = act.ActivateTabRelative(-1) },
   -- next tab
@@ -308,7 +314,7 @@ config.keys = {
   },
   -- fuzzy workspaces
   {
-    key = "o",
+    key = "d",
     mods = "CMD",
     action = act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
   },

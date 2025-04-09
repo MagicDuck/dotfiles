@@ -134,6 +134,14 @@ vim.api.nvim_create_autocmd('FileType', {
   desc = 'Change commentstring for kdl files',
 })
 
+-- remove line numbers in terminal
+vim.api.nvim_create_autocmd({ 'TermOpen' }, {
+  group = augroup('terminal'),
+  callback = function()
+    vim.wo.number = false
+  end,
+})
+
 -- vim.api.nvim_create_autocmd('FileType', {
 --   group = vim.api.nvim_create_augroup('grug-far-keybindings', { clear = true }),
 --   pattern = { 'grug-far' },
@@ -169,5 +177,16 @@ vim.api.nvim_create_autocmd('FileType', {
 --   group = augroup("other_mode_relative_numbers"),
 --   callback = function()
 --     vim.opt.relativenumber = true;
+--   end,
+-- })
+
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = vim.api.nvim_create_augroup('my-grug-far-custom-keybinds', { clear = true }),
+--   pattern = { 'grug-far' },
+--   callback = function()
+--     vim.keymap.set({ 'n', 'i' }, '<localleader>m', function()
+--       local inst = require('grug-far').get_instance(0)
+--       inst:apply_next_change({ open_location = false, remove_synced = false, notify = true })
+--     end, { buffer = true })
 --   end,
 -- })

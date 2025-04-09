@@ -96,7 +96,9 @@ return {
     config = function()
       require('various-textobjs').setup({
         lookForwardLines = 5, -- set to 0 to only look in the current line
-        useDefaultKeymaps = false, -- use suggested keymaps (see README)
+        keymaps = {
+          useDefaults = false,
+        },
       })
       setupKeymaps()
     end,

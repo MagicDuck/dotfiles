@@ -10,16 +10,6 @@ if vim.g.myLspDisabled then
   return {}
 end
 
--- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
--- note worarkound for lua highlighting bracket
--- !curl -sS https://raw.githubusercontent.com/neovim/neovim/v0.7.2/runtime/syntax/lua.vim > $VIMRUNTIME/syntax/lua.vim
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = 'rounded',
-})
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-  border = 'rounded',
-})
-
 return {
   -- LSP status spinner, somewhat annoying
   {
@@ -87,7 +77,7 @@ return {
           local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
           range = {
             start = { args.line1, 0 },
-            ['end'] = { args.line2, end_line:len() },
+            ['end'] = { args.line2, #end_line },
           }
         end
         require('conform').format({ async = true, lsp_fallback = true, range = range })
@@ -139,8 +129,9 @@ return {
       -- require('my/plugins/lsp/ts_ls')
       require('my/plugins/lsp/cssmodules')
 
-      -- TODO (sbadragan): this one has problems currently since it applies formatting, need to disable that somehow
+      -- Note: this one has problems currently since it applies formatting, need to disable that somehow
       -- require('my/plugins/lsp/cssls')
+
       require('my/plugins/lsp/eslint')
       require('my/plugins/lsp/stylelint')
       require('my/plugins/lsp/rust_analyzer')
@@ -185,7 +176,6 @@ return {
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
   },
 
-  -- TODO (sbadragan): commented out for blink.cmp to work
   {
     'onsails/lspkind-nvim',
     lazy = true,

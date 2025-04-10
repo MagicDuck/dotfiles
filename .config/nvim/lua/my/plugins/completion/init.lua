@@ -75,7 +75,7 @@ return {
   --       ['<C-d>'] = { 'show_documentation', 'hide_documentation', 'fallback' },
   --       ['<C-e>'] = { 'hide' },
   --
-  --       -- TODO (sbadragan): probably change this
+  --       -- TODO: probably change this
   --       -- ['<Tab>'] = {
   --       --   function(cmp)
   --       --     if cmp.is_in_snippet() then

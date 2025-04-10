@@ -1,6 +1,5 @@
 my.state.commands = {}
 
--- TODO (sbadragan): still needed??
 my.command = function(conf)
   if conf.cmd == nil then
     print('my.command: cmd is required')

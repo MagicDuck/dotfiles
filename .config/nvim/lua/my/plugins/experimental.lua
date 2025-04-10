@@ -1,4 +1,4 @@
--- TODO (sbadragan): remove
+-- for setup-less loading
 -- vim.opt.rtp:prepend('/opt/repos/grug-far.nvim')
 return {
   {

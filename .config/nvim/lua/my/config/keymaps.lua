@@ -9,7 +9,8 @@ local prevLeaderKey = function(key)
   return '<leader>k' .. key
 end
 
--- base keymaps --------------------------------------------------------------------------------
+-- base keymaps
+--------------------------------------------------------------------------------------------------
 
 vim.cmd([[
   " wildmenu swap arrow keys and left right
@@ -128,853 +129,536 @@ else
     ]])
 end
 
--- other keymaps-------------------------------------------------------------------------------
-
 -- show Mappings picker
+--------------------------------------------------------------------------------------------------
+
 my.keybind('<leader>,', function()
   require('my/plugins/telescope/command_picker').pickKeybindOrCommand({ mode = 'n' })
 end, { desc = 'show a list of key bindings to pick from' })
 
+-- buffer
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>o', ':b#<CR>', {
+  desc = 'buffer: go to previously viewed/edited buffer',
+})
+
+my.keybind('<leader>x', ':Bwipeout<CR>', {
+  desc = 'buffer: close current buffer while preserving window',
+})
+
+my.keybind(
+  '<leader>yf',
+  ':let @* = expand("%") | echo "yanked: " . @*<CR>',
+  { desc = 'buffer: yank project relative path of file in current buffer' }
+)
+
+my.keybind(
+  '<leader>yp',
+  ':let @* = expand("%:p") | echo "yanked: " . @*<CR>',
+  { desc = 'buffer: yank full path of file in current buffer' }
+)
+
+my.keybind(
+  '<leader>yt',
+  ':let @* = "env DEBUG_PRINT_LIMIT=100000 pnpm run test --maxWorkers=2 --watch " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
+  { desc = 'buffer: yank a jest unit test command for current file' }
+)
+
+my.keybind(
+  '<leader>yd',
+  ':let @* = "env DEBUG_PRINT_LIMIT=100000 node --inspect ./node_modules/jest/bin/jest.js --watch --maxWorkers=2 " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
+  { desc = 'buffer: yank a jest unit test command for current file' }
+)
+
+my.keybind('<leader>ur', function()
+  local old_name = vim.api.nvim_buf_get_name(0)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(':file ' .. old_name, true, false, true), 't', true)
+end, { desc = 'buffer: rename' })
+
+-- line
+--------------------------------------------------------------------------------------------------
+
+my.keybind('gP', 'O<esc>[p', { desc = 'line: paste on line above, keeping indentation' })
+
+my.keybind('gp', 'o<esc>]p', { desc = 'line: paste on line below, keeping indentation' })
+
+-- quickfix list
+--------------------------------------------------------------------------------------------------
+
+my.keybind(prevLeaderKey('f'), ':Cprev<CR>', { desc = 'quickfix list: next entry' })
+
+my.keybind(nextLeaderKey('f'), ':Cnext<CR>', { desc = 'quickfix list: previous entry' })
+
+my.keybind(
+  '<leader>qr',
+  ":call setqflist([], 'r', {'title': input('New Quickfix List Name: ')})<CR>",
+  { desc = 'quickfix list: rename' }
+)
+
+my.keybind('<leader>sd', function()
+  local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
+  local action = qf_winid > 0 and 'cclose' or 'copen'
+  vim.cmd('botright ' .. action)
+end, { desc = 'quickfix list: toggle' })
+
+my.keybind('<leader>sk', ':Telescope quickfixhistory<CR>', { desc = 'quickfix list: history' })
+
+-- conflict resolution
+--------------------------------------------------------------------------------------------------
+
+my.keybind(nextLeaderKey('o'), ':diffget 3<CR>', { desc = 'conflict resolution: diff get from left' })
+
+my.keybind(prevLeaderKey('o'), ':diffget 1<CR>', { desc = 'conflict resolution: diff get from right' })
+
+my.keybind(nextLeaderKey('c'), '<Plug>(unimpaired-context-next)', { desc = 'conflict resolution: next conflict' })
+
+my.keybind(prevLeaderKey('c'), '<Plug>(unimpaired-context-previous)', { desc = 'conflict resolution: prev conflict' })
+
+-- tabs
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<left>', '<cmd>tabprevious<CR>', { desc = 'tab: navigate to previous tab' })
+
+my.keybind('<right>', '<cmd>tabnext<CR>', { desc = 'tab: navigate to next tab' })
+
+my.keybind('<leader>tn', '<cmd>tabnew | Alpha<CR>', { desc = 'tab: create new tab' })
+
+my.keybind('<leader>td', '<cmd>tabnew %<CR>', { desc = 'tab: duplicate current tab' })
+
+my.keybind('<leader>tc', '<cmd>tabclose<CR>', { desc = 'tab: close current tab' })
+
+my.keybind('<leader>st', function()
+  require('my/plugins/telescope/tab_picker').pickTab()
+end, { desc = 'tab: pick tab using telescope' })
+
+my.keybind('<leader>tt', '<cmd>EditBookmarkAsTab<CR>', { desc = 'tab: edit bookmark in new tab' })
+
+my.keybind('<leader>to', '<cmd>EditBookmark<CR>', { desc = 'tab: edit bookmark in current tab' })
+
+my.keybind('<leader>tr', ':TabRename<space>', { silent = false, noremap = true, desc = 'tab: rename' })
+
+-- windows
+--------------------------------------------------------------------------------------------------
+
+my.keybind('s', '<C-W>', { silent = false, noremap = true, desc = 'window: enter window mode' })
+
+my.keybind('<M-j>', ':resize -2<CR>', { desc = 'window: resize down' })
+
+my.keybind('<M-k>', ':resize +2<CR>', { desc = 'window: resize up' })
+
+my.keybind('<M-h>', ':vertical resize -2<CR>', { desc = 'window: resize left' })
+
+my.keybind('<M-l>', ':vertical resize +2<CR>', { desc = 'window: resize right' })
+
+-- easy capitalization
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<M-u>', '<ESC>viwUi', { mode = 'i', desc = 'current word: capitalize (visual)' })
+
+my.keybind('<M-u>', 'viwU<ESC>', { desc = 'current word: capitalize' })
+
+-- improved indentation
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<', '<gv', { mode = 'v', desc = 'indentation: indent left' })
+
+my.keybind('>', '>gv', { mode = 'v', desc = 'indentation: indent right' })
+
+-- highlighting
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader><leader>', ':let @/ = ""<CR>', { desc = 'highlighting: clear search highlight' })
+
+-- docgen
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>hi', function()
+  require('neogen').generate()
+end, { desc = 'highlighting: clear search highlight' })
+
+-- marks
+--------------------------------------------------------------------------------------------------
+
+local letters = 'abcdefghijklmnopqrstuvwxyz'
+for i = 1, #letters do
+  local letter = letters:sub(i, i)
+  local uppercaseLetter = letter:upper()
+
+  my.keybind('m' .. letter, 'm' .. uppercaseLetter, { desc = 'marks: set mark ' .. uppercaseLetter })
+
+  my.keybind("'" .. letter, "'" .. uppercaseLetter, { desc = 'marks: go to mark ' .. uppercaseLetter })
+end
+
+-- startify
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>i', function()
+  if vim.bo.filetype ~= 'alpha' then
+    vim.cmd('Alpha')
+  end
+end, { desc = 'open startify' })
+
+-- git
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>gb', ':Git blame<CR>', { desc = 'git: blame' })
+
+my.keybind('<leader>gs', ':Gtabedit :<CR>', { desc = 'git: status in new tab' })
+
+my.keybind('<leader>go', ':GBrowseMain<CR>', { desc = 'git: open current file in web browser (stash)' })
+
+my.keybind('<leader>gm', ':GFiles?<CR>', { desc = 'git: pick from modified git files' })
+
+my.keybind('<leader>gl', ':DiffviewOpen<CR>', { desc = 'git: log status using diffview' })
+
+my.keybind('<leader>gh', ':DiffviewFileHistory %<CR>', { desc = 'git: log file history using diffview' })
+
+my.keybind(
+  '<leader>gh',
+  ":'<,'>DiffviewFileHistory<CR>",
+  { mode = 'v', desc = 'git: log selected region history using diffview' }
+)
+
+-- file browser
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>r', ':Yazi<CR>', { desc = 'file browser: open at file' })
 -- my.keybind({
---   desc = 'show a list of key bindings to pick from',
---   lhs = '<leader>,',
---   rhs = function()
---     require('my/plugins/telescope/command_picker').pickKeybindOrCommand({ mode = 'n' })
---   end,
--- })
---
--- -- buffer
--- my.keybind({
---   desc = 'buffer: go to previously viewed/edited buffer',
---   lhs = '<leader>o',
---   rhs = ':b#<CR>',
--- })
--- my.keybind({
---   desc = 'buffer: close current buffer while preserving window',
---   lhs = '<leader>x',
---   rhs = ':Bwipeout<CR>',
--- })
--- my.keybind({
---   desc = 'buffer: yank project relative path of file in current buffer',
---   lhs = '<leader>yf',
---   rhs = ':let @* = expand("%") | echo "yanked: " . @*<CR>',
--- })
--- my.keybind({
---   desc = 'buffer: yank full path of file in current buffer',
---   lhs = '<leader>yp',
---   rhs = ':let @* = expand("%:p") | echo "yanked: " . @*<CR>',
--- })
--- my.keybind({
---   desc = 'buffer: yank a jest unit test command for current file',
---   lhs = '<leader>yt',
---   rhs = ':let @* = "env DEBUG_PRINT_LIMIT=100000 pnpm run test --maxWorkers=2 --watch " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
--- })
--- my.keybind({
---   desc = 'buffer: yank a jest unit test command for current file',
---   lhs = '<leader>yd',
---   rhs = ':let @* = "env DEBUG_PRINT_LIMIT=100000 node --inspect ./node_modules/jest/bin/jest.js --watch --maxWorkers=2 " . expand("%:h:t") . "/" . expand("%:t:r") | echo "yanked: " . @*<CR>',
--- })
---
--- my.keybind({
---   desc = 'buffer: rename',
---   lhs = '<leader>ur',
---   rhs = function()
---     local old_name = vim.api.nvim_buf_get_name(0)
---     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(':file ' .. old_name, true, false, true), 't', true)
---   end,
--- })
---
--- -- line
--- my.keybind({
---   desc = 'line: paste on line above, keeping indentation',
---   lhs = 'gP',
---   rhs = 'O<esc>[p',
--- })
--- my.keybind({
---   desc = 'line: paste on line below, keeping indentation',
---   lhs = 'gp',
---   rhs = 'o<esc>]p',
--- })
---
--- -- quickfix list
--- my.keybind({
---   desc = 'quickfix list: next entry',
---   lhs = prevLeaderKey('f'),
---   rhs = ':Cprev<CR>',
--- })
--- my.keybind({
---   desc = 'quickfix list: previous entry',
---   lhs = nextLeaderKey('f'),
---   rhs = ':Cnext<CR>',
--- })
--- my.keybind({
---   desc = 'quickfix list: rename',
---   lhs = '<leader>qr',
---   rhs = ":call setqflist([], 'r', {'title': input('New Quickfix List Name: ')})<CR>",
--- })
--- my.keybind({
---   desc = 'quickfix list: toggle',
---   lhs = '<leader>sd',
---   rhs = function()
---     local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
---     local action = qf_winid > 0 and 'cclose' or 'copen'
---     vim.cmd('botright ' .. action)
---   end,
--- })
--- my.keybind({
---   desc = 'quickfix list: history',
---   lhs = '<leader>sk',
---   rhs = ':Telescope quickfixhistory<CR>',
--- })
---
--- -- conflict resolution
--- my.keybind({
---   desc = 'conflict resolution: diff get from left',
---   lhs = nextLeaderKey('o'),
---   rhs = ':diffget 3<CR>',
--- })
--- my.keybind({
---   desc = 'conflict resolution: diff get from right',
---   lhs = prevLeaderKey('o'),
---   rhs = ':diffget 1<CR>',
--- })
--- my.keybind({
---   desc = 'conflict resolution: next conflict',
---   lhs = nextLeaderKey('c'),
---   -- rhs = "]n",
---   rhs = '<Plug>(unimpaired-context-next)',
--- })
--- my.keybind({
---   desc = 'conflict resolution: prev conflict',
---   lhs = prevLeaderKey('c'),
---   -- rhs = "[n",
---   rhs = '<Plug>(unimpaired-context-previous)',
--- })
---
--- -- tabs
--- my.keybind({
---   desc = 'tab: navigate to previous tab',
---   lhs = '<left>',
---   rhs = '<cmd>tabprevious<CR>',
--- })
--- my.keybind({
---   desc = 'tab: navigate to next tab',
---   lhs = '<right>',
---   rhs = '<cmd>tabnext<CR>',
--- })
--- my.keybind({
---   desc = 'tab: create new tab',
---   lhs = '<leader>tn',
---   rhs = '<cmd>tabnew | Alpha<CR>',
--- })
--- my.keybind({
---   desc = 'tab: duplicate current tab',
---   lhs = '<leader>td',
---   rhs = '<cmd>tabnew %<CR>',
--- })
--- my.keybind({
---   desc = 'tab: close current tab',
---   lhs = '<leader>tc',
---   rhs = '<cmd>tabclose<CR>',
--- })
--- my.keybind({
---   desc = 'tab: pick tab using telescope',
---   lhs = '<leader>st',
---   rhs = "<cmd>lua require('my/plugins/telescope/tab_picker').pickTab()<CR>",
--- })
--- my.keybind({
---   desc = 'tab: edit bookmark in new tab',
---   lhs = '<leader>tt',
---   rhs = '<cmd>EditBookmarkAsTab<CR>',
--- })
--- my.keybind({
---   desc = 'tab: edit bookmark in current tab',
---   lhs = '<leader>to',
---   rhs = '<cmd>EditBookmark<CR>',
--- })
--- my.keybind({
---   desc = 'tab: rename',
---   lhs = '<leader>tr',
---   rhs = ':TabRename<space>',
---   options = { silent = false, noremap = true },
--- })
---
--- -- windows
--- my.keybind({
---   desc = 'window: enter window mode',
---   lhs = 's',
---   rhs = '<C-W>',
---   options = { silent = false, noremap = true },
--- })
--- my.keybind({
---   desc = 'window: resize down',
---   lhs = '<M-j>',
---   rhs = ':resize -2<CR>',
--- })
--- my.keybind({
---   desc = 'window: resize up',
---   lhs = '<M-k>',
---   rhs = ':resize +2<CR>',
--- })
--- my.keybind({
---   desc = 'window: resize left',
---   lhs = '<M-h>',
---   rhs = ':vertical resize -2<CR>',
--- })
--- my.keybind({
---   desc = 'window: resize right',
---   lhs = '<M-l>',
---   rhs = ':vertical resize +2<CR>',
--- })
---
--- -- easy capitalization
--- my.keybind({
---   desc = 'current word: capitalize (visual)',
---   mode = 'i',
---   lhs = '<M-u>',
---   rhs = '<ESC>viwUi',
--- })
--- my.keybind({
---   desc = 'current word: capitalize',
---   lhs = '<M-u>',
---   rhs = 'viwU<ESC>',
--- })
---
--- -- improved indentation
--- my.keybind({
---   desc = 'indentation: indent left',
---   mode = 'v',
---   lhs = '<',
---   rhs = '<gv',
--- })
--- my.keybind({
---   desc = 'indentation: indent right',
---   mode = 'v',
---   lhs = '>',
---   rhs = '>gv',
--- })
---
--- my.keybind({ '<leader><leader>', ':let @/ = ""<CR>', desc = 'highlighting: clear search highlight' })
--- -- highlighting
--- my.keybind({
---   desc = 'highlighting: clear search highlight',
---   lhs = '<leader><leader>',
---   rhs = ':let @/ = ""<CR>',
--- })
---
--- -- docgen
--- my.keybind({
---   desc = 'highlighting: clear search highlight',
---   lhs = '<leader>hi',
---   rhs = function()
---     require('neogen').generate()
---   end,
--- })
---
--- -- marks
--- local letters = 'abcdefghijklmnopqrstuvwxyz'
--- for i = 1, #letters do
---   local letter = letters:sub(i, i)
---   local uppercaseLetter = letter:upper()
---   my.keybind({
---     desc = 'marks: set mark ' .. uppercaseLetter,
---     lhs = 'm' .. letter,
---     rhs = 'm' .. uppercaseLetter,
---   })
---   my.keybind({
---     desc = 'marks: go to mark ' .. uppercaseLetter,
---     lhs = "'" .. letter,
---     rhs = "'" .. uppercaseLetter,
---   })
--- end
---
--- -- startify
--- my.keybind({
---   desc = 'open startify',
---   lhs = '<leader>i',
---   rhs = function()
---     if vim.bo.filetype ~= 'alpha' then
---       vim.cmd('Alpha')
---     end
---   end,
--- })
---
--- -- git
--- my.keybind({
---   desc = 'git: blame',
---   lhs = '<leader>gb',
---   rhs = ':Git blame<CR>',
--- })
--- my.keybind({
---   desc = 'git: status in new tab',
---   lhs = '<leader>gs',
---   rhs = ':Gtabedit :<CR>',
--- })
--- my.keybind({
---   desc = 'git: open current file in web browser (stash)',
---   lhs = '<leader>go',
---   rhs = ':GBrowseMain<CR>',
--- })
--- my.keybind({
---   desc = 'git: pick from modified git files',
---   lhs = '<leader>gm',
---   rhs = ':GFiles?<CR>',
--- })
--- -- my.keybind({
--- -- 	desc ="git: history time lapse view of current file changes",
--- -- 	lhs = "<leader>gh",
--- -- 	rhs = ":GitTimeLapse<CR>",
--- -- })
--- my.keybind({
---   desc = 'git: log status using diffview',
---   lhs = '<leader>gl',
---   rhs = ':DiffviewOpen<CR>',
--- })
--- my.keybind({
---   desc = 'git: log file history using diffview',
---   lhs = '<leader>gh',
---   rhs = ':DiffviewFileHistory %<CR>',
--- })
--- my.keybind({
---   mode = 'v',
---   desc = 'git: log selected region history using diffview',
---   lhs = '<leader>gh',
---   rhs = ":'<,'>DiffviewFileHistory<CR>",
--- })
---
--- -- file browser
--- my.keybind({
---   desc = 'file browser: open at file',
+--   desc ='file browser: toggle open',
 --   lhs = '<leader>r',
---   rhs = ':Yazi<CR>',
--- })
--- -- my.keybind({
--- --   desc ='file browser: toggle open',
--- --   lhs = '<leader>r',
--- --   rhs = ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
--- -- })
--- -- my.keybind({
--- --   desc ='file browser: toggle open',
--- --   lhs = '<M-o>',
--- --   rhs = ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
--- -- })
--- -- my.keybind({
--- --   mode = 't',
--- --   desc ='ranger: toggle open (extra binding that works in terminal mode)',
--- --   lhs = '<M-o>',
--- --   rhs = '<C-\\><C-n>:Telescope file_browser path=%:p:h select_buffer=true<CR>',
--- -- })
---
--- -- easy align
--- -- my.keybind({
--- --   desc ="Easy Align: Start interactive EasyAlign for (e.g. gaip, vipga)",
--- --   mode = "nvsox",
--- --   lhs = "ga",
--- --   rhs = "<Plug>(EasyAlign)",
--- -- })
---
--- -- fuzzy find things
--- my.keybind({
---   desc = 'Search: pick from existing buffers',
---   lhs = '<leader>b',
---   -- rhs = ":Buffers<CR>"
---   rhs = ':Telescope buffers<CR>',
--- })
--- my.keybind({
---   desc = 'Search: pick from project files',
---   lhs = '<leader>d',
---   rhs = ':Telescope find_files<CR>',
--- })
--- my.keybind({
---   desc = 'Search: find text in project files',
---   lhs = '<leader>f',
---   rhs = ':Telescope live_grep<CR>',
--- })
--- my.keybind({
---   desc = 'Search: pick a line in the current buffer',
---   lhs = '<leader>sb',
---   rhs = ':Telescope current_buffer_fuzzy_find<CR>',
--- })
--- my.keybind({
---   desc = 'Search: pick a line in all opened buffers',
---   lhs = '<leader>sl',
---   rhs = ':Lines<CR>',
--- })
--- my.keybind({
---   mode = 'v',
---   desc = 'Search: find current selection under cursor in project',
---   lhs = '<leader>sf',
---   rhs = 'y<ESC>:lua require("telescope.builtin").live_grep({ default_text="<c-r>0" })<CR>',
--- })
--- my.keybind({
---   mode = 'n',
---   desc = 'Search: find current word under cursor in project',
---   lhs = '<leader>sf',
---   rhs = 'y<ESC>:lua require("telescope.builtin").live_grep({ default_text=vim.fn.expand("<cword>") })<CR>',
--- })
--- my.keybind({
---   mode = 'n',
---   desc = 'Search: replace in files using grug-far',
---   lhs = '<leader>so',
---   rhs = ':GrugFar<CR>',
+--   rhs = ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
 -- })
 --
 -- my.keybind({
---   desc = 'Search: find in help tags visual',
---   lhs = '<leader>sh',
---   rhs = 'y<ESC>:lua require("telescope.builtin").help_tags({ default_text=vim.fn.expand("<cword>") })<CR>',
---   mode = 'n',
+--   desc ='file browser: toggle open',
+--   lhs = '<M-o>',
+--   rhs = ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
 -- })
--- my.keybind({
---   desc = 'Search: resume telescope search',
---   lhs = '<leader>su',
---   rhs = ':Telescope resume<CR>',
--- })
---
--- -- notes
--- my.keybind({
---   desc = 'notes: open notes dir',
---   lhs = '<leader>ne',
---   rhs = ':cd ~/notes/ | Alpha<CR>',
--- })
--- my.keybind({
---   desc = 'notes: pick a note file',
---   lhs = '<leader>nd',
---   rhs = ':MyFiles ~/notes/<CR>',
--- })
--- my.keybind({
---   desc = 'notes: find in note files',
---   lhs = '<leader>nf',
---   rhs = ':SearchNotes<CR>',
--- })
--- my.keybind({
---   desc = 'notes: open notes dir with ranger',
---   lhs = '<leader>nr',
---   rhs = ':e ~/notes/ | RnvimrToggle<CR>',
--- })
--- my.keybind({
---   desc = 'notes: todo: open buffer todos in loclist',
---   lhs = '<leader>ng',
---   rhs = ':lvimgrep /\\[[ ]\\]/ % | lopen<CR>',
--- })
--- my.keybind({
---   desc = 'notes: add/edit note',
---   lhs = '<leader>na',
---   rhs = ':EditNote ',
---   options = { silent = false },
--- })
--- my.keybind({
---   desc = 'notes: add/edit note for current git branch',
---   lhs = '<leader>nb',
---   rhs = ':EditNoteForBranch<CR>',
--- })
--- my.keybind({
---   desc = 'notes: todo comments: add on line above',
---   lhs = '<leader>nt',
---   rhs = function()
---     require('my/todos').addTodoCommentToLineAbove()
---   end,
--- })
--- my.keybind({
---   desc = 'notes: todo comments: search in project',
---   lhs = '<leader>ns',
---   rhs = ':TodoTelescope<CR>',
---   -- rhs = ":SearchForTodoComments<CR>",
--- })
---
--- -- LSP
--- my.keybind({
---   desc = 'lsp: symbol: trigger hover help popup',
---   lhs = 'K',
---   rhs = function()
---     vim.lsp.buf.hover()
---   end,
--- })
--- my.keybind({
---   mode = 'ni',
---   desc = 'lsp: symbol: trigger signature help popup',
---   lhs = '<C-k>',
---   rhs = vim.lsp.buf.signature_help,
--- })
--- my.keybind({
---   desc = 'lsp: symbol: go to declaration',
---   lhs = 'gD',
---   rhs = function()
---     vim.lsp.buf.declaration()
---   end,
--- })
--- -- TODO (sbadragan): move this to another file
--- my.keybind({
---   desc = 'lsp: symbol: go to definition',
---   lhs = 'gd',
---   rhs = function()
---     local openLocation = function(loc)
---       local targetBuf = vim.fn.bufnr(loc.filename)
---       local targetWin = 0
---       if targetBuf == -1 then
---         vim.fn.win_execute(targetWin, 'e! ' .. vim.fn.fnameescape(loc.filename), true)
---         targetBuf = vim.api.nvim_win_get_buf(targetWin)
---       else
---         vim.api.nvim_win_set_buf(targetWin, targetBuf)
---       end
---       pcall(vim.api.nvim_win_set_cursor, targetWin, { loc.lnum or 1, loc.col and loc.col - 1 or 0 })
---     end
---
---     vim.lsp.buf.definition({
---       on_list = function(options)
---         local items = {}
---         for _, item in ipairs(options.items) do
---           if not vim.iter(items):find(function(it)
---             return item.lnum == it.lnum
---           end) then
---             table.insert(items, item)
---           end
---         end
---
---         if #items == 0 then
---           print('no definitions found!')
---           return
---         end
---
---         if #items == 1 then
---           openLocation(items[1])
---           return
---         end
---
---         local cwd = vim.fn.getcwd()
---         vim.ui.select(items, {
---           prompt = 'Select where to go:',
---           format_item = function(item)
---             local filename = item.filename
---             if vim.startswith(filename, cwd) then
---               filename = '.' .. filename:sub(#cwd + 1)
---             end
---             return vim.trim(item.text) .. '\n    ' .. filename .. ':' .. item.lnum .. ':' .. item.col
---           end,
---         }, function(choice)
---           openLocation(choice)
---         end)
---       end,
---     })
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: symbol: go to definition in new tab',
---   lhs = 'gt',
---   rhs = '<C-W>v<C-W>T:lua vim.lsp.buf.definition()<CR>',
--- })
--- my.keybind({
---   desc = 'lsp: symbol: go to definition in vertical split',
---   lhs = 'gs',
---   rhs = '<C-W>v:lua vim.lsp.buf.definition()<CR>',
--- })
--- my.keybind({
---   desc = 'lsp: symbol: go to type definition',
---   lhs = 'gy',
---   rhs = function()
---     vim.lsp.buf.type_definition()
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: symbol: go to implementation',
---   lhs = 'gm',
---   rhs = function()
---     vim.lsp.buf.implementation()
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: symbol: go to references',
---   lhs = 'gr',
---   rhs = function()
---     vim.lsp.buf.references()
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: symbol: rename',
---   lhs = '<leader>lr',
---   rhs = function()
---     vim.lsp.buf.rename()
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: code action: pick',
---   lhs = '<leader>la',
---   rhs = function()
---     vim.lsp.buf.code_action()
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: diagnostics: show from current line',
---   lhs = '<leader>ld',
---   rhs = function()
---     vim.diagnostic.open_float()
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: diagnostics: go to previous',
---   lhs = prevLeaderKey('d'),
---   rhs = function()
---     vim.diagnostic.goto_prev()
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: diagnostics: go to next',
---   lhs = nextLeaderKey('d'),
---   rhs = function()
---     vim.diagnostic.goto_next()
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: diagnostics: put all buffer diagnostics into the loclist',
---   lhs = '<leader>ll',
---   rhs = function()
---     vim.diagnostic.setloclist()
---   end,
--- })
--- my.keybind({
---   desc = 'lsp: format current buffer',
---   lhs = '<leader>lf',
---   rhs = '<cmd>lua vim.lsp.buf.format()<CR>',
--- })
--- my.keybind({
---   desc = 'format json',
---   lhs = '<leader>uj',
---   rhs = ':%!jq .<CR>',
--- })
--- my.keybind({
---   desc = 'lsp: toggle outline',
---   lhs = '<leader>lo',
---   rhs = '<cmd>AerialToggle left<CR>',
--- })
+
+-- easy align
 --
 -- my.keybind({
---   mode = 'nxo',
---   desc = 'flash to location',
---   lhs = 'f',
---   rhs = "<cmd>lua require('flash').jump()<cr>",
+--   desc ="Easy Align: Start interactive EasyAlign for (e.g. gaip, vipga)",
+--   mode = "nvsox",
+--   lhs = "ga",
+--   rhs = "<Plug>(EasyAlign)",
 -- })
--- my.keybind({
---   mode = 'nxo',
---   desc = 'flash: select using treesitter',
---   lhs = is_linux and '<c-h>' or '<a-bs>', -- c-h is c-bs weirdly enough
---   rhs = "<cmd>lua require('flash').treesitter()<cr>",
---   options = { silent = false, noremap = true },
--- })
--- my.keybind({
---   mode = 'n',
---   desc = 'leap line select',
---   lhs = 'R',
---   rhs = "<cmd>lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('Vf<space><space>', true, false, true), 't', true)<CR>",
--- })
--- -- my.keybind({
--- --   mode = 'n',
--- --   desc ='leap line select',
--- --   lhs = 'Y',
--- --   rhs = "<cmd>lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('yf<space><space>', true, false, true), 't', true)<CR>",
--- -- })
---
--- -- replace
--- my.keybind({
---   mode = 'n',
---   desc = 'replace current word in file',
---   lhs = '<leader>sr',
---   rhs = ':%s/<C-r><C-w>//g<Left><Left>',
---   options = { silent = false },
--- })
--- -- scrolling
--- my.keybind({
---   mode = 'n',
---   desc = 'scroll down',
---   lhs = '<PageDown>',
---   rhs = '30j',
--- })
--- my.keybind({
---   mode = 'n',
---   desc = 'scroll up',
---   lhs = '<PageUp>',
---   rhs = '30k',
--- })
---
--- -- dap debugging
--- my.keybind({
---   desc = 'debugger: when debugging, continue. Otherwise start debugging',
---   lhs = '<leader>ec',
---   rhs = ':MyDapReloadContinue<CR>',
--- })
--- my.keybind({
---   desc = 'debugger: pause',
---   lhs = '<leader>ep',
---   rhs = function()
---     require('dap').pause()
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: step over',
---   lhs = '<leader>er',
---   rhs = function()
---     require('dap').step_over()
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: step into',
---   lhs = '<leader>ei',
---   rhs = function()
---     require('dap').step_into()
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: step out',
---   lhs = '<leader>eo',
---   rhs = function()
---     require('dap').step_out()
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: step back',
---   lhs = '<leader>ea',
---   rhs = function()
---     require('dap').step_back()
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: run to cursor (temporarily removes all other breakpoints and adds them back after)',
---   lhs = '<leader>ej',
---   rhs = function()
---     require('dap').run_to_cursor()
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: toggle breakpoint',
---   lhs = '<leader>eb',
---   rhs = function()
---     require('dap').toggle_breakpoint()
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: set conditional breakpoint',
---   lhs = '<leader>ek',
---   rhs = function()
---     require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: set log point',
---   lhs = '<leader>el',
---   rhs = function()
---     require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: open/focus REPL',
---   lhs = '<leader>ef',
---   rhs = function()
---     require('dap').repl_open()
---   end,
--- })
--- my.keybind({
---   desc = 'debugger: re-run the last debug adapter / configuration that ran',
---   lhs = '<leader>ed',
---   rhs = function()
---     require('dap').run_last()
---   end,
--- })
--- my.keybind({
---   mode = 'nv',
---   desc = 'debugger: evaluate expression under cursor (works with selection in visual mode)',
---   lhs = '<leader>ee',
---   rhs = function()
---     require('dap.ui.widgets').hover()
---   end,
--- })
--- my.keybind({
---   mode = 'n',
---   desc = 'debugger: terminate',
---   lhs = '<leader>eq',
---   rhs = function()
---     require('dap').terminate()
---   end,
--- })
---
--- my.keybind({
---   mode = 'n',
---   desc = 'markdown: preview open',
---   lhs = '<leader>po',
---   rhs = ':PeekOpen<CR>',
--- })
--- my.keybind({
---   mode = 'n',
---   desc = 'markdown: preview open',
---   lhs = '<leader>pc',
---   rhs = ':PeekClose<CR>',
--- })
---
--- -- switch to alternate file
--- my.keybind({
---   mode = 'n',
---   desc = 'vsplit edit associated file: jsx file',
---   lhs = '<leader>vf',
---   rhs = function()
---     vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.jsx')
---   end,
--- })
--- my.keybind({
---   mode = 'n',
---   desc = 'vsplit edit associated file: spec file',
---   lhs = '<leader>vt',
---   rhs = function()
---     vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.spec.js')
---   end,
--- })
--- my.keybind({
---   mode = 'n',
---   desc = 'vsplit edit associated file: module scss file',
---   lhs = '<leader>vc',
---   rhs = function()
---     vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.module.scss')
---   end,
--- })
---
--- -- snippets
--- my.keybind({
---   mode = 'i',
---   desc = 'Snippets: search and insert snippet with telescope',
---   lhs = '<c-p>',
---   rhs = '<esc>:Telescope luasnip<CR>',
--- })
---
--- -- messages window
--- my.keybind({
---   mode = 'n',
---   desc = 'Messages : show messages window',
---   lhs = '<leader>m',
---   -- rhs = '<esc>:messages<CR>',
---   rhs = '<esc>:Bmessages<CR>',
--- })
---
--- -- tests
--- my.keybind({
---   desc = 'mini.test: run file',
---   lhs = '<leader>xf',
---   rhs = function()
---     require('mini.test').run_file()
---   end,
--- })
--- my.keybind({
---   desc = 'mini.test: run tests',
---   lhs = '<leader>xt',
---   rhs = function()
---     require('mini.test').run()
---   end,
--- })
---
--- -- overseer
--- my.keybind({
---   desc = 'overseer: run task',
---   lhs = '<leader>wr',
---   rhs = '<cmd>OverseerRun<CR>',
--- })
--- my.keybind({
---   desc = 'overseer: toggle',
---   lhs = '<leader>wt',
---   rhs = '<cmd>OverseerToggle<CR>',
--- })
+
+-- fuzzy find things
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>b', ':Telescope buffers<CR>', { desc = 'Search: pick from existing buffers' })
+
+my.keybind('<leader>d', ':Telescope find_files<CR>', { desc = 'Search: pick from project files' })
+
+my.keybind('<leader>f', ':Telescope live_grep<CR>', { desc = 'Search: find text in project files' })
+
+my.keybind(
+  '<leader>sb',
+  ':Telescope current_buffer_fuzzy_find<CR>',
+  { desc = 'Search: pick a line in the current buffer' }
+)
+
+my.keybind('<leader>sl', ':Lines<CR>', { desc = 'Search: pick a line in all opened buffers' })
+
+my.keybind(
+  '<leader>sf',
+  'y<ESC>:lua require("telescope.builtin").live_grep({ default_text="<c-r>0" })<CR>',
+  { mode = 'v', desc = 'Search: find current selection under cursor in project' }
+)
+
+my.keybind(
+  '<leader>sf',
+  'y<ESC>:lua require("telescope.builtin").live_grep({ default_text=vim.fn.expand("<cword>") })<CR>',
+  { mode = 'n', desc = 'Search: find current word under cursor in project' }
+)
+
+my.keybind('<leader>so', ':GrugFar<CR>', { mode = 'n', desc = 'Search: replace in files using grug-far' })
+
+my.keybind(
+  '<leader>sh',
+  'y<ESC>:lua require("telescope.builtin").help_tags({ default_text=vim.fn.expand("<cword>") })<CR>',
+  { desc = 'Search: find in help tags visual' }
+)
+
+my.keybind('<leader>su', ':Telescope resume<CR>', { desc = 'Search: resume telescope search' })
+
+-- notes
+--------------------------------------------------------------------------------------------------
+my.keybind('<leader>ne', ':cd ~/notes/ | Alpha<CR>', { desc = 'notes: open notes dir' })
+
+my.keybind('<leader>nd', ':MyFiles ~/notes/<CR>', { desc = 'notes: pick a note file' })
+
+my.keybind('<leader>nf', ':SearchNotes<CR>', { desc = 'notes: find in note files' })
+
+my.keybind('<leader>nr', ':e ~/notes/ | RnvimrToggle<CR>', { desc = 'notes: open notes dir with ranger' })
+
+my.keybind('<leader>ng', ':lvimgrep /\\[[ ]\\]/ % | lopen<CR>', { desc = 'notes: todo: open buffer todos in loclist' })
+
+my.keybind('<leader>na', ':EditNote ', { silent = false, desc = 'notes: add/edit note' })
+
+my.keybind('<leader>nb', ':EditNoteForBranch<CR>', { desc = 'notes: add/edit note for current git branch' })
+
+my.keybind('<leader>nt', function()
+  require('my/todos').addTodoCommentToLineAbove()
+end, { desc = 'notes: todo comments: add on line above' })
+
+my.keybind('<leader>ns', ':TodoTelescope<CR>', { desc = 'notes: todo comments: search in project' })
+
+-- LSP
+--------------------------------------------------------------------------------------------------
+
+my.keybind('K', function()
+  vim.lsp.buf.hover()
+end, { desc = 'lsp: symbol: trigger hover help popup' })
+
+my.keybind('<C-k>', vim.lsp.buf.signature_help, { mode = 'ni', desc = 'lsp: symbol: trigger signature help popup' })
+
+my.keybind('gD', function()
+  vim.lsp.buf.declaration()
+end, { desc = 'lsp: symbol: go to declaration' })
+
+-- TODO (sbadragan): move this to another file
+my.keybind('gd', function()
+  local openLocation = function(loc)
+    local targetBuf = vim.fn.bufnr(loc.filename)
+    local targetWin = 0
+    if targetBuf == -1 then
+      vim.fn.win_execute(targetWin, 'e! ' .. vim.fn.fnameescape(loc.filename), true)
+      targetBuf = vim.api.nvim_win_get_buf(targetWin)
+    else
+      vim.api.nvim_win_set_buf(targetWin, targetBuf)
+    end
+    pcall(vim.api.nvim_win_set_cursor, targetWin, { loc.lnum or 1, loc.col and loc.col - 1 or 0 })
+  end
+
+  vim.lsp.buf.definition({
+    on_list = function(options)
+      local items = {}
+      for _, item in ipairs(options.items) do
+        if not vim.iter(items):find(function(it)
+          return item.lnum == it.lnum
+        end) then
+          table.insert(items, item)
+        end
+      end
+
+      if #items == 0 then
+        print('no definitions found!')
+        return
+      end
+
+      if #items == 1 then
+        openLocation(items[1])
+        return
+      end
+
+      local cwd = vim.fn.getcwd()
+      vim.ui.select(items, {
+        prompt = 'Select where to go:',
+        format_item = function(item)
+          local filename = item.filename
+          if vim.startswith(filename, cwd) then
+            filename = '.' .. filename:sub(#cwd + 1)
+          end
+          return vim.trim(item.text) .. '\n    ' .. filename .. ':' .. item.lnum .. ':' .. item.col
+        end,
+      }, function(choice)
+        openLocation(choice)
+      end)
+    end,
+  })
+end, { desc = 'lsp: symbol: go to definition' })
+
+my.keybind('gt', '<C-W>v<C-W>T:lua vim.lsp.buf.definition()<CR>', { desc = 'lsp: symbol: go to definition in new tab' })
+
+my.keybind(
+  'gs',
+  '<C-W>v:lua vim.lsp.buf.definition()<CR>',
+  { desc = 'lsp: symbol: go to definition in vertical split' }
+)
+
+my.keybind('gy', function()
+  vim.lsp.buf.type_definition()
+end, { desc = 'lsp: symbol: go to type definition' })
+
+my.keybind('gm', function()
+  vim.lsp.buf.implementation()
+end, { desc = 'lsp: symbol: go to implementation' })
+
+my.keybind('gr', function()
+  vim.lsp.buf.references()
+end, { desc = 'lsp: symbol: go to references' })
+
+my.keybind('<leader>lr', function()
+  vim.lsp.buf.rename()
+end, { desc = 'lsp: symbol: rename' })
+
+my.keybind('<leader>la', function()
+  vim.lsp.buf.code_action()
+end, { desc = 'lsp: code action: pick' })
+
+my.keybind('<leader>ld', function()
+  vim.diagnostic.open_float()
+end, { desc = 'lsp: diagnostics: show from current line' })
+
+my.keybind(prevLeaderKey('d'), function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = 'lsp: diagnostics: go to previous' })
+
+my.keybind(nextLeaderKey('d'), function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = 'lsp: diagnostics: go to next' })
+
+my.keybind('<leader>ll', function()
+  vim.diagnostic.setloclist()
+end, { desc = 'lsp: diagnostics: put all buffer diagnostics into the loclist' })
+
+my.keybind('<leader>lf', function()
+  vim.lsp.buf.format()
+end, { desc = 'lsp: format current buffer' })
+
+my.keybind('<leader>uj', ':%!jq .<CR>', { desc = 'format json' })
+
+my.keybind('<leader>lo', '<cmd>AerialToggle left<CR>', { desc = 'lsp: toggle outline' })
+
+my.keybind('f', function()
+  require('flash').jump()
+end, { mode = 'nxo', desc = 'flash to location' })
+
+my.keybind(is_linux and '<c-h>' or '<a-bs>', function()
+  require('flash').treesitter()
+end, {
+  mode = 'nxo',
+  silent = false,
+  noremap = true,
+  desc = 'flash: select using treesitter',
+})
+
+my.keybind('R', function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('Vf<space><space>', true, false, true), 't', true)
+end, { mode = 'n', desc = 'leap line select' })
+
+-- replace
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>sr', ':%s/<C-r><C-w>//g<Left><Left>', { mode = 'n', desc = 'replace current word in file' })
+
+-- scrolling
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<PageDown>', '30j', { mode = 'n', desc = 'scroll down' })
+
+my.keybind('<PageUp>', '30k', { mode = 'n', desc = 'scroll up' })
+
+-- dap debugging
+--------------------------------------------------------------------------------------------------
+
+my.keybind(
+  '<leader>ec',
+  ':MyDapReloadContinue<CR>',
+  { desc = 'debugger: when debugging, continue. Otherwise start debugging' }
+)
+
+my.keybind('<leader>ep', function()
+  require('dap').pause()
+end, { desc = 'debugger: pause' })
+
+my.keybind('<leader>er', function()
+  require('dap').step_over()
+end, { desc = 'debugger: step over' })
+
+my.keybind('<leader>ei', function()
+  require('dap').step_into()
+end, { desc = 'debugger: step into' })
+
+my.keybind('<leader>eo', function()
+  require('dap').step_out()
+end, { desc = 'debugger: step out' })
+
+my.keybind('<leader>ea', function()
+  require('dap').step_back()
+end, { desc = 'debugger: step back' })
+
+my.keybind('<leader>ej', function()
+  require('dap').run_to_cursor()
+end, { desc = 'debugger: run to cursor (temporarily removes all other breakpoints and adds them back after)' })
+
+my.keybind('<leader>eb', function()
+  require('dap').toggle_breakpoint()
+end, { desc = 'debugger: toggle breakpoint' })
+
+my.keybind('<leader>ek', function()
+  require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
+end, { desc = 'debugger: set conditional breakpoint' })
+
+my.keybind('<leader>el', function()
+  require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+end, { desc = 'debugger: set log point' })
+
+my.keybind('<leader>ef', function()
+  require('dap').repl_open()
+end, { desc = 'debugger: open/focus REPL' })
+
+my.keybind('<leader>ed', function()
+  require('dap').run_last()
+end, { desc = 'debugger: re-run the last debug adapter / configuration that ran' })
+
+my.keybind('<leader>ee', function()
+  require('dap.ui.widgets').hover()
+end, { mode = 'nv', desc = 'debugger: evaluate expression under cursor (works with selection in visual mode)' })
+
+my.keybind('<leader>eq', function()
+  require('dap').terminate()
+end, { desc = 'debugger: terminate' })
+
+my.keybind('<leader>po', ':PeekOpen<CR>', { desc = 'markdown: preview open' })
+
+my.keybind('<leader>pc', ':PeekClose<CR>', { desc = 'markdown: preview open' })
+
+-- switch to alternate file
+--------------------------------------------------------------------------------------------------
+my.keybind('<leader>vf', function()
+  vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.jsx')
+end, { desc = 'vsplit edit associated file: jsx file' })
+
+my.keybind('<leader>vt', function()
+  vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.spec.js')
+end, { desc = 'vsplit edit associated file: spec file' })
+
+my.keybind('<leader>vc', function()
+  vim.cmd('vsplit ' .. vim.fn.expand('%:p:r:r') .. '.module.scss')
+end, { desc = 'vsplit edit associated file: module scss file' })
+
+-- snippets
+--------------------------------------------------------------------------------------------------
+
+my.keybind(
+  '<c-p>',
+  '<esc>:Telescope luasnip<CR>',
+  { mode = 'i', desc = 'Snippets: search and insert snippet with telescope' }
+)
+
+-- messages window
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>m', ':Bmessages<CR>', { desc = 'Messages : show messages window' })
+
+-- tests
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>xf', function()
+  require('mini.test').run_file()
+end, { desc = 'mini.test: run file' })
+
+my.keybind('<leader>xt', function()
+  require('mini.test').run()
+end, { desc = 'mini.test: run tests' })
+
+-- overseer
+--------------------------------------------------------------------------------------------------
+
+my.keybind('<leader>wr', '<cmd>OverseerRun<CR>', { desc = 'overseer: run task' })
+
+my.keybind('<leader>wt', '<cmd>OverseerToggle<CR>', { desc = 'overseer: toggle' })

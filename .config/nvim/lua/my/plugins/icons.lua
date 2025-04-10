@@ -5,7 +5,7 @@ return {
     event = { 'VimEnter' },
     config = function()
       require('nvim-web-devicons').setup({
-        -- your personnal icons can go here (to override)
+        -- your personal icons can go here (to override)
         -- DevIcon will be appended to `name`
         -- override = {
         --  zsh = {

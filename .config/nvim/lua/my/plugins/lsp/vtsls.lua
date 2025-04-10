@@ -12,7 +12,7 @@ lspconfig.vtsls.setup({
     client.server_capabilities.documentFormattingProvider = false
   end,
   capabilities = attach.global_capabilities,
-  -- TODO (sbadragan): use goto_source_definition for gd?, so we don't navigate to types??? https://github.com/yioneko/nvim-vtsls
+  -- TODO???: use goto_source_definition for gd?, so we don't navigate to types??? https://github.com/yioneko/nvim-vtsls
   on_attach = attach.global_on_attach,
   -- see https://github.com/yioneko/vtsls/blob/main/packages/service/configuration.schema.json
   settings = {

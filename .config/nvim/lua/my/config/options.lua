@@ -28,6 +28,7 @@ opt.showfulltag = true
 opt.shortmess:append({ t = true, s = true, I = true, c = true, A = true })
 vim.cmd([[ set wildchar=<Tab> ]]) -- expects a char (number)
 vim.cmd([[ set wildcharm=<C-z> ]]) -- expects a char (number)
+vim.cmd([[ set wildoptions=fuzzy,pum ]])
 opt.wildmenu = true
 opt.wildmode = 'longest:full,full'
 opt.wildignorecase = true

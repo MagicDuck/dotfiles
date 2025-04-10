@@ -3,6 +3,7 @@ return {
     'echasnovski/mini.misc',
     config = function()
       -- set up CWD depending on current file
+      -- TODO (sbadragan): use just vim.fn.root?
       require('mini.misc').setup_auto_root(function(name, path)
         for _, n in ipairs({ '.git', '.obsidian' }) do
           if name == n then
@@ -10,7 +11,7 @@ return {
           end
         end
 
-        if path:match('%.config/nvim') then
+        if path:match('%.config/nvim/?$') then
           return true
         end
 

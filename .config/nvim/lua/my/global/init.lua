@@ -1,5 +1,5 @@
-my = {state = {}}
-require("my/global/inspect")
-require("my/global/keyMappings")
-require("my/global/commands")
-require("my/global/reload")
+-- TODO (sbadragan): can remove?
+my = { state = {} }
+require('my/global/inspect')
+require('my/global/keyMappings')
+require('my/global/commands')

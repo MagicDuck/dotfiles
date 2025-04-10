@@ -11,7 +11,7 @@ local function get_bookmarks()
   local bookmarks = {
     { 'i', '~/.config/nvim/init.lua' },
     '~/notes',
-    '~/.config/nvim/base-config/keys.vim',
+    '~/.config/nvim/lua/my/config/keymaps.lua',
     '~/.config/karabiner.edn',
     '~/.config/kitty/kitty.conf',
     '~/.tmux.conf',

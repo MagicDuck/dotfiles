@@ -218,9 +218,9 @@ my.keybind(prevLeaderKey('c'), '<Plug>(unimpaired-context-previous)', { desc = '
 -- tabs
 --------------------------------------------------------------------------------------------------
 
-my.keybind('<left>', '<cmd>tabprevious<CR>', { desc = 'tab: navigate to previous tab' })
+my.keybind('<C-d>', '<cmd>tabprevious<CR>', { desc = 'tab: navigate to previous tab' })
 
-my.keybind('<right>', '<cmd>tabnext<CR>', { desc = 'tab: navigate to next tab' })
+my.keybind('<C-f>', '<cmd>tabnext<CR>', { desc = 'tab: navigate to next tab' })
 
 my.keybind('<leader>tn', '<cmd>tabnew | Alpha<CR>', { desc = 'tab: create new tab' })
 

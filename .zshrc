@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Time load time with this command: time zsh -i -c exit
 
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
@@ -74,24 +81,34 @@ esac
 
 # Old "pure" theme
 #------------------------------------------------------------------
-# zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-# zinit light sindresorhus/pure
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
 
 # see https://github.com/sindresorhus/pure for more colors
-# zstyle :prompt:pure:git:dirty color green
+zstyle :prompt:pure:git:dirty color green
 
-# LS_COLORS
-export LS_COLORS="$(vivid generate 'modus-operandi')"
+# Old Starship (slow)
 #------------------------------------------------------------------
 
 # Load starship
 # line 1: `starship` binary as command, from github release
 # line 2: starship setup at clone(create init.zsh, completion)
 # line 3: pull behavior same as clone, source init.zsh
-zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+# zinit ice as"command" from"gh-r" \
+#           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+#           atpull"%atclone" src"init.zsh"
+# zinit light starship/starship
+
+# Powerlevel 10k
+#------------------------------------------------------------------
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# LS_COLORS
+# =========================================================================================
+export LS_COLORS="$(vivid generate 'modus-operandi')"
 
 # Options section
 # =========================================================================================

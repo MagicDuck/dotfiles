@@ -25,7 +25,8 @@ local function getInterfaceActive(iface)
     return false
   end
 
-  return hs.network.interfaceDetails(iface).Link.Active
+  local details = hs.network.interfaceDetails(iface)
+  return details.Link and details.Link.Active or false
 end
 
 local function toggleWifiIfNecessary()

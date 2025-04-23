@@ -1,5 +1,5 @@
 #!/bin/zsh
 
 kitty @launch --type tab --title scratch  --cwd /opt/repos/frontend/reactUi
-kitty @launch --type tab --title vim  --cwd /opt/repos/frontend/reactUi /Users/stephanbadragan/bin/vim
+kitty @launch --type tab --title vim  --cwd $HOME/bin/vim
 kitty @launch --type tab --title webpack  --cwd /opt/repos/frontend/reactUi zsh -is eval "pnpm webpack-dev:cloud:hot --env customerUrl=kramerica.dev.xmatters.com"

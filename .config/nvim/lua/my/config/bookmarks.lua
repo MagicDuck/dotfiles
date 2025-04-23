@@ -10,7 +10,8 @@ end
 local function get_bookmarks()
   local bookmarks = {
     { 'i', '~/.config/nvim/init.lua' },
-    '~/notes',
+    -- '~/notes',
+    -- '~/notes/.obsidian.vimrc',
     '~/.config/nvim/lua/my/config/keymaps.lua',
     '~/.config/karabiner.edn',
     '~/.config/kitty/kitty.conf',
@@ -22,8 +23,7 @@ local function get_bookmarks()
     '~/app_window_toggler',
     '/opt/repos/frontend/libs/spark/src/common/scss/mixins/_colors.scss',
     '/opt/repos/frontend/libs/spark/src/common/scss/mixins/_fonts.scss',
-    '~/notes/.obsidian.vimrc',
-    '/Users/stephanbadragan/Library/Application Support/lazygit/config.yml',
+    '~/Library/Application Support/lazygit/config.yml',
     '/opt/repos/frontend/reactUi',
     '/opt/repos/customer-config-ui-feature-definition/features.json',
     '/opt/repos/xm-api/src/main/java/com/xmatters/xm/repositories/FeatureToggleRepository.java',

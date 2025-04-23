@@ -9,9 +9,9 @@
     <string>/Applications/Hammerspoon.app/Contents/MacOS/Hammerspoon</string>
   </array>
   <key>StandardErrorPath</key>
-  <string>/Users/stephanbadragan/Library/Logs/my.hammerspoon.log</string>
+  <string>/Users/Stephan.Badragan/Library/Logs/my.hammerspoon.log</string>
   <key>StandardOutPath</key>
-  <string>/Users/stephanbadragan/Library/Logs/my.hammerspoon.log</string>
+  <string>/Users/Stephan.Badragan/Library/Logs/my.hammerspoon.log</string>
   <key>RunAtLoad</key>
   <true/>
   <key>ProcessType</key>

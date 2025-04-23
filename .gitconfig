@@ -2,7 +2,7 @@
 	name = Stephan Badragan
 	email = stephan.badragan@everbridge.com
 [core]
-	excludesfile = /Users/stephanbadragan/.gitignore_global
+	excludesfile = /Users/Stephan.Badragan/.gitignore_global
 	pager = delta
   #pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
@@ -73,4 +73,4 @@ file-style = bold
 	defaultBranch = main
 # make this per-host https://stackoverflow.com/questions/23807313/adding-self-signed-ssl-certificate-without-disabling-authority-signed-ones
 #[http]
-#	sslcainfo = /Users/stephanbadragan/zcc/certs/allCAbundle.pem
+#	sslcainfo = /Users/Stephan.Badragan/zcc/certs/allCAbundle.pem

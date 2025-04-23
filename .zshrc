@@ -264,7 +264,7 @@ eval "$(fnm env --use-on-cd)"
 # export FNM_DIR="/opt/repos/.fnm"
 
 # yarn version management
-export YVM_DIR=/Users/stephanbadragan/.yvm
+export YVM_DIR=$HOME/.yvm
 [ -r $YVM_DIR/yvm.sh ] && source $YVM_DIR/yvm.sh init-sh
 
 #export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -290,7 +290,7 @@ fi
 
 # EB vars
 # =========================================================================================
-export EB_FE_DEV_CERT_FILE="/opt/repos/eb/config/certs/eb-localdev.pem"
+export EB_FE_DEV_CERT_FILE="$HOME/certs/ebdev/eb-localdev.pem"
 
 # Aliases
 # =========================================================================================
@@ -339,8 +339,8 @@ alias my_conda_activate="conda activate"
 # FZF
 # =========================================================================================
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 export FZF_DEFAULT_OPTS='--height 60% --layout=reverse --tiebreak=end --bind ctrl-a:toggle-all'
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -357,7 +357,7 @@ esac
 
 # pnpm
 # =========================================================================================
-# export PNPM_HOME="/Users/stephanbadragan/Library/pnpm"
+# export PNPM_HOME="/Users/$HOME/Library/pnpm"
 # export PATH="$PNPM_HOME:$PATH"
 
 # BAT
@@ -425,9 +425,9 @@ fi
 # =========================================================================================
 case $OS in
   Darwin)
-    export AWS_CA_BUNDLE=/Users/stephanbadragan/zcc/certs/ZscalerRootCertificate-2048-SHA256.crt
-    export REQUESTS_CA_BUNDLE=/Users/stephanbadragan/zcc/certs/allCAbundle.pem
-    export NODE_EXTRA_CA_CERTS=/Users/stephanbadragan/zcc/certs/allCAbundle.pem
+    export AWS_CA_BUNDLE=$HOME/zcc/certs/ZscalerRootCertificate-2048-SHA256.crt
+    export REQUESTS_CA_BUNDLE=$HOME/zcc/certs/allCAbundle.pem
+    export NODE_EXTRA_CA_CERTS=$HOME/zcc/certs/allCAbundle.pem
   ;;
   Linux)
   ;;

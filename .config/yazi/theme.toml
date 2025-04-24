@@ -1,21 +1,25 @@
 # [manager]
 # Highlighting
-syntect_theme = "~/.config/yazi/gruvboxLight.tmTheme"
+syntect_theme = "~/.config/yazi/gruvbox-light.tmTheme"
 
 [status]
 separator_open  = ""
 separator_close = ""
 separator_style = { fg = "#D7CFC9", bg = "#D7CFC9" }
 
-# Mode
-mode_normal = { fg = "#E8EBF0", bg = "#526f93", bold = true }
-mode_select = { fg = "#E8EBF0", bg = "#896a98", bold = true }
-mode_unset  = { fg = "#E8EBF0", bg = "#b40b11", bold = true }
-
 # Progress
 progress_label  = { fg = "#E8EBF0", bold = true }
 progress_normal = { fg = "#E8EBF0", bg = "#D7CFC9" }
 progress_error  = { fg = "#d20f39", bg = "#D7CFC9" }
+
+
+[mode]
+normal_main = { fg = "#E8EBF0", bg = "#526f93", bold = true }
+select_main = { fg = "#E8EBF0", bg = "#896a98", bold = true }
+unset_main  = { fg = "#E8EBF0", bg = "#b40b11", bold = true }
+normal_alt  = { fg = "#4c4f69", bg = "#ccd0da", bold = true }
+select_alt  = { fg = "#4c4f69", bg = "#ccd0da", bold = true }
+unset_alt  = { fg = "#4c4f69", bg = "#ccd0da", bold = true }
 
 [filetype]
 
@@ -25,7 +29,7 @@ rules = [
 	{ mime = "{audio,video}/*", fg = "#df8e1d" },
 
 	# Archives
-	 { mime = "application/{,g}zip", fg = "#896a98" },
+	{ mime = "application/{,g}zip", fg = "#896a98" },
 	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#896a98" },
 
 	# Fallback

@@ -53,7 +53,7 @@ services:
 promptToReturnFromSubprocess: false
 os:
   # fixes creating MR for branches with '/'
-  openLink: open "$(echo "{{link}}" | sed 's/%2F/\//g')"
+  openLink: open -n "$(echo {{link}} | sed 's/%2F/\//g')"
 customCommands:
   - key: 'O'
     context: commitFiles

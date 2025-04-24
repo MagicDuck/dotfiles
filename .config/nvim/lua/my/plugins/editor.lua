@@ -211,10 +211,15 @@ return {
     'mikavilpas/yazi.nvim',
     lazy = true,
     event = { 'VeryLazy' },
+    init = function()
+      -- Block netrw plugin load
+      -- vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+    end,
     config = function()
       require('yazi').setup({
         -- if you want to open yazi instead of netrw
-        open_for_directories = false,
+        open_for_directories = true,
         keymaps = {
           show_help = '<C-h>',
         },
@@ -349,4 +354,23 @@ return {
       })
     end,
   },
+  -- {
+  --   'stevearc/oil.nvim',
+  --   ---@module 'oil'
+  --   ---@type oil.SetupOpts
+  --   opts = {},
+  --   -- Optional dependencies
+  --   -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
+  --   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+  --   lazy = false,
+  --   config = function()
+  --     require('oil').setup({
+  --       -- skip_confirm_for_simple_edits = false
+  --       keymaps = {
+  --         ['<bs>'] = { 'actions.parent', mode = 'n' },
+  --       },
+  --     })
+  --   end,
+  -- },
 }

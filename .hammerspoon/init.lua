@@ -313,7 +313,7 @@ local superKeyBindings = {
 	-- },
 	{
 		key = "y",
-		app = "YouTube",
+		app = "Safari",
 	},
 	{
 		key = "space",

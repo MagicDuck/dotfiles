@@ -211,15 +211,16 @@ return {
     'mikavilpas/yazi.nvim',
     lazy = true,
     event = { 'VeryLazy' },
-    init = function()
-      -- Block netrw plugin load
-      -- vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-    end,
+    -- for open_for_directories = true,
+    -- init = function()
+    --   -- Block netrw plugin load
+    --   -- vim.g.loaded_netrw = 1
+    --   vim.g.loaded_netrwPlugin = 1
+    -- end,
     config = function()
       require('yazi').setup({
         -- if you want to open yazi instead of netrw
-        open_for_directories = true,
+        -- open_for_directories = true,
         keymaps = {
           show_help = '<C-h>',
         },
@@ -354,23 +355,29 @@ return {
       })
     end,
   },
-  -- {
-  --   'stevearc/oil.nvim',
-  --   ---@module 'oil'
-  --   ---@type oil.SetupOpts
-  --   opts = {},
-  --   -- Optional dependencies
-  --   -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
-  --   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
-  --   lazy = false,
-  --   config = function()
-  --     require('oil').setup({
-  --       -- skip_confirm_for_simple_edits = false
-  --       keymaps = {
-  --         ['<bs>'] = { 'actions.parent', mode = 'n' },
-  --       },
-  --     })
-  --   end,
-  -- },
+  {
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    -- dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
+    config = function()
+      require('oil').setup({
+        skip_confirm_for_simple_edits = true,
+        view_options = {
+          show_hidden = true,
+        },
+        keymaps = {
+          ['<bs>'] = { 'actions.parent', mode = 'n' },
+          ['<C-enter>'] = { 'actions.select', opts = { vertical = true } },
+          ['<C-h>'] = { 'actions.select', opts = { horizontal = true } },
+          ['<C-s>'] = false,
+        },
+      })
+    end,
+  },
 }

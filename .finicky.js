@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   // defaultBrowser: "Brave Browser",
   // defaultBrowser: "Safari",
   defaultBrowser: "Vivaldi",

@@ -10,8 +10,8 @@ end
 local function get_bookmarks()
   local bookmarks = {
     { 'i', '~/.config/nvim/init.lua' },
-    -- '~/notes',
-    -- '~/notes/.obsidian.vimrc',
+    '~/notes',
+    '~/notes/.obsidian.vimrc',
     '~/.config/nvim/lua/my/config/keymaps.lua',
     '~/.config/karabiner.edn',
     '~/.config/kitty/kitty.conf',
@@ -32,6 +32,7 @@ local function get_bookmarks()
     '/opt/repos/eb/eb-ui-360/src/EBMui/theme/index.ts',
     '~/app_window_toggler/contents/code/main.js',
     '~/.config/yazi/yazi.toml',
+    '~/OneDrive - Everbridge/notes/.obsidian/snippets/font.css',
   }
 
   add_subdirs_of(bookmarks, '~/repos')

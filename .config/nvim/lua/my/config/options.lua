@@ -8,10 +8,11 @@ vim.cmd.filetype('plugin on')
 local opt = vim.opt
 
 -- set through editorconfig
--- opt.shiftwidth = 2
--- opt.softtabstop = 2
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 0
 vim.g.editorconfig = true
-opt.expandtab = true
+opt.expandtab = false
 opt.smarttab = true
 opt.hlsearch = true -- highlight search
 opt.incsearch = true -- incremental search

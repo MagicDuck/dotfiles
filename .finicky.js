@@ -4,7 +4,7 @@ export default {
   defaultBrowser: "Vivaldi",
   options: {
     // Hide the finicky icon from the top bar. Default: false
-    hideIcon: false,
+    hideIcon: true,
     // Check for update on startup. Default: true
     checkForUpdate: true,
     // Change the internal list of url shortener services. Default: undefined

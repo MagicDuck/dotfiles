@@ -80,6 +80,8 @@ function M.get_override_highlights()
 
     BqfSign = { fg = '#F8FBF6', bg = '#896a98', bold = true },
 
+    ColorColumn = { bg = my.commentBackground },
+
     -- DapUi/Dap
     DapUIPlayPause = { fg = my.menubarBaseFg },
     DapUIRestart = { fg = my.menubarBaseFg },

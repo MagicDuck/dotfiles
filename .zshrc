@@ -408,7 +408,7 @@ esac
 
 # GO
 # =========================================================================================
-export PATH="$PATH:~/go/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 # Allows zsh -is eval "command" without exiting
 # see https://www.zsh.org/mla/users/2005/msg00599.html

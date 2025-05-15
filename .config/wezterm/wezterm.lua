@@ -36,30 +36,31 @@ config.font_rules = {
 	--
 	-- Italic (comments)
 	--
-	{
-		intensity = "Normal",
-		italic = true,
-		font = wezterm.font({
-			family = "Monaspace Radon",
-			-- weight = "Light",
-			stretch = "Normal",
-			style = "Normal",
-			harfbuzz_features = {
-				"ss01",
-				"ss02",
-				"ss03",
-				"ss04",
-				"ss05",
-				"ss06",
-				"ss07",
-				"ss08",
-				"ss09",
-				"calt",
-				"dlig",
-				"liga",
-			},
-		}),
-	},
+
+	-- {
+	-- 	intensity = "Normal",
+	-- 	italic = true,
+	-- 	font = wezterm.font({
+	-- 		family = "Monaspace Radon",
+	-- 		-- weight = "Light",
+	-- 		stretch = "Normal",
+	-- 		style = "Normal",
+	-- 		harfbuzz_features = {
+	-- 			"ss01",
+	-- 			"ss02",
+	-- 			"ss03",
+	-- 			"ss04",
+	-- 			"ss05",
+	-- 			"ss06",
+	-- 			"ss07",
+	-- 			"ss08",
+	-- 			"ss09",
+	-- 			"calt",
+	-- 			"dlig",
+	-- 			"liga",
+	-- 		},
+	-- 	}),
+	-- },
 }
 
 -- config.font = wezterm.font("JetBrains Mono")

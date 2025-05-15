@@ -13,17 +13,20 @@ return {
         },
       })
 
-      vim.keymap.set({ 'n', 'x' }, '<leader>si', function()
-        grugFar.open({ visualSelectionUsage = 'operate-within-range' })
-      end, { desc = 'grug-far: Search inside current range' })
-
-      vim.keymap.set({ 'n', 'x' }, '<leader>sp', function()
-        grugFar.open({
+      --- testing stuff
+      vim.keymap.set({ 'n', 'x' }, '<leader>ss', function()
+        local search = vim.fn.getreg('/')
+        -- surround with \b if "word" search (such as when pressing `*`)
+        if search and vim.startswith(search, '\\<') and vim.endswith(search, '\\>') then
+          search = '\\b' .. search:sub(3, -3) .. '\\b'
+        end
+        local inst = require('grug-far').open({
           prefills = {
-            paths = vim.fn.expand('%'),
+            search = search,
           },
         })
-      end, { desc = 'grug-far: Search in current file path' })
+        inst:goto_input('replacement')
+      end, { desc = 'grug-far: Search using @/ register value or visual selection' })
     end,
   },
 }

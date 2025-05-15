@@ -183,7 +183,7 @@ my.keybind('gP', 'O<esc>[p', { desc = 'line: paste on line above, keeping indent
 
 my.keybind('gp', 'o<esc>]p', { desc = 'line: paste on line below, keeping indentation' })
 
--- quickfix list
+-- quickfix and loclist
 --------------------------------------------------------------------------------------------------
 
 my.keybind(prevLeaderKey('f'), ':Cprev<CR>', { desc = 'quickfix list: next entry' })
@@ -196,13 +196,17 @@ my.keybind(
   { desc = 'quickfix list: rename' }
 )
 
-my.keybind('<leader>sd', function()
+my.keybind('<leader>qd', function()
   local qf_winid = vim.fn.getqflist({ winid = 0 }).winid
   local action = qf_winid > 0 and 'cclose' or 'copen'
   vim.cmd('botright ' .. action)
 end, { desc = 'quickfix list: toggle' })
 
-my.keybind('<leader>sk', ':Telescope quickfixhistory<CR>', { desc = 'quickfix list: history' })
+my.keybind('<leader>qk', ':Telescope quickfixhistory<CR>', { desc = 'quickfix list: history' })
+
+my.keybind(prevLeaderKey('v'), ':Lprev<CR>', { desc = 'location list: next entry' })
+
+my.keybind(nextLeaderKey('v'), ':Lnext<CR>', { desc = 'location list: previous entry' })
 
 -- conflict resolution
 --------------------------------------------------------------------------------------------------
@@ -376,6 +380,18 @@ my.keybind(
 
 my.keybind('<leader>so', ':GrugFar<CR>', { mode = 'n', desc = 'Search: replace in files using grug-far' })
 
+my.keybind('<leader>si', function()
+  require('grug-far').open({ visualSelectionUsage = 'operate-within-range' })
+end, { mode = 'nx', desc = 'Search: inside current range using grug-far' })
+
+my.keybind('<leader>sp', function()
+  require('grug-far').open({
+    prefills = {
+      paths = vim.fn.expand('%'),
+    },
+  })
+end, { mode = 'nx', desc = 'Search: inside current file using grug-far' })
+
 my.keybind(
   '<leader>sh',
   'y<ESC>:lua require("telescope.builtin").help_tags({ default_text=vim.fn.expand("<cword>") })<CR>',
@@ -442,7 +458,7 @@ my.keybind('gm', function()
 end, { desc = 'lsp: symbol: go to implementation' })
 
 my.keybind('gr', function()
-  vim.lsp.buf.references()
+  vim.lsp.buf.references(nil, { loclist = true })
 end, { desc = 'lsp: symbol: go to references' })
 
 my.keybind('<leader>lr', function()

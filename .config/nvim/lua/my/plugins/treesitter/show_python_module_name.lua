@@ -73,7 +73,7 @@ local function update_references(buf)
           end_col = col,
           virt_text = {
             {
-              ' <' .. imports[name] .. '>',
+              ' <' .. imports[name] .. '> ',
               'Comment',
             },
           },

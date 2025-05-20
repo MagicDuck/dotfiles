@@ -25,7 +25,9 @@ return {
             search = search,
           },
         })
-        inst:goto_input('replacement')
+        inst:when_ready(function()
+          inst:goto_input('replacement')
+        end)
       end, { desc = 'grug-far: Search using @/ register value or visual selection' })
     end,
   },

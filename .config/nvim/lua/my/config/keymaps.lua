@@ -378,7 +378,7 @@ my.keybind(
   { mode = 'n', desc = 'Search: find current word under cursor in project' }
 )
 
-my.keybind('<leader>so', ':GrugFar<CR>', { mode = 'n', desc = 'Search: replace in files using grug-far' })
+my.keybind('<leader>so', ':GrugFar<CR>', { mode = 'nv', desc = 'Search: replace in files using grug-far' })
 
 my.keybind('<leader>si', function()
   require('grug-far').open({ visualSelectionUsage = 'operate-within-range' })
@@ -399,6 +399,22 @@ my.keybind(
 )
 
 my.keybind('<leader>su', ':Telescope resume<CR>', { desc = 'Search: resume telescope search' })
+
+my.keybind(prevLeaderKey('s'), function()
+  local inst = require('grug-far').get_instance()
+  if inst then
+    inst:goto_prev_match({ wrap = true })
+    inst:open_location()
+  end
+end, { desc = 'grug-far: previous match' })
+
+my.keybind(nextLeaderKey('s'), function()
+  local inst = require('grug-far').get_instance()
+  if inst then
+    inst:goto_next_match({ wrap = true })
+    inst:open_location()
+  end
+end, { desc = 'grug-far: next match' })
 
 -- notes
 --------------------------------------------------------------------------------------------------

@@ -14,10 +14,10 @@ local function get_imports(buf)
   local import_query = vim.treesitter.query.parse(
     'python',
     [[
-			(import_from_statement
-				module_name: (dotted_name) @import_from
-				name: (dotted_name) @import_name
-				)
+      (import_from_statement
+        module_name: (dotted_name) @import_from
+        name: (dotted_name) @import_name
+      )
     ]]
   )
 
@@ -58,8 +58,8 @@ local function update_references(buf)
   local reference_query = vim.treesitter.query.parse(
     'python',
     [[
-			((identifier) @ident 
-				(#not-has-parent? @ident attribute parameters function_definition dotted_name))
+      ((identifier) @ident 
+        (#not-has-parent? @ident attribute parameters function_definition dotted_name))
     ]]
   )
 

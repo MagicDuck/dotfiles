@@ -43,7 +43,7 @@ return {
 
       require('conform').setup({
         notify_on_error = false,
-        format_on_save = { timeout_ms = 1000, lsp_fallback = true },
+        format_on_save = { timeout_ms = 2000, lsp_fallback = true },
         stop_after_first = true,
         formatters_by_ft = {
           lua = { 'stylua' },
@@ -52,6 +52,7 @@ return {
           javascriptreact = js_format,
           typescript = js_format,
           typescriptreact = js_format,
+          -- html = { 'prettier', lsp_format = 'fallback' },
 
           json = js_format,
           jsonc = js_format,

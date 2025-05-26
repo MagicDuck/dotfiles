@@ -182,6 +182,10 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, conf, hover, max_width
 	}
 end)
 
+wezterm.on("format-window-title", function(tab, pane, tabs, panes, config)
+	return string.format("[%d/%d] ", tab.tab_index + 1, #tabs)
+end)
+
 -- right status
 wezterm.on("update-right-status", function(window, pane)
 	local background = "#b4713d"
@@ -202,6 +206,12 @@ wezterm.on("update-right-status", function(window, pane)
 		{ Text = "" },
 		{ Text = " " },
 	}))
+end)
+
+-- start maximized
+wezterm.on("gui-startup", function()
+	local tab, pane, window = wezterm.mux.spawn_window({})
+	window:gui_window():maximize()
 end)
 
 -- keys

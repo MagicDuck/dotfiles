@@ -27,6 +27,7 @@ return {
         helpLine = {
           enabled = false,
         },
+        windowCreationCommand = '80 vsplit',
       })
 
       --- testing stuff

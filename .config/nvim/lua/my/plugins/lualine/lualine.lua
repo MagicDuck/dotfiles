@@ -134,6 +134,27 @@ require('lualine').setup({
       --   padding = { left = 1, right = 1 },
       --   color = "MyStatusbarLsp",
       -- },
+      -- grug-far
+      -- {
+      --   function()
+      --     local text = ''
+      --     local buf = vim.api.nvim_get_current_buf()
+      --     local status = require('grug-far').get_instance(buf):get_status_info()
+      --     local stats = status.stats
+      --     if stats and stats.matches > 0 then
+      --       text = text .. stats.matches .. ' matches in ' .. stats.files .. ' files'
+      --     end
+      --     if status.actionMessage then
+      --       text = text .. ' - ' .. status.actionMessage
+      --     end
+      --
+      --     return text
+      --   end,
+      --   cond = function()
+      --     return vim.bo.filetype == 'grug-far'
+      --   end,
+      --   padding = { left = 1, right = 1 },
+      -- },
       -- dap
       {
         function()

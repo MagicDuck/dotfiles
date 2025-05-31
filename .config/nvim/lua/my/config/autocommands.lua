@@ -113,14 +113,19 @@ vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
   end,
 })
 
--- open help in vertical split on right always
--- Open help window in a vertical split to the right.
+-- open help in vertical split on right always if not relative to cwd
 vim.api.nvim_create_autocmd('BufWinEnter', {
   group = augroup('help_window_right'),
   pattern = { '*.txt' },
   callback = function()
     if vim.o.filetype == 'help' then
-      vim.cmd.wincmd('L')
+      local cwd = vim.fn.getcwd()
+      local path = vim.api.nvim_buf_get_name(0)
+      local normPath = vim.fs.normalize(path)
+      local relPath = vim.fs.relpath(cwd, normPath)
+      if not relPath then
+        vim.cmd.wincmd('L')
+      end
     end
   end,
 })

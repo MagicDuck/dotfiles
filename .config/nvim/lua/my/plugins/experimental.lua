@@ -27,6 +27,10 @@ return {
         helpLine = {
           enabled = false,
         },
+
+        -- showEngineInfo = false,
+        -- showStatusInfo = false,
+        -- showStatusIcon = false,
       })
 
       --- testing stuff

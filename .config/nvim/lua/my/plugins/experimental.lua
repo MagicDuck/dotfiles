@@ -27,10 +27,9 @@ return {
         helpLine = {
           enabled = false,
         },
-
-        -- showEngineInfo = false,
-        -- showStatusInfo = false,
-        -- showStatusIcon = false,
+        -- showCompactInputs = true,
+        -- showInputsTopPadding = false,
+        -- showInputsBottomPadding = false,
       })
 
       --- testing stuff

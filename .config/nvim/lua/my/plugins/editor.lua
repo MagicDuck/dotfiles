@@ -380,4 +380,21 @@ return {
       })
     end,
   },
+  {
+    'chrisgrieser/nvim-spider',
+    lazy = true,
+    event = { 'VeryLazy' },
+    config = function()
+      require('spider').setup({
+        skipInsignificantPunctuation = true,
+        consistentOperatorPending = false,
+        subwordMovement = true,
+        customPatterns = {},
+      })
+
+      vim.keymap.set({ 'n', 'o', 'x' }, 'w', "<cmd>lua require('spider').motion('w')<CR>")
+      vim.keymap.set({ 'n', 'o', 'x' }, 'e', "<cmd>lua require('spider').motion('e')<CR>")
+      vim.keymap.set({ 'n', 'o', 'x' }, 'b', "<cmd>lua require('spider').motion('b')<CR>")
+    end,
+  },
 }

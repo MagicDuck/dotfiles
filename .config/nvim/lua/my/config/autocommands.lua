@@ -196,9 +196,9 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
 --   end,
 -- })
 
-local py_show_mod_name = require('my.plugins.treesitter.show_python_module_name')
-py_show_mod_name.setup({ initially_enabled = false })
-
-vim.keymap.set({ 'n' }, '<leader>us', function()
-  py_show_mod_name.toggle()
-end)
+-- local py_show_mod_name = require('my.plugins.treesitter_util.show_python_module_name')
+-- py_show_mod_name.setup({ initially_enabled = false })
+--
+-- vim.keymap.set({ 'n' }, '<leader>us', function()
+--   py_show_mod_name.toggle()
+-- end)

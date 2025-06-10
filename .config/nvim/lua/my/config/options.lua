@@ -65,7 +65,8 @@ opt.shiftround = true
 opt.grepprg = 'rg --vimgrep --smart-case --follow'
 opt.fillchars = { diff = '╱', fold = '⋆', vert = '│', eob = ' ', msgsep = '‾' }
 vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
-vim.o.messagesopt = 'wait:500,history:10000'
+-- vim.o.messagesopt = 'wait:500,history:10000'
+vim.o.messagesopt = 'hit-enter,history:10000'
 
 -- opt.backspace = { 'start' }
 

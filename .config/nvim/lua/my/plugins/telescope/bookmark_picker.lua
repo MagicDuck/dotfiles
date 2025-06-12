@@ -57,7 +57,7 @@ function M.pickBookmark(command, bookmarks)
 
           vim.cmd(command .. ' ' .. bookmark.path)
           if vim.fn.isdirectory(vim.fn.expand(bookmark.path)) > 0 then
-            vim.fn.chdir(bookmark.path)
+            vim.cmd.lchdir({ args = { bookmark.path }, mods = { silent = true } })
           end
         end)
         return true

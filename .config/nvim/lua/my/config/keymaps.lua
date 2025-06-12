@@ -242,6 +242,10 @@ my.keybind('<leader>to', '<cmd>EditBookmark<CR>', { desc = 'tab: edit bookmark i
 
 my.keybind('<leader>tr', ':TabRename<space>', { silent = false, noremap = true, desc = 'tab: rename' })
 
+my.keybind('<leader>th', ':tabmove -1<CR>', { desc = 'tab: move left' })
+my.keybind('<leader>tl', ':tabmove +1<CR>', { desc = 'tab: move right' })
+my.keybind('<leader>a', ':Tabby jump_to_tab<CR>', { desc = 'tab: jump to tab' })
+
 -- windows
 --------------------------------------------------------------------------------------------------
 

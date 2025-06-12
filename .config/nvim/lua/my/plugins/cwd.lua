@@ -30,7 +30,7 @@ return {
         vim.cmd.lchdir({ args = { root }, mods = { silent = true } })
       end)
 
-      vim.api.nvim_create_autocmd('BufEnter', {
+      vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         group = vim.api.nvim_create_augroup('MiniMiscAutoRoot', {}),
         nested = true,
         callback = set_root,

@@ -19,11 +19,12 @@ require('tabby.tabline').set(function(line)
     },
     line.tabs().foreach(function(tab)
       local hl = tab.is_current() and theme.current_tab or theme.tab
+      local cwd_find_success, cwd = pcall(vim.fn.getcwd, tab.current_win().id, tab.id)
       return {
         line.sep('', hl, theme.fill),
         tab.is_current() and ' ' or ' ',
         tab.in_jump_mode() and tab.jump_key() or tab.number(),
-        vim.fs.basename(vim.fn.getcwd(tab.current_win().id, tab.id)) .. ' - ' .. tab.name(),
+        (cwd_find_success and vim.fs.basename(cwd) .. ' - ' or '') .. tab.name(),
         -- tab.close_btn(''), -- show a close button
         line.sep('', hl, theme.fill),
         hl = hl,

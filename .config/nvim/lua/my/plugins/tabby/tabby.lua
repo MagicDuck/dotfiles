@@ -9,6 +9,8 @@ local theme = {
   tab = highlights.MyTabLine,
   win = highlights.MyTabLine,
   tail = highlights.MyTabLine,
+  jump_current = highlights.MyTabLineJumpSel,
+  jump = highlights.MyTabLineJump,
 }
 
 require('tabby.tabline').set(function(line)
@@ -23,7 +25,8 @@ require('tabby.tabline').set(function(line)
       return {
         line.sep('', hl, theme.fill),
         tab.is_current() and ' ' or ' ',
-        tab.in_jump_mode() and tab.jump_key() or tab.number(),
+        tab.in_jump_mode() and { tab.jump_key(), hl = tab.is_current() and theme.jump_current or theme.jump }
+          or { tab.number(), hl = tab.is_current() and theme.current_tab or theme.tab },
         (cwd_find_success and vim.fs.basename(cwd) .. ' - ' or '') .. tab.name(),
         -- tab.close_btn(''), -- show a close button
         line.sep('', hl, theme.fill),

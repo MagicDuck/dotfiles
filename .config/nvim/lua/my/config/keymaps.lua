@@ -76,6 +76,8 @@ vim.cmd([[
 
   xnoremap il 0o$h
   onoremap il :normal vil<CR>
+
+  nnoremap <leader>sr :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 ]])
 
 if is_linux then
@@ -530,11 +532,6 @@ end, {
 my.keybind('R', function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('Vf<space><space>', true, false, true), 't', true)
 end, { mode = 'n', desc = 'leap line select' })
-
--- replace
---------------------------------------------------------------------------------------------------
-
-my.keybind('<leader>sr', ':%s/<C-r><C-w>//g<Left><Left>', { mode = 'n', desc = 'replace current word in file' })
 
 -- scrolling
 --------------------------------------------------------------------------------------------------

@@ -138,8 +138,10 @@ function M.get_my_highlights()
 
     -- Tab Bar UI
     MyTabLine = { fg = my.menubarBaseFg, bg = my.menubarBaseBg },
+    MyTabLineJump = { fg = '#AE0004', bg = my.menubarBaseBg, bold = true },
     MyTabLineFill = { bg = my.menubarBg1 },
     MyTabLineSel = { fg = my.menubarFg2, bg = my.menubarActiveAccent, italic = true },
+    MyTabLineJumpSel = { fg = '#FF9B9D', bg = my.menubarActiveAccent, italic = true, bold = true },
 
     -- Status Bar UI
     MyStatusbarModeNormal = { fg = my.menubarFg1, bg = '#869235', bold = true },

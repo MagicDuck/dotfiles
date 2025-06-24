@@ -8,6 +8,8 @@ local isLinux = util.isLinux
 
 local config = wezterm.config_builder()
 
+config.window_decorations = "RESIZE"
+
 -- fonts
 config.font = wezterm.font_with_fallback({
 	{ family = "JetBrains Mono" },
@@ -80,7 +82,8 @@ config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 -- config.line_height = 1.5
 
 -- config.window_background_opacity = 0.85
--- config.macos_window_background_blur = 45
+-- config.macos_window_background_blur = 80
+-- config.text_background_opacity = 0.7
 config.background = {
 	{
 		source = { Color = "#FAFAF9" },
@@ -90,10 +93,13 @@ config.background = {
 	},
 	{
 		source = {
-			File = wezterm.home_dir .. "/wallpapers/ocean_waves.jpg",
+			-- File = wezterm.home_dir .. "/wallpapers/ocean_waves.jpg",
+			-- File = wezterm.home_dir .. "/wallpapers/harbor.jpg",
+			-- File = wezterm.home_dir .. "/wallpapers/baloon.jpg",
+			File = wezterm.home_dir .. "/wallpapers/wall-leaves.jpg",
 		},
-		hsb = { brightness = 0.2 },
-		opacity = 0.1,
+		hsb = { brightness = 0.07 },
+		opacity = 0.12,
 	},
 }
 

@@ -392,9 +392,9 @@ return {
         customPatterns = {},
       })
 
-      vim.keymap.set({ 'n', 'o', 'x' }, 'w', "<cmd>lua require('spider').motion('w')<CR>")
-      vim.keymap.set({ 'n', 'o', 'x' }, 'e', "<cmd>lua require('spider').motion('e')<CR>")
-      vim.keymap.set({ 'n', 'o', 'x' }, 'b', "<cmd>lua require('spider').motion('b')<CR>")
+      vim.keymap.set({ 'o', 'x' }, 'sw', "<cmd>lua require('spider').motion('w')<CR>")
+      vim.keymap.set({ 'o', 'x' }, 'se', "<cmd>lua require('spider').motion('e')<CR>")
+      vim.keymap.set({ 'o', 'x' }, 'sb', "<cmd>lua require('spider').motion('b')<CR>")
     end,
   },
 }

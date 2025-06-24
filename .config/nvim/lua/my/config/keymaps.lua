@@ -37,7 +37,8 @@ vim.cmd([[
   noremap ; :
 
   " esc in terminal mode
-  tnoremap <s-esc> <C-\><C-n>
+  tnoremap <s-esc> <esc>
+  tnoremap <esc> <C-\><C-n>
 
   " visual block select
   nnoremap X <c-v>

@@ -185,4 +185,14 @@ return {
       require('lspkind').init()
     end,
   },
+
+  {
+    'bassamsdata/namu.nvim',
+    opts = {
+      global = {},
+      namu_symbols = { -- Specific Module options
+        options = {},
+      },
+    },
+  },
 }

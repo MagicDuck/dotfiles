@@ -83,23 +83,25 @@ config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 
 -- config.window_background_opacity = 0.85
 -- config.macos_window_background_blur = 80
--- config.text_background_opacity = 0.7
+-- config.text_background_opacity = 0.9
 config.background = {
 	{
 		source = { Color = "#FAFAF9" },
+		-- source = { Color = "#FAF9FF" },
 		width = "100%",
 		height = "100%",
 		opacity = 1,
 	},
 	{
 		source = {
-			-- File = wezterm.home_dir .. "/wallpapers/ocean_waves.jpg",
+			File = wezterm.home_dir .. "/wallpapers/ocean_waves.jpg",
 			-- File = wezterm.home_dir .. "/wallpapers/harbor.jpg",
 			-- File = wezterm.home_dir .. "/wallpapers/baloon.jpg",
-			File = wezterm.home_dir .. "/wallpapers/wall-leaves.jpg",
+			-- File = wezterm.home_dir .. "/wallpapers/wall-leaves.jpg",
+			-- File = wezterm.home_dir .. "/wallpapers/wood-wall2.jpg",
 		},
-		hsb = { brightness = 0.07 },
-		opacity = 0.12,
+		hsb = { brightness = 0.1 },
+		opacity = 0.1,
 	},
 }
 

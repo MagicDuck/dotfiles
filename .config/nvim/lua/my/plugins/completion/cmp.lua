@@ -10,7 +10,19 @@ vim.opt.shortmess:append('c')
 require('cmp_nvim_lsp').setup() -- not sure why this does not auto-exec
 cmp.setup({
   enabled = function()
-    return (not require('cmp_dap').is_dap_buffer()) and vim.api.nvim_buf_get_option(0, 'buftype') ~= 'prompt'
+    if require('cmp_dap').is_dap_buffer() then
+      return false
+    end
+
+    if vim.bo.buftype == 'prompt' then
+      return false
+    end
+
+    if vim.bo.filetype == 'namu_prompt' then
+      return false
+    end
+
+    return true
   end,
   performance = {
     -- debounce = 500,

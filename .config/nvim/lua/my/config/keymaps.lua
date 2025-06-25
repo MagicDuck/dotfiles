@@ -132,6 +132,12 @@ else
     ]])
 end
 
+-- movement treewalker
+vim.keymap.set({ 'n', 'v' }, '<up>', '<cmd>Treewalker Up<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<down>', '<cmd>Treewalker Down<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<left>', '<cmd>Treewalker Left<cr>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<right>', '<cmd>Treewalker Right<cr>', { silent = true })
+
 -- show Mappings picker
 --------------------------------------------------------------------------------------------------
 
@@ -385,6 +391,8 @@ my.keybind(
   'y<ESC>:lua require("telescope.builtin").live_grep({ default_text=vim.fn.expand("<cword>") })<CR>',
   { mode = 'n', desc = 'Search: find current word under cursor in project' }
 )
+
+my.keybind('<leader>sm', ':Namu symbols<CR>', { mode = 'n', desc = 'Search: search for symbols in current file' })
 
 my.keybind('<leader>so', ':GrugFar<CR>', { mode = 'nv', desc = 'Search: replace in files using grug-far' })
 

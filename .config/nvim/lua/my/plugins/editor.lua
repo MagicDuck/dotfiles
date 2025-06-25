@@ -424,4 +424,11 @@ return {
       jumplist = true,
     },
   },
+
+  {
+    'xzbdmw/clasp.nvim',
+    config = function()
+      require('clasp').setup({})
+    end,
+  },
 }

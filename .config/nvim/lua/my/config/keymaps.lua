@@ -138,6 +138,28 @@ vim.keymap.set({ 'n', 'v' }, '<down>', '<cmd>Treewalker Down<cr>', { silent = tr
 vim.keymap.set({ 'n', 'v' }, '<left>', '<cmd>Treewalker Left<cr>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<right>', '<cmd>Treewalker Right<cr>', { silent = true })
 
+-- snippets / clap (bracket matching)
+vim.keymap.set({ 'i', 's' }, '<end>', function()
+  if require('luasnip').expand_or_jumpable() then
+    require('luasnip').expand_or_jump()
+  else
+    require('clasp').wrap('next')
+  end
+end, { silent = true })
+vim.keymap.set({ 'i', 's' }, '<home>', function()
+  if require('luasnip').jumpable(-1) then
+    require('luasnip').jump(-1)
+  else
+    require('clasp').wrap('prev')
+  end
+end, { silent = true })
+
+vim.keymap.set({ 'i', 's' }, '<C-e>', function()
+  if require('luasnip').choice_active() then
+    require('luasnip').change_choice(1)
+  end
+end, { silent = true })
+
 -- show Mappings picker
 --------------------------------------------------------------------------------------------------
 

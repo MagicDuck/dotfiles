@@ -40,23 +40,6 @@ return {
           end,
         })
       end, {})
-
-      vim.keymap.set({ 'i', 's' }, '<end>', function()
-        if luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
-        end
-      end, { silent = true })
-      vim.keymap.set({ 'i', 's' }, '<home>', function()
-        if luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        end
-      end, { silent = true })
-
-      vim.keymap.set({ 'i', 's' }, '<C-e>', function()
-        if luasnip.choice_active() then
-          luasnip.change_choice(1)
-        end
-      end, { silent = true })
     end,
   },
 

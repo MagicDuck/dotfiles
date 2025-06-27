@@ -5,7 +5,13 @@ return {
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
-      require('mason').setup({ ensure_installed = 'stylua' })
+      require('mason').setup({
+        ensure_installed = {
+          'stylua',
+          'java-debug-adapter',
+          'java-test',
+        },
+      })
     end,
   },
 }

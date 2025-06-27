@@ -1,131 +1,214 @@
--- inspiration sources:
--- https://github.com/baobaoit/beande/blob/development/ftplugin/java.lua
--- requires:
--- - jdtls (installed through mason)
+local java_filetypes = { 'java', 'jsp' }
 
-local exports = {}
-local attach = require("my/plugins/lsp/attach")
-local jdtlsSetup = require("jdtls.setup")
+return {
+  'mfussenegger/nvim-jdtls',
+  dependencies = { 'folke/which-key.nvim' },
+  ft = java_filetypes,
+  opts = function()
+    local cmd = { vim.fn.exepath('jdtls') }
+    local mason_registry = require('mason-registry')
+    local lombok_jar = mason_registry.get_package('jdtls'):get_install_path() .. '/lombok.jar'
+    table.insert(cmd, string.format('--jvm-arg=-javaagent:%s', lombok_jar))
 
--- JDK paths
-local javaVersionsDir = vim.fn.expand("~/.jenv/versions")
-local jdk8 = javaVersionsDir .. '/1.8'
--- local jdk8 = '/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
-local jdk11 = javaVersionsDir .. '/11.0'
-local jdk17 = javaVersionsDir .. '/17.0'
+    return {
+      -- How to find the root dir for a given filename. The default comes from
+      -- lspconfig which provides a function specifically for java projects.
+      root_dir = function()
+        return require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml' })
+      end,
 
--- other paths
-local masonDir = vim.fn.expand("~/.local/share/nvim/mason/packages")
-local jdtlsPath = masonDir .. "/jdtls"
-local workspaceRoot = vim.fn.expand("~/jdtls-workspaces")
-vim.fn.glob(masonDir .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
+      -- How to find the project name for a given root dir.
+      project_name = function(root_dir)
+        return root_dir and vim.fs.basename(root_dir)
+      end,
 
-local getCmd = function(projectName)
-  local projectWorkspaceDir = workspaceRoot .. "/" .. projectName
+      -- Where are the config and workspace dirs for a project?
+      jdtls_config_dir = function(project_name)
+        return vim.fn.stdpath('cache') .. '/jdtls/' .. project_name .. '/config'
+      end,
+      jdtls_workspace_dir = function(project_name)
+        return vim.fn.stdpath('cache') .. '/jdtls/' .. project_name .. '/workspace'
+      end,
 
-  local cmd = {
-    'jdtls',
-    '--jvm-arg=-javaagent:' .. jdtlsPath .. "/lombok.jar",
-    '--jvm-arg=-Xms1g',
-    -- See `data directory configuration` section in the README
-    '-data', projectWorkspaceDir
-  }
+      -- How to run jdtls. This can be overridden to a full java command-line
+      -- if the Python wrapper script doesn't suffice.
+      cmd = cmd,
+      full_cmd = function(opts)
+        local fname = vim.api.nvim_buf_get_name(0)
+        local root_dir = opts.root_dir(fname)
+        local project_name = opts.project_name(root_dir)
+        local cmd = vim.deepcopy(opts.cmd)
+        if project_name then
+          vim.list_extend(cmd, {
+            '-configuration',
+            opts.jdtls_config_dir(project_name),
+            '-data',
+            opts.jdtls_workspace_dir(project_name),
+          })
+        end
+        return cmd
+      end,
 
-  return cmd
-end
-
-
--- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
-exports.getConfig = function()
-  local projectRoot = jdtlsSetup.find_root({ '.git', 'mvnw', 'gradlew' })
-  local projectName = vim.fn.fnamemodify(projectRoot or vim.fn.getcwd(), ":p:h:t")
-
-  return {
-    cmd = getCmd(projectName),
-    cmd_env = {
-      JAVA_HOME = jdk17,
-    },
-    cmd_cwd = projectRoot,
-    -- One dedicated LSP server & client will be started per unique root_dir
-    root_dir = projectRoot,
-    -- Here you can configure eclipse.jdt.ls specific settings
-    -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-    -- for a list of options
-    settings = {
-      java = {
-        home = jdk17,
-        import = {
-          gradle = {
-            enabled = true,
-            wrapper = {
-              enabled = true,
+      -- These depend on nvim-dap, but can additionally be disabled by setting false here.
+      dap = { hotcodereplace = 'auto', config_overrides = {} },
+      -- Can set this to false to disable main class scan, which is a performance killer for large project
+      dap_main = {},
+      test = true,
+      settings = {
+        java = {
+          inlayHints = {
+            parameterNames = {
+              enabled = 'all',
             },
           },
         },
-        format = {
-          enabled = false,
-          comments = {
-            enabled = false,
-          },
-          insertSpaces = false,
-          settings = {
-            url = vim.fn.expand("~/.config/nvim/ftplugin/eclipse_formatter_style.xml"),
-          },
-        },
-        autobuild = {
-          enabled = false
-        },
-        configuration = {
-          updateBuildConfiguration = "interactive",
-          -- Note: This is what determines what java version to use to build each project
-          runtimes = {
-            {
-              name = "JavaSE-11",
-              path = jdk11,
-              -- default = true
-            },
-            {
-              name = "JavaSE-1.8",
-              path = jdk8,
-              -- default = true
-            }
-          }
-        },
-        saveActions = {
-          organizeImports = false
-        },
       },
-    },
-    -- Language server `initializationOptions`
-    -- You need to extend the `bundles` with paths to jar files
-    -- if you want to use additional eclipse.jdt.ls plugins.
-    --
-    -- See https://github.com/mfussenegger/nvim-jdtls#java-debug-installation
-    --
-    -- If you don't plan on using the debugger or other eclipse.jdt.ls plugins you can remove this
-    init_options = {
-      bundles = {
-        vim.fn.glob(masonDir .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
-      },
-      extendedClientCapabilities = {
-        -- this allows correct progress reports
-        progressReportProvider = false,
-      },
-    },
-    capabilities = attach.global_capabilities,
-    on_attach = function(client, bufnr)
-      jdtlsSetup.add_commands()
-      attach.global_on_attach(client, bufnr)
-
-      -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
-      -- you make during a debug session immediately.
-      -- Remove the option if you do not want that.
-      -- You can use the `JdtHotcodeReplace` command to trigger it manually
-      require('jdtls').setup_dap({
-        -- hotcodereplace = 'auto'
-      })
+    }
+  end,
+  config = function(_, opts)
+    -- Find the extra bundles that should be passed on the jdtls command-line
+    -- if nvim-dap is enabled with java debug/test.
+    local bundles = {} ---@type string[]
+    local mason_registry = require('mason-registry')
+    if opts.dap and mason_registry.is_installed('java-debug-adapter') then
+      local java_dbg_pkg = mason_registry.get_package('java-debug-adapter')
+      local java_dbg_path = java_dbg_pkg:get_install_path()
+      local jar_patterns = {
+        java_dbg_path .. '/extension/server/com.microsoft.java.debug.plugin-*.jar',
+      }
+      -- java-test also depends on java-debug-adapter.
+      if opts.test and mason_registry.is_installed('java-test') then
+        local java_test_pkg = mason_registry.get_package('java-test')
+        local java_test_path = java_test_pkg:get_install_path()
+        vim.list_extend(jar_patterns, {
+          java_test_path .. '/extension/server/*.jar',
+        })
+      end
+      for _, jar_pattern in ipairs(jar_patterns) do
+        for _, bundle in ipairs(vim.split(vim.fn.glob(jar_pattern), '\n')) do
+          table.insert(bundles, bundle)
+        end
+      end
     end
-  }
-end
+    local function attach_jdtls()
+      local fname = vim.api.nvim_buf_get_name(0)
 
-return exports;
+      -- Configuration can be augmented and overridden by opts.jdtls
+      local config = vim.tbl_deep_extend('force', {
+        cmd = opts.full_cmd(opts),
+        root_dir = opts.root_dir(fname),
+        init_options = {
+          bundles = bundles,
+        },
+        settings = opts.settings,
+        -- enable CMP capabilities
+        capabilities = require('my/plugins/lsp/attach').global_capabilities,
+      }, opts.jdtls or {})
+
+      -- Existing server will be reused if the root_dir matches.
+      require('jdtls').start_or_attach(config)
+      -- not need to require("jdtls.setup").add_commands(), start automatically adds commands
+    end
+
+    -- Attach the jdtls for each java buffer. HOWEVER, this plugin loads
+    -- depending on filetype, so this autocmd doesn't run for the first file.
+    -- For that, we call directly below.
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = java_filetypes,
+      callback = attach_jdtls,
+    })
+
+    -- Setup keymap and dap after the lsp is fully attached.
+    -- https://github.com/mfussenegger/nvim-jdtls#nvim-dap-configuration
+    -- https://neovim.io/doc/user/lsp.html#LspAttach
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client.name == 'jdtls' then
+          local wk = require('which-key')
+          wk.add({
+            {
+              mode = 'n',
+              buffer = args.buf,
+              { '<leader>lx', group = 'extract' },
+              { '<leader>lxv', require('jdtls').extract_variable_all, desc = 'Extract Variable' },
+              { '<leader>lxc', require('jdtls').extract_constant, desc = 'Extract Constant' },
+              { '<leader>lgs', require('jdtls').super_implementation, desc = 'Goto Super' },
+              { '<leader>lgS', require('jdtls.tests').goto_subjects, desc = 'Goto Subjects' },
+              { '<leader>lgo', require('jdtls').organize_imports, desc = 'Organize Imports' },
+            },
+          })
+          wk.add({
+            {
+              mode = 'v',
+              buffer = args.buf,
+              { '<leader>lx', group = 'extract' },
+              {
+                '<leader>lxm',
+                [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
+                desc = 'Extract Method',
+              },
+              {
+                '<leader>lxv',
+                [[<ESC><CMD>lua require('jdtls').extract_variable_all(true)<CR>]],
+                desc = 'Extract Variable',
+              },
+              {
+                '<leader>lxc',
+                [[<ESC><CMD>lua require('jdtls').extract_constant(true)<CR>]],
+                desc = 'Extract Constant',
+              },
+            },
+          })
+
+          if opts.dap and mason_registry.is_installed('java-debug-adapter') then
+            -- custom init for Java debugger
+            require('jdtls').setup_dap(opts.dap)
+            if opts.dap_main then
+              require('jdtls.dap').setup_dap_main_class_configs(opts.dap_main)
+            end
+
+            -- Java Test require Java debugger to work
+            if opts.test and mason_registry.is_installed('java-test') then
+              -- custom keymaps for Java test runner (not yet compatible with neotest)
+              wk.add({
+                {
+                  mode = 'n',
+                  buffer = args.buf,
+                  { '<leader>lt', group = 'test' },
+                  {
+                    '<leader>lta',
+                    function()
+                      require('jdtls.dap').test_class({
+                        config_overrides = type(opts.test) ~= 'boolean' and opts.test.config_overrides or nil,
+                      })
+                    end,
+                    desc = 'Run All Test',
+                  },
+                  {
+                    '<leader>ltt',
+                    function()
+                      require('jdtls.dap').test_nearest_method({
+                        config_overrides = type(opts.test) ~= 'boolean' and opts.test.config_overrides or nil,
+                      })
+                    end,
+                    desc = 'Run Nearest Test',
+                  },
+                  { '<leader>ltr', require('jdtls.dap').pick_test, desc = 'Run Test' },
+                },
+              })
+            end
+          end
+
+          -- User can set additional keymaps in opts.on_attach
+          if opts.on_attach then
+            opts.on_attach(args)
+          end
+        end
+      end,
+    })
+
+    -- Avoid race condition by calling attach the first time, since the autocmd won't fire.
+    attach_jdtls()
+  end,
+}

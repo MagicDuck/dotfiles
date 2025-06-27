@@ -171,11 +171,7 @@ return {
     },
   },
 
-  {
-    'mfussenegger/nvim-jdtls', -- java support
-    lazy = true,
-    event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
-  },
+  require('my.plugins.lsp.jdtls'),
 
   {
     'onsails/lspkind-nvim',

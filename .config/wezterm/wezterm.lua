@@ -84,6 +84,7 @@ config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 -- config.window_background_opacity = 0.85
 -- config.macos_window_background_blur = 80
 -- config.text_background_opacity = 0.9
+
 config.background = {
 	{
 		source = { Color = "#FAFAF9" },

@@ -61,7 +61,7 @@ require('lualine').setup({
   options = {
     disabled_filetypes = { -- Filetypes to disable lualine for
       statusline = { 'alpha', 'fugitiveblame', 'fugitive' },
-      winbar = { 'alpha', 'gitcommit', 'qf', 'dap-repl' },
+      winbar = { 'alpha', 'gitcommit', 'qf', 'dap-repl', 'kulala_ui' },
     },
     icons_enabled = true,
     theme = my_theme,

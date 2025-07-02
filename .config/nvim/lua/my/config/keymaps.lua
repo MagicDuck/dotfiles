@@ -547,7 +547,7 @@ my.keybind('<leader>uj', ':%!jq .<CR>', { desc = 'format json' })
 
 my.keybind('<leader>lo', '<cmd>AerialToggle left<CR>', { desc = 'lsp: toggle outline' })
 
-my.keybind('f', function()
+my.keybind('M', function()
   require('flash').jump()
 end, { mode = 'nxo', desc = 'flash to location' })
 
@@ -561,8 +561,8 @@ end, {
 })
 
 my.keybind('R', function()
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('Vf<space><space>', true, false, true), 't', true)
-end, { mode = 'n', desc = 'leap line select' })
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('VM', true, false, true), 't', true)
+end, { mode = 'n', desc = 'flash line select' })
 
 -- scrolling
 --------------------------------------------------------------------------------------------------

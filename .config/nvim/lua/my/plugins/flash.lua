@@ -19,7 +19,9 @@ return {
         modes = {
           -- `f`, `F`, `t`, `T`, `;` and `,` motions
           char = {
-            enabled = false,
+            enabled = true,
+            highlight = { backdrop = false },
+            autohide = false,
           },
           -- / search
           search = {

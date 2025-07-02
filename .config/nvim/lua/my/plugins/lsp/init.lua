@@ -64,10 +64,17 @@ return {
           cpp = { 'clang-format', lsp_format = 'fallback' },
           cs = { 'clang-format', lsp_format = 'fallback' },
           cuda = { 'clang-format', lsp_format = 'fallback' },
+
+          http = { 'kuala' },
         },
         formatters = {
           ['biome-check'] = {
             require_cwd = true,
+          },
+          kulala = {
+            command = 'kulala-fmt',
+            args = { 'format', '$FILENAME' },
+            stdin = false,
           },
         },
       })

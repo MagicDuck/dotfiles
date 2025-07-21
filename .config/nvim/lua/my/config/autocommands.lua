@@ -141,7 +141,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd({ 'TermOpen' }, {
   group = augroup('terminal'),
   callback = function()
-    vim.wo.number = false
+    vim.wo[0][0].number = false
   end,
 })
 

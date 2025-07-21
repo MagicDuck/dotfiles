@@ -411,6 +411,11 @@ esac
 # =========================================================================================
 export PATH="$PATH:$HOME/go/bin"
 
+# luarocks
+# =========================================================================================
+export PATH="$HOME/.luarocks/bin:$PATH"
+eval $(luarocks path --no-bin --lua-version 5.1)
+
 # Allows zsh -is eval "command" without exiting
 # see https://www.zsh.org/mla/users/2005/msg00599.html
 # =========================================================================================

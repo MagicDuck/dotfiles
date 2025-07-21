@@ -145,6 +145,14 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
   end,
 })
 
+-- startinsert in term
+vim.api.nvim_create_autocmd({ 'TermOpen' }, {
+  group = augroup('terminal'),
+  callback = function()
+    vim.cmd('startinsert!')
+  end,
+})
+
 -- vim.api.nvim_create_autocmd('FileType', {
 --   group = vim.api.nvim_create_augroup('grug-far-keybindings', { clear = true }),
 --   pattern = { 'grug-far' },

@@ -239,6 +239,10 @@ return {
     end,
   },
   {
+    'xb-bx/editable-term.nvim',
+    config = true,
+  },
+  {
     'nmac427/guess-indent.nvim',
     lazy = true,
     event = { 'VeryLazy' },

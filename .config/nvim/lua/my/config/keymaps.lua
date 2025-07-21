@@ -360,7 +360,7 @@ my.keybind(
   { mode = 'v', desc = 'git: log selected region history using diffview' }
 )
 
-my.keybind('<C-g>', require('my.term').open_lazygit, { mode = 'invt', desc = 'git: open lazygit' })
+my.keybind('<C-g>', require('my.term').toggle_lazygit, { mode = 'invt', desc = 'git: open lazygit' })
 
 -- file browser
 --------------------------------------------------------------------------------------------------

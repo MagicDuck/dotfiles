@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Time load time with this command: time zsh -i -c exit
 
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
@@ -61,7 +54,9 @@ zinit ice atload"unalias grv"
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
 
 zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/ssh-agent/ssh-agent.plugin.zsh'
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
+if [ -z "$NVIM" ]; then
+  zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/vi-mode/vi-mode.plugin.zsh'
+fi
 
 zinit light olets/zsh-window-title
 export ZSH_WINDOW_TITLE_DIRECTORY_DEPTH=1
@@ -76,16 +71,24 @@ case $OS in
   ;;
 esac
 
-# Theme
+# Prompt Theme
 # =========================================================================================
+
+# manual
+#------------------------------------------------------------------
+autoload -Uz vcs_info # enable vcs_info
+precmd () { vcs_info } # always load before displaying the prompt
+zstyle ':vcs_info:*' formats ' %F{green}%b%f' # branch
+PS1=$'\n%{\e]133;A\007%}%B%F{grey}%/%f%b$vcs_info_msg_0_\n%F{green}%B|>%b%f %{\e]133;B\007%}'
+
 
 # Old "pure" theme
 #------------------------------------------------------------------
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
+# zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+# zinit light sindresorhus/pure
 
 # see https://github.com/sindresorhus/pure for more colors
-zstyle :prompt:pure:git:dirty color green
+# zstyle :prompt:pure:git:dirty color green
 
 # Old Starship (slow)
 #------------------------------------------------------------------
@@ -141,7 +144,12 @@ WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider
 # =========================================================================================
 # enable vim mode
 # https://dougblack.io/words/zsh-vi-mode.html
-bindkey -v
+
+if [ -z "$NVIM" ]; then
+  bindkey -v
+else
+  bindkey -e
+fi
 #export KEYTIMEOUT=50
 export KEYTIMEOUT=1
 # bindkey jk vi-cmd-mode
@@ -438,3 +446,4 @@ case $OS in
   Linux)
   ;;
 esac
+

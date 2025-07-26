@@ -550,7 +550,9 @@ my.keybind('<leader>uj', ':%!jq .<CR>', { desc = 'format json' })
 my.keybind('<leader>lo', '<cmd>AerialToggle left<CR>', { desc = 'lsp: toggle outline' })
 
 my.keybind('M', function()
-  require('flash').jump()
+  require('flash').jump({
+    search = { multi_window = false },
+  })
 end, { mode = 'nxo', desc = 'flash to location' })
 
 my.keybind(is_linux and '<c-h>' or '<a-bs>', function()

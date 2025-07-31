@@ -69,7 +69,6 @@ vim.o.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20'
 vim.o.messagesopt = 'hit-enter,history:10000'
 
 -- opt.backspace = { 'start' }
-
 if vim.fn.has('nvim-0.9.0') == 1 then
   opt.splitkeep = 'screen'
   opt.shortmess:append({ C = true })

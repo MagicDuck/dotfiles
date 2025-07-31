@@ -424,6 +424,11 @@ export PATH="$PATH:$HOME/go/bin"
 export PATH="$HOME/.luarocks/bin:$PATH"
 eval $(luarocks path --no-bin --lua-version 5.1)
 
+
+# LLS-Addons
+# =========================================================================================
+export LLS_Addons="/opt/repos/LLS-Addons/addons"
+
 # Allows zsh -is eval "command" without exiting
 # see https://www.zsh.org/mla/users/2005/msg00599.html
 # =========================================================================================

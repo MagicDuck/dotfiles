@@ -92,46 +92,49 @@ return {
       end, { range = true })
     end,
   },
-  {
-    'folke/lazydev.nvim',
-    ft = 'lua', -- only load on lua files
-    opts = {
-      library = {
-        -- Load luvit types when the `vim.uv` word is found
-        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-        { path = 'wezterm-types', mods = { 'wezterm' } },
-      },
-    },
-  },
+  -- {
+  --   'folke/lazydev.nvim',
+  --   ft = 'lua', -- only load on lua files
+  --   opts = {
+  --     library = {
+  --       -- Load luvit types when the `vim.uv` word is found
+  --       { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+  --       { path = 'wezterm-types', mods = { 'wezterm' } },
+  --     },
+  --   },
+  -- },
   {
     'neovim/nvim-lspconfig',
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     dependencies = {
-      {
-        'williamboman/mason-lspconfig.nvim',
-        dependencies = { 'mason' },
-        config = function()
-          require('mason-lspconfig').setup({
-            -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
-            -- This setting has no relation with the `automatic_installation` setting.
-            ensure_installed = { 'jdtls' },
-            -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
-            -- This setting has no relation with the `ensure_installed` setting.
-            -- Can either be:
-            --   - false: Servers are not automatically installed.
-            --   - true: All servers set up via lspconfig are automatically installed.
-            --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
-            --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-            automatic_installation = true,
-          })
-        end,
-      },
-      { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
-      { 'justinsgithub/wezterm-types', lazy = true },
+      -- {
+      --   'williamboman/mason-lspconfig.nvim',
+      --   dependencies = { 'mason' },
+      --   config = function()
+      --     require('mason-lspconfig').setup({
+      --       -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "sumneko_lua" }
+      --       -- This setting has no relation with the `automatic_installation` setting.
+      --       ensure_installed = { 'jdtls' },
+      --       -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+      --       -- This setting has no relation with the `ensure_installed` setting.
+      --       -- Can either be:
+      --       --   - false: Servers are not automatically installed.
+      --       --   - true: All servers set up via lspconfig are automatically installed.
+      --       --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+      --       --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+      --       automatic_installation = true,
+      --     })
+      --   end,
+      -- },
+      -- { 'Bilal2453/luvit-meta', name = 'luvit-types', lazy = true }, -- optional `vim.uv` typings
+      -- { 'LuaCATS/luassert', name = 'luassert-types', lazy = true },
+      -- { 'LuaCATS/busted', name = 'busted-types', lazy = true },
+      -- { 'justinsgithub/wezterm-types', lazy = true },
     },
     config = function()
-      require('my/plugins/lsp/lua-language-server')
+      -- require('my/plugins/lsp/lua-language-server')
+      require('my/plugins/lsp/emmylua_ls')
       require('my/plugins/lsp/vimls')
       -- require('my/plugins/lsp/vtsls')
       -- require('my/plugins/lsp/ts_ls')

@@ -42,7 +42,7 @@ function M.goto_definition()
           if vim.startswith(filename, cwd) then
             filename = '.' .. filename:sub(#cwd + 1)
           end
-          return vim.trim(item.text) .. '\n    ' .. filename .. ':' .. item.lnum .. ':' .. item.col
+          return vim.trim(item.text) .. ' -> ' .. filename .. ':' .. item.lnum .. ':' .. item.col
         end,
       }, function(choice)
         openLocation(choice)

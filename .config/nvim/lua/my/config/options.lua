@@ -110,7 +110,8 @@ vim.filetype.add({
   pattern = {
     ['.*/waybar/config'] = 'jsonc',
     ['.*/mako/config'] = 'dosini',
-    ['.*/kitty/.+%.conf'] = 'kitty',
+    ['.*/kitty/kitty.conf'] = 'kitty',
+    -- ['.*/ghostty/config'] = 'dosini',
     ['.*/hypr/.+%.conf'] = 'hyprlang',
     ['%.env%.[%w_.-]+'] = 'sh',
   },

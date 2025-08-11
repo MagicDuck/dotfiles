@@ -387,7 +387,10 @@ export PATH=~/git-fuzzy/bin:$PATH
 
 ulimit -n 10240
 
-# add gnu bin path for stuff like gnu-sed to override default sed
+# Fix mailcheck
+# =========================================================================================
+export MAILCHECK=-1
+
 # =========================================================================================
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 
@@ -423,7 +426,6 @@ export PATH="$PATH:$HOME/go/bin"
 # =========================================================================================
 export PATH="$HOME/.luarocks/bin:$PATH"
 eval $(luarocks path --no-bin --lua-version 5.1)
-
 
 # LLS-Addons
 # =========================================================================================

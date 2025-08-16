@@ -203,7 +203,7 @@ return {
     end,
   },
   {
-    'ariel-frischer/bmessages.nvim',
+    'catgoose/bmessages.nvim',
     event = 'CmdlineEnter',
     opts = {},
   },

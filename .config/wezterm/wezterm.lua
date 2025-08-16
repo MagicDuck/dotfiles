@@ -8,7 +8,7 @@ local isLinux = util.isLinux
 
 local config = wezterm.config_builder()
 
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 
 -- fonts
 config.font = wezterm.font_with_fallback({

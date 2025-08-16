@@ -27,6 +27,7 @@ vim.cmd([[
   " copy/paste
   vnoremap <C-c> *y
   inoremap <C-v> <C-O>"*p
+  inoremap <c-x> <c-v>
 
   " save
   nnoremap <C-s> :<C-U>w<CR>
@@ -84,8 +85,9 @@ vim.cmd([[
 if is_linux then
   vim.cmd([[
     " ctrl-based motions
-    " c-h is c-bs
-    inoremap <c-h> <c-w>
+    " see https://github.com/neovim/neovim/discussions/34578
+    " inoremap <c-h> <c-w>
+    inoremap <c-bs> <c-w>
     inoremap <c-del> <c-o>de
     inoremap <c-left> <c-o>b
     inoremap <c-right> <c-o>w

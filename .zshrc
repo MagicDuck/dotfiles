@@ -339,7 +339,7 @@ alias xmapi-dev-in-cloud-stop="xm-instance-switch-version kramerica xmapi 0-x-ma
 alias showkey="kitty +kitten show_key"
 alias gcloud-impersonate-start="gcloud config set auth/impersonate_service_account webui-dev@xmatters-eng-dev.iam.gserviceaccount.com"
 alias gcloud-impersonate-stop="gcloud config unset auth/impersonate_service_account"
-alias yadm-lazy='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml,$HOME/Library/Application Support/lazygit/config.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
+alias yadm-lazy='lazygit --use-config-file "$HOME/Library/Application Support/lazygit/config.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
 alias my_conda_list_env="conda env list"
 alias my_conda_activate="conda activate"
 alias ebtranslate="uv --project=/opt/repos/eb-translate run /opt/repos/eb-translate/translate_files.py --glossary-path=/opt/repos/eb-translate/"

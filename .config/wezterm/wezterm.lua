@@ -9,6 +9,7 @@ local isLinux = util.isLinux
 local config = wezterm.config_builder()
 
 config.window_decorations = "NONE"
+config.enable_kitty_keyboard = true
 
 -- fonts
 config.font = wezterm.font_with_fallback({

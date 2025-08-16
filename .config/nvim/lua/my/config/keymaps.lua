@@ -27,6 +27,7 @@ vim.cmd([[
   " copy/paste
   vnoremap <C-c> *y
   inoremap <C-v> <C-O>"*p
+  " NOTE: <C-x><keystroke> in insert mode is useful for checking how nvim sees keystrokes
   inoremap <c-x> <c-v>
 
   " save
@@ -182,13 +183,13 @@ my.keybind('<leader>x', ':Bwipeout<CR>', {
 
 my.keybind(
   '<leader>yf',
-  ':let @* = expand("%") | echo "yanked: " . @*<CR>',
+  ':let @+ = expand("%") | echo "yanked: " . @+<CR>',
   { desc = 'buffer: yank project relative path of file in current buffer' }
 )
 
 my.keybind(
   '<leader>yp',
-  ':let @* = expand("%:p") | echo "yanked: " . @*<CR>',
+  ':let @+ = expand("%:p") | echo "yanked: " . @+<CR>',
   { desc = 'buffer: yank full path of file in current buffer' }
 )
 

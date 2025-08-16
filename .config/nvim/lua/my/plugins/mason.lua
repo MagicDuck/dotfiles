@@ -4,6 +4,7 @@ return {
     name = 'mason',
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
+    tag = 'v1.11.0',
     config = function()
       require('mason').setup({
         ensure_installed = {

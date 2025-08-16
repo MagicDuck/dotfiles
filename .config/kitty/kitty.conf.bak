@@ -11,15 +11,10 @@ font_size 13.5
 adjust_line_height  140%
 macos_thicken_font 0
 
-#--- UI
-# hide_window_decorations yes
-window_padding_width 2
-
+#--- cursor
 # cursor_blink_interval      1.0
 # cursor_stop_blinking_after 0.1
 cursor_trail 10
-cursor_trail_start_threshold 5
-cursor_trail_decay 0.1 0.2
 
 #--- urls
 url_style curly
@@ -60,10 +55,6 @@ macos_option_as_alt yes
 kitty_mod cmd
 
 # actions -------------------------
-# TODO: this sets the kitty window title, not the OS window title...
-map kitty_mod+s>n combine : new_os_window : set_window_title " "
-map kitty_mod+s>r set_window_title " "
-
 map kitty_mod+b launch 
 map kitty_mod+; next_window
 map kitty_mod+shift+; move_window_forward
@@ -101,20 +92,20 @@ map kitty_mod+e myhints
 
 map cmd+shift+r load_config_file
 
-scrollback_pager /opt/homebrew/bin/nvim -u /Users/Stephan.Badragan/.config/nvim/init_as_pager.lua -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "normal G" -c "stopinsert"
-map kitty_mod+i show_scrollback 
+scrollback_pager /opt/homebrew/bin/nvim -u /Users/Stephan.Badragan/.config/nvim/init_as_pager.lua -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "normal G"
+map kitty_mod+shift+i show_scrollback 
 
 map kitty_mod+r launch --allow-remote-control --type=overlay --title='*Command*' kitty-launch-command
 
 # BEGIN_KITTY_THEME
-# Alabaster
+# 3024 Day
 include current-theme.conf
 # END_KITTY_THEME
-background #f0f0f1
+# background #e5e4e5
 background_image ~/wallpapers/ocean_waves.jpg
 background_tint 0.89
-transparent_background_colors #D3D5DC@0.8
-cursor #10287A
+# selection_foreground #FAFAF9
+# foreground #2C211B
 
 # old remaps -------------------------
 # cmd+s to cntrl+s

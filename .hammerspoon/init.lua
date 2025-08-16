@@ -338,10 +338,10 @@ local superKeyBindings = {
       hs.alert.show(win:application():name() .. ' | ' .. win:application():bundleID())
     end,
   },
-  -- {
-  --   key = "n",
-  --   fn = wm.focusNextAppWindow,
-  -- },
+  {
+    key = 'n',
+    fn = wm.focusNextAppWindow,
+  },
   {
     key = 'left',
     fn = wm.positionCurrentWindowLeftHalf,

@@ -8,7 +8,7 @@ local isLinux = util.isLinux
 
 local config = wezterm.config_builder()
 
-config.window_decorations = "NONE"
+config.window_decorations = isLinux and "NONE" or "RESIZE"
 config.enable_kitty_keyboard = true
 
 -- fonts

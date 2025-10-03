@@ -3,135 +3,162 @@ local act = wezterm.action
 local M = {}
 
 local function spawn_tab_with(window, tabName, cmds, dir, suspend_last)
-  local newTab, newPane = window:mux_window():spawn_tab({
-    args = { "zsh", "-i" },
-  })
-  newTab:set_title(tabName)
-  if dir then
-    newPane:send_text("cd " .. dir .. "\n")
-  end
-  if cmds then
-    for i, cmd in ipairs(cmds) do
-      local suspend = i == #cmds and suspend_last
-      newPane:send_text(cmd .. (suspend and "" or "\n"))
-    end
-  end
+	local newTab, newPane = window:mux_window():spawn_tab({
+		args = { "zsh", "-i" },
+	})
+	newTab:set_title(tabName)
+	if dir then
+		newPane:send_text("cd " .. dir .. "\n")
+	end
+	if cmds then
+		for i, cmd in ipairs(cmds) do
+			local suspend = i == #cmds and suspend_last
+			newPane:send_text(cmd .. (suspend and "" or "\n"))
+		end
+	end
 
-  return newTab, newPane
+	return newTab, newPane
+end
+
+local function spawn_workspace(name, cwd)
+	local _, pane, mux_win = wezterm.mux.spawn_window({ workspace = name, cwd = cwd })
+	---@diagnostic disable-next-line: need-check-nil
+	pane:tab():set_title("misc")
+
+	wezterm.mux.set_active_workspace(name)
+	local window = mux_win:gui_window()
+
+	return window, pane
 end
 
 local choices = {
-  {
-    label = "vim",
-    cb = function(window)
-      spawn_tab_with(window, "vim", {
-        "vim",
-      })
-    end,
-  },
-  {
-    label = "frontend-dev",
-    cb = function(window)
-      local dir = "/opt/repos/frontend"
-      spawn_tab_with(window, "misc", {}, dir)
-      local vimTab = spawn_tab_with(window, "vim", {
-        "vim src/Application/ApplicationShell/ApplicationShell.jsx",
-      }, dir)
-      spawn_tab_with(window, "webpack", {
-        "pnpm dev",
-      }, dir)
+	{
+		label = "vim",
+		cb = function(window)
+			spawn_tab_with(window, "vim", {
+				"vim",
+			})
+		end,
+	},
+	{
+		label = "frontend-dev",
+		cb = function(_, window)
+			local dir = "/opt/repos/frontend"
+			spawn_tab_with(window, "misc", {}, dir)
+			local vimTab = spawn_tab_with(window, "vim", {
+				"vim src/Application/ApplicationShell/ApplicationShell.jsx",
+			}, dir)
+			spawn_tab_with(window, "webpack", {
+				"pnpm dev",
+			}, dir)
 
-      vimTab:activate()
-    end,
-  },
-  {
-    label = "frontend-webpack",
-    cb = function(window)
-      local dir = "/opt/repos/frontend"
-      spawn_tab_with(window, "frontend-webpack", {
-        "pnpm dev",
-      }, dir)
-    end,
-  },
-  {
-    label = "frontend-test-changed",
-    cb = function(window)
-      local dir = "/opt/repos/frontend"
-      spawn_tab_with(window, "frontend-test-changed", {
-        "pnpm react-ui:test -- --changedSince=origin/main",
-      }, dir)
-    end,
-  },
-  {
-    label = "frontend-test",
-    cb = function(window)
-      spawn_tab_with(window, "frontend-test", {}, "/opt/repos/frontend/reactUi")
-    end,
-  },
-  {
-    label = "ondemand",
-    cb = function(window)
-      spawn_tab_with(window, "ondemand", {}, "/opt/repos/ondemand")
-    end,
-  },
-  -- {
-  --   label = "qmk flash dactyl",
-  --   cb = function(window)
-  --     spawn_tab_with(window, "qmk-flash-dactyl", {
-  --       "cd /opt/repos/qmk_firmware",
-  --       "qmk-flash-dactyl",
-  --     })
-  --   end,
-  -- },
-  {
-    label = "qmk flash cyboard",
-    cb = function(window)
-      spawn_tab_with(window, "qmk-flash-cyboard", {
-        "cd /opt/repos/vial-qmk",
-        "qmk-flash-cyboard",
-      })
-    end,
-  },
-  {
-    label = "vim-diff",
-    cb = function(window)
-      spawn_tab_with(window, "vim-diff", {
-        "vim -c 'enew | vsplit | enew |' -c diffthis -c 'startinsert | wincmd h | startinsert'",
-      })
-    end,
-  },
-  {
-    label = "grug-far-dev",
-    cb = function(window)
-      local dir = "/opt/repos/grug-far.nvim"
+			vimTab:activate()
+		end,
+	},
+	{
+		label = "frontend-webpack",
+		cb = function(_, window)
+			local dir = "/opt/repos/frontend"
+			spawn_tab_with(window, "frontend-webpack", {
+				"pnpm dev",
+			}, dir)
+		end,
+	},
+	{
+		label = "frontend-test-changed",
+		cb = function(_, window)
+			local dir = "/opt/repos/frontend"
+			spawn_tab_with(window, "frontend-test-changed", {
+				"pnpm react-ui:test -- --changedSince=origin/main",
+			}, dir)
+		end,
+	},
+	{
+		label = "frontend-test",
+		cb = function(_, window)
+			spawn_tab_with(window, "frontend-test", {}, "/opt/repos/frontend/reactUi")
+		end,
+	},
+	{
+		label = "ondemand",
+		cb = function(_, window)
+			spawn_tab_with(window, "ondemand", {}, "/opt/repos/ondemand")
+		end,
+	},
+	-- {
+	--   label = "qmk flash dactyl",
+	--   cb = function(window)
+	--     spawn_tab_with(window, "qmk-flash-dactyl", {
+	--       "cd /opt/repos/qmk_firmware",
+	--       "qmk-flash-dactyl",
+	--     })
+	--   end,
+	-- },
+	{
+		label = "qmk flash cyboard",
+		cb = function(_, window)
+			spawn_tab_with(window, "qmk-flash-cyboard", {
+				"cd /opt/repos/vial-qmk",
+				"qmk-flash-cyboard",
+			})
+		end,
+	},
+	{
+		label = "vim-diff",
+		cb = function(_, window)
+			spawn_tab_with(window, "vim-diff", {
+				"vim -c 'enew | vsplit | enew |' -c diffthis -c 'startinsert | wincmd h | startinsert'",
+			})
+		end,
+	},
+	{
+		label = "grug-far-dev",
+		cb = function(label)
+			local dir = "/opt/repos/grug-far.nvim"
 
-      spawn_tab_with(window, "misc", {}, dir)
-      local vimTab = spawn_tab_with(window, "vim", {
-        "vim lua/grug-far.lua",
-      }, dir)
-      spawn_tab_with(window, "live_test", {
-        "vim -c GrugFar",
-      }, dir, true)
-      spawn_tab_with(window, "unit_test", {
-        "make test file=tests/test_history.lua update_screenshots=true",
-      }, dir, true)
+			local window = spawn_workspace(label, dir)
+			local vimTab = spawn_tab_with(window, "vim", {
+				"vim lua/grug-far.lua",
+			}, dir)
+			spawn_tab_with(window, "live_test", {
+				"vim -c GrugFar",
+			}, dir, true)
+			spawn_tab_with(window, "unit_test", {
+				"make test file=tests/test_history.lua update_screenshots=true",
+			}, dir, true)
 
-      vimTab:activate()
-    end,
-  },
+			vimTab:activate()
+		end,
+	},
+	{
+		label = "snapt.nvim",
+		cb = function(label)
+			local dir = "/opt/repos/snapt.nvim"
+			local window = spawn_workspace(label, dir)
+
+			local vimTab = spawn_tab_with(window, "vim", {
+				"vim lua/snapt.lua",
+			}, dir)
+			spawn_tab_with(window, "unit_test", {
+				"luarocks test --local",
+			}, dir, true)
+
+			vimTab:activate()
+		end,
+	},
 }
 
 M.get_choices = function()
-  local cs = {}
-  for i, choice in ipairs(choices) do
-    table.insert(cs, { label = choice.label, id = "" .. i })
-  end
+	local cs = {}
+	for i, choice in ipairs(choices) do
+		table.insert(cs, { label = choice.label, id = "" .. i })
+	end
 
-  return cs
+	return cs
 end
 
-M.invoke_cb = function(window, pane, id)
-  choices[tonumber(id)].cb(window, pane)
+M.invoke_cb = function(window, pane, id, label)
+	choices[tonumber(id)].cb(label, window, pane)
 end
 
 return M

@@ -25,11 +25,16 @@ export default {
         /datastudio\.google\.com/,
         /accounts\.google\.com/,
         /accounts\.google\.com/,
-        /everbridge\.net/,
         /xmatters\.com/,
         /xmatters\.splunkcloud\.com/,
       ],
       browser: "Google Chrome",
+    },
+    {
+      match: [
+        /everbridge\.net/,
+      ],
+      browser: "Brave Browser",
     },
   ],
 };

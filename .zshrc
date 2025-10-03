@@ -343,6 +343,7 @@ alias yadm-lazy='lazygit --use-config-file "$HOME/Library/Application Support/la
 alias my_conda_list_env="conda env list"
 alias my_conda_activate="conda activate"
 alias ebtranslate="uv --project=/opt/repos/eb-translate run /opt/repos/eb-translate/translate_files.py --glossary-path=/opt/repos/eb-translate/"
+alias fe-incident-translate="npm run i18n -- translate --uv"
 
 
 # FZF
@@ -454,3 +455,4 @@ case $OS in
   ;;
 esac
 
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"

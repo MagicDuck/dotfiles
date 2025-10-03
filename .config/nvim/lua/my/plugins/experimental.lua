@@ -14,6 +14,17 @@ vim.keymap.set({ 'n', 'x' }, '<leader>ss', function()
   end)
 end, { desc = 'grug-far: Search using @/ register value or visual selection' })
 
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('my-grug-far-custom-keybinds', { clear = true }),
+  pattern = { 'grug-far' },
+  callback = function()
+    vim.keymap.set('ca', 'w', function()
+      local inst = require('grug-far').get_instance(0)
+      inst:sync_all()
+    end, { buffer = true })
+  end,
+})
+
 -- for setup-less loading
 -- vim.opt.rtp:prepend('/opt/repos/grug-far.nvim')
 return {

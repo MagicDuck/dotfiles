@@ -10,7 +10,7 @@ gui:
       - '#4c4f69' # Text
       # - '#A2A4BB' # Text
     # optionsTextColor:
-      # - '#1e66f5' # Blue
+    # - '#1e66f5' # Blue
     selectedLineBgColor:
       - '#F0F0ED' # Surface0
       # - '#D3D5DC' # Surface0
@@ -27,7 +27,7 @@ gui:
       - '#222222'
   branchColors:
     'docs': '#11aaff' # use a light blue for branches beginning with 'docs/'
-    '*': '#222222' 
+    '*': '#222222'
   authorColors:
     # use red for John Smith
     'John Smith': '#222222'
@@ -37,7 +37,7 @@ gui:
   showFileTree: false
   sidePanelWidth: 0.35
   scrollHeight: 20
-git:        
+git:
   paging:
     colorArg: always
     pager: delta --paging=never
@@ -58,10 +58,10 @@ customCommands:
   - key: 'O'
     context: commitFiles
     description: open commit file in nvim diffview
-    command:  nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^! -- {{.SelectedCommitFile.Name}}'
-    subprocess: true
+    command: nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^! -- {{.SelectedCommitFile.Name}}'
+    output: terminal
   - key: 'O'
     context: commits
     description: open commit files in nvim diffview
-    command:  nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^!'
-    subprocess: true
+    command: nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^!'
+    output: terminal

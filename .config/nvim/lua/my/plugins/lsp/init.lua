@@ -92,6 +92,7 @@ return {
       end, { range = true })
     end,
   },
+  { 'https://github.com/DrKJeff16/wezterm-types', lazy = true, version = false },
   -- {
   --   'folke/lazydev.nvim',
   --   ft = 'lua', -- only load on lua files

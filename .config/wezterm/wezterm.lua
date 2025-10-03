@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+
 local act = wezterm.action
 local util = require("util")
 local commands = require("commands")
@@ -393,7 +394,7 @@ config.keys = {
 				if not id and not label then
 					wezterm.log_info("cancelled")
 				else
-					commands.invoke_cb(window, pane, id)
+					commands.invoke_cb(window, pane, id, label)
 				end
 			end),
 			title = "Select a command to run",

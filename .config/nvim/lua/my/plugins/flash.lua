@@ -15,12 +15,21 @@ return {
         highlight = {
           -- show a backdrop with hl FlashBackdrop
           backdrop = false,
+          groups = {
+            label = 'MyFlashLabel',
+          },
         },
         modes = {
           -- `f`, `F`, `t`, `T`, `;` and `,` motions
           char = {
             enabled = true,
-            highlight = { backdrop = false },
+            highlight = {
+              backdrop = false,
+              groups = {
+                match = 'MyFlashMatch',
+                label = 'MyFlashLabel',
+              },
+            },
             autohide = false,
           },
           -- / search

@@ -135,12 +135,6 @@ else
     ]])
 end
 
--- movement treewalker
-vim.keymap.set({ 'n', 'v' }, '<up>', '<cmd>Treewalker Up<cr>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<down>', '<cmd>Treewalker Down<cr>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<left>', '<cmd>Treewalker Left<cr>', { silent = true })
-vim.keymap.set({ 'n', 'v' }, '<right>', '<cmd>Treewalker Right<cr>', { silent = true })
-
 -- snippets / clap (bracket matching)
 vim.keymap.set({ 'i', 's' }, '<end>', function()
   if require('luasnip').expand_or_jumpable() then

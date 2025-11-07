@@ -58,8 +58,6 @@ function M.get_override_highlights()
     -- workaround for lsp hover window hightlight bug in markdown
     markdownError = { link = 'None' },
 
-    -- FlashLabel = { bg = '#65737E', fg = '#F0F2F5', bold = true },
-    FlashLabel = { bg = '#4E8250', fg = '#F0F2F5', bold = true },
     Search = { bg = my.searchBg, fg = '#FAFAF9', reverse = false },
 
     Comment = { bg = my.commentBackground, fg = my.commentFg, italic = true },
@@ -128,6 +126,10 @@ end
 function M.get_my_highlights()
   return {
     Visual = { bg = my.selectionBg },
+
+    -- flash
+    MyFlashLabel = { italic = true, fg = '#AF2004' },
+    MyFlashMatch = { italic = true, fg = '#AF2004' },
 
     -- my special todos
     MyTodo = { bg = my.commentBackground, fg = my.todoFg, bold = true },

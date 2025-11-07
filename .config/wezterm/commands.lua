@@ -146,6 +146,38 @@ local choices = {
 			vimTab:activate()
 		end,
 	},
+	{
+		label = "fe-communications",
+		cb = function(label)
+			local dir = "/opt/repos/fe-communications"
+			local window = spawn_workspace(label, dir)
+
+			local vimTab = spawn_tab_with(window, "vim", {
+				"vim src/index.tsx",
+			}, dir)
+			spawn_tab_with(window, "webpack", {
+				"npm run start",
+			}, dir)
+
+			vimTab:activate()
+		end,
+	},
+	{
+		label = "fe-incident",
+		cb = function(label)
+			local dir = "/opt/repos/fe-incident"
+			local window = spawn_workspace(label, dir)
+
+			local vimTab = spawn_tab_with(window, "vim", {
+				"vim src/index.tsx",
+			}, dir)
+			spawn_tab_with(window, "webpack", {
+				"npm run start",
+			}, dir)
+
+			vimTab:activate()
+		end,
+	},
 }
 
 M.get_choices = function()

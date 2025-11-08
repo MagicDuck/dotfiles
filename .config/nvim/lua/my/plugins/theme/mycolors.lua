@@ -105,6 +105,10 @@ function M.get_override_highlights()
     GitConflictCurrentLabel = { fg = my.conflictSepFg, bg = my.conflictSepBg },
     GitConflictIncomingLabel = { fg = my.conflictSepFg, bg = my.conflictSepBg },
     GitConflictAncestorLabel = { fg = my.conflictSepFg, bg = my.conflictSepBg },
+
+    -- snacks
+    -- SnacksPicker = { bg = 'NONE' },
+    -- SnacksPicker = { link = 'None' },
   }
 end
 

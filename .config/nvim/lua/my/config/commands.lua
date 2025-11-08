@@ -28,13 +28,11 @@ my.command({
 })
 
 vim.api.nvim_create_user_command('EditBookmarkAsTab', function()
-  local get_bookmarks = require('my.config.bookmarks')
-  require('my.plugins.telescope.bookmark_picker').pickBookmark('tabnew', get_bookmarks())
+  require('my.config.bookmarks').open_bookmark('tabnew')
 end, {})
 
 vim.api.nvim_create_user_command('EditBookmark', function()
-  local get_bookmarks = require('my.config.bookmarks')
-  require('my.plugins.telescope.bookmark_picker').pickBookmark('edit', get_bookmarks())
+  require('my.config.bookmarks').open_bookmark('edit')
 end, {})
 
 vim.api.nvim_create_user_command('GBrowseMain', function(params)

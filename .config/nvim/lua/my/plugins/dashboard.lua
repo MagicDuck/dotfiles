@@ -1,7 +1,7 @@
 local function getBookmarks(startify)
   local list = {}
-  local get_bookmarks = require('my.config.bookmarks')
-  for _, bookmark in pairs(get_bookmarks()) do
+  local bookmarks = require('my.config.bookmarks')
+  for _, bookmark in pairs(bookmarks.get_bookmarks()) do
     local shortcut
     local path
     if type(bookmark) == 'table' then

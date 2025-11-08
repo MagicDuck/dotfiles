@@ -1,3 +1,4 @@
+local func = require('vim.func')
 ---@module 'snacks'
 
 local is_linux = vim.fn.has('linux') == 1
@@ -160,9 +161,13 @@ end, { silent = true })
 -- show Mappings picker
 --------------------------------------------------------------------------------------------------
 
+-- my.keybind('<leader>,', function()
+--   require('my/plugins/telescope/command_picker').pickKeybindOrCommand({ mode = 'n' })
+-- end, { desc = 'show a list of key bindings to pick from' })
+
 my.keybind('<leader>,', function()
-  require('my/plugins/telescope/command_picker').pickKeybindOrCommand({ mode = 'n' })
-end, { desc = 'show a list of key bindings to pick from' })
+  require('my.config.command_picker').open({ mode = 'n' })
+end, { desc = 'show a list of key bindings and commands to pick from' })
 
 -- buffer
 --------------------------------------------------------------------------------------------------
@@ -230,7 +235,8 @@ my.keybind('<leader>qd', function()
   vim.cmd('botright ' .. action)
 end, { desc = 'quickfix list: toggle' })
 
-my.keybind('<leader>qk', ':Telescope quickfixhistory<CR>', { desc = 'quickfix list: history' })
+-- TODO (sbadragan): use Snacks??
+-- my.keybind('<leader>qk', ':Telescope quickfixhistory<CR>', { desc = 'quickfix list: history' })
 
 my.keybind(prevLeaderKey('v'), ':Lprev<CR>', { desc = 'location list: next entry' })
 
@@ -260,9 +266,9 @@ my.keybind('<leader>td', '<cmd>tabnew %<CR>', { desc = 'tab: duplicate current t
 
 my.keybind('<leader>tc', '<cmd>tabclose<CR>', { desc = 'tab: close current tab' })
 
-my.keybind('<leader>st', function()
-  require('my/plugins/telescope/tab_picker').pickTab()
-end, { desc = 'tab: pick tab using telescope' })
+-- my.keybind('<leader>st', function()
+--   require('my/plugins/telescope/tab_picker').pickTab()
+-- end, { desc = 'tab: pick tab using telescope' })
 
 my.keybind('<leader>tt', '<cmd>EditBookmarkAsTab<CR>', { desc = 'tab: edit bookmark in new tab' })
 
@@ -387,31 +393,48 @@ my.keybind('<leader>r', ':Yazi<CR>', { desc = 'file browser: open at file' })
 -- fuzzy find things
 --------------------------------------------------------------------------------------------------
 
-my.keybind('<leader>b', ':Telescope buffers<CR>', { desc = 'Search: pick from existing buffers' })
+-- my.keybind('<leader>b', ':Telescope buffers<CR>', { desc = 'Search: pick from existing buffers' })
+my.keybind('<leader>b', function()
+  Snacks.picker.buffers()
+end, { desc = 'Search: pick from existing buffers' })
 
-my.keybind('<leader>d', ':Telescope find_files<CR>', { desc = 'Search: pick from project files' })
+-- my.keybind('<leader>d', ':Telescope find_files<CR>', { desc = 'Search: pick from project files' })
+my.keybind('<leader>d', function()
+  Snacks.picker.files()
+end, { desc = 'Search: pick from project files' })
 
-my.keybind('<leader>f', ':Telescope live_grep<CR>', { desc = 'Search: find text in project files' })
+-- my.keybind('<leader>f', ':Telescope live_grep<CR>', { desc = 'Search: find text in project files' })
+my.keybind('<leader>f', function()
+  Snacks.picker.grep()
+end, { desc = 'Search: find text in project files' })
 
-my.keybind(
-  '<leader>sb',
-  ':Telescope current_buffer_fuzzy_find<CR>',
-  { desc = 'Search: pick a line in the current buffer' }
-)
+-- my.keybind(
+--   '<leader>sb',
+--   ':Telescope current_buffer_fuzzy_find<CR>',
+--   { desc = 'Search: pick a line in the current buffer' }
+-- )
+my.keybind('<leader>sb', function()
+  Snacks.picker.lines()
+end, { desc = 'Search: pick a line in the current buffer' })
 
-my.keybind('<leader>sl', ':Lines<CR>', { desc = 'Search: pick a line in all opened buffers' })
-
-my.keybind(
-  '<leader>sf',
-  'y<ESC>:lua require("telescope.builtin").live_grep({ default_text="<c-r>0" })<CR>',
-  { mode = 'v', desc = 'Search: find current selection under cursor in project' }
-)
-
-my.keybind(
-  '<leader>sf',
-  'y<ESC>:lua require("telescope.builtin").live_grep({ default_text=vim.fn.expand("<cword>") })<CR>',
-  { mode = 'n', desc = 'Search: find current word under cursor in project' }
-)
+-- my.keybind(
+--   '<leader>sf',
+--   'y<ESC>:lua require("telescope.builtin").live_grep({ default_text="<c-r>0" })<CR>',
+--   { mode = 'v', desc = 'Search: find current selection under cursor in project' }
+-- )
+--
+-- my.keybind(
+--   '<leader>sf',
+--   'y<ESC>:lua require("telescope.builtin").live_grep({ default_text=vim.fn.expand("<cword>") })<CR>',
+--   { mode = 'n', desc = 'Search: find current word under cursor in project' }
+-- )
+my.keybind('<leader>sf', function()
+  Snacks.picker.grep({
+    search = function(picker)
+      return picker:word()
+    end,
+  })
+end, { mode = 'in', desc = 'Search: find current word under cursor in project' })
 
 my.keybind('<leader>sm', ':Namu symbols<CR>', { mode = 'n', desc = 'Search: search for symbols in current file' })
 
@@ -429,13 +452,28 @@ my.keybind('<leader>sp', function()
   })
 end, { mode = 'nx', desc = 'Search: inside current file using grug-far' })
 
-my.keybind(
-  '<leader>sh',
-  'y<ESC>:lua require("telescope.builtin").help_tags({ default_text=vim.fn.expand("<cword>") })<CR>',
-  { desc = 'Search: find in help tags visual' }
-)
+-- my.keybind(
+--   '<leader>sh',
+--   'y<ESC>:lua require("telescope.builtin").help_tags({ default_text=vim.fn.expand("<cword>") })<CR>',
+--   { desc = 'Search: find in help tags visual' }
+-- )
 
-my.keybind('<leader>su', ':Telescope resume<CR>', { desc = 'Search: resume telescope search' })
+my.keybind('<leader>sh', function()
+  Snacks.picker.help({
+    pattern = function(picker)
+      return picker:word()
+    end,
+  })
+end, { mode = 'nx', desc = 'Search: find in help tags visual' })
+
+my.keybind('<leader>sg', function()
+  Snacks.picker.highlights()
+end, { desc = 'Search: find highlight group' })
+
+-- my.keybind('<leader>su', ':Telescope resume<CR>', { desc = 'Search: resume telescope search' })
+my.keybind('<leader>su', function()
+  Snacks.picker.resume()
+end, { desc = 'Search: resume search' })
 
 my.keybind(prevLeaderKey('s'), function()
   local inst = require('grug-far').get_instance()
@@ -473,7 +511,10 @@ my.keybind('<leader>nt', function()
   require('my/todos').addTodoCommentToLineAbove()
 end, { desc = 'notes: todo comments: add on line above' })
 
-my.keybind('<leader>ns', ':TodoTelescope<CR>', { desc = 'notes: todo comments: search in project' })
+-- my.keybind('<leader>ns', ':TodoTelescope<CR>', { desc = 'notes: todo comments: search in project' })
+my.keybind('<leader>ns', function()
+  Snacks.picker.todo_comments()
+end, { desc = 'notes: todo comments: search in project' })
 
 -- LSP
 --------------------------------------------------------------------------------------------------
@@ -654,11 +695,15 @@ end, { desc = 'vsplit edit associated file: module scss file' })
 -- snippets
 --------------------------------------------------------------------------------------------------
 
-my.keybind(
-  '<c-p>',
-  '<esc>:Telescope luasnip<CR>',
-  { mode = 'i', desc = 'Snippets: search and insert snippet with telescope' }
-)
+-- my.keybind(
+--   '<c-b>',
+--   '<esc>:Telescope luasnip<CR>',
+--   { mode = 'i', desc = 'Snippets: search and insert snippet with telescope' }
+-- )
+
+my.keybind('<c-b>', function()
+  require('snacks-luasnip').pick()
+end, { mode = 'i', desc = 'Snippets: search and insert snippet' })
 
 -- messages window
 --------------------------------------------------------------------------------------------------

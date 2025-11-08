@@ -1,4 +1,5 @@
 local scan = require('plenary.scandir')
+local M = {}
 
 local function add_subdirs_of(bookmarks, dir)
   local d = vim.fn.expand(dir)
@@ -7,7 +8,7 @@ local function add_subdirs_of(bookmarks, dir)
   end
 end
 
-local function get_bookmarks()
+function M.get_bookmarks()
   local bookmarks = {
     { 'i', '~/.config/nvim/init.lua' },
     '~/notes',
@@ -43,4 +44,41 @@ local function get_bookmarks()
   return bookmarks
 end
 
-return get_bookmarks
+M.open_bookmark = function(command)
+  Snacks.picker.pick({
+    items = vim
+      .iter(M.get_bookmarks())
+      :map(function(bookmark)
+        local path
+        if type(bookmark) == 'table' then
+          path = bookmark[2]
+        else
+          path = bookmark
+        end
+        return { text = path, value = path }
+      end)
+      :totable(),
+    format = 'text',
+    title = 'Bookmarks',
+    layout = {
+      -- preset = 'dropdown',
+      preset = 'ivy',
+      preview = false,
+      ---@diagnostic disable-next-line: missing-fields
+      layout = {
+        width = 0,
+      },
+    },
+    confirm = function(picker, item)
+      picker:close()
+
+      local path = item.value
+      vim.cmd(command .. ' ' .. path)
+      if vim.fn.isdirectory(vim.fn.expand(path)) > 0 then
+        vim.cmd.lchdir({ args = { path }, mods = { silent = true } })
+      end
+    end,
+  })
+end
+
+return M

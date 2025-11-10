@@ -434,7 +434,7 @@ my.keybind('<leader>sf', function()
       return picker:word()
     end,
   })
-end, { mode = 'in', desc = 'Search: find current word under cursor in project' })
+end, { mode = 'n', desc = 'Search: find current word under cursor in project' })
 
 my.keybind('<leader>sm', ':Namu symbols<CR>', { mode = 'n', desc = 'Search: search for symbols in current file' })
 

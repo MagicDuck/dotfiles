@@ -15,8 +15,10 @@ return {
         highlight = {
           -- show a backdrop with hl FlashBackdrop
           backdrop = false,
+          -- matches = false,
           groups = {
-            label = 'MyFlashLabel',
+            match = 'Underlined',
+            label = 'Search',
           },
         },
         modes = {

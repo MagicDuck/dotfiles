@@ -132,8 +132,8 @@ function M.get_my_highlights()
     Visual = { bg = my.selectionBg },
 
     -- flash
-    MyFlashLabel = { italic = true, fg = '#AF2004' },
-    MyFlashMatch = { italic = true, fg = '#AF2004' },
+    MyFlashLabel = { italic = true, bold = true, fg = '#AF2004' },
+    MyFlashMatch = { italic = true, bold = true, fg = '#AF2004' },
 
     -- my special todos
     MyTodo = { bg = my.commentBackground, fg = my.todoFg, bold = true },

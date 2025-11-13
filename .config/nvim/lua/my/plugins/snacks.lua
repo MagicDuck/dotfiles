@@ -18,6 +18,7 @@ return {
       -- image = { enabled = true, doc = { max_width = 200, max_height = 40 } },
       ---@type snacks.picker.Config
       picker = {
+        ui_select = false,
         layout = {
           preset = 'dropdown', -- "ivy"
           ---@diagnostic disable-next-line: missing-fields

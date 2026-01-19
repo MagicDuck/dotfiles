@@ -1,8 +1,4 @@
-local lspconfig = require("lspconfig")
-local attach = require("my/plugins/lsp/attach")
-
-lspconfig.stylelint_lsp.setup({
-  capabilities = attach.global_capabilities,
+vim.lsp.config('stylelint_lsp', {
   filetypes = {
     'css',
     'less',
@@ -11,6 +7,6 @@ lspconfig.stylelint_lsp.setup({
   settings = {
     validateOnSave = true,
     -- validateOnType = true
-    run = "onSave", -- default is onType
-  }
+    run = 'onSave', -- default is onType
+  },
 })

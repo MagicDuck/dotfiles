@@ -357,6 +357,10 @@ my.keybind('<leader>gl', ':DiffviewOpen<CR>', { desc = 'git: log status using di
 
 my.keybind('<leader>gh', ':DiffviewFileHistory %<CR>', { desc = 'git: log file history using diffview' })
 
+my.keybind('<leader>gd', function()
+  Snacks.picker.git_diff()
+end, { desc = 'git: diff hunk picker' })
+
 my.keybind(
   '<leader>gh',
   ":'<,'>DiffviewFileHistory<CR>",

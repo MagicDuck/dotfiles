@@ -192,9 +192,10 @@ local superKeyBindings = {
   -- },
   {
     key = 'd',
+    app = 'Firefox',
     -- app = "Brave Browser",
     -- app = "Safari",
-    app = 'Vivaldi',
+    -- app = 'Vivaldi',
     -- app = 'Zen',
   },
   {
@@ -269,8 +270,8 @@ local superKeyBindings = {
   },
   {
     key = 'r',
-    app = 'Brave Browser',
-    -- app = 'Google Chrome',
+    -- app = 'Brave Browser',
+    app = 'Google Chrome',
     -- app = "Firefox",
   },
   {

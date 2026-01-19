@@ -134,21 +134,27 @@ return {
       -- { 'justinsgithub/wezterm-types', lazy = true },
     },
     config = function()
-      -- require('my/plugins/lsp/lua-language-server')
-      require('my/plugins/lsp/emmylua_ls')
-      require('my/plugins/lsp/vimls')
-      -- require('my/plugins/lsp/vtsls')
-      -- require('my/plugins/lsp/ts_ls')
-      require('my/plugins/lsp/cssmodules')
+      local attach = require('my/plugins/lsp/attach')
 
-      -- Note: this one has problems currently since it applies formatting, need to disable that somehow
-      -- require('my/plugins/lsp/cssls')
+      vim.lsp.config('*', {
+        capabilities = attach.global_capabilities,
+        on_attach = attach.global_on_attach,
+      })
 
       require('my/plugins/lsp/eslint')
       require('my/plugins/lsp/stylelint')
-      require('my/plugins/lsp/rust_analyzer')
-      require('my/plugins/lsp/biome')
-      require('my/plugins/lsp/gopls')
+
+      vim.lsp.enable({
+        'emmylua_ls',
+        'vimls',
+        'cssmodules',
+        'eslint',
+        'stylelint',
+        'rust_analyzer',
+        'biome',
+        'gopls',
+        'kulala',
+      })
     end,
   },
 

@@ -1,6 +1,7 @@
 local M = {}
 
-local function openLocation(loc)
+local function openLocation(currentWinId, loc)
+  vim.fn.win_execute(currentWinId, 'normal! m`')
   local targetBuf = vim.fn.bufnr(loc.filename)
   local targetWin = 0
   if targetBuf == -1 then
@@ -29,8 +30,9 @@ function M.goto_definition()
         return
       end
 
+      local currentWinId = vim.api.nvim_get_current_win()
       if #items == 1 then
-        openLocation(items[1])
+        openLocation(currentWinId, items[1])
         return
       end
 
@@ -45,7 +47,7 @@ function M.goto_definition()
           return vim.trim(item.text) .. ' -> ' .. filename .. ':' .. item.lnum .. ':' .. item.col
         end,
       }, function(choice)
-        openLocation(choice)
+        openLocation(currentWinId, choice)
       end)
     end,
   })

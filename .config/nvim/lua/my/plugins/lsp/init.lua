@@ -34,7 +34,13 @@ return {
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
       local js_format = function(bufnr)
-        if require('conform').get_formatter_info('biome-check', bufnr).available then
+        if string.find(vim.api.nvim_buf_get_name(bufnr), '/map-control-mfe/', 1, true) ~= nil then
+          return {
+            filter = function()
+              return false
+            end,
+          }
+        elseif require('conform').get_formatter_info('biome-check', bufnr).available then
           return { 'biome-check', lsp_format = 'fallback' }
         else
           return { 'prettierd', 'prettier', lsp_format = 'fallback' }
@@ -66,6 +72,9 @@ return {
           cuda = { 'clang-format', lsp_format = 'fallback' },
 
           http = { 'kuala' },
+        },
+        default_format_opts = {
+          lsp_format = 'never',
         },
         formatters = {
           ['biome-check'] = {

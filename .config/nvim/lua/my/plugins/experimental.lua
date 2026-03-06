@@ -38,6 +38,7 @@ return {
         helpLine = {
           enabled = false,
         },
+        -- windowCreationCommand = '',
         -- showCompactInputs = true,
         -- showInputsTopPadding = false,
         -- showInputsBottomPadding = false,
@@ -45,15 +46,22 @@ return {
 
       --- testing stuff
       vim.keymap.set({ 'n', 'x' }, '<leader>ss', function()
-        local search = vim.fn.getreg('/')
-        -- surround with \b if "word" search (such as when pressing `*`)
-        if search and vim.startswith(search, '\\<') and vim.endswith(search, '\\>') then
-          search = '\\b' .. search:sub(3, -3) .. '\\b'
+        local selection_lines = require('grug-far').get_current_visual_selection_lines(true)
+
+        local prefills = {}
+        if selection_lines == nil then
+          local search = vim.fn.getreg('/')
+          -- surround with \b if "word" search (such as when pressing `*`)
+          if search and vim.startswith(search, '\\<') and vim.endswith(search, '\\>') then
+            search = '\\b' .. search:sub(3, -3) .. '\\b'
+          elseif search and vim.startswith(search, '\\V') then
+            search = search:sub(3)
+          end
+          prefills.search = search
         end
+
         local inst = require('grug-far').open({
-          prefills = {
-            search = search,
-          },
+          prefills = prefills,
         })
         inst:when_ready(function()
           inst:goto_input('replacement')

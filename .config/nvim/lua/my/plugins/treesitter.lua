@@ -21,7 +21,10 @@ return {
         -- ensure_installed = { "javascript", "lua", "c", "vim", "help", "query" },
         ensure_installed = 'all',
         -- auto_install = true,
-        ignore_install = { 'comment' }, -- has some performance issues atm
+        ignore_install = {
+          'comment', -- has some performance issues atm
+          'ipkg', -- build issues
+        },
         -- This stuff seems to be already better taken of by default
         highlight = {
           enable = true,

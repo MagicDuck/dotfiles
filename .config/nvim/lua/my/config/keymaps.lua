@@ -176,10 +176,10 @@ my.keybind('<leader>o', ':b#<CR>', {
   desc = 'buffer: go to previously viewed/edited buffer',
 })
 
-my.keybind('<leader>x', ':Bwipeout<CR>', {
-  desc = 'buffer: close current buffer while preserving window',
-})
-
+-- my.keybind('<leader>x', ':Bwipeout<CR>', {
+--   desc = 'buffer: close current buffer while preserving window',
+-- })
+--
 my.keybind(
   '<leader>yf',
   ':let @+ = expand("%") | echo "yanked: " . @+<CR>',
@@ -399,7 +399,9 @@ my.keybind('<leader>r', ':Yazi<CR>', { desc = 'file browser: open at file' })
 
 -- my.keybind('<leader>b', ':Telescope buffers<CR>', { desc = 'Search: pick from existing buffers' })
 my.keybind('<leader>b', function()
-  Snacks.picker.buffers()
+  Snacks.picker.buffers({
+    nofile = true,
+  })
 end, { desc = 'Search: pick from existing buffers' })
 
 -- my.keybind('<leader>d', ':Telescope find_files<CR>', { desc = 'Search: pick from project files' })
@@ -717,13 +719,17 @@ my.keybind('<leader>m', ':Bmessages<CR>', { desc = 'Messages : show messages win
 -- tests
 --------------------------------------------------------------------------------------------------
 
-my.keybind('<leader>xf', function()
-  require('mini.test').run_file()
-end, { desc = 'mini.test: run file' })
+my.keybind('<leader>xf', '<cmd>TestFile<CR>', { desc = 'test: run file' })
 
-my.keybind('<leader>xt', function()
-  require('mini.test').run()
-end, { desc = 'mini.test: run tests' })
+my.keybind('<leader>xt', '<cmd>TestNearest<CR>', { desc = 'test: run tests' })
+
+-- my.keybind('<leader>xf', function()
+--   require('neotest').run.run(vim.fn.expand('%'))
+-- end, { desc = 'test: run file' })
+--
+-- my.keybind('<leader>xt', function()
+--   require('neotest').run.run()
+-- end, { desc = 'test: run tests' })
 
 -- overseer
 --------------------------------------------------------------------------------------------------

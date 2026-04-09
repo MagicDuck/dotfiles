@@ -599,7 +599,8 @@ my.keybind('M', function()
   })
 end, { mode = 'nxo', desc = 'flash to location' })
 
-my.keybind(is_linux and '<c-h>' or '<a-bs>', function()
+-- my.keybind(is_linux and '<c-h>' or '<a-bs>', function()
+my.keybind('<bs>', function()
   require('flash').treesitter()
 end, {
   mode = 'nxo',
@@ -607,6 +608,21 @@ end, {
   noremap = true,
   desc = 'flash: select using treesitter',
 })
+-- incremental selection
+vim.keymap.set({ 'x', 'o' }, 'v', function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require('vim.treesitter._select').select_parent(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(vim.v.count1)
+  end
+end)
+vim.keymap.set({ 'x', 'o' }, 'V', function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require('vim.treesitter._select').select_child(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(-vim.v.count1)
+  end
+end)
 
 my.keybind('R', function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('VM', true, false, true), 't', true)

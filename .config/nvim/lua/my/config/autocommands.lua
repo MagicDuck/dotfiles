@@ -153,6 +153,14 @@ vim.api.nvim_create_autocmd({ 'TermOpen' }, {
   end,
 })
 
+-- disable semantic highlighting
+-- vim.api.nvim_create_autocmd('LspAttach', {
+--   callback = function(args)
+--     local client = vim.lsp.get_client_by_id(args.data.client_id)
+--     client.server_capabilities.semanticTokensProvider = nil
+--   end,
+-- })
+
 -- vim.api.nvim_create_autocmd('FileType', {
 --   group = vim.api.nvim_create_augroup('grug-far-keybindings', { clear = true }),
 --   pattern = { 'grug-far' },

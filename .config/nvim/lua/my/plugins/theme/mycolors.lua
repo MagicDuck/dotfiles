@@ -179,6 +179,10 @@ function M.get_my_highlights()
     -- Win Bar UI
     MyWinbarFilename = { bg = my.menubarBaseBg, fg = my.menubarBaseFg },
     MyWinbarFiletype = { bg = my.menubarBaseBg, fg = my.menubarBaseFg, bold = true },
+
+    -- Mini cursorword
+    MiniCursorword = { underdouble = true },
+    MiniCursorwordCurrent = { underdouble = true },
   }
 end
 

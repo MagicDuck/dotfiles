@@ -42,6 +42,22 @@ return {
         -- showCompactInputs = true,
         -- showInputsTopPadding = false,
         -- showInputsBottomPadding = false,
+        -- hooks = {
+        --   on_before_edit_file = function(on_finish, file)
+        --     return require('grug-far').spawn_cmd_async({
+        --       cmd_path = 'wc',
+        --       args = { file.path },
+        --       on_finish = on_finish,
+        --     })
+        --   end,
+        -- },
+
+        engines = {
+          astgrep = {
+            path = '/opt/repos/grug-far.nvim/deps/astgrep/ast-grep',
+            -- rgPath = vim.fs.abspath('deps/ripgrep/rg'),
+          },
+        },
       })
 
       --- testing stuff

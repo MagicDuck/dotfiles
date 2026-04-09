@@ -84,17 +84,6 @@ end
 --   return original_vim_ui_select(items, opts, on_choice)
 -- end
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.handlers['textDocument/publishDiagnostics'],
-  -- vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    -- Enable underline, use default values
-    underline = false,
-    -- Disable a feature
-    -- update_in_insert = false,
-  }
-)
-
 exports.tsserverPublishDiagnostics = function(_, result, ctx, config)
   if vim.endswith(vim.loop.cwd() or '', '/frontend') then
     result.diagnostics = vim.tbl_filter(function(diagnostic)

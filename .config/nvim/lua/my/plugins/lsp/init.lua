@@ -102,17 +102,21 @@ return {
     end,
   },
   { 'https://github.com/DrKJeff16/wezterm-types', lazy = true, version = false },
-  -- {
-  --   'folke/lazydev.nvim',
-  --   ft = 'lua', -- only load on lua files
-  --   opts = {
-  --     library = {
-  --       -- Load luvit types when the `vim.uv` word is found
-  --       { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-  --       { path = 'wezterm-types', mods = { 'wezterm' } },
-  --     },
-  --   },
-  -- },
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {
+      library = {
+        -- Load luvit types when the `vim.uv` word is found
+        -- { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        -- { path = 'wezterm-types', mods = { 'wezterm' } },
+      },
+      -- disable when a .luarc.json file is found
+      enabled = function(root_dir)
+        return not vim.uv.fs_stat(root_dir .. '/.luarc.json')
+      end,
+    },
+  },
   {
     'neovim/nvim-lspconfig',
     lazy = true,
@@ -152,9 +156,11 @@ return {
 
       require('my/plugins/lsp/eslint')
       require('my/plugins/lsp/stylelint')
+      require('my/plugins/lsp/lua-language-server')
 
       vim.lsp.enable({
-        'emmylua_ls',
+        -- 'emmylua_ls', -- rust version of lua LS
+        'lua_ls',
         'vimls',
         'cssmodules',
         'eslint',

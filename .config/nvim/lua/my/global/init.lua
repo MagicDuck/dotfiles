@@ -12,9 +12,9 @@ local ignore_deprecated = {
   ['vim.validate'] = 'vim.validate(name, value, validator, optional_or_msg)',
 }
 ---@diagnostic disable-next-line: duplicate-set-field
-vim.deprecate = function(name, alternative, version, plugin, backtrace)
-  if ignore_deprecated[name] == alternative then
-    return
-  end
-  deprecate(name, alternative, version, plugin, backtrace)
-end
+-- vim.deprecate = function(name, alternative, version, plugin, backtrace)
+--   if ignore_deprecated[name] == alternative then
+--     return
+--   end
+--   deprecate(name, alternative, version, plugin, backtrace)
+-- end

@@ -34,7 +34,8 @@ local modes = {
 
 local function get_vim_mode_color()
   local vim_mode = vim.fn.mode()
-  return modes[vim_mode].color
+  -- return modes[vim_mode].color
+  return 'MyStatusbarMode'
 end
 
 local function getFiletypeComponent(color)
@@ -66,7 +67,8 @@ require('lualine').setup({
     icons_enabled = true,
     theme = my_theme,
     component_separators = '',
-    section_separators = { left = '', right = '' },
+    -- section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     ignore_focus = {},
     always_divide_middle = false,
     globalstatus = true,
@@ -97,20 +99,25 @@ require('lualine').setup({
         path = 2, -- absolute path
         symbols = getFilenameSymbols(),
       },
+      { 'location', color = 'MyStatusbarFilename' },
+      { 'progress', color = 'MyStatusbarFilename' },
       {
         'diagnostics',
         -- colors = { fg = colors.light01, bg = colors.orange, gui = "bold" },
         diagnostics_color = {
-          error = 'MyStatusbarDiagnosticError',
-          warn = 'MyStatusbarDiagnosticWarn',
+          -- error = 'MyStatusbarDiagnosticError',
+          -- warn = 'MyStatusbarDiagnosticWarn',
+          error = 'MyStatusbarFilename',
+          warn = 'MyStatusbarFilename',
           -- info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
           -- hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
         },
         sections = { 'error', 'warn' },
+        padding = 2,
       },
-      { 'location', color = 'MyStatusbarFileLocation' },
-      { 'progress', color = 'MyStatusbarFileProgress' },
-      utils.createRightCap('MyStatusbarFileProgressCap'),
+      -- { 'location', color = 'MyStatusbarFileLocation' },
+      -- { 'progress', color = 'MyStatusbarFileProgress' },
+      -- utils.createRightCap('MyStatusbarFileProgressCap'),
     },
     lualine_b = {},
     lualine_c = {},

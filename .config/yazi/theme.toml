@@ -3,8 +3,10 @@
 syntect_theme = "~/.config/yazi/gruvbox-light.tmTheme"
 
 [status]
-separator_open  = ""
-separator_close = ""
+# separator_open  = ""
+# separator_close = ""
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
 separator_style = { fg = "#D7CFC9", bg = "#D7CFC9" }
 
 # Progress

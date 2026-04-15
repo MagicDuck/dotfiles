@@ -9,8 +9,8 @@ return {
   --   space = " "
   -- },
   sep = {
-    left = '',
-    right = '',
+    -- left = '',
+    -- right = '',
     space = ' ',
   },
   diagnostic = {

@@ -52,6 +52,7 @@ end
 function M.get_override_highlights()
   return {
     Pmenu = { fg = '#000000', bg = my.floatBg },
+    PmenuThumb = { bg = '#000000' },
     NormalFloat = { bg = my.floatBg },
     FloatBorder = { fg = '#000000', bg = my.floatBg },
 
@@ -164,6 +165,7 @@ function M.get_my_highlights()
     MyStatusbarModePrompt = { fg = my.menubarFg1, bg = '#9a806d', bold = true },
     MyStatusbarModeExternal = { fg = my.menubarFg1, bg = '#896a98', bold = true },
     MyStatusbarModeTerminal = { fg = my.menubarFg1, bg = '#896a98', bold = true },
+    MyStatusbarMode = { fg = my.menubarFg1, bg = '#566974', bold = true },
 
     MyStatusbarFiletype = { bg = my.menubarBg1, fg = my.menubarBaseFg, bold = true },
     MyStatusbarFilename = { bg = my.menubarBg1, fg = my.menubarBaseFg },

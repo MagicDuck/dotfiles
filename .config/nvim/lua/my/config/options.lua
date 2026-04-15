@@ -77,17 +77,24 @@ end
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 
--- define signs to show in the sign column
-vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
-vim.fn.sign_define('DiagnosticSignInformation', { text = '', texthl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignError', { text = '✘', texthl = 'DiagnosticSignError' })
-
--- see https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
 vim.diagnostic.config({
   underline = false,
   virtual_text = {
     prefix = '■', -- Could be '●', '▎', 'x'
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.HINT] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.ERROR] = '✘',
+    },
+    numhl = {
+      [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+      [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+      [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+      [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+    },
   },
 })
 

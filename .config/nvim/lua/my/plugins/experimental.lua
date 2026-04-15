@@ -45,8 +45,8 @@ return {
         -- hooks = {
         --   on_before_edit_file = function(on_finish, file)
         --     return require('grug-far').spawn_cmd_async({
-        --       cmd_path = 'wc',
-        --       args = { file.path },
+        --       cmd_path = 'sleep',
+        --       args = { '5' },
         --       on_finish = on_finish,
         --     })
         --   end,

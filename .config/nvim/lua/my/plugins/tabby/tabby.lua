@@ -16,20 +16,22 @@ local theme = {
 require('tabby.tabline').set(function(line)
   return {
     {
-      { '  ', hl = theme.head },
-      line.sep('', theme.head, theme.fill),
+      { '   ', hl = theme.head },
+      -- line.sep('', theme.head, theme.fill),
     },
     line.tabs().foreach(function(tab)
       local hl = tab.is_current() and theme.current_tab or theme.tab
       local cwd_find_success, cwd = pcall(vim.fn.getcwd, tab.current_win().id, tab.id)
       return {
-        line.sep('', hl, theme.fill),
+        -- line.sep('', hl, theme.fill),
+        line.sep('  ', hl, theme.fill),
         tab.is_current() and ' ' or ' ',
         tab.in_jump_mode() and { tab.jump_key(), hl = tab.is_current() and theme.jump_current or theme.jump }
           or { tab.number(), hl = tab.is_current() and theme.current_tab or theme.tab },
-        (cwd_find_success and vim.fs.basename(cwd) .. ' - ' or '') .. tab.name(),
+        (cwd_find_success and vim.fs.basename(cwd) .. ' - ' or '') .. tab.name() .. ' ',
         -- tab.close_btn(''), -- show a close button
-        line.sep('', hl, theme.fill),
+        -- line.sep('', hl, theme.fill),
+        -- line.sep(' ', hl, theme.fill),
         hl = hl,
         margin = ' ',
       }
@@ -47,7 +49,7 @@ require('tabby.tabline').set(function(line)
     --   }
     -- end),
     {
-      line.sep('', theme.tail, theme.fill),
+      -- line.sep('', theme.tail, theme.fill),
       { '  ', hl = theme.tail },
     },
     hl = theme.fill,

@@ -85,7 +85,27 @@ config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
 
 -- config.window_background_opacity = 0.85
 -- config.macos_window_background_blur = 80
--- config.text_background_opacity = 0.9
+
+-- config.background = {
+-- 	{
+-- 		source = { Color = "#FAFAF9" },
+-- 		-- source = { Color = "#FAF9FF" },
+-- 		width = "100%",
+-- 		height = "100%",
+-- 		opacity = 1,
+-- 	},
+-- 	{
+-- 		source = {
+-- 			File = wezterm.home_dir .. "/wallpapers/ocean_waves.jpg",
+-- 			-- File = wezterm.home_dir .. "/wallpapers/harbor.jpg",
+-- 			-- File = wezterm.home_dir .. "/wallpapers/baloon.jpg",
+-- 			-- File = wezterm.home_dir .. "/wallpapers/wall-leaves.jpg",
+-- 			-- File = wezterm.home_dir .. "/wallpapers/wood-wall2.jpg",
+-- 		},
+-- 		hsb = { brightness = 0.1 },
+-- 		opacity = 0.1,
+-- 	},
+-- }
 
 config.background = {
 	{
@@ -97,16 +117,17 @@ config.background = {
 	},
 	{
 		source = {
-			File = wezterm.home_dir .. "/wallpapers/ocean_waves.jpg",
+			File = wezterm.home_dir .. "/wallpapers/faint-coffe-stains.png",
 			-- File = wezterm.home_dir .. "/wallpapers/harbor.jpg",
 			-- File = wezterm.home_dir .. "/wallpapers/baloon.jpg",
 			-- File = wezterm.home_dir .. "/wallpapers/wall-leaves.jpg",
 			-- File = wezterm.home_dir .. "/wallpapers/wood-wall2.jpg",
 		},
-		hsb = { brightness = 0.1 },
-		opacity = 0.1,
+		hsb = { brightness = 0.85 },
+		opacity = 0.5,
 	},
 }
+config.text_background_opacity = 0.9
 
 config.window_frame = {
 	border_bottom_height = "0.5cell",
@@ -160,8 +181,8 @@ config.inactive_pane_hsb = {
 }
 
 wezterm.on("format-tab-title", function(tab, tabs, panes, conf, hover, max_width)
-	local background = "#65737E"
-	local foreground = "#F0F2F5"
+	local background = "#4C4F51"
+	local foreground = "white"
 	local edge_background = config.colors.tab_bar.background
 
 	if tab.is_active or hover then
@@ -182,14 +203,19 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, conf, hover, max_width
 	return {
 		{ Background = { Color = edge_background } },
 		{ Foreground = { Color = edge_foreground } },
-		{ Text = " " },
+		{ Text = " " },
+		{ Foreground = { Color = tab.is_active and "#A70C00" or "#004568" } },
+		{ Background = { Color = edge_background } },
+		{ Text = " ▒" },
+		-- { Text = " " },
 		{ Background = { Color = background } },
 		{ Foreground = { Color = foreground } },
 		{ Attribute = { Intensity = tab.is_active and "Bold" or "Normal" } },
 		{ Text = " " .. (tab.tab_index + 1) .. ": " .. title .. " " },
 		{ Background = { Color = edge_background } },
 		{ Foreground = { Color = edge_foreground } },
-		{ Text = "" },
+		-- { Text = "" },
+		{ Text = " " },
 	}
 end)
 
@@ -199,22 +225,24 @@ end)
 
 -- right status
 wezterm.on("update-right-status", function(window, pane)
-	local background = "#b4713d"
-	local foreground = "#F0F2F5"
+	local background = "#4C4F51"
+	local foreground = "white"
 	local edge_background = config.colors.tab_bar.background
 	local edge_foreground = background
 
 	-- Make it italic and underlined
 	window:set_right_status(wezterm.format({
+		{ Foreground = { Color = "#247200" } },
 		{ Background = { Color = edge_background } },
-		{ Foreground = { Color = edge_foreground } },
-		{ Text = " " },
+		{ Text = " ▒" },
 		{ Background = { Color = background } },
 		{ Foreground = { Color = foreground } },
-		{ Text = " 󰡚 " .. window:active_workspace() },
+		{ Text = " 󰡚 " .. window:active_workspace() .. " " },
+		-- { Background = { Color = "" } },
+		-- { Text = " " },
+		-- { Text = "" },
 		{ Background = { Color = edge_background } },
 		{ Foreground = { Color = edge_foreground } },
-		{ Text = "" },
 		{ Text = " " },
 	}))
 end)

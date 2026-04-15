@@ -22,15 +22,17 @@ return {
       menubarBg4 = '#b4713d',
 
       menubarBaseFg = '#1b2b34',
-      menubarFg1 = '#F6FAFF',
-      menubarFg2 = '#FCFFFA',
+      -- menubarFg1 = '#F6FAFF',
+      -- menubarFg2 = '#FCFFFA',
+      menubarFg1 = 'white',
+      menubarFg2 = 'white',
 
       menubarInactiveAccent = '#65737e',
-      menubarActiveAccent = '#896a98',
+      menubarActiveAccent = '#9F4D47',
 
       debugLineBg = '#F0E0E0',
       cursorLineBg = '#D3D5DC',
-      searchBg = '#896a98',
+      searchBg = '#7C5A8F',
 
       floatBg = '#D3D5DC',
 

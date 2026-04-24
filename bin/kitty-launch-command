@@ -10,6 +10,7 @@ frontend-test
 ondemand
 qmk-flash-dactyl
 vim-diff
+fe-communications
 EOF
 
 local cmd
@@ -50,6 +51,11 @@ case "$cmd" in
     vim-diff)
         kitty @launch --type tab --location=after --title vim-diff --cwd -i
         kitty @send-text "vim -c 'enew | vsplit | enew |' -c diffthis -c 'startinsert | wincmd h | startinsert'\n"
+        ;;
+    fe-communications)
+        kitty @launch --type os-window --os-window-title fe-communications --cwd /opt/repos/fe-communications
+        kitty @launch --type tab --location=after --title vim --cwd /opt/repos/fe-communications zsh -i
+        kitty @send-text "vim src/index.tsx\n"
         ;;
     *)
         echo "No command defined for: $cmd"

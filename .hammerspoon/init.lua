@@ -200,7 +200,9 @@ local superKeyBindings = {
   },
   {
     key = 'e',
-    app = 'WezTerm',
+    -- app = 'kitty',
+    -- app = 'WezTerm',
+    app = 'Ghostty',
   },
   -- {
   --   key = 'e',

@@ -466,3 +466,7 @@ case $OS in
 esac
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+# bottom gap
+# =========================================================================================
+PS1=$'\n\n\n\n\n\n\n\n\e[8A'"$PS1"

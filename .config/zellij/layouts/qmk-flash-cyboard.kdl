@@ -8,8 +8,8 @@ layout {
     pane_template name="_pane" {
         cwd "/opt/repos/vial-qmk"
     }
-    _tab name="qmk-flash-cyboard" {
-        _pane command="zsh" focus=true {
+    _tab name="qmk-flash-cyboard" focus=true {
+        _pane command="zsh" {
             args "-is" "eval" "qmk-flash-cyboard"
         }
     }

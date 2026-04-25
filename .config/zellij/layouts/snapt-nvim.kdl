@@ -11,8 +11,8 @@ layout {
     _tab name="misc" {
         _pane
     }
-    _tab name="vim" {
-        _pane command="zsh" focus=true {
+    _tab name="vim" focus=true {
+        _pane command="zsh" {
             args "-is" "eval" "vim" "lua/snapt.lua"
         }
     }

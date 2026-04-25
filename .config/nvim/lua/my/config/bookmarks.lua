@@ -19,6 +19,7 @@ function M.get_bookmarks()
     '~/.tmux.conf',
     '~/.hammerspoon/init.lua',
     '~/.config/wezterm/wezterm.lua',
+    '~/.config/ghostty/config',
     '~/.config/zellij/config.kdl',
     '~/.zshrc',
     '~/app_window_toggler',

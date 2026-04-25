@@ -20,6 +20,11 @@ background-image = ~/wallpapers/faint-coffe-stains.png
 background-image-fit = stretch
 background-image-opacity = 0.5
 
+custom-shader = shaders/cursor_sweep.glsl
+# custom-shader = shaders/cursor_tail.glsl
+cursor-color = #10287A
+cursor-opacity = 0.9
+
 command = zsh -is eval zellij attach main -c
 
 keybind = unconsumed:super+h=unbind

@@ -20,6 +20,7 @@ mouse_mode true
 
 keybinds clear-defaults=true {
     normal {
+        bind "Super c" { Copy; }
         bind "Super h" { GoToPreviousTab; }
         bind "Super l" { GoToNextTab; }
         bind "Super Shift l" { MoveTab "Left"; }
@@ -44,6 +45,14 @@ keybinds clear-defaults=true {
         bind "Super Shift x" { Quit; }
         bind "Super i" { EditScrollback; SwitchToMode "normal"; }
         bind "Super u" { SwitchToMode "scroll"; }
+        bind "Super k" {
+            Run "lazygit" {
+                floating true
+                close_on_exit true
+            };
+            Resize "Increase";
+            SwitchToMode "Normal";
+        }
     }
 
     scroll {

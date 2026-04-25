@@ -1,8 +1,8 @@
 layout {
     tab_template name="_tab" { 
         children
-        pane size=1 borderless=true {
-            plugin location="zellij:compact-bar"
+        pane size=2 borderless=true {
+            plugin location="zjstatus" 
         }
     }
     pane_template name="_pane" {

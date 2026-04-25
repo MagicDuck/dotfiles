@@ -1,0 +1,38 @@
+# theme="Belafonte Day"
+# theme="Github Light High Contrast"
+theme="Modus Operandi"
+adjust-cell-height=40%
+font-family="JetBrains Mono"
+font-size=14
+window-decoration = client
+macos-titlebar-style = hidden
+maximize=true
+window-save-state=always
+window-padding-x = 4
+macos-icon = official
+macos-option-as-alt = true
+
+# background-opacity=0.98
+# background-blur=20
+# background=#E9E9E8
+background = #D3D5DC
+background-image = ~/wallpapers/faint-coffe-stains.png
+background-image-fit = stretch
+background-image-opacity = 0.5
+
+command = zsh -is eval zellij attach main -c
+
+keybind = unconsumed:super+h=unbind
+keybind = super+l=unbind
+keybind = super+shift+h=unbind
+keybind = super+shift+l=unbind
+keybind = super+t=unbind
+keybind = super+n=unbind
+keybind = super+x=unbind
+keybind = super+d=unbind
+keybind = super+k=text:\x07
+keybind = super+shift+x=unbind
+keybind = super+c=unbind
+
+
+

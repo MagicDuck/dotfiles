@@ -6,19 +6,19 @@ layout {
         }
     }
     pane_template name="_pane" {
-        cwd "/opt/repos/fe-communications"
+        cwd "/opt/repos/snapt.nvim"
     }
     _tab name="misc" {
         _pane
     }
     _tab name="vim" {
         _pane command="zsh" focus=true {
-            args "-is" "eval" "vim" "src/index.tsx"
+            args "-is" "eval" "vim" "lua/snapt.lua"
         }
     }
-    _tab name="webpack" {
+    _tab name="unit_test" {
         _pane command="zsh" {
-            args "-is" "eval" "npm" "run" "start" 
+            args "-is" "eval" "luarocks" "test" "--local" 
         }
     }
 }

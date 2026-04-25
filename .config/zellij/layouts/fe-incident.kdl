@@ -6,7 +6,7 @@ layout {
         }
     }
     pane_template name="_pane" {
-        cwd "/opt/repos/fe-communications"
+        cwd "/opt/repos/fe-incident"
     }
     _tab name="misc" {
         _pane

@@ -6,19 +6,24 @@ layout {
         }
     }
     pane_template name="_pane" {
-        cwd "/opt/repos/fe-communications"
+        cwd "/opt/repos/grug-far.nvim/"
     }
     _tab name="misc" {
         _pane
     }
     _tab name="vim" {
         _pane command="zsh" focus=true {
-            args "-is" "eval" "vim" "src/index.tsx"
+            args "-is" "eval" "vim" "lua/grug-far.lua"
         }
     }
-    _tab name="webpack" {
+    _tab name="live_test" {
         _pane command="zsh" {
-            args "-is" "eval" "npm" "run" "start" 
+            args "-is" "eval" "vim" "-c" "GrugFar"
+        }
+    }
+    _tab name="unit_test" {
+        _pane command="zsh" {
+            args "-is" "eval" "make" "test" "dir=base" "file=test_history.lua" "update_screenshots=true" 
         }
     }
 }

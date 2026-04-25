@@ -25,7 +25,13 @@ keybinds clear-defaults=true {
         bind "Super l" { GoToNextTab; }
         bind "Super Shift l" { MoveTab "Left"; }
         bind "Super Shift h" { MoveTab "Right"; }
-        bind "Super t" { NewTab; SwitchToMode "renametab"; TabNameInput 0;}
+        bind "Super t" { 
+            NewTab {
+                layout "compact"
+            }
+            SwitchToMode "renametab"
+            TabNameInput 0
+        }
         bind "Super n" { SwitchToMode "renametab"; TabNameInput 0;}
         bind "Super x" { CloseTab; }
         bind "Super d" {

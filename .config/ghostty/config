@@ -39,5 +39,3 @@ keybind = super+k=text:\x07
 keybind = super+shift+x=unbind
 keybind = super+c=unbind
 
-
-

@@ -1,0 +1,16 @@
+layout {
+    tab_template name="_tab" { 
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:compact-bar"
+        }
+    }
+    pane_template name="_pane" {
+        cwd "/opt/repos/qmk_firmware"
+    }
+    _tab name="qmk-flash-cyboard" {
+        _pane command="zsh" focus=true {
+            args "-is" "eval" "qmk-flash-dactyl"
+        }
+    }
+}

@@ -80,14 +80,15 @@ keybinds clear-defaults=true {
         bind "Super Shift x" { Quit; }
         bind "Super i" { EditScrollback; SwitchToMode "normal"; }
         bind "Super u" { SwitchToMode "scroll"; }
-        bind "Super k" {
-            Run "lazygit" {
-                floating true
-                close_on_exit true
-            };
-            Resize "Increase";
-            SwitchToMode "Normal";
-        }
+        // bind "Super k" {
+        //     Run "lazygit" {
+        //         floating true
+        //         close_on_exit true
+        //     };
+        //     Resize "Increase";
+        //     SwitchToMode "Normal";
+        // }
+        // bind "Super k" { ToggleFloatingPanes; }
     }
 
     scroll {

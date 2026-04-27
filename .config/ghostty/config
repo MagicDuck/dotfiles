@@ -24,6 +24,7 @@ custom-shader = shaders/cursor_sweep.glsl
 # custom-shader = shaders/cursor_tail.glsl
 cursor-color = #10287A
 cursor-opacity = 0.9
+mouse-hide-while-typing = true
 
 command = zsh -is eval zellij attach main -c
 
@@ -35,7 +36,7 @@ keybind = super+t=unbind
 keybind = super+n=unbind
 keybind = super+x=unbind
 keybind = super+d=unbind
-keybind = super+k=text:\x07
+# keybind = super+k=text:\x07
 keybind = super+shift+x=unbind
 keybind = super+c=unbind
 

@@ -7,7 +7,11 @@ local function get_lazygit(dir)
     direction = 'float',
     -- direction = 'tab',
     float_opts = {
-      border = 'double',
+      border = 'none',
+      width = vim.o.columns,
+      height = vim.o.lines,
+      row = 0,
+      col = 0,
     },
     start_in_insert = true,
     dir = dir,

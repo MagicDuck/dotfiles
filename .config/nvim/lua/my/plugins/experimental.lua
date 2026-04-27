@@ -54,9 +54,17 @@ return {
 
         engines = {
           astgrep = {
-            path = '/opt/repos/grug-far.nvim/deps/astgrep/ast-grep',
+            -- path = '/opt/repos/grug-far.nvim/deps/astgrep/ast-grep',
             -- rgPath = vim.fs.abspath('deps/ripgrep/rg'),
           },
+        },
+
+        windowCreationCommand = 'tabnew',
+        startInInsertMode = false,
+
+        openTargetWindow = {
+          preferredLocation = 'prev',
+          useScratchBuffer = true,
         },
       })
 

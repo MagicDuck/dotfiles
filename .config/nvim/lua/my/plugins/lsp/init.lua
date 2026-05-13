@@ -157,6 +157,7 @@ return {
       require('my/plugins/lsp/eslint')
       require('my/plugins/lsp/stylelint')
       require('my/plugins/lsp/lua-language-server')
+      -- require('my/plugins/lsp/tsgo')
 
       vim.lsp.enable({
         -- 'emmylua_ls', -- rust version of lua LS
@@ -169,6 +170,7 @@ return {
         'biome',
         'gopls',
         'kulala',
+        -- 'tsgo',
       })
     end,
   },

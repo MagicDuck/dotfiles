@@ -10,6 +10,15 @@ return {
           virtualtext = { position = 'before' },
         },
       },
+      filetypes = {
+        'lua',
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'css',
+        'scss',
+        'json',
+      },
     },
   },
   {

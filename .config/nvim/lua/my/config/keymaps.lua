@@ -36,6 +36,11 @@ vim.cmd([[
   vnoremap <C-s> <C-C>:w<CR>
   inoremap <C-s> <ESC>:w<CR>
 
+  " save and quit
+  nnoremap <C-q> :<C-U>wq<CR>
+  vnoremap <C-q> <C-C>:wq<CR>
+  inoremap <C-q> <ESC>:wq<CR>
+
   " slightly easier :command
   noremap ; :
 

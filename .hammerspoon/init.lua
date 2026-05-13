@@ -227,10 +227,10 @@ local superKeyBindings = {
     key = 'h',
     app = 'Postman',
   },
-  {
-    key = 'i',
-    app = 'IntelliJ IDEA',
-  },
+  -- {
+  --   key = 'i',
+  --   app = 'IntelliJ IDEA',
+  -- },
   {
     key = 'v',
     app = 'TickTick',
@@ -368,7 +368,8 @@ local superKeyBindings = {
   -- snippets
   {
     key = 'm',
-    fn = snippets.show,
+    app = 'Codex',
+    -- fn = snippets.show,
     -- fn = function()
     --     hs.eventtap.keyStrokes("")
     -- end,

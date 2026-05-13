@@ -4,7 +4,7 @@
 // default_layout "compact"
 pane_frames false
 scroll_buffer_size 10000
-scrollback_editor "nvim -u ~/.config/nvim/init_as_pager.lua"
+scrollback_editor "nvim -u ~/.config/nvim/lua/my/init_as_pager.lua"
 session_serialization true
 serialize_pane_viewport false
 show_startup_tips false

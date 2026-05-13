@@ -58,14 +58,6 @@ return {
             -- rgPath = vim.fs.abspath('deps/ripgrep/rg'),
           },
         },
-
-        windowCreationCommand = 'tabnew',
-        startInInsertMode = false,
-
-        openTargetWindow = {
-          preferredLocation = 'prev',
-          useScratchBuffer = true,
-        },
       })
 
       --- testing stuff

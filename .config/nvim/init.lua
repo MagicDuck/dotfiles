@@ -1,3 +1,9 @@
+local is_editing_ovim_temp_file = string.find(vim.fn.argv(0), '/ovim/edit_', 1, true) ~= nil
+if is_editing_ovim_temp_file then
+  require('my.init_as_pager')
+  return
+end
+
 ---@module 'snacks'
 if vim.env.PROF then
   -- example for lazy.nvim

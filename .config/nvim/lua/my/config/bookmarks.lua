@@ -12,6 +12,7 @@ function M.get_bookmarks()
   local bookmarks = {
     { 'i', '~/.config/nvim/init.lua' },
     '~/notes',
+    '~/scratchpad.md',
     '~/notes/.obsidian.vimrc',
     '~/.config/nvim/lua/my/config/keymaps.lua',
     '~/.config/karabiner.edn',

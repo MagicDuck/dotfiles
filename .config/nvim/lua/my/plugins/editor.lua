@@ -75,6 +75,9 @@ return {
           suffix_next = 'n', -- Suffix to search with "next" method
         },
       })
+
+      vim.keymap.set('x', 'sa', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+      vim.keymap.set('x', 'sd', [[:<C-u>lua MiniSurround.delete()<CR>]], { silent = true })
     end,
   },
   {

@@ -140,6 +140,20 @@ return {
     lazy = true,
     event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     config = function()
+      vim.api.nvim_create_autocmd('CursorMoved', {
+        callback = function()
+          local curword = vim.fn.expand('<cword>')
+          local filetype = vim.bo.filetype
+
+          -- Add any disabling global or filetype-specific logic here
+          if filetype == 'lua' then
+            vim.b.minicursorword_disable = vim.tbl_contains({ 'local', 'require', '--', '---' }, curword)
+          elseif filetype == nil or filetype == '' then
+            vim.b.minicursorword_disable = true
+          end
+        end,
+      })
+
       require('mini.cursorword').setup()
     end,
   },

@@ -486,6 +486,12 @@ my.keybind('<leader>su', function()
   Snacks.picker.resume()
 end, { desc = 'Search: resume search' })
 
+my.keybind('<leader>sn', function()
+  Snacks.picker.icons({
+    -- icon_sources = { 'nerd_fonts', 'emoji' }
+  })
+end, { desc = 'Search: find icons / character symbols' })
+
 my.keybind(prevLeaderKey('s'), function()
   local inst = require('grug-far').get_instance()
   if inst then

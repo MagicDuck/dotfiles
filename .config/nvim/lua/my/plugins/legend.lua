@@ -10,6 +10,11 @@ return {
       vim.o.timeoutlen = 500
 
       wk.setup({
+        triggers = {
+          { '<leader>', mode = { 'n', 'v', 'o', 't' } },
+          { '<localleader>', mode = { 'n', 'v', 'o', 't' } },
+          { 'g', mode = { 'n', 'v', 'o', 't' } },
+        },
         plugins = {
           marks = true, -- shows a list of your marks on ' and `
           registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode

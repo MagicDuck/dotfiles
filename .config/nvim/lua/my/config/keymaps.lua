@@ -83,9 +83,11 @@ vim.cmd([[
   cabbrev lnext Lnext
   cabbrev lprev Lprev
 
+  " select line
   xnoremap il 0o$h
   onoremap il :normal vil<CR>
 
+  " quick replace
   nnoremap <leader>sr :%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left>
 ]])
 
@@ -289,22 +291,47 @@ my.keybind('<leader>a', ':Tabby jump_to_tab<CR>', { desc = 'tab: jump to tab' })
 -- windows
 --------------------------------------------------------------------------------------------------
 
+local window_keybinds = {
+  ['<a-h>'] = '<C-w>h',
+  ['<a-j>'] = '<c-w>j',
+  ['<a-k>'] = '<c-w>k',
+  ['<a-l>'] = '<c-w>l',
+  ['<a-c>'] = '<c-w>c',
+  ['<a-s>'] = '<c-w>s',
+  ['<a-v>'] = '<c-w>v',
+  ['<a-r>'] = '<c-w>r',
+  ['<a-o>'] = '<c-w>o',
+  ['<a-s-h>'] = '<c-w>H',
+  ['<a-s-j>'] = '<c-w>J',
+  ['<a-s-k>'] = '<c-w>K',
+  ['<a-s-l>'] = '<c-w>L',
+  ['<a-t>'] = '<cmd>tab split<cr>',
+  ['<a-u>'] = '<cmd>tabprevious<CR>',
+  ['<a-i>'] = '<cmd>tabnext<CR>',
+}
+for lhs, rhs in pairs(window_keybinds) do
+  vim.cmd('nnoremap ' .. lhs .. ' ' .. rhs)
+  vim.cmd('tnoremap' .. lhs .. ' ' .. rhs)
+  vim.cmd('vnoremap ' .. lhs .. ' ' .. rhs)
+  vim.cmd('inoremap ' .. lhs .. '<C-O> ' .. rhs)
+end
+
 my.keybind('s', '<C-W>', { silent = false, noremap = true, desc = 'window: enter window mode' })
-
-my.keybind('<M-j>', ':resize -2<CR>', { desc = 'window: resize down' })
-
-my.keybind('<M-k>', ':resize +2<CR>', { desc = 'window: resize up' })
-
-my.keybind('<M-h>', ':vertical resize -2<CR>', { desc = 'window: resize left' })
-
-my.keybind('<M-l>', ':vertical resize +2<CR>', { desc = 'window: resize right' })
+--
+-- my.keybind('<M-j>', ':resize -2<CR>', { desc = 'window: resize down' })
+--
+-- my.keybind('<M-k>', ':resize +2<CR>', { desc = 'window: resize up' })
+--
+-- my.keybind('<M-h>', ':vertical resize -2<CR>', { desc = 'window: resize left' })
+--
+-- my.keybind('<M-l>', ':vertical resize +2<CR>', { desc = 'window: resize right' })
 
 -- easy capitalization
 --------------------------------------------------------------------------------------------------
 
-my.keybind('<M-u>', '<ESC>viwUi', { mode = 'i', desc = 'current word: capitalize (visual)' })
+my.keybind('<C-u>', '<ESC>viwUi', { mode = 'i', desc = 'current word: capitalize (visual)' })
 
-my.keybind('<M-u>', 'viwU<ESC>', { desc = 'current word: capitalize' })
+my.keybind('<C-u>', 'viwU<ESC>', { desc = 'current word: capitalize' })
 
 -- improved indentation
 --------------------------------------------------------------------------------------------------

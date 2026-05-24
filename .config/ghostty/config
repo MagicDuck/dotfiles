@@ -40,3 +40,5 @@ keybind = super+d=unbind
 keybind = super+shift+x=unbind
 # keybind = super+c=unbind
 
+# linux specific overrides
+config-file = ~/.config/ghostty/linux-config

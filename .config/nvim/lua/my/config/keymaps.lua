@@ -296,6 +296,10 @@ local window_keybinds = {
   ['<a-j>'] = '<c-w>j',
   ['<a-k>'] = '<c-w>k',
   ['<a-l>'] = '<c-w>l',
+  ['<a-left>'] = '<C-w>h',
+  ['<a-down>'] = '<c-w>j',
+  ['<a-up>'] = '<c-w>k',
+  ['<a-right>'] = '<c-w>l',
   ['<a-c>'] = '<c-w>c',
   ['<a-s>'] = '<c-w>s',
   ['<a-v>'] = '<c-w>v',
@@ -306,14 +310,16 @@ local window_keybinds = {
   ['<a-s-k>'] = '<c-w>K',
   ['<a-s-l>'] = '<c-w>L',
   ['<a-t>'] = '<cmd>tab split<cr>',
-  ['<a-u>'] = '<cmd>tabprevious<CR>',
-  ['<a-i>'] = '<cmd>tabnext<CR>',
+  ['<c-h>'] = '<cmd>tabprevious<CR>',
+  ['<c-l>'] = '<cmd>tabnext<CR>',
+  ['<c-left>'] = '<cmd>tabprevious<CR>',
+  ['<c-right>'] = '<cmd>tabnext<CR>',
 }
 for lhs, rhs in pairs(window_keybinds) do
   vim.cmd('nnoremap ' .. lhs .. ' ' .. rhs)
   vim.cmd('tnoremap' .. lhs .. ' ' .. rhs)
   vim.cmd('vnoremap ' .. lhs .. ' ' .. rhs)
-  vim.cmd('inoremap ' .. lhs .. '<C-O> ' .. rhs)
+  vim.cmd('inoremap ' .. lhs .. ' <c-o>' .. rhs)
 end
 
 my.keybind('s', '<C-W>', { silent = false, noremap = true, desc = 'window: enter window mode' })

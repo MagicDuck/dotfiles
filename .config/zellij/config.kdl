@@ -52,8 +52,8 @@ keybinds clear-defaults=true {
         bind "Super c" { Copy; }
         bind "Super h" { GoToPreviousTab; }
         bind "Super l" { GoToNextTab; }
-        bind "Super Shift l" { MoveTab "Left"; }
-        bind "Super Shift h" { MoveTab "Right"; }
+        bind "Super Shift l" { MoveTab "Right"; }
+        bind "Super Shift h" { MoveTab "Left"; }
         bind "Super t" { 
             NewTab {
                 // layout "compact"

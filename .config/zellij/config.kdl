@@ -9,7 +9,7 @@ session_serialization true
 serialize_pane_viewport false
 show_startup_tips false
 mouse_click_through true
-mouse_mode true
+mouse_mode false
 
 // plugins
 //----------------------------------------------------------------------------

@@ -642,6 +642,11 @@ my.keybind('M', function()
     search = { multi_window = false },
   })
 end, { mode = 'nxo', desc = 'flash to location' })
+my.keybind('go', function()
+  require('flash').jump({
+    search = { multi_window = false },
+  })
+end, { mode = 'nxo', desc = 'flash to location' })
 
 -- my.keybind(is_linux and '<c-h>' or '<a-bs>', function()
 my.keybind('<bs>', function()

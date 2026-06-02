@@ -30,6 +30,8 @@ local function get_lazygit(dir)
       vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-d>', '<C-O><cmd>tabprev<cr>', { noremap = true, silent = true })
       vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-f>', '<C-O><cmd>tabnext<cr>', { noremap = true, silent = true })
       vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<esc>', '<esc>', { noremap = true, silent = true })
+
+      vim.b[term.bufnr].minicursorword_disable = true
     end,
   })
 end

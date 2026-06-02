@@ -195,7 +195,7 @@ return {
         -- WARNING: it is disabled by default (maybe you configuration or distro already uses nvim-ts-autotag,
         -- that maybe have a conflict if enable this feature. )
         jsx_close_tag = {
-          enable = true,
+          enable = false,
           filetypes = { 'javascriptreact', 'typescriptreact' },
         },
       },

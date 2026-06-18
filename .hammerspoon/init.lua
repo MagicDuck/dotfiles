@@ -224,7 +224,7 @@ local superKeyBindings = {
     app = 'Documentation',
   },
   {
-    key = 'h',
+    key = 'k',
     app = 'Postman',
   },
   -- {
@@ -240,7 +240,7 @@ local superKeyBindings = {
     app = 'Fork',
   },
   {
-    key = 'j',
+    key = 'h',
     app = 'TablePlus',
   },
   -- {
@@ -280,6 +280,14 @@ local superKeyBindings = {
     key = 's',
     app = 'Slack',
     -- app = 'Microsoft Teams',
+  },
+  {
+    key = 'm',
+    app = 'Codex',
+  },
+  {
+    key = 'j',
+    app = 'Claude',
   },
   -- {
   --   key = "u",
@@ -366,14 +374,13 @@ local superKeyBindings = {
     fn = wm.moveCurrentWindowToNextScreen,
   },
   -- snippets
-  {
-    key = 'm',
-    app = 'Codex',
-    -- fn = snippets.show,
-    -- fn = function()
-    --     hs.eventtap.keyStrokes("")
-    -- end,
-  },
+  -- {
+  -- key = 'm',
+  -- fn = snippets.show,
+  -- fn = function()
+  --     hs.eventtap.keyStrokes("")
+  -- end,
+  -- },
   {
     key = 'x',
     fn = function()

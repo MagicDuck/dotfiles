@@ -5,7 +5,7 @@
 pane_frames false
 scroll_buffer_size 10000
 scrollback_editor "nvim -u ~/.config/nvim/lua/my/init_as_pager.lua"
-session_serialization true
+session_serialization false
 serialize_pane_viewport false
 show_startup_tips false
 mouse_click_through true
@@ -49,7 +49,7 @@ plugins {
 
 keybinds clear-defaults=true {
     normal {
-        bind "Super c" { Copy; }
+        // bind "Super c" { Copy; }
         bind "Super h" { GoToPreviousTab; }
         bind "Super l" { GoToNextTab; }
         bind "Super Shift l" { MoveTab "Right"; }

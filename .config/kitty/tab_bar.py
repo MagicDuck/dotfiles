@@ -1,7 +1,6 @@
 from kitty.tab_bar import DrawData, ExtraData, TabBarData, Screen, draw_tab_with_powerline
 from kitty.fast_data_types import get_boss
 from kitty.tab_bar import as_rgb, color_as_int
-from kitty.tab_bar import powerline_symbols 
 
 def current_session_name(os_window_id: int) -> str:
     tm = get_boss().os_window_map.get(os_window_id)
@@ -19,15 +18,15 @@ def draw_tab(draw_data: DrawData, screen: Screen, tab: TabBarData,
     if index == 1:
         sess_name = current_session_name(draw_data.os_window_id)
         if sess_name:
-            tab_fg, tab_bg, orig_bold = screen.cursor.fg, screen.cursor.bg, screen.cursor.bold
+            tab_fg, tab_bg, orig_bold, orig_italic = screen.cursor.fg, screen.cursor.bg, screen.cursor.bold, screen.cursor.italic
 
             screen.cursor.fg = as_rgb(color_as_int(draw_data.active_fg))
             screen.cursor.bg = as_rgb(color_as_int(draw_data.inactive_bg))
             screen.cursor.bold = True
+            screen.cursor.italic = False
             screen.draw(f' {sess_name} 🦆  ')
 
-            
-            screen.cursor.fg, screen.cursor.bg, screen.cursor.bold = tab_fg, tab_bg, orig_bold   # restore
+            screen.cursor.fg, screen.cursor.bg, screen.cursor.bold, screen.cursor.italic = tab_fg, tab_bg, orig_bold, orig_italic  # restore
 
     return draw_tab_with_powerline(
         draw_data, screen, tab, before, max_tab_length, index, is_last, extra_data)

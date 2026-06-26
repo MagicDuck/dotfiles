@@ -21,5 +21,7 @@ lazy.load({
     { import = 'my.plugins.flash' },
     { import = 'my.plugins.mytheme' },
     { import = 'my.plugins.treesitter' },
+    { import = 'my.plugins.base' },
+    { import = 'my.plugins.git' },
   },
 })

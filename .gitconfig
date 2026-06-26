@@ -39,7 +39,7 @@ file-style = bold
   rustExitCode = true
   keepBackup = false
 [mergetool "nvimdiff4"]
-  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED --cmd ':lua vim.g.myLspDisabled=true' -c '$wincmd w' -c 'wincmd J' -c 'normal gg' -c 'normal ]c'
+  cmd = nvim -u $HOME/.config/nvim/lua/my/init_as_basic_editor.lua -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J' -c 'normal gg' -c 'normal ]c'
 [difftool]
 	prompt = false
 [diff]

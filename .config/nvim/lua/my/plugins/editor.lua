@@ -86,11 +86,6 @@ return {
     event = { 'VeryLazy' },
   },
   {
-    'tpope/vim-unimpaired',
-    lazy = true,
-    event = { 'VeryLazy' },
-  },
-  {
     'chentoast/marks.nvim',
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
@@ -325,22 +320,6 @@ return {
           },
         })
       end)
-    end,
-  },
-  {
-    'akinsho/git-conflict.nvim',
-    version = '*',
-    config = function()
-      require('git-conflict').setup({
-        default_mappings = {
-          ours = 'co',
-          theirs = 'ct',
-          none = 'cn',
-          both = 'cb',
-          next = 'cj',
-          prev = 'ck',
-        },
-      })
     end,
   },
   {

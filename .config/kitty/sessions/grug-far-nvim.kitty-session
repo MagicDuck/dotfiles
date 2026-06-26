@@ -1,0 +1,17 @@
+new_tab misc
+cd /opt/repos/grug-far.nvim 
+launch
+focus
+
+new_tab vim
+cd /opt/repos/grug-far.nvim 
+launch zsh -is eval nvim lua/grug-far.lua
+focus
+
+new_tab live_test
+cd /opt/repos/grug-far.nvim 
+launch zsh -is eval kitten @ send-text "vim -c GrugFar" 
+
+new_tab unit_test
+cd /opt/repos/grug-far.nvim 
+launch zsh -is eval kitten @ send-text "make test dir=base file=test_history.lua update_screenshots=true"

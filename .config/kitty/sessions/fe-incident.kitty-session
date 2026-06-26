@@ -1,0 +1,13 @@
+new_tab misc
+cd /opt/repos/fe-incident 
+launch
+focus
+
+new_tab vim
+cd /opt/repos/fe-incident 
+launch zsh -is eval nvim src/index.tsx
+focus
+
+new_tab webpack
+cd /opt/repos/fe-incident 
+launch zsh -is eval npm run start

@@ -1,0 +1,13 @@
+new_tab misc
+cd /opt/repos/snapt.nvim 
+launch
+focus
+
+new_tab vim
+cd /opt/repos/snapt.nvim 
+launch zsh -is eval nvim lua/snapt.lua
+focus
+
+new_tab unit_test
+cd /opt/repos/snapt.nvim 
+launch zsh -is eval kitten @ send-text "luarocks test --local"

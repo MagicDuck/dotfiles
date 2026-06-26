@@ -1,0 +1,4 @@
+new_tab flash
+cd /opt/repos/qmk_firmware 
+launch zsh -is eval kitten @ send-text "qmk-flash-dactyl"
+focus

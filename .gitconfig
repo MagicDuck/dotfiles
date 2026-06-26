@@ -4,6 +4,7 @@
 [core]
 	excludesfile = /Users/Stephan.Badragan/.gitignore_global
 	pager = delta
+  editor = nvim -u $HOME/.config/nvim/lua/my/init_as_basic_editor.lua 
   #pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
     diffFilter = delta --color-only

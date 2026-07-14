@@ -634,7 +634,11 @@ my.keybind('<leader>lf', function()
 end, { desc = 'lsp: format current buffer' })
 
 my.keybind('<leader>lc', function()
-  vim.cmd('TSToolsRemoveUnusedImports')
+  -- vim.cmd('TSToolsRemoveUnusedImports')
+  vim.lsp.buf.code_action({
+    context = { only = { 'source.removeUnusedImports' }, diagnostics = {} },
+    apply = true,
+  })
 end, { desc = 'lsp: clean/remove unused imports' })
 
 my.keybind('<leader>uj', ':%!jq .<CR>', { desc = 'format json' })

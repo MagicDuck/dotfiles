@@ -157,7 +157,7 @@ return {
       require('my/plugins/lsp/eslint')
       require('my/plugins/lsp/stylelint')
       require('my/plugins/lsp/lua-language-server')
-      -- require('my/plugins/lsp/tsgo')
+      require('my/plugins/lsp/tsgo')
 
       vim.lsp.enable({
         -- 'emmylua_ls', -- rust version of lua LS
@@ -170,7 +170,7 @@ return {
         'biome',
         'gopls',
         'kulala',
-        -- 'tsgo',
+        'tsgo',
       })
     end,
   },
@@ -186,24 +186,24 @@ return {
   },
 
   -- typescript through lua LS
-  {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {
-      settings = {
-        -- JSXCloseTag
-        -- WARNING: it is disabled by default (maybe you configuration or distro already uses nvim-ts-autotag,
-        -- that maybe have a conflict if enable this feature. )
-        jsx_close_tag = {
-          enable = false,
-          filetypes = { 'javascriptreact', 'typescriptreact' },
-        },
-      },
-      handlers = {
-        ['textDocument/publishDiagnostics'] = handlers.tsserverPublishDiagnostics,
-      },
-    },
-  },
+  -- {
+  --   'pmizio/typescript-tools.nvim',
+  --   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+  --   opts = {
+  --     settings = {
+  --       -- JSXCloseTag
+  --       -- WARNING: it is disabled by default (maybe you configuration or distro already uses nvim-ts-autotag,
+  --       -- that maybe have a conflict if enable this feature. )
+  --       jsx_close_tag = {
+  --         enable = false,
+  --         filetypes = { 'javascriptreact', 'typescriptreact' },
+  --       },
+  --     },
+  --     handlers = {
+  --       ['textDocument/publishDiagnostics'] = handlers.tsserverPublishDiagnostics,
+  --     },
+  --   },
+  -- },
 
   require('my.plugins.lsp.jdtls'),
 

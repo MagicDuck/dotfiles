@@ -38,26 +38,6 @@ return {
         helpLine = {
           enabled = false,
         },
-        -- windowCreationCommand = '',
-        -- showCompactInputs = true,
-        -- showInputsTopPadding = false,
-        -- showInputsBottomPadding = false,
-        -- hooks = {
-        --   on_before_edit_file = function(on_finish, file)
-        --     return require('grug-far').spawn_cmd_async({
-        --       cmd_path = 'sleep',
-        --       args = { '5' },
-        --       on_finish = on_finish,
-        --     })
-        --   end,
-        -- },
-
-        engines = {
-          astgrep = {
-            -- path = '/opt/repos/grug-far.nvim/deps/astgrep/ast-grep',
-            -- rgPath = vim.fs.abspath('deps/ripgrep/rg'),
-          },
-        },
       })
 
       --- testing stuff
@@ -85,28 +65,16 @@ return {
       end, { desc = 'grug-far: Search using @/ register value or visual selection' })
 
       vim.keymap.set({ 'n', 'x' }, '<leader>sa', function()
-        -- get list of unique paths corresponding to opened buffers
-        local paths = {}
-        local cwd = vim.fn.getcwd()
-        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-          local buftype = vim.api.nvim_get_option_value('buftype', { buf = buf })
-          local buflisted = vim.api.nvim_get_option_value('buflisted', { buf = buf })
-          local filetype = vim.api.nvim_get_option_value('filetype', { buf = buf })
-          local path = vim.api.nvim_buf_get_name(buf)
-          if buftype == '' and buflisted and filetype ~= '' and path then
-            local relpath = vim.fs.relpath(cwd, path)
-            if relpath then
-              table.insert(paths, vim.fn.fnameescape(relpath))
-            end
-          end
+        ---@type grug.far.OptionsOverride
+        local opts = {}
+        local entry = require('grug-far').get_last_history_entry()
+        if entry ~= nil then
+          opts.prefills = entry
+          opts.engine = entry.engine
+          opts.replacementInterpreter = entry.replacementInterpreter
         end
-        paths = vim.fn.uniq(vim.fn.sort(paths))
 
-        require('grug-far').open({
-          prefills = {
-            paths = table.concat(paths, '\n'),
-          },
-        })
+        require('grug-far').open(opts)
       end, { desc = 'grug-far: Search within opened buffers files' })
     end,
   },

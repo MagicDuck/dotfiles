@@ -8,7 +8,8 @@ return {
     local my = mycolors.set_base_colors({
       background = '#E0E2EA',
 
-      selectionBg = '#DADCEB',
+      selectionBg = '#E1EDED',
+      -- selectionBg = '#CCC3E0',
 
       commentBackground = '#D3D5DC',
 

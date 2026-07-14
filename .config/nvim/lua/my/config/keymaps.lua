@@ -633,6 +633,10 @@ my.keybind('<leader>lf', function()
   vim.lsp.buf.format()
 end, { desc = 'lsp: format current buffer' })
 
+my.keybind('<leader>lc', function()
+  vim.cmd('TSToolsRemoveUnusedImports')
+end, { desc = 'lsp: clean/remove unused imports' })
+
 my.keybind('<leader>uj', ':%!jq .<CR>', { desc = 'format json' })
 
 my.keybind('<leader>lo', '<cmd>AerialToggle left<CR>', { desc = 'lsp: toggle outline' })

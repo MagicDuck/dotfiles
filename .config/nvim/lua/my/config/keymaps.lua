@@ -643,6 +643,14 @@ end, { desc = 'lsp: clean/remove unused imports' })
 
 my.keybind('<leader>uj', ':%!jq .<CR>', { desc = 'format json' })
 
+my.keybind('<leader>ue', function()
+  require('scissors').editSnippet()
+end, { desc = 'Snippet: Edit' })
+
+my.keybind('<leader>ua', function()
+  require('scissors').addNewSnippet()
+end, { mode = 'nx', desc = 'Snippet: Add' })
+
 my.keybind('<leader>lo', '<cmd>AerialToggle left<CR>', { desc = 'lsp: toggle outline' })
 
 my.keybind('M', function()

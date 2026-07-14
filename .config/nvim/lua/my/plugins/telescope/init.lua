@@ -2,6 +2,7 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     lazy = true,
+    enabled = false,
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     dependencies = {
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },

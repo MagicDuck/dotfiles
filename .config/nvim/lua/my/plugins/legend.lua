@@ -3,7 +3,6 @@ return {
     'folke/which-key.nvim',
     lazy = true,
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
-    dependencies = { { 'mrjones2014/legendary.nvim' } },
     config = function()
       local wk = require('which-key')
       vim.o.timeout = true

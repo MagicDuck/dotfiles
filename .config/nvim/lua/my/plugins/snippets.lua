@@ -2,6 +2,7 @@ return {
   {
     'L3MON4D3/LuaSnip',
     lazy = true,
+    enabled = false, -- using blink.cmp
     event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
     -- follow latest release.
     -- version = "<CurrentMajor>.*",

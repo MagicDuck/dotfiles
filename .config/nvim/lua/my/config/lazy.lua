@@ -21,7 +21,7 @@ function M.load(opts)
       version = false, -- always use the latest git commit
       -- version = "*", -- try installing the latest stable version for plugins that support semver
     },
-    install = { colorscheme = { 'dayfox', 'habamax' } },
+    install = { colorscheme = { 'github_light', 'habamax' } },
     change_detection = {
       -- automatically check for config file changes and reload the ui
       enabled = false,

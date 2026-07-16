@@ -20,8 +20,8 @@ lazy.load({
   spec = {
     { import = 'my.plugins.init' },
     { import = 'my.plugins.flash' },
-    { import = 'my.plugins.mytheme' },
-    { import = 'my.plugins.treesitter' },
+    { import = 'my.plugins.mytheme.init' },
+    { import = 'my.plugins.treesitter.init' },
     { import = 'my.plugins.git' },
   },
 })

@@ -5,8 +5,6 @@ return {
     event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
     config = function()
       local wk = require('which-key')
-      vim.o.timeout = true
-      vim.o.timeoutlen = 500
 
       wk.setup({
         triggers = {

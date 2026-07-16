@@ -80,5 +80,4 @@ return {
       },
     },
   },
-  { 'Neurarian/snacks-luasnip.nvim' },
 }

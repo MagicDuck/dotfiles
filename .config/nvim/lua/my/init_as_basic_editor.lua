@@ -18,10 +18,10 @@ require('my/config/lazy')
 local lazy = require('my/config/lazy')
 lazy.load({
   spec = {
+    { import = 'my.plugins.init' },
     { import = 'my.plugins.flash' },
     { import = 'my.plugins.mytheme' },
     { import = 'my.plugins.treesitter' },
-    { import = 'my.plugins.base' },
     { import = 'my.plugins.git' },
   },
 })

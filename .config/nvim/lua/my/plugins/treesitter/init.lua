@@ -9,6 +9,13 @@ return {
     build = ':TSUpdate',
     dependencies = {
       { 'nvim-treesitter/nvim-treesitter-context' },
+      { -- needed for mini.ai queries
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        branch = 'main',
+        init = function()
+          vim.g.no_plugin_maps = true
+        end,
+      },
     },
     config = function()
       -- replicate `ensure_installed`, runs asynchronously, skips existing languages

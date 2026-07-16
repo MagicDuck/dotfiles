@@ -89,18 +89,18 @@ local function setupKeymaps()
 end
 
 return {
-  {
-    'chrisgrieser/nvim-various-textobjs',
-    lazy = true,
-    event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
-    config = function()
-      require('various-textobjs').setup({
-        lookForwardLines = 5, -- set to 0 to only look in the current line
-        keymaps = {
-          useDefaults = false,
-        },
-      })
-      setupKeymaps()
-    end,
-  },
+  -- {
+  --   'chrisgrieser/nvim-various-textobjs',
+  --   lazy = true,
+  --   event = { 'BufReadPost', 'BufNewFile', 'VeryLazy' },
+  --   config = function()
+  --     require('various-textobjs').setup({
+  --       lookForwardLines = 5, -- set to 0 to only look in the current line
+  --       keymaps = {
+  --         useDefaults = false,
+  --       },
+  --     })
+  --     setupKeymaps()
+  --   end,
+  -- },
 }

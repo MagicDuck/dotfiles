@@ -1,19 +1,18 @@
-local lspconfig = require("lspconfig")
-local attach = require("my/plugins/lsp/attach")
-local handlers = require("my/plugins/lsp/handlers")
+local lspconfig = require('lspconfig')
+local handlers = require('my/plugins/lsp/handlers')
 
 -- custom commands
 local function organize_imports()
   vim.lsp.buf.execute_command({
-    command = "_typescript.organizeImports",
+    command = '_typescript.organizeImports',
     arguments = { vim.api.nvim_buf_get_name(0) },
-    title = "",
+    title = '',
   })
 end
 
 lspconfig.tsserver.setup({
   init_options = {
-    hostInfo = "neovim",
+    hostInfo = 'neovim',
     -- maxTsServerMemory = 2048,
     -- disableAutomaticTypingAcquisition = true,
     -- preferences = {
@@ -39,15 +38,13 @@ lspconfig.tsserver.setup({
     -- This makes sure tsserver is not used for formatting (prefer prettier)
     client.server_capabilities.documentFormattingProvider = false
   end,
-  capabilities = attach.global_capabilities,
-  on_attach = attach.global_on_attach,
   commands = {
     OrganizeImports = {
       organize_imports,
-      description = "Organize Imports",
+      description = 'Organize Imports',
     },
   },
   handlers = {
-    ["textDocument/publishDiagnostics"] = handlers.tsserverPublishDiagnostics,
+    ['textDocument/publishDiagnostics'] = handlers.tsserverPublishDiagnostics,
   },
 })

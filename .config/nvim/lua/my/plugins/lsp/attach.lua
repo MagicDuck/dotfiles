@@ -1,7 +1,12 @@
 local M = {}
 
-M.global_on_attach = function(client, bufnr) end
+local capabilities
+M.global_capabilities = function()
+  if not capabilities then
+    capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+  end
 
-M.global_capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+  return capabilities
+end
 
 return M

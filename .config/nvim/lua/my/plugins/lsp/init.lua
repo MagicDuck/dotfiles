@@ -150,8 +150,7 @@ return {
       local attach = require('my/plugins/lsp/attach')
 
       vim.lsp.config('*', {
-        capabilities = attach.global_capabilities,
-        on_attach = attach.global_on_attach,
+        capabilities = attach.global_capabilities(),
       })
 
       require('my/plugins/lsp/eslint')

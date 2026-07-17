@@ -1,9 +1,11 @@
 return {
   'saghen/blink.cmp',
-  lazy = false, -- lazy loading handled internally
+  -- lazy = false, -- lazy loading handled internally
+  lazy = true,
   dependencies = { 'rafamadriz/friendly-snippets' },
 
   version = '1.*',
+  event = { 'InsertEnter', 'CmdlineEnter' },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config

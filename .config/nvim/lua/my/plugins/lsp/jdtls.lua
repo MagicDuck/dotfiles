@@ -102,7 +102,7 @@ return {
         },
         settings = opts.settings,
         -- enable CMP capabilities
-        capabilities = require('my/plugins/lsp/attach').global_capabilities,
+        capabilities = require('my/plugins/lsp/attach').global_capabilities(),
       }, opts.jdtls or {})
 
       -- Existing server will be reused if the root_dir matches.

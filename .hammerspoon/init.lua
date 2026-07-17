@@ -282,11 +282,11 @@ local superKeyBindings = {
     -- app = 'Microsoft Teams',
   },
   {
-    key = 'm',
+    key = 'j',
     app = 'Codex',
   },
   {
-    key = 'j',
+    key = 'm',
     app = 'Claude',
   },
   -- {

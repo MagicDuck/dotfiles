@@ -1,11 +1,7 @@
-local attach = require('my/plugins/lsp/attach')
-
 --- See `lua-language-server`'s [documentation](https://luals.github.io/wiki/settings/) for an explanation of the fields
 --- * [Lua.runtime.path](https://luals.github.io/wiki/settings/#runtimepath)
 --- * [Lua.workspace.library](https://luals.github.io/wiki/settings/#workspacelibrary)
 vim.lsp.config('lua_ls', {
-  capabilities = attach.global_capabilities,
-  on_attach = attach.global_on_attach,
   on_init = function(client)
     client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
       format = {

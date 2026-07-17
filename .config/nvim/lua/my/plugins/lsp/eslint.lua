@@ -1,7 +1,7 @@
 local attach = require('my/plugins/lsp/attach')
 
 vim.lsp.config('eslint', {
-  capabilities = attach.global_capabilities,
+  capabilities = attach.global_capabilities(),
   on_attach = function(client, buffer)
     vim.api.nvim_create_autocmd('BufWritePre', {
       buffer = buffer,

@@ -1,13 +1,12 @@
 let currentActiveWinId = null
 let lastActiveWinId = null
-workspace.windowActivated.connect(function(win) {
+workspace.windowActivated.connect(function (win) {
     lastActiveWinId = currentActiveWinId
     currentActiveWinId = win.internalId
 })
 
-function toggleApp(name)
-{
-    const win = workspace.stackingOrder.find(function(w) {
+function toggleApp(name) {
+    const win = workspace.stackingOrder.find(function (w) {
         return w.resourceClass === name || w.resourceName === name
     })
 
@@ -18,7 +17,7 @@ function toggleApp(name)
 
     if (workspace.activeWindow === win) {
         console.info('activating last active thing', lastActiveWinId)
-        const lastWin = workspace.stackingOrder.find(function(w) {
+        const lastWin = workspace.stackingOrder.find(function (w) {
             return w.internalId === lastActiveWinId
         })
         if (lastWin) {
@@ -30,7 +29,7 @@ function toggleApp(name)
 }
 
 function getToggleApp2(name) {
-    return function() {
+    return function () {
         toggleApp(name)
     }
 }
@@ -39,13 +38,13 @@ function registerToggleAppShortcut(name, key) {
     const prefix = 'Meta+Ctrl+Alt+Shift+'
     const shortcut = prefix + key
     const title = 'toggle app ' + name
-    const callback = function() { toggleApp(name) }
+    const callback = function () { toggleApp(name) }
     registerShortcut(title, title, shortcut, callback)
 }
 
 registerToggleAppShortcut('dolphin', 'P')
 registerToggleAppShortcut('firefox', 'R')
-registerToggleAppShortcut('wezterm-gui', 'e')
-registerToggleAppShortcut('vivaldi-stable', 'd')
+registerToggleAppShortcut('ghostty', 'e')
+registerToggleAppShortcut('brave-browser', 'd')
 registerToggleAppShortcut('obsidian', 'f')
 registerToggleAppShortcut('thunderbird', 'o')

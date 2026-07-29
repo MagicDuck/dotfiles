@@ -10,8 +10,21 @@ return {
         'java-debug-adapter',
         'java-test',
         'codelldb',
+        'biome',
+        'eslint-lsp',
+        'gopls',
+        'jdtls',
+        'lua-language-server',
+        'node-debug2-adapter',
+        'prettier',
+        'prettierd',
+        'rust-analyzer',
+        'stylelint-lsp',
+        'tsgo',
+        'vim-language-server',
       },
     },
+
     config = function(_, opts)
       require('mason').setup(opts)
       local mr = require('mason-registry')

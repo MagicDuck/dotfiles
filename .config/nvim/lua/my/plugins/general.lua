@@ -296,23 +296,23 @@ return {
     end,
   },
 
-  {
-    'chrisgrieser/nvim-spider',
-    lazy = true,
-    event = { 'VeryLazy' },
-    config = function()
-      require('spider').setup({
-        skipInsignificantPunctuation = false,
-        consistentOperatorPending = false,
-        subwordMovement = true,
-        customPatterns = {},
-      })
-
-      vim.keymap.set({ 'o', 'x' }, 'w', "<cmd>lua require('spider').motion('w')<CR>")
-      vim.keymap.set({ 'o', 'x' }, 'e', "<cmd>lua require('spider').motion('e')<CR>")
-      vim.keymap.set({ 'o', 'x' }, 'b', "<cmd>lua require('spider').motion('b')<CR>")
-    end,
-  },
+  -- {
+  --   'chrisgrieser/nvim-spider',
+  --   lazy = true,
+  --   event = { 'VeryLazy' },
+  --   config = function()
+  --     require('spider').setup({
+  --       skipInsignificantPunctuation = false,
+  --       consistentOperatorPending = false,
+  --       subwordMovement = true,
+  --       customPatterns = {},
+  --     })
+  --
+  --     vim.keymap.set({ 'o', 'x' }, 'w', "<cmd>lua require('spider').motion('w')<CR>")
+  --     vim.keymap.set({ 'o', 'x' }, 'e', "<cmd>lua require('spider').motion('e')<CR>")
+  --     vim.keymap.set({ 'o', 'x' }, 'b', "<cmd>lua require('spider').motion('b')<CR>")
+  --   end,
+  -- },
 
   {
     'aaronik/treewalker.nvim',
@@ -340,13 +340,6 @@ return {
       --          likely one to be confusing, so it has its own mode.
       jumplist = true,
     },
-  },
-
-  {
-    'xzbdmw/clasp.nvim',
-    config = function()
-      require('clasp').setup({})
-    end,
   },
 
   {

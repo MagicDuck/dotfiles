@@ -198,22 +198,22 @@ local superKeyBindings = {
     -- app = 'Vivaldi',
     -- app = 'Zen',
   },
-  {
-    key = 'e',
-    app = 'kitty',
-    -- app = 'WezTerm',
-    -- app = 'Ghostty',
-  },
   -- {
   --   key = 'e',
   --   app = 'kitty',
-  --   window = {
-  --     title = 'terminal',
-  --     launch = function()
-  --       kitty.launchWindow({ title = 'terminal', command = '/bin/zsh -is' })
-  --     end,
-  --   },
+  --   -- app = 'WezTerm',
+  --   -- app = 'Ghostty',
   -- },
+  {
+    key = 'e',
+    app = 'kitty',
+    window = {
+      title = 'terminal',
+      launch = function()
+        kitty.launchWindow({ title = 'terminal', command = '/bin/zsh -is' })
+      end,
+    },
+  },
   {
     key = 'f',
     -- app = "Brave Browser",

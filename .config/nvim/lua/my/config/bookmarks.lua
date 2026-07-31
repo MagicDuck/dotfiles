@@ -11,9 +11,15 @@ end
 function M.get_bookmarks()
   local bookmarks = {
     { 'i', '~/.config/nvim/init.lua' },
-    '~/notes',
     '~/scratchpad.md',
-    '~/notes/.obsidian.vimrc',
+    '~/vaults/personal',
+    '~/vaults/personal/== inbox ==.md',
+    '~/vaults/personal/.obsidian.vimrc',
+    '~/vaults/personal/.obsidian/snippets/font.css',
+    '~/vaults/work',
+    '~/vaults/work/== work tasks ==.md',
+    '~/vaults/work/.obsidian.vimrc',
+    '~/vaults/work/.obsidian/snippets/font.css',
     '~/.config/nvim/lua/my/config/keymaps.lua',
     '~/.config/karabiner.edn',
     '~/.config/kitty/kitty.conf',
@@ -35,7 +41,6 @@ function M.get_bookmarks()
     '/opt/repos/eb/eb-ui-360/src/EBMui/theme/index.ts',
     '~/app_window_toggler/contents/code/main.js',
     '~/.config/yazi/yazi.toml',
-    '~/OneDrive - Everbridge/notes/.obsidian/snippets/font.css',
   }
 
   add_subdirs_of(bookmarks, '~/repos')

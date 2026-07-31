@@ -47,6 +47,18 @@ return {
         end
       end
 
+      local java_format = function(bufnr)
+        if string.find(vim.api.nvim_buf_get_name(bufnr), '/repos/reportgen/', 1, true) ~= nil then
+          return { 'google-java-format' }
+        end
+
+        return {
+          filter = function()
+            return false
+          end,
+        }
+      end
+
       require('conform').setup({
         notify_on_error = false,
         format_on_save = { timeout_ms = 2000, lsp_fallback = true },
@@ -72,6 +84,8 @@ return {
           cuda = { 'clang-format', lsp_format = 'fallback' },
 
           http = { 'kuala' },
+
+          java = java_format,
         },
         default_format_opts = {
           lsp_format = 'never',

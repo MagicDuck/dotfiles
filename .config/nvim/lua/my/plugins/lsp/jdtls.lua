@@ -56,6 +56,11 @@ return {
       test = true,
       settings = {
         java = {
+          format = {
+            enabled = false,
+            comments = { enabled = false },
+            tabSize = 4,
+          },
           inlayHints = {
             parameterNames = {
               enabled = 'all',

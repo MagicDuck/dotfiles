@@ -22,6 +22,7 @@ return {
         'stylelint-lsp',
         'tsgo',
         'vim-language-server',
+        'google-java-format',
       },
     },
 

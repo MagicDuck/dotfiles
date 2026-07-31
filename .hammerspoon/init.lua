@@ -243,17 +243,20 @@ local superKeyBindings = {
     key = 'h',
     app = 'TablePlus',
   },
-  -- {
-  --   key = 'k',
-  --   app = 'kitty',
-  --   window = {
-  --     title = 'lazygit',
-  --     launch = function()
-  --       kitty.launchWindow({ title = 'lazygit', command = '/bin/zsh -is eval lazygit' })
-  --       -- kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim +VimwikiIndex" })
-  --     end,
-  --   },
-  -- },
+  {
+    key = 'k',
+    app = 'kitty',
+    window = {
+      title = 'notes',
+      launch = function()
+        -- kitty.launchWindow({ title = 'lazygit', command = '/bin/zsh -is eval lazygit' })
+        kitty.launchWindow({
+          title = 'notes',
+          command = '/bin/zsh -is eval vim "$HOME/vaults/work/== work tasks ==.md"',
+        })
+      end,
+    },
+  },
   {
     key = 'l',
     app = 'zoom.us',

@@ -765,6 +765,8 @@ my.keybind('<leader>po', ':PeekOpen<CR>', { desc = 'markdown: preview open' })
 
 my.keybind('<leader>pc', ':PeekClose<CR>', { desc = 'markdown: preview open' })
 
+my.keybind('<leader>pp', '<cmd>PasteImage<CR>', { desc = 'markdown: paste image from clipboard' })
+
 -- switch to alternate file
 --------------------------------------------------------------------------------------------------
 my.keybind('<leader>vf', function()

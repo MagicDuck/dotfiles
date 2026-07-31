@@ -185,6 +185,8 @@ function M.get_my_highlights()
     -- Mini cursorword
     MiniCursorword = { underdouble = true },
     MiniCursorwordCurrent = { underdouble = true },
+
+    RenderMarkdownLinkTitle = { underline = true },
   }
 end
 

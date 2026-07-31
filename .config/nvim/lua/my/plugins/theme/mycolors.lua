@@ -40,7 +40,6 @@ local my = {
   conflictSepFg = '#F8FBF6',
   conflictSepBg = '#65737E',
 
-  -- link = '#0D47A1',
   link = '#023B95',
 }
 M.my = my

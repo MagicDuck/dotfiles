@@ -39,6 +39,9 @@ local my = {
 
   conflictSepFg = '#F8FBF6',
   conflictSepBg = '#65737E',
+
+  -- link = '#0D47A1',
+  link = '#023B95',
 }
 M.my = my
 
@@ -186,7 +189,8 @@ function M.get_my_highlights()
     MiniCursorword = { underdouble = true },
     MiniCursorwordCurrent = { underdouble = true },
 
-    RenderMarkdownLinkTitle = { underline = true },
+    RenderMarkdownLink = { fg = my.link },
+    ['@markup.link.label.markdown_inline'] = { fg = my.link, underline = true },
   }
 end
 

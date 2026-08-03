@@ -344,6 +344,7 @@ alias my_conda_list_env="conda env list"
 alias my_conda_activate="conda activate"
 alias ebtranslate="uv --project=/opt/repos/eb-translate run /opt/repos/eb-translate/translate_files.py --glossary-path=/opt/repos/eb-translate/"
 alias fe-incident-translate="npm run i18n -- translate --uv"
+alias kde-wininfo="qdbus org.kde.KWin /KWin queryWindowInfo"
 
 
 # FZF

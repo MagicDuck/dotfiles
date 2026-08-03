@@ -26,7 +26,7 @@ WIDS_ARRAY=($WIDS)
 
 # No windows found — launch the app
 if [ -z "$WIDS" ]; then
-    setsid "$CMD" >/dev/null 2>&1 &
+    setsid $CMD >/dev/null 2>&1 &
     exit 0
 fi
 

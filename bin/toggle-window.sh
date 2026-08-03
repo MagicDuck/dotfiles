@@ -17,23 +17,6 @@ if [ -z "$CLASS" ] || [ -z "$CMD" ]; then
     exit 1
 fi
 
-# TODO (sbadragan): do we need this stuff? Hopefully not
-# persistent state
-# -----------------------------------------------------------------
-statefile='/tmp/toggle-window-state'
-
-ACTIVE=0
-
-save_state () {
-  typeset -p "$@" >"$statefile"
-}
-
-# restore state
-. "$statefile" 2>/dev/null || :
-
-# Set save_state call on script exit to automatically persist state
-trap 'save_state ACTIVE' EXIT
-
 # toggle logic
 # -----------------------------------------------------------------
 
@@ -54,8 +37,6 @@ ACTIVE=$(kdotool getactivewindow)
 # if active window is one of the matching ones, minimize it
 for id in "${WIDS_ARRAY[@]}"; do
     if [ "$id" = "$ACTIVE" ]; then
-				kdotool windowstate --remove BELOW "$id"
-				kdotool windowstate --remove ABOVE "$id"
 				kdotool windowstate --add MINIMIZED "$id"
         exit 0
     fi

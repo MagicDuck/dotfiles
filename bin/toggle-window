@@ -1,0 +1,102 @@
+#!/bin/bash
+
+# toggle-window: Launch an app, focus its window, or cycle between its windows.
+# Designed for KDE Plasma (Wayland) using kdotool.
+#
+# Usage: toggle-window.sh <window-class> <command>
+#   key  The key in <hyyper>+<key> or generate-desktop-files to programaticaly generate things instead of manually adding shortcuts 
+
+# args
+# -----------------------------------------------------------------
+KEY=$1
+
+if [ -z "$KEY" ]; then
+    echo "Usage: toggle-window.sh <key>" >&2
+    exit 1
+fi
+
+# mapping
+# note: use kde-wininfo to find window class
+# -----------------------------------------------------------------
+case $KEY in
+    generate-desktop-files)
+       for letter in {a..z}; do
+         cat <<SHORTCUT_EOF
+
+[services][net.local.toggle-window-${letter}.desktop]
+_launch=Meta+Ctrl+Alt+Shift+${letter^^}
+SHORTCUT_EOF
+
+				 cat << EOF > "$HOME/.local/share/applications/net.local.toggle-window-${letter}.desktop"
+[Desktop Entry]
+Exec=~/bin/toggle-window ${letter}
+Name=toggle-window ${letter}
+NoDisplay=true
+StartupNotify=false
+Type=Application
+X-KDE-GlobalAccel-CommandShortcut=true
+EOF
+				done
+
+				echo ""
+				echo ""
+				echo "desktop files generated! copy output above to ~/.config/kglobalshortcutsrc and restart kde"
+        exit 0
+    ;;
+		d)
+				CLASS='app.zen_browser.zen' 
+				CMD='flatpak run app.zen_browser.zen'
+		;;
+		e)
+		    CLASS='kitty'
+				CMD='kitty'
+		;;
+		f)
+		    CLASS='md.Obsidian'
+				CMD='obsidian'
+		;;
+		o)
+		    CLASS='net.thunderbird.Thunderbird'
+				CMD='thunderbird'
+		;;
+		p)
+		    CLASS='org.kde.dolphin'
+				CMD='dolphin'
+		;;
+esac
+
+if [ -z "$CLASS" ] || [ -z "$CMD" ]; then
+    echo "no mapping for given key!" >&2
+    exit 1
+fi
+
+# toggle logic
+# -----------------------------------------------------------------
+
+# Find all windows matching the class
+WIDS=$(kdotool search --class "$CLASS" 2>/dev/null)
+WIDS_ARRAY=($WIDS)
+
+# No windows found — launch the app
+if [ -z "$WIDS" ]; then
+    setsid $CMD >/dev/null 2>&1 &
+    exit 0
+fi
+
+# Get the currently active window
+PREV_ACTIVE=$ACTIVE
+ACTIVE=$(kdotool getactivewindow)
+
+# if active window is one of the matching ones, minimize it
+for id in "${WIDS_ARRAY[@]}"; do
+    if [ "$id" = "$ACTIVE" ]; then
+				kdotool windowstate --add MINIMIZED "$id"
+        exit 0
+    fi
+done
+
+# activate first one of the right class
+for id in "${WIDS_ARRAY[@]}"; do
+		kdotool windowactivate "$id"
+		exit 0
+done

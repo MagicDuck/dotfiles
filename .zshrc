@@ -171,8 +171,16 @@ function zle-keymap-select zle-line-init zle-line-finish
 
 # Yank to the system clipboard
 function vi-yank-xclip {
-   zle vi-yank
-   echo "$CUTBUFFER" | pbcopy -i
+  zle vi-yank
+
+  case $OS in
+    Darwin)
+      echo "$CUTBUFFER" | pbcopy -i
+    ;;
+    Linux)
+      wl-copy "$CUTBUFFER"
+    ;;
+  esac
 }
 
 zle -N vi-yank-xclip
@@ -180,7 +188,14 @@ bindkey -M vicmd 'y' vi-yank-xclip
 
 # Paste from system clipboard
 function pastefromclipboard {
-  RBUFFER="$(pbpaste)$RBUFFER"
+  case $OS in
+    Darwin)
+      RBUFFER="$(pbpaste)$RBUFFER"
+    ;;
+    Linux)
+      RBUFFER="$(wl-paste)$RBUFFER"
+    ;;
+  esac
 }
 
 zle -N pastefromclipboard

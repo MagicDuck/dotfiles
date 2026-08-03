@@ -5,6 +5,7 @@
 #
 # Usage: toggle-window.sh <window-class> <command>
 #   key  The key in <hyyper>+<key> or generate-desktop-files to programaticaly generate things instead of manually adding shortcuts 
+#   note: key=a creates a notification with clicked window's data 
 
 # args
 # -----------------------------------------------------------------
@@ -16,7 +17,7 @@ if [ -z "$KEY" ]; then
 fi
 
 # mapping
-# note: use kde-wininfo to find window class
+# note: use hypr+a to get window class
 # -----------------------------------------------------------------
 case $KEY in
     generate-desktop-files)
@@ -43,6 +44,10 @@ EOF
 				echo "desktop files generated! copy output above to ~/.config/kglobalshortcutsrc and restart kde"
         exit 0
     ;;
+	  a)
+			  notify-send "Window Info" "$(qdbus org.kde.KWin /KWin queryWindowInfo)"
+				exit 0
+		;;
 		d)
 				CLASS='app.zen_browser.zen' 
 				CMD='flatpak run app.zen_browser.zen'

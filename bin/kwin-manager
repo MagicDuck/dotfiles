@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# kwin-manage: implements actions associated with global shortcuts of the 
+# form <hyper>+<key> for the purpose of window management using kdotool
+#
+# Usage: kwin-manager <key>
+#   key  The key in <hyyper>+<key> or
+#        `generate-desktop-files` - programaticaly generate desktop files and content
+#        		to be pasted into ~/.config/kglobalshortcutsrc as doing it manually for 
+#           each shortcut through the UI can be onerous
+#        key=a creates a notification with clicked window's data 
+
+# args
+# -----------------------------------------------------------------
+KEY=$1
+
+if [ -z "$KEY" ]; then
+    echo "Usage: kwin-manager <key | generate-desktop-files>" >&2
+    exit 1
+fi
+
+# mapping
+# -----------------------------------------------------------------
+case $KEY in
+	  a)
+			  notify-send "Window Info" "$(qdbus org.kde.KWin /KWin queryWindowInfo)"
+				exit 0
+		;;
+		d)
+			  $HOME/bin/ktogglewin app.zen_browser.zen flatpak run app.zen_browser.zen
+		;;
+		e)
+			  $HOME/bin/ktogglewin kitty kitty
+		;;
+		f)
+			  $HOME/bin/ktogglewin md.Obsidian obsidian
+		;;
+		o)
+			  $HOME/bin/ktogglewin net.thunderbird.Thunderbird thunderbird
+		;;
+		p)
+			  $HOME/bin/ktogglewin org.kde.dolphin dolphin
+		;;
+    generate-desktop-files)
+       for letter in {a..z}; do
+         cat <<SHORTCUT_EOF
+
+[services][net.local.kwin-manager-${letter}.desktop]
+_launch=Meta+Ctrl+Alt+Shift+${letter^^}
+SHORTCUT_EOF
+
+				 cat << EOF > "$HOME/.local/share/applications/net.local.kwin-manager-${letter}.desktop"
+[Desktop Entry]
+Exec=~/bin/kwin-manager ${letter}
+Name=kwin-manager ${letter}
+NoDisplay=true
+StartupNotify=false
+Type=Application
+X-KDE-GlobalAccel-CommandShortcut=true
+EOF
+				done
+
+				echo ""
+				echo ""
+				echo "Desktop files generated! copy output above to ~/.config/kglobalshortcutsrc and restart kde"
+        exit 0
+    ;;
+esac
+

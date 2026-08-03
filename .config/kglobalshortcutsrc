@@ -281,82 +281,82 @@ toggle do not disturb=none,none,Toggle do not disturb
 [services][com.mitchellh.ghostty.desktop]
 _launch=none
 
-[services][net.local.toggle-window-a.desktop]
+[services][net.local.kwin-manager-a.desktop]
 _launch=Meta+Ctrl+Alt+Shift+A
 
-[services][net.local.toggle-window-b.desktop]
+[services][net.local.kwin-manager-b.desktop]
 _launch=Meta+Ctrl+Alt+Shift+B
 
-[services][net.local.toggle-window-c.desktop]
+[services][net.local.kwin-manager-c.desktop]
 _launch=Meta+Ctrl+Alt+Shift+C
 
-[services][net.local.toggle-window-d.desktop]
+[services][net.local.kwin-manager-d.desktop]
 _launch=Meta+Ctrl+Alt+Shift+D
 
-[services][net.local.toggle-window-e.desktop]
+[services][net.local.kwin-manager-e.desktop]
 _launch=Meta+Ctrl+Alt+Shift+E
 
-[services][net.local.toggle-window-f.desktop]
+[services][net.local.kwin-manager-f.desktop]
 _launch=Meta+Ctrl+Alt+Shift+F
 
-[services][net.local.toggle-window-g.desktop]
+[services][net.local.kwin-manager-g.desktop]
 _launch=Meta+Ctrl+Alt+Shift+G
 
-[services][net.local.toggle-window-h.desktop]
+[services][net.local.kwin-manager-h.desktop]
 _launch=Meta+Ctrl+Alt+Shift+H
 
-[services][net.local.toggle-window-i.desktop]
+[services][net.local.kwin-manager-i.desktop]
 _launch=Meta+Ctrl+Alt+Shift+I
 
-[services][net.local.toggle-window-j.desktop]
+[services][net.local.kwin-manager-j.desktop]
 _launch=Meta+Ctrl+Alt+Shift+J
 
-[services][net.local.toggle-window-k.desktop]
+[services][net.local.kwin-manager-k.desktop]
 _launch=Meta+Ctrl+Alt+Shift+K
 
-[services][net.local.toggle-window-l.desktop]
+[services][net.local.kwin-manager-l.desktop]
 _launch=Meta+Ctrl+Alt+Shift+L
 
-[services][net.local.toggle-window-m.desktop]
+[services][net.local.kwin-manager-m.desktop]
 _launch=Meta+Ctrl+Alt+Shift+M
 
-[services][net.local.toggle-window-n.desktop]
+[services][net.local.kwin-manager-n.desktop]
 _launch=Meta+Ctrl+Alt+Shift+N
 
-[services][net.local.toggle-window-o.desktop]
+[services][net.local.kwin-manager-o.desktop]
 _launch=Meta+Ctrl+Alt+Shift+O
 
-[services][net.local.toggle-window-p.desktop]
+[services][net.local.kwin-manager-p.desktop]
 _launch=Meta+Ctrl+Alt+Shift+P
 
-[services][net.local.toggle-window-q.desktop]
+[services][net.local.kwin-manager-q.desktop]
 _launch=Meta+Ctrl+Alt+Shift+Q
 
-[services][net.local.toggle-window-r.desktop]
+[services][net.local.kwin-manager-r.desktop]
 _launch=Meta+Ctrl+Alt+Shift+R
 
-[services][net.local.toggle-window-s.desktop]
+[services][net.local.kwin-manager-s.desktop]
 _launch=Meta+Ctrl+Alt+Shift+S
 
-[services][net.local.toggle-window-t.desktop]
+[services][net.local.kwin-manager-t.desktop]
 _launch=Meta+Ctrl+Alt+Shift+T
 
-[services][net.local.toggle-window-u.desktop]
+[services][net.local.kwin-manager-u.desktop]
 _launch=Meta+Ctrl+Alt+Shift+U
 
-[services][net.local.toggle-window-v.desktop]
+[services][net.local.kwin-manager-v.desktop]
 _launch=Meta+Ctrl+Alt+Shift+V
 
-[services][net.local.toggle-window-w.desktop]
+[services][net.local.kwin-manager-w.desktop]
 _launch=Meta+Ctrl+Alt+Shift+W
 
-[services][net.local.toggle-window-x.desktop]
+[services][net.local.kwin-manager-x.desktop]
 _launch=Meta+Ctrl+Alt+Shift+X
 
-[services][net.local.toggle-window-y.desktop]
+[services][net.local.kwin-manager-y.desktop]
 _launch=Meta+Ctrl+Alt+Shift+Y
 
-[services][net.local.toggle-window-z.desktop]
+[services][net.local.kwin-manager-z.desktop]
 _launch=Meta+Ctrl+Alt+Shift+Z
 
 [services][org.kde.dolphin.desktop]

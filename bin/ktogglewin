@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# ktogglewin: Launch an app, focus its window, or minimize it 
+# Designed for KDE Plasma (Wayland) using kdotool.
+#
+# Usage: ktogglewin <window-class> <launch-command>
+#   window-class - window resource class. e.g. kitty, org.kde.dolphin, ... 
+#   launch-command - command to launch app 
+#   key  The key in <hyyper>+<key> or generate-desktop-files to programaticaly generate things instead of manually adding shortcuts 
+#   note: key=a creates a notification with clicked window's data 
+
+# args
+# -----------------------------------------------------------------
+CLASS=$1
+CMD=$1
+
+if [ -z "$CLASS" ] || [ -z "$CMD" ]; then
+    echo "Usage: ktogglewin <window-class> <launch-command>" >&2
+    exit 1
+fi
+
+# toggle logic
+# -----------------------------------------------------------------
+
+# Find all windows matching the class
+WIDS=$(kdotool search --class "$CLASS" 2>/dev/null)
+WIDS_ARRAY=($WIDS)
+
+# No windows found — launch the app
+if [ -z "$WIDS" ]; then
+    setsid $CMD >/dev/null 2>&1 &
+    exit 0
+fi
+
+# Get the currently active window
+ACTIVE=$(kdotool getactivewindow)
+
+# if active window is one of the matching ones, minimize it
+for id in "${WIDS_ARRAY[@]}"; do
+    if [ "$id" = "$ACTIVE" ]; then
+				kdotool windowstate --add MINIMIZED "$id"
+        exit 0
+    fi
+done
+
+# activate first one of the right class
+for id in "${WIDS_ARRAY[@]}"; do
+		kdotool windowactivate "$id"
+		exit 0
+done
+

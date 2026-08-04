@@ -21,25 +21,33 @@ fi
 
 # mapping
 # -----------------------------------------------------------------
+KTOGGLEWIN=$HOME/bin/ktogglewin
 case $KEY in
 	  a)
 			  notify-send "Window Info" "$(qdbus org.kde.KWin /KWin queryWindowInfo)"
 				exit 0
 		;;
 		d)
-			  $HOME/bin/ktogglewin app.zen_browser.zen flatpak run app.zen_browser.zen
+			  $KTOGGLEWIN app.zen_browser.zen 'flatpak run app.zen_browser.zen'
 		;;
 		e)
-			  $HOME/bin/ktogglewin kitty kitty
+			  $KTOGGLEWIN kitty 'kitty --listen-on=unix:/tmp/mykitty'
 		;;
 		f)
-			  $HOME/bin/ktogglewin md.Obsidian obsidian
+			  $KTOGGLEWIN md.Obsidian obsidian
+		;;
+		k)
+			  $KTOGGLEWIN kitty-notes 'kitty @ --to unix:/tmp/mykitty launch --type=os-window --os-window-class=kitty-notes --os-window-title=personal-notes --title=personal-notes --add-to-session=default /usr/bin/zsh -is eval vim ~/vaults/personal/==\ inbox\ ==.md'
+		;;
+		m)
+				ACTIVE=$(kdotool getactivewindow)
+        kdotool windowstate --toggle MAXIMIZED "$ACTIVE"
 		;;
 		o)
-			  $HOME/bin/ktogglewin net.thunderbird.Thunderbird thunderbird
+			  $KTOGGLEWIN net.thunderbird.Thunderbird thunderbird
 		;;
 		p)
-			  $HOME/bin/ktogglewin org.kde.dolphin dolphin
+			  $KTOGGLEWIN org.kde.dolphin dolphin
 		;;
     generate-desktop-files)
        for letter in {a..z}; do

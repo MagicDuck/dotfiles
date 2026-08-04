@@ -12,7 +12,7 @@
 # args
 # -----------------------------------------------------------------
 CLASS=$1
-CMD=$1
+CMD=$2
 
 if [ -z "$CLASS" ] || [ -z "$CMD" ]; then
     echo "Usage: ktogglewin <window-class> <launch-command>" >&2
@@ -38,7 +38,7 @@ ACTIVE=$(kdotool getactivewindow)
 # if active window is one of the matching ones, minimize it
 for id in "${WIDS_ARRAY[@]}"; do
     if [ "$id" = "$ACTIVE" ]; then
-				kdotool windowstate --add MINIMIZED "$id"
+        kdotool windowstate --add MINIMIZED "$id"
         exit 0
     fi
 done

@@ -245,16 +245,6 @@ return {
   },
 
   {
-    'Chaitanyabsprip/fastaction.nvim',
-    opts = {
-      register_ui_select = true,
-      popup = {
-        relative = 'cursor',
-      },
-    },
-  },
-
-  {
     'atusy/treemonkey.nvim',
     lazy = true,
     event = { 'VeryLazy' },

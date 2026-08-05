@@ -38,9 +38,9 @@ gui:
   sidePanelWidth: 0.35
   scrollHeight: 20
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --paging=never
+      command: delta --paging=never
   autoFetch: false
 notARepository: 'skip'
 keybinding:

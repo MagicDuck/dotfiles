@@ -108,6 +108,22 @@ return {
         settings = opts.settings,
         -- enable CMP capabilities
         capabilities = require('my/plugins/lsp/attach').global_capabilities(),
+
+        -- handlers = {
+        --   -- ['language/status'] = function(_, result)
+        --   --   -- Print or whatever.
+        --   -- end,
+        --   ['$/progress'] = function(err, result, ctx, config)
+        --     local v = result and result.value
+        --     if
+        --       v and vim.startswith(v.message, 'Publish Diagnostics') or vim.startswith(v.message, 'Validate documents')
+        --     then
+        --       return
+        --     end
+        --     vim.print(result)
+        --     return vim.lsp.handlers['$/progress'](err, result, ctx, config)
+        --   end,
+        -- },
       }, opts.jdtls or {})
 
       -- Existing server will be reused if the root_dir matches.

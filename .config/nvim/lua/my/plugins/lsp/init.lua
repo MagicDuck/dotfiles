@@ -11,22 +11,26 @@ if vim.g.myLspDisabled then
 end
 
 return {
-  -- LSP status spinner, somewhat annoying
-  {
-    'j-hui/fidget.nvim',
-    -- branch = 'legacy',
-    lazy = true,
-    event = { 'VeryLazy' },
-    config = function()
-      require('fidget').setup({
-        notification = {
-          window = {
-            winblend = 0,
-          },
-        },
-      })
-    end,
-  },
+  -- LSP status spinner
+  -- NOTE: currently using LspProgress instead
+  -- {
+  --   'j-hui/fidget.nvim',
+  --   -- branch = 'legacy',
+  --   lazy = true,
+  --   event = { 'VeryLazy' },
+  --   config = function()
+  --     require('fidget').setup({
+  --       notification = {
+  --         window = {
+  --           winblend = 0,
+  --         },
+  --       },
+  --       progress = {
+  --         ignore = { 'jdtls' },
+  --       },
+  --     })
+  --   end,
+  -- },
 
   {
     'stevearc/conform.nvim',
@@ -235,6 +239,45 @@ return {
       global = {},
       namu_symbols = { -- Specific Module options
         options = {},
+      },
+    },
+  },
+
+  -- {
+  --   'Chaitanyabsprip/fastaction.nvim',
+  --   opts = {
+  --     register_ui_select = true,
+  --     popup = {
+  --       relative = 'cursor',
+  --     },
+  --   },
+  -- },
+
+  {
+    'rachartier/tiny-code-action.nvim',
+    event = 'LspAttach',
+    opts = {
+      picker = {
+        'buffer',
+        opts = {
+          hotkeys = true, -- Enable hotkeys for quick selection of actions
+          hotkeys_mode = 'text_diff_based', -- Modes for generating hotkeys
+          auto_preview = false, -- Enable or disable automatic preview
+          auto_accept = true, -- Automatically accept the selected action (with hotkeys)
+          position = 'cursor', -- Position of the picker window
+          winborder = 'single', -- Border style for picker and preview windows
+          keymaps = {
+            preview = 'K', -- Key to show preview
+            close = { 'q', '<Esc>' }, -- Keys to close the window (can be string or table)
+            select = '<CR>', -- Keys to select action (can be string or table)
+            preview_close = { 'q', '<Esc>' }, -- Keys to return from preview to main window (can be string or table)
+          },
+          custom_keys = {
+            { key = 'm', pattern = 'Fill match arms' },
+            { key = 'r', pattern = 'Rename.*' }, -- Lua pattern matching
+          },
+          group_icon = ' └',
+        },
       },
     },
   },

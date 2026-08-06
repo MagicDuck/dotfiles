@@ -190,6 +190,8 @@ function M.get_my_highlights()
 
     RenderMarkdownLink = { fg = my.link },
     ['@markup.link.label.markdown_inline'] = { fg = my.link, underline = true },
+    -- RenderMarkdownCode = { bg = '#E2E4EC' },
+    -- RenderMarkdownCodeBorder = { bg = '#D3D5DC' },
   }
 end
 

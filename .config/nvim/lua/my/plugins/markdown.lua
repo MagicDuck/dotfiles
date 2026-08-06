@@ -42,6 +42,13 @@ return {
     ---@type render.md.UserConfig
     opts = {
       render_modes = { 'n', 'c', 't', 'i' },
+      code = {
+        -- conceal_delimiters = false,
+        -- language = false,
+        -- border = 'none',
+
+        border = 'thin',
+      },
     },
   },
 
@@ -113,7 +120,7 @@ return {
           status_order = { 'not_started', 'complete' },
           status_propagation = { up = true, down = true },
           sort = {
-            on_status_change = true,
+            on_status_change = false,
             recursive = false,
             cursor_behavior = { track = true },
           },

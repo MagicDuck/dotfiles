@@ -37,7 +37,8 @@ case $KEY in
 			  $KTOGGLEWIN md.Obsidian obsidian
 		;;
 		k)
-			  $KTOGGLEWIN kitty-notes 'kitty @ --to unix:/tmp/mykitty launch --type=os-window --os-window-class=kitty-notes --os-window-title=personal-notes --title=personal-notes --add-to-session=default /usr/bin/zsh -is eval vim ~/vaults/personal/==\ inbox\ ==.md'
+			  # $KTOGGLEWIN kitty-notes 'kitty @ --to unix:/tmp/mykitty launch --type=os-window --os-window-class=kitty-notes --os-window-title=personal-notes --title=personal-notes --add-to-session=default /usr/bin/zsh -is eval vim ~/vaults/personal/==\ inbox\ ==.md'
+				$KTOGGLEWIN personal-notes "kitty --class=personal-notes --title=personal-notes nvim $HOME/vaults/personal/__inbox__.md"
 		;;
 		m)
 				ACTIVE=$(kdotool getactivewindow)

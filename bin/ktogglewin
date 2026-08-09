@@ -6,8 +6,6 @@
 # Usage: ktogglewin <window-class> <launch-command>
 #   window-class - window resource class. e.g. kitty, org.kde.dolphin, ... 
 #   launch-command - command to launch app 
-#   key  The key in <hyyper>+<key> or generate-desktop-files to programaticaly generate things instead of manually adding shortcuts 
-#   note: key=a creates a notification with clicked window's data 
 
 # args
 # -----------------------------------------------------------------
@@ -45,7 +43,7 @@ done
 
 # activate first one of the right class
 for id in "${WIDS_ARRAY[@]}"; do
-		kdotool windowactivate "$id"
-		exit 0
+    kdotool windowactivate "$id"
+    exit 0
 done
 

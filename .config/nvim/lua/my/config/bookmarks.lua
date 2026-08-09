@@ -13,7 +13,7 @@ function M.get_bookmarks()
     { 'i', '~/.config/nvim/init.lua' },
     '~/scratchpad.md',
     '~/vaults/personal',
-    '~/vaults/personal/== inbox ==.md',
+    '~/vaults/personal/__inbox__.md',
     '~/vaults/personal/.obsidian.vimrc',
     '~/vaults/personal/.obsidian/snippets/font.css',
     '~/vaults/work',

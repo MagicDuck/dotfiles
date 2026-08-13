@@ -7,3 +7,4 @@ export TERMINAL="wezterm"
 export BROWSER="google-chrome-stable"
 #export TERM="xterm-256color"
 . "$HOME/.cargo/env"
+

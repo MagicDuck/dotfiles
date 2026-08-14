@@ -235,6 +235,10 @@ case $OS in
   ;;
 esac
 
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^G" edit-command-line
+
 
 ## Plugins section: Enable fish style features
 zmodload zsh/terminfo

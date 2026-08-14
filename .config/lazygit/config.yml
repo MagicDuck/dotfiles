@@ -1,0 +1,68 @@
+gui:
+  nerdFontsVersion: "3"
+  theme:
+    lightTheme: true
+    activeBorderColor:
+      # - '#40a02b' # Green
+      - '#890F85'
+      - bold
+    inactiveBorderColor:
+      - '#4c4f69' # Text
+      # - '#A2A4BB' # Text
+    # optionsTextColor:
+    # - '#1e66f5' # Blue
+    selectedLineBgColor:
+      - '#E1EDED'
+    #   - '#F0F0ED' # Surface0
+      # - '#D3D5DC' # Surface0
+    selectedRangeBgColor:
+      # - '#E6D2BE'
+      - reverse
+    cherryPickedCommitBgColor:
+      - '#179299' # Teal
+    cherryPickedCommitFgColor:
+      - '#1e66f5' # Blue
+    unstagedChangesColor:
+      - '#40a02b'
+    defaultFgColor:
+      - '#222222'
+  branchColors:
+    'docs': '#11aaff' # use a light blue for branches beginning with 'docs/'
+    '*': '#222222'
+  authorColors:
+    # use red for John Smith
+    'John Smith': '#222222'
+    # '*': '#be7e05'
+    '*': '#6E006A'
+  showIcons: true
+  showFileTree: false
+  sidePanelWidth: 0.35
+  scrollHeight: 20
+git:
+  diffRenderers:
+    - colorArg: always
+      command: delta --paging=never
+  autoFetch: false
+notARepository: 'skip'
+keybinding:
+  universal:
+    quit: 'Q'
+    return-alt1: 'q'
+    copyToClipboard: 'y'
+services:
+  'gitlab.eb-tools.com': 'gitlab:gitlab.eb-tools.com'
+promptToReturnFromSubprocess: false
+os:
+  # fixes creating MR for branches with '/'
+  openLink: open -n "$(echo {{link}} | sed 's/%2F/\//g')"
+customCommands:
+  - key: 'O'
+    context: commitFiles
+    description: open commit file in nvim diffview
+    command: nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^! -- {{.SelectedCommitFile.Name}}'
+    output: terminal
+  - key: 'O'
+    context: commits
+    description: open commit files in nvim diffview
+    command: nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^!'
+    output: terminal

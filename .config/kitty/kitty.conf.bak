@@ -5,20 +5,35 @@ allow_remote_control yes
 listen_on unix:/tmp/mykitty
 
 #--- fonts
-font_family      JetBrains Mono
+# font_family      JetBrains Mono
+# adjust_line_height  140%
+
+# font_family family='Monaspace Neon' features='+liga +ss01 +ss02 +ss03 +ss04 +ss05 +ss06 +ss07 +ss08 +ss09 +ss10 cv01=2 -calt -sinf +ordn'
+# adjust_line_height  140%
+# font_family family='0xProto Nerd Font Mono' features=+calt
+# adjust_line_height  150%
+# font_size 13.5
+
+font_family family='Maple Mono NF' features='+calt cv01=2 cv05=2 +cv01 +cv02 +cv33 +cv34 +cv35 +cv36 +cv61 +cv62 +cv64 +cv66 +ss05 +ss07 +ss08 +ss11'
+adjust_line_height  140%
 
 font_size 13.5
-adjust_line_height  140%
+
 macos_thicken_font 0
 
-#--- cursor
+#--- UI
+hide_window_decorations titlebar-only
+window_padding_width 2
+mouse_hide_wait = -1.0
+
 # cursor_blink_interval      1.0
 # cursor_stop_blinking_after 0.1
 cursor_trail 10
+cursor_trail_start_threshold 5
+cursor_trail_decay 0.1 0.2
 
 #--- urls
 url_style curly
-open_url_modifiers kitty_mod
 open_url_with default
 mouse_map kitty_mod+left click grabbed,ungrabbed mouse_click_url
 
@@ -28,26 +43,29 @@ copy_on_select yes
 sync_to_monitor yes
 window_alert_on_bell no
 bell_on_tab no
-env PATH=/Users/Stephan.Badragan/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
+env PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
 clipboard_control write-clipboard write-primary
 term xterm-kitty
 macos_quit_when_last_window_closed yes
 # don't ask to confirm on close
 confirm_os_window_close 0
+startup_session $HOME/.config/kitty/sessions/default.kitty-session
+remember_window_size  no
 
-#--- layouts
+#--- layouts 
 # enabled_layouts splits:split_axis=vertical
 enabled_layouts tall:bias=50;full_size=1;mirrored=false
 
 #--- tab bar
 tab_bar_edge bottom
+tab_bar_align left
 tab_bar_margin_width      16
 tab_bar_margin_height     16 0
-tab_bar_style separator
-tab_separator ""
-tab_title_template        "{fmt.fg._65737e}{fmt.bg.default}{fmt.fg._f0f2f5}{fmt.bg._65737e} {index}: {title.split()[0]} {fmt.fg._65737e}{fmt.bg.default} "
-active_tab_title_template "{fmt.fg._e5c07b}{fmt.bg.default}{fmt.fg._282c34}{fmt.bg._e5c07b} {index}: {title.split()[0]} {fmt.fg._e5c07b}{fmt.bg.default} "
-tab_bar_min_tabs          2
+tab_bar_style custom
+tab_title_template " {index}: {title.split()[0]}"
+tab_powerline_style angled
+tab_bar_min_tabs          1
+tab_bar_filter session:~ or session:^$
 
 #--- keymap
 # note: use kitty +kitten show_key to get the right UNIX escape sequence
@@ -55,10 +73,13 @@ macos_option_as_alt yes
 kitty_mod cmd
 
 # actions -------------------------
+map kitty_mod+s>n combine : new_os_window : set_window_title " "
+map kitty_mod+s>r set_window_title " "
+
 map kitty_mod+b launch 
 map kitty_mod+; next_window
 map kitty_mod+shift+; move_window_forward
-# map kitty_mod+x close_window
+map kitty_mod+x close_window
 
 map cmd+w noop
 map ctrl+tab noop
@@ -70,14 +91,14 @@ map kitty_mod+right next_tab
 map kitty_mod+h  previous_tab
 map kitty_mod+left  previous_tab
 
-map kitty_mod+t  combine : new_tab !neighbor : set_tab_title
+map kitty_mod+t combine : new_tab_with_cwd !neighbor : set_tab_title " "
 map kitty_mod+n set_tab_title
-map kitty_mod+x     close_tab
+map kitty_mod+x close_tab
 
-map kitty_mod+shift+l     move_tab_forward
-map kitty_mod+shift+right     move_tab_forward
-map kitty_mod+shift+h     move_tab_backward
-map kitty_mod+shift+left     move_tab_backward
+map kitty_mod+shift+l move_tab_forward
+map kitty_mod+shift+right move_tab_forward
+map kitty_mod+shift+h move_tab_backward
+map kitty_mod+shift+left move_tab_backward
 
 map kitty_mod+alt+left resize_window narrower 3
 map kitty_mod+alt+right resize_window wider 3
@@ -90,22 +111,47 @@ map kitty_mod+delete noop
 action_alias myhints kitten hints --alphabet asdfghjklqwertyuiopzxcvbnm1234567890 --hints-text-color green --hints-foreground-color white --hints-background-color red
 map kitty_mod+e myhints
 
-map cmd+shift+r load_config_file
+map kitty_mod+shift+r load_config_file
 
-scrollback_pager /opt/homebrew/bin/nvim -u /Users/Stephan.Badragan/.config/nvim/init_as_pager.lua -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "normal G"
-map kitty_mod+shift+i show_scrollback 
+scrollback_pager nvim -u $HOME/.config/nvim/lua/my/init_as_pager.lua -c "silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer - " -c "normal G" -c "stopinsert"
+map kitty_mod+i show_scrollback 
 
-map kitty_mod+r launch --allow-remote-control --type=overlay --title='*Command*' kitty-launch-command
+map page_up scroll_page_up
+map page_down scroll_page_down
+
+# map kitty_mod+d goto_session ~/.config/kitty/sessions
+map kitty_mod+d launch --allow-remote-control --type=overlay --title='*Session*' sh -c 'cd ~/.config/kitty/sessions; sel=$(find . -type f | sed "s|^\./||" | sed "s|\.kitty-session||" | fzf --height 60% --layout=reverse --tiebreak=end) || exit 0; [ -n "$sel" ] && kitten @ action goto_session "$HOME/.config/kitty/sessions/$sel.kitty-session"'
+map kitty_mod+shift+x close_session .
+map kitty_mod+o goto_session -1
+
+# map cmd+enter -> cntrl+enter
+map cmd+enter send_text all \x1b[13;5u
 
 # BEGIN_KITTY_THEME
-# 3024 Day
+# Atom One Light
 include current-theme.conf
 # END_KITTY_THEME
-# background #e5e4e5
-background_image ~/wallpapers/ocean_waves.jpg
-background_tint 0.89
-# selection_foreground #FAFAF9
-# foreground #2C211B
+
+# background #E0E1EB
+# background #F2F3FE
+# background #F9F5F5
+# background #F5F5F9
+# background #F8F9F5
+background_image ~/wallpapers/faint-coffe-stains.png
+background_image_layout scaled
+background_tint 0.6
+transparent_background_colors #D3D5DC@0.6
+# cursor #10287A
+
+# WCAG contrast
+# text_fg_override_threshold 4.5 ratio
+# active_tab_foreground           #000000
+# active_tab_background           #E1BCB9
+# inactive_tab_foreground         #444444
+# inactive_tab_background         #D4D6DB
+active_tab_font_style bold-italic
+inactive_tab_font_style bold
+
 
 # old remaps -------------------------
 # cmd+s to cntrl+s
@@ -131,10 +177,10 @@ background_tint 0.89
 
 # tmux nav mapping
 # - go to prev/next win
-# map cmd+h send_text all \x02p
-# map cmd+left send_text all \x02p
-# map cmd+l send_text all \x02n
-# map cmd+right send_text all \x02n
+# map kitty_mod+h send_text all \x02p
+# map kitty_mod+l send_text all \x02n
+# map kitty_mod+t send_text all \x02c
+# map kitty_mod+x send_text all \x02x
 
 # - swap current with next prev win
 # map cmd+shift+h send_text all \x02H
@@ -145,7 +191,6 @@ background_tint 0.89
 # shift/ctrl-enter
 # map shift+enter send_text all \x1b[13;2u
 # map ctrl+enter send_text all \x1b[13;5u
-# map cmd+enter \r
 
 # map ctrl+space send_text all \x00
 
@@ -158,4 +203,5 @@ background_tint 0.89
 # cmd+i to alt+i
 # map cmd+i send_text all \x1bi
 
-#include ./os-specific.conf
+include os-specific.conf
+# include linux.conf

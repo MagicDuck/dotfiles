@@ -365,6 +365,7 @@ alias ebtranslate="uv --project=/opt/repos/eb-translate run /opt/repos/eb-transl
 alias fe-incident-translate="npm run i18n -- translate --uv"
 alias kde-wininfo="qdbus org.kde.KWin /KWin queryWindowInfo"
 
+alias codex="env EDITOR='nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua' codex"
 
 # FZF
 # =========================================================================================

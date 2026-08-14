@@ -215,8 +215,7 @@ local superKeyBindings = {
     },
   },
   {
-    key = 'f',
-    -- app = "Brave Browser",
+    key = 'k',
     app = 'Obsidian',
   },
   {
@@ -244,7 +243,7 @@ local superKeyBindings = {
     app = 'TablePlus',
   },
   {
-    key = 'k',
+    key = 'f',
     app = 'kitty',
     window = {
       title = 'notes',
@@ -286,7 +285,17 @@ local superKeyBindings = {
   },
   {
     key = 'j',
-    app = 'Codex',
+    -- app = 'Codex',
+    app = 'kitty',
+    window = {
+      title = 'codex-cli',
+      launch = function()
+        kitty.launchWindow({
+          title = 'codex-cli',
+          command = "/bin/zsh -is eval cd $HOME/repos && env EDITOR='nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua' codex",
+        })
+      end,
+    },
   },
   {
     key = 'm',

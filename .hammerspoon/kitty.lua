@@ -26,7 +26,7 @@ end
 
 function M.launchWindow(window)
   M.exec(
-    'launch --type=os-window --os-window-title='
+    'launch --type=os-window --os_window_state=maximized --os-window-title='
       .. window.title
       .. ' --title='
       .. window.title

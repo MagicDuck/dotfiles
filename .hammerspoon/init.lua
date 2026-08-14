@@ -191,7 +191,7 @@ local superKeyBindings = {
   --   },
   -- },
   {
-    key = 'd',
+    key = 'y',
     app = 'Firefox',
     -- app = "Brave Browser",
     -- app = "Safari",
@@ -233,7 +233,7 @@ local superKeyBindings = {
   -- },
   {
     key = 'v',
-    app = 'TickTick',
+    app = 'Preview',
   },
   {
     key = 'u',
@@ -326,7 +326,7 @@ local superKeyBindings = {
   --   app = "confluence wiki",
   -- },
   {
-    key = 'y',
+    key = 'd',
     app = 'Safari',
   },
   {

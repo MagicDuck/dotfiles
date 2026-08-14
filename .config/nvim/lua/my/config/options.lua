@@ -112,7 +112,7 @@ vim.cmd([[
 
 -- filetype for conf files
 vim.filetype.add({
-  extension = { rasi = 'rasi', rofi = 'rasi', wofi = 'rasi' },
+  extension = { rasi = 'rasi', rofi = 'rasi', wofi = 'rasi', handlebars = 'html' },
   filename = {
     ['vifmrc'] = 'vim',
   },

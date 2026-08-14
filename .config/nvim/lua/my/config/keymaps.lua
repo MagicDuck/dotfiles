@@ -610,8 +610,8 @@ my.keybind('<leader>lr', function()
 end, { desc = 'lsp: symbol: rename' })
 
 my.keybind('<leader>la', function()
-  -- vim.lsp.buf.code_action()
-  require('tiny-code-action').code_action()
+  vim.lsp.buf.code_action()
+  -- require('tiny-code-action').code_action()
 end, { desc = 'lsp: code action: pick' })
 
 my.keybind('<leader>ld', function()

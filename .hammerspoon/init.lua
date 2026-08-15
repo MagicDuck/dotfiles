@@ -295,7 +295,7 @@ local superKeyBindings = {
         kitty.launchWindow({
           title = 'codex-cli',
           command = "/bin/zsh -is eval cd $HOME/repos && env EDITOR='nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua' codex",
-          accent_color = '#DBDCED',
+          accent_color = '#BFE3DC',
           accent_icon = '🐐',
         })
       end,

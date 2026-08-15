@@ -28,6 +28,9 @@ function M.launchWindow(window)
   M.exec(
     'launch --type=os-window --os_window_state=maximized --os-window-title='
       .. window.title
+      .. (window.class and (' --os-window-class=' .. window.class) or '')
+      .. (window.accent_color and (' --var ' .. 'accent_color=' .. window.accent_color) or '')
+      .. (window.accent_icon and (' --var ' .. 'accent_icon=' .. window.accent_icon) or '')
       .. ' --title='
       .. window.title
       .. ' --add-to-session=default'

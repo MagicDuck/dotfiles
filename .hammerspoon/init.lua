@@ -223,7 +223,7 @@ local superKeyBindings = {
     app = 'Documentation',
   },
   {
-    key = 'k',
+    key = 'i',
     app = 'Postman',
   },
   -- {
@@ -252,6 +252,8 @@ local superKeyBindings = {
         kitty.launchWindow({
           title = 'notes',
           command = '/bin/zsh -is eval vim "$HOME/vaults/work/== work tasks ==.md"',
+          accent_color = '#B5CCB8',
+          accent_icon = '🐻',
         })
       end,
     },
@@ -293,12 +295,14 @@ local superKeyBindings = {
         kitty.launchWindow({
           title = 'codex-cli',
           command = "/bin/zsh -is eval cd $HOME/repos && env EDITOR='nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua' codex",
+          accent_color = '#DBDCED',
+          accent_icon = '🐐',
         })
       end,
     },
   },
   {
-    key = 'm',
+    key = 'h',
     app = 'Claude',
   },
   -- {

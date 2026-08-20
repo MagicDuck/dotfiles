@@ -13,8 +13,18 @@ return {
     return {
       -- How to find the root dir for a given filename. The default comes from
       -- lspconfig which provides a function specifically for java projects.
-      root_dir = function()
-        return require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml' })
+      -- root_dir = function()
+      --   return require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew', 'pom.xml' })
+      -- end,
+      root_dir = function(filePath)
+        vim.fs.root(filePath, function(_, path)
+          if vim.uv.fs_stat(vim.fs.joinpath(path, '.git')) == nil then
+            return false
+          end
+          return vim.iter({ 'mvnw', 'gradlew', 'pom.xml' }):any(function(marker)
+            return vim.uv.fs_stat(vim.fs.joinpath(path, marker)) ~= nil
+          end)
+        end)
       end,
 
       -- How to find the project name for a given root dir.

@@ -237,7 +237,7 @@ esac
 
 autoload -z edit-command-line
 zle -N edit-command-line
-bindkey "^I" edit-command-line
+bindkey "^B" edit-command-line
 
 
 ## Plugins section: Enable fish style features

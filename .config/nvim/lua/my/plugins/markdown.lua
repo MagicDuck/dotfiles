@@ -35,22 +35,22 @@ return {
     },
   },
 
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    opts = {
-      render_modes = { 'n', 'c', 't', 'i' },
-      code = {
-        -- conceal_delimiters = false,
-        -- language = false,
-        -- border = 'none',
-
-        border = 'thin',
-      },
-    },
-  },
+  -- {
+  --   'MeanderingProgrammer/render-markdown.nvim',
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+  --   ---@module 'render-markdown'
+  --   ---@type render.md.UserConfig
+  --   opts = {
+  --     render_modes = { 'n', 'c', 't', 'i' },
+  --     code = {
+  --       -- conceal_delimiters = false,
+  --       -- language = false,
+  --       -- border = 'none',
+  --
+  --       border = 'thin',
+  --     },
+  --   },
+  -- },
 
   {
     'jakewvincent/mkdnflow.nvim',
@@ -102,6 +102,9 @@ return {
           MkdnCreateLinkFromClipboard = { { 'n', 'v' }, '<localleader>p' },
         },
         links = {
+          style = 'markdown',
+          compact = true,
+          conceal = true,
           transform_on_create = function(text)
             text = text:gsub('[ /]', '_')
             -- text = text:lower()
@@ -120,7 +123,7 @@ return {
           status_order = { 'not_started', 'complete' },
           status_propagation = { up = true, down = true },
           sort = {
-            on_status_change = false,
+            on_status_change = true,
             recursive = false,
             cursor_behavior = { track = true },
           },

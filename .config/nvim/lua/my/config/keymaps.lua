@@ -216,6 +216,8 @@ my.keybind('<leader>ur', function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(':file ' .. old_name, true, false, true), 't', true)
 end, { desc = 'buffer: rename' })
 
+my.keybind('<leader>us', 'A<cr><cr><esc>80i-<esc>A<cr><cr><esc>', { desc = 'insert separator line' })
+
 -- line
 --------------------------------------------------------------------------------------------------
 

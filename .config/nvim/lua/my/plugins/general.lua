@@ -153,7 +153,9 @@ return {
 
           -- Add any disabling global or filetype-specific logic here
           if filetype == 'lua' then
-            vim.b.minicursorword_disable = vim.tbl_contains({ 'local', 'require', '--', '---' }, curword)
+            vim.b.minicursorword_disable = vim.tbl_contains({ 'local', 'require', '-', '--', '---' }, curword)
+          elseif filetype == 'markdown' then
+            vim.b.minicursorword_disable = true
           elseif filetype == nil or filetype == '' then
             vim.b.minicursorword_disable = true
           end

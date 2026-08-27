@@ -192,7 +192,7 @@ local superKeyBindings = {
   -- },
   {
     key = 'y',
-    app = 'Firefox',
+    app = 'Safari',
     -- app = "Brave Browser",
     -- app = "Safari",
     -- app = 'Vivaldi',
@@ -251,7 +251,7 @@ local superKeyBindings = {
         -- kitty.launchWindow({ title = 'lazygit', command = '/bin/zsh -is eval lazygit' })
         kitty.launchWindow({
           title = 'notes',
-          command = '/bin/zsh -is eval vim "$HOME/vaults/work/== work tasks ==.md"',
+          command = '/bin/zsh -is eval vim "$HOME/vaults/work/__work_tasks__.md"',
           accent_color = '#B5CCB8',
           accent_icon = '🐻',
         })
@@ -294,8 +294,8 @@ local superKeyBindings = {
       launch = function()
         kitty.launchWindow({
           title = 'codex-cli',
-          -- command = "/bin/zsh -is eval cd $HOME/repos && env EDITOR='nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua' nvim -c 'terminal codex'",
-          command = "/bin/zsh -is eval cd $HOME/repos && env VISUAL='nvr -cc vsplit --remote-wait +\"setlocal bufhidden=delete\"' nvim -c 'terminal codex'",
+          command = "/bin/zsh -is eval cd $HOME/repos && env EDITOR='nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua' codex",
+          -- command = "/bin/zsh -is eval cd $HOME/repos && env VISUAL='nvr -cc vsplit --remote-wait +\"setlocal bufhidden=delete\"' nvim -c 'terminal codex'",
           accent_color = '#BFE3DC',
           accent_icon = '🐐',
         })
@@ -341,7 +341,7 @@ local superKeyBindings = {
   -- },
   {
     key = 'd',
-    app = 'Safari',
+    app = 'Microsoft Edge',
   },
   {
     key = 'space',

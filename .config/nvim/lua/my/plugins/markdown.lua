@@ -35,22 +35,28 @@ return {
     },
   },
 
-  -- {
-  --   'MeanderingProgrammer/render-markdown.nvim',
-  --   dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-  --   ---@module 'render-markdown'
-  --   ---@type render.md.UserConfig
-  --   opts = {
-  --     render_modes = { 'n', 'c', 't', 'i' },
-  --     code = {
-  --       -- conceal_delimiters = false,
-  --       -- language = false,
-  --       -- border = 'none',
-  --
-  --       border = 'thin',
-  --     },
-  --   },
-  -- },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {
+      render_modes = { 'n', 'c', 't', 'i' },
+      code = {
+        -- conceal_delimiters = false,
+        -- language = false,
+        -- border = 'none',
+
+        border = 'thin',
+      },
+      bullet = {
+        enabled = false,
+      },
+      checkbox = {
+        enabled = false,
+      },
+    },
+  },
 
   {
     'jakewvincent/mkdnflow.nvim',
@@ -106,9 +112,7 @@ return {
           compact = true,
           conceal = true,
           transform_on_create = function(text)
-            text = text:gsub('[ /]', '_')
-            -- text = text:lower()
-            -- text = os.date('%Y-%m-%d_') .. text
+            -- text = text:gsub('[ /]', '_')
             return text
           end,
         },
@@ -123,7 +127,7 @@ return {
           status_order = { 'not_started', 'complete' },
           status_propagation = { up = true, down = true },
           sort = {
-            on_status_change = true,
+            on_status_change = false,
             recursive = false,
             cursor_behavior = { track = true },
           },

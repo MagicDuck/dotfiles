@@ -1,4 +1,3 @@
-
 [[shortcut]]
 bind = "cmd + ctrl + opt + shift + a"
 action = "notify-win-info"
@@ -62,3 +61,21 @@ bind = "cmd + ctrl + opt + shift + d"
 action = "toggle-app"
 launch_app = "Microsoft Edge"
 match = [{ app_name = "Microsoft Edge" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + f"
+action = "toggle-app"
+launch_cmd = "open -na kitty --args --title='work-notes' --start-as=maximized --override active_tab_background=#B5CCB8 /bin/zsh -is eval work-notes"
+match = [{ app_name = "kitty", win_title = "work-notes" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + c"
+action = "toggle-app"
+launch_cmd = "open -na kitty --args --title='codex-cli' --start-as=maximized --override active_tab_background=#BFE3DC /bin/zsh -is eval codex-cli"
+match = [{ app_name = "kitty", win_title = "codex-cli" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + e"
+action = "toggle-app"
+launch_cmd = "open -na kitty --args --title='terminal' --start-as=maximized --session=sessions/default.kitty-session"
+match = [{ app_name = "kitty", win_title = "terminal" }]

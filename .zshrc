@@ -366,6 +366,8 @@ alias fe-incident-translate="npm run i18n -- translate --uv"
 alias kde-wininfo="qdbus org.kde.KWin /KWin queryWindowInfo"
 
 alias codex="env EDITOR='nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua' codex"
+alias work-notes='print -Pn "\e]0;work-notes\a"; nvim $HOME/vaults/work/__work_tasks__.md'
+alias codex-cli='cd /opt/repos; env EDITOR="nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua" codex'
 
 # FZF
 # =========================================================================================

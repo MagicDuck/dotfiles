@@ -176,196 +176,118 @@ local wm = require('./windowManagement')
 
 local superKey = { 'cmd', 'alt', 'ctrl', 'shift' }
 local superKeyBindings = {
-  -- app switching
   -- {
-  --   key = 'b',
-  --   app = 'kitty',
-  --   window = {
-  --     title = 'combos',
-  --     launch = function()
-  --       kitty.launchWindow({
-  --         title = 'combos',
-  --         command = '/bin/zsh -is eval vim /opt/repos/qmk_firmware/keyboards/handwired/dactyl_manuform/5x6/keymaps/MagicDuck/combos.def',
-  --       })
-  --     end,
-  --   },
+  --   key = 'y',
+  --   app = 'Safari',
   -- },
-  {
-    key = 'y',
-    app = 'Safari',
-    -- app = "Brave Browser",
-    -- app = "Safari",
-    -- app = 'Vivaldi',
-    -- app = 'Zen',
-  },
   -- {
   --   key = 'e',
   --   app = 'kitty',
-  --   -- app = 'WezTerm',
-  --   -- app = 'Ghostty',
+  --   window = {
+  --     title = 'terminal',
+  --     launch = function()
+  --       kitty.launchWindow({ title = 'terminal', command = '/bin/zsh -is' })
+  --     end,
+  --   },
   -- },
-  {
-    key = 'e',
-    app = 'kitty',
-    window = {
-      title = 'terminal',
-      launch = function()
-        kitty.launchWindow({ title = 'terminal', command = '/bin/zsh -is' })
-      end,
-    },
-  },
-  {
-    key = 'k',
-    app = 'Obsidian',
-  },
-  {
-    key = 'g',
-    app = 'Documentation',
-  },
-  {
-    key = 'i',
-    app = 'Postman',
-  },
+  -- {
+  --   key = 'k',
+  --   app = 'Obsidian',
+  -- },
+  -- {
+  --   key = 'g',
+  --   app = 'Documentation',
+  -- },
+  -- {
+  --   key = 'i',
+  --   app = 'Postman',
+  -- },
   -- {
   --   key = 'i',
   --   app = 'IntelliJ IDEA',
   -- },
-  {
-    key = 'v',
-    app = 'Preview',
-  },
-  {
-    key = 'u',
-    app = 'Fork',
-  },
-  {
-    key = 'h',
-    app = 'TablePlus',
-  },
-  {
-    key = 'f',
-    app = 'kitty',
-    window = {
-      title = 'notes',
-      launch = function()
-        -- kitty.launchWindow({ title = 'lazygit', command = '/bin/zsh -is eval lazygit' })
-        kitty.launchWindow({
-          title = 'notes',
-          command = '/bin/zsh -is eval vim "$HOME/vaults/work/__work_tasks__.md"',
-          accent_color = '#B5CCB8',
-          accent_icon = '🐻',
-        })
-      end,
-    },
-  },
-  {
-    key = 'l',
-    app = 'zoom.us',
-  },
   -- {
-  --   key = "n",
-  --   app = "Figma",
-  -- },
-  {
-    key = 'o',
-    app = 'Microsoft Outlook',
-  },
-  {
-    key = 'p',
-    app = 'Finder',
-  },
-  {
-    key = 'r',
-    -- app = 'Brave Browser',
-    app = 'Google Chrome',
-    -- app = "Firefox",
-  },
-  {
-    key = 's',
-    app = 'Slack',
-    -- app = 'Microsoft Teams',
-  },
-  {
-    key = 'j',
-    -- app = 'Codex',
-    app = 'kitty',
-    window = {
-      title = 'codex-cli',
-      launch = function()
-        kitty.launchWindow({
-          title = 'codex-cli',
-          command = "/bin/zsh -is eval cd $HOME/repos && env EDITOR='nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua' codex",
-          -- command = "/bin/zsh -is eval cd $HOME/repos && env VISUAL='nvr -cc vsplit --remote-wait +\"setlocal bufhidden=delete\"' nvim -c 'terminal codex'",
-          accent_color = '#BFE3DC',
-          accent_icon = '🐐',
-        })
-      end,
-    },
-  },
-  {
-    key = 'h',
-    app = 'Claude',
-  },
-  -- {
-  --   key = "u",
-  --   app = "kitty",
-  --   window = {
-  --     title = "notes",
-  --     launch = function()
-  --       kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim ~/notes/index.md" })
-  --       -- kitty.launchWindow({ title = "notes", command = "/bin/zsh -is eval vim +VimwikiIndex" })
-  --     end,
-  --   },
+  --   key = 'v',
+  --   app = 'Preview',
   -- },
   -- {
-  --   key = 'u',
+  --   key = 'h',
+  --   app = 'TablePlus',
+  -- },
+  -- {
+  --   key = 'f',
   --   app = 'kitty',
   --   window = {
-  --     title = 'scratchpad',
+  --     title = 'notes',
   --     launch = function()
+  --       -- kitty.launchWindow({ title = 'lazygit', command = '/bin/zsh -is eval lazygit' })
   --       kitty.launchWindow({
-  --         title = 'scratchpad',
-  --         command = '/bin/zsh -is eval vim ~/scratchpad.md',
+  --         title = 'notes',
+  --         command = '/bin/zsh -is eval vim "$HOME/vaults/work/__work_tasks__.md"',
+  --         accent_color = '#B5CCB8',
+  --         accent_icon = '🐻',
   --       })
   --     end,
   --   },
   -- },
-  -- v -> ticktick
-  -- -- {
-  --   key = "u",
-  --   app = "Obsidian",
+  -- {
+  --   key = 'l',
+  --   app = 'zoom.us',
   -- },
   -- {
-  --   key = "w",
-  --   app = "confluence wiki",
+  --   key = "n",
+  --   app = "Figma",
   -- },
-  {
-    key = 'd',
-    app = 'Microsoft Edge',
-  },
-  {
-    key = 'space',
-    app = 'kitty',
-    window = {
-      title = 'terminal',
-    },
-  },
-  {
-    key = 'return',
-    app = 'kitty',
-    window = {
-      title = 'terminal',
-    },
-  },
+  -- {
+  --   key = 'o',
+  --   app = 'Microsoft Outlook',
+  -- },
+  -- {
+  --   key = 'p',
+  --   app = 'Finder',
+  -- },
+  -- {
+  --   key = 'r',
+  --   app = 'Google Chrome',
+  -- },
+  -- {
+  --   key = 's',
+  --   app = 'Slack',
+  -- },
+  -- {
+  --   key = 'j',
+  --   -- app = 'Codex',
+  --   app = 'kitty',
+  --   window = {
+  --     title = 'codex-cli',
+  --     launch = function()
+  --       kitty.launchWindow({
+  --         title = 'codex-cli',
+  --         command = "/bin/zsh -is eval cd $HOME/repos && env EDITOR='nvim -u ~/.config/nvim/lua/my/init_as_basic_editor.lua' codex",
+  --         -- command = "/bin/zsh -is eval cd $HOME/repos && env VISUAL='nvr -cc vsplit --remote-wait +\"setlocal bufhidden=delete\"' nvim -c 'terminal codex'",
+  --         accent_color = '#BFE3DC',
+  --         accent_icon = '🐐',
+  --       })
+  --     end,
+  --   },
+  -- },
+  -- {
+  --   key = 'h',
+  --   app = 'Claude',
+  -- },
+  -- {
+  --   key = 'd',
+  --   app = 'Microsoft Edge',
+  -- },
   -- window management
-  {
-    key = 'a',
-    fn = function()
-      -- show name and bundle id of application corresponding to current window
-      local win = hs.window.frontmostWindow()
-      hs.alert.show(win:application():name() .. ' | ' .. win:application():bundleID())
-    end,
-  },
+  -- {
+  --   key = 'a',
+  --   fn = function()
+  --     -- show name and bundle id of application corresponding to current window
+  --     local win = hs.window.frontmostWindow()
+  --     hs.alert.show(win:application():name() .. ' | ' .. win:application():bundleID())
+  --   end,
+  -- },
   {
     key = 'n',
     fn = wm.focusNextAppWindow,

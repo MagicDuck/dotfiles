@@ -188,6 +188,7 @@ return {
         'gopls',
         'kulala',
         'tsgo',
+        'sourcekit',
       })
     end,
   },

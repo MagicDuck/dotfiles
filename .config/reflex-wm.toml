@@ -1,0 +1,64 @@
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + a"
+action = "notify-win-info"
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + y"
+action = "toggle-app"
+launch_app = "Safari"
+match = [{ app_name = "Safari" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + k"
+action = "toggle-app"
+launch_app = "Obsidiain"
+match = [{ app_name = "Obsidian" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + v"
+action = "toggle-app"
+launch_app = "Preview"
+match = [{ app_name = "Preview" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + l"
+action = "toggle-app"
+launch_app = "zoom.us"
+match = [{ app_name = "zoom.us" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + o"
+action = "toggle-app"
+launch_app = "Microsoft Outlook"
+match = [{ app_name = "Microsoft Outlook" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + p"
+action = "toggle-app"
+launch_app = "Finder"
+match = [{ app_name = "Finder" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + r"
+action = "toggle-app"
+launch_app = "Google Chrome"
+match = [{ app_name = "Google Chrome" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + s"
+action = "toggle-app"
+launch_app = "Slack"
+match = [{ app_name = "Slack" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + h"
+action = "toggle-app"
+launch_app = "Claude"
+match = [{ app_name = "Claude" }]
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + d"
+action = "toggle-app"
+launch_app = "Microsoft Edge"
+match = [{ app_name = "Microsoft Edge" }]

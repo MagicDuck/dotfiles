@@ -288,30 +288,30 @@ local superKeyBindings = {
   --     hs.alert.show(win:application():name() .. ' | ' .. win:application():bundleID())
   --   end,
   -- },
-  {
-    key = 'n',
-    fn = wm.focusNextAppWindow,
-  },
-  {
-    key = 'left',
-    fn = wm.positionCurrentWindowLeftHalf,
-  },
-  {
-    key = 'right',
-    fn = wm.positionCurrentWindowRightHalf,
-  },
-  {
-    key = 'up',
-    fn = wm.positionCurrentWindowFullscreen,
-  },
-  {
-    key = 'down',
-    fn = wm.positionCurrentWindowCentered,
-  },
-  {
-    key = ';',
-    fn = wm.moveCurrentWindowToNextScreen,
-  },
+  -- {
+  --   key = 'n',
+  --   fn = wm.focusNextAppWindow,
+  -- },
+  -- {
+  --   key = 'left',
+  --   fn = wm.positionCurrentWindowLeftHalf,
+  -- },
+  -- {
+  --   key = 'right',
+  --   fn = wm.positionCurrentWindowRightHalf,
+  -- },
+  -- {
+  --   key = 'up',
+  --   fn = wm.positionCurrentWindowFullscreen,
+  -- },
+  -- {
+  --   key = 'down',
+  --   fn = wm.positionCurrentWindowCentered,
+  -- },
+  -- {
+  --   key = ';',
+  --   fn = wm.moveCurrentWindowToNextScreen,
+  -- },
   -- snippets
   -- {
   -- key = 'm',
@@ -320,13 +320,13 @@ local superKeyBindings = {
   --     hs.eventtap.keyStrokes("")
   -- end,
   -- },
-  {
-    key = 'x',
-    fn = function()
-      local win = hs.window.frontmostWindow()
-      win:close()
-    end,
-  },
+  -- {
+  --   key = 'x',
+  --   fn = function()
+  --     local win = hs.window.frontmostWindow()
+  --     win:close()
+  --   end,
+  -- },
   -- keeper password manager autofill
   -- {
   --   key = "x",

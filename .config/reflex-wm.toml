@@ -3,6 +3,26 @@ bind = "cmd + ctrl + opt + shift + a"
 action = "notify-win-info"
 
 [[shortcut]]
+bind = "cmd + ctrl + opt + shift + m"
+action = "toggle-maximize"
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + ;"
+action = "move-to-next-screen"
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + '"
+action = "toggle-vertical-split"
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + w"
+action = "close"
+
+[[shortcut]]
+bind = "cmd + ctrl + opt + shift + n"
+action = "focus-next-app-window"
+
+[[shortcut]]
 bind = "cmd + ctrl + opt + shift + y"
 action = "toggle-app"
 launch_app = "Safari"
@@ -69,7 +89,7 @@ launch_cmd = "open -na kitty --args --title='work-notes' --start-as=maximized --
 match = [{ app_name = "kitty", win_title = "work-notes" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + c"
+bind = "cmd + ctrl + opt + shift + g"
 action = "toggle-app"
 launch_cmd = "open -na kitty --args --title='codex-cli' --start-as=maximized --override active_tab_background=#BFE3DC /bin/zsh -is eval codex-cli"
 match = [{ app_name = "kitty", win_title = "codex-cli" }]

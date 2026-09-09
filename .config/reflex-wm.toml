@@ -1,101 +1,101 @@
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + a"
+bind = "hyper + a"
 action = "notify-win-info"
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + m"
+bind = "hyper + m"
 action = "toggle-maximize"
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + ;"
+bind = "hyper + ;"
 action = "move-to-next-screen"
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + '"
+bind = "hyper + '"
 action = "toggle-vertical-split"
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + w"
+bind = "hyper + w"
 action = "close"
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + n"
+bind = "hyper + n"
 action = "focus-next-app-window"
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + y"
+bind = "hyper + y"
 action = "toggle-app"
 launch_app = "Safari"
 match = [{ app_name = "Safari" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + k"
+bind = "hyper + k"
 action = "toggle-app"
 launch_app = "Obsidiain"
 match = [{ app_name = "Obsidian" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + v"
+bind = "hyper + v"
 action = "toggle-app"
 launch_app = "Preview"
 match = [{ app_name = "Preview" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + l"
+bind = "hyper + l"
 action = "toggle-app"
 launch_app = "zoom.us"
 match = [{ app_name = "zoom.us" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + o"
+bind = "hyper + o"
 action = "toggle-app"
 launch_app = "Microsoft Outlook"
 match = [{ app_name = "Microsoft Outlook" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + p"
+bind = "hyper + p"
 action = "toggle-app"
 launch_app = "Finder"
 match = [{ app_name = "Finder" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + r"
+bind = "hyper + r"
 action = "toggle-app"
 launch_app = "Google Chrome"
 match = [{ app_name = "Google Chrome" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + s"
+bind = "hyper + s"
 action = "toggle-app"
 launch_app = "Slack"
 match = [{ app_name = "Slack" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + h"
+bind = "hyper + h"
 action = "toggle-app"
 launch_app = "Claude"
 match = [{ app_name = "Claude" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + d"
+bind = "hyper + d"
 action = "toggle-app"
 launch_app = "Microsoft Edge"
 match = [{ app_name = "Microsoft Edge" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + f"
+bind = "hyper + f"
 action = "toggle-app"
 launch_cmd = "open -na kitty --args --title='work-notes' --start-as=maximized --override active_tab_background=#B5CCB8 /bin/zsh -is eval work-notes"
 match = [{ app_name = "kitty", win_title = "work-notes" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + g"
+bind = "hyper + g"
 action = "toggle-app"
 launch_cmd = "open -na kitty --args --title='codex-cli' --start-as=maximized --override active_tab_background=#BFE3DC /bin/zsh -is eval codex-cli"
 match = [{ app_name = "kitty", win_title = "codex-cli" }]
 
 [[shortcut]]
-bind = "cmd + ctrl + opt + shift + e"
+bind = "hyper + e"
 action = "toggle-app"
 launch_cmd = "open -na kitty --args --title='terminal' --start-as=maximized --session=sessions/default.kitty-session"
 match = [{ app_name = "kitty", win_title = "terminal" }]

@@ -1,0 +1,59 @@
+[[shortcut]]
+bind = "hyper + a"
+action = "notify-win-info"
+
+[[shortcut]]
+bind = "hyper + m"
+action = "toggle-maximize"
+
+[[shortcut]]
+bind = "hyper + ;"
+action = "move-to-next-screen"
+
+[[shortcut]]
+bind = "hyper + '"
+action = "toggle-vertical-split"
+
+[[shortcut]]
+bind = "hyper + w"
+action = "close"
+
+[[shortcut]]
+bind = "hyper + n"
+action = "focus-next-app-window"
+
+[[shortcut]]
+bind = "hyper + e"
+action = "toggle-app"
+launch_cmd = "kitty --start-as=maximized --session=sessions/default.kitty-session"
+match = [{ app_id = "kitty" }]
+
+[[shortcut]]
+bind = "hyper + d"
+action = "toggle-app"
+launch_app = "app.zen_browser.zen"
+match = [{ app_id = "app.zen_browser.zen" }]
+
+[[shortcut]]
+bind = "hyper + f"
+action = "toggle-app"
+launch_cmd = "obsidian"
+match = [{ app_id = "md.obsidian.Obsidian" }]
+
+[[shortcut]]
+bind = "hyper + k"
+action = "toggle-app"
+launch_cmd = "kitty --class=personal-notes --title=personal-notes nvim $HOME/vaults/personal/__inbox__.md"
+match = [{ app_id = "personal-notes" }]
+
+[[shortcut]]
+bind = "hyper + o"
+action = "toggle-app"
+launch_cmd = "thunderbird"
+match = [{ app_id = "net.thunderbird.Thunderbird" }]
+
+[[shortcut]]
+bind = "hyper + p"
+action = "toggle-app"
+launch_cmd = "dolphin"
+match = [{ app_id = "org.kde.dolphin" }]

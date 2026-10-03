@@ -280,86 +280,23 @@ switch to next activity=none,none,Switch to Next Activity
 switch to previous activity=none,none,Switch to Previous Activity
 toggle do not disturb=none,none,Toggle do not disturb
 
+[reflex-wm]
+_k_friendly_name=reflex-wm
+shortcut-1=Meta+Ctrl+Alt+Shift+A,none,notify-win-info: cmd+ctrl+shift+opt+a
+shortcut-10=Meta+Ctrl+Alt+Shift+K,none,toggle-app: cmd+ctrl+shift+opt+k
+shortcut-11=Meta+Ctrl+Alt+Shift+O,none,toggle-app: cmd+ctrl+shift+opt+o
+shortcut-12=Meta+Ctrl+Alt+Shift+P,none,toggle-app: cmd+ctrl+shift+opt+p
+shortcut-2=Meta+Ctrl+Alt+Shift+M,none,toggle-maximize: cmd+ctrl+shift+opt+m
+shortcut-3=Meta+Ctrl+Alt+:,none,move-to-next-screen: cmd+ctrl+shift+opt+;
+shortcut-4=Meta+Ctrl+Alt+",none,toggle-vertical-split: cmd+ctrl+shift+opt+'
+shortcut-5=Meta+Ctrl+Alt+Shift+W,none,close: cmd+ctrl+shift+opt+w
+shortcut-6=Meta+Ctrl+Alt+Shift+N,none,focus-next-app-window: cmd+ctrl+shift+opt+n
+shortcut-7=Meta+Ctrl+Alt+Shift+E,none,toggle-app: cmd+ctrl+shift+opt+e
+shortcut-8=Meta+Ctrl+Alt+Shift+D,none,toggle-app: cmd+ctrl+shift+opt+d
+shortcut-9=Meta+Ctrl+Alt+Shift+F,none,toggle-app: cmd+ctrl+shift+opt+f
+
 [services][com.mitchellh.ghostty.desktop]
 _launch=none
-
-[services][net.local.kwin-manager-a.desktop]
-_launch=Meta+Ctrl+Alt+Shift+A
-
-[services][net.local.kwin-manager-b.desktop]
-_launch=Meta+Ctrl+Alt+Shift+B
-
-[services][net.local.kwin-manager-c.desktop]
-_launch=Meta+Ctrl+Alt+Shift+C
-
-[services][net.local.kwin-manager-d.desktop]
-_launch=Meta+Ctrl+Alt+Shift+D
-
-[services][net.local.kwin-manager-e.desktop]
-_launch=Meta+Ctrl+Alt+Shift+E
-
-[services][net.local.kwin-manager-f.desktop]
-_launch=Meta+Ctrl+Alt+Shift+F
-
-[services][net.local.kwin-manager-g.desktop]
-_launch=Meta+Ctrl+Alt+Shift+G
-
-[services][net.local.kwin-manager-h.desktop]
-_launch=Meta+Ctrl+Alt+Shift+H
-
-[services][net.local.kwin-manager-i.desktop]
-_launch=Meta+Ctrl+Alt+Shift+I
-
-[services][net.local.kwin-manager-j.desktop]
-_launch=Meta+Ctrl+Alt+Shift+J
-
-[services][net.local.kwin-manager-k.desktop]
-_launch=Meta+Ctrl+Alt+Shift+K
-
-[services][net.local.kwin-manager-l.desktop]
-_launch=Meta+Ctrl+Alt+Shift+L
-
-[services][net.local.kwin-manager-m.desktop]
-_launch=Meta+Ctrl+Alt+Shift+M
-
-[services][net.local.kwin-manager-n.desktop]
-_launch=Meta+Ctrl+Alt+Shift+N
-
-[services][net.local.kwin-manager-o.desktop]
-_launch=Meta+Ctrl+Alt+Shift+O
-
-[services][net.local.kwin-manager-p.desktop]
-_launch=Meta+Ctrl+Alt+Shift+P
-
-[services][net.local.kwin-manager-q.desktop]
-_launch=Meta+Ctrl+Alt+Shift+Q
-
-[services][net.local.kwin-manager-r.desktop]
-_launch=Meta+Ctrl+Alt+Shift+R
-
-[services][net.local.kwin-manager-s.desktop]
-_launch=Meta+Ctrl+Alt+Shift+S
-
-[services][net.local.kwin-manager-t.desktop]
-_launch=Meta+Ctrl+Alt+Shift+T
-
-[services][net.local.kwin-manager-u.desktop]
-_launch=Meta+Ctrl+Alt+Shift+U
-
-[services][net.local.kwin-manager-v.desktop]
-_launch=Meta+Ctrl+Alt+Shift+V
-
-[services][net.local.kwin-manager-w.desktop]
-_launch=Meta+Ctrl+Alt+Shift+W
-
-[services][net.local.kwin-manager-x.desktop]
-_launch=Meta+Ctrl+Alt+Shift+X
-
-[services][net.local.kwin-manager-y.desktop]
-_launch=Meta+Ctrl+Alt+Shift+Y
-
-[services][net.local.kwin-manager-z.desktop]
-_launch=Meta+Ctrl+Alt+Shift+Z
 
 [services][org.kde.dolphin.desktop]
 _launch=none
